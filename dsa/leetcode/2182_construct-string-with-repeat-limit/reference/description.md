@@ -8,8 +8,14 @@ A string `a` is **lexicographically larger** than a string `b` if in the first p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `repeatLimit`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ The letter 'z' appears at most 2 times in a row.
 Hence, no letter appears more than repeatLimit times in a row and the string is a valid repeatLimitedString.
 The string is the lexicographically largest repeatLimitedString possible so we return "zzcccac".
 Note that the string "zzcccca" is lexicographically larger but the letter 'c' appears more than 3 times in a row, so it is not a valid repeatLimitedString.
+
 #### Example 2
 
 - **Input:** `s = "aababab", repeatLimit = 2`

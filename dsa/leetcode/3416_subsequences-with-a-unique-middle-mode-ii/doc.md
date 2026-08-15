@@ -32,23 +32,23 @@ Let $n=\lvert\texttt{nums}\rvert$. The constraints are $5\le n\le10^5$ and $-10^
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1, 1, 1, 1, 1]`
-- Output: `6`
+- **Input:** `nums = [1, 1, 1, 1, 1, 1]`
+- **Output:** `6`
 
 Every choice of five positions contains only the value 1, so all $\binom{6}{5}=6$ choices qualify.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 2, 3, 3, 4]`
-- Output: `4`
+- **Input:** `nums = [1, 2, 2, 3, 3, 4]`
+- **Output:** `4`
 
 The qualifying choices make their third selected value occur more often than every competing value; choices tying the frequencies of 2 and 3 do not qualify.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0, 1, 2, 3, 4, 5, 6, 7, 8]`
-- Output: `0`
+- **Input:** `nums = [0, 1, 2, 3, 4, 5, 6, 7, 8]`
+- **Output:** `0`
 
 Every chosen value is distinct, so no subsequence has a unique mode.

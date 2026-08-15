@@ -10,8 +10,10 @@ Implement the **DataStream** class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `DataStream(value: int, k: int)`: Initializes the data structure.
+- `consec(num: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

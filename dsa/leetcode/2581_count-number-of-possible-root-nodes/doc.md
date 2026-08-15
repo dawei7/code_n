@@ -36,14 +36,14 @@ The tree has $2 \leq n \leq 10^5$ nodes, `guesses` has between $1$ and $10^5$ en
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1],[1,2],[1,3],[4,2]], guesses = [[1,3],[0,1],[1,0],[2,4]], k = 3`
-- Output: `3`
-- Explanation: Roots `0`, `1`, and `2` each make three guesses true; the other roots make only two true.
+- **Input:** `edges = [[0,1],[1,2],[1,3],[4,2]], guesses = [[1,3],[0,1],[1,0],[2,4]], k = 3`
+- **Output:** `3`
+- **Explanation:** Roots `0`, `1`, and `2` each make three guesses true; the other roots make only two true.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0,1],[1,2],[2,3],[3,4]], guesses = [[1,0],[3,4],[2,1],[3,2]], k = 1`
-- Output: `5`
-- Explanation: Every possible root makes at least one of the guesses true.
+- **Input:** `edges = [[0,1],[1,2],[2,3],[3,4]], guesses = [[1,0],[3,4],[2,1],[3,2]], k = 1`
+- **Output:** `5`
+- **Explanation:** Every possible root makes at least one of the guesses true.

@@ -23,6 +23,7 @@ Return `True` exactly when the first player has a winning strategy under optimal
 - **Input:** $currentState = "++++"$
 - **Output:** `true`
 - **Explanation:** The starting player can guarantee a win by flipping the middle "++" to become "+--+".
+
 #### Example 2
 
 - **Input:** $currentState = "+"$

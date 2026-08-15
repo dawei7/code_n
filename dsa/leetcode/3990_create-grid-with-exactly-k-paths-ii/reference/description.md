@@ -18,11 +18,9 @@ A **valid path** is a sequence of free cells that:
 
 - Moves only:
 
-		<li>Right, from `(i, j)` to $(i, j + 1)$, or
+		- Right, from `(i, j)` to $(i, j + 1)$, or
 
 - Down, from `(i, j)` to $(i + 1, j)$.
-
-	</li>
 
 Return any grid such that there are **exactly `k` valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.
 
@@ -44,14 +42,11 @@ Return a non-empty list of at most 25 strings, each having the same positive len
 
 #### Example 1
 
-<div class="example-block">
-**Input:** k = 2
+- **Input:** k = 2
 
-**Output:** ["..#","#..","#.."]
+- **Output:** ["..#","#..","#.."]
 
-**Explanation:**
-
-![](images/screenshot-2026-05-31-at-82224pm.png)
+- **Explanation:** ![](images/screenshot-2026-05-31-at-82224pm.png)
 
 The grid contains exactly 2 valid paths from `(0, 0)` to `(2, 2)`:
 
@@ -59,15 +54,13 @@ The grid contains exactly 2 valid paths from `(0, 0)` to `(2, 2)`:
 
 - `(0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2)`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** k = 3
+- **Input:** k = 3
 
-**Output:** ["...","#..","#.."]
+- **Output:** ["...","#..","#.."]
 
-**Explanation:**
+- **Explanation:** 
 
 **​​​​​​​**
 
@@ -80,8 +73,6 @@ The grid contains exactly 3 valid paths from `(0, 0)` to `(2, 2)`:
 - `(0, 0) → (0, 1) → (1, 1) → (1, 2) → (2, 2)`
 
 - `(0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2)`
-
-</div>
 
 ### 4. Constraints
 

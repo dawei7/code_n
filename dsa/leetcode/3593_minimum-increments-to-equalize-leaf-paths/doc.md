@@ -32,20 +32,20 @@ Return the minimum number of distinct nodes whose costs must be increased so tha
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, edges = [[0, 1], [0, 2]], cost = [2, 1, 3]`
-- Output: `1`
-- Explanation: The two path scores are $3$ and $5$. Increasing node `1` by $2$ equalizes them.
+- **Input:** `n = 3, edges = [[0, 1], [0, 2]], cost = [2, 1, 3]`
+- **Output:** `1`
+- **Explanation:** The two path scores are $3$ and $5$. Increasing node `1` by $2$ equalizes them.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0, 1], [1, 2]], cost = [5, 1, 4]`
-- Output: `0`
-- Explanation: A rooted chain has only one root-to-leaf path, so equality already holds.
+- **Input:** `n = 3, edges = [[0, 1], [1, 2]], cost = [5, 1, 4]`
+- **Output:** `0`
+- **Explanation:** A rooted chain has only one root-to-leaf path, so equality already holds.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, edges = [[0, 4], [0, 1], [1, 2], [1, 3]], cost = [3, 4, 1, 1, 7]`
-- Output: `1`
-- Explanation: Increasing node `1` by $2$ raises both paths through it from score $8$ to score $10$, matching the path through node `4`.
+- **Input:** `n = 5, edges = [[0, 4], [0, 1], [1, 2], [1, 3]], cost = [3, 4, 1, 1, 7]`
+- **Output:** `1`
+- **Explanation:** Increasing node `1` by $2$ raises both paths through it from score $8$ to score $10$, matching the path through node `4`.

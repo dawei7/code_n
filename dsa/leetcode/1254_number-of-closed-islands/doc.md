@@ -31,17 +31,17 @@ A closed island is an island completely surrounded by water, which means none of
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,1,1,1,1,1,1,0],[1,0,0,0,0,1,1,0],[1,0,1,0,1,1,1,0],[1,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,0]]`
-- Output: `2`
+- **Input:** `grid = [[1,1,1,1,1,1,1,0],[1,0,0,0,0,1,1,0],[1,0,1,0,1,1,1,0],[1,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,0]]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,0,1,0,0],[0,1,0,1,0],[0,1,1,1,0]]`
-- Output: `1`
+- **Input:** `grid = [[0,0,1,0,0],[0,1,0,1,0],[0,1,1,1,0]]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1],[1,0,1],[1,1,1]]`
-- Output: `1`
+- **Input:** `grid = [[1,1,1],[1,0,1],[1,1,1]]`
+- **Output:** `1`

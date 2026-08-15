@@ -6,8 +6,13 @@ Return *a list of all possible strings we could create*. Return the output in **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Return *a list of all possible strings we could create*. Return the output in **
 
 - **Input:** `s = "a1b2"`
 - **Output:** `["a1b2","a1B2","A1b2","A1B2"]`
+
 #### Example 2
 
 - **Input:** `s = "3z4"`

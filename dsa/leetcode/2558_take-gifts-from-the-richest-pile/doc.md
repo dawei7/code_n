@@ -31,20 +31,20 @@ For the chosen pile, leave behind exactly the floor of the square root of its pr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `gifts = [25, 64, 9, 4, 100], k = 4`
-- Output: `29`
-- Explanation: The selected values become `100 -> 10`, `64 -> 8`, `25 -> 5`, and then `10 -> 3`. The remaining piles are `[5, 8, 9, 4, 3]`.
+- **Input:** `gifts = [25, 64, 9, 4, 100], k = 4`
+- **Output:** `29`
+- **Explanation:** The selected values become `100 -> 10`, `64 -> 8`, `25 -> 5`, and then `10 -> 3`. The remaining piles are `[5, 8, 9, 4, 3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `gifts = [1, 1, 1, 1], k = 4`
-- Output: `4`
-- Explanation: Reducing a pile of size `1` leaves it at `1`, so no operation changes the total.
+- **Input:** `gifts = [1, 1, 1, 1], k = 4`
+- **Output:** `4`
+- **Explanation:** Reducing a pile of size `1` leaves it at `1`, so no operation changes the total.
 
-**Example 3**
+#### Example 3
 
-- Input: `gifts = [10], k = 1`
-- Output: `3`
-- Explanation: The only pile becomes $\lfloor\sqrt{10}\rfloor=3$.
+- **Input:** `gifts = [10], k = 1`
+- **Output:** `3`
+- **Explanation:** The only pile becomes $\lfloor\sqrt{10}\rfloor=3$.

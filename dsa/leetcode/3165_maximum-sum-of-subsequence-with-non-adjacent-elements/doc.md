@@ -35,16 +35,16 @@ Let $n = \lvert\texttt{nums}\rvert$ and $q = \lvert\texttt{queries}\rvert$. The 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 5, 9], queries = [[1, -2], [0, -3]]`
-- Output: `21`
+- **Input:** `nums = [3, 5, 9], queries = [[1, -2], [0, -3]]`
+- **Output:** `21`
 
 After the first update the array is `[3, -2, 9]`, whose optimum is `3 + 9 = 12`. After the second it is `[-3, -2, 9]`, whose optimum is `9`; their sum is `21`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, -1], queries = [[0, -5]]`
-- Output: `0`
+- **Input:** `nums = [0, -1], queries = [[0, -5]]`
+- **Output:** `0`
 
 The updated array contains only negative values, so choosing the empty subsequence gives the maximum sum.

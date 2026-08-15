@@ -31,23 +31,23 @@ After the chosen elements are reindexed from zero, compute their alternating sum
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,2,5,3]`
-- Output: `7`
+- **Input:** `nums = [4,2,5,3]`
+- **Output:** `7`
 
 Choosing `[4,2,5]` gives $4 - 2 + 5 = 7$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,6,7,8]`
-- Output: `8`
+- **Input:** `nums = [5,6,7,8]`
+- **Output:** `8`
 
 The one-element subsequence `[8]` is optimal.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [6,2,1,2,4,5]`
-- Output: `10`
+- **Input:** `nums = [6,2,1,2,4,5]`
+- **Output:** `10`
 
 Choosing `[6,1,5]` gives $6 - 1 + 5 = 10$.

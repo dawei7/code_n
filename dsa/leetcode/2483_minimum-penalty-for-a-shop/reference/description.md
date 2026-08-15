@@ -16,8 +16,13 @@ Return* the **earliest** hour at which the shop must be closed to incur a **mini
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `customers`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,18 +34,20 @@ that if a shop closes at the $$j^{\text{th}}$$ hour, it means the shop is closed
 
 - **Input:** $customers = "YYNY"$
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - Closing the shop at the 0^th hour incurs in 1+1+0+1 = 3 penalty.
 - Closing the shop at the 1^st hour incurs in 0+1+0+1 = 2 penalty.
 - Closing the shop at the 2^nd hour incurs in 0+0+0+1 = 1 penalty.
 - Closing the shop at the 3^rd hour incurs in 0+0+1+1 = 2 penalty.
 - Closing the shop at the 4^th hour incurs in 0+0+1+0 = 1 penalty.
 Closing the shop at 2^nd or 4^th hour gives a minimum penalty. Since 2 is earlier, the optimal closing time is 2.
+
 #### Example 2
 
 - **Input:** $customers = "NNNNN"$
 - **Output:** `0`
 - **Explanation:** It is best to close the shop at the 0^th hour as no customers arrive.
+
 #### Example 3
 
 - **Input:** $customers = "YYYY"$

@@ -20,32 +20,27 @@ Return `true` if exactly one neighboring pair of binary digits is `11`; otherwis
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 6
+- **Input:** n = 6
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Binary representation of 6 is `110`.
 
 - There is exactly one adjacent pair of set bits (`"11"`). Thus, the answer is `true`​​​​​​​.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5
+- **Input:** n = 5
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - Binary representation of 5 is `101`.
 
 - There is no adjacent pair of set bits. Thus, the answer is `false`​​​​​​​.
-
-</div>
 
 ### 4. Constraints
 

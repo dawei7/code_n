@@ -34,23 +34,23 @@ Replace each digit at odd index $i$ with `shift(s[i - 1], s[i])`, using the imme
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "a1c1e1"`
-- Output: `"abcdef"`
+- **Input:** `s = "a1c1e1"`
+- **Output:** `"abcdef"`
 
 The three shifts are `'a' + 1 = 'b'`, `'c' + 1 = 'd'`, and `'e' + 1 = 'f'`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "a1b2c3d4e"`
-- Output: `"abbdcfdhe"`
+- **Input:** `s = "a1b2c3d4e"`
+- **Output:** `"abbdcfdhe"`
 
 Each digit uses the letter directly to its left; the final `'e'` has no following digit and stays unchanged.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "x0"`
-- Output: `"xx"`
+- **Input:** `s = "x0"`
+- **Output:** `"xx"`
 
 A zero shift reproduces the preceding letter.

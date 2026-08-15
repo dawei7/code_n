@@ -31,23 +31,23 @@ Return the greatest number of bars that can be purchased without spending more t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `costs = [1,3,2,4,1], coins = 7`
-- Output: `4`
+- **Input:** `costs = [1,3,2,4,1], coins = 7`
+- **Output:** `4`
 
 Buying bars priced 1, 1, 2, and 3 uses all 7 coins.
 
-**Example 2**
+#### Example 2
 
-- Input: `costs = [10,6,8,7,7,8], coins = 5`
-- Output: `0`
+- **Input:** `costs = [10,6,8,7,7,8], coins = 5`
+- **Output:** `0`
 
 Even the least expensive bar costs more than the budget.
 
-**Example 3**
+#### Example 3
 
-- Input: `costs = [1,6,3,1,2,5], coins = 20`
-- Output: `6`
+- **Input:** `costs = [1,6,3,1,2,5], coins = 20`
+- **Output:** `6`
 
 All six bars cost 18 coins in total.

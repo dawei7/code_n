@@ -32,9 +32,9 @@ Return one row per product with columns `product_id`, `store1`, `store2`, and `s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-Input:
+- **Input:** 
 
 | product_id | store | price |
 |---:|---|---:|
@@ -44,17 +44,17 @@ Input:
 | 1 | store1 | 70 |
 | 1 | store3 | 80 |
 
-Output:
+- **Output:** 
 
 | product_id | store1 | store2 | store3 |
 |---:|---:|---:|---:|
 | 0 | 95 | 100 | 105 |
 | 1 | 70 | null | 80 |
 
-**Example 2**
+#### Example 2
 
 A product recorded only at `"store2"` produces `NULL`, its price, and `NULL` in the three store columns.
 
-**Example 3**
+#### Example 3
 
 A product with one row for every store produces a completely populated result row.

@@ -55,7 +55,7 @@ Other product names and repeated purchases do not change those presence conditio
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +-------------+---------------+
 | customer_id | customer_name |
@@ -79,11 +79,11 @@ Orders table:
 | 80         |     3        |     D         |
 | 90         |     4        |     C         |
 +------------+--------------+---------------+
-**Output:**
+- **Output:** 
 +-------------+---------------+
 | customer_id | customer_name |
 +-------------+---------------+
 | 3           | Elizabeth     |
 +-------------+---------------+
-**Explanation:** Only the customer_id with id 3 bought the product A and B but not the product C.
+- **Explanation:** Only the customer_id with id 3 bought the product A and B but not the product C.
 ```

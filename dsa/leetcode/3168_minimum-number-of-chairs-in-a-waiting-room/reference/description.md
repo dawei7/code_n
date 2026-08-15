@@ -10,35 +10,31 @@ Return the **minimum **number of chairs needed so that a chair is available for 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "EEEEEEE"
+- **Input:** s = "EEEEEEE"
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** After each second, a person enters the waiting room and no person leaves it. Therefore, a minimum of 7 chairs is needed.
 
-After each second, a person enters the waiting room and no person leaves it. Therefore, a minimum of 7 chairs is needed.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "ELELEEL"
+- **Input:** s = "ELELEEL"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Let's consider that there are 2 chairs in the waiting room. The table below shows the state of the waiting room at each second.
-
-</div>
+- **Explanation:** Let's consider that there are 2 chairs in the waiting room. The table below shows the state of the waiting room at each second.
 
 <table>
 	<tbody>
@@ -92,18 +88,14 @@ Let's consider that there are 2 chairs in the waiting room. The table below show
 		</tr>
 	</tbody>
 </table>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "ELEELEELLL"
+- **Input:** s = "ELEELEELLL"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Let's consider that there are 3 chairs in the waiting room. The table below shows the state of the waiting room at each second.
-
-</div>
+- **Explanation:** Let's consider that there are 3 chairs in the waiting room. The table below shows the state of the waiting room at each second.
 
 <table>
 	<tbody>

@@ -8,17 +8,23 @@ The **value of the character **is defined in the following way:
 
 - If the character is not in the string `chars`, then its value is its corresponding position **(1-indexed)** in the alphabet.
 
-		<li>For example, the value of `'a'` is `1`, the value of `'b'` is `2`, and so on. The value of `'z'` is `26`.
+		- For example, the value of `'a'` is `1`, the value of `'b'` is `2`, and so on. The value of `'z'` is `26`.
 
-	</li>
 - Otherwise, assuming `i` is the index where the character occurs in the string `chars`, then its value is $\text{vals}[i]$.
 
 Return *the maximum cost among all substrings of the string* `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `chars`: Input parameter (`str`).
+- `vals`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ Return *the maximum cost among all substrings of the string* `s`.
 - **Explanation:** The value of the characters "a" and "d" is 1 and -1000 respectively.
 The substring with the maximum cost is "aa" and its cost is 1 + 1 = 2.
 It can be proven that 2 is the maximum cost.
+
 #### Example 2
 
 - **Input:** `s = "abc", chars = "abc", vals = [-1,-1,-1]`

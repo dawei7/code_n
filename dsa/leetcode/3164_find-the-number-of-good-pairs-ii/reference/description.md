@@ -8,33 +8,33 @@ Return the total number of **good** pairs.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [1,3,4], nums2 = [1,3,4], k = 1
+- **Input:** nums1 = [1,3,4], nums2 = [1,3,4], k = 1
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The 5 good pairs are `(0, 0)`, `(1, 0)`, `(1, 1)`, `(2, 0)`, and `(2, 2)`.
 
-The 5 good pairs are `(0, 0)`, `(1, 0)`, `(1, 1)`, `(2, 0)`, and `(2, 2)`.</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [1,2,4,12], nums2 = [2,4], k = 3
+- **Input:** nums1 = [1,2,4,12], nums2 = [2,4], k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The 2 good pairs are `(3, 0)` and `(3, 1)`.
-
-</div>
+- **Explanation:** The 2 good pairs are `(3, 0)` and `(3, 1)`.
 
 ### 4. Constraints
 

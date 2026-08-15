@@ -8,8 +8,13 @@ Return the minimum **positive** value of *startValue* such that the step by step
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +30,13 @@ Return the minimum **positive** value of *startValue* such that the step by step
 (3 **-3** ) = 0  | (4 **-3** ) = 1    |  -3
 (0 **+4** ) = 4  | (1 **+4** ) = 5    |   4
 (4 **+2** ) = 6  | (5 **+2** ) = 7    |   2
+
 #### Example 2
 
 - **Input:** `nums = [1,2]`
 - **Output:** `1`
 - **Explanation:** Minimum start value should be positive.
+
 #### Example 3
 
 - **Input:** `nums = [1,-2,-3]`

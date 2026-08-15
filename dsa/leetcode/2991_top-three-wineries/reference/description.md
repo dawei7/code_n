@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Wineries table:
 +-----+-----------+--------+-----------------+
 | id  | country   | points | winery          |
@@ -45,7 +45,7 @@ Wineries table:
 | 894 | USA       | 39     | RoyalVines      |
 | 677 | USA       | 9      | PacificCrest    |
 +-----+-----------+--------+-----------------+
-**Output:**
+- **Output:** 
 +-----------+---------------------+-------------------+----------------------+
 | country   | top_winery          | second_winery     | third_winery         |
 +-----------+---------------------+-------------------+----------------------+

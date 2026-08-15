@@ -34,16 +34,16 @@ The cost of a substring is the sum of its character values. The empty substring 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "adaa", chars = "d", vals = [-1000]`
-- Output: `2`
+- **Input:** `s = "adaa", chars = "d", vals = [-1000]`
+- **Output:** `2`
 
 The custom value makes `d` strongly negative, so the final substring `"aa"` has the maximum cost $1+1=2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abc", chars = "abc", vals = [-1,-1,-1]`
-- Output: `0`
+- **Input:** `s = "abc", chars = "abc", vals = [-1,-1,-1]`
+- **Output:** `0`
 
 Every nonempty substring has negative cost, so the empty substring is optimal.

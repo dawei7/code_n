@@ -34,20 +34,20 @@ Let $N$ be the number of nodes in the tree.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 0`
-- Output: `3`
-- Explanation: The route is `5 -> 3 -> 1 -> 0`.
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 0`
+- **Output:** `3`
+- **Explanation:** The route is `5 -> 3 -> 1 -> 0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 7`
-- Output: `2`
-- Explanation: The route is `5 -> 2 -> 7`.
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 7`
+- **Output:** `2`
+- **Explanation:** The route is `5 -> 2 -> 7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 5`
-- Output: `0`
-- Explanation: A node has distance zero from itself.
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 5`
+- **Output:** `0`
+- **Explanation:** A node has distance zero from itself.

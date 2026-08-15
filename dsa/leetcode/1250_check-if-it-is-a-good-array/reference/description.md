@@ -6,8 +6,13 @@ Return `True` if the array is **good **otherwise return `False`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,12 +22,14 @@ Return `True` if the array is **good **otherwise return `False`.
 - **Output:** `true`
 - **Explanation:** Pick numbers 5 and 7.
 5*3 + 7*(-2) = 1
+
 #### Example 2
 
 - **Input:** `nums = [29,6,10]`
 - **Output:** `true`
 - **Explanation:** Pick numbers 29, 6 and 10.
 29*1 + 6*(-3) + 10*(-1) = 1
+
 #### Example 3
 
 - **Input:** `nums = [3,6]`

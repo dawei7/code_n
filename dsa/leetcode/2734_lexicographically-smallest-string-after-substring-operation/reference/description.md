@@ -8,59 +8,47 @@ Return the **lexicographically smallest** string **after performing the operatio
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "cbabc"
+- **Input:** s = "cbabc"
 
-**Output:** "baabc"
+- **Output:** "baabc"
 
-**Explanation:**
+- **Explanation:** Perform the operation on the substring starting at index 0, and ending at index 1 inclusive.
 
-Perform the operation on the substring starting at index 0, and ending at index 1 inclusive.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aa"
+- **Input:** s = "aa"
 
-**Output:** "az"
+- **Output:** "az"
 
-**Explanation:**
+- **Explanation:** Perform the operation on the last letter.
 
-Perform the operation on the last letter.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "acbbc"
+- **Input:** s = "acbbc"
 
-**Output:** "abaab"
+- **Output:** "abaab"
 
-**Explanation:**
+- **Explanation:** Perform the operation on the substring starting at index 1, and ending at index 4 inclusive.
 
-Perform the operation on the substring starting at index 1, and ending at index 4 inclusive.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "leetcode"
+- **Input:** s = "leetcode"
 
-**Output:** "kddsbncd"
+- **Output:** "kddsbncd"
 
-**Explanation:**
-
-Perform the operation on the entire string.
-
-</div>
+- **Explanation:** Perform the operation on the entire string.
 
 ### 4. Constraints
 

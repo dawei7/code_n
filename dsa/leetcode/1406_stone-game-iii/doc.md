@@ -30,17 +30,17 @@ The game ends after every stone has been taken. Both players choose moves optima
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stoneValue = [1,2,3,7]`
-- Output: `"Bob"`
+- **Input:** `stoneValue = [1,2,3,7]`
+- **Output:** `"Bob"`
 
-**Example 2**
+#### Example 2
 
-- Input: `stoneValue = [1,2,3,-9]`
-- Output: `"Alice"`
+- **Input:** `stoneValue = [1,2,3,-9]`
+- **Output:** `"Alice"`
 
-**Example 3**
+#### Example 3
 
-- Input: `stoneValue = [1,2,3,6]`
-- Output: `"Tie"`
+- **Input:** `stoneValue = [1,2,3,6]`
+- **Output:** `"Tie"`

@@ -37,17 +37,17 @@ Let $t$ be the number of teams.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Ten teams whose point totals are \`56, 55, 43, 41, 27, 24, 12, 12, 11, 9\`.
-- Output: Positions \`1, 2, 3, 4, 5, 6, 7, 7, 9, 10\`; positions through 4 are Tier 1, positions through 7 are Tier 2, and the remaining positions are Tier 3.
+- **Input:** Ten teams whose point totals are \`56, 55, 43, 41, 27, 24, 12, 12, 11, 9\`.
+- **Output:** Positions \`1, 2, 3, 4, 5, 6, 7, 7, 9, 10\`; positions through 4 are Tier 1, positions through 7 are Tier 2, and the remaining positions are Tier 3.
 
-**Example 2**
+#### Example 2
 
-- Input: Three teams with 9, 6, and 3 points.
-- Output: They occupy positions 1, 2, and 3 in Tier 1, Tier 2, and Tier 3 respectively.
+- **Input:** Three teams with 9, 6, and 3 points.
+- **Output:** They occupy positions 1, 2, and 3 in Tier 1, Tier 2, and Tier 3 respectively.
 
-**Example 3**
+#### Example 3
 
-- Input: Four teams tied on 3 points.
-- Output: Every team has position 1 and belongs to Tier 1; their names determine row order.
+- **Input:** Four teams tied on 3 points.
+- **Output:** Every team has position 1 and belongs to Tier 1; their names determine row order.

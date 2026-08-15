@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-infection-sequences/) |
 
 ## Problem Description
+
 ### Goal
+
 There are `n` people standing at positions `0` through `n - 1` in a line.
 The increasing array `sick` lists the positions already infected. At each
 subsequent step, exactly one uninfected person who is adjacent to an infected
@@ -22,6 +24,7 @@ during this process; the initially infected positions are excluded. Count the
 distinct valid infection sequences and return the count modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: the total number of people in the line
@@ -37,14 +40,15 @@ The number of possible infection orders for the initially healthy people,
 reduced modulo $10^9+7$.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 5, sick = [0,4]`
-- Output: `4`
-- Explanation: Positions `1` and `3` are exposed first; four of the six permutations of `1,2,3` respect the spreading rule.
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 5, sick = [0,4]`
+- **Output:** `4`
+- **Explanation:** Positions `1` and `3` are exposed first; four of the six permutations of `1,2,3` respect the spreading rule.
 
-- Input: `n = 4, sick = [1]`
-- Output: `3`
-- Explanation: The valid orders are `[0,2,3]`, `[2,0,3]`, and `[2,3,0]`.
+#### Example 2
+
+- **Input:** `n = 4, sick = [1]`
+- **Output:** `3`
+- **Explanation:** The valid orders are `[0,2,3]`, `[2,0,3]`, and `[2,3,0]`.

@@ -33,14 +33,14 @@ The area of the largest square subgrid whose complete border consists of `1`s, o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]`
-- Output: `9`
-- Explanation: The outer border is all `1`, so the entire $3 \times 3$ grid qualifies despite its zero center.
+- **Input:** `grid = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]`
+- **Output:** `9`
+- **Explanation:** The outer border is all `1`, so the entire $3 \times 3$ grid qualifies despite its zero center.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 1, 0, 0]]`
-- Output: `1`
-- Explanation: A one-row grid cannot contain a square with side greater than one, but each `1` is a valid side-one square.
+- **Input:** `grid = [[1, 1, 0, 0]]`
+- **Output:** `1`
+- **Explanation:** A one-row grid cannot contain a square with side greater than one, but each `1` is a valid side-one square.

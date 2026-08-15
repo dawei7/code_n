@@ -21,6 +21,7 @@ Note that
 - **Input:** $nums1 = [1,2,3,2,4], nums2 = [2,3,1,2,3]$
 - **Output:** `[0,3]`
 - **Explanation:** Consider index 0 and index 3. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,2,4,3,2,5], nums2 = [1,4,2,3,5,1]$

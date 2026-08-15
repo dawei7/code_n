@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-digits-of-string-after-convert/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a lowercase English string `s` and an integer `k`. First replace
 each letter by its one-based alphabet position: `a` becomes `1`, `b` becomes
 `2`, and so on through `z`, which becomes `26`. Concatenate those decimal
@@ -22,6 +24,7 @@ alphabet positions; each later transform sums the digits of the preceding
 result.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a lowercase English string of length $N$, where
@@ -34,20 +37,21 @@ result.
   transform exactly `k` times.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "iiii", k = 1`
-- Output: `36`
-- Explanation: The conversion is `9999`, whose digits sum to 36.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "iiii", k = 1`
+- **Output:** `36`
+- **Explanation:** The conversion is `9999`, whose digits sum to 36.
 
-- Input: `s = "leetcode", k = 2`
-- Output: `6`
-- Explanation: The first digit sum is 33, and the second is 6.
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "leetcode", k = 2`
+- **Output:** `6`
+- **Explanation:** The first digit sum is 33, and the second is 6.
 
-- Input: `s = "zbax", k = 2`
-- Output: `8`
-- Explanation: The converted digits sum to 17, then to 8.
+#### Example 3
+
+- **Input:** `s = "zbax", k = 2`
+- **Output:** `8`
+- **Explanation:** The converted digits sum to 17, then to 8.

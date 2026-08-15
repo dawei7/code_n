@@ -6,43 +6,40 @@ Given two strings `str1` and `str2`, return *the largest string *`x`* such that 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `str1`: Input parameter (`str`).
+- `str2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** str1 = "ABCABC", str2 = "ABC"
+- **Input:** str1 = "ABCABC", str2 = "ABC"
 
-**Output:** "ABC"
+- **Output:** "ABC"
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** str1 = "ABABAB", str2 = "ABAB"
+- **Input:** str1 = "ABABAB", str2 = "ABAB"
 
-**Output:** "AB"
+- **Output:** "AB"
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** str1 = "LEET", str2 = "CODE"
+- **Input:** str1 = "LEET", str2 = "CODE"
 
-**Output:** ""
+- **Output:** ""
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** str1 = "AAAAAB", str2 = "AAA"
+- **Input:** str1 = "AAAAAB", str2 = "AAA"
 
-**Output:** ""​​​​​​​
-
-</div>
+- **Output:** ""​​​​​​​
 
 ### 4. Constraints
 

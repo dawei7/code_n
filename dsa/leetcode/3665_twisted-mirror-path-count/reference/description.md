@@ -20,8 +20,13 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -31,14 +36,11 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[0,1,0],[0,0,1],[1,0,0]]
+- **Input:** grid = [[0,1,0],[0,0,1],[1,0,0]]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">Number</th>
@@ -71,17 +73,13 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 - `[M]` indicates the robot attempted to enter a mirror cell and instead reflected.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[0,0],[0,0]]
+- **Input:** grid = [[0,0],[0,0]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">Number</th>
@@ -99,17 +97,14 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[0,1,1],[1,1,0]]
+- **Input:** grid = [[0,1,1],[1,1,0]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">Number</th>
@@ -123,7 +118,7 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 		</tr>
 	</tbody>
 </table>
-`(0, 0) → (1, 0) [M] → (1, 1) [M] → (2, 1)` goes out of bounds, so it is invalid.</div>
+`(0, 0) → (1, 0) [M] → (1, 1) [M] → (2, 1)` goes out of bounds, so it is invalid.
 
 ### 5. Constraints
 

@@ -16,14 +16,11 @@ Note: **Every occurrence** of a character that occurs fewer than `k` times is ke
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aadbbcccca", k = 3
+- **Input:** s = "aadbbcccca", k = 3
 
-**Output:** "dbb"
+- **Output:** "dbb"
 
-**Explanation:**
-
-Character frequencies in `s`:
+- **Explanation:** Character frequencies in `s`:
 
 - `'a'` appears 3 times
 
@@ -35,19 +32,13 @@ Character frequencies in `s`:
 
 Only `'d'` and `'b'` appear fewer than 3 times. Preserving their order, the result is `"dbb"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "xyz", k = 2
+- **Input:** s = "xyz", k = 2
 
-**Output:** "xyz"
+- **Output:** "xyz"
 
-**Explanation:**
-
-All characters (`'x'`, `'y'`, `'z'`) appear exactly once, which is fewer than 2. Thus the whole string is returned.
-
-</div>
+- **Explanation:** All characters (`'x'`, `'y'`, `'z'`) appear exactly once, which is fewer than 2. Thus the whole string is returned.
 
 ### 4. Constraints
 

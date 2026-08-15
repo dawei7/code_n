@@ -30,19 +30,19 @@ Return a list `perm` of length $n+1$ containing every integer from $0$ through $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "IDID"`
-- Output: `[0, 4, 1, 3, 2]`
+- **Input:** `s = "IDID"`
+- **Output:** `[0, 4, 1, 3, 2]`
 
 Each adjacent pair follows the corresponding increase or decrease. Other valid permutations are also acceptable.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "III"`
-- Output: `[0, 1, 2, 3]`
+- **Input:** `s = "III"`
+- **Output:** `[0, 1, 2, 3]`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "DDI"`
-- Output: `[3, 2, 0, 1]`
+- **Input:** `s = "DDI"`
+- **Output:** `[3, 2, 0, 1]`

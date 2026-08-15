@@ -14,21 +14,24 @@ Return the **maximum** **total** you can obtain by choosing the activation order
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `value`: Input parameter (`List[int]`).
+- `limit`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** value = [3,5,8], limit = [2,1,3]
+- **Input:** value = [3,5,8], limit = [2,1,3]
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-One optimal activation order is:
+- **Explanation:** One optimal activation order is:
 
 <table>
 	<thead>
@@ -79,17 +82,13 @@ One optimal activation order is:
 
 Thus, the maximum possible total is 16.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** value = [4,2,6], limit = [1,1,1]
+- **Input:** value = [4,2,6], limit = [1,1,1]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-One optimal activation order is:
+- **Explanation:** One optimal activation order is:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -120,17 +119,13 @@ One optimal activation order is:
 
 Thus, the maximum possible total is 6.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** value = [4,1,5,2], limit = [3,3,2,3]
+- **Input:** value = [4,1,5,2], limit = [3,3,2,3]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-One optimal activation order is:​​​​​​​**​​​​​​​**
+- **Explanation:** One optimal activation order is:​​​​​​​**​​​​​​​**
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -190,8 +185,6 @@ One optimal activation order is:​​​​​​​**​​​​​​​**
 </table>
 
 Thus, the maximum possible total is 12.
-
-</div>
 
 ### 4. Constraints
 

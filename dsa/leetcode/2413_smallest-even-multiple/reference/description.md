@@ -4,8 +4,13 @@ Given a **positive** integer `n`, return *the smallest positive integer that is 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +19,7 @@ Given a **positive** integer `n`, return *the smallest positive integer that is 
 - **Input:** $n = 5$
 - **Output:** `10`
 - **Explanation:** The smallest multiple of both 5 and 2 is 10.
+
 #### Example 2
 
 - **Input:** $n = 6$

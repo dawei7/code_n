@@ -12,48 +12,44 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `requirements`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, requirements = [[2,2],[0,0]]
+- **Input:** n = 3, requirements = [[2,2],[0,0]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The two permutations are:
+- **Explanation:** The two permutations are:
 
 - `[2, 0, 1]`
 
-		<li>Prefix `[2, 0, 1]` has inversions `(0, 1)` and `(0, 2)`.
+		- Prefix `[2, 0, 1]` has inversions `(0, 1)` and `(0, 2)`.
 
 - Prefix `[2]` has 0 inversions.
 
-	</li>
 - `[1, 2, 0]`
 
-		<li>Prefix `[1, 2, 0]` has inversions `(0, 2)` and `(1, 2)`.
+		- Prefix `[1, 2, 0]` has inversions `(0, 2)` and `(1, 2)`.
 
 - Prefix `[1]` has 0 inversions.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, requirements = [[2,2],[1,1],[0,0]]
+- **Input:** n = 3, requirements = [[2,2],[1,1],[0,0]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The only satisfying permutation is `[2, 0, 1]`:
+- **Explanation:** The only satisfying permutation is `[2, 0, 1]`:
 
 - Prefix `[2, 0, 1]` has inversions `(0, 1)` and `(0, 2)`.
 
@@ -61,23 +57,17 @@ The only satisfying permutation is `[2, 0, 1]`:
 
 - Prefix `[2]` has 0 inversions.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 2, requirements = [[0,0],[1,0]]
+- **Input:** n = 2, requirements = [[0,0],[1,0]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The only satisfying permutation is `[0, 1]`:
+- **Explanation:** The only satisfying permutation is `[0, 1]`:
 
 - Prefix `[0]` has 0 inversions.
 
 - Prefix `[0, 1]` has no inversions.
-
-</div>
 
 ### 4. Constraints
 

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/bitwise-or-of-even-numbers-in-an-array/) |
 
 ## Problem Description
+
 ### Goal
 
 Inspect every integer in `nums` and retain only the even values. Combine all retained values with the bitwise OR operation and return the resulting integer. A bit is set in the result whenever that bit is set in at least one even array element; odd elements must make no contribution, regardless of their bit patterns.
@@ -29,23 +30,23 @@ Return the bitwise OR of exactly the even elements in `nums`, or 0 when none exi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5, 6]`
-- Output: `6`
+- **Input:** `nums = [1, 2, 3, 4, 5, 6]`
+- **Output:** `6`
 
 The included values are 2, 4, and 6, whose bitwise OR is 6.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [7, 9, 11]`
-- Output: `0`
+- **Input:** `nums = [7, 9, 11]`
+- **Output:** `0`
 
 No value is even.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 8, 16]`
-- Output: `24`
+- **Input:** `nums = [1, 8, 16]`
+- **Output:** `24`
 
 The included values have distinct high bits, and `8 | 16` equals 24.

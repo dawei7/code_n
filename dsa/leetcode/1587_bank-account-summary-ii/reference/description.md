@@ -47,7 +47,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +------------+--------------+
 | account    | name         |
@@ -68,14 +68,13 @@ Transactions table:
 | 6          | 900003     | 6000       |  2020-09-07   |
 | 7          | 900003     | -4000      |  2020-09-11   |
 +------------+------------+------------+---------------+
-**Output:**
+- **Output:** 
 +------------+------------+
 | name       | balance    |
 +------------+------------+
 | Alice      | 11000      |
 +------------+------------+
-**Explanation:**
-Alice's balance is (7000 + 7000 - 3000) = 11000.
+- **Explanation:** Alice's balance is (7000 + 7000 - 3000) = 11000.
 Bob's balance is 1000.
 Charlie's balance is (6000 + 6000 - 4000) = 8000.
 ```

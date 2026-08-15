@@ -12,8 +12,15 @@ Return *a boolean array *`answer`*, where *$\text{answer}[j]$* is the answer to 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `numCourses`: Input parameter (`int`).
+- `prerequisites`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -25,11 +32,13 @@ Return *a boolean array *`answer`*, where *$\text{answer}[j]$* is the answer to 
 - **Output:** `[false,true]`
 - **Explanation:** The pair [1, 0] indicates that you have to take course 1 before you can take course 0.
 Course 0 is not a prerequisite of course 1, but the opposite is true.
+
 #### Example 2
 
 - **Input:** $numCourses = 2, prerequisites = [], queries = [[1,0],[0,1]]$
 - **Output:** `[false,false]`
 - **Explanation:** There are no prerequisites, and each course is independent.
+
 #### Example 3
 
 ![](images/courses4-3-graph.jpg)

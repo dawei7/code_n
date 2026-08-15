@@ -6,8 +6,13 @@ Return `true` *if the path crosses itself at any point, that is, if at any time 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `path`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return `true` *if the path crosses itself at any point, that is, if at any time 
 - **Input:** $path = "NES"$
 - **Output:** `false`
 - **Explanation:** Notice that the path doesn't cross any point more than once.
+
 #### Example 2
 
 ![](images/screen-shot-2020-06-10-at-123843-pm.png)

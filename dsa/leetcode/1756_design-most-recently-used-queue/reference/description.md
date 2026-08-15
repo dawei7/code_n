@@ -21,8 +21,7 @@ Implement the `MRUQueue` class:
 [[8], [3], [5], [2], [8]]
 - **Output:** ``
 [null, 3, 6, 2, 2]
-- **Explanation:**
-MRUQueue mRUQueue = new MRUQueue(8); // Initializes the queue to [1,2,3,4,5,6,7,8].
+- **Explanation:** MRUQueue mRUQueue = new MRUQueue(8); // Initializes the queue to [1,2,3,4,5,6,7,8].
 mRUQueue.fetch(3); // Moves the 3^rd element (3) to the end of the queue to become [1,2,4,5,6,7,8,3] and returns it.
 mRUQueue.fetch(5); // Moves the 5^th element (6) to the end of the queue to become [1,2,4,5,7,8,3,6] and returns it.
 mRUQueue.fetch(2); // Moves the 2^nd element (2) to the end of the queue to become [1,4,5,7,8,3,6,2] and returns it.

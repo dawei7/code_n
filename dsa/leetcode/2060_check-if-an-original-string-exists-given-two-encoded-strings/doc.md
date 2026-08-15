@@ -32,20 +32,20 @@ Let $B$ be the number of distinct unmatched-length balances reachable for one pa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "internationalization", s2 = "i18n"`
-- Output: `true`
-- Explanation: The middle eighteen letters may be replaced by their length.
+- **Input:** `s1 = "internationalization", s2 = "i18n"`
+- **Output:** `true`
+- **Explanation:** The middle eighteen letters may be replaced by their length.
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "l123e", s2 = "44"`
-- Output: `true`
-- Explanation: Both may encode `"leetcode"` using different substring partitions.
+- **Input:** `s1 = "l123e", s2 = "44"`
+- **Output:** `true`
+- **Explanation:** Both may encode `"leetcode"` using different substring partitions.
 
-**Example 3**
+#### Example 3
 
-- Input: `s1 = "a5b", s2 = "c5b"`
-- Output: `false`
-- Explanation: Their first required literal letters disagree.
+- **Input:** `s1 = "a5b", s2 = "c5b"`
+- **Output:** `false`
+- **Explanation:** Their first required literal letters disagree.

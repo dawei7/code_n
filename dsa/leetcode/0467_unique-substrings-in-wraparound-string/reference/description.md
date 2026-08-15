@@ -25,11 +25,13 @@ Equal substring text is counted once even if it occurs at multiple positions in 
 - **Input:** `s = "a"`
 - **Output:** `1`
 - **Explanation:** Only the substring "a" of s is in base.
+
 #### Example 2
 
 - **Input:** `s = "cac"`
 - **Output:** `2`
 - **Explanation:** There are two substrings ("a", "c") of s in base.
+
 #### Example 3
 
 - **Input:** `s = "zab"`

@@ -30,23 +30,23 @@ The standard base-$k$ representation uses digits from 0 through $k-1$ and has no
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 34, k = 6`
-- Output: `9`
+- **Input:** `n = 34, k = 6`
+- **Output:** `9`
 
 The base-6 representation is `54`, and $5+4=9$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 10, k = 10`
-- Output: `1`
+- **Input:** `n = 10, k = 10`
+- **Output:** `1`
 
 The representation remains `10`, whose digits sum to 1.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 8, k = 2`
-- Output: `1`
+- **Input:** `n = 8, k = 2`
+- **Output:** `1`
 
 The binary representation is `1000`.

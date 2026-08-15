@@ -33,23 +33,23 @@ Return the maximum difference between the odd frequency and the positive even fr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "12233", k = 4`
-- Output: `-1`
+- **Input:** `s = "12233", k = 4`
+- **Output:** `-1`
 
 In `"12233"`, character `1` occurs once and character `3` occurs twice, producing `1 - 2 = -1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "1122211", k = 3`
-- Output: `1`
+- **Input:** `s = "1122211", k = 3`
+- **Output:** `1`
 
 The substring `"11222"` contains three `2` characters and two `1` characters, producing `3 - 2 = 1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "110", k = 3`
-- Output: `-1`
+- **Input:** `s = "110", k = 3`
+- **Output:** `-1`
 
 The whole string has one `0` and two `1` characters, so their valid difference is `1 - 2 = -1`.

@@ -18,8 +18,13 @@ Assuming Alice and Bob play **optimally**, return `true` *if Alice will win and 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -29,11 +34,13 @@ Assuming Alice and Bob play **optimally**, return `true` *if Alice will win and 
 - **Output:** `false`
 - **Explanation:** There are no moves to be made.
 The sum of the first half is equal to the sum of the second half: 5 + 0 = 2 + 3.
+
 #### Example 2
 
 - **Input:** $num = "25??"$
 - **Output:** `true`
 - **Explanation:** Alice can replace one of the '?'s with '9' and it will be impossible for Bob to make the sums equal.
+
 #### Example 3
 
 - **Input:** $num = "?3295???"$

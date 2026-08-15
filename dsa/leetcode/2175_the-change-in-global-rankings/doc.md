@@ -49,20 +49,20 @@ tie-breaking.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Senegal starts first, Croatia second, Algeria third, and New Zealand
+- **Input:** Senegal starts first, Croatia second, Algeria third, and New Zealand
   fourth; the adjustments make Algeria and Croatia tie at `1830`.
-- Output: Senegal `0`, Croatia `-1`, Algeria `1`, and New Zealand `0`, because
+- **Output:** Senegal `0`, Croatia `-1`, Algeria `1`, and New Zealand `0`, because
   Algeria wins the updated tie lexicographically.
 
-**Example 2**
+#### Example 2
 
-- Input: every `points_change` is `0`.
-- Output: every `rank_diff` is `0`.
+- **Input:** every `points_change` is `0`.
+- **Output:** every `rank_diff` is `0`.
 
-**Example 3**
+#### Example 3
 
-- Input: two updated point totals become equal.
-- Output: their new relative positions follow ascending `name`, regardless of
+- **Input:** two updated point totals become equal.
+- **Output:** their new relative positions follow ascending `name`, regardless of
   their original order.

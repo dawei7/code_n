@@ -31,17 +31,17 @@ Return the greatest product obtainable with at most `k` increments, reduced modu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 4], k = 5`
-- Output: `20`
+- **Input:** `nums = [0, 4], k = 5`
+- **Output:** `20`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6, 3, 3, 2], k = 2`
-- Output: `216`
+- **Input:** `nums = [6, 3, 3, 2], k = 2`
+- **Output:** `216`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1], k = 3`
-- Output: `4`
+- **Input:** `nums = [1], k = 3`
+- **Output:** `4`

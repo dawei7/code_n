@@ -8,21 +8,24 @@ Return the **lexicographically smallest** permutation (when considered as a list
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,12,45], k = 5
+- **Input:** nums = [3,12,45], k = 5
 
-**Output:** [3,12,45]
+- **Output:** [3,12,45]
 
-**Explanation:**
-
-<table data-end="896" data-start="441" node="[object Object]" style="border: 1px solid black;">
+- **Explanation:** <table data-end="896" data-start="441" node="[object Object]" style="border: 1px solid black;">
 	<thead data-end="497" data-start="441">
 		<tr data-end="497" data-start="441">
 			<th data-end="458" data-start="441" style="border: 1px solid black;">Permutation</th>
@@ -66,17 +69,13 @@ Return the **lexicographically smallest** permutation (when considered as a list
 
 The lexicographically smallest permutation that forms a divisible concatenation is `[3,12,45]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [10,5], k = 10
+- **Input:** nums = [10,5], k = 10
 
-**Output:** [5,10]
+- **Output:** [5,10]
 
-**Explanation:**
-
-<table data-end="1421" data-start="1200" node="[object Object]" style="border: 1px solid black;">
+- **Explanation:** <table data-end="1421" data-start="1200" node="[object Object]" style="border: 1px solid black;">
 	<thead data-end="1255" data-start="1200">
 		<tr data-end="1255" data-start="1200">
 			<th data-end="1216" data-start="1200" style="border: 1px solid black;">Permutation</th>
@@ -100,19 +99,13 @@ The lexicographically smallest permutation that forms a divisible concatenation 
 
 The lexicographically smallest permutation that forms a divisible concatenation is `[5,10]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 5
+- **Input:** nums = [1,2,3], k = 5
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-Since no permutation of `nums` forms a valid divisible concatenation, return an empty list.
-
-</div>
+- **Explanation:** Since no permutation of `nums` forms a valid divisible concatenation, return an empty list.
 
 ### 4. Constraints
 

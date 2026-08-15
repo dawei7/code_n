@@ -14,12 +14,11 @@ Return an array of length $n − k + 1$ where each element corresponds to the an
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,2,4,5], k = 3
+- **Input:** nums = [1,3,2,4,5], k = 3
 
-**Output:** [2,2,0]
+- **Output:** [2,2,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - $nums[0...2] = [1, 3, 2]$. Sort `[3, 2]` to get `[1, 2, 3]`, the answer is 2.
 
@@ -27,21 +26,17 @@ Return an array of length $n − k + 1$ where each element corresponds to the an
 
 - $nums[2...4] = [2, 4, 5]$ is already sorted, so the answer is 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,4,3,2,1], k = 4
+- **Input:** nums = [5,4,3,2,1], k = 4
 
-**Output:** [4,4]
+- **Output:** [4,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - $nums[0...3] = [5, 4, 3, 2]$. The whole subarray must be sorted, so the answer is 4.
 
 - $nums[1...4] = [4, 3, 2, 1]$. The whole subarray must be sorted, so the answer is 4.
-
-</div>
 
 ### 4. Constraints
 

@@ -6,19 +6,23 @@ Return the **most common** response across all days after removing **duplicate**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `responses`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** responses = [["good","ok","good","ok"],["ok","bad","good","ok","ok"],["good"],["bad"]]
+- **Input:** responses = [["good","ok","good","ok"],["ok","bad","good","ok","ok"],["good"],["bad"]]
 
-**Output:** "good"
+- **Output:** "good"
 
-**Explanation:**
+- **Explanation:** 
 
 - After removing duplicates within each list, $responses = [["good", "ok"], ["ok", "bad", "good"], ["good"], ["bad"]]$.
 
@@ -26,23 +30,19 @@ Return the **most common** response across all days after removing **duplicate**
 
 - Return `"good"` because it has the highest frequency.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** responses = [["good","ok","good"],["ok","bad"],["bad","notsure"],["great","good"]]
+- **Input:** responses = [["good","ok","good"],["ok","bad"],["bad","notsure"],["great","good"]]
 
-**Output:** "bad"
+- **Output:** "bad"
 
-**Explanation:**
+- **Explanation:** 
 
 - After removing duplicates within each list we have $responses = [["good", "ok"], ["ok", "bad"], ["bad", "notsure"], ["great", "good"]]$.
 
 - `"bad"`, `"good"`, and `"ok"` each occur 2 times.
 
 - The output is `"bad"` because it is the lexicographically smallest amongst the words with the highest frequency.
-
-</div>
 
 ### 4. Constraints
 

@@ -31,7 +31,7 @@ Reformat this data into one row per department. Keep the department `id` and cre
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Department`
 
@@ -53,10 +53,10 @@ Output, showing the populated leading months:
 
 The actual result also contains the remaining monthly columns through `Dec_Revenue`, all `NULL` for these rows.
 
-**Example 2**
+#### Example 2
 
 A department represented only by a December row has `NULL` in the first eleven revenue columns and its value in `Dec_Revenue`.
 
-**Example 3**
+#### Example 3
 
 A department with all twelve month rows produces a completely populated output row.

@@ -31,21 +31,21 @@ Find the minimum number of operations, possibly zero, needed to make `arr1` stri
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr1 = [1,5,3,6,7]`, `arr2 = [1,3,2,4]`
-- Output: `1`
+- **Input:** `arr1 = [1,5,3,6,7]`, `arr2 = [1,3,2,4]`
+- **Output:** `1`
 
 Replace `arr1[1]` with `2` to obtain `[1,2,3,6,7]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr1 = [1,5,3,6,7]`, `arr2 = [4,3,1]`
-- Output: `2`
+- **Input:** `arr1 = [1,5,3,6,7]`, `arr2 = [4,3,1]`
+- **Output:** `2`
 
 Replacing the two middle values produces `[1,3,4,6,7]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr1 = [1,5,3,6,7]`, `arr2 = [1,6,3,3]`
-- Output: `-1`
+- **Input:** `arr1 = [1,5,3,6,7]`, `arr2 = [1,6,3,3]`
+- **Output:** `-1`

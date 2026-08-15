@@ -14,8 +14,14 @@ Return *the **maximum** number of water bottles you can drink*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `numBottles`: Input parameter (`int`).
+- `numExchange`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *the **maximum** number of water bottles you can drink*.
 - **Input:** $numBottles = 13, numExchange = 6$
 - **Output:** `15`
 - **Explanation:** The table above shows the number of full water bottles, empty water bottles, the value of numExchange, and the number of bottles drunk.
+
 #### Example 2
 
 ![](images/example231.png)

@@ -31,17 +31,17 @@ Return a one-column table of distinct qualifying `user_id` values ordered numeri
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: purchases `(1, "2022-04-20 09:03:00", 4416)`, `(2, "2022-03-19 19:24:02", 678)`, `(3, "2022-03-18 12:03:09", 4523)`, `(3, "2022-03-30 09:43:42", 626)`; dates `"2022-03-08"` through `"2022-03-20"`; minimum `1000`
-- Output: user `3`
+- **Input:** purchases `(1, "2022-04-20 09:03:00", 4416)`, `(2, "2022-03-19 19:24:02", 678)`, `(3, "2022-03-18 12:03:09", 4523)`, `(3, "2022-03-30 09:43:42", 626)`; dates `"2022-03-08"` through `"2022-03-20"`; minimum `1000`
+- **Output:** user `3`
 
-**Example 2**
+#### Example 2
 
-- Input: a qualifying-amount purchase exactly at the start-date boundary
-- Output: that purchase's user
+- **Input:** a qualifying-amount purchase exactly at the start-date boundary
+- **Output:** that purchase's user
 
-**Example 3**
+#### Example 3
 
-- Input: a purchase later than midnight on `endDate`
-- Output: no row for that purchase alone
+- **Input:** a purchase later than midnight on `endDate`
+- **Output:** no row for that purchase alone

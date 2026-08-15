@@ -8,65 +8,55 @@ Return `true` if such a path exists, and `false` otherwise.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `xCorner`: Input parameter (`int`).
+- `yCorner`: Input parameter (`int`).
+- `circles`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** xCorner = 3, yCorner = 4, circles = [[2,1,1]]
+- **Input:** xCorner = 3, yCorner = 4, circles = [[2,1,1]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/example2circle1.png)
+- **Explanation:** ![](images/example2circle1.png)
 
 The black curve shows a possible path between `(0, 0)` and `(3, 4)`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** xCorner = 3, yCorner = 3, circles = [[1,1,2]]
+- **Input:** xCorner = 3, yCorner = 3, circles = [[1,1,2]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-![](images/example1circle.png)
+- **Explanation:** ![](images/example1circle.png)
 
 No path exists from `(0, 0)` to `(3, 3)`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** xCorner = 3, yCorner = 3, circles = [[2,1,1],[1,2,1]]
+- **Input:** xCorner = 3, yCorner = 3, circles = [[2,1,1],[1,2,1]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-![](images/example0circle.png)
+- **Explanation:** ![](images/example0circle.png)
 
 No path exists from `(0, 0)` to `(3, 3)`.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** xCorner = 4, yCorner = 4, circles = [[5,5,1]]
+- **Input:** xCorner = 4, yCorner = 4, circles = [[5,5,1]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/rectangles.png)
-
-</div>
+- **Explanation:** ![](images/rectangles.png)
 
 ### 4. Constraints
 

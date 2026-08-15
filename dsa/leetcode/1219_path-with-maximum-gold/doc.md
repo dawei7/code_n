@@ -34,21 +34,21 @@ Let $g$ be the number of cells containing gold. The input guarantees $g\le25$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,6,0],[5,8,7],[0,9,0]]`
-- Output: `24`
+- **Input:** `grid = [[0,6,0],[5,8,7],[0,9,0]]`
+- **Output:** `24`
 
 The path `9 -> 8 -> 7` collects `24` gold.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,7],[2,0,6],[3,4,5],[0,3,0],[9,0,20]]`
-- Output: `28`
+- **Input:** `grid = [[1,0,7],[2,0,6],[3,4,5],[0,3,0],[9,0,20]]`
+- **Output:** `28`
 
 The path `1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7` collects `28` gold.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[10]]`
-- Output: `10`
+- **Input:** `grid = [[10]]`
+- **Output:** `10`

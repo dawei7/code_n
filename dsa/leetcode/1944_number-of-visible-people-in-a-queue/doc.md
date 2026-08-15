@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-visible-people-in-a-queue/) |
 
 ## Problem Description
+
 ### Goal
+
 $N$ people stand in a queue from left to right, and `heights[i]` is the height
 of person $i$. Every height is distinct. A person may see only people located
 to the right.
@@ -28,6 +30,7 @@ them. Return, for every queue position, the number of visible people to its
 right.
 
 ### Function Contract
+
 **Inputs**
 
 - `heights`: an array of $N$ distinct integers, where
@@ -39,17 +42,18 @@ right.
   the right that person $i$ can see.
 
 ### Examples
-**Example 1**
 
-- Input: `heights = [10, 6, 8, 5, 11, 9]`
-- Output: `[3, 1, 2, 1, 1, 0]`
+#### Example 1
 
-**Example 2**
+- **Input:** `heights = [10, 6, 8, 5, 11, 9]`
+- **Output:** `[3, 1, 2, 1, 1, 0]`
 
-- Input: `heights = [5, 1, 2, 3, 10]`
-- Output: `[4, 1, 1, 1, 0]`
+#### Example 2
 
-**Example 3**
+- **Input:** `heights = [5, 1, 2, 3, 10]`
+- **Output:** `[4, 1, 1, 1, 0]`
 
-- Input: `heights = [4, 3, 2, 1]`
-- Output: `[1, 1, 1, 0]`
+#### Example 3
+
+- **Input:** `heights = [4, 3, 2, 1]`
+- **Output:** `[1, 1, 1, 0]`

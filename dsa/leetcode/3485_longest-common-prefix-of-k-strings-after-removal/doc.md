@@ -41,23 +41,23 @@ Return a list `answer` of length $n$. For each index `i`, `answer[i]` is the max
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["jump", "run", "run", "jump", "run"]`, `k = 2`
-- Output: `[3, 4, 4, 3, 4]`
+- **Input:** `words = ["jump", "run", "run", "jump", "run"]`, `k = 2`
+- **Output:** `[3, 4, 4, 3, 4]`
 
 Removing a `jump` leaves at least two copies of `run`, whose common prefix has length 3. Removing a `run` leaves two copies of `jump`, giving length 4.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["dog", "racer", "car"]`, `k = 2`
-- Output: `[0, 0, 0]`
+- **Input:** `words = ["dog", "racer", "car"]`, `k = 2`
+- **Output:** `[0, 0, 0]`
 
 After any removal, the two remaining strings begin with different letters.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["a", "ab", "abc"]`, `k = 2`
-- Output: `[2, 1, 1]`
+- **Input:** `words = ["a", "ab", "abc"]`, `k = 2`
+- **Output:** `[2, 1, 1]`
 
 Removing `a` leaves two strings sharing `ab`; either other removal leaves a best common prefix of `a`.

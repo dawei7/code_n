@@ -30,23 +30,23 @@ A binary string is alternating when every adjacent pair contains different chara
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "111000"`
-- Output: `2`
+- **Input:** `s = "111000"`
+- **Output:** `2`
 
 Two left rotations produce `100011`; flipping its third and sixth characters yields `101010`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "010"`
-- Output: `0`
+- **Input:** `s = "010"`
+- **Output:** `0`
 
 The original string is already alternating.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1110"`
-- Output: `1`
+- **Input:** `s = "1110"`
+- **Output:** `1`
 
 Flipping the second character produces `1010`.

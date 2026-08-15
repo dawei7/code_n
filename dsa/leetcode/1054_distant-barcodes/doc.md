@@ -30,13 +30,13 @@ Rearrange the entire array so that no two adjacent positions contain equal barco
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `barcodes = [1,1,1,2,2,2]`
-- Output: `[2,1,2,1,2,1]`
-- Explanation: The counts are preserved and the two values alternate.
+- **Input:** `barcodes = [1,1,1,2,2,2]`
+- **Output:** `[2,1,2,1,2,1]`
+- **Explanation:** The counts are preserved and the two values alternate.
 
-**Example 2**
+#### Example 2
 
-- Input: `barcodes = [1,1,1,1,2,2,3,3]`
-- Output: `[1,3,1,3,1,2,1,2]`
+- **Input:** `barcodes = [1,1,1,1,2,2,3,3]`
+- **Output:** `[1,3,1,3,1,2,1,2]`

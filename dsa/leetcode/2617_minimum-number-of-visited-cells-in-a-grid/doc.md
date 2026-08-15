@@ -32,20 +32,20 @@ Return the minimum number of visited cells required to reach the bottom-right co
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[3, 4, 2, 1], [4, 2, 3, 1], [2, 1, 0, 0], [2, 4, 0, 0]]`
-- Output: `4`
-- Explanation: A shortest valid path includes the start, two intermediate cells, and the destination.
+- **Input:** `grid = [[3, 4, 2, 1], [4, 2, 3, 1], [2, 1, 0, 0], [2, 4, 0, 0]]`
+- **Output:** `4`
+- **Explanation:** A shortest valid path includes the start, two intermediate cells, and the destination.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[3, 4, 2, 1], [4, 2, 1, 1], [2, 1, 1, 0], [3, 4, 1, 0]]`
-- Output: `3`
-- Explanation: The destination can be reached while visiting three cells.
+- **Input:** `grid = [[3, 4, 2, 1], [4, 2, 1, 1], [2, 1, 1, 0], [3, 4, 1, 0]]`
+- **Output:** `3`
+- **Explanation:** The destination can be reached while visiting three cells.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[2, 1, 0], [1, 0, 0]]`
-- Output: `-1`
-- Explanation: Every possible forward path stops before the destination.
+- **Input:** `grid = [[2, 1, 0], [1, 0, 0]]`
+- **Output:** `-1`
+- **Explanation:** Every possible forward path stops before the destination.

@@ -26,27 +26,26 @@ Return *the **minimum** number of operations needed to remove all *`1`*'s from *
 
 - **Input:** `grid = [[1,1,1],[1,1,1],[0,1,0]]`
 - **Output:** `2`
-- **Explanation:**
-In the first operation, change all cell values of row 1 and column 1 to zero.
+- **Explanation:** In the first operation, change all cell values of row 1 and column 1 to zero.
 In the second operation, change all cell values of row 0 and column 0 to zero.
+
 #### Example 2
 
 ![](images/image-20220213162737-2.png)
 
 - **Input:** `grid = [[0,1,0],[1,0,1],[0,1,0]]`
 - **Output:** `2`
-- **Explanation:**
-In the first operation, change all cell values of row 1 and column 0 to zero.
+- **Explanation:** In the first operation, change all cell values of row 1 and column 0 to zero.
 In the second operation, change all cell values of row 2 and column 1 to zero.
 Note that we cannot perform an operation using row 1 and column 1 because grid[1][1] != 1.
+
 #### Example 3
 
 ![](images/image-20220213162752-3.png)
 
 - **Input:** `grid = [[0,0],[0,0]]`
 - **Output:** `0`
-- **Explanation:**
-There are no 1's to remove so return 0.
+- **Explanation:** There are no 1's to remove so return 0.
 
 ### 4. Constraints
 

@@ -10,8 +10,13 @@ Return *the size of the largest connected component in the graph*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ Return *the size of the largest connected component in the graph*.
 
 - **Input:** `nums = [4,6,15,35]`
 - **Output:** `4`
+
 #### Example 2
 
 ![](images/ex2.png)
 
 - **Input:** `nums = [20,50,9,63]`
 - **Output:** `2`
+
 #### Example 3
 
 ![](images/ex3.png)

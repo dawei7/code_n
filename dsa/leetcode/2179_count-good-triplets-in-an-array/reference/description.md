@@ -8,8 +8,14 @@ Return *the **total number** of good triplets*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,9 +23,9 @@ Return *the **total number** of good triplets*.
 
 - **Input:** $nums1 = [2,0,1,3], nums2 = [0,1,2,3]$
 - **Output:** `1`
-- **Explanation:**
-There are 4 triplets (x,y,z) such that pos1_x < pos1_y < pos1_z. They are (2,0,1), (2,0,3), (2,1,3), and (0,1,3).
+- **Explanation:** There are 4 triplets (x,y,z) such that pos1_x < pos1_y < pos1_z. They are (2,0,1), (2,0,3), (2,1,3), and (0,1,3).
 Out of those triplets, only the triplet (0,1,3) satisfies pos2_x < pos2_y < pos2_z. Hence, there is only 1 good triplet.
+
 #### Example 2
 
 - **Input:** $nums1 = [4,0,1,3,2], nums2 = [4,1,0,2,3]$

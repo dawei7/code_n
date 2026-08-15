@@ -35,6 +35,7 @@ A subtree must include all of its descendants.
 - **Input:** `root = [10,5,15,1,8,null,7]`
 - **Output:** `3`
 - **Explanation:** The Largest BST Subtree in this case is the highlighted one. The return value is the subtree's size, which is 3.
+
 #### Example 2
 
 - **Input:** `root = [4,2,7,2,3,5,null,2,null,null,null,null,null,1]`

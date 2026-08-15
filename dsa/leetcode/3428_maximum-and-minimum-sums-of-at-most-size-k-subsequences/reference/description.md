@@ -6,21 +6,24 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 2
+- **Input:** nums = [1,2,3], k = 2
 
-**Output:** 24
+- **Output:** 24
 
-**Explanation:**
-
-The subsequences of `nums` with at most 2 elements are:
+- **Explanation:** The subsequences of `nums` with at most 2 elements are:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -77,31 +80,21 @@ The subsequences of `nums` with at most 2 elements are:
 
 The output would be 24.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,0,6], k = 1
+- **Input:** nums = [5,0,6], k = 1
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation: **
+- **Explanation:** For subsequences with exactly 1 element, the minimum and maximum values are the element itself. Therefore, the total is $5 + 5 + 0 + 0 + 6 + 6 = 22$.
 
-For subsequences with exactly 1 element, the minimum and maximum values are the element itself. Therefore, the total is $5 + 5 + 0 + 0 + 6 + 6 = 22$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1], k = 2
+- **Input:** nums = [1,1,1], k = 2
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The subsequences `[1, 1]` and `[1]` each appear 3 times. For all of them, the minimum and maximum are both 1. Thus, the total is 12.
-
-</div>
+- **Explanation:** The subsequences `[1, 1]` and `[1]` each appear 3 times. For all of them, the minimum and maximum are both 1. Thus, the total is 12.
 
 ### 4. Constraints
 

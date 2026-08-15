@@ -10,19 +10,25 @@ Return the **minimum **total cost to make `arr` **equal** to `brr`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `brr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** arr = [-7,9,5], brr = [7,-2,-5], k = 2
+- **Input:** arr = [-7,9,5], brr = [7,-2,-5], k = 2
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `arr` into two contiguous subarrays: `[-7]` and `[9, 5]` and rearrange them as `[9, 5, -7]`, with a cost of 2.
 
@@ -34,19 +40,13 @@ Return the **minimum **total cost to make `arr` **equal** to `brr`.
 
 The total cost to make the arrays equal is $2 + 2 + 7 + 2 = 13$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** arr = [2,1], brr = [2,1], k = 0
+- **Input:** arr = [2,1], brr = [2,1], k = 0
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Since the arrays are already equal, no operations are needed, and the total cost is 0.
-
-</div>
+- **Explanation:** Since the arrays are already equal, no operations are needed, and the total cost is 0.
 
 ### 4. Constraints
 

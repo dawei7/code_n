@@ -35,6 +35,7 @@ Return *the maximum total tastiness that can be purchased*.
 - Buy second fruit with coupon, so that total price = 10 + 10 and total tastiness = 5 + 8.
 - Do not buy third fruit, so that total price = 20 and total tastiness = 13.
 It can be proven that 13 is the maximum total tastiness that can be obtained.
+
 #### Example 2
 
 - **Input:** $price = [10,15,7], tastiness = [5,8,20], maxAmount = 10, maxCoupons = 2$

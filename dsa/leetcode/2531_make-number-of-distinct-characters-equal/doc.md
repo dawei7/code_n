@@ -33,20 +33,20 @@ Return `true` if some single cross-string character swap makes the distinct-char
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "ac", word2 = "b"`
-- Output: `false`
-- Explanation: Every swap leaves the first string with two distinct characters and the second with one.
+- **Input:** `word1 = "ac", word2 = "b"`
+- **Output:** `false`
+- **Explanation:** Every swap leaves the first string with two distinct characters and the second with one.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "abcc", word2 = "aab"`
-- Output: `true`
-- Explanation: Swapping a `c` from the first string with an `a` from the second yields three distinct characters in each.
+- **Input:** `word1 = "abcc", word2 = "aab"`
+- **Output:** `true`
+- **Explanation:** Swapping a `c` from the first string with an `a` from the second yields three distinct characters in each.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "abcde", word2 = "fghij"`
-- Output: `true`
-- Explanation: Swapping any pair preserves five distinct characters in both strings.
+- **Input:** `word1 = "abcde", word2 = "fghij"`
+- **Output:** `true`
+- **Explanation:** Swapping any pair preserves five distinct characters in both strings.

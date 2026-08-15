@@ -34,17 +34,17 @@ A table with columns `user_id`, `steps_date`, and `rolling_average`. Each row re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: user `1` has counts `395`, `499`, `712`, and `576` on September 4 through September 7, 2021.
-- Output: rows ending on `2021-09-06` with `535.33` and on `2021-09-07` with `595.67`.
+- **Input:** user `1` has counts `395`, `499`, `712`, and `576` on September 4 through September 7, 2021.
+- **Output:** rows ending on `2021-09-06` with `535.33` and on `2021-09-07` with `595.67`.
 
-**Example 2**
+#### Example 2
 
-- Input: one user has observations on `2024-01-01`, `2024-01-03`, and `2024-01-04`.
-- Output: no rows, because three observations do not form three consecutive calendar days.
+- **Input:** one user has observations on `2024-01-01`, `2024-01-03`, and `2024-01-04`.
+- **Output:** no rows, because three observations do not form three consecutive calendar days.
 
-**Example 3**
+#### Example 3
 
-- Input: user `7` records `1`, `2`, and `2` steps on three consecutive dates.
-- Output: the last date has rolling average `1.67`.
+- **Input:** user `7` records `1`, `2`, and `2` steps on three consecutive dates.
+- **Output:** the last date has rolling average `1.67`.

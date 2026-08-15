@@ -30,20 +30,20 @@ Return the minimum number of buckets needed to feed all hamsters, or `-1` when a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `hamsters = "H..H"`
-- Output: `2`
-- Explanation: Buckets at indices `1` and `2` feed the two endpoint hamsters.
+- **Input:** `hamsters = "H..H"`
+- **Output:** `2`
+- **Explanation:** Buckets at indices `1` and `2` feed the two endpoint hamsters.
 
-**Example 2**
+#### Example 2
 
-- Input: `hamsters = ".H.H."`
-- Output: `1`
-- Explanation: A bucket at index `2` is adjacent to both hamsters.
+- **Input:** `hamsters = ".H.H."`
+- **Output:** `1`
+- **Explanation:** A bucket at index `2` is adjacent to both hamsters.
 
-**Example 3**
+#### Example 3
 
-- Input: `hamsters = ".HHH."`
-- Output: `-1`
-- Explanation: The middle hamster has no adjacent empty position.
+- **Input:** `hamsters = ".HHH."`
+- **Output:** `-1`
+- **Explanation:** The middle hamster has no adjacent empty position.

@@ -12,8 +12,13 @@ The test cases are generated so that the answer fits in a **32-bit** signed inte
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ The test cases are generated so that the answer fits in a **32-bit** signed inte
 Double all the elements: [0, 1] -> [0, 2] -> [0, 4] (2 operations).
 Increment by 1 (both elements)  [0, 4] -> [1, 4] -> **[1, 5]** (2 operations).
 Total of operations: 1 + 2 + 2 = 5.
+
 #### Example 2
 
 - **Input:** `nums = [2,2]`
@@ -32,6 +38,7 @@ Total of operations: 1 + 2 + 2 = 5.
 - **Explanation:** Increment by 1 (both elements) [0, 0] -> [0, 1] -> [1, 1] (2 operations).
 Double all the elements: [1, 1] -> **[2, 2]** (1 operation).
 Total of operations: 2 + 1 = 3.
+
 #### Example 3
 
 - **Input:** `nums = [4,2,5]`

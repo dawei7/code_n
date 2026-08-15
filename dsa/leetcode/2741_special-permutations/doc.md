@@ -30,20 +30,20 @@ Return the number of permutations in which every adjacent pair satisfies at leas
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,6]`
-- Output: `2`
-- Explanation: `[3,6,2]` and `[2,6,3]` are the two compatible orderings.
+- **Input:** `nums = [2,3,6]`
+- **Output:** `2`
+- **Explanation:** `[3,6,2]` and `[2,6,3]` are the two compatible orderings.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,4,3]`
-- Output: `2`
-- Explanation: The valid permutations are `[3,1,4]` and `[4,1,3]` because `1` connects the otherwise incompatible values.
+- **Input:** `nums = [1,4,3]`
+- **Output:** `2`
+- **Explanation:** The valid permutations are `[3,1,4]` and `[4,1,3]` because `1` connects the otherwise incompatible values.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,4,8]`
-- Output: `6`
-- Explanation: Every pair is compatible, so all $3!$ permutations are special.
+- **Input:** `nums = [2,4,8]`
+- **Output:** `6`
+- **Explanation:** Every pair is compatible, so all $3!$ permutations are special.

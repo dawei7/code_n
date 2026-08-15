@@ -30,20 +30,20 @@ Return the minimum number of increment and duplication operations whose resultin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 11`
-- Output: `5`
-- Explanation: Increase the initial value three times to obtain `[4]`, then duplicate that value twice to obtain `[4, 4, 4]`. The sum is `12`, and the construction uses five operations.
+- **Input:** `k = 11`
+- **Output:** `5`
+- **Explanation:** Increase the initial value three times to obtain `[4]`, then duplicate that value twice to obtain `[4, 4, 4]`. The sum is `12`, and the construction uses five operations.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 1`
-- Output: `0`
-- Explanation: The initial array already has sum `1`, so no operation is necessary.
+- **Input:** `k = 1`
+- **Output:** `0`
+- **Explanation:** The initial array already has sum `1`, so no operation is necessary.
 
-**Example 3**
+#### Example 3
 
-- Input: `k = 9`
-- Output: `4`
-- Explanation: Two increments followed by two duplications produce `[3, 3, 3]`, whose sum is `9`.
+- **Input:** `k = 9`
+- **Output:** `4`
+- **Explanation:** Two increments followed by two duplications produce `[3, 3, 3]`, whose sum is `9`.

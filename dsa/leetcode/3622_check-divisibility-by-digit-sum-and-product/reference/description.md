@@ -10,35 +10,31 @@ Return `true` if `n` is divisible by this sum; otherwise, return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 99
+- **Input:** n = 99
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** Since 99 is divisible by the sum (9 + 9 = 18) plus product (9 * 9 = 81) of its digits (total 99), the output is true.
 
-Since 99 is divisible by the sum (9 + 9 = 18) plus product (9 * 9 = 81) of its digits (total 99), the output is true.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 23
+- **Input:** n = 23
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-Since 23 is not divisible by the sum (2 + 3 = 5) plus product (2 * 3 = 6) of its digits (total 11), the output is false.
-
-</div>
+- **Explanation:** Since 23 is not divisible by the sum (2 + 3 = 5) plus product (2 * 3 = 6) of its digits (total 11), the output is false.
 
 ### 4. Constraints
 

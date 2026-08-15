@@ -32,20 +32,20 @@ Return the original head after inserting a new GCD-valued node between each pair
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [18, 6, 10, 3]`
-- Output: `[18, 6, 6, 2, 10, 1, 3]`
-- Explanation: The inserted values are $\gcd(18,6)=6$, $\gcd(6,10)=2$, and $\gcd(10,3)=1$.
+- **Input:** `head = [18, 6, 10, 3]`
+- **Output:** `[18, 6, 6, 2, 10, 1, 3]`
+- **Explanation:** The inserted values are $\gcd(18,6)=6$, $\gcd(6,10)=2$, and $\gcd(10,3)=1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [7]`
-- Output: `[7]`
-- Explanation: A single node has no adjacent pair, so nothing is inserted.
+- **Input:** `head = [7]`
+- **Output:** `[7]`
+- **Explanation:** A single node has no adjacent pair, so nothing is inserted.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [50, 28]`
-- Output: `[50, 2, 28]`
-- Explanation: The only inserted node contains $\gcd(50,28)=2$.
+- **Input:** `head = [50, 28]`
+- **Output:** `[50, 2, 28]`
+- **Explanation:** The only inserted node contains $\gcd(50,28)=2$.

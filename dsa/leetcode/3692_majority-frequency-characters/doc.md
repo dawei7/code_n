@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/majority-frequency-characters/) |
 
 ## Problem Description
+
 ### Goal
 
 Count how often every distinct lowercase English letter occurs in `s`. Letters with the same occurrence count belong to one frequency group. Select the group containing the greatest number of distinct letters and return a string containing every letter in that group.
@@ -29,23 +30,23 @@ Return exactly the distinct letters in the selected frequency group, in any orde
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aaabbbccdddde"`
-- Output: `"ab"`
+- **Input:** `s = "aaabbbccdddde"`
+- **Output:** `"ab"`
 
 Two letters occur three times, while every other frequency group contains only one letter.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd"`
-- Output: `"abcd"`
+- **Input:** `s = "abcd"`
+- **Output:** `"abcd"`
 
 All four distinct letters belong to the frequency-one group.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "pfpfgi"`
-- Output: `"fp"`
+- **Input:** `s = "pfpfgi"`
+- **Output:** `"fp"`
 
 Frequency groups one and two each contain two letters, so the larger frequency wins the tie.

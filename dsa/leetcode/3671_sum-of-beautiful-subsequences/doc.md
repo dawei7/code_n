@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-beautiful-subsequences/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `nums`, consider every nonempty subsequence whose selected values are strictly increasing from left to right. Subsequences use increasing indices and are distinguished by their chosen index sets.
@@ -33,20 +34,20 @@ Return the sum of the GCDs of all nonempty strictly increasing subsequences, mod
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3]`
-- Output: `10`
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `10`
 - Five subsequences have GCD `1`, while the singleton subsequences `[2]` and `[3]` contribute `2` and `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 6]`
-- Output: `12`
+- **Input:** `nums = [4, 6]`
+- **Output:** `12`
 - The singleton GCDs are `4` and `6`, and the pair has GCD `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 2, 1]`
-- Output: `6`
+- **Input:** `nums = [3, 2, 1]`
+- **Output:** `6`
 - No multi-element subsequence is strictly increasing, so only the three singleton GCDs contribute.

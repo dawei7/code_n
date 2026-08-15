@@ -8,8 +8,13 @@ A **subsequence** is a string that can be derived from another string by deletin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ A **subsequence** is a string that can be derived from another string by deletin
 - **Output:** `9`
 **Explanation**: An optimal solution is to choose "ete" for the 1^st subsequence and "cdc" for the 2^nd subsequence.
 The product of their lengths is: 3 * 3 = 9.
+
 #### Example 2
 
 - **Input:** `s = "bb"`
 - **Output:** `1`
 **Explanation**: An optimal solution is to choose "b" (the first character) for the 1^st subsequence and "b" (the second character) for the 2^nd subsequence.
 The product of their lengths is: 1 * 1 = 1.
+
 #### Example 3
 
 - **Input:** `s = "accbcaxxcxx"`

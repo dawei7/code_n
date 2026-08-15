@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/) |
 
 ## Problem Description
+
 ### Goal
 
 A rectangular cake has height `h` and width `w`. Each value in `horizontalCuts` is the distance from the cake's top edge to a horizontal cut, and each value in `verticalCuts` is the distance from the left edge to a vertical cut. All supplied cut positions are strictly inside the cake, and positions within either array are distinct.
@@ -16,6 +17,7 @@ A rectangular cake has height `h` and width `w`. Each value in `horizontalCuts` 
 Apply every listed horizontal and vertical cut across the cake. These cuts partition the rectangle into smaller rectangular pieces. Determine the greatest area among those pieces. Because the dimensions can make the area very large, return that maximum area modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
 - `h`: the cake height, with $2 \le h \le 10^9$.
@@ -28,20 +30,21 @@ Apply every listed horizontal and vertical cut across the cake. These cuts parti
 Return the largest rectangular piece area after all cuts, reduced modulo $1{,}000{,}000{,}007$.
 
 ### Examples
-**Example 1**
 
-- Input: `h = 5, w = 4, horizontalCuts = [1,2,4], verticalCuts = [1,3]`
-- Output: `4`
-- Explanation: The largest height gap is `2` and the largest width gap is `2`, producing area `4`.
+#### Example 1
 
-**Example 2**
+- **Input:** `h = 5, w = 4, horizontalCuts = [1,2,4], verticalCuts = [1,3]`
+- **Output:** `4`
+- **Explanation:** The largest height gap is `2` and the largest width gap is `2`, producing area `4`.
 
-- Input: `h = 5, w = 4, horizontalCuts = [3,1], verticalCuts = [1]`
-- Output: `6`
-- Explanation: The unsorted coordinates create a maximum height gap of `2` and a maximum width gap of `3`.
+#### Example 2
 
-**Example 3**
+- **Input:** `h = 5, w = 4, horizontalCuts = [3,1], verticalCuts = [1]`
+- **Output:** `6`
+- **Explanation:** The unsorted coordinates create a maximum height gap of `2` and a maximum width gap of `3`.
 
-- Input: `h = 5, w = 4, horizontalCuts = [3], verticalCuts = [3]`
-- Output: `9`
-- Explanation: The piece between the top edge and height `3`, and between the left edge and width `3`, has area `3 * 3`.
+#### Example 3
+
+- **Input:** `h = 5, w = 4, horizontalCuts = [3], verticalCuts = [3]`
+- **Output:** `9`
+- **Explanation:** The piece between the top edge and height `3`, and between the left edge and width `3`, has area `3 * 3`.

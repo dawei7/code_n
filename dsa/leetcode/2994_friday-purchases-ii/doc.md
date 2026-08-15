@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/friday-purchases-ii/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Purchases` table records a user, a purchase date, and an amount. Every
 date is between November 1 and November 30, 2023, inclusive, and the triple
 `(user_id, purchase_date, amount_spend)` is unique.
@@ -22,6 +24,7 @@ the one-based `week_of_month`, the Friday `purchase_date`, and `total_amount`,
 ordered by week ascending.
 
 ### Function Contract
+
 **Inputs**
 
 - `Purchases(user_id, purchase_date, amount_spend)`: November 2023 purchase rows
@@ -34,17 +37,18 @@ Return exactly four ordered rows for November 3, 10, 17, and 24, using zero
 for a Friday without purchases.
 
 ### Examples
-**Example 1**
 
-- Input: Spending of `5117` on November 3 and `9692 + 12000` on November 24
-- Output: Weeks `1` and `4` have totals `5117` and `21692`; weeks `2` and `3` have `0`.
+#### Example 1
 
-**Example 2**
+- **Input:** Spending of `5117` on November 3 and `9692 + 12000` on November 24
+- **Output:** Weeks `1` and `4` have totals `5117` and `21692`; weeks `2` and `3` have `0`.
 
-- Input: Purchases only on non-Friday dates
-- Output: Four Friday rows, all with total `0`.
+#### Example 2
 
-**Example 3**
+- **Input:** Purchases only on non-Friday dates
+- **Output:** Four Friday rows, all with total `0`.
 
-- Input: Purchases on all four Fridays
-- Output: Their four independently summed totals.
+#### Example 3
+
+- **Input:** Purchases on all four Fridays
+- **Output:** Their four independently summed totals.

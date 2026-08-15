@@ -32,20 +32,20 @@ Given the one-based rank `k`, return the string occupying that position in the o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = ["d","b","c","b","c","a"], k = 2`
-- Output: `"a"`
-- Explanation: Only `"d"` and `"a"` occur once, in that order.
+- **Input:** `arr = ["d","b","c","b","c","a"], k = 2`
+- **Output:** `"a"`
+- **Explanation:** Only `"d"` and `"a"` occur once, in that order.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = ["aaa","aa","a"], k = 1`
-- Output: `"aaa"`
-- Explanation: Every value is distinct, so the first array element is also the first distinct string.
+- **Input:** `arr = ["aaa","aa","a"], k = 1`
+- **Output:** `"aaa"`
+- **Explanation:** Every value is distinct, so the first array element is also the first distinct string.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = ["a","b","a"], k = 3`
-- Output: `""`
-- Explanation: Only `"b"` is distinct, so a third distinct string does not exist.
+- **Input:** `arr = ["a","b","a"], k = 3`
+- **Output:** `""`
+- **Explanation:** Only `"b"` is distinct, so a third distinct string does not exist.

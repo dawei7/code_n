@@ -6,8 +6,14 @@ Given an integer array `nums` and an integer `k`, return *the* $$k^{\text{th}}$$
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,10 +26,12 @@ Given an integer array `nums` and an integer `k`, return *the* $$k^{\text{th}}$$
 (1,1) -> 0
 (3,1) -> 2
 Then the 1^st smallest distance pair is (1,1), and its distance is 0.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1], k = 2`
 - **Output:** `0`
+
 #### Example 3
 
 - **Input:** `nums = [1,6,1], k = 3`

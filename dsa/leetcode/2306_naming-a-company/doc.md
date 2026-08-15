@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/naming-a-company/) |
 
 ## Problem Description
+
 ### Goal
+
 `ideas` contains distinct lowercase names available during a company-naming
 process. Choose two different entries, call them idea A and idea B, and
 exchange their first letters.
@@ -21,6 +23,7 @@ distinct valid company names. Reversing a valid selection changes the order
 and therefore counts separately.
 
 ### Function Contract
+
 **Inputs**
 
 - `ideas`: An array of $n$ unique strings containing only lowercase English
@@ -35,15 +38,16 @@ The number of ordered pairs of distinct ideas whose first-letter swap produces
 two names not present in the original array.
 
 ### Examples
-**Example 1**
 
-- Input: `ideas = ["coffee", "donuts", "time", "toffee"]`
-- Output: `6`
-- Explanation: Three unordered selections work, including `coffee` with
+#### Example 1
+
+- **Input:** `ideas = ["coffee", "donuts", "time", "toffee"]`
+- **Output:** `6`
+- **Explanation:** Three unordered selections work, including `coffee` with
   `donuts`; each orientation produces a different ordered company name.
 
-**Example 2**
+#### Example 2
 
-- Input: `ideas = ["lack", "back"]`
-- Output: `0`
-- Explanation: Swapping the initials recreates the two existing names.
+- **Input:** `ideas = ["lack", "back"]`
+- **Output:** `0`
+- **Explanation:** Swapping the initials recreates the two existing names.

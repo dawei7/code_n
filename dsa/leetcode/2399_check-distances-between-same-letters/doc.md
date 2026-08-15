@@ -41,24 +41,24 @@ violates it.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abaccb"`,
+- **Input:** `s = "abaccb"`,
   `distance = [1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]`
-- Output: `True`
-- Explanation: The two `a`, `b`, and `c` occurrences have respectively 1, 3,
+- **Output:** `True`
+- **Explanation:** The two `a`, `b`, and `c` occurrences have respectively 1, 3,
   and 0 characters between them. The value for absent `d` is ignored.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aa"`,
+- **Input:** `s = "aa"`,
   `distance = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]`
-- Output: `False`
-- Explanation: Adjacent occurrences have distance zero, not one.
+- **Output:** `False`
+- **Explanation:** Adjacent occurrences have distance zero, not one.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aa"`,
+- **Input:** `s = "aa"`,
   `distance = [0,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50]`
-- Output: `True`
-- Explanation: Only `a` appears, so every other entry is irrelevant.
+- **Output:** `True`
+- **Explanation:** Only `a` appears, so every other entry is irrelevant.

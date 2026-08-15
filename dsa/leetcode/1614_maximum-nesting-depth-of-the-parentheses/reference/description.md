@@ -4,43 +4,37 @@ Given a **valid parentheses string** `s`, return the **nesting depth** of* *`s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "(1+(2*3)+((8)/4))+1"
+- **Input:** s = "(1+(2*3)+((8)/4))+1"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** Digit 8 is inside of 3 nested parentheses in the string.
 
-Digit 8 is inside of 3 nested parentheses in the string.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "(1)+((2))+(((3)))"
+- **Input:** s = "(1)+((2))+(((3)))"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** Digit 3 is inside of 3 nested parentheses in the string.
 
-Digit 3 is inside of 3 nested parentheses in the string.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "()(())((()()))"
+- **Input:** s = "()(())((()()))"
 
-**Output:** 3
-
-</div>
+- **Output:** 3
 
 ### 4. Constraints
 

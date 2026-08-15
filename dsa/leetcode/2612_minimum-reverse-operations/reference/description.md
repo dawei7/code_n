@@ -8,19 +8,26 @@ Return an integer array `answer` with `n` results where the $$i^{\text{th}}$$ re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `p`: Input parameter (`int`).
+- `banned`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, p = 0, banned = [1,2], k = 4
+- **Input:** n = 4, p = 0, banned = [1,2], k = 4
 
-**Output:** [0,-1,-1,1]
+- **Output:** [0,-1,-1,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially 1 is placed at position 0 so the number of operations we need for position 0 is 0.
 
@@ -30,15 +37,13 @@ Return an integer array `answer` with `n` results where the $$i^{\text{th}}$$ re
 
 - After a single operation 1 is at position 3 so the answer for position 3 is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, p = 0, banned = [2,4], k = 3
+- **Input:** n = 5, p = 0, banned = [2,4], k = 3
 
-**Output:** [0,-1,-1,-1,-1]
+- **Output:** [0,-1,-1,-1,-1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially 1 is placed at position 0 so the number of operations we need for position 0 is 0.
 
@@ -46,19 +51,13 @@ Return an integer array `answer` with `n` results where the $$i^{\text{th}}$$ re
 
 - Because 1 cannot be set at position 2, it is impossible to set 1 at other positions in more operations.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, p = 2, banned = [0,1,3], k = 1
+- **Input:** n = 4, p = 2, banned = [0,1,3], k = 1
 
-**Output:** [-1,-1,0,-1]
+- **Output:** [-1,-1,0,-1]
 
-**Explanation:**
-
-Perform operations of size 1 and 1 never changes its position.
-
-</div>
+- **Explanation:** Perform operations of size 1 and 1 never changes its position.
 
 ### 4. Constraints
 

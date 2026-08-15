@@ -12,8 +12,14 @@ Return *the indices of the *`k`* **weakest** rows in the matrix ordered from wea
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,14 +33,14 @@ Return *the indices of the *`k`* **weakest** rows in the matrix ordered from wea
 [1,1,1,1,1]],
 k = 3
 - **Output:** `[2,0,3]`
-- **Explanation:**
-The number of soldiers in each row is:
+- **Explanation:** The number of soldiers in each row is:
 - Row 0: 2
 - Row 1: 4
 - Row 2: 1
 - Row 3: 2
 - Row 4: 5
 The rows ordered from weakest to strongest are [2,0,3,1,4].
+
 #### Example 2
 
 - **Input:** `mat =`
@@ -44,8 +50,7 @@ The rows ordered from weakest to strongest are [2,0,3,1,4].
 [1,0,0,0]],
 k = 2
 - **Output:** `[0,2]`
-- **Explanation:**
-The number of soldiers in each row is:
+- **Explanation:** The number of soldiers in each row is:
 - Row 0: 1
 - Row 1: 4
 - Row 2: 1

@@ -10,8 +10,13 @@ Return *the **maximum** number of **moves** that you can perform.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *the **maximum** number of **moves** that you can perform.*
 - (0, 1) -> (1, 2).
 - (1, 2) -> (2, 3).
 It can be shown that it is the maximum number of moves that can be made.
+
 #### Example 2
 
 ![](images/yetgrid4drawio.png)

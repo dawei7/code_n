@@ -8,47 +8,39 @@ Return `true` if Alice can win this game, otherwise, return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,10]
+- **Input:** nums = [1,2,3,4,10]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** Alice cannot win by choosing either single-digit or double-digit numbers.
 
-Alice cannot win by choosing either single-digit or double-digit numbers.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5,14]
+- **Input:** nums = [1,2,3,4,5,14]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** Alice can win by choosing single-digit numbers which have a sum equal to 15.
 
-Alice can win by choosing single-digit numbers which have a sum equal to 15.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,5,5,25]
+- **Input:** nums = [5,5,5,25]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-Alice can win by choosing double-digit numbers which have a sum equal to 25.
-
-</div>
+- **Explanation:** Alice can win by choosing double-digit numbers which have a sum equal to 25.
 
 ### 4. Constraints
 

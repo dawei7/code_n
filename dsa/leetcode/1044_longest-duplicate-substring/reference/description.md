@@ -6,8 +6,13 @@ Return **any** duplicated substring that has the longest possible length. If `s`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Return **any** duplicated substring that has the longest possible length. If `s`
 
 - **Input:** `s = "banana"`
 - **Output:** `"ana"`
+
 #### Example 2
 
 - **Input:** `s = "abcd"`

@@ -32,20 +32,20 @@ Return the number of subarrays whose maximum lies in the inclusive interval `[le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,4,3], left = 2, right = 3`
-- Output: `3`
-- Explanation: `[2]`, `[2,1]`, and `[3]` have valid maxima.
+- **Input:** `nums = [2,1,4,3], left = 2, right = 3`
+- **Output:** `3`
+- **Explanation:** `[2]`, `[2,1]`, and `[3]` have valid maxima.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,9,2,5,6], left = 2, right = 8`
-- Output: `7`
-- Explanation: The `9` splits the array; seven subarrays in the remaining segments contain a value in the allowed interval.
+- **Input:** `nums = [2,9,2,5,6], left = 2, right = 8`
+- **Output:** `7`
+- **Explanation:** The `9` splits the array; seven subarrays in the remaining segments contain a value in the allowed interval.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3], left = 1, right = 3`
-- Output: `6`
-- Explanation: Every nonempty subarray is valid.
+- **Input:** `nums = [1,2,3], left = 1, right = 3`
+- **Output:** `6`
+- **Explanation:** Every nonempty subarray is valid.

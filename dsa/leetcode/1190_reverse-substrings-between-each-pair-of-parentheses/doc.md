@@ -30,21 +30,21 @@ Reverse the string inside each matching pair, processing the innermost pair befo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "(abcd)"`
-- Output: `"dcba"`
+- **Input:** `s = "(abcd)"`
+- **Output:** `"dcba"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "(u(love)i)"`
-- Output: `"iloveu"`
+- **Input:** `s = "(u(love)i)"`
+- **Output:** `"iloveu"`
 
 First reverse `"love"` within the inner pair, then reverse the contents of the outer pair.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "(ed(et(oc))el)"`
-- Output: `"leetcode"`
+- **Input:** `s = "(ed(et(oc))el)"`
+- **Output:** `"leetcode"`
 
 The reversals successively affect `"oc"`, its enclosing contents, and finally the entire outer contents.

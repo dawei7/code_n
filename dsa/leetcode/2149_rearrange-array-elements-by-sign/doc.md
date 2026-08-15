@@ -38,15 +38,15 @@ indices, and the relative order within each sign unchanged.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 1, -2, -5, 2, -4]`
-- Output: `[3, -2, 1, -5, 2, -4]`
-- Explanation: The positive subsequence `[3, 1, 2]` and negative subsequence
+- **Input:** `nums = [3, 1, -2, -5, 2, -4]`
+- **Output:** `[3, -2, 1, -5, 2, -4]`
+- **Explanation:** The positive subsequence `[3, 1, 2]` and negative subsequence
   `[-2, -5, -4]` are interleaved without changing either order.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1, 1]`
-- Output: `[1, -1]`
-- Explanation: The only positive value must precede the only negative value.
+- **Input:** `nums = [-1, 1]`
+- **Output:** `[1, -1]`
+- **Explanation:** The only positive value must precede the only negative value.

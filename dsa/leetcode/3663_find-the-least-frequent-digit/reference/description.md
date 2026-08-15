@@ -8,35 +8,31 @@ The **frequency** of a digit `x` is the number of times it appears in the decima
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 1553322
+- **Input:** n = 1553322
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The least frequent digit in `n` is 1, which appears only once. All other digits appear twice.
 
-The least frequent digit in `n` is 1, which appears only once. All other digits appear twice.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 723344511
+- **Input:** n = 723344511
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The least frequent digits in `n` are 7, 2, and 5; each appears only once.
-
-</div>
+- **Explanation:** The least frequent digits in `n` are 7, 2, and 5; each appears only once.
 
 ### 4. Constraints
 

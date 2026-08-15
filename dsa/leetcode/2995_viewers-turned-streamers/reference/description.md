@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sessions table:
 +---------+---------------------+---------------------+------------+--------------+
 | user_id | session_start       | session_end         | session_id | session_type |
@@ -45,7 +45,7 @@ Sessions table:
 | 104     | 2023-11-27 03:10:49 | 2023-11-27 03:30:49 | 797        | Viewer       |
 | 103     | 2023-11-27 03:10:49 | 2023-11-27 03:30:49 | 798        | Streamer     |
 +---------+---------------------+---------------------+------------+--------------+
-**Output:**
+- **Output:** 
 +---------+----------------+
 | user_id | sessions_count |
 +---------+----------------+

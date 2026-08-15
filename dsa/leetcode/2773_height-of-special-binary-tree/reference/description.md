@@ -27,6 +27,7 @@ The height of a binary tree is the length of the **longest path** from the root 
 - **Explanation:** The given tree is shown in the following picture. Each leaf's left child is the leaf to its left (shown with the blue edges). Each leaf's right child is the leaf to its right (shown with the red edges). We can see that the graph has a height of 2.
 
 ![](images/1.png)
+
 #### Example 2
 
 - **Input:** `root = [1,2]`
@@ -34,6 +35,7 @@ The height of a binary tree is the length of the **longest path** from the root 
 - **Explanation:** The given tree is shown in the following picture. There is only one leaf, so it doesn't have any left or right child. We can see that the graph has a height of 1.
 
 ![](images/2.png)
+
 #### Example 3
 
 - **Input:** `root = [1,2,3,null,null,4,null,5,6]`

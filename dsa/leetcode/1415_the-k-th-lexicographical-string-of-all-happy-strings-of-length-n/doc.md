@@ -31,17 +31,17 @@ Return the `k`-th string in that one-indexed ordering. If fewer than `k` happy s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1, k = 3`
-- Output: `"c"`
+- **Input:** `n = 1, k = 3`
+- **Output:** `"c"`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1, k = 4`
-- Output: `""`
+- **Input:** `n = 1, k = 4`
+- **Output:** `""`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, k = 9`
-- Output: `"cab"`
+- **Input:** `n = 3, k = 9`
+- **Output:** `"cab"`

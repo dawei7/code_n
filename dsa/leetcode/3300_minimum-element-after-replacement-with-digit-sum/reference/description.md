@@ -8,47 +8,39 @@ Return the **minimum** element in `nums` after all replacements.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [10,12,13,14]
+- **Input:** nums = [10,12,13,14]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** `nums` becomes `[1, 3, 4, 5]` after all replacements, with minimum element 1.
 
-`nums` becomes `[1, 3, 4, 5]` after all replacements, with minimum element 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** `nums` becomes `[1, 2, 3, 4]` after all replacements, with minimum element 1.
 
-`nums` becomes `[1, 2, 3, 4]` after all replacements, with minimum element 1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [999,19,199]
+- **Input:** nums = [999,19,199]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-`nums` becomes `[27, 10, 19]` after all replacements, with minimum element 10.
-
-</div>
+- **Explanation:** `nums` becomes `[27, 10, 19]` after all replacements, with minimum element 10.
 
 ### 4. Constraints
 

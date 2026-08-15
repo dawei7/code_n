@@ -31,18 +31,18 @@ The maximum possible length of a string obtainable as a subsequence of both `tex
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `text1 = "abcde", text2 = "ace"`
-- Output: `3`
-- Explanation: `"ace"` appears in order in both strings.
+- **Input:** `text1 = "abcde", text2 = "ace"`
+- **Output:** `3`
+- **Explanation:** `"ace"` appears in order in both strings.
 
-**Example 2**
+#### Example 2
 
-- Input: `text1 = "abc", text2 = "abc"`
-- Output: `3`
+- **Input:** `text1 = "abc", text2 = "abc"`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `text1 = "abc", text2 = "def"`
-- Output: `0`
+- **Input:** `text1 = "abc", text2 = "def"`
+- **Output:** `0`

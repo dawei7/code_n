@@ -33,22 +33,22 @@ Return an integer representing the maximum number of boxes that can be placed in
 
 - **Input:** $boxes = [4,3,4,1], warehouse = [5,3,3,4,1]$
 - **Output:** `3`
-- **Explanation:**
-![](images/12.png)
+- **Explanation:** ![](images/12.png)
 We can first put the box of height 1 in room 4. Then we can put the box of height 3 in either of the 3 rooms 1, 2, or 3. Lastly, we can put one box of height 4 in room 0.
 There is no way we can fit all 4 boxes in the warehouse.
+
 #### Example 2
 
 ![](images/21.png)
 
 - **Input:** $boxes = [1,2,2,3,4], warehouse = [3,4,1,2]$
 - **Output:** `3`
-- **Explanation:**
-![](images/22.png)
+- **Explanation:** ![](images/22.png)
 Notice that it's not possible to put the box of height 4 into the warehouse since it cannot pass the first room of height 3.
 Also, for the last two rooms, 2 and 3, only boxes of height 1 can fit.
 We can fit 3 boxes maximum as shown above. The yellow box can also be put in room 2 instead.
 Swapping the orange and green boxes is also valid, or swapping one of them with the red box.
+
 #### Example 3
 
 - **Input:** $boxes = [1,2,3], warehouse = [1,2,3,4]$

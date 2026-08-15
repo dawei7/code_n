@@ -24,12 +24,11 @@ Return the greatest integer that can equal the bitwise AND of some size-`m` subs
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,2], k = 8, m = 2
+- **Input:** nums = [3,1,2], k = 8, m = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - We need a subset of size $m = 2$. Choose indices `[0, 2]`.
 
@@ -39,15 +38,13 @@ Return the greatest integer that can equal the bitwise AND of some size-`m` subs
 
 - The two chosen values become `[6, 6]`, and their bitwise AND is `6`, which is the maximum possible.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,8,4], k = 7, m = 3
+- **Input:** nums = [1,2,8,4], k = 7, m = 3
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - We need a subset of size $m = 3$. Choose indices `[0, 1, 3]`.
 
@@ -57,15 +54,13 @@ Return the greatest integer that can equal the bitwise AND of some size-`m` subs
 
 - The three chosen values become `[4, 4, 4]`, and their bitwise AND is 4, which is the maximum possible.​​​​​​​
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1], k = 3, m = 2
+- **Input:** nums = [1,1], k = 3, m = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - We need a subset of size $m = 2$. Choose indices `[0, 1]`.
 
@@ -74,8 +69,6 @@ Return the greatest integer that can equal the bitwise AND of some size-`m` subs
 - The total number of operations used is 2, which is not greater than $k = 3$.
 
 - The two chosen values become `[2, 2]`, and their bitwise AND is 2, which is the maximum possible.
-
-</div>
 
 ### 4. Constraints
 

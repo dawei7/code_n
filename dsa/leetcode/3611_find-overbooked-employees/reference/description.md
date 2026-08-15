@@ -48,7 +48,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 employees table:
@@ -102,35 +101,29 @@ meetings table:
 
 - **Alice Johnson (employee_id = 1):**
 
-		<li>Week of June 5-11 (2023-06-05 to 2023-06-11): 8.0 + 6.0 + 7.0 = 21.0 hours (> 20 hours)
+		- Week of June 5-11 (2023-06-05 to 2023-06-11): 8.0 + 6.0 + 7.0 = 21.0 hours (> 20 hours)
 
 - Week of June 12-18 (2023-06-12 to 2023-06-18): 12.0 + 9.0 = 21.0 hours (> 20 hours)
 
 - Meeting-heavy for 2 weeks
 
-	</li>
 - **David Wilson (employee_id = 4):**
 
-		<li>Week of June 5-11: 25.0 hours (> 20 hours)
+		- Week of June 5-11: 25.0 hours (> 20 hours)
 
 - Week of June 19-25: 22.0 hours (> 20 hours)
 
 - Meeting-heavy for 2 weeks
 
-	</li>
 - **Employees not included:**
 
-		<li>Bob Smith (employee_id = 2): Week of June 5-11: 15.0 + 8.0 = 23.0 hours (> 20), Week of June 12-18: 10.0 hours (< 20). Only 1 meeting-heavy week
+		- Bob Smith (employee_id = 2): Week of June 5-11: 15.0 + 8.0 = 23.0 hours (> 20), Week of June 12-18: 10.0 hours (< 20). Only 1 meeting-heavy week
 
 - Carol Davis (employee_id = 3): Week of June 5-11: 4.0 + 3.0 = 7.0 hours (< 20). No meeting-heavy weeks
 
 - Emma Brown (employee_id = 5): Week of June 5-11: 2.0 hours (< 20). No meeting-heavy weeks
 
-	</li>
-
 The result table is ordered by meeting_heavy_weeks in descending order, then by employee name in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

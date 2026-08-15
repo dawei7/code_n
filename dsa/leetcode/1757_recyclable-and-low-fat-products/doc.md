@@ -33,20 +33,20 @@ Let $R$ be the number of product rows and $K$ the number of rows satisfying both
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: products `1` and `3` have both flags set to `"Y"`, while the other rows fail at least one flag.
-- Output: product identifiers `1` and `3`.
-- Explanation: Both required predicates hold for exactly those two rows.
+- **Input:** products `1` and `3` have both flags set to `"Y"`, while the other rows fail at least one flag.
+- **Output:** product identifiers `1` and `3`.
+- **Explanation:** Both required predicates hold for exactly those two rows.
 
-**Example 2**
+#### Example 2
 
-- Input: one product has `low_fats = "Y"` and `recyclable = "N"`.
-- Output: an empty result.
-- Explanation: Being low fat alone does not satisfy the conjunction.
+- **Input:** one product has `low_fats = "Y"` and `recyclable = "N"`.
+- **Output:** an empty result.
+- **Explanation:** Being low fat alone does not satisfy the conjunction.
 
-**Example 3**
+#### Example 3
 
-- Input: every product has both flags set to `"Y"`.
-- Output: every product identifier.
-- Explanation: No qualifying row is excluded by the projection.
+- **Input:** every product has both flags set to `"Y"`.
+- **Output:** every product identifier.
+- **Explanation:** No qualifying row is excluded by the projection.

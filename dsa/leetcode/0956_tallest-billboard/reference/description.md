@@ -8,8 +8,13 @@ Return *the largest possible height of your billboard installation*. If you cann
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rods`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return *the largest possible height of your billboard installation*. If you cann
 - **Input:** $rods = [1,2,3,6]$
 - **Output:** `6`
 - **Explanation:** We have two disjoint subsets {1,2,3} and {6}, which have the same sum = 6.
+
 #### Example 2
 
 - **Input:** $rods = [1,2,3,4,5,6]$
 - **Output:** `10`
 - **Explanation:** We have two disjoint subsets {2,3,5} and {4,6}, which have the same sum = 10.
+
 #### Example 3
 
 - **Input:** $rods = [1,2]$

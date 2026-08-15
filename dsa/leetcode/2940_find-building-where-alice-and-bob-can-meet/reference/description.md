@@ -10,8 +10,14 @@ Return *an array* `ans` *where* $\text{ans}[i]$ *is **the index of the leftmost 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `heights`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ In the fourth query, Alice and Bob can move to building 5 since heights[3] < hei
 In the fifth query, Alice and Bob are already in the same building.
 For ans[i] != -1, It can be shown that ans[i] is the leftmost building where Alice and Bob can meet.
 For ans[i] == -1, It can be shown that there is no building where Alice and Bob can meet.
+
 #### Example 2
 
 - **Input:** $heights = [5,3,8,2,6,1,4,6], queries = [[0,7],[3,5],[5,2],[3,0],[1,6]]$

@@ -8,8 +8,15 @@ Return *the maximum length of a substring of *`s`* that can be changed to be the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+- `maxCost`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,11 +26,13 @@ Return *the maximum length of a substring of *`s`* that can be changed to be the
 - **Output:** `3`
 - **Explanation:** "abc" of s can change to "bcd".
 That costs 3, so the maximum length is 3.
+
 #### Example 2
 
 - **Input:** `s = "abcd", t = "cdef", maxCost = 3`
 - **Output:** `1`
 - **Explanation:** Each character in s costs 2 to change to character in t,  so the maximum length is 1.
+
 #### Example 3
 
 - **Input:** `s = "abcd", t = "acde", maxCost = 0`

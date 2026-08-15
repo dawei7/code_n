@@ -33,14 +33,14 @@ Return the maximum attainable score minus the minimum attainable score.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `weights = [1,3,5,1], k = 2`
-- Output: `4`
-- Explanation: The minimum score is 6 and the maximum score is 10.
+- **Input:** `weights = [1,3,5,1], k = 2`
+- **Output:** `4`
+- **Explanation:** The minimum score is 6 and the maximum score is 10.
 
-**Example 2**
+#### Example 2
 
-- Input: `weights = [1,3], k = 2`
-- Output: `0`
-- Explanation: Only one two-bag distribution exists, so both extreme scores are equal.
+- **Input:** `weights = [1,3], k = 2`
+- **Output:** `0`
+- **Explanation:** Only one two-bag distribution exists, so both extreme scores are equal.

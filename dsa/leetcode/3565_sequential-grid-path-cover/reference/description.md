@@ -20,28 +20,19 @@ If no such path exists, return an **empty** array.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[0,0,0],[0,1,2]], k = 2
+- **Input:** grid = [[0,0,0],[0,1,2]], k = 2
 
-**Output:** [[0,0],[1,0],[1,1],[1,2],[0,2],[0,1]]
+- **Output:** [[0,0],[1,0],[1,1],[1,2],[0,2],[0,1]]
 
-**Explanation:**
+- **Explanation:** ![](images/ezgifcom-animated-gif-maker1.gif)
 
-![](images/ezgifcom-animated-gif-maker1.gif)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,0,4],[3,0,2]], k = 4
+- **Input:** grid = [[1,0,4],[3,0,2]], k = 4
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-There is no possible path that satisfies the conditions.
-
-</div>
+- **Explanation:** There is no possible path that satisfies the conditions.
 
 ### 4. Constraints
 

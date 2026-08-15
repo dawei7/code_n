@@ -29,23 +29,23 @@ Given an even-length integer array `nums`, divide all $N$ elements into exactly 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,5,2,3]`
-- Output: `7`
+- **Input:** `nums = [3,5,2,3]`
+- **Output:** `7`
 
 The pairs `(3,3)` and `(5,2)` have sums $6$ and $7$, so their maximum is $7$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,5,4,2,4,6]`
-- Output: `8`
+- **Input:** `nums = [3,5,4,2,4,6]`
+- **Output:** `8`
 
 The pairs `(3,5)`, `(4,4)`, and `(6,2)` all have sums at most $8$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [9,1]`
-- Output: `10`
+- **Input:** `nums = [9,1]`
+- **Output:** `10`
 
 With two elements, the sole pair is forced.

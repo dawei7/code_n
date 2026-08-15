@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Stadium table:
 +------+------------+-----------+
 | id   | visit_date | people    |
@@ -45,7 +45,7 @@ Stadium table:
 | 7    | 2017-01-07 | 199       |
 | 8    | 2017-01-09 | 188       |
 +------+------------+-----------+
-**Output:**
+- **Output:** 
 +------+------------+-----------+
 | id   | visit_date | people    |
 +------+------------+-----------+
@@ -54,7 +54,6 @@ Stadium table:
 | 7    | 2017-01-07 | 199       |
 | 8    | 2017-01-09 | 188       |
 +------+------------+-----------+
-**Explanation:**
-The four rows with ids 5, 6, 7, and 8 have consecutive ids and each of them has >= 100 people attended. Note that row 8 was included even though the visit_date was not the next day after row 7.
+- **Explanation:** The four rows with ids 5, 6, 7, and 8 have consecutive ids and each of them has >= 100 people attended. Note that row 8 was included even though the visit_date was not the next day after row 7.
 The rows with ids 2 and 3 are not included because we need at least three consecutive ids.
 ```

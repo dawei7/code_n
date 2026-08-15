@@ -21,28 +21,19 @@ Return the number of positions among those $S$ positions whose value equals `dig
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [12,54,32,22], digit = 2
+- **Input:** nums = [12,54,32,22], digit = 2
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The digit 2 appears once in 12 and 32, and twice in 22. Thus, the total number of times digit 2 appears is 4.
 
-The digit 2 appears once in 12 and 32, and twice in 22. Thus, the total number of times digit 2 appears is 4.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,34,7], digit = 9
+- **Input:** nums = [1,34,7], digit = 9
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The digit 9 does not appear in the decimal representation of any element in `nums`, so the total number of times digit 9 appears is 0.
-
-</div>
+- **Explanation:** The digit 9 does not appear in the decimal representation of any element in `nums`, so the total number of times digit 9 appears is 0.
 
 ### 4. Constraints
 

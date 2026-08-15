@@ -31,17 +31,17 @@ Return the number of connected regions created by the diagonals and blank square
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [" /","/ "]`
-- Output: `2`
+- **Input:** `grid = [" /","/ "]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [" /","  "]`
-- Output: `1`
+- **Input:** `grid = [" /","  "]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = ["/\\","\\/"]`
-- Output: `5`
+- **Input:** `grid = ["/\\","\\/"]`
+- **Output:** `5`

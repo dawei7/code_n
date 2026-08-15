@@ -33,14 +33,14 @@ Node 1 is the root, and node $v>1$ has parent $\lfloor v/2\rfloor$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, queries = [1, 2, 5]`
-- Output: `3`
-- Explanation: Nodes 1, 3, and 5 finish with value 1.
+- **Input:** `n = 5, queries = [1, 2, 5]`
+- **Output:** `3`
+- **Explanation:** Nodes 1, 3, and 5 finish with value 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, queries = [2, 3, 3]`
-- Output: `1`
-- Explanation: The two flips at node 3 cancel, leaving only node 2 equal to 1.
+- **Input:** `n = 3, queries = [2, 3, 3]`
+- **Output:** `1`
+- **Explanation:** The two flips at node 3 cancel, leaving only node 2 equal to 1.

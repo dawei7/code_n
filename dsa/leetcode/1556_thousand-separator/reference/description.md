@@ -4,8 +4,13 @@ Given an integer `n`, add a dot (".") as the thousands separator and return it i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given an integer `n`, add a dot (".") as the thousands separator and return it i
 
 - **Input:** $n = 987$
 - **Output:** `"987"`
+
 #### Example 2
 
 - **Input:** $n = 1234$

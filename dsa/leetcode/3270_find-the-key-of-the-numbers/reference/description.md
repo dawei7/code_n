@@ -12,21 +12,25 @@ Return the `key` of the three numbers **without** leading zeros (*if any*).
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num1`: Input parameter (`int`).
+- `num2`: Input parameter (`int`).
+- `num3`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num1 = 1, num2 = 10, num3 = 1000
+- **Input:** num1 = 1, num2 = 10, num3 = 1000
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-On padding, `num1` becomes `"0001"`, `num2` becomes `"0010"`, and `num3` remains `"1000"`.
+- **Explanation:** On padding, `num1` becomes `"0001"`, `num2` becomes `"0010"`, and `num3` remains `"1000"`.
 
 - The $1^st$ digit of the `key` is `min(0, 0, 1)`.
 
@@ -38,23 +42,17 @@ On padding, `num1` becomes `"0001"`, `num2` becomes `"0010"`, and `num3` remains
 
 Hence, the `key` is `"0000"`, i.e. 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num1 = 987, num2 = 879, num3 = 798
+- **Input:** num1 = 987, num2 = 879, num3 = 798
 
-**Output:** 777
+- **Output:** 777
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** num1 = 1, num2 = 2, num3 = 3
+- **Input:** num1 = 1, num2 = 2, num3 = 3
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

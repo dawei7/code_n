@@ -33,19 +33,19 @@ Return the minimum achievable total toll from city `0` to city `n - 1`, or `-1` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`, `highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]]`, `discounts = 1`
-- Output: `9`
-- Explanation: Pay `4` from `0` to `1`, then discount toll `11` to `5`.
+- **Input:** `n = 5`, `highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]]`, `discounts = 1`
+- **Output:** `9`
+- **Explanation:** Pay `4` from `0` to `1`, then discount toll `11` to `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`, `highways = [[1,3,17],[1,2,7],[3,2,5],[0,1,6],[3,0,20]]`, `discounts = 20`
-- Output: `8`
-- Explanation: The route `0 -> 1 -> 2 -> 3` discounts its tolls to `3`, `3`, and `2`.
+- **Input:** `n = 4`, `highways = [[1,3,17],[1,2,7],[3,2,5],[0,1,6],[3,0,20]]`, `discounts = 20`
+- **Output:** `8`
+- **Explanation:** The route `0 -> 1 -> 2 -> 3` discounts its tolls to `3`, `3`, and `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4`, `highways = [[0,1,3],[2,3,2]]`, `discounts = 0`
-- Output: `-1`
+- **Input:** `n = 4`, `highways = [[0,1,3],[2,3,2]]`, `discounts = 0`
+- **Output:** `-1`

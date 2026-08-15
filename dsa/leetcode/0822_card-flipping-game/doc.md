@@ -31,20 +31,20 @@ After the flips, an integer is good when it is face down on at least one card an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fronts = [1, 2, 4, 4, 7], backs = [1, 3, 4, 1, 3]`
-- Output: `2`
-- Explanation: Flip the second card so `2` is down and no card shows `2` face up.
+- **Input:** `fronts = [1, 2, 4, 4, 7], backs = [1, 3, 4, 1, 3]`
+- **Output:** `2`
+- **Explanation:** Flip the second card so `2` is down and no card shows `2` face up.
 
-**Example 2**
+#### Example 2
 
-- Input: `fronts = [1], backs = [1]`
-- Output: `0`
-- Explanation: The same value remains face up regardless of this card's orientation.
+- **Input:** `fronts = [1], backs = [1]`
+- **Output:** `0`
+- **Explanation:** The same value remains face up regardless of this card's orientation.
 
-**Example 3**
+#### Example 3
 
-- Input: `fronts = [1], backs = [2]`
-- Output: `1`
-- Explanation: Flipping the card places `1` face down and `2` face up.
+- **Input:** `fronts = [1], backs = [2]`
+- **Output:** `1`
+- **Explanation:** Flipping the card places `1` face down and `2` face up.

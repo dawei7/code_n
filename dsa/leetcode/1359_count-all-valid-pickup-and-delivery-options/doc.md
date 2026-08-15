@@ -30,19 +30,19 @@ Events from different orders may be interleaved in any way, and their pickup or 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `1`
-- Explanation: only `P1, D1` respects the order constraint.
+- **Input:** `n = 1`
+- **Output:** `1`
+- **Explanation:** only `P1, D1` respects the order constraint.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `6`
-- Explanation: six interleavings place each delivery after its matching pickup.
+- **Input:** `n = 2`
+- **Output:** `6`
+- **Explanation:** six interleavings place each delivery after its matching pickup.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `90`
+- **Input:** `n = 3`
+- **Output:** `90`

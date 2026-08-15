@@ -30,23 +30,23 @@ Consider the distinct numerical digit values that occur in the string. Return th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "dfa12321afd"`
-- Output: `2`
+- **Input:** `s = "dfa12321afd"`
+- **Output:** `2`
 
 The distinct digits are `1`, `2`, and `3`, so `2` is second largest.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abc1111"`
-- Output: `-1`
+- **Input:** `s = "abc1111"`
+- **Output:** `-1`
 
 Only digit `1` appears, regardless of its repetitions.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "ck077"`
-- Output: `0`
+- **Input:** `s = "ck077"`
+- **Output:** `0`
 
 The distinct digits are `0` and `7`; therefore zero is the second largest.

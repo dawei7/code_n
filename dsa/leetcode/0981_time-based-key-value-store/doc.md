@@ -35,13 +35,13 @@ Let $Q$ be the number of operations and $S$ the number of stored versions for th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = [["set", "foo", "bar", 1], ["get", "foo", 1], ["get", "foo", 3], ["set", "foo", "bar2", 4], ["get", "foo", 4], ["get", "foo", 5]]`
-- Output: `[null, "bar", "bar", null, "bar2", "bar2"]`
-- Explanation: the record at timestamp `1` remains current until the later record at timestamp `4`.
+- **Input:** `operations = [["set", "foo", "bar", 1], ["get", "foo", 1], ["get", "foo", 3], ["set", "foo", "bar2", 4], ["get", "foo", 4], ["get", "foo", 5]]`
+- **Output:** `[null, "bar", "bar", null, "bar2", "bar2"]`
+- **Explanation:** the record at timestamp `1` remains current until the later record at timestamp `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = [["set", "x", "a", 5], ["get", "x", 4], ["get", "missing", 9]]`
-- Output: `[null, "", ""]`
+- **Input:** `operations = [["set", "x", "a", 5], ["get", "x", 4], ["get", "missing", 9]]`
+- **Output:** `[null, "", ""]`

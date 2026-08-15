@@ -33,23 +33,23 @@ The constraints are $2 \le n \le 500$ and $1 \le \lvert\texttt{logs}\rvert \le 5
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10, logs = [[0, 3], [2, 5], [0, 9], [1, 15]]`
-- Output: `1`
+- **Input:** `n = 10, logs = [[0, 3], [2, 5], [0, 9], [1, 15]]`
+- **Output:** `1`
 
 The task durations are 3, 2, 4, and 6, so employee 1 handled the longest one.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 26, logs = [[1, 1], [3, 7], [2, 12], [7, 17]]`
-- Output: `3`
+- **Input:** `n = 26, logs = [[1, 1], [3, 7], [2, 12], [7, 17]]`
+- **Output:** `3`
 
 Employee 3's task lasts 6 units, longer than the other durations 1, 5, and 5.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, logs = [[0, 10], [1, 20]]`
-- Output: `0`
+- **Input:** `n = 2, logs = [[0, 10], [1, 20]]`
+- **Output:** `0`
 
 Both tasks last 10 units, so the smaller employee identifier wins the tie.

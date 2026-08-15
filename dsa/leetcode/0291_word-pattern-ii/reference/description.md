@@ -24,12 +24,14 @@ Return `True` if a bijective character-to-nonempty-substring assignment makes `p
 - **Explanation:** One possible mapping is as follows:
 'a' -> "red"
 'b' -> "blue"
+
 #### Example 2
 
 - **Input:** $pattern = "aaaa", s = "asdasdasdasd"$
 - **Output:** `true`
 - **Explanation:** One possible mapping is as follows:
 'a' -> "asd"
+
 #### Example 3
 
 - **Input:** $pattern = "aabb", s = "xyzabcxzyabc"$

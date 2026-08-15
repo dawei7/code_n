@@ -4,8 +4,13 @@ Return the number of **distinct** non-empty substrings of `text` that can be wri
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +19,7 @@ Return the number of **distinct** non-empty substrings of `text` that can be wri
 - **Input:** $text = "abcabcabc"$
 - **Output:** `3`
 - **Explanation:** The 3 substrings are "abcabc", "bcabca" and "cabcab".
+
 #### Example 2
 
 - **Input:** $text = "leetcodeleetcode"$

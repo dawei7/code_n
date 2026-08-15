@@ -10,19 +10,25 @@ Determine the **minimum** total amount of damage points that will be dealt to Bo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `power`: Input parameter (`int`).
+- `damage`: Input parameter (`List[int]`).
+- `health`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** power = 4, damage = [1,2,3,4], health = [4,5,6,8]
+- **Input:** power = 4, damage = [1,2,3,4], health = [4,5,6,8]
 
-**Output:** 39
+- **Output:** 39
 
-**Explanation:**
+- **Explanation:** 
 
 - Attack enemy 3 in the first two seconds, after which enemy 3 will go down, the number of damage points dealt to Bob is $10 + 10 = 20$ points.
 
@@ -32,15 +38,13 @@ Determine the **minimum** total amount of damage points that will be dealt to Bo
 
 - Attack enemy 1 in the next two seconds, after which enemy 1 will go down, the number of damage points dealt to Bob is $2 + 2 = 4$ points.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** power = 1, damage = [1,1,1,1], health = [1,2,3,4]
+- **Input:** power = 1, damage = [1,1,1,1], health = [1,2,3,4]
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
+- **Explanation:** 
 
 - Attack enemy 0 in the first second, after which enemy 0 will go down, the number of damage points dealt to Bob is `4` points.
 
@@ -50,15 +54,11 @@ Determine the **minimum** total amount of damage points that will be dealt to Bo
 
 - Attack enemy 3 in the next four seconds, after which enemy 3 will go down, the number of damage points dealt to Bob is $1 + 1 + 1 + 1 = 4$ points.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** power = 8, damage = [40], health = [59]
+- **Input:** power = 8, damage = [40], health = [59]
 
-**Output:** 320
-
-</div>
+- **Output:** 320
 
 ### 4. Constraints
 

@@ -31,21 +31,21 @@ Determine whether these occurrence counts are unique across the distinct values.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,2,2,1,1,3]`
-- Output: `true`
+- **Input:** `arr = [1,2,2,1,1,3]`
+- **Output:** `true`
 
 The values `1`, `2`, and `3` occur three, two, and one time respectively.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,2]`
-- Output: `false`
+- **Input:** `arr = [1,2]`
+- **Output:** `false`
 
 Both distinct values occur once.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [-3,0,1,-3,1,1,1,-3,10,0]`
-- Output: `true`
+- **Input:** `arr = [-3,0,1,-3,1,1,1,-3,10,0]`
+- **Output:** `true`

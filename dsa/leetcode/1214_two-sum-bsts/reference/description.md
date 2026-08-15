@@ -25,6 +25,7 @@ Return `true` when one node from `root1` and one node from `root2` have values s
 - **Input:** $root1 = [2,1,4], root2 = [1,0,3], target = 5$
 - **Output:** `true`
 - **Explanation:** 2 and 3 sum up to 5.
+
 #### Example 2
 
 ![](images/ex2.png)

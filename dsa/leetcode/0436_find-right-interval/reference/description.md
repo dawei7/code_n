@@ -24,6 +24,7 @@ with the smallest start, or `-1` when none exists.
 - **Input:** $intervals = [[1,2]]$
 - **Output:** `[-1]`
 - **Explanation:** There is only one interval in the collection, so it outputs -1.
+
 #### Example 2
 
 - **Input:** $intervals = [[3,4],[2,3],[1,2]]$
@@ -31,6 +32,7 @@ with the smallest start, or `-1` when none exists.
 - **Explanation:** There is no right interval for [3,4].
 The right interval for [2,3] is [3,4] since start_0 = 3 is the smallest start that is >= end_1 = 3.
 The right interval for [1,2] is [2,3] since start_1 = 2 is the smallest start that is >= end_2 = 2.
+
 #### Example 3
 
 - **Input:** $intervals = [[1,4],[2,3],[3,4]]$

@@ -30,21 +30,21 @@ Each query is `[xCenter, yCenter, radius]` and describes a circle. For every que
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[1,3],[3,3],[5,3],[2,2]], queries = [[2,3,1],[4,3,1],[1,1,2]]`
-- Output: `[3,2,2]`
+- **Input:** `points = [[1,3],[3,3],[5,3],[2,2]], queries = [[2,3,1],[4,3,1],[1,1,2]]`
+- **Output:** `[3,2,2]`
 
 For the first query, `[1,3]` and `[3,3]` are on the boundary, while `[2,2]` is inside.
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[1,1],[2,2],[3,3],[4,4],[5,5]], queries = [[1,2,2],[2,2,2],[4,3,2],[4,3,3]]`
-- Output: `[2,3,2,4]`
+- **Input:** `points = [[1,1],[2,2],[3,3],[4,4],[5,5]], queries = [[1,2,2],[2,2,2],[4,3,2],[4,3,3]]`
+- **Output:** `[2,3,2,4]`
 
-**Example 3**
+#### Example 3
 
-- Input: `points = [[0,0],[0,0],[3,4],[6,0]], queries = [[0,0,5]]`
-- Output: `[3]`
+- **Input:** `points = [[0,0],[0,0],[3,4],[6,0]], queries = [[0,0,5]]`
+- **Output:** `[3]`
 
 Both copies of `[0,0]` count, and `[3,4]` lies exactly on the circumference.

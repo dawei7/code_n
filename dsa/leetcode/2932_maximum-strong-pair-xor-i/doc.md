@@ -41,20 +41,20 @@ $1\le\texttt{nums[i]}\le100$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5]`
-- Output: `7`
-- Explanation: `(3, 4)` is strong and `3 ^ 4 = 7`, the largest qualifying XOR.
+- **Input:** `nums = [1, 2, 3, 4, 5]`
+- **Output:** `7`
+- **Explanation:** `(3, 4)` is strong and `3 ^ 4 = 7`, the largest qualifying XOR.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10, 100]`
-- Output: `0`
-- Explanation: The distinct values are too far apart, so only self-pairs qualify.
+- **Input:** `nums = [10, 100]`
+- **Output:** `0`
+- **Explanation:** The distinct values are too far apart, so only self-pairs qualify.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 6, 25, 30]`
-- Output: `7`
-- Explanation: `(25, 30)` is strong and gives the maximum XOR `7`.
+- **Input:** `nums = [5, 6, 25, 30]`
+- **Output:** `7`
+- **Explanation:** `(25, 30)` is strong and gives the maximum XOR `7`.

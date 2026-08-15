@@ -10,8 +10,13 @@ Return *an array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the **su
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -36,12 +41,12 @@ The total is answer[2] = 2 + 1 = 3.
 - "b" has 1 prefix: "b".
 - There are 2 strings with the prefix "b".
 The total is answer[3] = 2.
+
 #### Example 2
 
 - **Input:** $words = ["abcd"]$
 - **Output:** `[4]`
-- **Explanation:**
-"abcd" has 4 prefixes: "a", "ab", "abc", and "abcd".
+- **Explanation:** "abcd" has 4 prefixes: "a", "ab", "abc", and "abcd".
 Each prefix has a score of one, so the total is answer[0] = 1 + 1 + 1 + 1 = 4.
 
 ### 5. Constraints

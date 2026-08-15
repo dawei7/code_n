@@ -50,7 +50,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 students table:
@@ -111,7 +110,7 @@ study_sessions table:
 
 - **Alice Chen (student_id = 1):**
 
-		<li>Study sequence: Math → Physics → Chemistry → Math → Physics → Chemistry
+		- Study sequence: Math → Physics → Chemistry → Math → Physics → Chemistry
 
 - Pattern: 3 subjects (Math, Physics, Chemistry) repeating for 2 complete cycles
 
@@ -121,10 +120,9 @@ study_sessions table:
 
 - Total hours: 2.5 + 3.0 + 2.0 + 2.5 + 3.0 + 2.0 = 15.0 hours
 
-	</li>
 - **Bob Johnson (student_id = 2):**
 
-		<li>Study sequence: Algebra → Calculus → Statistics → Geometry → Algebra → Calculus → Statistics → Geometry
+		- Study sequence: Algebra → Calculus → Statistics → Geometry → Algebra → Calculus → Statistics → Geometry
 
 - Pattern: 4 subjects (Algebra, Calculus, Statistics, Geometry) repeating for 2 complete cycles
 
@@ -134,20 +132,15 @@ study_sessions table:
 
 - Total hours: 4.0 + 3.5 + 2.5 + 3.0 + 4.0 + 3.5 + 2.5 + 3.0 = 26.0 hours
 
-	</li>
 - **Students not included:**
 
-		<li>Carol Davis (student_id = 3): Only 2 subjects (Biology, Chemistry) - doesn't meet minimum 3 subjects requirement
+		- Carol Davis (student_id = 3): Only 2 subjects (Biology, Chemistry) - doesn't meet minimum 3 subjects requirement
 
 - David Wilson (student_id = 4): Only 2 study sessions with a 4-day gap - doesn't meet consecutive dates requirement
 
 - Emma Brown (student_id = 5): No study sessions recorded
 
-	</li>
-
 The result table is ordered by cycle_length in descending order, then by total_study_hours in descending order.
-
-</div>
 
 ### 2. Function Contract
 

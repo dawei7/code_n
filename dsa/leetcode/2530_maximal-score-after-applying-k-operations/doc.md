@@ -33,14 +33,14 @@ Return the maximum score obtainable after exactly `k` selections and replacement
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10, 10, 10, 10, 10], k = 5`
-- Output: `50`
-- Explanation: Select each value once; all five selected rewards are `10`.
+- **Input:** `nums = [10, 10, 10, 10, 10], k = 5`
+- **Output:** `50`
+- **Explanation:** Select each value once; all five selected rewards are `10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 10, 3, 3, 3], k = 3`
-- Output: `17`
-- Explanation: Selecting `10`, then its replacement `4`, then one `3` gives the optimal score `10 + 4 + 3`.
+- **Input:** `nums = [1, 10, 3, 3, 3], k = 3`
+- **Output:** `17`
+- **Explanation:** Selecting `10`, then its replacement `4`, then one `3` gives the optimal score `10 + 4 + 3`.

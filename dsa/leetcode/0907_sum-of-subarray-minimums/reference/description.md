@@ -4,8 +4,13 @@ Given an array of integers arr, find the sum of `min(b)`, where `b` ranges over 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -13,10 +18,10 @@ Given an array of integers arr, find the sum of `min(b)`, where `b` ranges over 
 
 - **Input:** `arr = [3,1,2,4]`
 - **Output:** `17`
-- **Explanation:**
-Subarrays are [3], [1], [2], [4], [3,1], [1,2], [2,4], [3,1,2], [1,2,4], [3,1,2,4].
+- **Explanation:** Subarrays are [3], [1], [2], [4], [3,1], [1,2], [2,4], [3,1,2], [1,2,4], [3,1,2,4].
 Minimums are 3, 1, 2, 4, 1, 1, 2, 1, 1, 1.
 Sum is 17.
+
 #### Example 2
 
 - **Input:** `arr = [11,81,94,43,3]`

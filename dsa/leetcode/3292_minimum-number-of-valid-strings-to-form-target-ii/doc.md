@@ -33,20 +33,20 @@ Let $W$ be the number of words, $S$ their total length, and $T$ the target lengt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["abc","aaaaa","bcdef"]`, `target = "aabcdabc"`
-- Output: `3`
-- Explanation: `"aa" + "bcd" + "abc"` uses three valid prefixes.
+- **Input:** `words = ["abc","aaaaa","bcdef"]`, `target = "aabcdabc"`
+- **Output:** `3`
+- **Explanation:** `"aa" + "bcd" + "abc"` uses three valid prefixes.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["abababab","ab"]`, `target = "ababaababa"`
-- Output: `2`
-- Explanation: Two copies of the valid prefix `"ababa"` form the target.
+- **Input:** `words = ["abababab","ab"]`, `target = "ababaababa"`
+- **Output:** `2`
+- **Explanation:** Two copies of the valid prefix `"ababa"` form the target.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["abcdef"]`, `target = "xyz"`
-- Output: `-1`
-- Explanation: No valid prefix can begin the target.
+- **Input:** `words = ["abcdef"]`, `target = "xyz"`
+- **Output:** `-1`
+- **Explanation:** No valid prefix can begin the target.

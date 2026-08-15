@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/xor-after-range-multiplication-queries-ii/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given an integer array `nums` and up to $10^5$ multiplication queries. A query `[l, r, k, v]` visits the arithmetic progression of indices
@@ -22,6 +23,7 @@ through the last visited index not exceeding `r`. Multiply every visited current
 This version has substantially larger array and query limits than the direct-simulation version, so an implementation must avoid visiting every affected index of every dense query separately.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: An array of $n$ positive integers, where $1\le n\le10^5$ and each value is at most $10^9$.
@@ -32,14 +34,15 @@ This version has substantially larger array and query limits than the direct-sim
 Return the XOR of all values after every requested modular multiplication has taken effect.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,1,1]`, `queries = [[0,2,1,4]]`
-- Output: `4`
-- Explanation: All entries become 4, and the XOR of three copies of 4 is 4.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,1,1]`, `queries = [[0,2,1,4]]`
+- **Output:** `4`
+- **Explanation:** All entries become 4, and the XOR of three copies of 4 is 4.
 
-- Input: `nums = [2,3,1,5,4]`, `queries = [[1,4,2,3],[0,2,1,2]]`
-- Output: `31`
-- Explanation: The final array is `[4,18,2,15,4]`.
+#### Example 2
+
+- **Input:** `nums = [2,3,1,5,4]`, `queries = [[1,4,2,3],[0,2,1,2]]`
+- **Output:** `31`
+- **Explanation:** The final array is `[4,18,2,15,4]`.

@@ -29,12 +29,11 @@ Return the fewest operations that transform `nums` into `[0, 1, ..., n - 1]`. Re
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,0,1], pre = [2,3]
+- **Input:** nums = [2,0,1], pre = [2,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Reverse $\text{pre}[1] = 3$ elements to get `nums = [1, 0, 2]`.
 
@@ -42,31 +41,21 @@ Return the fewest operations that transform `nums` into `[0, 1, ..., n - 1]`. Re
 
 - Thus, the minimum number of prefix reversal required is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,0,2], pre = [1,3]
+- **Input:** nums = [1,0,2], pre = [1,3]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** It is impossible to sort the array using the given prefix lengths, so the answer is -1.
 
-It is impossible to sort the array using the given prefix lengths, so the answer is -1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [0,1], pre = [2]
+- **Input:** nums = [0,1], pre = [2]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Since `nums` is already sorted, no prefix reversals are needed. Thus, the answer is 0.
-
-</div>
+- **Explanation:** Since `nums` is already sorted, no prefix reversals are needed. Thus, the answer is 0.
 
 ### 4. Constraints
 

@@ -42,17 +42,17 @@ left-to-right order, with no zero separators.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [0,3,1,0,4,5,2,0]`
-- Output: `[4,11]`
+- **Input:** `head = [0,3,1,0,4,5,2,0]`
+- **Output:** `[4,11]`
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [0,1,0,3,0,2,2,0]`
-- Output: `[1,3,4]`
+- **Input:** `head = [0,1,0,3,0,2,2,0]`
+- **Output:** `[1,3,4]`
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [0,5,0]`
-- Output: `[5]`
+- **Input:** `head = [0,5,0]`
+- **Output:** `[5]`

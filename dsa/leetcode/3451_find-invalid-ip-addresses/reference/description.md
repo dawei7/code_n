@@ -28,7 +28,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 logs table:
@@ -68,8 +67,6 @@ logs table:
 - 192.168.1 is invalid because it has only 3 octets
 
 The output table is ordered by invalid_count, ip in descending order respectively.
-
-</div>
 
 ### 2. Function Contract
 

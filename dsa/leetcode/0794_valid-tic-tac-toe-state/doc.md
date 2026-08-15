@@ -30,20 +30,20 @@ The game ends immediately when either player completes a full row, column, or di
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `board = ["O  ","   ","   "]`
-- Output: `False`
-- Explanation: `O` cannot move before `X`.
+- **Input:** `board = ["O  ","   ","   "]`
+- **Output:** `False`
+- **Explanation:** `O` cannot move before `X`.
 
-**Example 2**
+#### Example 2
 
-- Input: `board = ["XOX"," X ","   "]`
-- Output: `False`
-- Explanation: Three `X` marks and one `O` mark cannot result from alternating turns.
+- **Input:** `board = ["XOX"," X ","   "]`
+- **Output:** `False`
+- **Explanation:** Three `X` marks and one `O` mark cannot result from alternating turns.
 
-**Example 3**
+#### Example 3
 
-- Input: `board = ["XOX","O O","XOX"]`
-- Output: `True`
-- Explanation: The marks alternate correctly and neither player has already won.
+- **Input:** `board = ["XOX","O O","XOX"]`
+- **Output:** `True`
+- **Explanation:** The marks alternate correctly and neither player has already won.

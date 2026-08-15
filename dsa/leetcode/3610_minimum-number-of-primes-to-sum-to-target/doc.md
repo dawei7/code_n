@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-primes-to-sum-to-target/) |
 
 ## Problem Description
+
 ### Goal
 
 Consider the first `m` prime numbers in increasing order. Select a multiset from those primes whose elements sum to exactly `n`. A prime may be selected any number of times, including more than once in the same sum.
@@ -32,20 +33,20 @@ Return the minimum number of available primes whose sum is `n`, allowing repetit
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10, m = 2`
-- Output: `4`
-- Explanation: The available primes are `2` and `3`; `2 + 2 + 3 + 3 = 10` uses four terms.
+- **Input:** `n = 10, m = 2`
+- **Output:** `4`
+- **Explanation:** The available primes are `2` and `3`; `2 + 2 + 3 + 3 = 10` uses four terms.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 15, m = 5`
-- Output: `3`
-- Explanation: Three copies of `5` form the target.
+- **Input:** `n = 15, m = 5`
+- **Output:** `3`
+- **Explanation:** Three copies of `5` form the target.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7, m = 6`
-- Output: `1`
-- Explanation: Since `7` is one of the first six primes, it forms the target by itself.
+- **Input:** `n = 7, m = 6`
+- **Output:** `1`
+- **Explanation:** Since `7` is one of the first six primes, it forms the target by itself.

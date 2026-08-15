@@ -10,8 +10,13 @@ Return *the **leftmost** *`middleIndex`* that satisfies the condition, or *`-1`*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ Return *the **leftmost** *`middleIndex`* that satisfies the condition, or *`-1`*
 - **Output:** `3`
 - **Explanation:** The sum of the numbers before index 3 is: 2 + 3 + -1 = 4
 The sum of the numbers after index 3 is: 4 = 4
+
 #### Example 2
 
 - **Input:** `nums = [1,-1,<u>4</u>]`
 - **Output:** `2`
 - **Explanation:** The sum of the numbers before index 2 is: 1 + -1 = 0
 The sum of the numbers after index 2 is: 0
+
 #### Example 3
 
 - **Input:** `nums = [2,5]`

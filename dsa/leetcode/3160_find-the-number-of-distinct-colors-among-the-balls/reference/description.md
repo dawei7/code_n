@@ -8,8 +8,14 @@ Return an array `result` of length `n`, where $\text{result}[i]$ denotes the num
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `limit`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -19,14 +25,11 @@ that when answering a query, lack of a color *will not* be considered as a color
 
 #### Example 1
 
-<div class="example-block">
-**Input:** limit = 4, queries = [[1,4],[2,5],[1,3],[3,4]]
+- **Input:** limit = 4, queries = [[1,4],[2,5],[1,3],[3,4]]
 
-**Output:** [1,2,2,3]
+- **Output:** [1,2,2,3]
 
-**Explanation:**
-
-![](images/ezgifcom-crop.gif)
+- **Explanation:** ![](images/ezgifcom-crop.gif)
 
 - After query 0, ball 1 has color 4.
 
@@ -36,15 +39,13 @@ that when answering a query, lack of a color *will not* be considered as a color
 
 - After query 3, ball 1 has color 3, ball 2 has color 5, and ball 3 has color 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** limit = 4, queries = [[0,1],[1,2],[2,2],[3,4],[4,5]]
+- **Input:** limit = 4, queries = [[0,1],[1,2],[2,2],[3,4],[4,5]]
 
-**Output:** [1,2,2,3,4]
+- **Output:** [1,2,2,3,4]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -61,8 +62,6 @@ that when answering a query, lack of a color *will not* be considered as a color
 - After query 3, ball 0 has color 1, balls 1 and 2 have color 2, and ball 3 has color 4.
 
 - After query 4, ball 0 has color 1, balls 1 and 2 have color 2, ball 3 has color 4, and ball 4 has color 5.
-
-</div>
 
 ### 5. Constraints
 

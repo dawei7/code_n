@@ -32,20 +32,20 @@ Return a promise that resolves only after approximately $m$ milliseconds. Its re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `millis = 100`
-- Output: approximately `100` milliseconds
-- Explanation: Measuring from the call until the returned promise resolves should produce a duration close to 100 milliseconds.
+- **Input:** `millis = 100`
+- **Output:** approximately `100` milliseconds
+- **Explanation:** Measuring from the call until the returned promise resolves should produce a duration close to 100 milliseconds.
 
-**Example 2**
+#### Example 2
 
-- Input: `millis = 200`
-- Output: approximately `200` milliseconds
-- Explanation: The promise stays pending for the requested interval before resolving.
+- **Input:** `millis = 200`
+- **Output:** approximately `200` milliseconds
+- **Explanation:** The promise stays pending for the requested interval before resolving.
 
-**Example 3**
+#### Example 3
 
-- Input: `millis = 1`
-- Output: approximately `1` millisecond
-- Explanation: Even the minimum legal delay is scheduled asynchronously rather than resolved immediately.
+- **Input:** `millis = 1`
+- **Output:** approximately `1` millisecond
+- **Explanation:** Even the minimum legal delay is scheduled asynchronously rather than resolved immediately.

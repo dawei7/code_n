@@ -12,8 +12,14 @@ Return *an array *`result`* of length 2 where:*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `widths`: Input parameter (`List[int]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ abcdefghij  // 100 pixels wide
 klmnopqrst  // 100 pixels wide
 uvwxyz      // 60 pixels wide
 There are a total of 3 lines, and the last line is 60 pixels wide.
+
 #### Example 2
 
 - **Input:** $widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "bbbcccdddaaa"$

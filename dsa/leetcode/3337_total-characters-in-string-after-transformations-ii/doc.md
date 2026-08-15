@@ -34,20 +34,20 @@ Let $A=26$ denote the fixed alphabet size.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcyy", t = 2, nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]`
-- Output: `7`
-- Explanation: The two simultaneous transformations produce `"bcdzz"` and then `"cdeabab"`.
+- **Input:** `s = "abcyy", t = 2, nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]`
+- **Output:** `7`
+- **Explanation:** The two simultaneous transformations produce `"bcdzz"` and then `"cdeabab"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "azbk", t = 1, nums = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]`
-- Output: `8`
-- Explanation: Each input character contributes two successors; wrapping makes `z` become `"ab"`.
+- **Input:** `s = "azbk", t = 1, nums = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]`
+- **Output:** `8`
+- **Explanation:** Each input character contributes two successors; wrapping makes `z` become `"ab"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "y", t = 1, nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1]`
-- Output: `3`
-- Explanation: The three consecutive successors of `y` are `"zab"`.
+- **Input:** `s = "y", t = 1, nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1]`
+- **Output:** `3`
+- **Explanation:** The three consecutive successors of `y` are `"zab"`.

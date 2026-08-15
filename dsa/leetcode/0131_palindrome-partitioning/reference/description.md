@@ -18,6 +18,7 @@ Return all partitions whose contiguous pieces are palindromes. Outer result orde
 
 - **Input:** `s = "aab"`
 - **Output:** `[["a","a","b"],["aa","b"]]`
+
 #### Example 2
 
 - **Input:** `s = "a"`

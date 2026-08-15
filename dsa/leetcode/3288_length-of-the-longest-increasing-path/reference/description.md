@@ -14,35 +14,32 @@ Return the **maximum** length of an **increasing path** that contains $\text{coo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coordinates`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** coordinates = [[3,1],[2,2],[4,1],[0,0],[5,3]], k = 1
+- **Input:** coordinates = [[3,1],[2,2],[4,1],[0,0],[5,3]], k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** `(0, 0)`, `(2, 2)`, `(5, 3)`<!-- notionvc: 082cee9e-4ce5-4ede-a09d-57001a72141d --> is the longest increasing path that contains `(2, 2)`.
 
-`(0, 0)`, `(2, 2)`, `(5, 3)`<!-- notionvc: 082cee9e-4ce5-4ede-a09d-57001a72141d --> is the longest increasing path that contains `(2, 2)`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** coordinates = [[2,1],[7,0],[5,6]], k = 2
+- **Input:** coordinates = [[2,1],[7,0],[5,6]], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-`(2, 1)`, `(5, 6)` is the longest increasing path that contains `(5, 6)`.
-
-</div>
+- **Explanation:** `(2, 1)`, `(5, 6)` is the longest increasing path that contains `(5, 6)`.
 
 ### 4. Constraints
 

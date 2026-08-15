@@ -32,7 +32,7 @@ A table with columns `day` and `active_users`, containing one row per qualifying
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 On `2019-07-20`, user `1` performs several activities and user `2` opens a session, so there are two distinct active users. On `2019-07-21`, users `2` and `3` perform activities, again producing two:
 

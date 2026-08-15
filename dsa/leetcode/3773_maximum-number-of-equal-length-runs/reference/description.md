@@ -24,28 +24,19 @@ Return the highest frequency of any run length in `s`. Runs may contain differen
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "hello"
+- **Input:** s = "hello"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The runs in `s` are `"h"`, `"e"`, `"ll"`, and `"o"`. You can select `"h"`, `"e"`, and `"o"` because they have the same length 1.
 
-The runs in `s` are `"h"`, `"e"`, `"ll"`, and `"o"`. You can select `"h"`, `"e"`, and `"o"` because they have the same length 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aaabaaa"
+- **Input:** s = "aaabaaa"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The runs in `s` are `"aaa"`, `"b"`, and `"aaa"`. You can select `"aaa"` and `"aaa"` because they have the same length 3.
-
-</div>
+- **Explanation:** The runs in `s` are `"aaa"`, `"b"`, and `"aaa"`. You can select `"aaa"` and `"aaa"` because they have the same length 3.
 
 ### 4. Constraints
 

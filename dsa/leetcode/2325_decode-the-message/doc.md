@@ -40,24 +40,24 @@ with spaces unchanged.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `key = "the quick brown fox jumps over the lazy dog"`,
+- **Input:** `key = "the quick brown fox jumps over the lazy dog"`,
   `message = "vkbs bs t suepuv"`
-- Output: `"this is a secret"`
-- Explanation: The distinct letters encountered in `key` begin `t`, `h`, `e`,
+- **Output:** `"this is a secret"`
+- **Explanation:** The distinct letters encountered in `key` begin `t`, `h`, `e`,
   so those cipher letters decode to `a`, `b`, and `c`, respectively.
 
-**Example 2**
+#### Example 2
 
-- Input: `key = "eljuxhpwnyrdgtqkviszcfmabo"`,
+- **Input:** `key = "eljuxhpwnyrdgtqkviszcfmabo"`,
   `message = "zwx hnfx lqantp mnoeius ycgk vcnjrdb"`
-- Output: `"the five boxing wizards jump quickly"`
-- Explanation: Since the key has no repeated letters, its order directly
+- **Output:** `"the five boxing wizards jump quickly"`
+- **Explanation:** Since the key has no repeated letters, its order directly
   defines all 26 substitutions.
 
-**Example 3**
+#### Example 3
 
-- Input: `key = "abcdefghijklmnopqrstuvwxyz"`, `message = "stay curious"`
-- Output: `"stay curious"`
-- Explanation: Alphabetical key order creates the identity substitution.
+- **Input:** `key = "abcdefghijklmnopqrstuvwxyz"`, `message = "stay curious"`
+- **Output:** `"stay curious"`
+- **Explanation:** Alphabetical key order creates the identity substitution.

@@ -16,8 +16,14 @@ A **palindrome** is a string that reads the same forward as well as backward.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word1`: Input parameter (`str`).
+- `word2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,11 +32,13 @@ A **palindrome** is a string that reads the same forward as well as backward.
 - **Input:** $word1 = "cacb", word2 = "cbba"$
 - **Output:** `5`
 - **Explanation:** Choose "ab" from word1 and "cba" from word2 to make "abcba", which is a palindrome.
+
 #### Example 2
 
 - **Input:** $word1 = "ab", word2 = "ab"$
 - **Output:** `3`
 - **Explanation:** Choose "ab" from word1 and "a" from word2 to make "aba", which is a palindrome.
+
 #### Example 3
 
 - **Input:** $word1 = "aa", word2 = "bb"$

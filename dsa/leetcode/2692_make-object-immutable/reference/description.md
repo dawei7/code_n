@@ -34,6 +34,7 @@ return obj.x;
 }
 - **Output:** `{"value": null, "error": "Error Modifying: x"}`
 - **Explanation:** Attempting to modify a key on an object resuts in a thrown error. Note that it doesn't matter that the value was set to the same value as it was before.
+
 #### Example 2
 
 - **Input:** ``
@@ -44,6 +45,7 @@ return arr[2];
 }
 - **Output:** `{"value": null, "error": "Error Modifying Index: 1"}`
 - **Explanation:** Attempting to modify an array results in a thrown error.
+
 #### Example 3
 
 - **Input:** ``
@@ -56,6 +58,7 @@ return 42;
 }
 - **Output:** `{ "value": null, "error": "Error Calling Method: push"}`
 - **Explanation:** Calling a method that can result in a mutation results in a thrown error.
+
 #### Example 4
 
 - **Input:** ``

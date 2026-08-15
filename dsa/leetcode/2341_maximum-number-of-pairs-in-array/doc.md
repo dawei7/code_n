@@ -37,21 +37,21 @@ and `leftovers` is the number of unpaired integers.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,2,1,3,2,2]`
-- Output: `[3,1]`
-- Explanation: One pair is removed for each of values 1, 2, and 3, leaving one
+- **Input:** `nums = [1,3,2,1,3,2,2]`
+- **Output:** `[3,1]`
+- **Explanation:** One pair is removed for each of values 1, 2, and 3, leaving one
   additional 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1]`
-- Output: `[1,0]`
-- Explanation: The two equal values form one pair and nothing remains.
+- **Input:** `nums = [1,1]`
+- **Output:** `[1,0]`
+- **Explanation:** The two equal values form one pair and nothing remains.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0]`
-- Output: `[0,1]`
-- Explanation: A single value cannot form a pair.
+- **Input:** `nums = [0]`
+- **Output:** `[0,1]`
+- **Explanation:** A single value cannot form a pair.

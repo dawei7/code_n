@@ -25,6 +25,7 @@ Do not complement implicit leading zeroes or apply a fixed signed-integer width.
 - **Input:** $num = 5$
 - **Output:** `2`
 - **Explanation:** The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.
+
 #### Example 2
 
 - **Input:** $num = 1$

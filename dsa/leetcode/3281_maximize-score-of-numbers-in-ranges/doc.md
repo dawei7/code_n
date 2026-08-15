@@ -33,20 +33,20 @@ Return the maximum possible minimum absolute difference among all pairs of selec
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `start = [6, 0, 3], d = 2`
-- Output: `4`
-- Explanation: Choosing `8`, `0`, and `4` yields pairwise minimum distance `4`.
+- **Input:** `start = [6, 0, 3], d = 2`
+- **Output:** `4`
+- **Explanation:** Choosing `8`, `0`, and `4` yields pairwise minimum distance `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `start = [2, 6, 13, 13], d = 5`
-- Output: `5`
-- Explanation: One optimal sorted selection is `2`, `7`, `13`, and `18`.
+- **Input:** `start = [2, 6, 13, 13], d = 5`
+- **Output:** `5`
+- **Explanation:** One optimal sorted selection is `2`, `7`, `13`, and `18`.
 
-**Example 3**
+#### Example 3
 
-- Input: `start = [4, 4, 4], d = 0`
-- Output: `0`
-- Explanation: Every interval contains only the value `4`.
+- **Input:** `start = [4, 4, 4], d = 0`
+- **Output:** `0`
+- **Explanation:** Every interval contains only the value `4`.

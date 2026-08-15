@@ -10,8 +10,13 @@ Given an array of **count-paired domains** `cpdomains`, return *an array of the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cpdomains`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Given an array of **count-paired domains** `cpdomains`, return *an array of the 
 - **Output:** `["9001 leetcode.com","9001 discuss.leetcode.com","9001 com"]`
 - **Explanation:** We only have one website domain: "discuss.leetcode.com".
 As discussed above, the subdomain "leetcode.com" and "com" will also be visited. So they will all be visited 9001 times.
+
 #### Example 2
 
 - **Input:** $cpdomains = ["900 \text{google.mail}.com", "50 \text{yahoo.com}", "1 \text{intel.mail}.com", "5 \text{wiki.org}"]$

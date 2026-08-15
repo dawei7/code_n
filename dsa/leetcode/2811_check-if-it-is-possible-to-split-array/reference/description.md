@@ -14,35 +14,36 @@ Return true if you can split the given array into `n` arrays, otherwise return f
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2, 2, 1], m = 4
+- **Input:** nums = [2, 2, 1], m = 4
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `[2, 2, 1]` to `[2, 2]` and `[1]`. The array `[1]` has a length of one, and the array `[2, 2]` has the sum of its elements equal to $4 \ge m$, so both are good arrays.
 
 - Split `[2, 2]` to `[2]` and `[2]`. both arrays have the length of one, so both are good arrays.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2, 1, 3], m = 5
+- **Input:** nums = [2, 1, 3], m = 5
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-The first move has to be either of the following:
+- **Explanation:** The first move has to be either of the following:
 
 - Split `[2, 1, 3]` to `[2, 1]` and `[3]`. The array `[2, 1]` has neither length of one nor sum of elements greater than or equal to `m`.
 
@@ -50,15 +51,13 @@ The first move has to be either of the following:
 
 So as both moves are invalid (they do not divide the array into two good arrays), we are unable to split `nums` into `n` arrays of size 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2, 3, 3, 2, 3], m = 6
+- **Input:** nums = [2, 3, 3, 2, 3], m = 6
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `[2, 3, 3, 2, 3]` to `[2]` and `[3, 3, 2, 3]`.
 
@@ -67,8 +66,6 @@ So as both moves are invalid (they do not divide the array into two good arrays)
 - Split `[3, 3, 2]` to `[3, 3]` and `[2]`.
 
 - Split `[3, 3]` to `[3]` and `[3]`.
-
-</div>
 
 ### 4. Constraints
 

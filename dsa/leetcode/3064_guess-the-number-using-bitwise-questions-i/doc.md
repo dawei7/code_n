@@ -36,14 +36,14 @@ Return the exact hidden integer $n$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 31`
-- Output: `31`
-- Explanation: The API responses contain enough information to recover the five low set bits of `31`.
+- **Input:** `n = 31`
+- **Output:** `31`
+- **Explanation:** The API responses contain enough information to recover the five low set bits of `31`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 33`
-- Output: `33`
-- Explanation: The recovered number has set bits at positions zero and five.
+- **Input:** `n = 33`
+- **Output:** `33`
+- **Explanation:** The recovered number has set bits at positions zero and five.

@@ -14,8 +14,13 @@ You can perform the following operations **any number of times**:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,44 +32,31 @@ Return* *the **minimum** number of operations required to make `s` **good**.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "acab"
+- **Input:** s = "acab"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** We can make `s` good by deleting one occurrence of character `'a'`.
 
-We can make `s` good by deleting one occurrence of character `'a'`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "wddw"
+- **Input:** s = "wddw"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** We do not need to perform any operations since `s` is initially good.
 
-We do not need to perform any operations since `s` is initially good.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "aaabc"
+- **Input:** s = "aaabc"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can make `s` good by applying these operations:
+- **Explanation:** We can make `s` good by applying these operations:
 
 - Change one occurrence of `'a'` to `'b'`
 
 - Insert one occurrence of `'c'` into `s`
-
-</div>
 
 ### 5. Constraints
 

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an $m\times n$ binary matrix. In one operation, choose any
 complete row or any complete column and flip all of its entries: every `0`
 becomes `1`, and every `1` becomes `0`.
@@ -19,6 +21,7 @@ rows and columns in any order. Determine whether it is possible to transform
 the entire matrix to zeros.
 
 ### Function Contract
+
 **Inputs**
 
 - `grid`: An $m\times n$ matrix whose entries are either `0` or `1`, with
@@ -29,22 +32,23 @@ the entire matrix to zeros.
 `true` if row and column flips can remove every `1`; otherwise `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `grid = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]`
-- Output: `true`
-- Explanation: Flipping the middle row and then the middle column produces an
+#### Example 1
+
+- **Input:** `grid = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]`
+- **Output:** `true`
+- **Explanation:** Flipping the middle row and then the middle column produces an
   all-zero matrix.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 1, 0], [0, 0, 0], [0, 0, 0]]`
-- Output: `false`
-- Explanation: No combination of whole-row and whole-column flips can remove
+- **Input:** `grid = [[1, 1, 0], [0, 0, 0], [0, 0, 0]]`
+- **Output:** `false`
+- **Explanation:** No combination of whole-row and whole-column flips can remove
   all ones.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0]]`
-- Output: `true`
-- Explanation: The matrix already contains no ones.
+- **Input:** `grid = [[0]]`
+- **Output:** `true`
+- **Explanation:** The matrix already contains no ones.

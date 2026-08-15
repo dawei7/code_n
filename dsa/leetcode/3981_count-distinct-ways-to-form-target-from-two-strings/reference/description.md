@@ -40,14 +40,11 @@ Return, modulo $10^9+7$, the number of distinct constructions that use at least 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word1 = "abc", word2 = "bac", target = "abc"
+- **Input:** word1 = "abc", word2 = "bac", target = "abc"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-There are 5 ways to form `target`:
+- **Explanation:** There are 5 ways to form `target`:
 
 - $\text{word1}[0] = 'a'$, $\text{word1}[1] = 'b'$, $\text{word2}[2] = 'c'$
 
@@ -61,17 +58,13 @@ There are 5 ways to form `target`:
 
 All ways preserve the increasing index order inside each string and choose at least one character from each string.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word1 = "cd", word2 = "cd", target = "ccd"
+- **Input:** word1 = "cd", word2 = "cd", target = "ccd"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-There are 4 ways to form `target`:
+- **Explanation:** There are 4 ways to form `target`:
 
 - $\text{word1}[0] = 'c'$, $\text{word2}[0] = 'c'$, $\text{word1}[1] = 'd'$
 
@@ -83,17 +76,13 @@ There are 4 ways to form `target`:
 
 The first two `'c'` characters in `target` must come one from each string. The final `'d'` can be chosen from either string.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word1 = "xy", word2 = "xy", target = "xyxy"
+- **Input:** word1 = "xy", word2 = "xy", target = "xyxy"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-There are 2 ways to form `target`:
+- **Explanation:** There are 2 ways to form `target`:
 
 - $\text{word1}[0] = 'x'$, $\text{word1}[1] = 'y'$, $\text{word2}[0] = 'x'$, $\text{word2}[1] = 'y'$
 
@@ -101,19 +90,13 @@ There are 2 ways to form `target`:
 
 Each `"xy"` part in `target` comes entirely from one string.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** word1 = "ab", word2 = "cde", target = "ace"
+- **Input:** word1 = "ab", word2 = "cde", target = "ace"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The only way is to choose $\text{word1}[0] = 'a'$, $\text{word2}[0] = 'c'$, and $\text{word2}[2] = 'e'$. Thus, the answer is 1.
-
-</div>
+- **Explanation:** The only way is to choose $\text{word1}[0] = 'a'$, $\text{word2}[0] = 'c'$, and $\text{word2}[2] = 'e'$. Thus, the answer is 1.
 
 ### 4. Constraints
 

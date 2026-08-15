@@ -39,21 +39,21 @@ word in either direction; otherwise return `false`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `board = [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], word = "abc"`
-- Output: `true`
-- Explanation: The word fits vertically from top to bottom.
+- **Input:** `board = [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], word = "abc"`
+- **Output:** `true`
+- **Explanation:** The word fits vertically from top to bottom.
 
-**Example 2**
+#### Example 2
 
-- Input: `board = [[" ", "#", "a"], [" ", "#", "c"], [" ", "#", "a"]], word = "ac"`
-- Output: `false`
-- Explanation: Each possible vertical run is longer than the word or contains
+- **Input:** `board = [[" ", "#", "a"], [" ", "#", "c"], [" ", "#", "a"]], word = "ac"`
+- **Output:** `false`
+- **Explanation:** Each possible vertical run is longer than the word or contains
   incompatible letters.
 
-**Example 3**
+#### Example 3
 
-- Input: `board = [["#", " ", "#"], [" ", " ", "#"], ["#", " ", "c"]], word = "ca"`
-- Output: `true`
-- Explanation: The word fits horizontally from right to left.
+- **Input:** `board = [["#", " ", "#"], [" ", " ", "#"], ["#", " ", "c"]], word = "ca"`
+- **Output:** `true`
+- **Explanation:** The word fits horizontally from right to left.

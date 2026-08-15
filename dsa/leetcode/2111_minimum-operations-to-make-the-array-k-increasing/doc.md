@@ -31,19 +31,19 @@ Return the minimum number of array elements that must be replaced to make `arr` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [5, 4, 3, 2, 1], k = 1`
-- Output: `4`
-- Explanation: With `k = 1`, the whole array must become non-decreasing; at most one value can remain unchanged.
+- **Input:** `arr = [5, 4, 3, 2, 1], k = 1`
+- **Output:** `4`
+- **Explanation:** With `k = 1`, the whole array must become non-decreasing; at most one value can remain unchanged.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [4, 1, 5, 2, 6, 2], k = 2`
-- Output: `0`
-- Explanation: Both modulo-$2$ sequences, `[4, 5, 6]` and `[1, 2, 2]`, are already non-decreasing.
+- **Input:** `arr = [4, 1, 5, 2, 6, 2], k = 2`
+- **Output:** `0`
+- **Explanation:** Both modulo-$2$ sequences, `[4, 5, 6]` and `[1, 2, 2]`, are already non-decreasing.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [4, 1, 5, 2, 6, 2], k = 3`
-- Output: `2`
+- **Input:** `arr = [4, 1, 5, 2, 6, 2], k = 3`
+- **Output:** `2`

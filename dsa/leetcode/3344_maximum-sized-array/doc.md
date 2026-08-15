@@ -36,14 +36,14 @@ You are given a non-negative budget `s`. Find the largest positive dimension $n$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = 10`
-- Output: `2`
-- Explanation: Dimension `2` has total sum `3`, while dimension `3` has total sum `45`.
+- **Input:** `s = 10`
+- **Output:** `2`
+- **Explanation:** Dimension `2` has total sum `3`, while dimension `3` has total sum `45`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = 0`
-- Output: `1`
-- Explanation: The sole entry for dimension `1` is zero.
+- **Input:** `s = 0`
+- **Output:** `1`
+- **Explanation:** The sole entry for dimension `1` is zero.

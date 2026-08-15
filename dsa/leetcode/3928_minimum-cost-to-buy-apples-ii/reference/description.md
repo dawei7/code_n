@@ -38,14 +38,11 @@ Return an integer array `ans` of length `n`. For each start `i`, $\text{ans}[i]$
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, prices = [8,3], roads = [[0,1,1,2]]
+- **Input:** n = 2, prices = [8,3], roads = [[0,1,1,2]]
 
-**Output:** [6,3]
+- **Output:** [6,3]
 
-**Explanation:**
-
-![](images/screenshot-2025-08-23-at-23341-am.png)
+- **Explanation:** ![](images/screenshot-2025-08-23-at-23341-am.png)
 
 <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<thead>
@@ -92,17 +89,13 @@ Return an integer array `ans` of length `n`. For each start `i`, $\text{ans}[i]$
 
 Thus, the answer is `[6, 3]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, prices = [9,4,6], roads = [[0,1,1,3],[1,2,4,2]]
+- **Input:** n = 3, prices = [9,4,6], roads = [[0,1,1,3],[1,2,4,2]]
 
-**Output:** [8,4,6]
+- **Output:** [8,4,6]
 
-**Explanation:**
-
-![](images/screenshot-2025-08-23-at-23736-am.png)
+- **Explanation:** ![](images/screenshot-2025-08-23-at-23736-am.png)
 
 **​​​​​​​**
 
@@ -163,15 +156,13 @@ Thus, the answer is `[6, 3]`.
 
 Thus, the answer is `[8, 4, 6]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, prices = [10,11,1], roads = [[0,2,1,3],[1,2,3,4],[0,1,5,2]]
+- **Input:** n = 3, prices = [10,11,1], roads = [[0,2,1,3],[1,2,3,4],[0,1,5,2]]
 
-**Output:** [5,11,1]
+- **Output:** [5,11,1]
 
-**Explanation:**
+- **Explanation:** 
 
 **​​​​​​​​​​​​​​**
 
@@ -233,8 +224,6 @@ Thus, the answer is `[8, 4, 6]`.
 </table>
 
 Thus, the answer is `[5, 11, 1]`.
-
-</div>
 
 ### 4. Constraints
 

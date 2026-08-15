@@ -37,20 +37,20 @@ The input satisfies $1 \le n,k \le 100$, $0 \le \texttt{budget} \le 10^8$, and `
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, k = 2, budget = 15, composition = [[1, 1, 1], [1, 1, 10]], stock = [0, 0, 0], cost = [1, 2, 3]`
-- Output: `2`
-- Explanation: With the first machine, two alloys require two units of every metal. Buying them costs `2 * 1 + 2 * 2 + 2 * 3 = 12`, which fits the budget; no machine can produce three alloys.
+- **Input:** `n = 3, k = 2, budget = 15, composition = [[1, 1, 1], [1, 1, 10]], stock = [0, 0, 0], cost = [1, 2, 3]`
+- **Output:** `2`
+- **Explanation:** With the first machine, two alloys require two units of every metal. Buying them costs `2 * 1 + 2 * 2 + 2 * 3 = 12`, which fits the budget; no machine can produce three alloys.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, k = 2, budget = 15, composition = [[1, 1, 1], [1, 1, 10]], stock = [0, 0, 100], cost = [1, 2, 3]`
-- Output: `5`
-- Explanation: The second machine can use the stocked third metal. Buying five units of each of the first two metals costs `5 * 1 + 5 * 2 = 15`.
+- **Input:** `n = 3, k = 2, budget = 15, composition = [[1, 1, 1], [1, 1, 10]], stock = [0, 0, 100], cost = [1, 2, 3]`
+- **Output:** `5`
+- **Explanation:** The second machine can use the stocked third metal. Buying five units of each of the first two metals costs `5 * 1 + 5 * 2 = 15`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, k = 3, budget = 10, composition = [[2, 1], [1, 2], [1, 1]], stock = [1, 1], cost = [5, 5]`
-- Output: `2`
-- Explanation: The third machine needs one unit of each metal per alloy. The initial stock supplies the first alloy, and the missing units for a second alloy cost exactly `10` coins.
+- **Input:** `n = 2, k = 3, budget = 10, composition = [[2, 1], [1, 2], [1, 1]], stock = [1, 1], cost = [5, 5]`
+- **Output:** `2`
+- **Explanation:** The third machine needs one unit of each metal per alloy. The initial stock supplies the first alloy, and the missing units for a second alloy cost exactly `10` coins.

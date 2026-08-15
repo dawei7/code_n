@@ -30,14 +30,14 @@ Return the zero-based index at which `perm` appears in that ordering. Because th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `perm = [1, 2]`
-- Output: `0`
-- Explanation: The two permutations are `[1, 2]` and `[2, 1]`, so the input is first.
+- **Input:** `perm = [1, 2]`
+- **Output:** `0`
+- **Explanation:** The two permutations are `[1, 2]` and `[2, 1]`, so the input is first.
 
-**Example 2**
+#### Example 2
 
-- Input: `perm = [3, 1, 2]`
-- Output: `4`
-- Explanation: In order, the six permutations are `[1,2,3]`, `[1,3,2]`, `[2,1,3]`, `[2,3,1]`, `[3,1,2]`, and `[3,2,1]`.
+- **Input:** `perm = [3, 1, 2]`
+- **Output:** `4`
+- **Explanation:** In order, the six permutations are `[1,2,3]`, `[1,3,2]`, `[2,1,3]`, `[2,3,1]`, `[3,1,2]`, and `[3,2,1]`.

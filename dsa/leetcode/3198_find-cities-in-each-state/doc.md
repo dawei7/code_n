@@ -34,9 +34,9 @@ Let $r$ be the number of rows in `cities`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-Input:
+- **Input:** 
 
 | state | city |
 |---|---|
@@ -50,7 +50,7 @@ Input:
 | New York | Buffalo |
 | New York | Rochester |
 
-Output:
+- **Output:** 
 
 | state | cities |
 |---|---|

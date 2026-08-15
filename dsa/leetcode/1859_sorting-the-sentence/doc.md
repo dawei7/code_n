@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sorting-the-sentence/) |
 
 ## Problem Description
+
 ### Goal
+
 A sentence consists of words separated by single spaces, with no space before
 the first word or after the last. Each word contains only lowercase and
 uppercase English letters. To shuffle such a sentence, append the word's
@@ -22,6 +24,7 @@ original order. Remove the appended position digit from every word and return
 the reconstructed words joined by single spaces.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a shuffled sentence of length from $2$ through $200$. It contains one
@@ -36,17 +39,18 @@ The original sentence as a string, with position digits removed and words
 separated by one space.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "is2 sentence4 This1 a3"`
-- Output: `"This is a sentence"`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "is2 sentence4 This1 a3"`
+- **Output:** `"This is a sentence"`
 
-- Input: `s = "Myself2 Me1 I4 and3"`
-- Output: `"Me Myself and I"`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "Myself2 Me1 I4 and3"`
+- **Output:** `"Me Myself and I"`
 
-- Input: `s = "Hello1"`
-- Output: `"Hello"`
+#### Example 3
+
+- **Input:** `s = "Hello1"`
+- **Output:** `"Hello"`

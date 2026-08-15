@@ -32,19 +32,19 @@ A submatrix is determined by inclusive row boundaries `x1` and `x2` and inclusiv
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[0, 1, 0], [1, 1, 1], [0, 1, 0]], target = 0`
-- Output: `4`
-- Explanation: The four zero-valued cells are four distinct `1 x 1` submatrices.
+- **Input:** `matrix = [[0, 1, 0], [1, 1, 1], [0, 1, 0]], target = 0`
+- **Output:** `4`
+- **Explanation:** The four zero-valued cells are four distinct `1 x 1` submatrices.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[1, -1], [-1, 1]], target = 0`
-- Output: `5`
-- Explanation: Two full rows, two full columns, and the whole matrix have sum zero.
+- **Input:** `matrix = [[1, -1], [-1, 1]], target = 0`
+- **Output:** `5`
+- **Explanation:** Two full rows, two full columns, and the whole matrix have sum zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[904]], target = 0`
-- Output: `0`
+- **Input:** `matrix = [[904]], target = 0`
+- **Output:** `0`

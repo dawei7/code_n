@@ -12,21 +12,25 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `cost1`: Input parameter (`int`).
+- `cost2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,1], cost1 = 5, cost2 = 2
+- **Input:** nums = [4,1], cost1 = 5, cost2 = 2
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation: **
-
-The following operations can be performed to make the values equal:
+- **Explanation:** The following operations can be performed to make the values equal:
 
 - Increase $\text{nums}[1]$ by 1 for a cost of 5. `nums` becomes `[4,2]`.
 
@@ -36,17 +40,13 @@ The following operations can be performed to make the values equal:
 
 The total cost is 15.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,3,3,5], cost1 = 2, cost2 = 1
+- **Input:** nums = [2,3,3,3,5], cost1 = 2, cost2 = 1
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation: **
-
-The following operations can be performed to make the values equal:
+- **Explanation:** The following operations can be performed to make the values equal:
 
 - Increase $\text{nums}[0]$ and $\text{nums}[1]$ by 1 for a cost of 1. `nums` becomes `[3,4,3,3,5]`.
 
@@ -60,17 +60,13 @@ The following operations can be performed to make the values equal:
 
 The total cost is 6.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,5,3], cost1 = 1, cost2 = 3
+- **Input:** nums = [3,5,3], cost1 = 1, cost2 = 3
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The following operations can be performed to make the values equal:
+- **Explanation:** The following operations can be performed to make the values equal:
 
 - Increase $\text{nums}[0]$ by 1 for a cost of 1. `nums` becomes `[4,5,3]`.
 
@@ -81,8 +77,6 @@ The following operations can be performed to make the values equal:
 - Increase $\text{nums}[2]$ by 1 for a cost of 1. `nums` becomes `[5,5,5]`.
 
 The total cost is 4.
-
-</div>
 
 ### 4. Constraints
 

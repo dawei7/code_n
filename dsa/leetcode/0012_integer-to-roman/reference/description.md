@@ -65,14 +65,11 @@ Return the canonical Roman-numeral representation of `num`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num = 3749
+- **Input:** num = 3749
 
-**Output:** "MMMDCCXLIX"
+- **Output:** "MMMDCCXLIX"
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)
  700 = DCC as 500 (D) + 100 (C) + 100 (C)
   40 = XL as 10 (X) less of 50 (L)
@@ -80,39 +77,29 @@ Return the canonical Roman-numeral representation of `num`.
 Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places
 ```
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num = 58
+- **Input:** num = 58
 
-**Output:** "LVIII"
+- **Output:** "LVIII"
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 50 = L
  8 = VIII
 ```
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** num = 1994
+- **Input:** num = 1994
 
-**Output:** "MCMXCIV"
+- **Output:** "MCMXCIV"
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 1000 = M
  900 = CM
   90 = XC
    4 = IV
 ```
-
-</div>
 
 ### 4. Constraints
 

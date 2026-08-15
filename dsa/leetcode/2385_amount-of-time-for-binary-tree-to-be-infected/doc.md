@@ -39,14 +39,14 @@ Every node value is unique and lies between 1 and $10^5$, and `start` is guarant
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,5,3,null,4,10,6,9,2], start = 3`
-- Output: `4`
-- Explanation: The farthest nodes from value `3` are reached after four tree edges.
+- **Input:** `root = [1,5,3,null,4,10,6,9,2], start = 3`
+- **Output:** `4`
+- **Explanation:** The farthest nodes from value `3` are reached after four tree edges.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1], start = 1`
-- Output: `0`
-- Explanation: The only node is infected at minute zero.
+- **Input:** `root = [1], start = 1`
+- **Output:** `0`
+- **Explanation:** The only node is infected at minute zero.

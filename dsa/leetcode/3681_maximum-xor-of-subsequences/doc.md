@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-xor-of-subsequences/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an array `nums` of non-negative integers, select two subsequences independently. Either subsequence may be empty, they may share indices, and each retains the original relative order of its chosen elements.
@@ -31,23 +32,23 @@ Return the maximum possible XOR of the two subsequence XOR values.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3]`
-- Output: `3`
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `3`
 
 For example, subsequences `[2]` and `[2, 3]` have XORs 2 and 1, whose XOR is 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 2]`
-- Output: `7`
+- **Input:** `nums = [5, 2]`
+- **Output:** `7`
 
 Choosing the single values in separate subsequences gives `5 XOR 2 = 7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [8, 4, 2]`
-- Output: `14`
+- **Input:** `nums = [8, 4, 2]`
+- **Output:** `14`
 
 The XOR of all three values is larger than any individual value and can be realized by choosing that subset in one subsequence and leaving the other empty.

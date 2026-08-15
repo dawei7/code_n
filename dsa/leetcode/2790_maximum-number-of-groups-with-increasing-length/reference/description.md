@@ -12,8 +12,13 @@ Return *an integer denoting the **maximum** number of groups you can create whil
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `usageLimits`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Group 2 contains the numbers [1,2].
 Group 3 contains the numbers [0,1,2].
 It can be shown that the maximum number of groups is 3.
 So, the output is 3.
+
 #### Example 2
 
 - **Input:** $usageLimits = [2,1,2]$
@@ -38,6 +44,7 @@ Group 1 contains the number [0].
 Group 2 contains the numbers [1,2].
 It can be shown that the maximum number of groups is 2.
 So, the output is 2.
+
 #### Example 3
 
 - **Input:** $usageLimits = [1,1]$

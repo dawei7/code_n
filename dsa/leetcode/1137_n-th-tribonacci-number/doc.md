@@ -30,13 +30,13 @@ The exact Tribonacci number $T_n$, guaranteed to be at most $2^{31}-1$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `4`
-- Explanation: $T_3=0+1+1=2$, then $T_4=1+1+2=4$.
+- **Input:** `n = 4`
+- **Output:** `4`
+- **Explanation:** $T_3=0+1+1=2$, then $T_4=1+1+2=4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 25`
-- Output: `1389537`
+- **Input:** `n = 25`
+- **Output:** `1389537`

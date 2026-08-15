@@ -63,7 +63,7 @@ Return a table with columns $\text{task}_{id}$ and $\text{subtask}_{id}$. Includ
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Tasks table:
 +---------+----------------+
 | task_id | subtasks_count |
@@ -82,7 +82,7 @@ Executed table:
 | 3       | 3          |
 | 3       | 4          |
 +---------+------------+
-**Output:**
+- **Output:** 
 +---------+------------+
 | task_id | subtask_id |
 +---------+------------+
@@ -91,8 +91,7 @@ Executed table:
 | 2       | 1          |
 | 2       | 2          |
 +---------+------------+
-**Explanation:**
-Task 1 was divided into 3 subtasks (1, 2, 3). Only subtask 2 was executed successfully, so we include (1, 1) and (1, 3) in the answer.
+- **Explanation:** Task 1 was divided into 3 subtasks (1, 2, 3). Only subtask 2 was executed successfully, so we include (1, 1) and (1, 3) in the answer.
 Task 2 was divided into 2 subtasks (1, 2). No subtask was executed successfully, so we include (2, 1) and (2, 2) in the answer.
 Task 3 was divided into 4 subtasks (1, 2, 3, 4). All of the subtasks were executed successfully.
 ```

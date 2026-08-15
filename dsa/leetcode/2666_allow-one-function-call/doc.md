@@ -34,14 +34,14 @@ The app-local harness records only the defined first result together with the un
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = sum, calls = [[1,2,3],[2,3,6]]`
-- Output: `[{"calls":1,"value":6}]`
-- Explanation: The first call evaluates the sum. The second returns `undefined`, and the original function's call count remains one.
+- **Input:** `fn = sum, calls = [[1,2,3],[2,3,6]]`
+- **Output:** `[{"calls":1,"value":6}]`
+- **Explanation:** The first call evaluates the sum. The second returns `undefined`, and the original function's call count remains one.
 
-**Example 2**
+#### Example 2
 
-- Input: `fn = product, calls = [[5,7,4],[2,3,6],[4,6,8]]`
-- Output: `[{"calls":1,"value":140}]`
-- Explanation: Only the first argument list reaches the multiplication function.
+- **Input:** `fn = product, calls = [[5,7,4],[2,3,6],[4,6,8]]`
+- **Output:** `[{"calls":1,"value":140}]`
+- **Explanation:** Only the first argument list reaches the multiplication function.

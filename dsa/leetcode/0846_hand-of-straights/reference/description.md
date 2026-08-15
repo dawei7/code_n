@@ -6,8 +6,14 @@ Given an integer array `hand` where $\text{hand}[i]$ is the value written on the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `hand`: Input parameter (`List[int]`).
+- `groupSize`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Given an integer array `hand` where $\text{hand}[i]$ is the value written on the
 - **Input:** $hand = [1,2,3,6,2,3,4,7,8], groupSize = 3$
 - **Output:** `true`
 - **Explanation:** Alice's hand can be rearranged as [1,2,3],[2,3,4],[6,7,8]
+
 #### Example 2
 
 - **Input:** $hand = [1,2,3,4,5], groupSize = 4$

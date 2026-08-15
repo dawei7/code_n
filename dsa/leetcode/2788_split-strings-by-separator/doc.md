@@ -39,20 +39,20 @@ Return all non-empty pieces in encounter order after splitting each word by `sep
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["one.two.three", "four.five", "six"], separator = "."`
-- Output: `["one", "two", "three", "four", "five", "six"]`
-- Explanation: Periods divide the first two words, while the final word remains whole.
+- **Input:** `words = ["one.two.three", "four.five", "six"], separator = "."`
+- **Output:** `["one", "two", "three", "four", "five", "six"]`
+- **Explanation:** Periods divide the first two words, while the final word remains whole.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["$easy$", "$problem$"], separator = "$"`
-- Output: `["easy", "problem"]`
-- Explanation: The pieces outside the letters are empty and therefore excluded.
+- **Input:** `words = ["$easy$", "$problem$"], separator = "$"`
+- **Output:** `["easy", "problem"]`
+- **Explanation:** The pieces outside the letters are empty and therefore excluded.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["|||"], separator = "|"`
-- Output: `[]`
-- Explanation: Splitting produces only empty pieces, so the result contains nothing.
+- **Input:** `words = ["|||"], separator = "|"`
+- **Output:** `[]`
+- **Explanation:** Splitting produces only empty pieces, so the result contains nothing.

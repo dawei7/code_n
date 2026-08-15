@@ -8,8 +8,13 @@ Return *the pivot integer *`x`. If no such integer exists, return `-1`. It is gu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return *the pivot integer *`x`. If no such integer exists, return `-1`. It is gu
 - **Input:** $n = 8$
 - **Output:** `6`
 - **Explanation:** 6 is the pivot integer since: 1 + 2 + 3 + 4 + 5 + 6 = 6 + 7 + 8 = 21.
+
 #### Example 2
 
 - **Input:** $n = 1$
 - **Output:** `1`
 - **Explanation:** 1 is the pivot integer since: 1 = 1.
+
 #### Example 3
 
 - **Input:** $n = 4$

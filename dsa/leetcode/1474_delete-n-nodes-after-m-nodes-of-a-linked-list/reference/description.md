@@ -44,6 +44,7 @@ their original relative order and identity.
 Delete the next (n = 3) nodes (3 -> 4 -> 5) show in read nodes.
 Continue with the same procedure until reaching the tail of the Linked List.
 Head of the linked list after removing nodes is returned.
+
 #### Example 2
 
 ![](images/sample_2_1848.png)

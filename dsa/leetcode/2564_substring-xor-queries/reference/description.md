@@ -12,8 +12,14 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -22,11 +28,13 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - **Input:** `s = "101101", queries = [[0,5],[1,2]]`
 - **Output:** `[[0,2],[2,3]]`
 - **Explanation:** For the first query the substring in range [0,2] is **"101"** which has a decimal value of **5**, and **5 ^ 0 = 5**, hence the answer to the first query is [0,2]. In the second query, the substring in range [2,3] is **"11",** and has a decimal value of **3**, and **3 ^ 1 = 2**. So, [2,3] is returned for the second query.
+
 #### Example 2
 
 - **Input:** `s = "0101", queries = [[12,8]]`
 - **Output:** `[[-1,-1]]`
 - **Explanation:** In this example there is no substring that answers the query, hence [-1,-1] is returned.
+
 #### Example 3
 
 - **Input:** `s = "1", queries = [[4,5]]`

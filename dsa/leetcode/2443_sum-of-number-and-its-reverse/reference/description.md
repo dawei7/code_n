@@ -4,8 +4,13 @@ Given a **non-negative** integer `num`, return `true`* if *`num`* can be express
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -14,11 +19,13 @@ Given a **non-negative** integer `num`, return `true`* if *`num`* can be express
 - **Input:** $num = 443$
 - **Output:** `true`
 - **Explanation:** 172 + 271 = 443 so we return true.
+
 #### Example 2
 
 - **Input:** $num = 63$
 - **Output:** `false`
 - **Explanation:** 63 cannot be expressed as the sum of a non-negative integer and its reverse so we return false.
+
 #### Example 3
 
 - **Input:** $num = 181$

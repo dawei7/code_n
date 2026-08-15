@@ -12,8 +12,15 @@ Return *the **maximum** possible **cost*** *amongst all possible root choices*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `price`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +34,7 @@ Return *the **maximum** possible **cost*** *amongst all possible root choices*.
 - The first path contains nodes [2,1,3,4]: the prices are [7,8,6,10], and the sum of the prices is 31.
 - The second path contains the node [2] with the price [7].
 The difference between the maximum and minimum price sum is 24. It can be proved that 24 is the maximum cost.
+
 #### Example 2
 
 ![](images/p1_example2.png)

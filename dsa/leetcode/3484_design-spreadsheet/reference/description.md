@@ -14,8 +14,12 @@ Implement the `Spreadsheet` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Spreadsheet(rows: int)`: Initializes the data structure.
+- `setCell(cell: str, value: int)`: Executes operation.
+- `resetCell(cell: str)`: Executes operation.
+- `getValue(formula: str) -> `int``: Executes operation.
 
 ### 3. Note
 
@@ -25,14 +29,13 @@ If `getValue` references a cell that has not been explicitly set using `setCell`
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["Spreadsheet", "getValue", "setCell", "getValue", "setCell", "getValue", "resetCell", "getValue"]
 
 [[3], ["=5+7"], ["A1", 10], ["=A1+6"], ["B2", 15], ["=A1+B2"], ["A1"], ["=A1+B2"]]
 
-**Output:**
+- **Output:** 
 
 [null, 12, null, 16, null, 25, null, 15]
 
@@ -45,7 +48,7 @@ spreadsheet.getValue("=A1+6"); // returns 16 (10+6)<br data-end="477" data-start
 spreadsheet.setCell("B2", 15); // sets B2 to 15<br data-end="527" data-start="524" />
 spreadsheet.getValue("=A1+B2"); // returns 25 (10+15)<br data-end="583" data-start="580" />
 spreadsheet.resetCell("A1"); // resets A1 to 0<br data-end="634" data-start="631" />
-spreadsheet.getValue("=A1+B2"); // returns 15 (0+15)</div>
+spreadsheet.getValue("=A1+B2"); // returns 15 (0+15)
 
 ### 5. Constraints
 

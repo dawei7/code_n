@@ -21,6 +21,7 @@ Return integer count of strobogrammatic numbers in `[low, high]`.
 
 - **Input:** $low = "50", high = "100"$
 - **Output:** `3`
+
 #### Example 2
 
 - **Input:** $low = "0", high = "0"$

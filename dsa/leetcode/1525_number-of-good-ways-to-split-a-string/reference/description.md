@@ -8,8 +8,13 @@ Return *the number of **good splits** you can make in `s`*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return *the number of **good splits** you can make in `s`*.
 ("aac", "aba") Left string and right string contains 2 and 2 different letters respectively (good split).
 ("aaca", "ba") Left string and right string contains 2 and 2 different letters respectively (good split).
 ("aacab", "a") Left string and right string contains 3 and 1 different letters respectively.
+
 #### Example 2
 
 - **Input:** `s = "abcd"`

@@ -10,8 +10,13 @@ Two sequences $a_{1}, a_{2}, ...$ and $b_{1}, b_{2}, ...$ are different if there
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Two sequences $a_{1}, a_{2}, ...$ and $b_{1}, b_{2}, ...$ are different if there
 - **Output:** `6`
 - **Explanation:** The 6 different non-empty palindromic subsequences are 'b', 'c', 'bb', 'cc', 'bcb', 'bccb'.
 Note that 'bcb' is counted only once, even though it occurs twice.
+
 #### Example 2
 
 - **Input:** `s = "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"`

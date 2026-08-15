@@ -35,20 +35,20 @@ Return a new object containing one own enumerable property for each distinct val
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `keysArr = ["a", "b", "c"], valuesArr = [1, 2, 3]`
-- Output: `{"a": 1, "b": 2, "c": 3}`
-- Explanation: Every converted key is distinct, so all three pairs are retained.
+- **Input:** `keysArr = ["a", "b", "c"], valuesArr = [1, 2, 3]`
+- **Output:** `{"a": 1, "b": 2, "c": 3}`
+- **Explanation:** Every converted key is distinct, so all three pairs are retained.
 
-**Example 2**
+#### Example 2
 
-- Input: `keysArr = ["1", 1, false], valuesArr = [4, 5, 6]`
-- Output: `{"1": 4, "false": 6}`
-- Explanation: Both of the first two keys convert to `"1"`; the earlier value `4` wins.
+- **Input:** `keysArr = ["1", 1, false], valuesArr = [4, 5, 6]`
+- **Output:** `{"1": 4, "false": 6}`
+- **Explanation:** Both of the first two keys convert to `"1"`; the earlier value `4` wins.
 
-**Example 3**
+#### Example 3
 
-- Input: `keysArr = [], valuesArr = []`
-- Output: `{}`
-- Explanation: There are no pairs from which to create a property.
+- **Input:** `keysArr = [], valuesArr = []`
+- **Output:** `{}`
+- **Explanation:** There are no pairs from which to create a property.

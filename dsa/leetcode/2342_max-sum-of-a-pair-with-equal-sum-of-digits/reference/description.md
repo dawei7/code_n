@@ -6,8 +6,13 @@ Return the **maximum** value of* *$\text{nums}[i] + \text{nums}[j]$* *that you c
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return the **maximum** value of* *$\text{nums}[i] + \text{nums}[j]$* *that you c
 - (0, 2), both numbers have a sum of digits equal to 9, and their sum is 18 + 36 = 54.
 - (1, 4), both numbers have a sum of digits equal to 7, and their sum is 43 + 7 = 50.
 So the maximum sum that we can obtain is 54.
+
 #### Example 2
 
 - **Input:** `nums = [10,12,19,14]`

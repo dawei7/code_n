@@ -10,8 +10,13 @@ Return *the array *`answer`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the array *`answer`.
 - For the string "ad", there is no substring that does not occur in any other string.
 - For the string "bad", the shortest substring that does not occur in any other string is "ba".
 - For the string "c", there is no substring that does not occur in any other string.
+
 #### Example 2
 
 - **Input:** `arr = ["abc","bcd","abcd"]`

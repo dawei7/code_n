@@ -16,8 +16,13 @@ Return the ***number** of indices that you could choose such that after the remo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,17 +30,18 @@ Return the ***number** of indices that you could choose such that after the remo
 
 - **Input:** `nums = [2,1,6,4]`
 - **Output:** `1`
-- **Explanation:**
-Remove index 0: [1,6,4] -> Even sum: 1 + 4 = 5. Odd sum: 6. Not fair.
+- **Explanation:** Remove index 0: [1,6,4] -> Even sum: 1 + 4 = 5. Odd sum: 6. Not fair.
 Remove index 1: [2,6,4] -> Even sum: 2 + 4 = 6. Odd sum: 6. Fair.
 Remove index 2: [2,1,4] -> Even sum: 2 + 4 = 6. Odd sum: 1. Not fair.
 Remove index 3: [2,1,6] -> Even sum: 2 + 6 = 8. Odd sum: 1. Not fair.
 There is 1 index that you can remove to make nums fair.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1]`
 - **Output:** `3`
 - **Explanation:** You can remove any index and the remaining array is fair.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3]`

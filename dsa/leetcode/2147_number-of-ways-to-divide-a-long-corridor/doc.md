@@ -41,22 +41,22 @@ sections with exactly two seats, reduced modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `corridor = "SSPPSPS"`
-- Output: `3`
-- Explanation: The plants between the second and third seats create three
+- **Input:** `corridor = "SSPPSPS"`
+- **Output:** `3`
+- **Explanation:** The plants between the second and third seats create three
   possible gaps for the sole internal divider.
 
-**Example 2**
+#### Example 2
 
-- Input: `corridor = "PPSPSP"`
-- Output: `1`
-- Explanation: The corridor already contains exactly two seats, so no
+- **Input:** `corridor = "PPSPSP"`
+- **Output:** `1`
+- **Explanation:** The corridor already contains exactly two seats, so no
   additional divider is installed.
 
-**Example 3**
+#### Example 3
 
-- Input: `corridor = "S"`
-- Output: `0`
-- Explanation: One seat cannot form a valid section.
+- **Input:** `corridor = "S"`
+- **Output:** `0`
+- **Explanation:** One seat cannot form a valid section.

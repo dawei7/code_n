@@ -34,7 +34,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +-------------+---------------+--------------+
 | employee_id | department_id | primary_flag |
@@ -47,7 +47,7 @@ Employee table:
 | 4           | 3             | Y            |
 | 4           | 4             | N            |
 +-------------+---------------+--------------+
-**Output:**
+- **Output:** 
 +-------------+---------------+
 | employee_id | department_id |
 +-------------+---------------+
@@ -56,7 +56,7 @@ Employee table:
 | 3           | 3             |
 | 4           | 3             |
 +-------------+---------------+
-**Explanation:**
+- **Explanation:** 
 - The Primary department for employee 1 is 1.
 - The Primary department for employee 2 is 1.
 - The Primary department for employee 3 is 3.

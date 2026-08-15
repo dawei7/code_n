@@ -39,6 +39,7 @@ Return `true` if `nums` is the only shortest sequence that contains every row of
 The sequence [1,2] is a subsequence of both: [**<u>1</u>**,**<u>2</u>**,3] and [**<u>1</u>**,3,**<u>2</u>**].
 The sequence [1,3] is a subsequence of both: [**<u>1</u>**,2,**<u>3</u>**] and [**<u>1</u>**,**<u>3</u>**,2].
 Since nums is not the only shortest supersequence, we return false.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3], sequences = [[1,2]]`
@@ -46,6 +47,7 @@ Since nums is not the only shortest supersequence, we return false.
 - **Explanation:** The shortest possible supersequence is [1,2].
 The sequence [1,2] is a subsequence of it: [**<u>1</u>**,**<u>2</u>**].
 Since nums is not the shortest supersequence, we return false.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3], sequences = [[1,2],[1,3],[2,3]]`

@@ -28,12 +28,11 @@ Return all values whose positions satisfy at least one strict side-maximum condi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,4,2,3,2]
+- **Input:** nums = [1,2,4,2,3,2]
 
-**Output:** [1,2,4,3,2]
+- **Output:** [1,2,4,3,2]
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{nums}[0]$ and $\text{nums}[5]$ are always valid.
 
@@ -43,15 +42,13 @@ Return all values whose positions satisfy at least one strict side-maximum condi
 
 - Thus, the answer is `[1, 2, 4, 3, 2]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,5,5,5]
+- **Input:** nums = [5,5,5,5]
 
-**Output:** [5,5]
+- **Output:** [5,5]
 
-**Explanation:**
+- **Explanation:** 
 
 - The first and last elements are always valid.
 
@@ -59,19 +56,13 @@ Return all values whose positions satisfy at least one strict side-maximum condi
 
 - Thus, the answer is `[5, 5]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** [1]
+- **Output:** [1]
 
-**Explanation:**
-
-Since there is only one element, it is always valid. Thus, the answer is `[1]`.
-
-</div>
+- **Explanation:** Since there is only one element, it is always valid. Thus, the answer is `[1]`.
 
 ### 4. Constraints
 

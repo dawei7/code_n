@@ -27,6 +27,7 @@ level.
 
 - **Input:** `root = [1,null,3,2,4,null,5,6]`
 - **Output:** `[[1],[3,2,4],[5,6]]`
+
 #### Example 2
 
 ![](images/sample_4_964.png)

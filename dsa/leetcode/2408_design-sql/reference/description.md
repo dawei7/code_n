@@ -16,37 +16,31 @@ Implement the `SQL` class:
 
 - `SQL(String[] names, int[] columns)`
 
-		<li>Creates the `n` tables.
+		- Creates the `n` tables.
 
-	</li>
 - `bool ins(String name, String[] row)`
 
-		<li>Inserts `row` into the table `name` and returns `true`.
+		- Inserts `row` into the table `name` and returns `true`.
 
 - If `row.length` **does not** match the expected number of columns, or `name` is **not** a valid table, returns `false` without any insertion.
 
-	</li>
 - `void rmv(String name, int rowId)`
 
-		<li>Removes the row `rowId` from the table `name`.
+		- Removes the row `rowId` from the table `name`.
 
 - If `name` is **not** a valid table or there is no row with id `rowId`, no removal is performed.
 
-	</li>
 - `String sel(String name, int rowId, int columnId)`
 
-		<li>Returns the value of the cell at the specified `rowId` and `columnId` in the table `name`.
+		- Returns the value of the cell at the specified `rowId` and `columnId` in the table `name`.
 
 - If `name` is **not** a valid table, or the cell `(rowId, columnId)` is **invalid**, returns `"<null>"`.
 
-	</li>
 - `String[] exp(String name)`
 
-		<li>Returns the rows present in the table `name`.
+		- Returns the rows present in the table `name`.
 
 - If name is **not** a valid table, returns an empty array. Each row is represented as a string, with each cell value (**including** the row's id) separated by a `","`.
-
-	</li>
 
 ### 2. Function Contract
 
@@ -66,23 +60,20 @@ Each operation returns its specified type (`None`, `bool`, `str`, or $\text{List
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ```
 ["SQL","ins","sel","ins","exp","rmv","sel","exp"]
 [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",["fourth","fifth","sixth"]],["two"],["two",1],["two",2,2],["two"]]
 ```
 
-**Output:**
+- **Output:** 
 
 ```
 [null,true,"third",true,["1,first,second,third","2,fourth,fifth,sixth"],null,"fifth",["2,fourth,fifth,sixth"]]
 ```
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 // Creates three tables.
 SQL sql = new SQL(["one", "two", "three"], [2, 3, 1]);
 
@@ -113,26 +104,22 @@ sql.sel("two", 2, 2);
 sql.exp("two");
 ```
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ```
 ["SQL","ins","sel","rmv","sel","ins","ins"]
 [[["one","two","three"],[2,3,1]],["two",["first","second","third"]],["two",1,3],["two",1],["two",1,2],["two",["fourth","fifth"]],["two",["fourth","fifth","sixth"]]]
 ```
 
-**Output:**
+- **Output:** 
 
 ```
 [null,true,"third",null,"<null>",false,true]
 ```
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 // Creates three tables.
 SQL sQL = new SQL(["one", "two", "three"], [2, 3, 1]);
 
@@ -156,8 +143,6 @@ sQL.ins("two", ["fourth", "fifth"]);
 // Adds a row to the table "two" with id 2. Returns True.
 sQL.ins("two", ["fourth", "fifth", "sixth"]);
 ```
-
-</div>
 
 ### 4. Constraints
 

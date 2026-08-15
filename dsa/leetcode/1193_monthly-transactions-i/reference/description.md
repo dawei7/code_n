@@ -33,7 +33,7 @@ The query result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Transactions table:
 +------+---------+----------+--------+------------+
 | id   | country | state    | amount | trans_date |
@@ -43,7 +43,7 @@ Transactions table:
 | 123  | US      | approved | 2000   | 2019-01-01 |
 | 124  | DE      | approved | 2000   | 2019-01-07 |
 +------+---------+----------+--------+------------+
-**Output:**
+- **Output:** 
 +----------+---------+-------------+----------------+--------------------+-----------------------+
 | month    | country | trans_count | approved_count | trans_total_amount | approved_total_amount |
 +----------+---------+-------------+----------------+--------------------+-----------------------+

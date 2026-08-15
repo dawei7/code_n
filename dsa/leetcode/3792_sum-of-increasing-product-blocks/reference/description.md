@@ -30,12 +30,11 @@ Return the sum of the first `n` block products, reduced modulo $1{,}000{,}000{,}
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3
+- **Input:** n = 3
 
-**Output:** 127
+- **Output:** 127
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Block 1: `1`
 
@@ -45,15 +44,13 @@ Return the sum of the first `n` block products, reduced modulo $1{,}000{,}000{,}
 
 $F(3) = 1 + 6 + 120 = 127$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 7
+- **Input:** n = 7
 
-**Output:** 6997165
+- **Output:** 6997165
 
-**Explanation:**
+- **Explanation:** 
 
 - Block 1: `1`
 
@@ -70,8 +67,6 @@ $F(3) = 1 + 6 + 120 = 127$
 - Block 7: $22 * 23 * 24 * 25 * 26 * 27 * 28 = 5967561600$
 
 $F(7) = 6006997207 \% (10^{9} + 7) = 6997165$
-
-</div>
 
 ### 4. Constraints
 

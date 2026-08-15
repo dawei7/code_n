@@ -36,23 +36,23 @@ Let $m$ be the number of shift rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Employee 1 works `08:00-12:00`, `11:00-15:00`, and `14:00-18:00`; employee 2 works `09:00-17:00` and `16:00-20:00`; employee 3 has three separated shifts; employee 4 works `08:00-10:00` and `09:00-11:00`.
-- Output: `[[1,2],[2,1],[4,1]]`
+- **Input:** Employee 1 works `08:00-12:00`, `11:00-15:00`, and `14:00-18:00`; employee 2 works `09:00-17:00` and `16:00-20:00`; employee 3 has three separated shifts; employee 4 works `08:00-10:00` and `09:00-11:00`.
+- **Output:** `[[1,2],[2,1],[4,1]]`
 
 Employee 1 has two overlapping pairs, employees 2 and 4 have one each, and employee 3 is omitted.
 
-**Example 2**
+#### Example 2
 
-- Input: One employee has shifts `08:00-10:00`, `10:00-12:00`, and `12:00-14:00`.
-- Output: `[]`
+- **Input:** One employee has shifts `08:00-10:00`, `10:00-12:00`, and `12:00-14:00`.
+- **Output:** `[]`
 
 Every pair only touches at an endpoint or is separated, so none overlaps.
 
-**Example 3**
+#### Example 3
 
-- Input: One employee has nested shifts `08:00-18:00`, `09:00-17:00`, and `10:00-16:00`.
-- Output: `[[1,3]]`
+- **Input:** One employee has nested shifts `08:00-18:00`, `09:00-17:00`, and `10:00-16:00`.
+- **Output:** `[[1,3]]`
 
 All three possible pairs overlap.

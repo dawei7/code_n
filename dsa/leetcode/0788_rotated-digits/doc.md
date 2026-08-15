@@ -30,20 +30,20 @@ Given `n`, return how many good integers lie in the inclusive range from `1` thr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10`
-- Output: `4`
-- Explanation: `2`, `5`, `6`, and `9` are valid and change after rotation.
+- **Input:** `n = 10`
+- **Output:** `4`
+- **Explanation:** `2`, `5`, `6`, and `9` are valid and change after rotation.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`
-- Output: `0`
-- Explanation: Rotating `1` leaves it unchanged.
+- **Input:** `n = 1`
+- **Output:** `0`
+- **Explanation:** Rotating `1` leaves it unchanged.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2`
-- Output: `1`
-- Explanation: `2` rotates to `5`, so it is good.
+- **Input:** `n = 2`
+- **Output:** `1`
+- **Explanation:** `2` rotates to `5`, so it is good.

@@ -27,6 +27,7 @@ For nums[1] the longest subarray in which 5 is the maximum is nums[0..3] so ans[
 For nums[2] the longest subarray in which 4 is the maximum is nums[2..3] so ans[2] = 2.
 For nums[3] the longest subarray in which 3 is the maximum is nums[3..3] so ans[3] = 1.
 For nums[4] the longest subarray in which 6 is the maximum is nums[0..4] so ans[4] = 5.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5]`

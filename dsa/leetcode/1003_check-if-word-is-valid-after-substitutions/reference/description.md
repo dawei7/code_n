@@ -10,8 +10,13 @@ Return `true` *if *`s`* is a **valid** string, otherwise, return* `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -19,16 +24,16 @@ Return `true` *if *`s`* is a **valid** string, otherwise, return* `false`.
 
 - **Input:** `s = "aabcbc"`
 - **Output:** `true`
-- **Explanation:**
-"" -> "<u>abc</u>" -> "a<u>abc</u>bc"
+- **Explanation:** "" -> "<u>abc</u>" -> "a<u>abc</u>bc"
 Thus, "aabcbc" is valid.
+
 #### Example 2
 
 - **Input:** `s = "abcabcababcc"`
 - **Output:** `true`
-- **Explanation:**
-"" -> "<u>abc</u>" -> "abc<u>abc</u>" -> "abcabc<u>abc</u>" -> "abcabcab<u>abc</u>c"
+- **Explanation:** "" -> "<u>abc</u>" -> "abc<u>abc</u>" -> "abcabc<u>abc</u>" -> "abcabcab<u>abc</u>c"
 Thus, "abcabcababcc" is valid.
+
 #### Example 3
 
 - **Input:** `s = "abccba"`

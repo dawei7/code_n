@@ -25,30 +25,23 @@ Return the fewest swaps that produce $\text{nums}[i] \neq \text{forbidden}[i]$ f
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], forbidden = [3,2,1]
+- **Input:** nums = [1,2,3], forbidden = [3,2,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-One optimal set of swaps:
+- **Explanation:** One optimal set of swaps:
 
 - Select indices $i = 0$ and $j = 1$ in `nums` and swap them, resulting in `nums = [2, 1, 3]`.
 
 - After this swap, for every index `i`, $\text{nums}[i]$ is not equal to $\text{forbidden}[i]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,6,6,5], forbidden = [4,6,5,5]
+- **Input:** nums = [4,6,6,5], forbidden = [4,6,5,5]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One optimal set of swaps:
+- **Explanation:** One optimal set of swaps:
 
 - Select indices $i = 0$ and $j = 2$ in `nums` and swap them, resulting in `nums = [6, 6, 4, 5]`.
 
@@ -56,29 +49,21 @@ One optimal set of swaps:
 
 - After these swaps, for every index `i`, $\text{nums}[i]$ is not equal to $\text{forbidden}[i]$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7,7], forbidden = [8,7]
+- **Input:** nums = [7,7], forbidden = [8,7]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** It is not possible to make $\text{nums}[i]$ different from $\text{forbidden}[i]$ for all indices.
 
-It is not possible to make $\text{nums}[i]$ different from $\text{forbidden}[i]$ for all indices.</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** nums = [1,2], forbidden = [2,1]
+- **Input:** nums = [1,2], forbidden = [2,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No swaps are required because $\text{nums}[i]$ is already different from $\text{forbidden}[i]$ for all indices, so the answer is 0.
-
-</div>
+- **Explanation:** No swaps are required because $\text{nums}[i]$ is already different from $\text{forbidden}[i]$ for all indices, so the answer is 0.
 
 ### 4. Constraints
 

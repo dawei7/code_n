@@ -32,20 +32,20 @@ Return the maximum number of disjoint index pairs whose strings are reversals of
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["cd","ac","dc","ca","zz"]`
-- Output: `2`
-- Explanation: Pair `"cd"` with `"dc"` and `"ac"` with `"ca"`; `"zz"` has no separate partner.
+- **Input:** `words = ["cd","ac","dc","ca","zz"]`
+- **Output:** `2`
+- **Explanation:** Pair `"cd"` with `"dc"` and `"ac"` with `"ca"`; `"zz"` has no separate partner.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["ab","ba","cc"]`
-- Output: `1`
-- Explanation: Only `"ab"` and `"ba"` form a pair.
+- **Input:** `words = ["ab","ba","cc"]`
+- **Output:** `1`
+- **Explanation:** Only `"ab"` and `"ba"` form a pair.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["aa","ab"]`
-- Output: `0`
-- Explanation: `"aa"` cannot pair with itself, and `"ba"` is absent.
+- **Input:** `words = ["aa","ab"]`
+- **Output:** `0`
+- **Explanation:** `"aa"` cannot pair with itself, and `"ba"` is absent.

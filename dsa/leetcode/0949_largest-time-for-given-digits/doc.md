@@ -28,16 +28,16 @@ Return the latest valid time as a zero-padded `"HH:MM"` string, or `""` when no 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1, 2, 3, 4]`
-- Output: `"23:41"`
+- **Input:** `arr = [1, 2, 3, 4]`
+- **Output:** `"23:41"`
 
 Several arrangements form valid times, and `"23:41"` is the latest among them.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [5, 5, 5, 5]`
-- Output: `""`
+- **Input:** `arr = [5, 5, 5, 5]`
+- **Output:** `""`
 
 The only distinct arrangement is `"55:55"`, which is not a valid 24-hour time.

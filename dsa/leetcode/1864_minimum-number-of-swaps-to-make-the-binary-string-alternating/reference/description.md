@@ -8,8 +8,13 @@ Any two characters may be swapped, even if they are **not adjacent**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,11 +24,13 @@ Any two characters may be swapped, even if they are **not adjacent**.
 - **Output:** `1`
 - **Explanation:** Swap positions 1 and 4: "1<u>1</u>10<u>0</u>0" -> "1<u>0</u>10<u>1</u>0"
 The string is now alternating.
+
 #### Example 2
 
 - **Input:** `s = "010"`
 - **Output:** `0`
 - **Explanation:** The string is already alternating, no swaps are needed.
+
 #### Example 3
 
 - **Input:** `s = "1110"`

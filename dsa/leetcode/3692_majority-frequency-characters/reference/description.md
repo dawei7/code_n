@@ -10,21 +10,23 @@ Return a string containing all characters in the majority frequency group, in **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aaabbbccdddde"
+- **Input:** s = "aaabbbccdddde"
 
-**Output:** "ab"
+- **Output:** "ab"
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Frequency (k)</th>
@@ -63,17 +65,13 @@ Return a string containing all characters in the majority frequency group, in **
 
 Both characters `'a'` and `'b'` share the same frequency 3, they are in the majority frequency group. `"ba"` is also a valid answer.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abcd"
+- **Input:** s = "abcd"
 
-**Output:** "abcd"
+- **Output:** "abcd"
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Frequency (k)</th>
@@ -94,17 +92,13 @@ Both characters `'a'` and `'b'` share the same frequency 3, they are in the majo
 
 All characters share the same frequency 1, they are all in the majority frequency group.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "pfpfgi"
+- **Input:** s = "pfpfgi"
 
-**Output:** "fp"
+- **Output:** "fp"
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Frequency (k)</th>
@@ -130,8 +124,6 @@ All characters share the same frequency 1, they are all in the majority frequenc
 </table>
 
 Both characters `'p'` and `'f'` share the same frequency 2, they are in the majority frequency group. There is a tie in group size with frequency 1, but we pick the higher frequency: 2.
-
-</div>
 
 ### 4. Constraints
 

@@ -32,18 +32,18 @@ Using all equivalence information supplied by the paired strings, replace each c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "parker", s2 = "morris", baseStr = "parser"`
-- Output: `"makkek"`
-- Explanation: The equivalence classes include `[m, p]`, `[a, o]`, `[k, r, s]`, and `[e, i]`; each base character uses its class minimum.
+- **Input:** `s1 = "parker", s2 = "morris", baseStr = "parser"`
+- **Output:** `"makkek"`
+- **Explanation:** The equivalence classes include `[m, p]`, `[a, o]`, `[k, r, s]`, and `[e, i]`; each base character uses its class minimum.
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "hello", s2 = "world", baseStr = "hold"`
-- Output: `"hdld"`
+- **Input:** `s1 = "hello", s2 = "world", baseStr = "hold"`
+- **Output:** `"hdld"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s1 = "leetcode", s2 = "programs", baseStr = "sourcecode"`
-- Output: `"aauaaaaada"`
+- **Input:** `s1 = "leetcode", s2 = "programs", baseStr = "sourcecode"`
+- **Output:** `"aauaaaaada"`

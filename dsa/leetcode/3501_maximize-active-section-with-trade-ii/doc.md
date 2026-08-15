@@ -33,26 +33,26 @@ Return a list whose $i$th value is the maximum whole-string active count after a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "01", queries = [[0,1]]`
-- Output: `[1]`
-- Explanation: The substring contains no active block surrounded by inactive blocks, so no trade is possible.
+- **Input:** `s = "01", queries = [[0,1]]`
+- **Output:** `[1]`
+- **Explanation:** The substring contains no active block surrounded by inactive blocks, so no trade is possible.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0100", queries = [[0,3],[0,2],[1,3],[2,3]]`
-- Output: `[4,3,1,1]`
-- Explanation: The first two substrings contain the middle active block and zero sections on both sides, while the final two do not contain a valid first conversion.
+- **Input:** `s = "0100", queries = [[0,3],[0,2],[1,3],[2,3]]`
+- **Output:** `[4,3,1,1]`
+- **Explanation:** The first two substrings contain the middle active block and zero sections on both sides, while the final two do not contain a valid first conversion.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1000100", queries = [[1,5],[0,6],[0,4]]`
-- Output: `[6,7,2]`
-- Explanation: Results count the whole string. For `[1,5]`, the trade activates its five-character substring and preserves the active section at index `0`, producing `6`.
+- **Input:** `s = "1000100", queries = [[1,5],[0,6],[0,4]]`
+- **Output:** `[6,7,2]`
+- **Explanation:** Results count the whole string. For `[1,5]`, the trade activates its five-character substring and preserves the active section at index `0`, producing `6`.
 
-**Example 4**
+#### Example 4
 
-- Input: `s = "01010", queries = [[0,3],[1,4],[1,3]]`
-- Output: `[4,4,2]`
-- Explanation: The first two ranges contain an eligible one run with zero sections on both sides; the last substring `"101"` does not.
+- **Input:** `s = "01010", queries = [[0,3],[1,4],[1,3]]`
+- **Output:** `[4,4,2]`
+- **Explanation:** The first two ranges contain an eligible one run with zero sections on both sides; the last substring `"101"` does not.

@@ -24,40 +24,27 @@ Return the smallest prefix length whose removal leaves a strictly increasing arr
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,-1,2,3,3,4,5]
+- **Input:** nums = [1,-1,2,3,3,4,5]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** Removing the $prefix = [1, -1, 2, 3]$ leaves the remaining array `[3, 4, 5]` which is strictly increasing.
 
-Removing the $prefix = [1, -1, 2, 3]$ leaves the remaining array `[3, 4, 5]` which is strictly increasing.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,3,-2,-5]
+- **Input:** nums = [4,3,-2,-5]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** Removing the $prefix = [4, 3, -2]$ leaves the remaining array `[-5]` which is strictly increasing.
 
-Removing the $prefix = [4, 3, -2]$ leaves the remaining array `[-5]` which is strictly increasing.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The array `nums = [1, 2, 3, 4]` is already strictly increasing so removing an empty prefix is sufficient.
-
-</div>
+- **Explanation:** The array `nums = [1, 2, 3, 4]` is already strictly increasing so removing an empty prefix is sufficient.
 
 ### 4. Constraints
 

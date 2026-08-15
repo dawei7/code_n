@@ -23,6 +23,7 @@ Return `true` exactly when an integer $r$ exists with $r^2=\texttt{num}$; otherw
 - **Input:** $num = 16$
 - **Output:** `true`
 - **Explanation:** We return true because 4 * 4 = 16 and 4 is an integer.
+
 #### Example 2
 
 - **Input:** $num = 14$

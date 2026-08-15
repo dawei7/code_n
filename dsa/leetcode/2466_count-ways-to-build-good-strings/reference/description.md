@@ -14,8 +14,16 @@ Return *the number of **different** good strings that can be constructed satisfy
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `low`: Input parameter (`int`).
+- `high`: Input parameter (`int`).
+- `zero`: Input parameter (`int`).
+- `one`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,10 +31,10 @@ Return *the number of **different** good strings that can be constructed satisfy
 
 - **Input:** $low = 3, high = 3, zero = 1, one = 1$
 - **Output:** `8`
-- **Explanation:**
-One possible valid good string is "011".
+- **Explanation:** One possible valid good string is "011".
 It can be constructed as follows: "" -> "0" -> "01" -> "011".
 All binary strings from "000" to "111" are good strings in this example.
+
 #### Example 2
 
 - **Input:** $low = 2, high = 3, zero = 1, one = 2$

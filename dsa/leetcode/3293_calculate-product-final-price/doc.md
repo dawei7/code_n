@@ -33,7 +33,7 @@ For a matching discount $d$, the final price is $price\cdot(100-d)/100$. Without
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Products`
 
@@ -51,7 +51,7 @@ For a matching discount $d$, the final price is $price\cdot(100-d)/100$. Without
 | Electronics | 10 |
 | Clothing | 20 |
 
-Output:
+- **Output:** 
 
 | product_id | final_price | category |
 |---:|---:|---|

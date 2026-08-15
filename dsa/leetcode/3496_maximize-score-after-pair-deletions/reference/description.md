@@ -20,14 +20,11 @@ Return the **maximum** possible score you can achieve.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,4,1]
+- **Input:** nums = [2,4,1]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-The possible operations are:
+- **Explanation:** The possible operations are:
 
 - Remove the first two elements $(2 + 4) = 6$. The remaining array is `[1]`.
 
@@ -37,17 +34,13 @@ The possible operations are:
 
 The maximum score is obtained by removing the first two elements, resulting in a final score of 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,-1,4,2]
+- **Input:** nums = [5,-1,4,2]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-The possible operations are:
+- **Explanation:** The possible operations are:
 
 - Remove the first and last elements $(5 + 2) = 7$. The remaining array is `[-1, 4]`.
 
@@ -56,8 +49,6 @@ The possible operations are:
 - Remove the last two elements $(4 + 2) = 6$. The remaining array is `[5, -1]`.
 
 The maximum score is obtained by removing the first and last elements, resulting in a total score of 7.
-
-</div>
 
 ### 4. Constraints
 

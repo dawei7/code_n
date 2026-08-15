@@ -33,16 +33,16 @@ Return `text` after recursively replacing every placeholder with its fully expan
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `replacements = [["A", "abc"], ["B", "def"]]`, `text = "%A%_%B%"`
-- Output: `"abc_def"`
+- **Input:** `replacements = [["A", "abc"], ["B", "def"]]`, `text = "%A%_%B%"`
+- **Output:** `"abc_def"`
 
 Both mapped values are literal, so their placeholders can be replaced directly.
 
-**Example 2**
+#### Example 2
 
-- Input: `replacements = [["A", "bce"], ["B", "ace"], ["C", "abc%B%"]]`, `text = "%A%_%B%_%C%"`
-- Output: `"bce_ace_abcace"`
+- **Input:** `replacements = [["A", "bce"], ["B", "ace"], ["C", "abc%B%"]]`, `text = "%A%_%B%_%C%"`
+- **Output:** `"bce_ace_abcace"`
 
 The value for `C` contains `%B%`; expanding that dependency changes `abc%B%` into `abcace` before it is inserted into the final text.

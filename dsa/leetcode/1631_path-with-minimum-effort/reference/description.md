@@ -8,8 +8,13 @@ Return *the minimum **effort** required to travel from the top-left cell to the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `heights`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the minimum **effort** required to travel from the top-left cell to the 
 - **Output:** `2`
 - **Explanation:** The route of [1,3,5,3,5] has a maximum absolute difference of 2 in consecutive cells.
 This is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.
+
 #### Example 2
 
 ![](images/ex2.png)
@@ -28,6 +34,7 @@ This is better than the route of [1,2,2,2,5], where the maximum absolute differe
 - **Input:** $heights = [[1,2,3],[3,8,4],[5,3,5]]$
 - **Output:** `1`
 - **Explanation:** The route of [1,2,3,4,5] has a maximum absolute difference of 1 in consecutive cells, which is better than route [1,3,5,3,5].
+
 #### Example 3
 
 ![](images/ex3.png)

@@ -24,6 +24,7 @@ Return `true` if some palindromic subsequence of `s` has length at least $n-k$. 
 - **Input:** `s = "abcdeca", k = 2`
 - **Output:** `true`
 - **Explanation:** Remove 'b' and 'e' characters.
+
 #### Example 2
 
 - **Input:** `s = "abbababa", k = 1`

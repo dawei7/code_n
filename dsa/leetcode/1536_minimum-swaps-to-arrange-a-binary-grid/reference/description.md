@@ -10,8 +10,13 @@ The main diagonal of a grid is the diagonal that starts at cell `(1, 1)` and end
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ The main diagonal of a grid is the diagonal that starts at cell `(1, 1)` and end
 
 - **Input:** `grid = [[0,0,1],[1,1,0],[1,0,0]]`
 - **Output:** `3`
+
 #### Example 2
 
 ![](images/e2.jpg)
@@ -28,6 +34,7 @@ The main diagonal of a grid is the diagonal that starts at cell `(1, 1)` and end
 - **Input:** `grid = [[0,1,1,0],[0,1,1,0],[0,1,1,0],[0,1,1,0]]`
 - **Output:** `-1`
 - **Explanation:** All rows are similar, swaps have no effect on the grid.
+
 #### Example 3
 
 ![](images/e3.jpg)

@@ -8,8 +8,13 @@ Return `true` *if you can make** every** string in *`words`* **equal **using **a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return `true` *if you can make** every** string in *`words`* **equal **using **a
 - **Explanation:** Move the first 'a' in words[1] to the front of words[2],
 to make words[1] = "abc" and words[2] = "abc".
 All the strings are now equal to "abc", so return true.
+
 #### Example 2
 
 - **Input:** $words = ["ab","a"]$

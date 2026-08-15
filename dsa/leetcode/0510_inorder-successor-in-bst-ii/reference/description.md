@@ -43,6 +43,7 @@ The caller supplies `node`, not the tree root. Returning only the successor's va
 - **Input:** $tree = [2,1,3], node = 1$
 - **Output:** `2`
 - **Explanation:** 1's in-order successor node is 2. Note that both the node and the return value is of Node type.
+
 #### Example 2
 
 ![](images/285_example_2.PNG)

@@ -10,8 +10,13 @@ A **palindrome** is a string that is the same forward and backward. A **substrin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ A **palindrome** is a string that is the same forward and backward. A **substrin
 - **Input:** `s = "ababbb"`
 - **Output:** `9`
 - **Explanation:** Substrings "aba" and "bbb" are palindromes with odd length. product = 3 * 3 = 9.
+
 #### Example 2
 
 - **Input:** `s = "zaaaxbbby"`

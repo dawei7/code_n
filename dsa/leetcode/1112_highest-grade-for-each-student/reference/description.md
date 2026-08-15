@@ -41,7 +41,7 @@ Return exactly one row per represented student, ordered by $\text{student}_{id}$
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Enrollments table:
 +------------+-------------------+
 | student_id | course_id | grade |
@@ -54,7 +54,7 @@ Enrollments table:
 | 3          | 2         | 75    |
 | 3          | 3         | 82    |
 +------------+-----------+-------+
-**Output:**
+- **Output:** 
 +------------+-------------------+
 | student_id | course_id | grade |
 +------------+-----------+-------+

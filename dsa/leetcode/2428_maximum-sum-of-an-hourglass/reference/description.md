@@ -10,8 +10,13 @@ Return *the **maximum** sum of the elements of an hourglass*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -26,6 +31,7 @@ that an hourglass cannot be rotated and must be entirely contained within the ma
 - **Input:** `grid = [[6,2,1,3],[4,2,1,5],[9,2,8,7],[4,1,2,9]]`
 - **Output:** `30`
 - **Explanation:** The cells shown above represent the hourglass with the maximum sum: 6 + 2 + 1 + 2 + 9 + 2 + 8 = 30.
+
 #### Example 2
 
 ![](images/2.jpg)

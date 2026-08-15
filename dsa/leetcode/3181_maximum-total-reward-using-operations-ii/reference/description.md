@@ -12,35 +12,31 @@ Return an integer denoting the **maximum ***total reward* you can collect by per
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rewardValues`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** rewardValues = [1,1,3,3]
+- **Input:** rewardValues = [1,1,3,3]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** During the operations, we can choose to mark the indices 0 and 2 in order, and the total reward will be 4, which is the maximum.
 
-During the operations, we can choose to mark the indices 0 and 2 in order, and the total reward will be 4, which is the maximum.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** rewardValues = [1,6,4,3,2]
+- **Input:** rewardValues = [1,6,4,3,2]
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
-
-Mark the indices 0, 2, and 1 in order. The total reward will then be 11, which is the maximum.
-
-</div>
+- **Explanation:** Mark the indices 0, 2, and 1 in order. The total reward will then be 11, which is the maximum.
 
 ### 4. Constraints
 

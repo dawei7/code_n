@@ -32,14 +32,14 @@ Let $n = \lvert\texttt{nums}\rvert$. The constraints are $1 \le n \le 10^5$ and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,0,2,0,1,2]`
-- Output: `3`
-- Explanation: The subarrays `[1,0]`, `[2,0]`, and `[1,2]` each have score zero, so their total score is the minimum possible value, zero.
+- **Input:** `nums = [1,0,2,0,1,2]`
+- **Output:** `3`
+- **Explanation:** The subarrays `[1,0]`, `[2,0]`, and `[1,2]` each have score zero, so their total score is the minimum possible value, zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,7,1,3]`
-- Output: `1`
-- Explanation: The bitwise AND of the whole array is `1`. Keeping all elements together attains that minimum score, while every split into multiple subarrays has a larger score sum.
+- **Input:** `nums = [5,7,1,3]`
+- **Output:** `1`
+- **Explanation:** The bitwise AND of the whole array is `1`. Keeping all elements together attains that minimum score, while every split into multiple subarrays has a larger score sum.

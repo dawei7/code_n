@@ -34,16 +34,16 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1, 4, 1]`
-- Output: `1`
+- **Input:** `nums = [1, 2, 1, 4, 1]`
+- **Output:** `1`
 
 Only `[1, 4, 1]` is valid: the two endpoint values sum to 2, exactly half of the middle value 4.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1]`
-- Output: `0`
+- **Input:** `nums = [1, 1, 1]`
+- **Output:** `0`
 
 The only triplet has endpoint sum 2, which is not half of its middle value 1.

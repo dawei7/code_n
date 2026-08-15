@@ -37,16 +37,16 @@ An array of length $P$ in which index $i$ contains the total candies received by
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `candies = 7, num_people = 4`
-- Output: `[1, 2, 3, 1]`
+- **Input:** `candies = 7, num_people = 4`
+- **Output:** `[1, 2, 3, 1]`
 
 The fourth scheduled gift is 4, but only one candy remains.
 
-**Example 2**
+#### Example 2
 
-- Input: `candies = 10, num_people = 3`
-- Output: `[5, 2, 3]`
+- **Input:** `candies = 10, num_people = 3`
+- **Output:** `[5, 2, 3]`
 
 After gifts 1, 2, and 3, the first person receives the remaining 4 candies.

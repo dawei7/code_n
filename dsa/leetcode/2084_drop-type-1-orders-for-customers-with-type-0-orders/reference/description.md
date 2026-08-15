@@ -34,7 +34,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Orders table:
 +----------+-------------+------------+
 | order_id | customer_id | order_type |
@@ -48,7 +48,7 @@ Orders table:
 | 31       | 4           | 1          |
 | 32       | 4           | 1          |
 +----------+-------------+------------+
-**Output:**
+- **Output:** 
 +----------+-------------+------------+
 | order_id | customer_id | order_type |
 +----------+-------------+------------+
@@ -59,8 +59,7 @@ Orders table:
 | 11       | 2           | 0          |
 | 22       | 3           | 0          |
 +----------+-------------+------------+
-**Explanation:**
-Customer 1 has two orders of type 0. We return both of them.
+- **Explanation:** Customer 1 has two orders of type 0. We return both of them.
 Customer 2 has one order of type 0 and one order of type 1. We only return the order of type 0.
 Customer 3 has one order of type 0 and one order of type 1. We only return the order of type 0.
 Customer 4 has two orders of type 1. We return both of them.

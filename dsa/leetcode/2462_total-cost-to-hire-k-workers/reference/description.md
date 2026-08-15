@@ -8,11 +8,10 @@ You are also given two integers `k` and `candidates`. We want to hire exactly `k
 
 - In each hiring session, choose the worker with the lowest cost from either the first `candidates` workers or the last `candidates` workers. Break the tie by the smallest index.
 
-		<li>For example, if $costs = [3,2,7,7,1,2]$ and $candidates = 2$, then in the first hiring session, we will choose the $4^th$ worker because they have the lowest cost `[<u>3,2</u>,7,7,<u>**1**,2</u>]`.
+		- For example, if $costs = [3,2,7,7,1,2]$ and $candidates = 2$, then in the first hiring session, we will choose the $4^th$ worker because they have the lowest cost `[<u>3,2</u>,7,7,<u>**1**,2</u>]`.
 
 - In the second hiring session, we will choose $1^st$ worker because they have the same lowest cost as $4^th$ worker but they have the smallest index `[<u>3,**2**</u>,7,<u>7,2</u>]`. Please note that the indexing may be changed in the process.
 
-	</li>
 - If there are fewer than candidates workers remaining, choose the worker with the lowest cost among them. Break the tie by the smallest index.
 
 - A worker can only be chosen once.
@@ -21,8 +20,15 @@ Return *the total cost to hire exactly *`k`* workers.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `costs`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `candidates`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +41,7 @@ Return *the total cost to hire exactly *`k`* workers.*
 - In the second hiring round we choose the worker from [<u>17,12,10,7</u>,<u>2,11,20,8</u>]. The lowest cost is 2 (index 4). The total cost = 2 + 2 = 4.
 - In the third hiring round we choose the worker from [<u>17,12,10,7,11,20,8</u>]. The lowest cost is 7 (index 3). The total cost = 4 + 7 = 11. Notice that the worker with index 3 was common in the first and last four workers.
 The total hiring cost is 11.
+
 #### Example 2
 
 - **Input:** $costs = [1,2,4,1], k = 3, candidates = 3$

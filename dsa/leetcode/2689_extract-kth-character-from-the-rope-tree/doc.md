@@ -33,18 +33,18 @@ Return the single lowercase character at one-based position `k` in the rope's re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: A root of length `10` whose left subtree represents `"grta"` and whose right leaf is `"abcpoe"`, with `k = 6`.
-- Output: `"b"`
-- Explanation: The rope represents `"grtaabcpoe"`; its sixth character is `"b"`.
+- **Input:** A root of length `10` whose left subtree represents `"grta"` and whose right leaf is `"abcpoe"`, with `k = 6`.
+- **Output:** `"b"`
+- **Explanation:** The rope represents `"grtaabcpoe"`; its sixth character is `"b"`.
 
-**Example 2**
+#### Example 2
 
-- Input: A length-`12` root joining `"abcefg"` and `"hijklm"`, with `k = 3`.
-- Output: `"c"`
+- **Input:** A length-`12` root joining `"abcefg"` and `"hijklm"`, with `k = 3`.
+- **Output:** `"c"`
 
-**Example 3**
+#### Example 3
 
-- Input: A single leaf containing `"ropetree"`, with `k = 8`.
-- Output: `"e"`
+- **Input:** A single leaf containing `"ropetree"`, with `k = 8`.
+- **Output:** `"e"`

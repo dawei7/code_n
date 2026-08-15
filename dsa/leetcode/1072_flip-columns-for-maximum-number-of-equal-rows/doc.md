@@ -31,20 +31,20 @@ After applying one shared set of column flips, count the rows whose values are a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[0, 1], [1, 1]]`
-- Output: `1`
-- Explanation: With no flips, the second row already has equal values; no flip pattern makes both rows uniform.
+- **Input:** `matrix = [[0, 1], [1, 1]]`
+- **Output:** `1`
+- **Explanation:** With no flips, the second row already has equal values; no flip pattern makes both rows uniform.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[0, 1], [1, 0]]`
-- Output: `2`
-- Explanation: Flip the first column to turn the rows into `[1, 1]` and `[0, 0]`.
+- **Input:** `matrix = [[0, 1], [1, 0]]`
+- **Output:** `2`
+- **Explanation:** Flip the first column to turn the rows into `[1, 1]` and `[0, 0]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[0, 0, 0], [0, 0, 1], [1, 1, 0]]`
-- Output: `2`
-- Explanation: Flipping the first two columns makes the last two rows uniform.
+- **Input:** `matrix = [[0, 0, 0], [0, 0, 1], [1, 1, 0]]`
+- **Output:** `2`
+- **Explanation:** Flipping the first two columns makes the last two rows uniform.

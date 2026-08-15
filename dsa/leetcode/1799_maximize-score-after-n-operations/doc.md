@@ -30,23 +30,23 @@ The operation adds $i \cdot \gcd(x,y)$ to the score, where $x$ and $y$ are the s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2]`
-- Output: `1`
+- **Input:** `nums = [1,2]`
+- **Output:** `1`
 
 The only operation contributes $1 \cdot \gcd(1,2)=1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,4,6,8]`
-- Output: `11`
+- **Input:** `nums = [3,4,6,8]`
+- **Output:** `11`
 
 Choosing `3` with `6` first and `4` with `8` second scores $3+2\cdot4=11$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3,4,5,6]`
-- Output: `14`
+- **Input:** `nums = [1,2,3,4,5,6]`
+- **Output:** `14`
 
 An optimal ordering places a pair with a larger GCD under a later multiplier.

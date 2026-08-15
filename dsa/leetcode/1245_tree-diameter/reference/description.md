@@ -31,6 +31,7 @@ Return the greatest number of edges on a simple path between any two nodes. When
 - **Input:** $edges = [[0,1],[0,2]]$
 - **Output:** `2`
 - **Explanation:** The longest path of the tree is the path 1 - 0 - 2.
+
 #### Example 2
 
 ![](images/tree2.jpg)

@@ -31,20 +31,20 @@ For each query, find a substring whose decimal value `val` satisfies `val ^ firs
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "101101", queries = [[0, 5], [1, 2]]`
-- Output: `[[0, 2], [2, 3]]`
-- Explanation: `"101"` represents $5$, while `"11"` represents $3$ and $3 \mathbin{\mathtt{\char94}} 1 = 2$.
+- **Input:** `s = "101101", queries = [[0, 5], [1, 2]]`
+- **Output:** `[[0, 2], [2, 3]]`
+- **Explanation:** `"101"` represents $5$, while `"11"` represents $3$ and $3 \mathbin{\mathtt{\char94}} 1 = 2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0101", queries = [[12, 8]]`
-- Output: `[[-1, -1]]`
-- Explanation: The required value is $12 \mathbin{\mathtt{\char94}} 8 = 4$, but no substring represents binary `100`.
+- **Input:** `s = "0101", queries = [[12, 8]]`
+- **Output:** `[[-1, -1]]`
+- **Explanation:** The required value is $12 \mathbin{\mathtt{\char94}} 8 = 4$, but no substring represents binary `100`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1", queries = [[4, 5]]`
-- Output: `[[0, 0]]`
-- Explanation: The one-character substring represents $1$, and `1 ^ 4 == 5`.
+- **Input:** `s = "1", queries = [[4, 5]]`
+- **Output:** `[[0, 0]]`
+- **Explanation:** The one-character substring represents $1$, and `1 ^ 4 == 5`.

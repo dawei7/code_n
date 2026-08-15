@@ -32,8 +32,8 @@ Although `salary` is stored as text, comparison must follow its numeric value.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Employee 1 has salaries `110000` and `106119`; employee 2 has `128922` and `130000`; other employees likewise have one or more records.
-- Output: Employee 1's row with `110000`, employee 2's row with `130000`, and the greatest numeric salary row for every remaining employee, ordered by ID.
-- Explanation: Under the increasing-salary assumption, each maximum amount identifies the most recent record.
+- **Input:** Employee 1 has salaries `110000` and `106119`; employee 2 has `128922` and `130000`; other employees likewise have one or more records.
+- **Output:** Employee 1's row with `110000`, employee 2's row with `130000`, and the greatest numeric salary row for every remaining employee, ordered by ID.
+- **Explanation:** Under the increasing-salary assumption, each maximum amount identifies the most recent record.

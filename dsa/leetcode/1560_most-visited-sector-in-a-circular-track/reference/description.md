@@ -8,8 +8,14 @@ Notice that you circulate the track in ascending order of sector numbers in the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `rounds`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -22,10 +28,12 @@ Notice that you circulate the track in ascending order of sector numbers in the 
 - **Explanation:** The marathon starts at sector 1. The order of the visited sectors is as follows:
 1 --> 2 --> 3 (end of round 1) --> 4 --> 1 (end of round 2) --> 2 (end of round 3 and the marathon)
 We can see that both sectors 1 and 2 are visited twice and they are the most visited sectors. Sectors 3 and 4 are visited only once.
+
 #### Example 2
 
 - **Input:** $n = 2, rounds = [2,1,2,1,2,1,2,1,2]$
 - **Output:** `[2]`
+
 #### Example 3
 
 - **Input:** $n = 7, rounds = [1,3,5,7]$

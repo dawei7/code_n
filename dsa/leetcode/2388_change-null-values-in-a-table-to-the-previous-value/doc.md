@@ -38,7 +38,7 @@ The first presented row has a non-null `drink`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Input rows: `[(9,"Rum and Coke"), (6,NULL), (7,NULL), (3,"St Germain Spritz"), (1,"Orange Margarita"), (2,NULL)]`
 - Output rows: `[(9,"Rum and Coke"), (6,"Rum and Coke"), (7,"Rum and Coke"), (3,"St Germain Spritz"), (1,"Orange Margarita"), (2,"Orange Margarita")]`

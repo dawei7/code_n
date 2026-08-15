@@ -20,28 +20,19 @@ Your solution must run in **$\mathcal{O}(n)$** time and **$\mathcal{O}(1)$** spa
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,2,3,2,5,5,5,7,7]
+- **Input:** nums = [2,2,3,2,5,5,5,7,7]
 
-**Output:** [3,7]
+- **Output:** [3,7]
 
-**Explanation:**
+- **Explanation:** The element 3 appears **once**, and the element 7 appears **twice**. The remaining elements each appear **three times**.
 
-The element 3 appears **once**, and the element 7 appears **twice**. The remaining elements each appear **three times**.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,4,6,4,9,9,9,6,8]
+- **Input:** nums = [4,4,6,4,9,9,9,6,8]
 
-**Output:** [8,6]
+- **Output:** [8,6]
 
-**Explanation:**
-
-The element 8 appears **once**, and the element 6 appears **twice**. The remaining elements each appear **three times**.
-
-</div>
+- **Explanation:** The element 8 appears **once**, and the element 6 appears **twice**. The remaining elements each appear **three times**.
 
 ### 4. Constraints
 

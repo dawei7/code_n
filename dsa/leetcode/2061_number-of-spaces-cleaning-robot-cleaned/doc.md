@@ -30,20 +30,20 @@ The robot repeatedly attempts to move one cell straight ahead. If the next cell 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `room = [[0,0,0],[1,1,0],[0,0,0]]`
-- Output: `7`
-- Explanation: The robot follows the open outer path and visits every empty cell.
+- **Input:** `room = [[0,0,0],[1,1,0],[0,0,0]]`
+- **Output:** `7`
+- **Explanation:** The robot follows the open outer path and visits every empty cell.
 
-**Example 2**
+#### Example 2
 
-- Input: `room = [[0,1,0],[1,0,0],[0,0,0]]`
-- Output: `1`
-- Explanation: Objects or boundaries block all four directions from the start.
+- **Input:** `room = [[0,1,0],[1,0,0],[0,0,0]]`
+- **Output:** `1`
+- **Explanation:** Objects or boundaries block all four directions from the start.
 
-**Example 3**
+#### Example 3
 
-- Input: `room = [[0,0,0],[0,0,0],[0,0,0]]`
-- Output: `8`
-- Explanation: The motion cycles around the boundary and never visits the center.
+- **Input:** `room = [[0,0,0],[0,0,0],[0,0,0]]`
+- **Output:** `8`
+- **Explanation:** The motion cycles around the boundary and never visits the center.

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/abbreviating-the-product-of-a-range/) |
 
 ## Problem Description
+
 ### Goal
 
 Given positive integers `left` and `right`, form the product of every integer
@@ -27,6 +28,7 @@ format is `valueeC` for at most ten significant digits and
 `prefix...suffixeC` otherwise.
 
 ### Function Contract
+
 **Inputs**
 
 - `left`: The positive lower endpoint of the range.
@@ -41,24 +43,25 @@ $\prod_{x=\texttt{left}}^{\texttt{right}} x$ after removing all trailing
 zeros.
 
 ### Examples
-**Example 1**
 
-- Input: `left = 1, right = 4`
-- Output: `"24e0"`
+#### Example 1
+
+- **Input:** `left = 1, right = 4`
+- **Output:** `"24e0"`
 
 The product is $24$, with no trailing zeros.
 
-**Example 2**
+#### Example 2
 
-- Input: `left = 2, right = 11`
-- Output: `"399168e2"`
+- **Input:** `left = 2, right = 11`
+- **Output:** `"399168e2"`
 
 Removing two zeros from $39916800$ leaves the six-digit value $399168$.
 
-**Example 3**
+#### Example 3
 
-- Input: `left = 371, right = 375`
-- Output: `"7219856259e3"`
+- **Input:** `left = 371, right = 375`
+- **Output:** `"7219856259e3"`
 
 The product is $7219856259000$, so three zeros are removed and the remaining
 ten digits are kept in full.

@@ -14,47 +14,40 @@ Given two sentences `sentence1` and `sentence2`, return **true** if `sentence1` 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sentence1`: Input parameter (`str`).
+- `sentence2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** sentence1 = "My name is Haley", sentence2 = "My Haley"
+- **Input:** sentence1 = "My name is Haley", sentence2 = "My Haley"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** `sentence2` can be turned to `sentence1` by inserting "name is" between "My" and "Haley".
 
-`sentence2` can be turned to `sentence1` by inserting "name is" between "My" and "Haley".
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** sentence1 = "of", sentence2 = "A lot of words"
+- **Input:** sentence1 = "of", sentence2 = "A lot of words"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** No single sentence can be inserted inside one of the sentences to make it equal to the other.
 
-No single sentence can be inserted inside one of the sentences to make it equal to the other.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** sentence1 = "Eating right now", sentence2 = "Eating"
+- **Input:** sentence1 = "Eating right now", sentence2 = "Eating"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-`sentence2` can be turned to `sentence1` by inserting "right now" at the end of the sentence.
-
-</div>
+- **Explanation:** `sentence2` can be turned to `sentence1` by inserting "right now" at the end of the sentence.
 
 ### 4. Constraints
 

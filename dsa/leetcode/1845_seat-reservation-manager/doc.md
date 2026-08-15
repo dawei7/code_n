@@ -36,7 +36,7 @@ Whenever a reservation is requested, choose the smallest currently available sea
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Operations:
 
@@ -46,16 +46,16 @@ Arguments:
 
 `[[5], [], [], [2], [], [], [], [], [5]]`
 
-Output:
+- **Output:** 
 
 `[null, 1, 2, null, 2, 3, 4, 5, null]`
 
 Releasing seat 2 makes it the smallest available seat again, so the next reservation reuses 2 before advancing to 3.
 
-**Example 2**
+#### Example 2
 
 With one seat, `reserve()`, `unreserve(1)`, and `reserve()` return `1`, nothing, and `1`.
 
-**Example 3**
+#### Example 3
 
 If seats 1 through 4 are reserved and seats 4 and 2 are then released, the next two reservations return 2 and 4.

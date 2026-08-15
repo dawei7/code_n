@@ -32,13 +32,13 @@ The constraints are $2 \le n \le 10^5$, valid unit indices, and $1 \le \texttt{f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `conversions = [[0, 1, 2], [1, 2, 3]]`
-- Output: `[1, 2, 6]`
-- Explanation: One type-0 unit gives two type-1 units, then six type-2 units.
+- **Input:** `conversions = [[0, 1, 2], [1, 2, 3]]`
+- **Output:** `[1, 2, 6]`
+- **Explanation:** One type-0 unit gives two type-1 units, then six type-2 units.
 
-**Example 2**
+#### Example 2
 
-- Input: `conversions = [[0, 1, 2], [0, 2, 3], [1, 3, 4], [1, 4, 5], [2, 5, 2], [4, 6, 3], [5, 7, 4]]`
-- Output: `[1, 2, 3, 8, 10, 6, 30, 24]`
+- **Input:** `conversions = [[0, 1, 2], [0, 2, 3], [1, 3, 4], [1, 4, 5], [2, 5, 2], [4, 6, 3], [5, 7, 4]]`
+- **Output:** `[1, 2, 3, 8, 10, 6, 30, 24]`

@@ -33,17 +33,17 @@ Return `mentions`, where `mentions[i]` is the number of times user `i` was menti
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]`
-- Output: `[2,2]`
+- **Input:** `numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]`
+- **Output:** `[2,2]`
 
-**Example 2**
+#### Example 2
 
-- Input: `numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","12","ALL"]]`
-- Output: `[2,2]`
+- **Input:** `numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","12","ALL"]]`
+- **Output:** `[2,2]`
 
-**Example 3**
+#### Example 3
 
-- Input: `numberOfUsers = 2, events = [["OFFLINE","10","0"],["MESSAGE","12","HERE"]]`
-- Output: `[0,1]`
+- **Input:** `numberOfUsers = 2, events = [["OFFLINE","10","0"],["MESSAGE","12","HERE"]]`
+- **Output:** `[0,1]`

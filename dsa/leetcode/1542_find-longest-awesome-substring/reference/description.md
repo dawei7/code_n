@@ -6,8 +6,13 @@ Return *the length of the maximum length **awesome substring** of* `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,10 +21,12 @@ Return *the length of the maximum length **awesome substring** of* `s`.
 - **Input:** `s = "3242415"`
 - **Output:** `5`
 - **Explanation:** "24241" is the longest awesome substring, we can form the palindrome "24142" with some swaps.
+
 #### Example 2
 
 - **Input:** `s = "12345678"`
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** `s = "213123"`

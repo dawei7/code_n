@@ -16,12 +16,11 @@ Return *the number of **clean** spaces in the room if the robot runs indefinitel
 
 ![](images/image-20211101204703-1.png)
 
-<div class="example-block">
-**Input:** room = [[0,0,0],[1,1,0],[0,0,0]]
+- **Input:** room = [[0,0,0],[1,1,0],[0,0,0]]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - ​​​​​​​The robot cleans the spaces at (0, 0), (0, 1), and (0, 2).
 
@@ -35,17 +34,15 @@ Return *the number of **clean** spaces in the room if the robot runs indefinitel
 
 - The robot has cleaned all 7 empty spaces, so return 7.
 
-</div>
 #### Example 2
 
 ![](images/image-20211101204736-2.png)
 
-<div class="example-block">
-**Input:** room = [[0,1,0],[1,0,0],[0,0,0]]
+- **Input:** room = [[0,1,0],[1,0,0],[0,0,0]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The robot cleans the space at (0, 0).
 
@@ -61,15 +58,11 @@ Return *the number of **clean** spaces in the room if the robot runs indefinitel
 
 - The robot has cleaned 1 space, so return 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** room = [[0,0,0],[0,0,0],[0,0,0]]
+- **Input:** room = [[0,0,0],[0,0,0],[0,0,0]]
 
-**Output:** 8​​​​​​​
-
-</div>
+- **Output:** 8​​​​​​​
 
 ### 4. Constraints
 

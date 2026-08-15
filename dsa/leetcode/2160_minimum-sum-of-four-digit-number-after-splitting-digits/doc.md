@@ -36,14 +36,14 @@ The minimum possible sum of two integers formed using all four input digits.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 2932`
-- Output: `52`
-- Explanation: The digits can form `29` and `23`, whose sum is `52`.
+- **Input:** `num = 2932`
+- **Output:** `52`
+- **Explanation:** The digits can form `29` and `23`, whose sum is `52`.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 4009`
-- Output: `13`
-- Explanation: Leading zeros allow the effective values `4` and `9`.
+- **Input:** `num = 4009`
+- **Output:** `13`
+- **Explanation:** Leading zeros allow the effective values `4` and `9`.

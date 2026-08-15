@@ -30,20 +30,20 @@ Substrings are identified by their start and end indices, so equal text occurrin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcba"`
-- Output: `7`
-- Explanation: The five single characters qualify, as do `"bcb"` and `"abcba"`.
+- **Input:** `s = "abcba"`
+- **Output:** `7`
+- **Explanation:** The five single characters qualify, as do `"bcb"` and `"abcba"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abacad"`
-- Output: `9`
-- Explanation: Six one-character substrings and the three substrings between pairs of `a` positions qualify.
+- **Input:** `s = "abacad"`
+- **Output:** `9`
+- **Explanation:** Six one-character substrings and the three substrings between pairs of `a` positions qualify.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "a"`
-- Output: `1`
-- Explanation: The sole nonempty substring starts and ends with `a`.
+- **Input:** `s = "a"`
+- **Output:** `1`
+- **Explanation:** The sole nonempty substring starts and ends with `a`.

@@ -31,16 +31,16 @@ Return `true` if an initially empty stack can follow the prescribed push order a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `pushed = [1, 2, 3, 4, 5]`, `popped = [4, 5, 3, 2, 1]`
-- Output: `true`
+- **Input:** `pushed = [1, 2, 3, 4, 5]`, `popped = [4, 5, 3, 2, 1]`
+- **Output:** `true`
 
 Push through `4`, pop it, push and pop `5`, then pop `3`, `2`, and `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `pushed = [1, 2, 3, 4, 5]`, `popped = [4, 3, 5, 1, 2]`
-- Output: `false`
+- **Input:** `pushed = [1, 2, 3, 4, 5]`, `popped = [4, 3, 5, 1, 2]`
+- **Output:** `false`
 
 After `5` is popped, `2` remains above `1`, so `1` cannot be the next pop.

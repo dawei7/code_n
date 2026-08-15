@@ -45,6 +45,7 @@ abbreviation rules; otherwise, return `false`.
 - **Input:** $word = "internationalization", abbr = "i12iz4n"$
 - **Output:** `true`
 - **Explanation:** The word "internationalization" can be abbreviated as "i12iz4n" ("i <u>nternational</u> iz <u>atio</u> n").
+
 #### Example 2
 
 - **Input:** $word = "apple", abbr = "a2e"$

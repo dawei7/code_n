@@ -38,23 +38,23 @@ Return how many eligible quadruples attain that global minimum. If the two strin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `firstString = "abcd", secondString = "bccda"`
-- Output: `1`
+- **Input:** `firstString = "abcd", secondString = "bccda"`
+- **Output:** `1`
 
 The singleton match `(i, j, a, b) = (0, 0, 4, 4)` is the unique quadruple with minimum difference.
 
-**Example 2**
+#### Example 2
 
-- Input: `firstString = "ab", secondString = "cd"`
-- Output: `0`
+- **Input:** `firstString = "ab", secondString = "cd"`
+- **Output:** `0`
 
 The strings share no character, so no equal nonempty substrings exist.
 
-**Example 3**
+#### Example 3
 
-- Input: `firstString = "abc", secondString = "abc"`
-- Output: `3`
+- **Input:** `firstString = "abc", secondString = "abc"`
+- **Output:** `3`
 
 The three same-position singleton matches all have difference zero; longer equal substrings have a larger value.

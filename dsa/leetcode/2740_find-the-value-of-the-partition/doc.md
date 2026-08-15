@@ -32,20 +32,20 @@ Return the minimum possible value of `abs(max(nums1) - min(nums2))` over all ass
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,2,4]`
-- Output: `1`
-- Explanation: Choosing `nums1 = [1,2]` and `nums2 = [3,4]` gives `abs(2 - 3) = 1`, which is minimal.
+- **Input:** `nums = [1,3,2,4]`
+- **Output:** `1`
+- **Explanation:** Choosing `nums1 = [1,2]` and `nums2 = [3,4]` gives `abs(2 - 3) = 1`, which is minimal.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [100,1,10]`
-- Output: `9`
-- Explanation: Choosing `nums1 = [10]` and `nums2 = [100,1]` gives `abs(10 - 1) = 9`.
+- **Input:** `nums = [100,1,10]`
+- **Output:** `9`
+- **Explanation:** Choosing `nums1 = [10]` and `nums2 = [100,1]` gives `abs(10 - 1) = 9`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5,3,5,9]`
-- Output: `0`
-- Explanation: Put one occurrence of `5` in each array so the relevant maximum and minimum are equal.
+- **Input:** `nums = [5,3,5,9]`
+- **Output:** `0`
+- **Explanation:** Put one occurrence of `5` in each array so the relevant maximum and minimum are equal.

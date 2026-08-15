@@ -16,32 +16,23 @@ Return the smallest index whose character has total frequency one, or `-1` if ev
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "leetcode"
+- **Input:** s = "leetcode"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The character `'l'` at index 0 is the first character that does not occur at any other index.
 
-The character `'l'` at index 0 is the first character that does not occur at any other index.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "loveleetcode"
+- **Input:** s = "loveleetcode"
 
-**Output:** 2
+- **Output:** 2
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "aabb"
+- **Input:** s = "aabb"
 
-**Output:** -1
-
-</div>
+- **Output:** -1
 
 ### 4. Constraints
 

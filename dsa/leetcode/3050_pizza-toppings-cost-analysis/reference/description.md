@@ -34,7 +34,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Toppings table:
 +--------------+------+
 | topping_name | cost |
@@ -44,7 +44,7 @@ Toppings table:
 | Chicken      | 0.55 |
 | Extra Cheese | 0.40 |
 +--------------+------+
-**Output:**
+- **Output:** 
 +--------------------------------+------------+
 | pizza                          | total_cost |
 +--------------------------------+------------+
@@ -53,8 +53,7 @@ Toppings table:
 | Extra Cheese,Pepperoni,Sausage | 1.60       |
 | Chicken,Extra Cheese,Pepperoni | 1.45       |
 +--------------------------------+------------+
-**Explanation:**
-There are only four different combinations possible with the three topings:
+- **Explanation:** There are only four different combinations possible with the three topings:
 - Chicken, Pepperoni, Sausage: Total cost is $1.75 (Chicken $0.55, Pepperoni $0.50, Sausage $0.70).
 - Chicken, Extra Cheese, Sausage: Total cost is $1.65 (Chicken $0.55, Extra Cheese $0.40, Sausage $0.70).
 - Extra Cheese, Pepperoni, Sausage: Total cost is $1.60 (Extra Cheese $0.40, Pepperoni $0.50, Sausage $0.70).

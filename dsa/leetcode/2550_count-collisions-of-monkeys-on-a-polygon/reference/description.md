@@ -10,21 +10,23 @@ Return the number of ways the monkeys can move so that at least **one collision*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3
+- **Input:** n = 3
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-There are 8 total possible movements.
+- **Explanation:** There are 8 total possible movements.
 
 Two ways such that they collide at some point are:
 
@@ -32,15 +34,11 @@ Two ways such that they collide at some point are:
 
 - Monkey 1 moves in an anticlockwise direction; monkey 2 moves in an anticlockwise direction; monkey 3 moves in a clockwise direction. Monkeys 1 and 3 collide.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4
+- **Input:** n = 4
 
-**Output:** 14
-
-</div>
+- **Output:** 14
 
 ### 4. Constraints
 

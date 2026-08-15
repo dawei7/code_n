@@ -4,35 +4,31 @@ Given an integer array `nums`, return the number of subarrays of length 3 such t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1,4,1]
+- **Input:** nums = [1,2,1,4,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Only the subarray `[1,4,1]` contains exactly 3 elements where the sum of the first and third numbers equals half the middle number.
 
-Only the subarray `[1,4,1]` contains exactly 3 elements where the sum of the first and third numbers equals half the middle number.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,1]
+- **Input:** nums = [1,1,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-`[1,1,1]` is the only subarray of length 3. However, its first and third numbers do not add to half the middle number.
-
-</div>
+- **Explanation:** `[1,1,1]` is the only subarray of length 3. However, its first and third numbers do not add to half the middle number.
 
 ### 4. Constraints
 

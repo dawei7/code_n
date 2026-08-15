@@ -8,8 +8,13 @@ Note that if a house is placed on the $$i^{\text{th}}$$ plot on one side of the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,12 +22,12 @@ Note that if a house is placed on the $$i^{\text{th}}$$ plot on one side of the 
 
 - **Input:** $n = 1$
 - **Output:** `4`
-- **Explanation:**
-Possible arrangements:
+- **Explanation:** Possible arrangements:
 1. All plots are empty.
 2. A house is placed on one side of the street.
 3. A house is placed on the other side of the street.
 4. Two houses are placed, one on each side of the street.
+
 #### Example 2
 
 ![](images/arrangements.png)

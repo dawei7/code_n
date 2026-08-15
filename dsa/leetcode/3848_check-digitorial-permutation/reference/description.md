@@ -38,28 +38,21 @@ Return `true` if some valid digit permutation $x$ satisfies $F(x)=x$; otherwise,
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 145
+- **Input:** n = 145
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** The number 145 itself is digitorial since $1! + 4! + 5! = 1 + 24 + 120 = 145$. Thus, the answer is `true`.
 
-The number 145 itself is digitorial since $1! + 4! + 5! = 1 + 24 + 120 = 145$. Thus, the answer is `true`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 10
+- **Input:** n = 10
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 10 is not digitorial since $1! + 0! = 2$ is not equal to 10, and the permutation `"01"` is invalid because it starts with zero.
-
-</div>
 
 ### 5. Constraints
 

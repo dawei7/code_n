@@ -34,20 +34,20 @@ The harness schedules `cancelFn` after `cancelTimeMs` milliseconds, where $10 \l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = (x) => x * 5, args = [2], t = 20, cancelTimeMs = 50`
-- Output: `[{"time":20,"returned":10}]`
-- Explanation: The function runs at about $20$ ms, before cancellation is attempted at $50$ ms.
+- **Input:** `fn = (x) => x * 5, args = [2], t = 20, cancelTimeMs = 50`
+- **Output:** `[{"time":20,"returned":10}]`
+- **Explanation:** The function runs at about $20$ ms, before cancellation is attempted at $50$ ms.
 
-**Example 2**
+#### Example 2
 
-- Input: `fn = (x) => x ** 2, args = [2], t = 100, cancelTimeMs = 50`
-- Output: `[]`
-- Explanation: Cancellation occurs before the pending function becomes eligible to run.
+- **Input:** `fn = (x) => x ** 2, args = [2], t = 100, cancelTimeMs = 50`
+- **Output:** `[]`
+- **Explanation:** Cancellation occurs before the pending function becomes eligible to run.
 
-**Example 3**
+#### Example 3
 
-- Input: `fn = (x1, x2) => x1 * x2, args = [2,4], t = 30, cancelTimeMs = 100`
-- Output: `[{"time":30,"returned":8}]`
-- Explanation: The multiplication runs once before the later cancellation attempt.
+- **Input:** `fn = (x1, x2) => x1 * x2, args = [2,4], t = 30, cancelTimeMs = 100`
+- **Output:** `[{"time":30,"returned":8}]`
+- **Explanation:** The multiplication runs once before the later cancellation attempt.

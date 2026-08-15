@@ -6,74 +6,46 @@ Return the **minimum** number of CPU intervals required to complete all tasks.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tasks`: Input parameter (`List[str]`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="
-    border-color: var(--border-tertiary);
-    border-left-width: 2px;
-    color: var(--text-secondary);
-    font-size: .875rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: visible;
-    padding-left: 1rem;
-">
-**Input:** tasks = ["A","A","A","B","B","B"], n = 2
+- **Input:** tasks = ["A","A","A","B","B","B"], n = 2
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:** A possible sequence is: A -> B -> idle -> A -> B -> idle -> A -> B.
+- **Explanation:** A possible sequence is: A -> B -> idle -> A -> B -> idle -> A -> B.
 
 After completing task A, you must wait two intervals before doing A again. The same applies to task B. In the 3^rd interval, neither A nor B can be done, so you idle. By the 4^th interval, you can do A again as 2 intervals have passed.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="
-    border-color: var(--border-tertiary);
-    border-left-width: 2px;
-    color: var(--text-secondary);
-    font-size: .875rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: visible;
-    padding-left: 1rem;
-">
-**Input:** tasks = ["A","C","A","B","D","B"], n = 1
+- **Input:** tasks = ["A","C","A","B","D","B"], n = 1
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:** A possible sequence is: A -> B -> C -> D -> A -> B.
+- **Explanation:** A possible sequence is: A -> B -> C -> D -> A -> B.
 
 With a cooling interval of 1, you can repeat a task after just one other task.
 
-</div>
 #### Example 3
 
-<div class="example-block" style="
-    border-color: var(--border-tertiary);
-    border-left-width: 2px;
-    color: var(--text-secondary);
-    font-size: .875rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: visible;
-    padding-left: 1rem;
-">
-**Input:** tasks = ["A","A","A", "B","B","B"], n = 3
+- **Input:** tasks = ["A","A","A", "B","B","B"], n = 3
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:** A possible sequence is: A -> B -> idle -> idle -> A -> B -> idle -> idle -> A -> B.
+- **Explanation:** A possible sequence is: A -> B -> idle -> idle -> A -> B -> idle -> idle -> A -> B.
 
 There are only two types of tasks, A and B, which need to be separated by 3 intervals. This leads to idling twice between repetitions of these tasks.
-
-</div>
 
 ### 4. Constraints
 

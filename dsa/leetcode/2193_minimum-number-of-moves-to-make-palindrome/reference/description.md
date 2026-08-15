@@ -8,8 +8,13 @@ Return *the **minimum number of moves** needed to make* `s` *a palindrome*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,17 +26,16 @@ that the input will be generated such that `s` can always be converted to a pali
 
 - **Input:** `s = "aabb"`
 - **Output:** `2`
-- **Explanation:**
-We can obtain two palindromes from s, "abba" and "baab".
+- **Explanation:** We can obtain two palindromes from s, "abba" and "baab".
 - We can obtain "abba" from s in 2 moves: "a<u>**ab**</u>b" -> "ab<u>**ab**</u>" -> "abba".
 - We can obtain "baab" from s in 2 moves: "a<u>**ab**</u>b" -> "<u>**ab**</u>ab" -> "baab".
 Thus, the minimum number of moves needed to make s a palindrome is 2.
+
 #### Example 2
 
 - **Input:** `s = "letelt"`
 - **Output:** `2`
-- **Explanation:**
-One of the palindromes we can obtain from s in 2 moves is "lettel".
+- **Explanation:** One of the palindromes we can obtain from s in 2 moves is "lettel".
 One of the ways we can obtain it is "lete<u>**lt**</u>" -> "let<u>**et**</u>l" -> "lettel".
 Other palindromes such as "tleelt" can also be obtained in 2 moves.
 It can be shown that it is not possible to obtain a palindrome in less than 2 moves.

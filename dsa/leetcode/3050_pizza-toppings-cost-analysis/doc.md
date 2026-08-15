@@ -43,7 +43,7 @@ $K = \binom{n}{3}$ be the number of returned combinations when $n \ge 3$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For `Chicken` at `0.55`, `Extra Cheese` at `0.40`, `Pepperoni` at `0.50`,
 and `Sausage` at `0.70`, the most expensive combination is:
@@ -54,13 +54,13 @@ and `Sausage` at `0.70`, the most expensive combination is:
 
 The other three combinations follow in descending total-cost order.
 
-**Example 2**
+#### Example 2
 
 With exactly three toppings named `Basil`, `Olive`, and `Tomato`, exactly one
 row is returned. Its `pizza` value is `Basil,Olive,Tomato`, regardless of the
 input row order.
 
-**Example 3**
+#### Example 3
 
 If four toppings all cost `1.00`, every combination costs `3.00`; the four
 rows are therefore ordered alphabetically by their `pizza` strings.

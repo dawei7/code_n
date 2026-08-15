@@ -31,17 +31,17 @@ When two values contain the same number of `1` bits, place the numerically small
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [0,1,2,3,4,5,6,7,8]`
-- Output: `[0,1,2,4,8,3,5,6,7]`
+- **Input:** `arr = [0,1,2,3,4,5,6,7,8]`
+- **Output:** `[0,1,2,4,8,3,5,6,7]`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1024,512,256,128,64,32,16,8,4,2,1]`
-- Output: `[1,2,4,8,16,32,64,128,256,512,1024]`
+- **Input:** `arr = [1024,512,256,128,64,32,16,8,4,2,1]`
+- **Output:** `[1,2,4,8,16,32,64,128,256,512,1024]`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [2,2,1]`
-- Output: `[1,2,2]`
+- **Input:** `arr = [2,2,1]`
+- **Output:** `[1,2,2]`

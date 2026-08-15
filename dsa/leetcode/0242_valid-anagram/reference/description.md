@@ -17,20 +17,15 @@ Return `true` exactly when both strings have identical character counts; otherwi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "anagram", t = "nagaram"
+- **Input:** s = "anagram", t = "nagaram"
 
-**Output:** true
+- **Output:** true
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "rat", t = "car"
+- **Input:** s = "rat", t = "car"
 
-**Output:** false
-
-</div>
+- **Output:** false
 
 ### 4. Constraints
 

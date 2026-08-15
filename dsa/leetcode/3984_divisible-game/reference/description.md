@@ -42,12 +42,11 @@ Return $(maximum score difference * smallest maximizing k) mod 1_000_000_007$. T
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,6,8]
+- **Input:** nums = [1,4,6,8]
 
-**Output:** 36
+- **Output:** 36
 
-**Explanation:**
+- **Explanation:** 
 
 - Alice can choose $k = 2$, $l = 1$, and $r = 3$.
 
@@ -57,15 +56,13 @@ Return $(maximum score difference * smallest maximizing k) mod 1_000_000_007$. T
 
 - Therefore, the answer is $18 * 2 = 36$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,2]
+- **Input:** nums = [2,1,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Alice can choose $k = 2$, $l = 0$, and $r = 2$.
 
@@ -75,15 +72,13 @@ Return $(maximum score difference * smallest maximizing k) mod 1_000_000_007$. T
 
 - Therefore, the answer is $3 * 2 = 6$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** 1000000005
+- **Output:** 1000000005
 
-**Explanation:**
+- **Explanation:** 
 
 - Alice must choose some `k > 1`. The smallest possible choice is $k = 2$.
 
@@ -92,8 +87,6 @@ Return $(maximum score difference * smallest maximizing k) mod 1_000_000_007$. T
 - The score difference is -1, which is the maximum possible.
 
 - Therefore, the answer is $-1 * 2 = -2$. Modulo $10^{9} + 7$, this equals 1000000005.
-
-</div>
 
 ### 4. Constraints
 

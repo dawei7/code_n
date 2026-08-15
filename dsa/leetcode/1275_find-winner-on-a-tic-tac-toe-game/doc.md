@@ -30,17 +30,17 @@ Array `moves` lists the played cells in chronological order. The sequence is gua
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]`
-- Output: `"A"`
+- **Input:** `moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]`
+- **Output:** `"A"`
 
-**Example 2**
+#### Example 2
 
-- Input: `moves = [[0,0],[1,1],[0,1],[0,2],[1,0],[2,0]]`
-- Output: `"B"`
+- **Input:** `moves = [[0,0],[1,1],[0,1],[0,2],[1,0],[2,0]]`
+- **Output:** `"B"`
 
-**Example 3**
+#### Example 3
 
-- Input: `moves = [[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]]`
-- Output: `"Draw"`
+- **Input:** `moves = [[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]]`
+- **Output:** `"Draw"`

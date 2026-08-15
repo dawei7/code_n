@@ -30,12 +30,12 @@ Return the greatest number of valid rightward moves from any first-column starti
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]`
-- Output: `3`
+- **Input:** `grid = [[2,4,3,5],[5,4,9,3],[3,4,2,11],[10,9,13,15]]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[3,2,4],[2,1,9],[1,1,7]]`
-- Output: `0`
+- **Input:** `grid = [[3,2,4],[2,1,9],[1,1,7]]`
+- **Output:** `0`

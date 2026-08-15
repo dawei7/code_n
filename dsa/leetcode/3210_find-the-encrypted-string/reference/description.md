@@ -8,19 +8,24 @@ Return the *encrypted string*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "dart", k = 3
+- **Input:** s = "dart", k = 3
 
-**Output:** "tdar"
+- **Output:** "tdar"
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$, the 3^rd character after `'d'` is `'t'`.
 
@@ -30,19 +35,13 @@ Return the *encrypted string*.
 
 - For $i = 3$, the 3^rd character after `'t'` is `'r'`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aaa", k = 1
+- **Input:** s = "aaa", k = 1
 
-**Output:** "aaa"
+- **Output:** "aaa"
 
-**Explanation:**
-
-As all the characters are the same, the encrypted string will also be the same.
-
-</div>
+- **Explanation:** As all the characters are the same, the encrypted string will also be the same.
 
 ### 4. Constraints
 

@@ -20,6 +20,7 @@ Return the count of structurally unique BSTs that use every value from `1` throu
 
 - **Input:** $n = 3$
 - **Output:** `5`
+
 #### Example 2
 
 - **Input:** $n = 1$

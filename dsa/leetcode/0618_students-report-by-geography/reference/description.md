@@ -38,7 +38,7 @@ Return exactly three columns named `America`, `Asia`, and `Europe`, in that orde
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Student table:
 +--------+-----------+
 | name   | continent |
@@ -48,7 +48,7 @@ Student table:
 | Xi     | Asia      |
 | Jack   | America   |
 +--------+-----------+
-**Output:**
+- **Output:** 
 +---------+------+--------+
 | America | Asia | Europe |
 +---------+------+--------+

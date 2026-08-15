@@ -30,21 +30,21 @@ Determine the maximum number of complete instances of `"balloon"` that can be fo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `text = "nlaebolko"`
-- Output: `1`
+- **Input:** `text = "nlaebolko"`
+- **Output:** `1`
 
 The available letters contain one complete set for `"balloon"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `text = "loonbalxballpoon"`
-- Output: `2`
+- **Input:** `text = "loonbalxballpoon"`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `text = "leetcode"`
-- Output: `0`
+- **Input:** `text = "leetcode"`
+- **Output:** `0`
 
 The required letters cannot all be supplied even once.

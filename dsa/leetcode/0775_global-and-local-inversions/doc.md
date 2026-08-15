@@ -30,20 +30,20 @@ Return `True` if the number of global inversions equals the number of local inve
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,0,2]`
-- Output: `True`
-- Explanation: The only inversion is the adjacent pair `(1,0)`.
+- **Input:** `nums = [1,0,2]`
+- **Output:** `True`
+- **Explanation:** The only inversion is the adjacent pair `(1,0)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,0]`
-- Output: `False`
-- Explanation: `(1,0)` spans two indices and is a nonlocal global inversion.
+- **Input:** `nums = [1,2,0]`
+- **Output:** `False`
+- **Explanation:** `(1,0)` spans two indices and is a nonlocal global inversion.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,0,3,2]`
-- Output: `True`
-- Explanation: Both inversions are disjoint adjacent swaps.
+- **Input:** `nums = [1,0,3,2]`
+- **Output:** `True`
+- **Explanation:** Both inversions are disjoint adjacent swaps.

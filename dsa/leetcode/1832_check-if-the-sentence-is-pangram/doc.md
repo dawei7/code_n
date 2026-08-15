@@ -30,23 +30,23 @@ Repeated occurrences do not change the requirement: a letter is either present o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sentence = "thequickbrownfoxjumpsoverthelazydog"`
-- Output: `true`
+- **Input:** `sentence = "thequickbrownfoxjumpsoverthelazydog"`
+- **Output:** `true`
 
 Every letter occurs at least once, although several letters repeat.
 
-**Example 2**
+#### Example 2
 
-- Input: `sentence = "leetcode"`
-- Output: `false`
+- **Input:** `sentence = "leetcode"`
+- **Output:** `false`
 
 Only a subset of the alphabet occurs.
 
-**Example 3**
+#### Example 3
 
-- Input: `sentence = "abcdefghijklmnopqrstuvwxyz"`
-- Output: `true`
+- **Input:** `sentence = "abcdefghijklmnopqrstuvwxyz"`
+- **Output:** `true`
 
 Each of the 26 letters appears exactly once.

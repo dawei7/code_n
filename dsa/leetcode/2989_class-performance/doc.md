@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/class-performance/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Scores` table stores each uniquely identified student's name and scores
 on three assignments. A student's total score is the sum of that student's
 three assignment values.
@@ -25,6 +27,7 @@ extremes. If several students share either extreme, that does not add rows or
 change the requested difference.
 
 ### Function Contract
+
 **Inputs**
 
 - `Scores(student_id, student_name, assignment1, assignment2, assignment3)`: one row per student
@@ -37,17 +40,18 @@ Return the difference between the maximum and minimum three-assignment row
 totals as `difference_in_score`.
 
 ### Examples
-**Example 1**
 
-- Input: Student totals include a maximum of `230` and a minimum of `119`.
-- Output: `111`
+#### Example 1
 
-**Example 2**
+- **Input:** Student totals include a maximum of `230` and a minimum of `119`.
+- **Output:** `111`
 
-- Input: A single student.
-- Output: `0`
+#### Example 2
 
-**Example 3**
+- **Input:** A single student.
+- **Output:** `0`
 
-- Input: Three students score `(10,0,0)`, `(0,10,0)`, and `(0,0,10)`.
-- Output: `0`, because all row totals equal `10`.
+#### Example 3
+
+- **Input:** Three students score `(10,0,0)`, `(0,10,0)`, and `(0,0,10)`.
+- **Output:** `0`, because all row totals equal `10`.

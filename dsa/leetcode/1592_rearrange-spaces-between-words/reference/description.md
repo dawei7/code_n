@@ -8,8 +8,13 @@ Return *the string after rearranging the spaces*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the string after rearranging the spaces*.
 - **Input:** $text = " this is a sentence "$
 - **Output:** `"this   is   a   sentence"`
 - **Explanation:** There are a total of 9 spaces and 4 words. We can evenly divide the 9 spaces between the words: 9 / (4-1) = 3 spaces.
+
 #### Example 2
 
 - **Input:** $text = " practice makes perfect"$

@@ -35,16 +35,16 @@ Return the largest number of valid non-empty subarrays obtainable after removing
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`, `conflictingPairs = [[2, 3], [1, 4]]`
-- Output: `9`
+- **Input:** `n = 4`, `conflictingPairs = [[2, 3], [1, 4]]`
+- **Output:** `9`
 
 Removing `[2, 3]` leaves only the conflict `[1, 4]`. Of the ten non-empty subarrays of `[1, 2, 3, 4]`, only the complete array contains both remaining conflicting values, so nine are valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`, `conflictingPairs = [[1, 2], [2, 5], [3, 5]]`
-- Output: `12`
+- **Input:** `n = 5`, `conflictingPairs = [[1, 2], [2, 5], [3, 5]]`
+- **Output:** `12`
 
 Removing `[1, 2]` leaves the two conflicts ending at value 5. The maximum valid-subarray count is then twelve.

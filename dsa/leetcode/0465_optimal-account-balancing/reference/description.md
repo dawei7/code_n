@@ -24,16 +24,15 @@ Person identifiers label accounts; they need not form a contiguous range.
 
 - **Input:** $transactions = [[0,1,10],[2,0,5]]$
 - **Output:** `2`
-- **Explanation:**
-Person #0 gave person #1 $10.
+- **Explanation:** Person #0 gave person #1 $10.
 Person #2 gave person #0 $5.
 Two transactions are needed. One way to settle the debt is person #1 pays person #0 and #2 $5 each.
+
 #### Example 2
 
 - **Input:** $transactions = [[0,1,10],[1,0,1],[1,2,5],[2,0,5]]$
 - **Output:** `1`
-- **Explanation:**
-Person #0 gave person #1 $10.
+- **Explanation:** Person #0 gave person #1 $10.
 Person #1 gave person #0 $1.
 Person #1 gave person #2 $5.
 Person #2 gave person #0 $5.

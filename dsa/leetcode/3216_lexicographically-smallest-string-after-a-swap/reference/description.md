@@ -6,35 +6,31 @@ Digits have the same parity if both are odd or both are even. For example, 5 and
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "45320"
+- **Input:** s = "45320"
 
-**Output:** "43520"
+- **Output:** "43520"
 
-**Explanation: **
+- **Explanation:** $s[1] = '5'$ and $s[2] = '3'$ both have the same parity, and swapping them results in the lexicographically smallest string.
 
-$s[1] = '5'$ and $s[2] = '3'$ both have the same parity, and swapping them results in the lexicographically smallest string.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "001"
+- **Input:** s = "001"
 
-**Output:** "001"
+- **Output:** "001"
 
-**Explanation:**
-
-There is no need to perform a swap because `s` is already the lexicographically smallest.
-
-</div>
+- **Explanation:** There is no need to perform a swap because `s` is already the lexicographically smallest.
 
 ### 4. Constraints
 

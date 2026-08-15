@@ -8,8 +8,13 @@ Return *a list of integers representing the size of these parts*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,10 +22,10 @@ Return *a list of integers representing the size of these parts*.
 
 - **Input:** `s = "ababcbacadefegdehijhklij"`
 - **Output:** `[9,7,8]`
-- **Explanation:**
-The partition is "ababcbaca", "defegde", "hijhklij".
+- **Explanation:** The partition is "ababcbaca", "defegde", "hijhklij".
 This is a partition so that each letter appears in at most one part.
 A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits s into less parts.
+
 #### Example 2
 
 - **Input:** `s = "eccbbbbdec"`

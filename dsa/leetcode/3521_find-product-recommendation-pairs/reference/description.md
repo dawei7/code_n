@@ -42,7 +42,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 ProductPurchases table:
@@ -99,35 +98,29 @@ ProductInfo table:
 
 - **Product pair (101, 102):**
 
-		<li>Purchased by users 1, 2, and 4 (3 customers)
+		- Purchased by users 1, 2, and 4 (3 customers)
 
 - Product 101 is in Electronics category
 
 - Product 102 is in Books category
 
-	</li>
 - **Product pair (101, 103):**
 
-		<li>Purchased by users 1, 3, and 4 (3 customers)
+		- Purchased by users 1, 3, and 4 (3 customers)
 
 - Product 101 is in Electronics category
 
 - Product 103 is in Clothing category
 
-	</li>
 - **Product pair (102, 104):**
 
-		<li>Purchased by users 2, 4, and 5 (3 customers)
+		- Purchased by users 2, 4, and 5 (3 customers)
 
 - Product 102 is in Books category
 
 - Product 104 is in Kitchen category
 
-	</li>
-
 The result is ordered by customer_count in descending order. For pairs with the same customer_count, they are ordered by product1_id and then product2_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

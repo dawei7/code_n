@@ -16,6 +16,7 @@ You may assume the array is the output of `JSON.parse`.
 - **Input:** `nums = [null, {}, 3]`
 - **Output:** `3`
 - **Explanation:** Calling nums.last() should return the last element: 3.
+
 #### Example 2
 
 - **Input:** `nums = []`

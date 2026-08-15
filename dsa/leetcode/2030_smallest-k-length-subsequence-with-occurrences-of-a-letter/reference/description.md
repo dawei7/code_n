@@ -10,8 +10,16 @@ A string `a` is **lexicographically smaller** than a string `b` if in the first 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+- `letter`: Input parameter (`str`).
+- `repetition`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -25,6 +33,7 @@ A string `a` is **lexicographically smaller** than a string `b` if in the first 
 - "let" (from "<u>**l**</u>e<u>**et**</u>")
 - "eet" (from "l<u>**eet**</u>")
 The lexicographically smallest subsequence among them is "eet".
+
 #### Example 2
 
 ![example-2](images/smallest-k-length-subsequence.png)
@@ -32,6 +41,7 @@ The lexicographically smallest subsequence among them is "eet".
 - **Input:** `s = "leetcode", k = 4, letter = "e", repetition = 2`
 - **Output:** `"ecde"`
 - **Explanation:** "ecde" is the lexicographically smallest subsequence of length 4 that has the letter "e" appear at least 2 times.
+
 #### Example 3
 
 - **Input:** `s = "bb", k = 2, letter = "b", repetition = 2`

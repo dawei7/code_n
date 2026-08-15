@@ -88,7 +88,7 @@ Return columns $\text{customer}_{id}$, $\text{product}_{id}$, and $\text{product
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +-------------+-------+
 | customer_id | name  |
@@ -123,7 +123,7 @@ Products table:
 | 3          | screen       | 600   |
 | 4          | hard disk    | 450   |
 +------------+--------------+-------+
-**Output:**
+- **Output:** 
 +-------------+------------+--------------+
 | customer_id | product_id | product_name |
 +-------------+------------+--------------+
@@ -134,8 +134,7 @@ Products table:
 | 3           | 3          | screen       |
 | 4           | 1          | keyboard     |
 +-------------+------------+--------------+
-**Explanation:**
-Alice (customer 1) ordered the mouse three times and the keyboard one time, so the mouse is the most frequently ordered product for them.
+- **Explanation:** Alice (customer 1) ordered the mouse three times and the keyboard one time, so the mouse is the most frequently ordered product for them.
 Bob (customer 2) ordered the keyboard, the mouse, and the screen one time, so those are the most frequently ordered products for them.
 Tom (customer 3) only ordered the screen (two times), so that is the most frequently ordered product for them.
 Jerry (customer 4) only ordered the keyboard (one time), so that is the most frequently ordered product for them.

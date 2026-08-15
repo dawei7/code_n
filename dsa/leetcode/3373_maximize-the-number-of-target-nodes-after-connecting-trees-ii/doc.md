@@ -33,18 +33,18 @@ Both $n$ and $m$ are between $2$ and $10^5$, inclusive, and each edge list descr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges1 = [[0,1],[0,2],[2,3],[2,4]]`, `edges2 = [[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]]`
-- Output: `[8,7,7,8,8]`
+- **Input:** `edges1 = [[0,1],[0,2],[2,3],[2,4]]`, `edges2 = [[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]]`
+- **Output:** `[8,7,7,8,8]`
 
-**Example 2**
+#### Example 2
 
-- Input: `edges1 = [[0,1],[0,2],[0,3],[0,4]]`, `edges2 = [[0,1],[1,2],[2,3]]`
-- Output: `[3,6,6,6,6]`
+- **Input:** `edges1 = [[0,1],[0,2],[0,3],[0,4]]`, `edges2 = [[0,1],[1,2],[2,3]]`
+- **Output:** `[3,6,6,6,6]`
 
-**Example 3**
+#### Example 3
 
-- Input: `edges1 = [[0,1]]`, `edges2 = [[0,1]]`
-- Output: `[2,2]`
-- Explanation: Each tree has one node in each bipartition class, so every query can target one node from each tree.
+- **Input:** `edges1 = [[0,1]]`, `edges2 = [[0,1]]`
+- **Output:** `[2,2]`
+- **Explanation:** Each tree has one node in each bipartition class, so every query can target one node from each tree.

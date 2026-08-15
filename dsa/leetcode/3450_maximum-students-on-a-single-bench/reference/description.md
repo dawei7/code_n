@@ -16,12 +16,11 @@ Return the **maximum** number of *unique* students sitting on any single bench. 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** students = [[1,2],[2,2],[3,3],[1,3],[2,3]]
+- **Input:** students = [[1,2],[2,2],[3,3],[1,3],[2,3]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Bench 2 has two unique students: `[1, 2]`.
 
@@ -29,15 +28,13 @@ Return the **maximum** number of *unique* students sitting on any single bench. 
 
 - The maximum number of unique students on a single bench is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** students = [[1,1],[2,1],[3,1],[4,2],[5,2]]
+- **Input:** students = [[1,1],[2,1],[3,1],[4,2],[5,2]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Bench 1 has three unique students: `[1, 2, 3]`.
 
@@ -45,31 +42,25 @@ Return the **maximum** number of *unique* students sitting on any single bench. 
 
 - The maximum number of unique students on a single bench is 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** students = [[1,1],[1,1]]
+- **Input:** students = [[1,1],[1,1]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The maximum number of unique students on a single bench is 1.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** students = []
+- **Input:** students = []
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - Since no students are present, the output is 0.
-
-</div>
 
 ### 5. Constraints
 

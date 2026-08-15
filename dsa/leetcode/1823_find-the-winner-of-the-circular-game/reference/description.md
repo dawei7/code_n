@@ -18,8 +18,14 @@ Given the number of friends, `n`, and an integer `k`, return *the winner of the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -39,6 +45,7 @@ Given the number of friends, `n`, and an integer `k`, return *the winner of the 
 7) Friend 1 leaves the circle. Next start is friend 3.
 8) Count 2 friends clockwise, which are friends 3 and 5.
 9) Friend 5 leaves the circle. Only friend 3 is left, so they are the winner.
+
 #### Example 2
 
 - **Input:** $n = 6, k = 5$

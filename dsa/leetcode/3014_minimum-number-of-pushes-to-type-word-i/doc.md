@@ -34,20 +34,20 @@ The source constraints guarantee $1 \le \lvert\texttt{word}\rvert \le 26$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "abcde"`
-- Output: `5`
-- Explanation: Each of the five letters can occupy the first position on a different key, so every letter costs one push.
+- **Input:** `word = "abcde"`
+- **Output:** `5`
+- **Explanation:** Each of the five letters can occupy the first position on a different key, so every letter costs one push.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "xycdefghij"`
-- Output: `12`
-- Explanation: Eight letters use the eight one-push positions. The remaining two letters each use a two-push position, giving $8+2+2=12$.
+- **Input:** `word = "xycdefghij"`
+- **Output:** `12`
+- **Explanation:** Eight letters use the eight one-push positions. The remaining two letters each use a two-push position, giving $8+2+2=12$.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "abcdefghijklmnop"`
-- Output: `24`
-- Explanation: The first eight letters cost one push each and the other eight cost two pushes each.
+- **Input:** `word = "abcdefghijklmnop"`
+- **Output:** `24`
+- **Explanation:** The first eight letters cost one push each and the other eight cost two pushes each.

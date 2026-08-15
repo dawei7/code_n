@@ -21,6 +21,7 @@ Return the ascending-order array containing $f(\text{nums}[i])$ for every input 
 
 - **Input:** `nums = [-4,-2,2,4], a = 1, b = 3, c = 5`
 - **Output:** `[3,9,15,33]`
+
 #### Example 2
 
 - **Input:** `nums = [-4,-2,2,4], a = -1, b = 3, c = 5`

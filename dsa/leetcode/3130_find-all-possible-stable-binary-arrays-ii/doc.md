@@ -34,20 +34,20 @@ Return the number of stable binary arrays modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `zero = 1, one = 1, limit = 2`
-- Output: `2`
-- Explanation: `[0,1]` and `[1,0]` are the two possible arrangements, and both satisfy the run bound.
+- **Input:** `zero = 1, one = 1, limit = 2`
+- **Output:** `2`
+- **Explanation:** `[0,1]` and `[1,0]` are the two possible arrangements, and both satisfy the run bound.
 
-**Example 2**
+#### Example 2
 
-- Input: `zero = 1, one = 2, limit = 1`
-- Output: `1`
-- Explanation: The limit forces alternating values, leaving `[1,0,1]` as the only valid array.
+- **Input:** `zero = 1, one = 2, limit = 1`
+- **Output:** `1`
+- **Explanation:** The limit forces alternating values, leaving `[1,0,1]` as the only valid array.
 
-**Example 3**
+#### Example 3
 
-- Input: `zero = 3, one = 3, limit = 2`
-- Output: `14`
-- Explanation: Fourteen arrangements contain three of each value while avoiding three consecutive equal values.
+- **Input:** `zero = 3, one = 3, limit = 2`
+- **Output:** `14`
+- **Explanation:** Fourteen arrangements contain three of each value while avoiding three consecutive equal values.

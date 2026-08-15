@@ -8,8 +8,10 @@ Return *the *`head`* of the modified linked list.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `removeNodes(head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -23,6 +25,7 @@ Return *the *`head`* of the modified linked list.*
 - Node 13 is to the right of node 5.
 - Node 13 is to the right of node 2.
 - Node 8 is to the right of node 3.
+
 #### Example 2
 
 - **Input:** $head = [1,1,1,1]$

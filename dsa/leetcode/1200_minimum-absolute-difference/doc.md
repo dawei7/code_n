@@ -30,19 +30,19 @@ Return every pair `[a,b]` that attains that minimum. Each pair must use values f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [4,2,1,3]`
-- Output: `[[1,2],[2,3],[3,4]]`
+- **Input:** `arr = [4,2,1,3]`
+- **Output:** `[[1,2],[2,3],[3,4]]`
 
 The minimum difference is 1, attained by all three adjacent values after sorting.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,3,6,10,15]`
-- Output: `[[1,3]]`
+- **Input:** `arr = [1,3,6,10,15]`
+- **Output:** `[[1,3]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [3,8,-10,23,19,-4,-14,27]`
-- Output: `[[-14,-10],[19,23],[23,27]]`
+- **Input:** `arr = [3,8,-10,23,19,-4,-14,27]`
+- **Output:** `[[-14,-10],[19,23],[23,27]]`

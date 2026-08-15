@@ -10,8 +10,14 @@ A **subsequence** of an array is a new array generated from the original array b
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`List[int]`).
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ A **subsequence** of an array is a new array generated from the original array b
 - **Input:** $target = [5,1,3], arr = [9,4,2,3,4]$
 - **Output:** `2`
 - **Explanation:** You can add 5 and 1 in such a way that makes arr = [<u>5</u>,9,4,<u>1</u>,2,3,4], then target will be a subsequence of arr.
+
 #### Example 2
 
 - **Input:** $target = [6,4,8,1,3,2], arr = [4,7,6,2,3,8,6,1]$

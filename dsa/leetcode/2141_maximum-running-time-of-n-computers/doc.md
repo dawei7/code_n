@@ -43,16 +43,16 @@ continuously powered under the replacement rules.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, batteries = [3,3,3]`
-- Output: `4`
-- Explanation: Swapping the three batteries between two computers uses eight
+- **Input:** `n = 2, batteries = [3,3,3]`
+- **Output:** `4`
+- **Explanation:** Swapping the three batteries between two computers uses eight
   of their nine total minutes over four simultaneous minutes.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, batteries = [1,1,1,1]`
-- Output: `2`
-- Explanation: Two batteries power the computers for the first minute and the
+- **Input:** `n = 2, batteries = [1,1,1,1]`
+- **Output:** `2`
+- **Explanation:** Two batteries power the computers for the first minute and the
   other two power them for the second.

@@ -28,40 +28,27 @@ Return `-1` when no eligible box exists.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** capacity = [1,5,3,7], itemSize = 3
+- **Input:** capacity = [1,5,3,7], itemSize = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The box at index 2 has a capacity of 3, which is the minimum capacity that can store the item. Thus, the answer is 2.
 
-The box at index 2 has a capacity of 3, which is the minimum capacity that can store the item. Thus, the answer is 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** capacity = [3,5,4,3], itemSize = 2
+- **Input:** capacity = [3,5,4,3], itemSize = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The minimum capacity that can store the item is 3, and it appears at indices 0 and 3. Thus, the answer is 0.
 
-The minimum capacity that can store the item is 3, and it appears at indices 0 and 3. Thus, the answer is 0.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** capacity = [4], itemSize = 5
+- **Input:** capacity = [4], itemSize = 5
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-No box has enough capacity to store the item, so the answer is -1.
-
-</div>
+- **Explanation:** No box has enough capacity to store the item, so the answer is -1.
 
 ### 4. Constraints
 

@@ -21,6 +21,7 @@ There are two paths from node 0 to node 3 (a red node), which are 0->1->2->3 and
 The minimum of them is 4.
 
 ![](images/image_2023-06-13_16-34-38.png)
+
 #### Example 2
 
 - **Input:** $n = 5, edges = [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], s = 1, marked = [0,4]$
@@ -30,6 +31,7 @@ There is one path from node 1 to node 4 (a red node), which is 1->3->4, and has 
 So the answer is 3.
 
 ![](images/image_2023-06-13_16-35-13.png)
+
 #### Example 3
 
 - **Input:** $n = 4, edges = [[0,1,1],[1,2,3],[2,3,2]], s = 3, marked = [0,1]$

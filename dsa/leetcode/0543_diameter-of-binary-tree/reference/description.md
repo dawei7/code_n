@@ -8,8 +8,10 @@ The **length** of a path between two nodes is represented by the number of edges
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `diameterOfBinaryTree(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -20,6 +22,7 @@ The **length** of a path between two nodes is represented by the number of edges
 - **Input:** `root = [1,2,3,4,5]`
 - **Output:** `3`
 - **Explanation:** 3 is the length of the path [4,2,1,3] or [5,2,1,3].
+
 #### Example 2
 
 - **Input:** `root = [1,2]`

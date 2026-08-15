@@ -31,14 +31,14 @@ Process the queries in their given order. For query `i`, first perform the execu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4], queries = [[1, 0], [-3, 1], [-4, 0], [2, 3]]`
-- Output: `[8, 6, 2, 4]`
-- Explanation: the successive arrays are `[2, 2, 3, 4]`, `[2, -1, 3, 4]`, `[-2, -1, 3, 4]`, and `[-2, -1, 3, 6]`.
+- **Input:** `nums = [1, 2, 3, 4], queries = [[1, 0], [-3, 1], [-4, 0], [2, 3]]`
+- **Output:** `[8, 6, 2, 4]`
+- **Explanation:** the successive arrays are `[2, 2, 3, 4]`, `[2, -1, 3, 4]`, `[-2, -1, 3, 4]`, and `[-2, -1, 3, 6]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1], queries = [[4, 0]]`
-- Output: `[0]`
-- Explanation: the updated value is `5`, which is odd.
+- **Input:** `nums = [1], queries = [[4, 0]]`
+- **Output:** `[0]`
+- **Explanation:** the updated value is `5`, which is odd.

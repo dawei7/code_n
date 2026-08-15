@@ -6,47 +6,39 @@ You are given an array of integers `nums`. Return `true` if `nums` is a **specia
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** There is only one element. So the answer is `true`.
 
-There is only one element. So the answer is `true`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,4]
+- **Input:** nums = [2,1,4]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** There is only two pairs: `(2,1)` and `(1,4)`, and both of them contain numbers with different parity. So the answer is `true`.
 
-There is only two pairs: `(2,1)` and `(1,4)`, and both of them contain numbers with different parity. So the answer is `true`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,3,1,6]
+- **Input:** nums = [4,3,1,6]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-$\text{nums}[1]$ and $\text{nums}[2]$ are both odd. So the answer is `false`.
-
-</div>
+- **Explanation:** $\text{nums}[1]$ and $\text{nums}[2]$ are both odd. So the answer is `false`.
 
 ### 4. Constraints
 

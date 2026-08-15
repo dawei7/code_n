@@ -29,14 +29,14 @@ Return the sum of the $n$ variable-length subarray sums.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,1]`
-- Output: `11`
-- Explanation: The defined subarrays are `[2]`, `[2,3]`, and `[3,1]`, whose sums are `2`, `5`, and `4`.
+- **Input:** `nums = [2,3,1]`
+- **Output:** `11`
+- **Explanation:** The defined subarrays are `[2]`, `[2,3]`, and `[3,1]`, whose sums are `2`, `5`, and `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,1,1,2]`
-- Output: `13`
-- Explanation: The four subarray sums are `3`, `4`, `2`, and `4`.
+- **Input:** `nums = [3,1,1,2]`
+- **Output:** `13`
+- **Explanation:** The four subarray sums are `3`, `4`, `2`, and `4`.

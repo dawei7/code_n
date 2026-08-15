@@ -12,8 +12,15 @@ Return *a **boolean array** *`result`,* where each *$\text{result}[j]$* is *`tru
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `restrictions`: Input parameter (`List[List[int]]`).
+- `requests`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Note
 
@@ -25,21 +32,23 @@ If $u_{j}$ and $v_{j}$ are already direct friends, the request is still **succes
 
 - **Input:** $n = 3, restrictions = [[0,1]], requests = [[0,2],[2,1]]$
 - **Output:** `[true,false]`
-- **Explanation:**
+- **Explanation:** 
 **Request 0: Person 0 and person 2 can be friends, so they become direct friends.
 Request 1: Person 2 and person 1 cannot be friends since person 0 and person 1 would be indirect friends (1--2--0).
+
 #### Example 2
 
 - **Input:** $n = 3, restrictions = [[0,1]], requests = [[1,2],[0,2]]$
 - **Output:** `[true,false]`
-- **Explanation:**
+- **Explanation:** 
 **Request 0: Person 1 and person 2 can be friends, so they become direct friends.
 Request 1: Person 0 and person 2 cannot be friends since person 0 and person 1 would be indirect friends (0--2--1).
+
 #### Example 3
 
 - **Input:** $n = 5, restrictions = [[0,1],[1,2],[2,3]], requests = [[0,4],[1,2],[3,1],[3,4]]$
 - **Output:** `[true,false,true,false]`
-- **Explanation:**
+- **Explanation:** 
 **Request 0: Person 0 and person 4 can be friends, so they become direct friends.
 Request 1: Person 1 and person 2 cannot be friends since they are directly restricted.
 Request 2: Person 3 and person 1 can be friends, so they become direct friends.

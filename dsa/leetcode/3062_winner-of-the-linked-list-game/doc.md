@@ -34,20 +34,20 @@ Return `"Even"` if the Even team earns more points, `"Odd"` if the Odd team earn
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [2, 1]`
-- Output: `"Even"`
-- Explanation: The even-indexed value `2` is larger than the odd-indexed value `1`, so Even wins the only point.
+- **Input:** `head = [2, 1]`
+- **Output:** `"Even"`
+- **Explanation:** The even-indexed value `2` is larger than the odd-indexed value `1`, so Even wins the only point.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [2, 5, 4, 7, 20, 5]`
-- Output: `"Odd"`
-- Explanation: Odd wins the first two pairs, while Even wins the last pair, giving Odd the higher score.
+- **Input:** `head = [2, 5, 4, 7, 20, 5]`
+- **Output:** `"Odd"`
+- **Explanation:** Odd wins the first two pairs, while Even wins the last pair, giving Odd the higher score.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [4, 5, 2, 1]`
-- Output: `"Tie"`
-- Explanation: Odd wins the first pair and Even wins the second.
+- **Input:** `head = [4, 5, 2, 1]`
+- **Output:** `"Tie"`
+- **Explanation:** Odd wins the first pair and Even wins the second.

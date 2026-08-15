@@ -29,12 +29,11 @@ for every integer $i$ satisfying $0\le i<N-1$. Equality with $2$ is allowed.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "132"
+- **Input:** s = "132"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - The absolute difference between digits at $s[0]$ and $s[1]$ is $abs(1 - 3) = 2$.
 
@@ -42,23 +41,19 @@ for every integer $i$ satisfying $0\le i<N-1$. Equality with $2$ is allowed.
 
 - Since both differences are at most 2, the answer is true.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "129"
+- **Input:** s = "129"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - The absolute difference between digits at $s[0]$ and $s[1]$ is $abs(1 - 2) = 1$.
 
 - The absolute difference between digits at $s[1]$ and $s[2]$ is $abs(2 - 9) = 7$, which is greater than 2.
 
 - Therefore, the answer is false.
-
-</div>
 
 ### 4. Constraints
 

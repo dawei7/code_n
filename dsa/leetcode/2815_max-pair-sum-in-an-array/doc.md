@@ -32,20 +32,20 @@ Return the maximum sum of two distinct-index values having the same largest deci
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [112, 131, 411]`
-- Output: `-1`
-- Explanation: Their largest digits are `2`, `3`, and `4`, so none can pair.
+- **Input:** `nums = [112, 131, 411]`
+- **Output:** `-1`
+- **Explanation:** Their largest digits are `2`, `3`, and `4`, so none can pair.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2536, 1613, 3366, 162]`
-- Output: `5902`
-- Explanation: All have largest digit `6`; the two greatest values sum to `2536 + 3366`.
+- **Input:** `nums = [2536, 1613, 3366, 162]`
+- **Output:** `5902`
+- **Explanation:** All have largest digit `6`; the two greatest values sum to `2536 + 3366`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [51, 71, 17, 24, 42]`
-- Output: `88`
-- Explanation: The best eligible pair is `71` and `17`, both with largest digit `7`.
+- **Input:** `nums = [51, 71, 17, 24, 42]`
+- **Output:** `88`
+- **Explanation:** The best eligible pair is `71` and `17`, both with largest digit `7`.

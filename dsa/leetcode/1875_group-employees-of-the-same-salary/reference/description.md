@@ -41,7 +41,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +-------------+---------+--------+
 | employee_id | name    | salary |
@@ -52,7 +52,7 @@ Employees table:
 | 8           | Juan    | 6100   |
 | 9           | Kannon  | 7400   |
 +-------------+---------+--------+
-**Output:**
+- **Output:** 
 +-------------+---------+--------+---------+
 | employee_id | name    | salary | team_id |
 +-------------+---------+--------+---------+
@@ -61,8 +61,7 @@ Employees table:
 | 7           | Addilyn | 7400   | 2       |
 | 9           | Kannon  | 7400   | 2       |
 +-------------+---------+--------+---------+
-**Explanation:**
-Meir (employee_id=2) and Michael (employee_id=3) are in the same team because they have the same salary of 3000.
+- **Explanation:** Meir (employee_id=2) and Michael (employee_id=3) are in the same team because they have the same salary of 3000.
 Addilyn (employee_id=7) and Kannon (employee_id=9) are in the same team because they have the same salary of 7400.
 Juan (employee_id=8) is not included in any team because their salary of 6100 is unique (i.e. no other employee has the same salary).
 The team IDs are assigned as follows (based on salary ranking, lowest first):

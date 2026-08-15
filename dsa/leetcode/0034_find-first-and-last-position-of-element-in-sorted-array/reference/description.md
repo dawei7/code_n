@@ -23,10 +23,12 @@ Return `[first, last]`, where `first` and `last` are the target's earliest and l
 
 - **Input:** `nums = [5,7,7,8,8,10], target = 8`
 - **Output:** `[3,4]`
+
 #### Example 2
 
 - **Input:** `nums = [5,7,7,8,8,10], target = 6`
 - **Output:** `[-1,-1]`
+
 #### Example 3
 
 - **Input:** `nums = [], target = 0`

@@ -30,17 +30,17 @@ A two-element integer list `[row_count, column_count]`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: a `players` DataFrame containing 10 rows and the five columns `player_id`, `name`, `age`, `position`, and `team`.
-- Output: `[10, 5]`
+- **Input:** a `players` DataFrame containing 10 rows and the five columns `player_id`, `name`, `age`, `position`, and `team`.
+- **Output:** `[10, 5]`
 
-**Example 2**
+#### Example 2
 
-- Input: a one-row `players` DataFrame with the same five columns.
-- Output: `[1, 5]`
+- **Input:** a one-row `players` DataFrame with the same five columns.
+- **Output:** `[1, 5]`
 
-**Example 3**
+#### Example 3
 
-- Input: a three-row `players` DataFrame with the same five columns.
-- Output: `[3, 5]`
+- **Input:** a three-row `players` DataFrame with the same five columns.
+- **Output:** `[3, 5]`

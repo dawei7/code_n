@@ -12,8 +12,11 @@ Implement the class `SubrectangleQueries` which receives a `rows x cols` rectang
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `SubrectangleQueries(rectangle: List[List[int]])`: Initializes the data structure.
+- `updateSubrectangle(row1: int, col1: int, row2: int, col2: int, newValue: int)`: Executes operation.
+- `getValue(row: int, col: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -50,6 +53,7 @@ subrectangleQueries.updateSubrectangle(3, 0, 3, 2, 10);
 subrectangleQueries.getValue(3, 1); // return 10
 subrectangleQueries.getValue(0, 2); // return 5
 ```
+
 #### Example 2
 
 ```

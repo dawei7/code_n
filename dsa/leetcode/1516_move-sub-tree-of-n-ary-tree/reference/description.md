@@ -44,6 +44,7 @@ Return the root `Node` of the adjusted N-ary tree after detaching `p` and append
 - **Output:** `[1,null,2,3,4,null,5,null,6,null,7,8]`
 - **Explanation:** This example follows the second case as node p is in the sub-tree of node q. We move node p with its sub-tree to be a direct child of node q.
 Notice that node 4 is the last child of node 1.
+
 #### Example 2
 
 ![](images/move_e2.jpg)
@@ -51,6 +52,7 @@ Notice that node 4 is the last child of node 1.
 - **Input:** `root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 7, q = 4`
 - **Output:** `[1,null,2,3,null,4,5,null,6,null,7,8]`
 - **Explanation:** Node 7 is already a direct child of node 4. We don't change anything.
+
 #### Example 3
 
 ![](images/move_e3.jpg)
@@ -58,6 +60,7 @@ Notice that node 4 is the last child of node 1.
 - **Input:** `root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 3, q = 8`
 - **Output:** `[1,null,2,null,4,5,null,7,8,null,null,null,3,null,6]`
 - **Explanation:** This example follows case 3 because node p is not in the sub-tree of node q and vice-versa. We can move node 3 with its sub-tree and make it as node 8's child.
+
 #### Example 4
 
 ![](images/untitled-diagramdrawio.png)

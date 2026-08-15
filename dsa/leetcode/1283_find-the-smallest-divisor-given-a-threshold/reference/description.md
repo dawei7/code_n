@@ -8,8 +8,14 @@ The test cases are generated so that there will be an answer.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `threshold`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ The test cases are generated so that there will be an answer.
 - **Output:** `5`
 - **Explanation:** We can get a sum to 17 (1+2+5+9) if the divisor is 1.
 If the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the sum will be 5 (1+1+1+2).
+
 #### Example 2
 
 - **Input:** `nums = [44,22,33,11,1], threshold = 5`

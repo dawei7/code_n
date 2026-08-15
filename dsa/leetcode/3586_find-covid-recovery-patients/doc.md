@@ -33,11 +33,11 @@ Return the columns `patient_id`, `patient_name`, `age`, and `recovery_time` for 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Given patients Alice Smith, Bob Johnson, Carol Davis, David Wilson, and Emma Brown, Alice's first positive-to-later-negative interval is 10 days, Bob's is 11 days, and Carol's is 10 days. David has no later negative, while Emma has no positive.
 
 - Output rows: `(1, "Alice Smith", 28, 10)`, `(3, "Carol Davis", 42, 10)`, `(2, "Bob Johnson", 35, 11)`
-- Explanation: The two 10-day recoveries appear first and are tied by ascending patient name.
+- **Explanation:** The two 10-day recoveries appear first and are tied by ascending patient name.
 
 ---

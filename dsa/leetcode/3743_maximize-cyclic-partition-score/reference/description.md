@@ -33,12 +33,11 @@ Return the **maximum** possible **score** among all cyclic partitions.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,3], k = 2
+- **Input:** nums = [1,2,3,3], k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Partition `nums` into `[2, 3]` and `[3, 1]` (wrapped around).
 
@@ -48,15 +47,13 @@ Return the **maximum** possible **score** among all cyclic partitions.
 
 - The score is $1 + 2 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,3], k = 1
+- **Input:** nums = [1,2,3,3], k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Partition `nums` into `[1, 2, 3, 3]`.
 
@@ -64,19 +61,13 @@ Return the **maximum** possible **score** among all cyclic partitions.
 
 - The score is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,3], k = 4
+- **Input:** nums = [1,2,3,3], k = 4
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Identical to Example 1, we partition `nums` into `[2, 3]` and `[3, 1]`. Note that `nums` may be partitioned into fewer than `k` subarrays.
-
-</div>
+- **Explanation:** Identical to Example 1, we partition `nums` into `[2, 3]` and `[3, 1]`. Note that `nums` may be partitioned into fewer than `k` subarrays.
 
 ### 5. Constraints
 

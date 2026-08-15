@@ -10,8 +10,13 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - "a<u>**b**</u>a" -> "b"
 - "ab<u>**a**</u>" -> "a"
 - "<u>**aba**</u>" -> "aba"
+
 #### Example 2
 
 - **Input:** $word = "aabb"$
@@ -38,6 +44,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - "aa<u>**b**</u>b" -> "b"
 - "aa<u>**bb**</u>" -> "bb"
 - "aab<u>**b**</u>" -> "b"
+
 #### Example 3
 
 - **Input:** $word = "he"$

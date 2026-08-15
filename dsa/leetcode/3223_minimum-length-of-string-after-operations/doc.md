@@ -30,20 +30,20 @@ Return the minimum achievable length after applying the operation any number of 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abaacbcbb"`
-- Output: `5`
-- Explanation: The counts of `a`, `b`, and `c` reduce respectively to `1`, `2`, and `2`.
+- **Input:** `s = "abaacbcbb"`
+- **Output:** `5`
+- **Explanation:** The counts of `a`, `b`, and `c` reduce respectively to `1`, `2`, and `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aa"`
-- Output: `2`
-- Explanation: No occurrence has an equal character on both sides.
+- **Input:** `s = "aa"`
+- **Output:** `2`
+- **Explanation:** No occurrence has an equal character on both sides.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaaa"`
-- Output: `1`
-- Explanation: Two operations remove four copies while preserving one middle copy.
+- **Input:** `s = "aaaaa"`
+- **Output:** `1`
+- **Explanation:** Two operations remove four copies while preserving one middle copy.

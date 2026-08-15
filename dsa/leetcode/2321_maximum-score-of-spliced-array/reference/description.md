@@ -16,8 +16,14 @@ A **subarray** is a contiguous sequence of elements within an array. `arr[left..
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,12 +33,14 @@ A **subarray** is a contiguous sequence of elements within an array. `arr[left..
 - **Output:** `210`
 - **Explanation:** Choosing left = 1 and right = 1, we have nums1 = [60,<u>**90**</u>,60] and nums2 = [10,<u>**60**</u>,10].
 The score is max(sum(nums1), sum(nums2)) = max(210, 80) = 210.
+
 #### Example 2
 
 - **Input:** $nums1 = [20,40,20,70,30], nums2 = [50,20,50,40,20]$
 - **Output:** `220`
 - **Explanation:** Choosing left = 3, right = 4, we have nums1 = [20,40,20,<u>**40,20**</u>] and nums2 = [50,20,50,<u>**70,30**</u>].
 The score is max(sum(nums1), sum(nums2)) = max(140, 220) = 220.
+
 #### Example 3
 
 - **Input:** $nums1 = [7,11,13], nums2 = [1,1,1]$

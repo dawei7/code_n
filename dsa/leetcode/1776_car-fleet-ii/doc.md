@@ -32,20 +32,20 @@ Return an array of $n$ floating-point collision times. Entry $i$ is car $i$'s fi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `cars = [[1,2],[2,1],[4,3],[7,2]]`
-- Output: `[1.0,-1.0,3.0,-1.0]`
-- Explanation: Cars `0` and `2` catch their respective next cars after one and three seconds.
+- **Input:** `cars = [[1,2],[2,1],[4,3],[7,2]]`
+- **Output:** `[1.0,-1.0,3.0,-1.0]`
+- **Explanation:** Cars `0` and `2` catch their respective next cars after one and three seconds.
 
-**Example 2**
+#### Example 2
 
-- Input: `cars = [[3,4],[5,4],[6,3],[9,1]]`
-- Output: `[2.0,1.0,1.5,-1.0]`
-- Explanation: The collision schedule accounts for fleets that form before a car farther back arrives.
+- **Input:** `cars = [[3,4],[5,4],[6,3],[9,1]]`
+- **Output:** `[2.0,1.0,1.5,-1.0]`
+- **Explanation:** The collision schedule accounts for fleets that form before a car farther back arrives.
 
-**Example 3**
+#### Example 3
 
-- Input: `cars = [[1,1],[2,2],[3,3]]`
-- Output: `[-1.0,-1.0,-1.0]`
-- Explanation: Every car ahead is faster, so no car catches another.
+- **Input:** `cars = [[1,1],[2,2],[3,3]]`
+- **Output:** `[-1.0,-1.0,-1.0]`
+- **Explanation:** Every car ahead is faster, so no car catches another.

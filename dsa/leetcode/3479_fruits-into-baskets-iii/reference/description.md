@@ -14,19 +14,24 @@ Return the number of fruit types that remain unplaced after all possible allocat
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `fruits`: Input parameter (`List[int]`).
+- `baskets`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** fruits = [4,2,5], baskets = [3,5,4]
+- **Input:** fruits = [4,2,5], baskets = [3,5,4]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{fruits}[0] = 4$ is placed in $\text{baskets}[1] = 5$.
 
@@ -36,15 +41,13 @@ Return the number of fruit types that remain unplaced after all possible allocat
 
 Since one fruit type remains unplaced, we return 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** fruits = [3,6,1], baskets = [6,4,7]
+- **Input:** fruits = [3,6,1], baskets = [6,4,7]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{fruits}[0] = 3$ is placed in $\text{baskets}[0] = 6$.
 
@@ -53,8 +56,6 @@ Since one fruit type remains unplaced, we return 1.
 - $\text{fruits}[2] = 1$ is placed in $\text{baskets}[1] = 4$.
 
 Since all fruits are successfully placed, we return 0.
-
-</div>
 
 ### 4. Constraints
 

@@ -24,14 +24,11 @@ Return the minimum sum of all positive increment values `x` needed to reach an a
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,3,2,1]
+- **Input:** nums = [3,3,2,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One optimal set of operations:
+- **Explanation:** One optimal set of operations:
 
 - Choose subarray `[2..3]` and add $x = 1$ resulting in `[3, 3, 3, 2]`
 
@@ -39,23 +36,17 @@ One optimal set of operations:
 
 The array becomes non-decreasing, and the total sum of chosen `x` values is $1 + 1 = 2$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,1,2,3]
+- **Input:** nums = [5,1,2,3]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-One optimal set of operations:
+- **Explanation:** One optimal set of operations:
 
 - Choose subarray `[1..3]` and add $x = 4$ resulting in `[5, 5, 6, 7]`
 
 The array becomes non-decreasing, and the total sum of chosen `x` values is `4`.
-
-</div>
 
 ### 4. Constraints
 

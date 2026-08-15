@@ -30,14 +30,14 @@ Return the sum of $\max(G)^2 \min(G)$ over every non-empty index subset $G$, red
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,4]`
-- Output: `141`
-- Explanation: The seven non-empty groups contribute 8, 1, 64, 4, 32, 16, and 16.
+- **Input:** `nums = [2,1,4]`
+- **Output:** `141`
+- **Explanation:** The seven non-empty groups contribute 8, 1, 64, 4, 32, 16, and 16.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,1]`
-- Output: `7`
-- Explanation: There are seven non-empty index subsets, and every one has power 1.
+- **Input:** `nums = [1,1,1]`
+- **Output:** `7`
+- **Explanation:** There are seven non-empty index subsets, and every one has power 1.

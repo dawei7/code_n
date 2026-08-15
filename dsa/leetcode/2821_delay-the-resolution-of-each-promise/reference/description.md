@@ -25,6 +25,7 @@ functions = [
 ms = 50
 - **Output:** `[80]`
 - **Explanation:** The promise from the array would have resolved after 30 ms, but it was delayed by 50 ms, thus 30 ms + 50 ms = 80 ms.
+
 #### Example 2
 
 - **Input:** ``
@@ -35,6 +36,7 @@ functions = [
 ms = 70
 - **Output:** `[120,150]`
 - **Explanation:** The promises from the array would have resolved after 50 ms and 80 ms, but they were delayed by 70 ms, thus 50 ms + 70 ms = 120 ms and 80 ms + 70 ms = 150 ms.
+
 #### Example 3
 
 - **Input:** ``

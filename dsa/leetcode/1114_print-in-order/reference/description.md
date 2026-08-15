@@ -14,8 +14,12 @@ The same instance of `Foo` will be passed to three different threads. Thread A w
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Foo()`: Initializes the data structure.
+- `first(printFirst: 'Callable[[], None]')`: Executes operation.
+- `second(printSecond: 'Callable[[], None]')`: Executes operation.
+- `third(printThird: 'Callable[[], None]')`: Executes operation.
 
 ### 3. Note
 
@@ -28,6 +32,7 @@ We do not know how the threads will be scheduled in the operating system, even t
 - **Input:** `nums = [1,2,3]`
 - **Output:** `"firstsecondthird"`
 - **Explanation:** There are three threads being fired asynchronously. The input [1,2,3] means thread A calls first(), thread B calls second(), and thread C calls third(). "firstsecondthird" is the correct output.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,2]`

@@ -34,21 +34,21 @@ Let $M = \max(\texttt{nums})$ before any operation.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,3,5,6], k = 5, multiplier = 2`
-- Output: `[8,4,6,5,6]`
+- **Input:** `nums = [2,1,3,5,6], k = 5, multiplier = 2`
+- **Output:** `[8,4,6,5,6]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [100000,2000], k = 2, multiplier = 1000000`
-- Output: `[999999307,999999993]`
+- **Input:** `nums = [100000,2000], k = 2, multiplier = 1000000`
+- **Output:** `[999999307,999999993]`
 
 The unreduced final values are `100000000000` and `2000000000`; modulo is applied afterward.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7,3,3], k = 1000000000, multiplier = 1`
-- Output: `[7,3,3]`
+- **Input:** `nums = [7,3,3], k = 1000000000, multiplier = 1`
+- **Output:** `[7,3,3]`
 
 Multiplication by one never changes the array, even though the operation count is large.

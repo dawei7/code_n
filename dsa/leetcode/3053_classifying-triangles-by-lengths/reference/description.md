@@ -37,7 +37,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Triangles table:
 +----+----+----+
 | A  | B  | C  |
@@ -47,7 +47,7 @@ Triangles table:
 | 20 | 21 | 22 |
 | 13 | 14 | 30 |
 +----+----+----+
-**Output:**
+- **Output:** 
 +----------------+
 | triangle_type  |
 +----------------+
@@ -56,7 +56,7 @@ Triangles table:
 | Scalene        |
 | Not A Triangle |
 +----------------+
-**Explanation:**
+- **Explanation:** 
 - Values in the first row from an Isosceles triangle, because A = B.
 - Values in the second row from an Equilateral triangle, because A = B = C.
 - Values in the third row from an Scalene triangle, because A != B != C.

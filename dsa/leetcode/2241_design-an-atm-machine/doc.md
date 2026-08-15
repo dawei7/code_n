@@ -43,17 +43,17 @@ rejected withdrawal.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["ATM", "deposit", "withdraw", "deposit", "withdraw", "withdraw"]`, `arguments = [[], [[0,0,1,2,1]], [600], [[0,1,0,1,1]], [600], [550]]`
-- Output: `[null, null, [0,0,1,0,1], null, [-1], [0,1,0,0,1]]`
+- **Input:** `operations = ["ATM", "deposit", "withdraw", "deposit", "withdraw", "withdraw"]`, `arguments = [[], [[0,0,1,2,1]], [600], [[0,1,0,1,1]], [600], [550]]`
+- **Output:** `[null, null, [0,0,1,0,1], null, [-1], [0,1,0,0,1]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["ATM", "deposit", "withdraw"]`, `arguments = [[], [[1,1,1,1,1]], [870]]`
-- Output: `[null, null, [1,1,1,1,1]]`
+- **Input:** `operations = ["ATM", "deposit", "withdraw"]`, `arguments = [[], [[1,1,1,1,1]], [870]]`
+- **Output:** `[null, null, [1,1,1,1,1]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["ATM", "deposit", "withdraw", "withdraw"]`, `arguments = [[], [[0,0,0,3,1]], [600], [500]]`
-- Output: `[null, null, [-1], [0,0,0,0,1]]`
+- **Input:** `operations = ["ATM", "deposit", "withdraw", "withdraw"]`, `arguments = [[], [[0,0,0,3,1]], [600], [500]]`
+- **Output:** `[null, null, [-1], [0,0,0,0,1]]`

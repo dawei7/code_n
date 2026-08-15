@@ -20,21 +20,23 @@ Your task is to convert the given `caption` into a **good** caption using the **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `caption`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** caption = "cdcd"
+- **Input:** caption = "cdcd"
 
-**Output:** "cccc"
+- **Output:** "cccc"
 
-**Explanation:**
-
-It can be shown that the given caption cannot be transformed into a good caption with fewer than 2 operations. The possible good captions that can be created using exactly 2 operations are:
+- **Explanation:** It can be shown that the given caption cannot be transformed into a good caption with fewer than 2 operations. The possible good captions that can be created using exactly 2 operations are:
 
 - `"dddd"`: Change $\text{caption}[0]$ and $\text{caption}[2]$ to their next character `'d'`.
 
@@ -42,17 +44,13 @@ It can be shown that the given caption cannot be transformed into a good caption
 
 Since `"cccc"` is lexicographically smaller than `"dddd"`, return `"cccc"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** caption = "aca"
+- **Input:** caption = "aca"
 
-**Output:** "aaa"
+- **Output:** "aaa"
 
-**Explanation:**
-
-It can be proven that the given caption requires at least 2 operations to be transformed into a good caption. The only good caption that can be obtained with exactly 2 operations is as follows:
+- **Explanation:** It can be proven that the given caption requires at least 2 operations to be transformed into a good caption. The only good caption that can be obtained with exactly 2 operations is as follows:
 
 - Operation 1: Change $\text{caption}[1]$ to `'b'`. $caption = "aba"$.
 
@@ -60,19 +58,13 @@ It can be proven that the given caption requires at least 2 operations to be tra
 
 Thus, return `"aaa"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** caption = "bc"
+- **Input:** caption = "bc"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
-
-It can be shown that the given caption cannot be converted to a good caption by using any number of operations.
-
-</div>
+- **Explanation:** It can be shown that the given caption cannot be converted to a good caption by using any number of operations.
 
 ### 4. Constraints
 

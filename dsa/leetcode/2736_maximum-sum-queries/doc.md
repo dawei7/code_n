@@ -32,20 +32,20 @@ Return a length-$q$ array whose entry for each query is the maximum eligible coo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [4,3,1,2], nums2 = [2,4,9,5], queries = [[4,1],[1,3],[2,5]]`
-- Output: `[6,10,7]`
-- Explanation: The best eligible points have sums `6`, `10`, and `7` respectively.
+- **Input:** `nums1 = [4,3,1,2], nums2 = [2,4,9,5], queries = [[4,1],[1,3],[2,5]]`
+- **Output:** `[6,10,7]`
+- **Explanation:** The best eligible points have sums `6`, `10`, and `7` respectively.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [3,2,5], nums2 = [2,3,4], queries = [[4,4],[3,2],[1,1]]`
-- Output: `[9,9,9]`
-- Explanation: Point `(5,4)` satisfies all three queries and has the largest sum.
+- **Input:** `nums1 = [3,2,5], nums2 = [2,3,4], queries = [[4,4],[3,2],[1,1]]`
+- **Output:** `[9,9,9]`
+- **Explanation:** Point `(5,4)` satisfies all three queries and has the largest sum.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [2,1], nums2 = [2,3], queries = [[3,3]]`
-- Output: `[-1]`
-- Explanation: Neither point reaches both thresholds.
+- **Input:** `nums1 = [2,1], nums2 = [2,3], queries = [[3,3]]`
+- **Output:** `[-1]`
+- **Explanation:** Neither point reaches both thresholds.

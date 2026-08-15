@@ -30,20 +30,20 @@ Return the sum of the element sums of all consecutive subarrays, reduced modulo 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3]`
-- Output: `20`
-- Explanation: All six nonempty subarrays are increasing-consecutive.
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `20`
+- **Explanation:** All six nonempty subarrays are increasing-consecutive.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 5, 7]`
-- Output: `16`
-- Explanation: Only the four singleton subarrays qualify.
+- **Input:** `nums = [1, 3, 5, 7]`
+- **Output:** `16`
+- **Explanation:** Only the four singleton subarrays qualify.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7, 6, 1, 2]`
-- Output: `32`
-- Explanation: Besides the singletons, `[7, 6]` and `[1, 2]` qualify.
+- **Input:** `nums = [7, 6, 1, 2]`
+- **Output:** `32`
+- **Explanation:** Besides the singletons, `[7, 6]` and `[1, 2]` qualify.

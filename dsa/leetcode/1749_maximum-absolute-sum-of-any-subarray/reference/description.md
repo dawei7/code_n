@@ -12,8 +12,13 @@ Note that `abs(x)` is defined as follows:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Note that `abs(x)` is defined as follows:
 - **Input:** `nums = [1,-3,2,3,-4]`
 - **Output:** `5`
 - **Explanation:** The subarray [2,3] has absolute sum = abs(2+3) = abs(5) = 5.
+
 #### Example 2
 
 - **Input:** `nums = [2,-5,1,-4,3,-2]`

@@ -26,6 +26,7 @@ Both strings have the same length $n$ and contain only lowercase English letters
 - **Input:** $str1 = "aabcc", str2 = "ccdee"$
 - **Output:** `true`
 - **Explanation:** Convert 'c' to 'e' then 'b' to 'd' then 'a' to 'c'. Note that the order of conversions matter.
+
 #### Example 2
 
 - **Input:** $str1 = "leetcode", str2 = "codeleet"$

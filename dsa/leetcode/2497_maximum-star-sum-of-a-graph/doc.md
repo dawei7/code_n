@@ -34,20 +34,20 @@ Return an integer equal to the maximum sum of a center value and the values of a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `vals = [1, 2, 3, 4, 10, -10, -20]`, `edges = [[0, 1], [1, 2], [1, 3], [3, 4], [3, 5], [3, 6]]`, `k = 2`
-- Output: `16`
-- Explanation: Center `3` contributes `4`; choosing neighbors `1` and `4` contributes `2 + 10` more.
+- **Input:** `vals = [1, 2, 3, 4, 10, -10, -20]`, `edges = [[0, 1], [1, 2], [1, 3], [3, 4], [3, 5], [3, 6]]`, `k = 2`
+- **Output:** `16`
+- **Explanation:** Center `3` contributes `4`; choosing neighbors `1` and `4` contributes `2 + 10` more.
 
-**Example 2**
+#### Example 2
 
-- Input: `vals = [-5]`, `edges = []`, `k = 0`
-- Output: `-5`
-- Explanation: The only possible star consists of node `0` alone.
+- **Input:** `vals = [-5]`, `edges = []`, `k = 0`
+- **Output:** `-5`
+- **Explanation:** The only possible star consists of node `0` alone.
 
-**Example 3**
+#### Example 3
 
-- Input: `vals = [-8, 7, 6, -20]`, `edges = [[0, 1], [0, 2], [1, 3]]`, `k = 2`
-- Output: `7`
-- Explanation: Although center `0` can take two positive neighbors for sum `5`, node `1` alone is better because selecting a negative neighbor is optional.
+- **Input:** `vals = [-8, 7, 6, -20]`, `edges = [[0, 1], [0, 2], [1, 3]]`, `k = 2`
+- **Output:** `7`
+- **Explanation:** Although center `0` can take two positive neighbors for sum `5`, node `1` alone is better because selecting a negative neighbor is optional.

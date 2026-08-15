@@ -18,28 +18,21 @@ Return the unique element that occurs exactly once.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,2,1]
+- **Input:** nums = [2,2,1]
 
-**Output:** 1
+- **Output:** 1
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,1,2,1,2]
+- **Input:** nums = [4,1,2,1,2]
 
-**Output:** 4
+- **Output:** 4
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

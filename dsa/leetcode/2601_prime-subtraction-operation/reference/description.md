@@ -12,8 +12,13 @@ A **strictly increasing array** is an array whose each element is strictly great
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -24,11 +29,13 @@ A **strictly increasing array** is an array whose each element is strictly great
 - **Explanation:** In the first operation: Pick i = 0 and p = 3, and then subtract 3 from nums[0], so that nums becomes [1,9,6,10].
 In the second operation: i = 1, p = 7, subtract 7 from nums[1], so nums becomes equal to [1,2,6,10].
 After the second operation, nums is sorted in strictly increasing order, so the answer is true.
+
 #### Example 2
 
 - **Input:** `nums = [6,8,11,12]`
 - **Output:** `true`
 - **Explanation:** Initially nums is sorted in strictly increasing order, so we don't need to make any operations.
+
 #### Example 3
 
 - **Input:** `nums = [5,8,3]`

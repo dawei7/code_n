@@ -10,8 +10,13 @@ Return *the lexicographically smallest string that can be written on the paper.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return *the lexicographically smallest string that can be written on the paper.*
 Initially p="", s="zza", t="".
 Perform first operation three times p="", s="", t="zza".
 Perform second operation three times p="azz", s="", t="".
+
 #### Example 2
 
 - **Input:** `s = "bac"`
@@ -32,6 +38,7 @@ Perform first operation twice p="", s="c", t="ba".
 Perform second operation twice p="ab", s="c", t="".
 Perform first operation p="ab", s="", t="c".
 Perform second operation p="abc", s="", t="".
+
 #### Example 3
 
 - **Input:** `s = "bdda"`

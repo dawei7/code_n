@@ -34,14 +34,14 @@ Return the number of minimum-sum adjacent-pair replacements performed before the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,2,3,1]`
-- Output: `2`
-- Explanation: Replace `(3,1)` by `4`, producing `[5,2,4]`. Then replace `(2,4)` by `6`; `[5,6]` is non-decreasing.
+- **Input:** `nums = [5,2,3,1]`
+- **Output:** `2`
+- **Explanation:** Replace `(3,1)` by `4`, producing `[5,2,4]`. Then replace `(2,4)` by `6`; `[5,6]` is non-decreasing.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,2]`
-- Output: `0`
-- Explanation: The original array is already non-decreasing.
+- **Input:** `nums = [1,2,2]`
+- **Output:** `0`
+- **Explanation:** The original array is already non-decreasing.

@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/design-parking-system/) |
 
 ## Problem Description
+
 ### Goal
+
 Design a parking lot with three independent kinds of spaces: big, medium, and small. The constructor receives the fixed number of spaces of each kind. Car types `1`, `2`, and `3` represent big, medium, and small cars respectively.
 
 When `addCar(carType)` is called, the arriving car may use only a space of its matching type. If at least one such space remains, occupy one permanently and return `true`. If none remains, leave the state unchanged and return `false`.
 
 ### Function Contract
+
 **Platform interface**
 
 - `ParkingSystem(big, medium, small)` initializes the three capacities.
@@ -31,17 +34,18 @@ When `addCar(carType)` is called, the arriving car may use only a space of its m
 Return one Boolean per arrival, preserving call order.
 
 ### Examples
-**Example 1**
 
-- Input: `big = 1`, `medium = 1`, `small = 0`, `carTypes = [1,2,3,1]`
-- Output: `[true,true,false,false]`
+#### Example 1
 
-**Example 2**
+- **Input:** `big = 1`, `medium = 1`, `small = 0`, `carTypes = [1,2,3,1]`
+- **Output:** `[true,true,false,false]`
 
-- Input: all capacities are zero and `carTypes = [1,2,3]`.
-- Output: `[false,false,false]`
+#### Example 2
 
-**Example 3**
+- **Input:** all capacities are zero and `carTypes = [1,2,3]`.
+- **Output:** `[false,false,false]`
 
-- Input: `big = 0`, `medium = 0`, `small = 2`, `carTypes = [3,3,3]`
-- Output: `[true,true,false]`
+#### Example 3
+
+- **Input:** `big = 0`, `medium = 0`, `small = 2`, `carTypes = [3,3,3]`
+- **Output:** `[true,true,false]`

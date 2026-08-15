@@ -33,16 +33,16 @@ Each array contains at most $9$ elements.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [4,1,3], nums2 = [5,7]`
-- Output: `15`
+- **Input:** `nums1 = [4,1,3], nums2 = [5,7]`
+- **Output:** `15`
 
 There is no shared digit. Using the smallest digit from each array and placing $1$ first produces the smallest valid two-digit number.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [3,5,2,6], nums2 = [3,1,7]`
-- Output: `3`
+- **Input:** `nums1 = [3,5,2,6], nums2 = [3,1,7]`
+- **Output:** `3`
 
 The digit $3$ occurs in both arrays, so the one-digit number $3$ satisfies both requirements.

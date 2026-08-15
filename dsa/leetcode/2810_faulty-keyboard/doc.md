@@ -30,20 +30,20 @@ Return the screen text after ordinary characters have been inserted and every `i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "string"`
-- Output: `"rtsng"`
-- Explanation: Typing `str` produces `"str"`; the next `i` reverses it to `"rts"`, and `ng` is appended normally.
+- **Input:** `s = "string"`
+- **Output:** `"rtsng"`
+- **Explanation:** Typing `str` produces `"str"`; the next `i` reverses it to `"rts"`, and `ng` is appended normally.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "poiinter"`
-- Output: `"ponter"`
-- Explanation: The two consecutive triggers reverse `"po"` twice, restoring it before the remaining letters are typed.
+- **Input:** `s = "poiinter"`
+- **Output:** `"ponter"`
+- **Explanation:** The two consecutive triggers reverse `"po"` twice, restoring it before the remaining letters are typed.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abc"`
-- Output: `"abc"`
-- Explanation: With no trigger character, every letter is appended normally.
+- **Input:** `s = "abc"`
+- **Output:** `"abc"`
+- **Explanation:** With no trigger character, every letter is appended normally.

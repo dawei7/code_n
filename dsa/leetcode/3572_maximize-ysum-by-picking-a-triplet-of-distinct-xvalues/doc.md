@@ -33,16 +33,16 @@ Return the largest possible sum `y[i] + y[j] + y[k]` over three indices whose `x
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `x = [1,2,1,3,2], y = [5,3,4,6,2]`
-- Output: `14`
-- Explanation: The best representatives for `x` values `1`, `2`, and `3` contribute `5`, `3`, and `6`.
+- **Input:** `x = [1,2,1,3,2], y = [5,3,4,6,2]`
+- **Output:** `14`
+- **Explanation:** The best representatives for `x` values `1`, `2`, and `3` contribute `5`, `3`, and `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `x = [1,2,1,2], y = [4,5,6,7]`
-- Output: `-1`
-- Explanation: Only two distinct `x` values occur.
+- **Input:** `x = [1,2,1,2], y = [4,5,6,7]`
+- **Output:** `-1`
+- **Explanation:** Only two distinct `x` values occur.
 
 ---

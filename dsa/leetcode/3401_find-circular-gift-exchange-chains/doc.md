@@ -33,7 +33,7 @@ Let $e$ be the number of exchange rows. The valid input forms disjoint circular 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `SecretSanta`
 

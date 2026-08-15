@@ -41,23 +41,23 @@ covered.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]]`,
+- **Input:** `matrix = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]]`,
   `numSelect = 2`
-- Output: `3`
-- Explanation: Selecting columns 0 and 2 covers the zero row, `[1,0,1]`, and
+- **Output:** `3`
+- **Explanation:** Selecting columns 0 and 2 covers the zero row, `[1,0,1]`, and
   `[0,0,1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[1],[0]]`, `numSelect = 1`
-- Output: `2`
-- Explanation: Selecting the only column covers both rows.
+- **Input:** `matrix = [[1],[0]]`, `numSelect = 1`
+- **Output:** `2`
+- **Explanation:** Selecting the only column covers both rows.
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[1,1,1],[0,0,0],[1,0,0]]`, `numSelect = 1`
-- Output: `2`
-- Explanation: The all-zero row and the final row are covered by selecting
+- **Input:** `matrix = [[1,1,1],[0,0,0],[1,0,0]]`, `numSelect = 1`
+- **Output:** `2`
+- **Explanation:** The all-zero row and the final row are covered by selecting
   column 0; the first row requires more selected columns.

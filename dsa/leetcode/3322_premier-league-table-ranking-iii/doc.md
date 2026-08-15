@@ -30,9 +30,9 @@ Return columns `season_id`, `team_id`, `team_name`, `points`, `goal_difference`,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: The 2021 rows include Manchester City with 29 wins and 6 draws, Liverpool with 28 wins and 8 draws, and three other clubs; the 2022 rows contain another five-club season.
-- Output: Manchester City leads 2021 with 93 points and a goal difference of 73, Liverpool follows with 92 points, and Manchester City also leads 2022 with 89 points. Each season's remaining teams follow their prescribed ranking criteria.
+- **Input:** The 2021 rows include Manchester City with 29 wins and 6 draws, Liverpool with 28 wins and 8 draws, and three other clubs; the 2022 rows contain another five-club season.
+- **Output:** Manchester City leads 2021 with 93 points and a goal difference of 73, Liverpool follows with 92 points, and Manchester City also leads 2022 with 89 points. Each season's remaining teams follow their prescribed ranking criteria.
 
 The two seasons form independent ranking partitions even when the same club appears in both.

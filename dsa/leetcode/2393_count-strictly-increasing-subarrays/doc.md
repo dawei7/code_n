@@ -36,13 +36,13 @@ Every one-element subarray is strictly increasing. For longer ranges, each adjac
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,5,4,4,6]`
-- Output: `10`
+- **Input:** `nums = [1,3,5,4,4,6]`
+- **Output:** `10`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4,5]`
-- Output: `15`
-- Explanation: Every subarray is strictly increasing.
+- **Input:** `nums = [1,2,3,4,5]`
+- **Output:** `15`
+- **Explanation:** Every subarray is strictly increasing.

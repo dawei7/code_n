@@ -43,14 +43,14 @@ Only dimension and start combinations admitting at least one full tour are suppl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 1, n = 1, r = 0, c = 0`
-- Output: `[[0]]`
-- Explanation: The starting cell is the entire board, so the tour is already complete.
+- **Input:** `m = 1, n = 1, r = 0, c = 0`
+- **Output:** `[[0]]`
+- **Explanation:** The starting cell is the entire board, so the tour is already complete.
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 3, n = 4, r = 0, c = 0`
-- Output: `[[0,3,6,9],[11,8,1,4],[2,5,10,7]]`
-- Explanation: Reading cells in visit-number order gives a legal knight move at every step. Other complete tours are also accepted.
+- **Input:** `m = 3, n = 4, r = 0, c = 0`
+- **Output:** `[[0,3,6,9],[11,8,1,4],[2,5,10,7]]`
+- **Explanation:** Reading cells in visit-number order gives a legal knight move at every step. Other complete tours are also accepted.

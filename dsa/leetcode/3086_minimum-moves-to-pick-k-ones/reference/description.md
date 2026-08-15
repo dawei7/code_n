@@ -12,19 +12,25 @@ Return *the **minimum** number of moves required by Alice to pick **exactly ***`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `maxChanges`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **nums = [1,1,0,0,0,1,1,0,0,1], k = 3, maxChanges = 1
+- **Input:** nums = [1,1,0,0,0,1,1,0,0,1], k = 3, maxChanges = 1
 
-**Output: **3
+- **Output:** 3
 
-**Explanation:** Alice can pick up `3` ones in `3` moves, if Alice performs the following actions in each move when standing at $aliceIndex = 1$:
+- **Explanation:** Alice can pick up `3` ones in `3` moves, if Alice performs the following actions in each move when standing at $aliceIndex = 1$:
 
 - At the start of the game Alice picks up the one and $\text{nums}[1]$ becomes `0`. `nums` becomes `[1,**<u>0</u>**,0,0,0,1,1,0,0,1]`.
 
@@ -36,15 +42,13 @@ Return *the **minimum** number of moves required by Alice to pick **exactly ***`
 
 Note that it may be possible for Alice to pick up `3` ones using some other sequence of `3` moves.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **nums = [0,0,0,0], k = 2, maxChanges = 3
+- **Input:** nums = [0,0,0,0], k = 2, maxChanges = 3
 
-**Output: **4
+- **Output:** 4
 
-**Explanation:** Alice can pick up `2` ones in `4` moves, if Alice performs the following actions in each move when standing at $aliceIndex = 0$:
+- **Explanation:** Alice can pick up `2` ones in `4` moves, if Alice performs the following actions in each move when standing at $aliceIndex = 0$:
 
 - Select $j = 1$ and perform an action of the first type. `nums` becomes `[**<u>0</u>**,1,0,0]`.
 
@@ -53,8 +57,6 @@ Note that it may be possible for Alice to pick up `3` ones using some other sequ
 - Select $j = 1$ again and perform an action of the first type. `nums` becomes `[**<u>0</u>**,1,0,0]`.
 
 - Select $x = 1$ and $y = 0$ again, and perform an action of the second type. `nums` becomes `[**<u>1</u>**,0,0,0]`. As $y = aliceIndex$, Alice picks up the one and `nums` becomes `[**<u>0</u>**,0,0,0]`.
-
-</div>
 
 ### 4. Constraints
 

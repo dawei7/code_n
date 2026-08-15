@@ -36,21 +36,21 @@ Let $N$ be the length of `colors`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `colors = "AAABABB"`
-- Output: `true`
-- Explanation: Alice removes the middle piece from the initial `"AAA"` run,
+- **Input:** `colors = "AAABABB"`
+- **Output:** `true`
+- **Explanation:** Alice removes the middle piece from the initial `"AAA"` run,
   after which Bob has no legal move.
 
-**Example 2**
+#### Example 2
 
-- Input: `colors = "AA"`
-- Output: `false`
-- Explanation: Neither piece has two neighbors, so Alice loses immediately.
+- **Input:** `colors = "AA"`
+- **Output:** `false`
+- **Explanation:** Neither piece has two neighbors, so Alice loses immediately.
 
-**Example 3**
+#### Example 3
 
-- Input: `colors = "ABBBBBBBAAA"`
-- Output: `false`
-- Explanation: Alice has one available removal, while Bob has more than one.
+- **Input:** `colors = "ABBBBBBBAAA"`
+- **Output:** `false`
+- **Explanation:** Alice has one available removal, while Bob has more than one.

@@ -16,21 +16,23 @@ Return the **minimum** number of moves required to reach the bottom-right cell. 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** matrix = ["A..",".A.","..."]
+- **Input:** matrix = ["A..",".A.","..."]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/example04140.png)
+- **Explanation:** ![](images/example04140.png)
 
 - Before the first move, teleport from `(0, 0)` to `(1, 1)`.
 
@@ -38,19 +40,13 @@ Return the **minimum** number of moves required to reach the bottom-right cell. 
 
 - In the second move, move from `(1, 2)` to `(2, 2)`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** matrix = [".#...",".#.#.",".#.#.","...#."]
+- **Input:** matrix = [".#...",".#.#.",".#.#.","...#."]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-![](images/ezgifcom-animated-gif-maker.gif)
-
-</div>
+- **Explanation:** ![](images/ezgifcom-animated-gif-maker.gif)
 
 ### 4. Constraints
 

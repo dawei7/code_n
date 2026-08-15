@@ -34,16 +34,16 @@ The total sum is guaranteed to make a valid result possible.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,-5,4]`
-- Output: `0`
+- **Input:** `nums = [2,3,-5,4]`
+- **Output:** `0`
 
 The original prefix sums are `2`, `5`, `0`, and `4`, so no operation is needed.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,-5,-2,6]`
-- Output: `1`
+- **Input:** `nums = [3,-5,-2,6]`
+- **Output:** `1`
 
 Moving `-5` to the end produces `[3,-2,6,-5]`, whose prefix sums are `3`, `1`, `7`, and `2`.

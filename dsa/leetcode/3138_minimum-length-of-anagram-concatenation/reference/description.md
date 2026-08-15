@@ -8,43 +8,37 @@ An **anagram** is formed by rearranging the letters of a string. For example, "a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abba"
+- **Input:** s = "abba"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** One possible string `t` could be `"ba"`.
 
-One possible string `t` could be `"ba"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "cdef"
+- **Input:** s = "cdef"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** One possible string `t` could be `"cdef"`, notice that `t` can be equal to `s`.
 
-One possible string `t` could be `"cdef"`, notice that `t` can be equal to `s`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abcbcacabbaccba"
+- **Input:** s = "abcbcacabbaccba"
 
-**Output:** 3
-
-</div>
+- **Output:** 3
 
 ### 4. Constraints
 

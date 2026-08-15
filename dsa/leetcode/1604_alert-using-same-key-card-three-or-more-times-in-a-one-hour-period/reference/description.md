@@ -12,8 +12,14 @@ Notice that `"10:00"` - `"11:00"` is considered to be within a one-hour period, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `keyName`: Input parameter (`List[str]`).
+- `keyTime`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Notice that `"10:00"` - `"11:00"` is considered to be within a one-hour period, 
 - **Input:** $keyName = ["daniel","daniel","daniel","luis","luis","luis","luis"], keyTime = ["10:00","10:40","11:00","09:00","11:00","13:00","15:00"]$
 - **Output:** `["daniel"]`
 - **Explanation:** "daniel" used the keycard 3 times in a one-hour period ("10:00","10:40", "11:00").
+
 #### Example 2
 
 - **Input:** $keyName = ["alice","alice","alice","bob","bob","bob","bob"], keyTime = ["12:01","12:00","18:00","21:00","21:20","21:30","23:00"]$

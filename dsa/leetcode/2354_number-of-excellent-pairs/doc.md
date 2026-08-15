@@ -41,22 +41,22 @@ The number of distinct ordered excellent value pairs.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,1]`, `k = 3`
-- Output: `5`
-- Explanation: The qualifying ordered pairs are `(3,3)`, `(2,3)`, `(3,2)`,
+- **Input:** `nums = [1,2,3,1]`, `k = 3`
+- **Output:** `5`
+- **Explanation:** The qualifying ordered pairs are `(3,3)`, `(2,3)`, `(3,2)`,
   `(1,3)`, and `(3,1)`. The duplicate `1` creates no additional value pair.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,1,1]`, `k = 10`
-- Output: `0`
-- Explanation: Neither unique value supplies enough set bits with the other.
+- **Input:** `nums = [5,1,1]`, `k = 10`
+- **Output:** `0`
+- **Explanation:** Neither unique value supplies enough set bits with the other.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1]`, `k = 2`
-- Output: `1`
-- Explanation: `(1,1)` is valid because the single set bit contributes once
+- **Input:** `nums = [1]`, `k = 2`
+- **Output:** `1`
+- **Explanation:** `(1,1)` is valid because the single set bit contributes once
   through OR and once through AND.

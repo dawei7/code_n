@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/design-bitset/) |
 
 ## Problem Description
+
 ### Goal
 
 Implement a fixed-size `Bitset` whose bits are initially zero. Individual
@@ -23,6 +24,7 @@ bit is one, and how many one bits exist. Its string representation lists bits
 in index order, so character $i$ is the logical value at bit index $i$.
 
 ### Function Contract
+
 **Inputs**
 
 - `Bitset(size)` creates `size` zero bits, where $1\le\texttt{size}\le10^5$.
@@ -44,23 +46,24 @@ of length `size`. The app-local trace returns one result per operation, using
 `null` for construction and mutating calls.
 
 ### Examples
-**Example 1**
 
-- Input: `operations = ["Bitset", "fix", "fix", "flip", "all", "unfix", "flip", "one", "unfix", "count", "toString"]`
+#### Example 1
+
+- **Input:** `operations = ["Bitset", "fix", "fix", "flip", "all", "unfix", "flip", "one", "unfix", "count", "toString"]`
 - Arguments: `[[5], [3], [1], [], [], [0], [], [], [0], [], []]`
-- Output: `[null, null, null, null, false, null, null, true, null, 2, "01010"]`
+- **Output:** `[null, null, null, null, false, null, null, true, null, 2, "01010"]`
 
 The two flips are represented logically; the final one bits are at indices
 `1` and `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: construct size `1`, call `flip()`, then `all()`, `count()`, and `toString()`
-- Output: `true`, `1`, and `"1"`
+- **Input:** construct size `1`, call `flip()`, then `all()`, `count()`, and `toString()`
+- **Output:** `true`, `1`, and `"1"`
 
-**Example 3**
+#### Example 3
 
-- Input: construct size `4`, call `fix(1)` twice, then `unfix(1)` twice
-- Output: final count `0` and string `"0000"`
+- **Input:** construct size `4`, call `fix(1)` twice, then `unfix(1)` twice
+- **Output:** final count `0` and string `"0000"`
 
 Repeated idempotent updates do not change the maintained count.

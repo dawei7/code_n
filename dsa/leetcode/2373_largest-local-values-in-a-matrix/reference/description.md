@@ -12,8 +12,13 @@ Return *the generated matrix*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the generated matrix*.
 - **Output:** `[[9,9],[8,6]]`
 - **Explanation:** The diagram above shows the original matrix and the generated matrix.
 Notice that each value in the generated matrix corresponds to the largest value of a contiguous 3 x 3 matrix in grid.
+
 #### Example 2
 
 ![](images/ex2new2.png)

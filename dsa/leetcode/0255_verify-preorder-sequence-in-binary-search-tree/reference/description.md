@@ -20,6 +20,7 @@ Return `true` if `preorder` is a valid preorder traversal of a BST, otherwise `f
 
 - **Input:** $preorder = [5,2,1,3,6]$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $preorder = [5,2,6,1,3]$

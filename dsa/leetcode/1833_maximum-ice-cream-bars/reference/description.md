@@ -6,8 +6,14 @@ At the store, there are `n` ice cream bars. You are given an array `costs` of le
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `costs`: Input parameter (`List[int]`).
+- `coins`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -24,11 +30,13 @@ You must solve the problem by counting sort.
 - **Input:** $costs = [1,3,2,4,1], coins = 7$
 - **Output:** `4`
 - **Explanation:** The boy can buy ice cream bars at indices 0,1,2,4 for a total price of 1 + 3 + 2 + 1 = 7.
+
 #### Example 2
 
 - **Input:** $costs = [10,6,8,7,7,8], coins = 5$
 - **Output:** `0`
 - **Explanation:** The boy cannot afford any of the ice cream bars.
+
 #### Example 3
 
 - **Input:** $costs = [1,6,3,1,2,5], coins = 20$

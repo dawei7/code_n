@@ -12,8 +12,13 @@ Return* the **sum of beauty** of all *$\text{nums}[i]$* where *$1 \le i \le \tex
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return* the **sum of beauty** of all *$\text{nums}[i]$* where *$1 \le i \le \tex
 - **Output:** `2`
 - **Explanation:** For each index i in the range 1 <= i <= 1:
 - The beauty of nums[1] equals 2.
+
 #### Example 2
 
 - **Input:** `nums = [2,4,6,4]`
@@ -30,6 +36,7 @@ Return* the **sum of beauty** of all *$\text{nums}[i]$* where *$1 \le i \le \tex
 - **Explanation:** For each index i in the range 1 <= i <= 2:
 - The beauty of nums[1] equals 1.
 - The beauty of nums[2] equals 0.
+
 #### Example 3
 
 - **Input:** `nums = [3,2,1]`

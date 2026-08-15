@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-zombie-sessions/) |
 
 ## Problem Description
+
 ### Goal
 
 The `app_events` table records actions performed during application sessions. Every row belongs to a user and a session, has a timestamp and event type, and may carry a value for a purchase or scroll. Use the complete event history of each session to find users who appear active for a long time but exhibit the abnormal pattern of a zombie session.
@@ -33,14 +34,14 @@ Return an ordered table with columns `session_id`, `user_id`, `session_duration_
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 A session running from `10:00` through `10:35`, with six scrolls, no clicks, and no purchases, is returned with duration `35` and scroll count `6`.
 
-**Example 2**
+#### Example 2
 
 A 60-minute session with five scrolls and one click is excluded: its click-to-scroll ratio is exactly $1/5=0.20$, while the required bound is strict.
 
-**Example 3**
+#### Example 3
 
 A long session with many scrolls is still excluded when even one event is a purchase, because all four conditions must hold simultaneously.

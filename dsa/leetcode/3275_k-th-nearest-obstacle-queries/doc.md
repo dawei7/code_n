@@ -33,20 +33,20 @@ Return a list of $n$ integers. Entry $i$ is the $k$th smallest obstacle distance
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = [[1, 2], [3, 4], [2, 3], [-3, 0]], k = 2`
-- Output: `[-1, 7, 5, 3]`
-- Explanation: The sorted distance prefixes are `[3]`, `[3, 7]`, `[3, 5, 7]`, and `[3, 3, 5, 7]`.
+- **Input:** `queries = [[1, 2], [3, 4], [2, 3], [-3, 0]], k = 2`
+- **Output:** `[-1, 7, 5, 3]`
+- **Explanation:** The sorted distance prefixes are `[3]`, `[3, 7]`, `[3, 5, 7]`, and `[3, 3, 5, 7]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = [[5, 5], [4, 4], [3, 3]], k = 1`
-- Output: `[10, 8, 6]`
-- Explanation: Each new obstacle becomes the nearest one.
+- **Input:** `queries = [[5, 5], [4, 4], [3, 3]], k = 1`
+- **Output:** `[10, 8, 6]`
+- **Explanation:** Each new obstacle becomes the nearest one.
 
-**Example 3**
+#### Example 3
 
-- Input: `queries = [[1, 0], [0, 1], [-1, 0]], k = 2`
-- Output: `[-1, 1, 1]`
-- Explanation: Distinct obstacles at the same distance count separately toward the requested rank.
+- **Input:** `queries = [[1, 0], [0, 1], [-1, 0]], k = 2`
+- **Output:** `[-1, 1, 1]`
+- **Explanation:** Distinct obstacles at the same distance count separately toward the requested rank.

@@ -30,32 +30,23 @@ Return the value of the sole remaining element when Alice maximizes the outcome 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,5,2]
+- **Input:** nums = [1,5,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One valid optimal strategy:
+- **Explanation:** One valid optimal strategy:
 
 - Alice removes `[1]`, array becomes `[5, 2]`.
 
 - Bob removes `[5]`, array becomes `[2]`​​​​​​​. Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,7]
+- **Input:** nums = [3,7]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-Alice removes `[3]`, leaving the array `[7]`. Since Bob cannot play a turn now, the answer is 7.
-
-</div>
+- **Explanation:** Alice removes `[3]`, leaving the array `[7]`. Since Bob cannot play a turn now, the answer is 7.
 
 ### 4. Constraints
 

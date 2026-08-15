@@ -38,7 +38,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Activity table:
 +-----------+-----------+------------+--------------+
 | player_id | device_id | event_date | games_played |
@@ -49,7 +49,7 @@ Activity table:
 | 3         | 1         | 2016-03-02 | 0            |
 | 3         | 4         | 2018-07-03 | 5            |
 +-----------+-----------+------------+--------------+
-**Output:**
+- **Output:** 
 +-----------+-----------+
 | player_id | device_id |
 +-----------+-----------+

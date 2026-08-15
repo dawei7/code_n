@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/smallest-absent-positive-greater-than-average/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `nums`, compute its arithmetic average as the sum of all elements divided by the array length. Find the smallest positive integer that is both strictly greater than this average and absent from `nums`.
@@ -29,23 +30,23 @@ Return the smallest positive integer not appearing in `nums` whose value is stri
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 5]`
-- Output: `6`
+- **Input:** `nums = [3, 5]`
+- **Output:** `6`
 
 The average is 4. Integer 5 is greater than the average but is present, so 6 is the first valid value.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1, 1, 2]`
-- Output: `3`
+- **Input:** `nums = [-1, 1, 2]`
+- **Output:** `3`
 
 The average is $2/3$; positive integers 1 and 2 are present, making 3 the first absent choice.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [4, -1]`
-- Output: `2`
+- **Input:** `nums = [4, -1]`
+- **Output:** `2`
 
 The average is $3/2$, and 2 is absent and strictly larger.

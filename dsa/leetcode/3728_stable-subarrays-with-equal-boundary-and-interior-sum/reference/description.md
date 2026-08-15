@@ -26,42 +26,31 @@ Return the integer count of all endpoint pairs `(l, r)` whose subarray satisfies
 
 #### Example 1
 
-<div class="example-block">
-**Input:** capacity = [9,3,3,3,9]
+- **Input:** capacity = [9,3,3,3,9]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - `[9,3,3,3,9]` is stable because the first and last elements are both 9, and the sum of the elements strictly between them is $3 + 3 + 3 = 9$.
 
 - `[3,3,3]` is stable because the first and last elements are both 3, and the sum of the elements strictly between them is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** capacity = [1,2,3,4,5]
+- **Input:** capacity = [1,2,3,4,5]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** No subarray of length at least 3 has equal first and last elements, so the answer is 0.
 
-No subarray of length at least 3 has equal first and last elements, so the answer is 0.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** capacity = [-4,4,0,0,-8,-4]
+- **Input:** capacity = [-4,4,0,0,-8,-4]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-`[-4,4,0,0,-8,-4]` is stable because the first and last elements are both -4, and the sum of the elements strictly between them is $4 + 0 + 0 + (-8) = -4$
-
-</div>
+- **Explanation:** `[-4,4,0,0,-8,-4]` is stable because the first and last elements are both -4, and the sum of the elements strictly between them is $4 + 0 + 0 + (-8) = -4$
 
 ### 4. Constraints
 

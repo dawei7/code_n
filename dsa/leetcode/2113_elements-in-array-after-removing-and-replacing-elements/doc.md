@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/elements-in-array-after-removing-and-replacing-elements/) |
 
 ## Problem Description
+
 ### Goal
 
 An integer array `nums` changes once per minute. At minute $0$, it contains all
@@ -28,6 +29,7 @@ short to contain the index. Queries observe the process independently; they do
 not advance a shared clock.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: The original nonempty integer array. Let
@@ -43,25 +45,26 @@ element at `index` in the array at `time`, or `-1` if that position does not
 currently exist.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [0, 1, 2], queries = [[0, 2], [2, 0], [3, 2], [5, 0]]`
-- Output: `[2, 2, -1, 0]`
+#### Example 1
+
+- **Input:** `nums = [0, 1, 2], queries = [[0, 2], [2, 0], [3, 2], [5, 0]]`
+- **Output:** `[2, 2, -1, 0]`
 
 At minute $2$, only `[2]` remains. Minute $3$ is the empty point of the cycle,
 and by minute $5$ the prefix `[0, 1]` has been restored.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2], queries = [[0, 0], [1, 0], [2, 0], [3, 0]]`
-- Output: `[2, -1, 2, -1]`
+- **Input:** `nums = [2], queries = [[0, 0], [1, 0], [2, 0], [3, 0]]`
+- **Output:** `[2, -1, 2, -1]`
 
 With one element, the array alternates between full and empty every minute.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10, 20, 30, 40], queries = [[2, 0], [2, 1], [2, 2]]`
-- Output: `[30, 40, -1]`
+- **Input:** `nums = [10, 20, 30, 40], queries = [[2, 0], [2, 1], [2, 2]]`
+- **Output:** `[30, 40, -1]`
 
 After two removals, the current array is `[30, 40]`; its indices are relative
 to that remaining suffix.

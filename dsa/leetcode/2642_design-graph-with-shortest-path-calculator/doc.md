@@ -33,8 +33,8 @@ There are no duplicate edges or self-loops at any time.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Graph", "shortestPath", "shortestPath", "addEdge", "shortestPath"]`, `arguments = [[4, [[0,2,5],[0,1,2],[1,2,1],[3,0,3]]], [3,2], [0,3], [[1,3,4]], [0,3]]`
-- Output: `[null, 6, -1, null, 6]`
-- Explanation: Initially, the cheapest route from 3 to 2 costs 6 and node 3 is unreachable from 0. Adding `1 -> 3` creates a route `0 -> 1 -> 3` costing 6.
+- **Input:** `operations = ["Graph", "shortestPath", "shortestPath", "addEdge", "shortestPath"]`, `arguments = [[4, [[0,2,5],[0,1,2],[1,2,1],[3,0,3]]], [3,2], [0,3], [[1,3,4]], [0,3]]`
+- **Output:** `[null, 6, -1, null, 6]`
+- **Explanation:** Initially, the cheapest route from 3 to 2 costs 6 and node 3 is unreachable from 0. Adding `1 -> 3` creates a route `0 -> 1 -> 3` costing 6.

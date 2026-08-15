@@ -73,7 +73,7 @@ Output row order is unrestricted.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +---------+------------+----------------+
 | user_id | join_date  | favorite_brand |
@@ -103,7 +103,7 @@ Items table:
 | 3       | LG         |
 | 4       | HP         |
 +---------+------------+
-**Output:**
+- **Output:** 
 +-----------+--------------------+
 | seller_id | 2nd_item_fav_brand |
 +-----------+--------------------+
@@ -112,8 +112,7 @@ Items table:
 | 3         | yes                |
 | 4         | no                 |
 +-----------+--------------------+
-**Explanation:**
-The answer for the user with id 1 is no because they sold nothing.
+- **Explanation:** The answer for the user with id 1 is no because they sold nothing.
 The answer for the users with id 2 and 3 is yes because the brands of their second sold items are their favorite brands.
 The answer for the user with id 4 is no because the brand of their second sold item is not their favorite brand.
 ```

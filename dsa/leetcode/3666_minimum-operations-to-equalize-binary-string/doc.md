@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-equalize-binary-string/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a binary string `s` and an integer `k`, one operation must select exactly `k` distinct string indices. Flip the bit at every selected index: each `0` becomes `1`, and each `1` becomes `0`.
@@ -32,20 +33,20 @@ Return the smallest number of operations that transforms `s` into `"1" * n`, or 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "110"`, `k = 1`
-- Output: `1`
+- **Input:** `s = "110"`, `k = 1`
+- **Output:** `1`
 - Flip the only zero directly.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0101"`, `k = 3`
-- Output: `2`
+- **Input:** `s = "0101"`, `k = 3`
+- **Output:** `2`
 - Two selections of three indices can correct both initial zeros while re-flipping the necessary ones.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "101"`, `k = 2`
-- Output: `-1`
+- **Input:** `s = "101"`, `k = 2`
+- **Output:** `-1`
 - The required flip-count parity cannot be achieved.

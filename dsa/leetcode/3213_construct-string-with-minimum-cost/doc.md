@@ -36,14 +36,14 @@ Let $S$ be the sum of all word lengths and $D$ the number of distinct word lengt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = "abcdef", words = ["abdef","abc","d","def","ef"], costs = [100,1,1,10,5]`
-- Output: `7`
-- Explanation: Append `"abc"`, `"d"`, and `"ef"` for costs $1+1+5$.
+- **Input:** `target = "abcdef", words = ["abdef","abc","d","def","ef"], costs = [100,1,1,10,5]`
+- **Output:** `7`
+- **Explanation:** Append `"abc"`, `"d"`, and `"ef"` for costs $1+1+5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `target = "aaaa", words = ["z","zz","zzz"], costs = [1,10,100]`
-- Output: `-1`
-- Explanation: No available word can match the required prefix.
+- **Input:** `target = "aaaa", words = ["z","zz","zzz"], costs = [1,10,100]`
+- **Output:** `-1`
+- **Explanation:** No available word can match the required prefix.

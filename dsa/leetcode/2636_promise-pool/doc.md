@@ -35,20 +35,20 @@ Return a promise that resolves only after all $m$ input functions have completed
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `durations = [300,400,200]`, `n = 2`
-- Output: start times `[0,0,300]`, finish times `[300,400,500]`, pool completion `500`
-- Explanation: The first two functions start immediately. When the first finishes at $300$, the third starts and finishes $200$ time units later.
+- **Input:** `durations = [300,400,200]`, `n = 2`
+- **Output:** start times `[0,0,300]`, finish times `[300,400,500]`, pool completion `500`
+- **Explanation:** The first two functions start immediately. When the first finishes at $300$, the third starts and finishes $200$ time units later.
 
-**Example 2**
+#### Example 2
 
-- Input: `durations = [300,400,200]`, `n = 5`
-- Output: start times `[0,0,0]`, finish times `[300,400,200]`, pool completion `400`
-- Explanation: The limit exceeds the number of functions, so all three start immediately and the slowest determines completion.
+- **Input:** `durations = [300,400,200]`, `n = 5`
+- **Output:** start times `[0,0,0]`, finish times `[300,400,200]`, pool completion `400`
+- **Explanation:** The limit exceeds the number of functions, so all three start immediately and the slowest determines completion.
 
-**Example 3**
+#### Example 3
 
-- Input: `durations = [300,400,200]`, `n = 1`
-- Output: start times `[0,300,700]`, finish times `[300,700,900]`, pool completion `900`
-- Explanation: A limit of one forces strictly serial execution in input order.
+- **Input:** `durations = [300,400,200]`, `n = 1`
+- **Output:** start times `[0,300,700]`, finish times `[300,700,900]`, pool completion `900`
+- **Explanation:** A limit of one forces strictly serial execution in input order.

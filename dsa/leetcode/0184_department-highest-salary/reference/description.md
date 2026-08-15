@@ -50,7 +50,7 @@ Return `Department`, `Employee`, and `Salary` for every employee tied at a depar
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+-------+--------+--------------+
 | id | name  | salary | departmentId |
@@ -68,7 +68,7 @@ Department table:
 | 1  | IT    |
 | 2  | Sales |
 +----+-------+
-**Output:**
+- **Output:** 
 +------------+----------+--------+
 | Department | Employee | Salary |
 +------------+----------+--------+
@@ -76,5 +76,5 @@ Department table:
 | Sales      | Henry    | 80000  |
 | IT         | Max      | 90000  |
 +------------+----------+--------+
-**Explanation:** Max and Jim both have the highest salary in the IT department and Henry has the highest salary in the Sales department.
+- **Explanation:** Max and Jim both have the highest salary in the IT department and Henry has the highest salary in the Sales department.
 ```

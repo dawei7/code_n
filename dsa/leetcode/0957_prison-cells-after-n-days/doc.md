@@ -31,12 +31,12 @@ Return the eight occupancy values after exactly `n` days.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `cells = [0,1,0,1,1,0,0,1]`, `n = 7`
-- Output: `[0,0,1,1,0,0,0,0]`
+- **Input:** `cells = [0,1,0,1,1,0,0,1]`, `n = 7`
+- **Output:** `[0,0,1,1,0,0,0,0]`
 
-**Example 2**
+#### Example 2
 
-- Input: `cells = [1,0,0,1,0,0,1,0]`, `n = 1000000000`
-- Output: `[0,0,1,1,1,1,1,0]`
+- **Input:** `cells = [1,0,0,1,0,0,1,0]`, `n = 1000000000`
+- **Output:** `[0,0,1,1,1,1,1,0]`

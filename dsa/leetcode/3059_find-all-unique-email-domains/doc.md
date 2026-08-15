@@ -39,18 +39,18 @@ email addresses, and $g$ the number of qualifying distinct domains.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 The supplied rows contain two addresses at `outlook.com` and one at
 `yahoo.com`. The `.edu` and `.org` domains are ignored, so the two `.com`
 domains are returned alphabetically with counts `2` and `1`.
 
-**Example 2**
+#### Example 2
 
 Different local parts do not create different groups: `a@site.com` and
 `b@site.com` both contribute to the count for `site.com`.
 
-**Example 3**
+#### Example 3
 
 `shop.com.org` is excluded because the complete domain ends in `.org`, not
 `.com`.

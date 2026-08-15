@@ -25,8 +25,13 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -37,6 +42,7 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 - **Explanation:** The encoded message can represent any of the encoded messages "1", "2", "3", "4", "5", "6", "7", "8", or "9".
 Each of these can be decoded to the strings "A", "B", "C", "D", "E", "F", "G", "H", and "I" respectively.
 Hence, there are a total of 9 ways to decode "*".
+
 #### Example 2
 
 - **Input:** `s = "1*"`
@@ -44,6 +50,7 @@ Hence, there are a total of 9 ways to decode "*".
 - **Explanation:** The encoded message can represent any of the encoded messages "11", "12", "13", "14", "15", "16", "17", "18", or "19".
 Each of these encoded messages have 2 ways to be decoded (e.g. "11" can be decoded to "AA" or "K").
 Hence, there are a total of 9 * 2 = 18 ways to decode "1*".
+
 #### Example 3
 
 - **Input:** `s = "2*"`

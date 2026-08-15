@@ -32,20 +32,20 @@ Return the total chemistry of a division into equal-skill pairs, or `-1` when no
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `skill = [3, 2, 5, 1, 3, 4]`
-- Output: `22`
-- Explanation: Pairs `(1, 5)`, `(2, 4)`, and `(3, 3)` all sum to `6`; their chemistry totals `5 + 8 + 9 = 22`.
+- **Input:** `skill = [3, 2, 5, 1, 3, 4]`
+- **Output:** `22`
+- **Explanation:** Pairs `(1, 5)`, `(2, 4)`, and `(3, 3)` all sum to `6`; their chemistry totals `5 + 8 + 9 = 22`.
 
-**Example 2**
+#### Example 2
 
-- Input: `skill = [3, 4]`
-- Output: `12`
-- Explanation: The only two players form one team, whose chemistry is `3 * 4`.
+- **Input:** `skill = [3, 4]`
+- **Output:** `12`
+- **Explanation:** The only two players form one team, whose chemistry is `3 * 4`.
 
-**Example 3**
+#### Example 3
 
-- Input: `skill = [1, 1, 2, 3]`
-- Output: `-1`
-- Explanation: The four players cannot be paired so that both teams have the same total skill.
+- **Input:** `skill = [1, 1, 2, 3]`
+- **Output:** `-1`
+- **Explanation:** The four players cannot be paired so that both teams have the same total skill.

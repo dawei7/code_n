@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Loans table:
 +---------+---------+-----------+
 | loan_id | user_id | loan_type |

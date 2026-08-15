@@ -10,8 +10,13 @@ Return the length of the longest well-performing interval.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `hours`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return the length of the longest well-performing interval.
 - **Input:** $hours = [9,9,6,0,6,6,9]$
 - **Output:** `3`
 - **Explanation:** The longest well-performing interval is [9,9,6].
+
 #### Example 2
 
 - **Input:** $hours = [6,6,6]$

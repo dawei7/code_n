@@ -34,23 +34,23 @@ Let $d$ be the maximum number of decimal digits in an input value, so $d \le 7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,12,30,17,21]`
-- Output: `2`
+- **Input:** `nums = [3,12,30,17,21]`
+- **Output:** `2`
 
 The qualifying value pairs are `3` with `30`, and `12` with `21`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,1,1,1]`
-- Output: `10`
+- **Input:** `nums = [1,1,1,1,1]`
+- **Output:** `10`
 
 All $\binom{5}{2}$ index pairs contain equal values.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [123,231]`
-- Output: `0`
+- **Input:** `nums = [123,231]`
+- **Output:** `0`
 
 Moving from one order to the other requires more than one digit swap.

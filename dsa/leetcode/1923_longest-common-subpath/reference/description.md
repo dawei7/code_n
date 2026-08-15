@@ -10,8 +10,14 @@ A **subpath** of a path is a contiguous sequence of cities within that path.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `paths`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +28,13 @@ A **subpath** of a path is a contiguous sequence of cities within that path.
 [4,0,1,<u>2,3</u>]]
 - **Output:** `2`
 - **Explanation:** The longest common subpath is [2,3].
+
 #### Example 2
 
 - **Input:** $n = 3, paths = [[0],[1],[2]]$
 - **Output:** `0`
 - **Explanation:** There is no common subpath shared by the three paths.
+
 #### Example 3
 
 - **Input:** $n = 5, paths = [[<u>0</u>,1,2,3,4],$

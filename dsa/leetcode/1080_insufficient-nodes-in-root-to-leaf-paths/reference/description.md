@@ -8,8 +8,10 @@ A **leaf** is a node with no children.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `sufficientSubset(root: Optional[TreeNode], limit: int) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -19,12 +21,14 @@ A **leaf** is a node with no children.
 
 - **Input:** `root = [1,2,3,4,-99,-99,7,8,9,-99,-99,12,13,-99,14], limit = 1`
 - **Output:** `[1,2,3,4,null,null,7,8,9,null,14]`
+
 #### Example 2
 
 ![](images/insufficient-3.png)
 
 - **Input:** `root = [5,4,8,11,null,17,4,7,1,null,null,5,3], limit = 22`
 - **Output:** `[5,4,8,11,null,17,4,7,null,null,null,5]`
+
 #### Example 3
 
 ![](images/screen-shot-2019-06-11-at-83301-pm.png)

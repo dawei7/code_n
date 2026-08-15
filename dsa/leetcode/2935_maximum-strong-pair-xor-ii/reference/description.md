@@ -10,8 +10,13 @@ Return *the **maximum** *`XOR`* value out of all possible strong pairs in the ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`list[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,12 +30,14 @@ that you can pick the same integer twice to form a pair.
 - **Output:** `7`
 - **Explanation:** There are 11 strong pairs in the array nums: (1, 1), (1, 2), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (3, 5), (4, 4), (4, 5) and (5, 5).
 The maximum XOR possible from these pairs is 3 XOR 4 = 7.
+
 #### Example 2
 
 - **Input:** `nums = [10,100]`
 - **Output:** `0`
 - **Explanation:** There are 2 strong pairs in the array nums: (10, 10) and (100, 100).
 The maximum XOR possible from these pairs is 10 XOR 10 = 0 since the pair (100, 100) also gives 100 XOR 100 = 0.
+
 #### Example 3
 
 - **Input:** `nums = [500,520,2500,3000]`

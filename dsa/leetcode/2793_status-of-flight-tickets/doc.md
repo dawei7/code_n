@@ -36,7 +36,7 @@ Sort the result by `passenger_id` ascending.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Given flights with capacities `(1, 2)`, `(2, 2)`, and `(3, 1)`, rank each passenger only against bookings for the same flight. Passenger 103 booked flight 1 before passengers 101 and 102, so 103 and 101 are confirmed while 102 is waitlisted. Flight 2 confirms both requests, and flight 3 confirms only its earlier request from passenger 107.
 
@@ -52,6 +52,6 @@ The ordered result is:
 | 106 | Waitlist |
 | 107 | Confirmed |
 
-**Example 2**
+#### Example 2
 
 For one flight of capacity $1$ with passengers 20, 30, and 10 booking in that chronological order, only passenger 20 is confirmed. The output is still ordered by identifier: passenger 10 is waitlisted, passenger 20 is confirmed, and passenger 30 is waitlisted.

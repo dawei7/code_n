@@ -32,6 +32,7 @@ numeric direction. The result is a length, not the path itself.
 - **Input:** `root = [1,2,3]`
 - **Output:** `2`
 - **Explanation:** The longest consecutive path is [1, 2] or [2, 1].
+
 #### Example 2
 
 ![](images/consec2-2-tree.jpg)

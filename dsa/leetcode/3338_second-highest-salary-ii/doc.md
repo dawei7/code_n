@@ -36,7 +36,7 @@ Return columns `emp_id` and `dept` for all employees whose salary is the second-
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table:
 
@@ -53,7 +53,7 @@ Input table:
 | 9 | 55000 | Marketing |
 | 10 | 55000 | HR |
 
-Output:
+- **Output:** 
 
 | emp_id | dept |
 |---:|---|

@@ -8,8 +8,16 @@ The edges of the undirected tree are given in the array `edges`, where $\text{ed
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `t`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -20,6 +28,7 @@ The edges of the undirected tree are given in the array `edges`, where $\text{ed
 - **Input:** $n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 2, target = 4$
 - **Output:** `0.16666666666666666`
 - **Explanation:** The figure above shows the given graph. The frog starts at vertex 1, jumping with 1/3 probability to the vertex 2 after **second 1** and then jumping with 1/2 probability to vertex 4 after **second 2**. Thus the probability for the frog is on the vertex 4 after 2 seconds is 1/3 * 1/2 = 1/6 = 0.16666666666666666.
+
 #### Example 2
 
 **

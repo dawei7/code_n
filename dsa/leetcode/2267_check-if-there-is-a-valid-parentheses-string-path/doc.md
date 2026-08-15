@@ -41,16 +41,16 @@ right moves, spells a valid parentheses string. Otherwise return `false`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [["(","(","("],[")","(",")"],["(","(",")"],["(","(",")"]]`
-- Output: `true`
+- **Input:** `grid = [["(","(","("],[")","(",")"],["(","(",")"],["(","(",")"]]`
+- **Output:** `true`
 
 Among the possible paths are ones spelling `()(())` and `((()))`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[")",")"],["(","("]]`
-- Output: `false`
+- **Input:** `grid = [[")",")"],["(","("]]`
+- **Output:** `false`
 
 The two paths spell `"))("` and `")(("`, neither of which is valid.

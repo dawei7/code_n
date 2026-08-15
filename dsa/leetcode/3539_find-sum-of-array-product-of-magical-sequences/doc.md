@@ -46,20 +46,20 @@ Let $N=\lvert\texttt{nums}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 5, k = 5, nums = [1,10,100,10000,1000000]`
-- Output: `991600007`
-- Explanation: Every permutation of the five distinct indices contributes the same product, $10^{13}$, and the modular sum of those products is returned.
+- **Input:** `m = 5, k = 5, nums = [1,10,100,10000,1000000]`
+- **Output:** `991600007`
+- **Explanation:** Every permutation of the five distinct indices contributes the same product, $10^{13}$, and the modular sum of those products is returned.
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 2, k = 2, nums = [5,4,3,2,1]`
-- Output: `170`
-- Explanation: The magical sequences are the ordered pairs of distinct indices; their weighted products sum to `170`.
+- **Input:** `m = 2, k = 2, nums = [5,4,3,2,1]`
+- **Output:** `170`
+- **Explanation:** The magical sequences are the ordered pairs of distinct indices; their weighted products sum to `170`.
 
-**Example 3**
+#### Example 3
 
-- Input: `m = 1, k = 1, nums = [28]`
-- Output: `28`
-- Explanation: The only sequence is `[0]`, and its binary power sum has one set bit.
+- **Input:** `m = 1, k = 1, nums = [28]`
+- **Output:** `28`
+- **Explanation:** The only sequence is `[0]`, and its binary power sum has one set bit.

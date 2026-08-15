@@ -30,14 +30,11 @@ Return `ans`, where $\text{ans}[i]$ is the smallest absolute difference between 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,4]
+- **Input:** nums = [1,2,4]
 
-**Output:** [0,1,1]
+- **Output:** [0,1,1]
 
-**Explanation:**
-
-One optimal set of operations:
+- **Explanation:** One optimal set of operations:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -84,17 +81,13 @@ One optimal set of operations:
 
 Thus, $ans = [0, 1, 1]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [6,7,12]
+- **Input:** nums = [6,7,12]
 
-**Output:** [1,0,3]
+- **Output:** [1,0,3]
 
-**Explanation:**
-
-One optimal set of operations:
+- **Explanation:** One optimal set of operations:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -140,8 +133,6 @@ One optimal set of operations:
 </table>
 
 Thus, $ans = [1, 0, 3]$.
-
-</div>
 
 ### 4. Constraints
 

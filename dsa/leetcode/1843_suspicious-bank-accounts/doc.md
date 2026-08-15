@@ -39,22 +39,22 @@ For every account and calendar month, total only its creditor amounts. An accoun
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For account 3, the creditor transactions total 300100 in June 2021 and 64900 in July 2021. Both totals exceed its threshold of 21000, so account 3 is suspicious.
 
 Account 4 exceeds its threshold in May and July, but its June income does not exceed the threshold. The qualifying months are not consecutive, so account 4 is excluded.
 
-Output:
+- **Output:** 
 
 | account_id |
 |---:|
 | 3 |
 
-**Example 2**
+#### Example 2
 
 If an account's income equals its threshold in January and exceeds it in February, the account is not suspicious because the January comparison must be strict.
 
-**Example 3**
+#### Example 3
 
 December 2023 and January 2024 are consecutive calendar months. An account exceeding its threshold in both must be reported despite the year boundary.

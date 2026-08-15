@@ -30,17 +30,17 @@ For example, an all-ones $2 \times 2$ region contributes its four individual cel
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[0,1,1,1],[1,1,1,1],[0,1,1,1]]`
-- Output: `15`
+- **Input:** `matrix = [[0,1,1,1],[1,1,1,1],[0,1,1,1]]`
+- **Output:** `15`
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[1,0,1],[1,1,0],[1,1,0]]`
-- Output: `7`
+- **Input:** `matrix = [[1,0,1],[1,1,0],[1,1,0]]`
+- **Output:** `7`
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[1]]`
-- Output: `1`
+- **Input:** `matrix = [[1]]`
+- **Output:** `1`

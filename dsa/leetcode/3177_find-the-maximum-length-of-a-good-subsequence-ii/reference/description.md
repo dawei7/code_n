@@ -6,35 +6,32 @@ Return the **maximum** possible length of a **good** subsequence of `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1,1,3], k = 2
+- **Input:** nums = [1,2,1,1,3], k = 2
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The maximum length subsequence is `[<u>1</u>,<u>2</u>,<u>1</u>,<u>1</u>,3]`.
 
-The maximum length subsequence is `[<u>1</u>,<u>2</u>,<u>1</u>,<u>1</u>,3]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5,1], k = 0
+- **Input:** nums = [1,2,3,4,5,1], k = 0
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The maximum length subsequence is `[<u>1</u>,2,3,4,5,<u>1</u>]`.
-
-</div>
+- **Explanation:** The maximum length subsequence is `[<u>1</u>,2,3,4,5,<u>1</u>]`.
 
 ### 4. Constraints
 

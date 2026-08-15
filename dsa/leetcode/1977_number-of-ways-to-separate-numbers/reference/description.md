@@ -6,8 +6,13 @@ Return *the **number of possible lists of integers** that you could have written
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return *the **number of possible lists of integers** that you could have written
 - **Explanation:** You could have written down the numbers:
 3, 27
 327
+
 #### Example 2
 
 - **Input:** $num = "094"$
 - **Output:** `0`
 - **Explanation:** No numbers can have leading zeros and all numbers must be positive.
+
 #### Example 3
 
 - **Input:** $num = "0"$

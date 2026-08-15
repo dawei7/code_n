@@ -31,20 +31,20 @@ Reconstruct and return the entire original array. The supplied values always des
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `encoded = [1,2,3], first = 1`
-- Output: `[1,0,2,1]`
-- Explanation: The adjacent XOR values are `1 XOR 0 = 1`, `0 XOR 2 = 2`, and `2 XOR 1 = 3`.
+- **Input:** `encoded = [1,2,3], first = 1`
+- **Output:** `[1,0,2,1]`
+- **Explanation:** The adjacent XOR values are `1 XOR 0 = 1`, `0 XOR 2 = 2`, and `2 XOR 1 = 3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `encoded = [6,2,7,3], first = 4`
-- Output: `[4,2,0,7,4]`
-- Explanation: Each next element is recovered from the previous decoded value and the corresponding encoded value.
+- **Input:** `encoded = [6,2,7,3], first = 4`
+- **Output:** `[4,2,0,7,4]`
+- **Explanation:** Each next element is recovered from the previous decoded value and the corresponding encoded value.
 
-**Example 3**
+#### Example 3
 
-- Input: `encoded = [0], first = 100000`
-- Output: `[100000,100000]`
-- Explanation: Two equal values have XOR zero.
+- **Input:** `encoded = [0], first = 100000`
+- **Output:** `[100000,100000]`
+- **Explanation:** Two equal values have XOR zero.

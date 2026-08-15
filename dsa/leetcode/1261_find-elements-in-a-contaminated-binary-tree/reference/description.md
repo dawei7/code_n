@@ -6,11 +6,9 @@ Given a binary tree with the following rules:
 
 - For any `treeNode`:
 
-		<li>If `treeNode.val` has a value `x` and $\text{treeNode.left} \neq null$, then $\text{treeNode.left}.val = 2 * x + 1$
+		- If `treeNode.val` has a value `x` and $\text{treeNode.left} \neq null$, then $\text{treeNode.left}.val = 2 * x + 1$
 
 - If `treeNode.val` has a value `x` and $\text{treeNode.right} \neq null$, then $\text{treeNode.right}.val = 2 * x + 2$
-
-	</li>
 
 Now the binary tree is contaminated, which means all `treeNode.val` have been changed to `-1`.
 
@@ -22,8 +20,11 @@ Implement the `FindElements` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `TreeNode(root: Optional[TreeNode])`: Initializes the data structure.
+- `find(target: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -42,6 +43,7 @@ FindElements findElements = new FindElements([-1,null,-1]);
 findElements.find(1); // return False
 findElements.find(2); // return True
 ```
+
 #### Example 2
 
 ![](images/untitled-diagram-4.jpg)
@@ -58,6 +60,7 @@ findElements.find(1); // return True
 findElements.find(3); // return True
 findElements.find(5); // return False
 ```
+
 #### Example 3
 
 ![](images/untitled-diagram-4-1-1.jpg)

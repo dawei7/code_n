@@ -10,8 +10,13 @@ Each $\text{answer}[i]$ is calculated considering the **initial** state of the b
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `boxes`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Each $\text{answer}[i]$ is calculated considering the **initial** state of the b
 1) First box: you will have to move one ball from the second box to the first box in one operation.
 2) Second box: you will have to move one ball from the first box to the second box in one operation.
 3) Third box: you will have to move one ball from the first box to the third box in two operations, and move one ball from the second box to the third box in one operation.
+
 #### Example 2
 
 - **Input:** $boxes = "001011"$

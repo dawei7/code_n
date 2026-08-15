@@ -42,12 +42,11 @@ Return an integer equal to the minimum number of groups in a partition where eve
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["ntgwz","zwntg"]
+- **Input:** words = ["ntgwz","zwntg"]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - For `"ntgwz"`, the even-index subsequence is `"ngz"` and the odd-index subsequence is `"tw"`.
 
@@ -57,17 +56,13 @@ Return an integer equal to the minimum number of groups in a partition where eve
 
 - Therefore, both strings are equivalent and belong to the same group.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["abc","cab","bac","acb","bca","cba"]
+- **Input:** words = ["abc","cab","bac","acb","bca","cba"]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The strings can be partitioned into the following groups:
+- **Explanation:** The strings can be partitioned into the following groups:
 
 - `["abc","cba"]`
 
@@ -75,17 +70,13 @@ The strings can be partitioned into the following groups:
 
 - `["acb","bca"]`
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words = ["leet","abb","bab","deed","edde","code","bba"]
+- **Input:** words = ["leet","abb","bab","deed","edde","code","bba"]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-The strings can be partitioned into the following groups:
+- **Explanation:** The strings can be partitioned into the following groups:
 
 - `["abb","bba"]`
 
@@ -98,8 +89,6 @@ The strings can be partitioned into the following groups:
 - `["code"]`
 
 ​​​​​​​​​​​​​​All pairs of strings in each group are equivalent.
-
-</div>
 
 ### 4. Constraints
 

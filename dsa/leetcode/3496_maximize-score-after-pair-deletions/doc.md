@@ -32,14 +32,14 @@ Return the maximum score obtainable when operations continue until no more are a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,4,1]`
-- Output: `6`
-- Explanation: Removing the first two elements scores `2 + 4`; the remaining one-element array ends the process.
+- **Input:** `nums = [2,4,1]`
+- **Output:** `6`
+- **Explanation:** Removing the first two elements scores `2 + 4`; the remaining one-element array ends the process.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,-1,4,2]`
-- Output: `7`
-- Explanation: Removing the first and last elements scores `5 + 2` and leaves the adjacent pair `[-1,4]`.
+- **Input:** `nums = [5,-1,4,2]`
+- **Output:** `7`
+- **Explanation:** Removing the first and last elements scores `5 + 2` and leaves the adjacent pair `[-1,4]`.

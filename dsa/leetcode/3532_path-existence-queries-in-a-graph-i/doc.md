@@ -39,14 +39,14 @@ Let $Q = \lvert\texttt{queries}\rvert$, where $1 \le Q \le 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, nums = [1,3], maxDiff = 1, queries = [[0,0],[0,1]]`
-- Output: `[true,false]`
-- Explanation: Node `0` reaches itself, but the value gap between the two different nodes is $2$, which exceeds `maxDiff`.
+- **Input:** `n = 2, nums = [1,3], maxDiff = 1, queries = [[0,0],[0,1]]`
+- **Output:** `[true,false]`
+- **Explanation:** Node `0` reaches itself, but the value gap between the two different nodes is $2$, which exceeds `maxDiff`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, nums = [2,5,6,8], maxDiff = 2, queries = [[0,1],[0,2],[1,3],[2,3]]`
-- Output: `[false,false,true,true]`
-- Explanation: The gap from `2` to `5` separates node `0`. Nodes `1`, `2`, and `3` remain connected through consecutive gaps of $1$ and $2$.
+- **Input:** `n = 4, nums = [2,5,6,8], maxDiff = 2, queries = [[0,1],[0,2],[1,3],[2,3]]`
+- **Output:** `[false,false,true,true]`
+- **Explanation:** The gap from `2` to `5` separates node `0`. Nodes `1`, `2`, and `3` remain connected through consecutive gaps of $1$ and $2$.

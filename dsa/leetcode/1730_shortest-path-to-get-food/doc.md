@@ -30,20 +30,20 @@ One step moves to an orthogonally adjacent cell—north, east, south, or west—
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [["X","X","X","X","X","X"],["X","*","O","O","O","X"],["X","O","O","#","O","X"],["X","X","X","X","X","X"]]`
-- Output: `3`
-- Explanation: The nearest food can be reached in three orthogonal steps.
+- **Input:** `grid = [["X","X","X","X","X","X"],["X","*","O","O","O","X"],["X","O","O","#","O","X"],["X","X","X","X","X","X"]]`
+- **Output:** `3`
+- **Explanation:** The nearest food can be reached in three orthogonal steps.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [["X","X","X","X","X"],["X","*","X","O","X"],["X","O","X","#","X"],["X","X","X","X","X"]]`
-- Output: `-1`
-- Explanation: Obstacles separate the start from the food.
+- **Input:** `grid = [["X","X","X","X","X"],["X","*","X","O","X"],["X","O","X","#","X"],["X","X","X","X","X"]]`
+- **Output:** `-1`
+- **Explanation:** Obstacles separate the start from the food.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [["X","X","X","X","X","X","X","X"],["X","*","O","X","O","#","O","X"],["X","O","O","X","O","O","X","X"],["X","O","O","O","O","#","O","X"],["X","X","X","X","X","X","X","X"]]`
-- Output: `6`
-- Explanation: Of the two food cells, the lower one is reachable in six steps.
+- **Input:** `grid = [["X","X","X","X","X","X","X","X"],["X","*","O","X","O","#","O","X"],["X","O","O","X","O","O","X","X"],["X","O","O","O","O","#","O","X"],["X","X","X","X","X","X","X","X"]]`
+- **Output:** `6`
+- **Explanation:** Of the two food cells, the lower one is reachable in six steps.

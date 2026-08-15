@@ -39,20 +39,20 @@ Let $L$ be the sentence length.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sentence = "cat and  dog"`
-- Output: `3`
+- **Input:** `sentence = "cat and  dog"`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `sentence = "!this  1-s b8d!"`
-- Output: `0`
-- Explanation: The first token has misplaced punctuation, while the other two
+- **Input:** `sentence = "!this  1-s b8d!"`
+- **Output:** `0`
+- **Explanation:** The first token has misplaced punctuation, while the other two
   contain digits.
 
-**Example 3**
+#### Example 3
 
-- Input: `sentence = "alice and  bob are playing stone-game10"`
-- Output: `5`
-- Explanation: The first five words are valid; the final token contains digits.
+- **Input:** `sentence = "alice and  bob are playing stone-game10"`
+- **Output:** `5`
+- **Explanation:** The first five words are valid; the final token contains digits.

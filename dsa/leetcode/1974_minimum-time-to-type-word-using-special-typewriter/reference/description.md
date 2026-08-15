@@ -14,8 +14,13 @@ Given a string `word`, return the** minimum** number of seconds to type out the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,18 +28,19 @@ Given a string `word`, return the** minimum** number of seconds to type out the 
 
 - **Input:** $word = "abc"$
 - **Output:** `5`
-- **Explanation:**
+- **Explanation:** 
 **The characters are printed as follows:
 - Type the character 'a' in 1 second since the pointer is initially on 'a'.
 - Move the pointer clockwise to 'b' in 1 second.
 - Type the character 'b' in 1 second.
 - Move the pointer clockwise to 'c' in 1 second.
 - Type the character 'c' in 1 second.
+
 #### Example 2
 
 - **Input:** $word = "bza"$
 - **Output:** `7`
-- **Explanation:**
+- **Explanation:** 
 **The characters are printed as follows:
 - Move the pointer clockwise to 'b' in 1 second.
 - Type the character 'b' in 1 second.
@@ -42,12 +48,12 @@ Given a string `word`, return the** minimum** number of seconds to type out the 
 - Type the character 'z' in 1 second.
 - Move the pointer clockwise to 'a' in 1 second.
 - Type the character 'a' in 1 second.
+
 #### Example 3
 
 - **Input:** $word = "zjpc"$
 - **Output:** `34`
-- **Explanation:**
-The characters are printed as follows:
+- **Explanation:** The characters are printed as follows:
 - Move the pointer counterclockwise to 'z' in 1 second.
 - Type the character 'z' in 1 second.
 - Move the pointer clockwise to 'j' in 10 seconds.

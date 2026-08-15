@@ -35,16 +35,16 @@ Produce an ordering of all items in which every item from the same group appears
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 8`, `m = 2`, `group = [-1,-1,1,0,0,1,0,-1]`, `beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]`
-- Output: `[6,3,4,1,5,2,0,7]`
+- **Input:** `n = 8`, `m = 2`, `group = [-1,-1,1,0,0,1,0,-1]`, `beforeItems = [[],[6],[5],[6],[3,6],[],[],[]]`
+- **Output:** `[6,3,4,1,5,2,0,7]`
 
 Other valid orders may also be returned.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 8`, `m = 2`, `group = [-1,-1,1,0,0,1,0,-1]`, `beforeItems = [[],[6],[5],[6],[3],[],[4],[]]`
-- Output: `[]`
+- **Input:** `n = 8`, `m = 2`, `group = [-1,-1,1,0,0,1,0,-1]`, `beforeItems = [[],[6],[5],[6],[3],[],[4],[]]`
+- **Output:** `[]`
 
 Compared with the first example, item `4` must now precede item `6`; the resulting requirements cannot be satisfied while group `0` remains contiguous.

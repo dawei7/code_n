@@ -30,14 +30,14 @@ Among all such repeated sequences, return any one whose length is as large as po
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "banana"`
-- Output: `"ana"`
-- Explanation: `"ana"` occurs beginning at indices `1` and `3`; those occurrences overlap.
+- **Input:** `s = "banana"`
+- **Output:** `"ana"`
+- **Explanation:** `"ana"` occurs beginning at indices `1` and `3`; those occurrences overlap.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd"`
-- Output: `""`
-- Explanation: No nonempty substring occurs twice.
+- **Input:** `s = "abcd"`
+- **Output:** `""`
+- **Explanation:** No nonempty substring occurs twice.

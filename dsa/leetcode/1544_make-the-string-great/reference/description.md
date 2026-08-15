@@ -14,8 +14,13 @@ Return *the string* after making it good. The answer is guaranteed to be unique 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Notice
 
@@ -28,6 +33,7 @@ that an empty string is also good.
 - **Input:** `s = "leEeetcode"`
 - **Output:** `"leetcode"`
 - **Explanation:** In the first step, either you choose i = 1 or i = 2, both will result "leEeetcode" to be reduced to "leetcode".
+
 #### Example 2
 
 - **Input:** `s = "abBAcC"`
@@ -35,6 +41,7 @@ that an empty string is also good.
 - **Explanation:** We have many possible scenarios, and all lead to the same answer. For example:
 "abBAcC" --> "aAcC" --> "cC" --> ""
 "abBAcC" --> "abBA" --> "aA" --> ""
+
 #### Example 3
 
 - **Input:** `s = "s"`

@@ -18,8 +18,13 @@ Given an array of strings `emails` where we send one email to each $\text{emails
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `emails`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Given an array of strings `emails` where we send one email to each $\text{emails
 - **Input:** $emails = ["\text{test.email}+alex@\text{leetcode.com}","\text{test.e}.mail+\text{bob.cathy}@\text{leetcode.com}","testemail+david@\text{lee.tcode}.com"]$
 - **Output:** `2`
 - **Explanation:** "testemail@leetcode.com" and "testemail@lee.tcode.com" actually receive mails.
+
 #### Example 2
 
 - **Input:** $emails = ["a@\text{leetcode.com}","b@\text{leetcode.com}","c@\text{leetcode.com}"]$

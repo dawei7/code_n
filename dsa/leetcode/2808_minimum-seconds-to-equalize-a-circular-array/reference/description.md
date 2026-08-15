@@ -8,8 +8,13 @@ At each second, you perform the following operation on the array:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -26,6 +31,7 @@ Return *the **minimum** number of seconds needed to make all elements in the arr
 - **Explanation:** We can equalize the array in 1 second in the following way:
 - At 1^st second, replace values at each index with [nums[3],nums[1],nums[3],nums[3]]. After replacement, nums = [2,2,2,2].
 It can be proven that 1 second is the minimum amount of seconds needed for equalizing the array.
+
 #### Example 2
 
 - **Input:** `nums = [2,1,3,3,2]`
@@ -34,6 +40,7 @@ It can be proven that 1 second is the minimum amount of seconds needed for equal
 - At 1^st second, replace values at each index with [nums[0],nums[2],nums[2],nums[2],nums[3]]. After replacement, nums = [2,3,3,3,3].
 - At 2^nd second, replace values at each index with [nums[1],nums[1],nums[2],nums[3],nums[4]]. After replacement, nums = [3,3,3,3,3].
 It can be proven that 2 seconds is the minimum amount of seconds needed for equalizing the array.
+
 #### Example 3
 
 - **Input:** `nums = [5,5,5,5]`

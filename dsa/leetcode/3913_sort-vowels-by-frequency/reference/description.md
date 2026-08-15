@@ -28,46 +28,39 @@ Return a string of length $n$ in which every consonant remains at its original i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "leetcode"
+- **Input:** s = "leetcode"
 
-**Output:** "leetcedo"
+- **Output:** "leetcedo"
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Vowels in the string are `['e', 'e', 'o', 'e']` with frequencies: $e = 3$, $o = 1$.
 
 - Sorting in non-increasing order of frequency and placing them back into the vowel positions results in `"leetcedo"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aeiaaioooa"
+- **Input:** s = "aeiaaioooa"
 
-**Output:** "aaaaoooiie"
+- **Output:** "aaaaoooiie"
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Vowels in the string are `['a', 'e', 'i', 'a', 'a', 'i', 'o', 'o', 'o', 'a']` with frequencies: $a = 4$, $o = 3$, $i = 2$, $e = 1$.
 
 - Sorting them in non-increasing order of frequency and placing them back into the vowel positions results in `"aaaaoooiie"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "baeiou"
+- **Input:** s = "baeiou"
 
-**Output:** "baeiou"
+- **Output:** "baeiou"
 
-**Explanation:**
+- **Explanation:** 
 
 - Each vowel appears exactly once, so all have the same frequency.
 
 - Thus, they retain their relative order based on first occurrence, and the string remains unchanged.
-
-</div>
 
 ### 4. Constraints
 

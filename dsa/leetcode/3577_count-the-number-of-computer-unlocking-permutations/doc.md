@@ -32,16 +32,16 @@ Return the number of valid unlocking permutations modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `complexity = [1,2,3]`
-- Output: `2`
-- Explanation: After computer `0`, either `1` or `2` may be unlocked first because the root has lower complexity than both.
+- **Input:** `complexity = [1,2,3]`
+- **Output:** `2`
+- **Explanation:** After computer `0`, either `1` or `2` may be unlocked first because the root has lower complexity than both.
 
-**Example 2**
+#### Example 2
 
-- Input: `complexity = [3,3,3,4,4,4]`
-- Output: `0`
-- Explanation: Computer `1` cannot be unlocked: the only smaller label is `0`, whose complexity is not strictly lower.
+- **Input:** `complexity = [3,3,3,4,4,4]`
+- **Output:** `0`
+- **Explanation:** Computer `1` cannot be unlocked: the only smaller label is `0`, whose complexity is not strictly lower.
 
 ---

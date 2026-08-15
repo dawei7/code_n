@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/get-watched-videos-by-your-friends/) |
 
 ## Problem Description
+
 ### Goal
+
 There are $n$ people with IDs from 0 through $n-1$. For each person, `watchedVideos[i]` lists the videos that person watched, and `friends[i]` lists that person's friends. Friendship is mutual.
 
 Starting from person `id`, consider only people whose shortest friendship-path distance is exactly `level`. Count every video occurrence in those people's watched lists. Return the distinct video names ordered by increasing frequency among that exact-level group; when two videos have the same frequency, order them in ascending alphabetical order.
 
 ### Function Contract
+
 **Inputs**
 
 - `watchedVideos`: $n$ nonempty video lists, one for each person.
@@ -31,19 +34,20 @@ Let $E$ be the number of friendship edges, $S$ the total number of video entries
 The $V$ distinct target-level video titles, sorted first by increasing occurrence count and then alphabetically.
 
 ### Examples
-**Example 1**
 
-- Input: `watchedVideos = [["A","B"],["C"],["B","C"],["D"]]`, `friends = [[1,2],[0,3],[0,3],[1,2]]`, `id = 0`, `level = 1`
-- Output: `["B","C"]`
-- Explanation: People 1 and 2 are exactly one step away. `B` occurs once and `C` occurs twice.
+#### Example 1
 
-**Example 2**
+- **Input:** `watchedVideos = [["A","B"],["C"],["B","C"],["D"]]`, `friends = [[1,2],[0,3],[0,3],[1,2]]`, `id = 0`, `level = 1`
+- **Output:** `["B","C"]`
+- **Explanation:** People 1 and 2 are exactly one step away. `B` occurs once and `C` occurs twice.
 
-- Input: the same graph, `id = 0`, `level = 2`
-- Output: `["D"]`
+#### Example 2
 
-**Example 3**
+- **Input:** the same graph, `id = 0`, `level = 2`
+- **Output:** `["D"]`
 
-- Input: `watchedVideos = [["self"],["B","A"],["A"]]`, `friends = [[1,2],[0],[0]]`, `id = 0`, `level = 1`
-- Output: `["B","A"]`
-- Explanation: `B` occurs once and `A` occurs twice, so frequency takes priority over alphabetical order.
+#### Example 3
+
+- **Input:** `watchedVideos = [["self"],["B","A"],["A"]]`, `friends = [[1,2],[0],[0]]`, `id = 0`, `level = 1`
+- **Output:** `["B","A"]`
+- **Explanation:** `B` occurs once and `A` occurs twice, so frequency takes priority over alphabetical order.

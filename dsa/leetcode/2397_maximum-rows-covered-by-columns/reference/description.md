@@ -16,8 +16,14 @@ Return the **maximum** number of rows that can be **covered** by a set of `numSe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+- `numSelect`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,14 +31,11 @@ Return the **maximum** number of rows that can be **covered** by a set of `numSe
 
 ![](images/rowscovered.png)
 
-<div class="example-block">
-**Input:** matrix = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]], numSelect = 2
+- **Input:** matrix = [[0,0,0],[1,0,1],[0,1,1],[0,0,1]], numSelect = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One possible way to cover 3 rows is shown in the diagram above.
+- **Explanation:** One possible way to cover 3 rows is shown in the diagram above.
 
 We choose s = {0, 2}.
 
@@ -48,21 +51,15 @@ Thus, we can cover three rows.
 
 Note that s = {1, 2} will also cover 3 rows, but it can be shown that no more than three rows can be covered.
 
-</div>
 #### Example 2
 
 ![](images/rowscovered2.png)
 
-<div class="example-block">
-**Input:** matrix = [[1],[0]], numSelect = 1
+- **Input:** matrix = [[1],[0]], numSelect = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Selecting the only column will result in both rows being covered since the entire matrix is selected.
-
-</div>
+- **Explanation:** Selecting the only column will result in both rows being covered since the entire matrix is selected.
 
 ### 4. Constraints
 

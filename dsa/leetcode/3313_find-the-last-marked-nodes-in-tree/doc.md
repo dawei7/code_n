@@ -30,21 +30,21 @@ Return an integer array of length $n$. For each starting vertex `i`, the value a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0, 1], [0, 2]]`
-- Output: `[2, 2, 1]`
+- **Input:** `edges = [[0, 1], [0, 2]]`
+- **Output:** `[2, 2, 1]`
 
 Starting from 0, vertices 1 and 2 tie for last, so either is allowed. Starting from either leaf, the other leaf is marked last.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0, 1]]`
-- Output: `[1, 0]`
+- **Input:** `edges = [[0, 1]]`
+- **Output:** `[1, 0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `edges = [[0, 1], [0, 2], [2, 3], [2, 4]]`
-- Output: `[3, 3, 1, 1, 1]`
+- **Input:** `edges = [[0, 1], [0, 2], [2, 3], [2, 4]]`
+- **Output:** `[3, 3, 1, 1, 1]`
 
 For example, starting at vertex 2 leaves vertex 1 for the final second, while starting at vertex 0 may validly choose either vertex 3 or 4.

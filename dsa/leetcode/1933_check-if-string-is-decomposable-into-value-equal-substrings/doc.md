@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-string-is-decomposable-into-value-equal-substrings/) |
 
 ## Problem Description
+
 ### Goal
+
 A value-equal string contains only copies of one character. Given a digit
 string `s`, split the entire string into consecutive, nonempty substrings, each
 of which must be value-equal. Every selected character must remain in its
@@ -20,6 +22,7 @@ must have length three; no piece of another length is allowed. Return whether
 at least one decomposition satisfying all of these rules exists.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a string of $N$ digits from `"0"` through `"9"`, where
@@ -32,24 +35,25 @@ at least one decomposition satisfying all of these rules exists.
   otherwise `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "000111000"`
-- Output: `false`
+#### Example 1
+
+- **Input:** `s = "000111000"`
+- **Output:** `false`
 
 The natural three groups all have length three, so no required length-two
 piece exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "00011111222"`
-- Output: `true`
+- **Input:** `s = "00011111222"`
+- **Output:** `true`
 
 One valid decomposition is `["000", "111", "11", "222"]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "011100022233"`
-- Output: `false`
+- **Input:** `s = "011100022233"`
+- **Output:** `false`
 
 The initial one-character run cannot form an allowed piece.

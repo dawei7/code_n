@@ -31,7 +31,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 UserActivity table:
@@ -79,7 +78,7 @@ UserActivity table:
 
 - **User 1:**
 
-		<li>Had 3 days of free trial with durations of 45, 30, and 60 minutes.
+		- Had 3 days of free trial with durations of 45, 30, and 60 minutes.
 
 - Average trial duration: (45 + 30 + 60) / 3 = 45.00 minutes.
 
@@ -87,10 +86,9 @@ UserActivity table:
 
 - Average paid duration: (75 + 90 + 65) / 3 = 76.67 minutes.
 
-	</li>
 - **User 2:**
 
-		<li>Had 3 days of free trial with durations of 55, 25, and 50 minutes.
+		- Had 3 days of free trial with durations of 55, 25, and 50 minutes.
 
 - Average trial duration: (55 + 25 + 50) / 3 = 43.33 minutes.
 
@@ -98,10 +96,9 @@ UserActivity table:
 
 - Not included in the output because they didn't convert to paid.
 
-	</li>
 - **User 3:**
 
-		<li>Had 3 days of free trial with durations of 70, 60, and 80 minutes.
+		- Had 3 days of free trial with durations of 70, 60, and 80 minutes.
 
 - Average trial duration: (70 + 60 + 80) / 3 = 70.00 minutes.
 
@@ -109,10 +106,9 @@ UserActivity table:
 
 - Average paid duration: (50 + 55 + 85) / 3 = 63.33 minutes.
 
-	</li>
 - **User 4:**
 
-		<li>Had 2 days of free trial with durations of 40 and 35 minutes.
+		- Had 2 days of free trial with durations of 40 and 35 minutes.
 
 - Average trial duration: (40 + 35) / 2 = 37.50 minutes.
 
@@ -120,11 +116,7 @@ UserActivity table:
 
 - Average paid duration: 45.00 minutes.
 
-	</li>
-
 The result table only includes users who converted from free trial to paid subscription (users 1, 3, and 4), and is ordered by user_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

@@ -12,8 +12,15 @@ Given the integer `k`, return *the least amount of money needed to form a paid g
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `quality`: Input parameter (`List[int]`).
+- `wage`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -22,6 +29,7 @@ Given the integer `k`, return *the least amount of money needed to form a paid g
 - **Input:** $quality = [10,20,5], wage = [70,50,30], k = 2$
 - **Output:** `105.00000`
 - **Explanation:** We pay 70 to 0^th worker and 35 to 2^nd worker.
+
 #### Example 2
 
 - **Input:** $quality = [3,1,10,10,1], wage = [4,8,2,2,7], k = 3$

@@ -8,8 +8,13 @@ Return the number of integers `k` such that $0 \le k \le n$ and the binary repre
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,14 +24,11 @@ The number 0 is considered binary-palindromic, and its representation is `"0"`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 9
+- **Input:** n = 9
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-The integers `k` in the range `[0, 9]` whose binary representations are palindromes are:
+- **Explanation:** The integers `k` in the range `[0, 9]` whose binary representations are palindromes are:
 
 - `0 → "0"`
 
@@ -42,19 +44,13 @@ The integers `k` in the range `[0, 9]` whose binary representations are palindro
 
 All other values in `[0, 9]` have non-palindromic binary forms. Therefore, the count is 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 0
+- **Input:** n = 0
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Since `"0"` is a palindrome, the count is 1.
-
-</div>
+- **Explanation:** Since `"0"` is a palindrome, the count is 1.
 
 ### 5. Constraints
 

@@ -30,17 +30,17 @@ Return one `user_id` column containing each qualifying user exactly once, ordere
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: purchases `(4, 2, "2022-03-13")`, `(1, 5, "2022-02-11")`, `(3, 7, "2022-06-19")`, `(6, 2, "2022-03-20")`, `(5, 7, "2022-06-19")`, `(2, 2, "2022-06-08")`
-- Output: users `2` and `7`
+- **Input:** purchases `(4, 2, "2022-03-13")`, `(1, 5, "2022-02-11")`, `(3, 7, "2022-06-19")`, `(6, 2, "2022-03-20")`, `(5, 7, "2022-06-19")`, `(2, 2, "2022-06-08")`
+- **Output:** users `2` and `7`
 
-**Example 2**
+#### Example 2
 
-- Input: one user purchases on `"2024-01-01"` and `"2024-01-08"`
-- Output: that user, because the dates are exactly seven days apart
+- **Input:** one user purchases on `"2024-01-01"` and `"2024-01-08"`
+- **Output:** that user, because the dates are exactly seven days apart
 
-**Example 3**
+#### Example 3
 
-- Input: one user purchases on `"2024-01-01"` and `"2024-01-09"`
-- Output: no rows, because the only pair is eight days apart
+- **Input:** one user purchases on `"2024-01-01"` and `"2024-01-09"`
+- **Output:** no rows, because the only pair is eight days apart

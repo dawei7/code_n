@@ -31,18 +31,18 @@ Fly every person to exactly one city so that exactly `n` people arrive in city A
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `costs = [[10,20],[30,200],[400,50],[30,20]]`
-- Output: `110`
-- Explanation: Send the first two people to A for `10 + 30` and the other two to B for `50 + 20`.
+- **Input:** `costs = [[10,20],[30,200],[400,50],[30,20]]`
+- **Output:** `110`
+- **Explanation:** Send the first two people to A for `10 + 30` and the other two to B for `50 + 20`.
 
-**Example 2**
+#### Example 2
 
-- Input: `costs = [[259,770],[448,54],[926,667],[184,139],[840,118],[577,469]]`
-- Output: `1859`
+- **Input:** `costs = [[259,770],[448,54],[926,667],[184,139],[840,118],[577,469]]`
+- **Output:** `1859`
 
-**Example 3**
+#### Example 3
 
-- Input: `costs = [[515,563],[451,713],[537,709],[343,819],[855,779],[457,60],[650,359],[631,42]]`
-- Output: `3086`
+- **Input:** `costs = [[515,563],[451,713],[537,709],[343,819],[855,779],[457,60],[650,359],[631,42]]`
+- **Output:** `3086`

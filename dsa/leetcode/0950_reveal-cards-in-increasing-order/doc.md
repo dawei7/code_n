@@ -30,13 +30,13 @@ Return a permutation of `deck` whose reveal-and-rotate process exposes the card 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `deck = [17,13,11,2,3,5,7]`
-- Output: `[2,13,3,11,5,17,7]`
-- Explanation: Revealing and rotating this ordering exposes `2,3,5,7,11,13,17`.
+- **Input:** `deck = [17,13,11,2,3,5,7]`
+- **Output:** `[2,13,3,11,5,17,7]`
+- **Explanation:** Revealing and rotating this ordering exposes `2,3,5,7,11,13,17`.
 
-**Example 2**
+#### Example 2
 
-- Input: `deck = [1,1000]`
-- Output: `[1,1000]`
+- **Input:** `deck = [1,1000]`
+- **Output:** `[1,1000]`

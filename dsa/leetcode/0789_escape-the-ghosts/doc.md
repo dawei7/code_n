@@ -31,20 +31,20 @@ Return `True` if you can guarantee reaching `target` before every ghost can inte
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `ghosts = [[1,0],[0,3]], target = [0,1]`
-- Output: `True`
-- Explanation: You need one move, while each ghost needs at least two moves to reach the target.
+- **Input:** `ghosts = [[1,0],[0,3]], target = [0,1]`
+- **Output:** `True`
+- **Explanation:** You need one move, while each ghost needs at least two moves to reach the target.
 
-**Example 2**
+#### Example 2
 
-- Input: `ghosts = [[1,0]], target = [2,0]`
-- Output: `False`
-- Explanation: The ghost can reach the target in one move, before your two-move route finishes.
+- **Input:** `ghosts = [[1,0]], target = [2,0]`
+- **Output:** `False`
+- **Explanation:** The ghost can reach the target in one move, before your two-move route finishes.
 
-**Example 3**
+#### Example 3
 
-- Input: `ghosts = [[2,0]], target = [1,0]`
-- Output: `False`
-- Explanation: Both you and the ghost can arrive after one move, and a tie is not an escape.
+- **Input:** `ghosts = [[2,0]], target = [1,0]`
+- **Output:** `False`
+- **Explanation:** Both you and the ghost can arrive after one move, and a tie is not an escape.

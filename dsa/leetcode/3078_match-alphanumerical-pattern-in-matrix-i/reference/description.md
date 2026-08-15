@@ -12,11 +12,9 @@ An integer matrix `part` matches `pattern` if we can replace cells containing le
 
 - If $\text{pattern}[r][c]$ is a letter `x`:
 
-		<li>For every $\text{pattern}[i][j] = x$, $\text{part}[i][j]$ must be the **same** as $\text{part}[r][c]$.
+		- For every $\text{pattern}[i][j] = x$, $\text{part}[i][j]$ must be the **same** as $\text{part}[r][c]$.
 
 - For every $\text{pattern}[i][j] \neq x$, $\text{part}[i][j]$ must be **different** than $\text{part}[r][c]$.
-
-	</li>
 
 Return *an array of length *`2`* containing the row number and column number of the upper-left corner of a submatrix of *`board`* which matches *`pattern`*. If there is more than one such submatrix, return the coordinates of the submatrix with the lowest row index, and in case there is still a tie, return the coordinates of the submatrix with the lowest column index. If there are no suitable answers, return* `[-1, -1]`.
 
@@ -28,7 +26,6 @@ Return *an array of length *`2`* containing the row number and column number of 
 
 #### Example 1
 
-<div style="display:flex; flex-wrap: wrap; align-items: flex-start; gap: 12px;">
 <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
@@ -61,21 +58,17 @@ Return *an array of length *`2`* containing the row number and column number of 
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<div class="example-block">
-**Input:** board = [[1,2,2],[2,2,3],[2,3,3]], pattern = ["ab","bb"]
+- **Input:** board = [[1,2,2],[2,2,3],[2,3,3]], pattern = ["ab","bb"]
 
-**Output:** [0,0]
+- **Output:** [0,0]
 
-**Explanation:** If we consider this mapping: `"a" -> 1` and `"b" -> 2`; the submatrix with the upper-left corner `(0,0)` is a match as outlined in the matrix above.
+- **Explanation:** If we consider this mapping: `"a" -> 1` and `"b" -> 2`; the submatrix with the upper-left corner `(0,0)` is a match as outlined in the matrix above.
 
 Note that the submatrix with the upper-left corner (1,1) is also a match but since it comes after the other one, we return `[0,0]`.
 
-</div>
 #### Example 2
 
-<div style="display:flex; flex-wrap: wrap; align-items: flex-start; gap: 12px;">
 <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
@@ -108,21 +101,17 @@ Note that the submatrix with the upper-left corner (1,1) is also a match but sin
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<div class="example-block">
-**Input:** board = [[1,1,2],[3,3,4],[6,6,6]], pattern = ["ab","66"]
+- **Input:** board = [[1,1,2],[3,3,4],[6,6,6]], pattern = ["ab","66"]
 
-**Output:** [1,1]
+- **Output:** [1,1]
 
-**Explanation:** If we consider this mapping: `"a" -> 3` and `"b" -> 4`; the submatrix with the upper-left corner `(1,1)` is a match as outlined in the matrix above.
+- **Explanation:** If we consider this mapping: `"a" -> 3` and `"b" -> 4`; the submatrix with the upper-left corner `(1,1)` is a match as outlined in the matrix above.
 
 Note that since the corresponding values of `"a"` and `"b"` must differ, the submatrix with the upper-left corner `(1,0)` is not a match. Hence, we return `[1,1]`.
 
-</div>
 #### Example 3
 
-<div style="display:flex; flex-wrap: wrap; align-items: flex-start; gap: 12px;">
 <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
@@ -144,16 +133,12 @@ Note that since the corresponding values of `"a"` and `"b"` must differ, the sub
 		</tr>
 	</tbody>
 </table>
-</div>
 
-<div class="example-block">
-**Input:** board = [[1,2],[2,1]], pattern = ["xx"]
+- **Input:** board = [[1,2],[2,1]], pattern = ["xx"]
 
-**Output:** [-1,-1]
+- **Output:** [-1,-1]
 
-**Explanation:** Since the values of the matched submatrix must be the same, there is no match. Hence, we return `[-1,-1]`.
-
-</div>
+- **Explanation:** Since the values of the matched submatrix must be the same, there is no match. Hence, we return `[-1,-1]`.
 
 ### 4. Constraints
 

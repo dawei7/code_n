@@ -34,6 +34,7 @@ Return the maximum attainable number of `A` characters on the screen after at mo
 - **Output:** `3`
 - **Explanation:** We can at most get 3 A's on screen by pressing the following key sequence:
 A, A, A
+
 #### Example 2
 
 - **Input:** $n = 7$

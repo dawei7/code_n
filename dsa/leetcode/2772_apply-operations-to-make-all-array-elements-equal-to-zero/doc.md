@@ -33,14 +33,14 @@ Return `True` if repeated legal operations can make every element zero; otherwis
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 2, 3, 1, 1, 0], k = 3`
-- Output: `True`
-- Explanation: Applying the operation to the first three positions twice and then to positions $2$ through $4$ once produces all zeros.
+- **Input:** `nums = [2, 2, 3, 1, 1, 0], k = 3`
+- **Output:** `True`
+- **Explanation:** Applying the operation to the first three positions twice and then to positions $2$ through $4$ once produces all zeros.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 1, 1], k = 2`
-- Output: `False`
-- Explanation: Clearing the first position forces one decrement on the second, after which the remaining values cannot all be cleared with length-$2$ operations.
+- **Input:** `nums = [1, 3, 1, 1], k = 2`
+- **Output:** `False`
+- **Explanation:** Clearing the first position forces one decrement on the second, after which the remaining values cannot all be cleared with length-$2$ operations.

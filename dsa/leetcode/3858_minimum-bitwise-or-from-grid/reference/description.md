@@ -26,44 +26,37 @@ Return the minimum numerical value of the combined bitwise OR among all selectio
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,5],[2,4]]
+- **Input:** grid = [[1,5],[2,4]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose 1 from the first row and 2 from the second row.
 
 - The bitwise OR of $1 | 2 = 3$​​​​​​​, which is the minimum possible.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[3,5],[6,4]]
+- **Input:** grid = [[3,5],[6,4]]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose 5 from the first row and 4 from the second row.
 
 - The bitwise OR of $5 | 4 = 5$​​​​​​​, which is the minimum possible.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[7,9,8]]
+- **Input:** grid = [[7,9,8]]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - Choosing 7 gives the minimum bitwise OR.
-
-</div>
 
 ### 4. Constraints
 

@@ -10,8 +10,13 @@ Return the **minimum** number of operations required to transform `s` into a str
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,12 +26,11 @@ Consider the alphabet as circular, thus `'a'` comes after `'z'`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "yz"
+- **Input:** s = "yz"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Change `'y'` to `'z'` to get `"zz"`.
 
@@ -34,19 +38,15 @@ Consider the alphabet as circular, thus `'a'` comes after `'z'`.
 
 - Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "a"
+- **Input:** s = "a"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The string `"a"` only consists of `'a'`​​​​​​​ characters. Thus, the answer is 0.
-
-</div>
 
 ### 5. Constraints
 

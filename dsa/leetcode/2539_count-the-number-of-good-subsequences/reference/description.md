@@ -17,11 +17,13 @@ A **subsequence** is a string that can be derived from another string by deletin
 - **Input:** `s = "aabb"`
 - **Output:** `11`
 - **Explanation:** The total number of subsequences is $2^{4}$. There are five subsequences which are not good: "**<u>aab</u>**b", "a<u>**abb**</u>", "**<u>a</u>**a<u>**bb**</u>", "<u>**aa**</u>b**<u>b</u>**", and the empty subsequence. Hence, the number of good subsequences is $2^{4}$-5 = 11.
+
 #### Example 2
 
 - **Input:** `s = "leet"`
 - **Output:** `12`
 - **Explanation:** There are four subsequences which are not good: "**<u>l</u>*ee***t", "l<u>**eet**</u>", "**<u>leet</u>**", and the empty subsequence. Hence, the number of good subsequences is $2^{4}$-4 = 12.
+
 #### Example 3
 
 - **Input:** `s = "abcd"`

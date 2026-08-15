@@ -38,21 +38,21 @@ division score.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 0, 1, 0]`
-- Output: `[2, 4]`
-- Explanation: Divisions `2` and `4` both score `3`, which is the maximum.
+- **Input:** `nums = [0, 0, 1, 0]`
+- **Output:** `[2, 4]`
+- **Explanation:** Divisions `2` and `4` both score `3`, which is the maximum.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 0, 0]`
-- Output: `[3]`
-- Explanation: Placing all three zeros on the left gives the unique maximum
+- **Input:** `nums = [0, 0, 0]`
+- **Output:** `[3]`
+- **Explanation:** Placing all three zeros on the left gives the unique maximum
   score.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1]`
-- Output: `[0]`
-- Explanation: Keeping both ones on the right gives the unique maximum score.
+- **Input:** `nums = [1, 1]`
+- **Output:** `[0]`
+- **Explanation:** Keeping both ones on the right gives the unique maximum score.

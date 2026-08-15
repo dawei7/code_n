@@ -8,8 +8,14 @@ Return *the **minimum** number of rungs that must be added to the ladder in orde
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rungs`: Input parameter (`List[int]`).
+- `dist`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,22 +23,22 @@ Return *the **minimum** number of rungs that must be added to the ladder in orde
 
 - **Input:** $rungs = [1,3,5,10], dist = 2$
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 **You currently cannot reach the last rung.
 Add rungs at heights 7 and 8 to climb this ladder.
 The ladder will now have rungs at [1,3,5,<u>7</u>,<u>8</u>,10].
+
 #### Example 2
 
 - **Input:** $rungs = [3,6,8,10], dist = 3$
 - **Output:** `0`
-- **Explanation:**
-This ladder can be climbed without adding additional rungs.
+- **Explanation:** This ladder can be climbed without adding additional rungs.
+
 #### Example 3
 
 - **Input:** $rungs = [3,4,6,7], dist = 2$
 - **Output:** `1`
-- **Explanation:**
-You currently cannot reach the first rung from the ground.
+- **Explanation:** You currently cannot reach the first rung from the ground.
 Add a rung at height 1 to climb this ladder.
 The ladder will now have rungs at [<u>1</u>,3,4,6,7].
 

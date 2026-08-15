@@ -13,11 +13,13 @@ Given a **positive** integer `n`, return *a string representing the **smallest p
 - **Input:** $n = 105$
 - **Output:** `"357"`
 - **Explanation:** 3 * 5 * 7 = 105. It can be shown that 357 is the smallest number with a product of digits equal to 105. So the answer would be "357".
+
 #### Example 2
 
 - **Input:** $n = 7$
 - **Output:** `"7"`
 - **Explanation:** Since 7 has only one digit, its product of digits would be 7. We will show that 7 is the smallest number with a product of digits equal to 7. Since the product of numbers 1 to 6 is 1 to 6 respectively, so "7" would be the answer.
+
 #### Example 3
 
 - **Input:** $n = 44$

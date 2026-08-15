@@ -12,8 +12,13 @@ Return *the resulting array*. If there are multiple answers, return any of them.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`list[int]`).
+
+**Return value**
+
+- Returns `list[list[int]]`.
 
 ### 3. Note
 
@@ -31,6 +36,7 @@ that the 2D array can have a different number of elements on each row.
 - 1
 All elements of nums were used, and each row of the 2D array contains distinct integers, so it is a valid answer.
 It can be shown that we cannot have less than 3 rows in a valid array.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`

@@ -64,7 +64,7 @@ Return exactly one row for each of the $K$ qualifying countries. A country witho
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Countries table:
 +------------+--------------+
 | country_id | country_name |
@@ -98,7 +98,7 @@ Weather table:
 | 9          | 7             | 2019-10-23 |
 | 9          | 3             | 2019-12-23 |
 +------------+---------------+------------+
-**Output:**
+- **Output:** 
 +--------------+--------------+
 | country_name | weather_type |
 +--------------+--------------+
@@ -108,8 +108,7 @@ Weather table:
 | Morocco      | Hot          |
 | China        | Warm         |
 +--------------+--------------+
-**Explanation:**
-Average weather_state in USA in November is (15) / 1 = 15 so weather type is Cold.
+- **Explanation:** Average weather_state in USA in November is (15) / 1 = 15 so weather type is Cold.
 Average weather_state in Austraila in November is (-2 + 0 + 3) / 3 = 0.333 so weather type is Cold.
 Average weather_state in Peru in November is (25) / 1 = 25 so the weather type is Hot.
 Average weather_state in China in November is (16 + 18 + 21) / 3 = 18.333 so weather type is Warm.

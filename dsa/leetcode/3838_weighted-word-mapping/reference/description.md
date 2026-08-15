@@ -35,12 +35,11 @@ Return a length-$W$ string containing one mapped character per word, preserving 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["abcd","def","xyz"], weights = [5,3,12,14,1,2,3,2,10,6,6,9,7,8,7,10,8,9,6,9,9,8,3,7,7,2]
+- **Input:** words = ["abcd","def","xyz"], weights = [5,3,12,14,1,2,3,2,10,6,6,9,7,8,7,10,8,9,6,9,9,8,3,7,7,2]
 
-**Output:** "rij"
+- **Output:** "rij"
 
-**Explanation:**
+- **Explanation:** 
 
 - The weight of `"abcd"` is $5 + 3 + 12 + 14 = 34$. The result modulo 26 is $34 \% 26 = 8$, which maps to `'r'`.
 
@@ -50,35 +49,27 @@ Return a length-$W$ string containing one mapped character per word, preserving 
 
 Thus, the string formed by concatenating the mapped characters is `"rij"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["a","b","c"], weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+- **Input:** words = ["a","b","c"], weights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-**Output:** "yyy"
+- **Output:** "yyy"
 
-**Explanation:**
-
-Each word has weight 1. The result modulo 26 is $1 \% 26 = 1$, which maps to `'y'`.
+- **Explanation:** Each word has weight 1. The result modulo 26 is $1 \% 26 = 1$, which maps to `'y'`.
 
 Thus, the string formed by concatenating the mapped characters is `"yyy"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words = ["abcd"], weights = [7,5,3,4,3,5,4,9,4,2,2,7,10,2,5,10,6,1,2,2,4,1,3,4,4,5]
+- **Input:** words = ["abcd"], weights = [7,5,3,4,3,5,4,9,4,2,2,7,10,2,5,10,6,1,2,2,4,1,3,4,4,5]
 
-**Output:** "g"
+- **Output:** "g"
 
-**Explanation:​​​​​​​**
+- **Explanation:** ​​​​​​​**
 
 The weight of `"abcd"` is $7 + 5 + 3 + 4 = 19$. The result modulo 26 is $19 \% 26 = 19$, which maps to `'g'`.
 
 Thus, the string formed by concatenating the mapped characters is `"g"`.
-
-</div>
 
 ### 4. Constraints
 

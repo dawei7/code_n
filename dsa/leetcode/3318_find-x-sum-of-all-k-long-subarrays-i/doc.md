@@ -32,21 +32,21 @@ Return the x-sum of each length-$k$ subarray in left-to-right starting-index ord
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1, 2, 2, 3, 4, 2, 3], k = 6, x = 2`
-- Output: `[6, 10, 12]`
+- **Input:** `nums = [1, 1, 2, 2, 3, 4, 2, 3], k = 6, x = 2`
+- **Output:** `[6, 10, 12]`
 
 In the first window, values 1 and 2 each occur twice and contribute $2+4=6$. In the second, value 2 occurs three times; among the remaining one-time values, 4 wins the value tie.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 8, 7, 8, 7, 5], k = 2, x = 2`
-- Output: `[11, 15, 15, 15, 12]`
+- **Input:** `nums = [3, 8, 7, 8, 7, 5], k = 2, x = 2`
+- **Output:** `[11, 15, 15, 15, 12]`
 
 Because `x == k`, every value in each two-element window is retained.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 1], k = 2, x = 1`
-- Output: `[2, 2, 2]`
+- **Input:** `nums = [1, 1, 1, 1], k = 2, x = 1`
+- **Output:** `[2, 2, 2]`

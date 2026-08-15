@@ -20,8 +20,11 @@ Implement the `MKAverage` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MKAverage(m: int, k: int)`: Initializes the data structure.
+- `addElement(num: int)`: Executes operation.
+- `calculateMKAverage() -> `int``: Executes operation.
 
 ### 3. Examples
 

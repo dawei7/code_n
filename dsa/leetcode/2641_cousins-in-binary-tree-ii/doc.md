@@ -30,14 +30,14 @@ The root has depth zero, and a node's depth is the number of edges on the path f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [5, 4, 9, 1, 10, null, 7]`
-- Output: `[0, 0, 0, 7, 7, null, 11]`
-- Explanation: At depth two, nodes `1` and `10` share a parent and therefore receive the other parent's child value `7`; node `7` receives `1 + 10`.
+- **Input:** `root = [5, 4, 9, 1, 10, null, 7]`
+- **Output:** `[0, 0, 0, 7, 7, null, 11]`
+- **Explanation:** At depth two, nodes `1` and `10` share a parent and therefore receive the other parent's child value `7`; node `7` receives `1 + 10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [3, 1, 2]`
-- Output: `[0, 0, 0]`
-- Explanation: No node has a cousin because the only nodes at depth one are siblings.
+- **Input:** `root = [3, 1, 2]`
+- **Output:** `[0, 0, 0]`
+- **Explanation:** No node has a cousin because the only nodes at depth one are siblings.

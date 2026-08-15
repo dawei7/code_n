@@ -30,23 +30,23 @@ Return the sign of that complete product. Only the three-way sign classification
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [-1,-2,-3,-4,3,2,1]`
-- Output: `1`
+- **Input:** `nums = [-1,-2,-3,-4,3,2,1]`
+- **Output:** `1`
 
 Four negative factors give the nonzero product a positive sign.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,5,0,2,-3]`
-- Output: `0`
+- **Input:** `nums = [1,5,0,2,-3]`
+- **Output:** `0`
 
 The zero factor makes the complete product zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-1,1,-1,1,-1]`
-- Output: `-1`
+- **Input:** `nums = [-1,1,-1,1,-1]`
+- **Output:** `-1`
 
 There are three negative factors, so the product is negative.

@@ -8,8 +8,13 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 - **Input:** `nums = [4,2,4]`
 - **Output:** `true`
 - **Explanation:** The subarrays with elements [4,2] and [2,4] have the same sum of 6.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5]`
 - **Output:** `false`
 - **Explanation:** No two subarrays of size 2 have the same sum.
+
 #### Example 3
 
 - **Input:** `nums = [0,0,0]`

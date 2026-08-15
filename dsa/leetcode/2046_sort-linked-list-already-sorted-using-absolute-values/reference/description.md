@@ -28,23 +28,22 @@ Return the `ListNode` head of the relinked list sorted in non-decreasing order b
 
 - **Input:** $head = [0,2,-5,5,10,-10]$
 - **Output:** `[-10,-5,0,2,5,10]`
-- **Explanation:**
-The list sorted in non-descending order using the absolute values of the nodes is [0,2,-5,5,10,-10].
+- **Explanation:** The list sorted in non-descending order using the absolute values of the nodes is [0,2,-5,5,10,-10].
 The list sorted in non-descending order using the actual values is [-10,-5,0,2,5,10].
+
 #### Example 2
 
 ![](images/image-20211017201318-4.png)
 
 - **Input:** $head = [0,1,2]$
 - **Output:** `[0,1,2]`
-- **Explanation:**
-The linked list is already sorted in non-decreasing order.
+- **Explanation:** The linked list is already sorted in non-decreasing order.
+
 #### Example 3
 
 - **Input:** $head = [1]$
 - **Output:** `[1]`
-- **Explanation:**
-The linked list is already sorted in non-decreasing order.
+- **Explanation:** The linked list is already sorted in non-decreasing order.
 
 ### 4. Constraints
 

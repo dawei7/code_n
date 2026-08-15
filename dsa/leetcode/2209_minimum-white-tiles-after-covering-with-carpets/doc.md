@@ -32,20 +32,20 @@ Return the minimum number of white tiles visible after placing the available car
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `floor = "10110101"`, `numCarpets = 2`, `carpetLen = 2`
-- Output: `2`
-- Explanation: two length-two intervals can cover all but two of the white tiles.
+- **Input:** `floor = "10110101"`, `numCarpets = 2`, `carpetLen = 2`
+- **Output:** `2`
+- **Explanation:** two length-two intervals can cover all but two of the white tiles.
 
-**Example 2**
+#### Example 2
 
-- Input: `floor = "11111"`, `numCarpets = 2`, `carpetLen = 3`
-- Output: `0`
-- Explanation: the carpets may overlap while their union covers the entire floor.
+- **Input:** `floor = "11111"`, `numCarpets = 2`, `carpetLen = 3`
+- **Output:** `0`
+- **Explanation:** the carpets may overlap while their union covers the entire floor.
 
-**Example 3**
+#### Example 3
 
-- Input: `floor = "0000"`, `numCarpets = 1`, `carpetLen = 2`
-- Output: `0`
-- Explanation: no white tile is visible even before a carpet is placed.
+- **Input:** `floor = "0000"`, `numCarpets = 1`, `carpetLen = 2`
+- **Output:** `0`
+- **Explanation:** no white tile is visible even before a carpet is placed.

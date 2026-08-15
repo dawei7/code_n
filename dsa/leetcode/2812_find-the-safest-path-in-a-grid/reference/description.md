@@ -18,8 +18,13 @@ The **Manhattan distance** between two cells `(a, b)` and `(x, y)` is equal to $
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +35,7 @@ The **Manhattan distance** between two cells `(a, b)` and `(x, y)` is equal to $
 - **Input:** `grid = [[1,0,0],[0,0,0],[0,0,1]]`
 - **Output:** `0`
 - **Explanation:** All paths from (0, 0) to (n - 1, n - 1) go through the thieves in cells (0, 0) and (n - 1, n - 1).
+
 #### Example 2
 
 ![](images/example2.png)
@@ -39,6 +45,7 @@ The **Manhattan distance** between two cells `(a, b)` and `(x, y)` is equal to $
 - **Explanation:** The path depicted in the picture above has a safeness factor of 2 since:
 - The closest cell of the path to the thief at cell (0, 2) is cell (0, 0). The distance between them is | 0 - 0 | + | 0 - 2 | = 2.
 It can be shown that there are no other paths with a higher safeness factor.
+
 #### Example 3
 
 ![](images/example3.png)

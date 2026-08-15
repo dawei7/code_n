@@ -32,21 +32,21 @@ Find the greatest min-product over every possible non-empty subarray. The unredu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 2]`
-- Output: `14`
+- **Input:** `nums = [1, 2, 3, 2]`
+- **Output:** `14`
 
 The subarray `[2, 3, 2]` has minimum 2, sum 7, and min-product 14.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 3, 1, 2]`
-- Output: `18`
+- **Input:** `nums = [2, 3, 3, 1, 2]`
+- **Output:** `18`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 1, 5, 6, 4, 2]`
-- Output: `60`
+- **Input:** `nums = [3, 1, 5, 6, 4, 2]`
+- **Output:** `60`
 
 The subarray `[5, 6, 4]` contributes $4(5+6+4)=60$.

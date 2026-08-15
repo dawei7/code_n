@@ -34,20 +34,20 @@ Return the smallest valid prefix length for which Alice's score is greater than 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `possible = [1, 0, 1, 0]`
-- Output: `1`
-- Explanation: Alice scores `1` on the first level, while Bob scores `-1 + 1 - 1 = -1` on the remaining levels.
+- **Input:** `possible = [1, 0, 1, 0]`
+- **Output:** `1`
+- **Explanation:** Alice scores `1` on the first level, while Bob scores `-1 + 1 - 1 = -1` on the remaining levels.
 
-**Example 2**
+#### Example 2
 
-- Input: `possible = [1, 1, 1, 1, 1]`
-- Output: `3`
-- Explanation: With three levels Alice scores `3` and Bob scores `2`; shorter valid prefixes do not give Alice a strict lead.
+- **Input:** `possible = [1, 1, 1, 1, 1]`
+- **Output:** `3`
+- **Explanation:** With three levels Alice scores `3` and Bob scores `2`; shorter valid prefixes do not give Alice a strict lead.
 
-**Example 3**
+#### Example 3
 
-- Input: `possible = [0, 0]`
-- Output: `-1`
-- Explanation: Each player must take one level and scores `-1`, so Alice does not score strictly more.
+- **Input:** `possible = [0, 0]`
+- **Output:** `-1`
+- **Explanation:** Each player must take one level and scores `-1`, so Alice does not score strictly more.

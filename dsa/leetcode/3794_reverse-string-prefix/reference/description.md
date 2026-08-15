@@ -21,40 +21,29 @@ Return `s[0:k]` in reverse order followed by `s[k:]`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcd", k = 2
+- **Input:** s = "abcd", k = 2
 
-**Output:** "bacd"
+- **Output:** "bacd"
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 The first $k = 2$ characters `"ab"` are reversed to `"ba"`. The final resulting string is `"bacd"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "xyz", k = 3
+- **Input:** s = "xyz", k = 3
 
-**Output:** "zyx"
+- **Output:** "zyx"
 
-**Explanation:**
+- **Explanation:** The first $k = 3$ characters `"xyz"` are reversed to `"zyx"`. The final resulting string is `"zyx"`.
 
-The first $k = 3$ characters `"xyz"` are reversed to `"zyx"`. The final resulting string is `"zyx"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "hey", k = 1
+- **Input:** s = "hey", k = 1
 
-**Output:** "hey"
+- **Output:** "hey"
 
-**Explanation:**
-
-The first $k = 1$ character `"h"` remains unchanged on reversal. The final resulting string is `"hey"`.
-
-</div>
+- **Explanation:** The first $k = 1$ character `"h"` remains unchanged on reversal. The final resulting string is `"hey"`.
 
 ### 4. Constraints
 

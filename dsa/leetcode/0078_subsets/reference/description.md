@@ -20,6 +20,7 @@ Return the complete power set of `nums`, including the empty subset and `nums` i
 
 - **Input:** `nums = [1,2,3]`
 - **Output:** `[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]`
+
 #### Example 2
 
 - **Input:** `nums = [0]`

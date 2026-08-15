@@ -32,20 +32,20 @@ Return the maximum number of bombs reachable through a chain reaction from one c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `bombs = [[2,1,3],[6,1,4]]`
-- Output: `2`
-- Explanation: The right bomb reaches the left bomb, although the left bomb does not reach the right one.
+- **Input:** `bombs = [[2,1,3],[6,1,4]]`
+- **Output:** `2`
+- **Explanation:** The right bomb reaches the left bomb, although the left bomb does not reach the right one.
 
-**Example 2**
+#### Example 2
 
-- Input: `bombs = [[1,1,5],[10,10,5]]`
-- Output: `1`
-- Explanation: Neither center lies within the other bomb's range.
+- **Input:** `bombs = [[1,1,5],[10,10,5]]`
+- **Output:** `1`
+- **Explanation:** Neither center lies within the other bomb's range.
 
-**Example 3**
+#### Example 3
 
-- Input: `bombs = [[1,2,3],[2,3,1],[3,4,2],[4,5,3],[5,6,4]]`
-- Output: `5`
-- Explanation: Starting with bomb `0` triggers bombs `1` and `2`; later detonations continue the chain through bombs `3` and `4`.
+- **Input:** `bombs = [[1,2,3],[2,3,1],[3,4,2],[4,5,3],[5,6,4]]`
+- **Output:** `5`
+- **Explanation:** Starting with bomb `0` triggers bombs `1` and `2`; later detonations continue the chain through bombs `3` and `4`.

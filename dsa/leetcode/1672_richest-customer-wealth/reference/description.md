@@ -6,8 +6,13 @@ A customer's **wealth** is the amount of money they have in all their bank accou
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `accounts`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ A customer's **wealth** is the amount of money they have in all their bank accou
 1st customer has wealth = 1 + 2 + 3 = 6
 2nd customer has wealth = 3 + 2 + 1 = 6
 Both customers are considered the richest with a wealth of 6 each, so return 6.
+
 #### Example 2
 
 - **Input:** $accounts = [[1,5],[7,3],[3,5]]$
@@ -28,6 +34,7 @@ Both customers are considered the richest with a wealth of 6 each, so return 6.
 2nd customer has wealth = 10
 3rd customer has wealth = 8
 The 2nd customer is the richest with a wealth of 10.
+
 #### Example 3
 
 - **Input:** $accounts = [[2,8,7],[7,1,3],[1,9,5]]$

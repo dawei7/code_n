@@ -10,21 +10,24 @@ Return *the **minimum** possible sum of the **values** of the *`m`* subarrays *`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `andValues`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,3,3,2], andValues = [0,3,3,2]
+- **Input:** nums = [1,4,3,3,2], andValues = [0,3,3,2]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The only possible way to divide `nums` is:
+- **Explanation:** The only possible way to divide `nums` is:
 
 - `[1,4]` as $1 \& 4 = 0$.
 
@@ -36,17 +39,13 @@ The only possible way to divide `nums` is:
 
 The sum of the values for these subarrays is $4 + 3 + 3 + 2 = 12$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,5,7,7,7,5], andValues = [0,7,5]
+- **Input:** nums = [2,3,5,7,7,7,5], andValues = [0,7,5]
 
-**Output:** 17
+- **Output:** 17
 
-**Explanation:**
-
-There are three ways to divide `nums`:
+- **Explanation:** There are three ways to divide `nums`:
 
 - `[[2,3,5],[7,7,7],[5]]` with the sum of the values $5 + 7 + 5 = 17$.
 
@@ -56,19 +55,13 @@ There are three ways to divide `nums`:
 
 The minimum possible sum of the values is `17`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4], andValues = [2]
+- **Input:** nums = [1,2,3,4], andValues = [2]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-The bitwise `AND` of the entire array `nums` is `0`. As there is no possible way to divide `nums` into a single subarray to have the bitwise `AND` of elements `2`, return `-1`.
-
-</div>
+- **Explanation:** The bitwise `AND` of the entire array `nums` is `0`. As there is no possible way to divide `nums` into a single subarray to have the bitwise `AND` of elements `2`, return `-1`.
 
 ### 4. Constraints
 

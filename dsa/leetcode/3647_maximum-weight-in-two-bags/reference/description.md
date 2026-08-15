@@ -18,12 +18,11 @@ Return the **maximum** total weight that can be packed into the two bags.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** weights = [1,4,3,2], w1 = 5, w2 = 4
+- **Input:** weights = [1,4,3,2], w1 = 5, w2 = 4
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** 
 
 - Bag 1: Place $\text{weights}[2] = 3$ and $\text{weights}[3] = 2$ as $3 + 2 = 5 \le w1$
 
@@ -31,15 +30,13 @@ Return the **maximum** total weight that can be packed into the two bags.
 
 - Total weight: $5 + 4 = 9$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** weights = [3,6,4,8], w1 = 9, w2 = 7
+- **Input:** weights = [3,6,4,8], w1 = 9, w2 = 7
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** 
 
 - Bag 1: Place $\text{weights}[3] = 8$ as $8 \le w1$
 
@@ -47,19 +44,13 @@ Return the **maximum** total weight that can be packed into the two bags.
 
 - Total weight: $8 + 7 = 15$
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** weights = [5,7], w1 = 2, w2 = 3
+- **Input:** weights = [5,7], w1 = 2, w2 = 3
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No weight fits in either bag, thus the answer is 0.
-
-</div>
+- **Explanation:** No weight fits in either bag, thus the answer is 0.
 
 ### 4. Constraints
 

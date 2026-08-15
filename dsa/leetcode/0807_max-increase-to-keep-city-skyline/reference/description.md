@@ -10,8 +10,13 @@ Return *the **maximum total sum** that the height of the buildings can be increa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ gridNew = [ [8, 4, 8, 7],
 [7, 4, 7, 7],
 [9, 4, 8, 7],
 [3, 3, 3, 3] ]
+
 #### Example 2
 
 - **Input:** `grid = [[0,0,0],[0,0,0],[0,0,0]]`

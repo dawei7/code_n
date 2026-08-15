@@ -36,8 +36,8 @@ Let $S$, $C$, and $R$ denote the numbers of rows in `Salesperson`, `Customer`, a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Salesperson = [[1,"Alice"],[2,"Bob"],[3,"Jerry"]]`, `Customer = [[1,1],[2,1],[3,2]]`, `Sales = [[1,2,892],[2,1,354],[3,3,988],[4,3,856]]`
-- Output: `[[1,"Alice",1246],[2,"Bob",1844],[3,"Jerry",0]]`
-- Explanation: Alice's two customers paid $892 + 354 = 1246$, Bob's customer paid $988 + 856 = 1844$, and Jerry has no customers.
+- **Input:** `Salesperson = [[1,"Alice"],[2,"Bob"],[3,"Jerry"]]`, `Customer = [[1,1],[2,1],[3,2]]`, `Sales = [[1,2,892],[2,1,354],[3,3,988],[4,3,856]]`
+- **Output:** `[[1,"Alice",1246],[2,"Bob",1844],[3,"Jerry",0]]`
+- **Explanation:** Alice's two customers paid $892 + 354 = 1246$, Bob's customer paid $988 + 856 = 1844$, and Jerry has no customers.

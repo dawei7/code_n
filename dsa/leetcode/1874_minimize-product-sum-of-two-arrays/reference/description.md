@@ -17,6 +17,7 @@ Given two arrays `nums1` and `nums2` of length `n`, return *the **minimum produc
 - **Input:** $nums1 = [5,3,4,2], nums2 = [4,2,2,5]$
 - **Output:** `40`
 - **Explanation:** We can rearrange nums1 to become [3,5,4,2]. The product sum of [3,5,4,2] and [4,2,2,5] is 3*4 + 5*2 + 4*2 + 2*5 = 40.
+
 #### Example 2
 
 - **Input:** $nums1 = [2,1,4,5,7], nums2 = [3,2,4,8,6]$

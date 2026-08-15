@@ -37,21 +37,21 @@ Among eligible rooms, choose the identifier with the smallest absolute differenc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rooms = [[2, 2], [1, 2], [3, 2]]`, `queries = [[3, 1], [3, 3], [5, 2]]`
-- Output: `[3, -1, 3]`
+- **Input:** `rooms = [[2, 2], [1, 2], [3, 2]]`, `queries = [[3, 1], [3, 3], [5, 2]]`
+- **Output:** `[3, -1, 3]`
 
 No room reaches size 3 for the second query.
 
-**Example 2**
+#### Example 2
 
-- Input: `rooms = [[1, 4], [2, 3], [3, 5], [4, 1]]`, `queries = [[2, 3], [2, 4], [2, 5]]`
-- Output: `[2, 1, 3]`
+- **Input:** `rooms = [[1, 4], [2, 3], [3, 5], [4, 1]]`, `queries = [[2, 3], [2, 4], [2, 5]]`
+- **Output:** `[2, 1, 3]`
 
 For minimum size 4, IDs 1 and 3 are equally distant from preferred ID 2, so ID 1 wins the tie.
 
-**Example 3**
+#### Example 3
 
-- Input: `rooms = [[10, 2]]`, `queries = [[5, 1], [20, 3]]`
-- Output: `[10, -1]`
+- **Input:** `rooms = [[10, 2]]`, `queries = [[5, 1], [20, 3]]`
+- **Output:** `[10, -1]`

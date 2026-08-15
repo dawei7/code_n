@@ -33,14 +33,14 @@ Let $n$ be the number of nodes and $m=\lvert\texttt{queries}\rvert$. The constra
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1, 3, 4, 2, null, 6, 5, null, null, null, null, null, 7], queries = [4]`
-- Output: `[2]`
-- Explanation: Removing node `4` and its descendants leaves the path `1 -> 3 -> 2`, which has two edges.
+- **Input:** `root = [1, 3, 4, 2, null, 6, 5, null, null, null, null, null, 7], queries = [4]`
+- **Output:** `[2]`
+- **Explanation:** Removing node `4` and its descendants leaves the path `1 -> 3 -> 2`, which has two edges.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [5, 8, 9, 2, 1, 3, 7, 4, 6], queries = [3, 2, 4, 8]`
-- Output: `[3, 2, 3, 2]`
-- Explanation: Each removal starts from the original tree; earlier queries do not alter later ones.
+- **Input:** `root = [5, 8, 9, 2, 1, 3, 7, 4, 6], queries = [3, 2, 4, 8]`
+- **Output:** `[3, 2, 3, 2]`
+- **Explanation:** Each removal starts from the original tree; earlier queries do not alter later ones.

@@ -8,8 +8,14 @@ Return *the list* `answer`. If there multiple valid answers, return **any of the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the list* `answer`. If there multiple valid answers, return **any of the
 - **Input:** $n = 3, k = 1$
 - **Output:** `[1,2,3]`
 - **Explanation:** The [1,2,3] has three different positive integers ranging from 1 to 3, and the [1,1] has exactly 1 distinct integer: 1
+
 #### Example 2
 
 - **Input:** $n = 3, k = 2$

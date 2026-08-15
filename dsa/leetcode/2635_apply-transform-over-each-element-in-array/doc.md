@@ -33,20 +33,20 @@ Return a new length-$n$ array whose value at every index $i$ is `fn(arr[i], i)`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,2,3]`, `fn = n => n + 1`
-- Output: `[2,3,4]`
-- Explanation: One is added independently to every source value.
+- **Input:** `arr = [1,2,3]`, `fn = n => n + 1`
+- **Output:** `[2,3,4]`
+- **Explanation:** One is added independently to every source value.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,2,3]`, `fn = (n, i) => n + i`
-- Output: `[1,3,5]`
-- Explanation: Each value is increased by its own zero-based index.
+- **Input:** `arr = [1,2,3]`, `fn = (n, i) => n + i`
+- **Output:** `[1,3,5]`
+- **Explanation:** Each value is increased by its own zero-based index.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [10,20,30]`, `fn = () => 42`
-- Output: `[42,42,42]`
-- Explanation: A callback may ignore both arguments and return the same integer for every position.
+- **Input:** `arr = [10,20,30]`, `fn = () => 42`
+- **Output:** `[42,42,42]`
+- **Explanation:** A callback may ignore both arguments and return the same integer for every position.

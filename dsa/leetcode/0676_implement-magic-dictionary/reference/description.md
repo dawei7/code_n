@@ -12,8 +12,11 @@ Implement the `MagicDictionary` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MagicDictionary()`: Initializes the data structure.
+- `buildDict(dictionary: List[str])`: Executes operation.
+- `search(searchWord: str) -> `bool``: Executes operation.
 
 ### 3. Examples
 

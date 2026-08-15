@@ -34,8 +34,13 @@ Return an `answer` array (of length `seq.length`) that encodes such a choice of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `seq`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -43,6 +48,7 @@ Return an `answer` array (of length `seq.length`) that encodes such a choice of 
 
 - **Input:** $seq = "(()())"$
 - **Output:** `[0,1,1,1,1,0]`
+
 #### Example 2
 
 - **Input:** $seq = "()(())()"$

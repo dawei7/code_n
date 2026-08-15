@@ -37,7 +37,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Purchases table:
@@ -108,5 +107,3 @@ Users table:
 ### 3. Note
 
 The output table is ordered by week_of_month and membership in ascending order.
-
-</div>

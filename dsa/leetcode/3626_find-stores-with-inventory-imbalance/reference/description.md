@@ -50,7 +50,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 stores table:
@@ -107,7 +106,7 @@ inventory table:
 
 - **Downtown Tech (store_id = 1):**
 
-		<li>Most expensive product: Laptop ($999.99) with quantity 5
+		- Most expensive product: Laptop ($999.99) with quantity 5
 
 - Cheapest product: Mouse ($19.99) with quantity 50
 
@@ -117,10 +116,9 @@ inventory table:
 
 - Has 4 products (≥ 3), so qualifies
 
-	</li>
 - **Suburb Mall (store_id = 2):**
 
-		<li>Most expensive product: Phone ($699.99) with quantity 3
+		- Most expensive product: Phone ($699.99) with quantity 3
 
 - Cheapest product: Case ($15.99) with quantity 75
 
@@ -130,10 +128,9 @@ inventory table:
 
 - Has 4 products (≥ 3), so qualifies
 
-	</li>
 - **City Center (store_id = 3):**
 
-		<li>Most expensive product: Tablet ($499.99) with quantity 2
+		- Most expensive product: Tablet ($499.99) with quantity 2
 
 - Cheapest product: Stylus ($29.99) with quantity 80
 
@@ -143,18 +140,13 @@ inventory table:
 
 - Has 3 products (≥ 3), so qualifies
 
-	</li>
 - **Stores not included:**
 
-		<li>Corner Shop (store_id = 4): Only has 2 products (Watch, Band) - doesn't meet minimum 3 products requirement
+		- Corner Shop (store_id = 4): Only has 2 products (Watch, Band) - doesn't meet minimum 3 products requirement
 
 - Plaza Store (store_id = 5): Only has 2 products (Camera, Lens) - doesn't meet minimum 3 products requirement
 
-	</li>
-
 The Results table is ordered by imbalance ratio in descending order, then by store name in ascending order
-
-</div>
 
 ### 2. Function Contract
 

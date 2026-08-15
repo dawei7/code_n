@@ -34,20 +34,20 @@ Let $m=\lvert\texttt{edges}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, edges = [[1,2],[1,3],[3,2],[4,1],[5,2],[3,6]]`
-- Output: `3`
-- Explanation: Nodes `1`, `2`, and `3` form a trio, with one edge from each trio node to an outside node.
+- **Input:** `n = 6, edges = [[1,2],[1,3],[3,2],[4,1],[5,2],[3,6]]`
+- **Output:** `3`
+- **Explanation:** Nodes `1`, `2`, and `3` form a trio, with one edge from each trio node to an outside node.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, edges = [[1,3],[4,1],[4,3],[2,5],[5,6],[6,7],[7,5],[2,6]]`
-- Output: `0`
-- Explanation: Nodes `1`, `3`, and `4` form a triangle with no edge leaving the trio.
+- **Input:** `n = 7, edges = [[1,3],[4,1],[4,3],[2,5],[5,6],[6,7],[7,5],[2,6]]`
+- **Output:** `0`
+- **Explanation:** Nodes `1`, `3`, and `4` form a triangle with no edge leaving the trio.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, edges = [[1,2],[2,3],[3,4],[4,5]]`
-- Output: `-1`
-- Explanation: The path contains no set of three pairwise adjacent nodes.
+- **Input:** `n = 5, edges = [[1,2],[2,3],[3,4],[4,5]]`
+- **Output:** `-1`
+- **Explanation:** The path contains no set of three pairwise adjacent nodes.

@@ -37,17 +37,17 @@ highways, or `-1` when no such path exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]], k = 3`
-- Output: `17`
+- **Input:** `n = 5, highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]], k = 3`
+- **Output:** `17`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, highways = [[0,1,3],[2,3,2]], k = 2`
-- Output: `-1`
+- **Input:** `n = 4, highways = [[0,1,3],[2,3,2]], k = 2`
+- **Output:** `-1`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, highways = [[0,1,0],[1,2,0]], k = 2`
-- Output: `0`
+- **Input:** `n = 3, highways = [[0,1,0],[1,2,0]], k = 2`
+- **Output:** `0`

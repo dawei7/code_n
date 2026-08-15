@@ -16,28 +16,31 @@ The format of the output is as follows:
 
 - For each term of free variables with a non-zero coefficient, we write the free variables within a term in sorted order lexicographically.
 
-		<li>For example, we would never write a term like `"b*a*c"`, only `"a*b*c"`.
+		- For example, we would never write a term like `"b*a*c"`, only `"a*b*c"`.
 
-	</li>
 - Terms have degrees equal to the number of free variables being multiplied, counting multiplicity. We write the largest degree terms of our answer first, breaking ties by lexicographic order ignoring the leading coefficient of the term.
 
-		<li>For example, `"a*a*b*c"` has degree `4`.
+		- For example, `"a*a*b*c"` has degree `4`.
 
-	</li>
 - The leading coefficient of the term is placed directly to the left with an asterisk separating it from the variables (if they exist.) A leading coefficient of 1 is still printed.
 
 - An example of a well-formatted answer is `["-2*a*a*a", "3*a*a*b", "3*b*b", "4*a", "5*c", "-6"]`.
 
 - Terms (including constant terms) with coefficient `0` are not included.
 
-		<li>For example, an expression of `"0"` has an output of `[]`.
-
-	</li>
+		- For example, an expression of `"0"` has an output of `[]`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `expression`: Input parameter (`str`).
+- `evalvars`: Input parameter (`List[str]`).
+- `evalints`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Note
 
@@ -49,10 +52,12 @@ You may assume that the given expression is always valid. All intermediate resul
 
 - **Input:** $expression = "e + 8 - a + 5", evalvars = ["e"], evalints = [1]$
 - **Output:** `["-1*a","14"]`
+
 #### Example 2
 
 - **Input:** $expression = "e - 8 + temperature - pressure", evalvars = ["e", "temperature"], evalints = [1, 12]$
 - **Output:** `["-1*pressure","5"]`
+
 #### Example 3
 
 - **Input:** $expression = "(e + 8) * (e - 8)", evalvars = [], evalints = []$

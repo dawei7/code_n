@@ -8,8 +8,14 @@ The **greatest common divisor of an array** is the largest integer that evenly d
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ The **greatest common divisor of an array** is the largest integer that evenly d
 - [9,3,1,2,6,<u>**3**</u>]
 - [<u>**9,3**</u>,1,2,6,3]
 - [9,3,1,2,<u>**6,3**</u>]
+
 #### Example 2
 
 - **Input:** `nums = [4], k = 7`

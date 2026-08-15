@@ -32,20 +32,20 @@ Return the minimum number of operations after which all elements are non-positiv
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,4,1,7,6]`, `x = 4`, `y = 2`
-- Output: `3`
-- Explanation: Selecting index `3` twice and index `4` once is sufficient; no plan using fewer operations can remove every positive value.
+- **Input:** `nums = [3,4,1,7,6]`, `x = 4`, `y = 2`
+- **Output:** `3`
+- **Explanation:** Selecting index `3` twice and index `4` once is sufficient; no plan using fewer operations can remove every positive value.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,1]`, `x = 2`, `y = 1`
-- Output: `1`
-- Explanation: Selecting the middle element once changes the array to `[0,0,0]`.
+- **Input:** `nums = [1,2,1]`, `x = 2`, `y = 1`
+- **Output:** `1`
+- **Explanation:** Selecting the middle element once changes the array to `[0,0,0]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5]`, `x = 3`, `y = 1`
-- Output: `2`
-- Explanation: With only one index, each operation applies the selected decrement `x`; two selections reduce the value to a non-positive number.
+- **Input:** `nums = [5]`, `x = 3`, `y = 1`
+- **Output:** `2`
+- **Explanation:** With only one index, each operation applies the selected decrement `x`; two selections reduce the value to a non-positive number.

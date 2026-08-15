@@ -10,8 +10,13 @@ Return *the final **score**.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the final **score**.*
 - **Input:** `nums = [[7,2,1],[6,4,2],[6,5,3],[3,2,1]]`
 - **Output:** `15`
 - **Explanation:** In the first operation, we remove 7, 6, 6, and 3. We then add 7 to our score. Next, we remove 2, 4, 5, and 2. We add 5 to our score. Lastly, we remove 1, 2, 3, and 1. We add 3 to our score. Thus, our final score is 7 + 5 + 3 = 15.
+
 #### Example 2
 
 - **Input:** `nums = [[1]]`

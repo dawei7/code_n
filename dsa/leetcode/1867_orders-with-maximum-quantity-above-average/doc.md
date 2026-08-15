@@ -33,23 +33,23 @@ For every order, consider both its average product quantity and its largest prod
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: order `1` has quantities `[12,10,15]`, order `2` has `[8,4,6,4]`, order `3` has `[5,18,20]`, order `4` has `[2,8]`, and order `5` has `[9,9]`
-- Output: `[[1],[3]]`
+- **Input:** order `1` has quantities `[12,10,15]`, order `2` has `[8,4,6,4]`, order `3` has `[5,18,20]`, order `4` has `[2,8]`, and order `5` has `[9,9]`
+- **Output:** `[[1],[3]]`
 
 The largest per-order average is order `3`'s $43/3$. The maxima of orders `1` and `3`, respectively $15$ and $20$, exceed that threshold.
 
-**Example 2**
+#### Example 2
 
-- Input: order `1` has quantities `[4,4]` and order `2` has `[1,7]`
-- Output: `[[2]]`
+- **Input:** order `1` has quantities `[4,4]` and order `2` has `[1,7]`
+- **Output:** `[[2]]`
 
 Both averages are $4$, while only order `2` has a maximum above $4$.
 
-**Example 3**
+#### Example 3
 
-- Input: order `1` has `[9]` and order `2` has `[9,9]`
-- Output: `[]`
+- **Input:** order `1` has `[9]` and order `2` has `[9,9]`
+- **Output:** `[]`
 
 The greatest average is $9$, and the comparison is strict, so a maximum of $9$ does not qualify.

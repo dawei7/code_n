@@ -25,18 +25,18 @@ Return every size-`k` subset of `{1,...,9}` whose elements sum to `n`, with each
 
 - **Input:** $k = 3, n = 7$
 - **Output:** `[[1,2,4]]`
-- **Explanation:**
-1 + 2 + 4 = 7
+- **Explanation:** 1 + 2 + 4 = 7
 There are no other valid combinations.
+
 #### Example 2
 
 - **Input:** $k = 3, n = 9$
 - **Output:** `[[1,2,6],[1,3,5],[2,3,4]]`
-- **Explanation:**
-1 + 2 + 6 = 9
+- **Explanation:** 1 + 2 + 6 = 9
 1 + 3 + 5 = 9
 2 + 3 + 4 = 9
 There are no other valid combinations.
+
 #### Example 3
 
 - **Input:** $k = 4, n = 1$

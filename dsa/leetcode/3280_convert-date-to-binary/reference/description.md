@@ -8,35 +8,31 @@ Return the **binary** representation of `date`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `date`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** date = "2080-02-29"
+- **Input:** date = "2080-02-29"
 
-**Output:** "100000100000-10-11101"
+- **Output:** "100000100000-10-11101"
 
-**Explanation:**
+- **Explanation:** 100000100000, 10, and 11101 are the binary representations of 2080, 02, and 29 respectively.
 
-100000100000, 10, and 11101 are the binary representations of 2080, 02, and 29 respectively.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** date = "1900-01-01"
+- **Input:** date = "1900-01-01"
 
-**Output:** "11101101100-1-1"
+- **Output:** "11101101100-1-1"
 
-**Explanation:**
-
-11101101100, 1, and 1 are the binary representations of 1900, 1, and 1 respectively.
-
-</div>
+- **Explanation:** 11101101100, 1, and 1 are the binary representations of 1900, 1, and 1 respectively.
 
 ### 4. Constraints
 

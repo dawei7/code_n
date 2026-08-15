@@ -66,6 +66,7 @@ The input is only given to initialize the room and the robot's position internal
 0 means the cell is blocked, while 1 means the cell is accessible.
 The robot initially starts at the position of row=1, col=3.
 From the top left corner, its position is one row below and three columns right.
+
 #### Example 2
 
 - **Input:** $room = [[1]], row = 0, col = 0$

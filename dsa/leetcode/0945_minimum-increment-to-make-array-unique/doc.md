@@ -36,16 +36,16 @@ Return the minimum number of unit increments required to make all array values p
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 2]`
-- Output: `1`
+- **Input:** `nums = [1, 2, 2]`
+- **Output:** `1`
 
 Incrementing one copy of `2` once produces distinct values such as `[1, 2, 3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 2, 1, 2, 1, 7]`
-- Output: `6`
+- **Input:** `nums = [3, 2, 1, 2, 1, 7]`
+- **Output:** `6`
 
 One minimum-cost result is `[3, 4, 1, 2, 5, 7]`; no sequence of five moves can make every value unique.

@@ -34,20 +34,20 @@ The input satisfies $1 \le n \le 10^5$ and $1 \le \texttt{maxHeights[i]} \le 10^
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `maxHeights = [5,3,4,1,1]`
-- Output: `13`
-- Explanation: `[5,3,3,1,1]` respects every limit and is a mountain with peak index `0`.
+- **Input:** `maxHeights = [5,3,4,1,1]`
+- **Output:** `13`
+- **Explanation:** `[5,3,3,1,1]` respects every limit and is a mountain with peak index `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `maxHeights = [6,5,3,9,2,7]`
-- Output: `22`
-- Explanation: `[3,3,3,9,2,2]` is an optimal configuration with peak index `3`.
+- **Input:** `maxHeights = [6,5,3,9,2,7]`
+- **Output:** `22`
+- **Explanation:** `[3,3,3,9,2,2]` is an optimal configuration with peak index `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `maxHeights = [3,2,5,5,2,3]`
-- Output: `18`
-- Explanation: `[2,2,5,5,2,2]` is optimal; either index `2` or index `3` may be regarded as its peak.
+- **Input:** `maxHeights = [3,2,5,5,2,3]`
+- **Output:** `18`
+- **Explanation:** `[2,2,5,5,2,2]` is optimal; either index `2` or index `3` may be regarded as its peak.

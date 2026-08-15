@@ -57,11 +57,13 @@ The robot is initially standing on cell (1, 0), denoted by the -1.
 - master.move('R') moves the robot to the cell (0, 1).
 - master.isTarget() returns true.
 We now know that the target is the cell (0, 1), and the shortest path to the target cell is 2.
+
 #### Example 2
 
 - **Input:** `grid = [[0,0,-1],[1,1,1],[2,0,0]]`
 - **Output:** `4`
 - **Explanation:** The minimum distance between the robot and the target cell is 4.
+
 #### Example 3
 
 - **Input:** `grid = [[-1,0],[0,2]]`

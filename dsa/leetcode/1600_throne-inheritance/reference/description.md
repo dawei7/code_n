@@ -38,8 +38,12 @@ Implement the `ThroneInheritance` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ThroneInheritance(kingName: str)`: Initializes the data structure.
+- `birth(parentName: str, childName: str)`: Executes operation.
+- `death(name: str)`: Executes operation.
+- `getInheritanceOrder() -> `List[str]``: Executes operation.
 
 ### 3. Examples
 

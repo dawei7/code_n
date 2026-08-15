@@ -33,19 +33,19 @@ Return the number of ordered index quadruplets satisfying both the value equatio
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 6]`
-- Output: `1`
-- Explanation: Only $(0,1,2,3)$ works because $1+2+3=6$.
+- **Input:** `nums = [1, 2, 3, 6]`
+- **Output:** `1`
+- **Explanation:** Only $(0,1,2,3)$ works because $1+2+3=6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 3, 6, 4, 5]`
-- Output: `0`
+- **Input:** `nums = [3, 3, 6, 4, 5]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 3, 5]`
-- Output: `4`
-- Explanation: One quadruplet ends at the value `3`, and three index-distinct choices of two earlier ones accompany `3` to produce `5`.
+- **Input:** `nums = [1, 1, 1, 3, 5]`
+- **Output:** `4`
+- **Explanation:** One quadruplet ends at the value `3`, and three index-distinct choices of two earlier ones accompany `3` to produce `5`.

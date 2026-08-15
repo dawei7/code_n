@@ -16,40 +16,27 @@ Return *the resulting string. If multiple strings meet the conditions, return th
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abca"
+- **Input:** s = "abca"
 
-**Output:** "aabc"
+- **Output:** "aabc"
 
-**Explanation:**
+- **Explanation:** `"aabc"` is an anti-palindrome string since $s[0] \neq s[3]$ and $s[1] \neq s[2]$. Also, it is a rearrangement of `"abca"`.
 
-`"aabc"` is an anti-palindrome string since $s[0] \neq s[3]$ and $s[1] \neq s[2]$. Also, it is a rearrangement of `"abca"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abba"
+- **Input:** s = "abba"
 
-**Output:** "aabb"
+- **Output:** "aabb"
 
-**Explanation:**
+- **Explanation:** `"aabb"` is an anti-palindrome string since $s[0] \neq s[3]$ and $s[1] \neq s[2]$. Also, it is a rearrangement of `"abba"`.
 
-`"aabb"` is an anti-palindrome string since $s[0] \neq s[3]$ and $s[1] \neq s[2]$. Also, it is a rearrangement of `"abba"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "cccd"
+- **Input:** s = "cccd"
 
-**Output:** "-1"
+- **Output:** "-1"
 
-**Explanation:**
-
-You can see that no matter how you rearrange the characters of `"cccd"`, either $s[0] = s[3]$ or $s[1] = s[2]$. So it can not form an anti-palindrome string.
-
-</div>
+- **Explanation:** You can see that no matter how you rearrange the characters of `"cccd"`, either $s[0] = s[3]$ or $s[1] = s[2]$. So it can not form an anti-palindrome string.
 
 ### 4. Constraints
 

@@ -32,20 +32,20 @@ Return the minimum attainable final length after processing every word and choos
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["aa","ab","bc"]`
-- Output: `4`
-- Explanation: Appending both later words yields `"aabc"`; each join removes one matching boundary character.
+- **Input:** `words = ["aa","ab","bc"]`
+- **Output:** `4`
+- **Explanation:** Appending both later words yields `"aabc"`; each join removes one matching boundary character.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["ab","b"]`
-- Output: `2`
-- Explanation: Joining the second word on the right merges the two boundary `b` characters.
+- **Input:** `words = ["ab","b"]`
+- **Output:** `2`
+- **Explanation:** Joining the second word on the right merges the two boundary `b` characters.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["aaa","c","aba"]`
-- Output: `6`
-- Explanation: One optimal sequence joins `"c"` on the right and then `"aba"` on the left.
+- **Input:** `words = ["aaa","c","aba"]`
+- **Output:** `6`
+- **Explanation:** One optimal sequence joins `"c"` on the right and then `"aba"` on the left.

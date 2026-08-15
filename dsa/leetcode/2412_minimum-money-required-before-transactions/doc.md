@@ -32,17 +32,17 @@ Return the minimum initial money that allows every transaction to complete regar
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `transactions = [[2,1],[5,0],[4,2]]`
-- Output: `10`
+- **Input:** `transactions = [[2,1],[5,0],[4,2]]`
+- **Output:** `10`
 
-**Example 2**
+#### Example 2
 
-- Input: `transactions = [[3,0],[0,3]]`
-- Output: `3`
+- **Input:** `transactions = [[3,0],[0,3]]`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `transactions = [[0,0]]`
-- Output: `0`
+- **Input:** `transactions = [[0,0]]`
+- **Output:** `0`

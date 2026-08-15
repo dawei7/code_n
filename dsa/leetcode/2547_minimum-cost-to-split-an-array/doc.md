@@ -33,20 +33,20 @@ Return the minimum possible sum of the parts' importance values.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,1,2,1,3,3], k = 2`
-- Output: `8`
-- Explanation: Splitting into `[1,2]` and `[1,2,1,3,3]` costs 2 and 6.
+- **Input:** `nums = [1,2,1,2,1,3,3], k = 2`
+- **Output:** `8`
+- **Explanation:** Splitting into `[1,2]` and `[1,2,1,3,3]` costs 2 and 6.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,1,2,1], k = 2`
-- Output: `6`
-- Explanation: The split `[1,2]`, `[1,2,1]` has minimum total cost 6.
+- **Input:** `nums = [1,2,1,2,1], k = 2`
+- **Output:** `6`
+- **Explanation:** The split `[1,2]`, `[1,2,1]` has minimum total cost 6.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,1,2,1], k = 5`
-- Output: `10`
-- Explanation: Keeping the whole array as one part costs $5 + 5 = 10$.
+- **Input:** `nums = [1,2,1,2,1], k = 5`
+- **Output:** `10`
+- **Explanation:** Keeping the whole array as one part costs $5 + 5 = 10$.

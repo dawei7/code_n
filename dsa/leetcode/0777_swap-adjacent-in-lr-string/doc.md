@@ -31,20 +31,20 @@ Return `True` if some sequence of these adjacent transformations changes `start`
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `start = "RXXLRXRXL", end = "XRLXXRRLX"`
-- Output: `True`
-- Explanation: Every nonempty token keeps its relative order, each `L` moves only left, and each `R` moves only right.
+- **Input:** `start = "RXXLRXRXL", end = "XRLXXRRLX"`
+- **Output:** `True`
+- **Explanation:** Every nonempty token keeps its relative order, each `L` moves only left, and each `R` moves only right.
 
-**Example 2**
+#### Example 2
 
-- Input: `start = "X", end = "L"`
-- Output: `False`
-- Explanation: Swaps cannot create an `L` that is absent from the initial string.
+- **Input:** `start = "X", end = "L"`
+- **Output:** `False`
+- **Explanation:** Swaps cannot create an `L` that is absent from the initial string.
 
-**Example 3**
+#### Example 3
 
-- Input: `start = "LXX", end = "XXL"`
-- Output: `False`
-- Explanation: Reaching the target would require the `L` to move right.
+- **Input:** `start = "LXX", end = "XXL"`
+- **Output:** `False`
+- **Explanation:** Reaching the target would require the `L` to move right.

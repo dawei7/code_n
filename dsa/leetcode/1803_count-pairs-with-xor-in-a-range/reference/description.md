@@ -6,8 +6,15 @@ A **nice pair** is a pair `(i, j)` where $0 \le i < j < \text{nums.length}$ and 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `low`: Input parameter (`int`).
+- `high`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +29,7 @@ A **nice pair** is a pair `(i, j)` where $0 \le i < j < \text{nums.length}$ and 
 - (1, 2): nums[1] XOR nums[2] = 6
 - (1, 3): nums[1] XOR nums[3] = 3
 - (2, 3): nums[2] XOR nums[3] = 5
+
 #### Example 2
 
 - **Input:** `nums = [9,8,4,2,1], low = 5, high = 14`

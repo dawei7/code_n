@@ -12,8 +12,13 @@ Return *the string after **all** stars have been removed*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -32,6 +37,7 @@ Return *the string after **all** stars have been removed*.
 - The closest character to the 2^nd star is 'e' in "le**<u>e</u>***cod*e". s becomes "lecod*e".
 - The closest character to the 3^rd star is 'd' in "leco**<u>d</u>***e". s becomes "lecoe".
 There are no more stars, so we return "lecoe".
+
 #### Example 2
 
 - **Input:** `s = "erase*****"`

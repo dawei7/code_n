@@ -36,6 +36,7 @@ Return an integer representing the minimum number of adjacent swaps required to 
 - Swap 5: Swap the 1^st and 2^nd elements, nums is then [3,<u>**1**</u>,<u>**4**</u>,5,3,5].
 - Swap 6: Swap the 0^th and 1^st elements, nums is then [<u>**1**</u>,<u>**3**</u>,4,5,3,5].
 It can be shown that 6 swaps is the minimum swaps required to make a valid array.
+
 #### Example 2
 
 - **Input:** `nums = [9]`

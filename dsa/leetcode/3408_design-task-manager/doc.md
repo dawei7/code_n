@@ -36,23 +36,23 @@ For the app-local trace adapter, return one result per operation: `null` for con
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["TaskManager","add","edit","execTop","rmv","add","execTop"]`, `arguments = [[[[1,101,10],[2,102,20],[3,103,15]]],[4,104,5],[102,8],[],[101],[5,105,15],[]]`
-- Output: `[null,null,null,3,null,null,5]`
+- **Input:** `operations = ["TaskManager","add","edit","execTop","rmv","add","execTop"]`, `arguments = [[[[1,101,10],[2,102,20],[3,103,15]]],[4,104,5],[102,8],[],[101],[5,105,15],[]]`
+- **Output:** `[null,null,null,3,null,null,5]`
 
 After task 102 is reduced to priority 8, task 103 has the greatest priority and returns user 3. Task 101 is then removed; the newly added task 105 wins the final execution and returns user 5.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["TaskManager","execTop","execTop","execTop","execTop"]`, `arguments = [[[[1,10,5],[2,20,5],[3,15,6]]],[],[],[],[]]`
-- Output: `[null,3,2,1,-1]`
+- **Input:** `operations = ["TaskManager","execTop","execTop","execTop","execTop"]`, `arguments = [[[[1,10,5],[2,20,5],[3,15,6]]],[],[],[],[]]`
+- **Output:** `[null,3,2,1,-1]`
 
 Task 15 wins by priority. Tasks 20 and 10 then tie on priority, so the larger task ID executes first; the final call sees an empty manager.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["TaskManager","edit","add","execTop","execTop"]`, `arguments = [[[[1,1,5]]],[1,3],[2,2,8],[],[]]`
-- Output: `[null,null,null,2,1]`
+- **Input:** `operations = ["TaskManager","edit","add","execTop","execTop"]`, `arguments = [[[[1,1,5]]],[1,3],[2,2,8],[],[]]`
+- **Output:** `[null,null,null,2,1]`
 
 Editing task 1 leaves its old heap rank obsolete. Task 2 executes first at priority 8, followed by task 1 at its current priority 3.

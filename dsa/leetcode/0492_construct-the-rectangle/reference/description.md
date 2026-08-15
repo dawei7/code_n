@@ -12,8 +12,13 @@ Return *an array `[L, W]` where `L` and `W` are the length and width of the web 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `area`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,10 +28,12 @@ Return *an array `[L, W]` where `L` and `W` are the length and width of the web 
 - **Output:** `[2,2]`
 - **Explanation:** The target area is 4, and all the possible ways to construct it are [1,4], [2,2], [4,1].
 But according to requirement 2, [1,4] is illegal; according to requirement 3,  [4,1] is not optimal compared to [2,2]. So the length L is 2, and the width W is 2.
+
 #### Example 2
 
 - **Input:** $area = 37$
 - **Output:** `[37,1]`
+
 #### Example 3
 
 - **Input:** $area = 122122$

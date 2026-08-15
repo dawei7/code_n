@@ -31,14 +31,14 @@ You may apply the operation any number of times, including zero, and may reuse t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1001", k = 3`
-- Output: `4`
-- Explanation: There are two eligible windows, and independently choosing either, both, or neither produces four strings.
+- **Input:** `s = "1001", k = 3`
+- **Output:** `4`
+- **Explanation:** There are two eligible windows, and independently choosing either, both, or neither produces four strings.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "10110", k = 5`
-- Output: `2`
-- Explanation: The only eligible window is the entire string, so either it is flipped or it is not.
+- **Input:** `s = "10110", k = 5`
+- **Output:** `2`
+- **Explanation:** The only eligible window is the entire string, so either it is flipped or it is not.

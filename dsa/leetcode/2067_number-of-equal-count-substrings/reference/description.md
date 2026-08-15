@@ -16,26 +16,25 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 
 - **Input:** `s = "aaabcbbcc", count = 3`
 - **Output:** `3`
-- **Explanation:**
-The substring that starts at index 0 and ends at index 2 is "aaa".
+- **Explanation:** The substring that starts at index 0 and ends at index 2 is "aaa".
 The letter 'a' in the substring appears exactly 3 times.
 The substring that starts at index 3 and ends at index 8 is "bcbbcc".
 The letters 'b' and 'c' in the substring appear exactly 3 times.
 The substring that starts at index 0 and ends at index 8 is "aaabcbbcc".
 The letters 'a', 'b', and 'c' in the substring appear exactly 3 times.
+
 #### Example 2
 
 - **Input:** `s = "abcd", count = 2`
 - **Output:** `0`
-- **Explanation:**
-The number of times each letter appears in s is less than count.
+- **Explanation:** The number of times each letter appears in s is less than count.
 Therefore, no substrings in s are equal count substrings, so return 0.
+
 #### Example 3
 
 - **Input:** `s = "a", count = 5`
 - **Output:** `0`
-- **Explanation:**
-The number of times each letter appears in s is less than count.
+- **Explanation:** The number of times each letter appears in s is less than count.
 Therefore, no substrings in s are equal count substrings, so return 0
 
 ### 4. Constraints

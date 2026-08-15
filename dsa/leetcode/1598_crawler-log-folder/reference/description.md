@@ -18,8 +18,13 @@ Return *the minimum number of operations needed to go back to the main folder af
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `logs`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,12 +35,14 @@ Return *the minimum number of operations needed to go back to the main folder af
 - **Input:** $logs = ["d1/","d2/","../","d21/","./"]$
 - **Output:** `2`
 - **Explanation:** Use this change folder operation "../" 2 times and go back to the main folder.
+
 #### Example 2
 
 ![](images/sample_22_1957.png)
 
 - **Input:** $logs = ["d1/","d2/","./","d3/","../","d31/"]$
 - **Output:** `3`
+
 #### Example 3
 
 - **Input:** $logs = ["d1/","../","../","../"]$

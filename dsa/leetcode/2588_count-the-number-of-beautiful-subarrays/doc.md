@@ -32,16 +32,16 @@ Return the total number of beautiful subarrays. Each occurrence is identified by
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,3,1,2,4]`
-- Output: `2`
+- **Input:** `nums = [4,3,1,2,4]`
+- **Output:** `2`
 
 The subarray `[3,1,2]` and the complete array are beautiful.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,10,4]`
-- Output: `0`
+- **Input:** `nums = [1,10,4]`
+- **Output:** `0`
 
 No nonempty subarray satisfies the required bit-pairing condition.

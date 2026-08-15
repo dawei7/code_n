@@ -8,8 +8,14 @@ Return *an array *`ans`* where *$\text{ans}[i]$* is the answer to the *$$i^{\tex
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `parents`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *an array *`ans`* where *$\text{ans}[i]$* is the answer to the *$$i^{\tex
 - [0,2]: The node with the maximum genetic difference is 0, with a difference of 2 XOR 0 = 2.
 - [3,2]: The node with the maximum genetic difference is 1, with a difference of 2 XOR 1 = 3.
 - [2,5]: The node with the maximum genetic difference is 2, with a difference of 5 XOR 2 = 7.
+
 #### Example 2
 
 ![](images/c2.png)

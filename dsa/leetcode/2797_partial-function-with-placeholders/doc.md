@@ -33,20 +33,20 @@ Return a function that fills placeholders, appends unused call-time arguments, i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = (...values) => values`, `args = [2, 4, 6]`, `restArgs = [8, 10]`
-- Output: `[2, 4, 6, 8, 10]`
-- Explanation: There are no placeholders, so both call-time values are appended.
+- **Input:** `fn = (...values) => values`, `args = [2, 4, 6]`, `restArgs = [8, 10]`
+- **Output:** `[2, 4, 6, 8, 10]`
+- **Explanation:** There are no placeholders, so both call-time values are appended.
 
-**Example 2**
+#### Example 2
 
-- Input: `fn = (...values) => values`, `args = [1, 2, "_", 4, "_", 6]`, `restArgs = [3, 5]`
-- Output: `[1, 2, 3, 4, 5, 6]`
-- Explanation: The two call-time values replace the two placeholders in order.
+- **Input:** `fn = (...values) => values`, `args = [1, 2, "_", 4, "_", 6]`, `restArgs = [3, 5]`
+- **Output:** `[1, 2, 3, 4, 5, 6]`
+- **Explanation:** The two call-time values replace the two placeholders in order.
 
-**Example 3**
+#### Example 3
 
-- Input: `fn = (a, b, c) => b + a - c`, `args = ["_", 5]`, `restArgs = [5, 20]`
-- Output: `-10`
-- Explanation: The first value fills the placeholder, the second is appended, and `fn(5, 5, 20)` returns `-10`.
+- **Input:** `fn = (a, b, c) => b + a - c`, `args = ["_", 5]`, `restArgs = [5, 20]`
+- **Output:** `-10`
+- **Explanation:** The first value fills the placeholder, the second is appended, and `fn(5, 5, 20)` returns `-10`.

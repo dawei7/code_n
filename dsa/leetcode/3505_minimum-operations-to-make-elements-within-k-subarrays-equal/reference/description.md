@@ -8,19 +8,25 @@ Return the **minimum** number of operations needed to have **at least** `k` *non
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `x`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,-2,1,3,7,3,6,4,-1], x = 3, k = 2
+- **Input:** nums = [5,-2,1,3,7,3,6,4,-1], x = 3, k = 2
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - Use 3 operations to add 3 to $\text{nums}[1]$ and use 2 operations to subtract 2 from $\text{nums}[3]$. The resulting array is `[5, 1, 1, 1, 7, 3, 6, 4, -1]`.
 
@@ -28,21 +34,17 @@ Return the **minimum** number of operations needed to have **at least** `k` *non
 
 - Now, all elements within each subarray `[1, 1, 1]` (from indices 1 to 3) and `[4, 4, 4]` (from indices 5 to 7) are equal. Since 8 total operations were used, 8 is the output.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [9,-2,-2,-2,1,5], x = 2, k = 2
+- **Input:** nums = [9,-2,-2,-2,1,5], x = 2, k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Use 3 operations to subtract 3 from $\text{nums}[4]$. The resulting array is `[9, -2, -2, -2, -2, 5]`.
 
 - Now, all elements within each subarray `[-2, -2]` (from indices 1 to 2) and `[-2, -2]` (from indices 3 to 4) are equal. Since 3 operations were used, 3 is the output.
-
-</div>
 
 ### 4. Constraints
 

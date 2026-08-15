@@ -26,6 +26,7 @@ Return the head of the same nodes linked with all original odd-position nodes be
 
 - **Input:** $head = [1,2,3,4,5]$
 - **Output:** `[1,3,5,2,4]`
+
 #### Example 2
 
 ![](images/oddeven2-linked-list.jpg)

@@ -32,20 +32,20 @@ Let $U$ be the number of distinct values in `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 17, 8]`
-- Output: `2`
-- Explanation: `[1, 8, 17]` and `[17, 8, 1]` are the valid permutations.
+- **Input:** `nums = [1, 17, 8]`
+- **Output:** `2`
+- **Explanation:** `[1, 8, 17]` and `[17, 8, 1]` are the valid permutations.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2, 2]`
-- Output: `1`
-- Explanation: The only distinct permutation is squareful because every adjacent sum is $4$.
+- **Input:** `nums = [2, 2, 2]`
+- **Output:** `1`
+- **Explanation:** The only distinct permutation is squareful because every adjacent sum is $4$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 8]`
-- Output: `1`
-- Explanation: Only `[1, 8, 1]` avoids the nonsquare adjacent sum $1+1$.
+- **Input:** `nums = [1, 1, 8]`
+- **Output:** `1`
+- **Explanation:** Only `[1, 8, 1]` avoids the nonsquare adjacent sum $1+1$.

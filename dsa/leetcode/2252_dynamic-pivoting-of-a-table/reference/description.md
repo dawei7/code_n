@@ -37,7 +37,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Products table:
 +------------+----------+-------+
 | product_id | store    | price |
@@ -49,7 +49,7 @@ Products table:
 | 3          | Shop     | 1000  |
 | 3          | Souq     | 1900  |
 +------------+----------+-------+
-**Output:**
+- **Output:** 
 +------------+----------+--------+------+------+
 | product_id | LC_Store | Nozama | Shop | Souq |
 +------------+----------+--------+------+------+
@@ -57,8 +57,7 @@ Products table:
 | 2          | null     | 200    | null | 190  |
 | 3          | null     | null   | 1000 | 1900 |
 +------------+----------+--------+------+------+
-**Explanation:**
-We have 4 stores: Shop, LC_Store, Nozama, and Souq. We first order them lexicographically to be: LC_Store, Nozama, Shop, and Souq.
+- **Explanation:** We have 4 stores: Shop, LC_Store, Nozama, and Souq. We first order them lexicographically to be: LC_Store, Nozama, Shop, and Souq.
 Now, for product 1, the price in LC_Store is 100 and in Shop is 110. For the other two stores, the product is not sold so we set the price as null.
 Similarly, product 2 has a price of 200 in Nozama and 190 in Souq. It is not sold in the other two stores.
 For product 3, the price is 1000 in Shop and 1900 in Souq. It is not sold in the other two stores.

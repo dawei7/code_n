@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an $R\times C$ integer matrix `mat` with 0-indexed rows and a
 positive integer `k`. Repeat the following process `k` times: cyclically
 shift every even-indexed row one position to the left and every odd-indexed row
@@ -22,6 +24,7 @@ Return `True` exactly when the matrix obtained after all `k` steps is
 identical, entry for entry, to the original matrix. Otherwise return `False`.
 
 ### Function Contract
+
 **Inputs**
 
 - `mat`: the rectangular integer matrix
@@ -36,22 +39,23 @@ $1\le R,C\le25$, $1\le\texttt{mat[i][j]}\le25$, and $1\le k\le50$.
 A boolean indicating whether the shifted matrix equals `mat`.
 
 ### Examples
-**Example 1**
 
-- Input: `mat = [[1,2,3],[4,5,6],[7,8,9]], k = 4`
-- Output: `False`
-- Explanation: Four steps are equivalent to one position modulo three, and
+#### Example 1
+
+- **Input:** `mat = [[1,2,3],[4,5,6],[7,8,9]], k = 4`
+- **Output:** `False`
+- **Explanation:** Four steps are equivalent to one position modulo three, and
   the rows are not invariant under that shift.
 
-**Example 2**
+#### Example 2
 
-- Input: `mat = [[1,2,1,2],[5,5,5,5],[6,3,6,3]], k = 2`
-- Output: `True`
-- Explanation: Each row repeats with a period compatible with a two-position
+- **Input:** `mat = [[1,2,1,2],[5,5,5,5],[6,3,6,3]], k = 2`
+- **Output:** `True`
+- **Explanation:** Each row repeats with a period compatible with a two-position
   shift.
 
-**Example 3**
+#### Example 3
 
-- Input: `mat = [[2,2],[2,2]], k = 3`
-- Output: `True`
-- Explanation: Every row is constant, so no cyclic shift changes it.
+- **Input:** `mat = [[2,2],[2,2]], k = 3`
+- **Output:** `True`
+- **Explanation:** Every row is constant, so no cyclic shift changes it.

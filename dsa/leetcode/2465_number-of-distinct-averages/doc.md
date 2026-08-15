@@ -32,14 +32,14 @@ The array length is between $2$ and $100$, inclusive, and every value lies betwe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4, 1, 4, 0, 3, 5]`
-- Output: `2`
-- Explanation: The extreme pairs have sums `5`, `5`, and `7`, corresponding to averages `2.5`, `2.5`, and `3.5`.
+- **Input:** `nums = [4, 1, 4, 0, 3, 5]`
+- **Output:** `2`
+- **Explanation:** The extreme pairs have sums `5`, `5`, and `7`, corresponding to averages `2.5`, `2.5`, and `3.5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 100]`
-- Output: `1`
-- Explanation: The only removed pair has average `50.5`.
+- **Input:** `nums = [1, 100]`
+- **Output:** `1`
+- **Explanation:** The only removed pair has average `50.5`.

@@ -39,23 +39,23 @@ and let $L$ be the length of the shortest path.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, paths = [[0,1,2,3,4], [2,3,4], [4,0,1,2,3]]`
-- Output: `2`
+- **Input:** `n = 5, paths = [[0,1,2,3,4], [2,3,4], [4,0,1,2,3]]`
+- **Output:** `2`
 
 The sequence `[2,3]` occurs contiguously in all three paths.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, paths = [[0], [1], [2]]`
-- Output: `0`
+- **Input:** `n = 3, paths = [[0], [1], [2]]`
+- **Output:** `0`
 
 No city is shared by every path.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, paths = [[0,1,2,3,4], [4,3,2,1,0]]`
-- Output: `1`
+- **Input:** `n = 5, paths = [[0,1,2,3,4], [4,3,2,1,0]]`
+- **Output:** `1`
 
 The paths share cities, but no ordered adjacent pair.

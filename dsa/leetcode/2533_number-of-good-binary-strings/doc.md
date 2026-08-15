@@ -35,14 +35,14 @@ Return the number of good strings with permitted length, reduced modulo $10^9+7$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `minLength = 2, maxLength = 3, oneGroup = 1, zeroGroup = 2`
-- Output: `5`
-- Explanation: The valid strings are `"00"`, `"11"`, `"001"`, `"100"`, and `"111"`.
+- **Input:** `minLength = 2, maxLength = 3, oneGroup = 1, zeroGroup = 2`
+- **Output:** `5`
+- **Explanation:** The valid strings are `"00"`, `"11"`, `"001"`, `"100"`, and `"111"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `minLength = 4, maxLength = 4, oneGroup = 4, zeroGroup = 3`
-- Output: `1`
-- Explanation: Only `"1111"` satisfies the block-size rules at length four.
+- **Input:** `minLength = 4, maxLength = 4, oneGroup = 4, zeroGroup = 3`
+- **Output:** `1`
+- **Explanation:** Only `"1111"` satisfies the block-size rules at length four.

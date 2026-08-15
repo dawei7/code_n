@@ -20,10 +20,12 @@ Return the digit-reversed integer, or `0` when that result would overflow the si
 
 - **Input:** $x = 123$
 - **Output:** `321`
+
 #### Example 2
 
 - **Input:** $x = -123$
 - **Output:** `-321`
+
 #### Example 3
 
 - **Input:** $x = 120$

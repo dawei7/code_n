@@ -30,12 +30,12 @@ The number of equivalent index pairs `(i, j)` with `i < j`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `dominoes = [[1,2],[2,1],[3,4],[5,6]]`
-- Output: `1`
+- **Input:** `dominoes = [[1,2],[2,1],[3,4],[5,6]]`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `dominoes = [[1,2],[1,2],[1,1],[1,2],[2,2]]`
-- Output: `3`
+- **Input:** `dominoes = [[1,2],[1,2],[1,1],[1,2],[2,2]]`
+- **Output:** `3`

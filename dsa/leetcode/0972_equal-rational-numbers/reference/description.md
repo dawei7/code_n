@@ -6,19 +6,15 @@ A **rational number** can be represented using up to three parts: `<IntegerPart>
 
 - `<IntegerPart>`
 
-		<li>For example, `12`, `0`, and `123`.
+		- For example, `12`, `0`, and `123`.
 
-	</li>
 - `<IntegerPart>**<.>**<NonRepeatingPart>`
 
-		<li>For example, `0.5`, `1.`, `2.12`, and `123.0001`.
+		- For example, `0.5`, `1.`, `2.12`, and `123.0001`.
 
-	</li>
 - `<IntegerPart>**<.>**<NonRepeatingPart>**<(>**<RepeatingPart>**<)>**`
 
-		<li>For example, `0.1(6)`, `1.(9)`, `123.00(1212)`.
-
-	</li>
+		- For example, `0.1(6)`, `1.(9)`, `123.00(1212)`.
 
 The repeating portion of a decimal expansion is conventionally denoted within a pair of round brackets. For example:
 
@@ -26,8 +22,14 @@ The repeating portion of a decimal expansion is conventionally denoted within a 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -36,10 +38,12 @@ The repeating portion of a decimal expansion is conventionally denoted within a 
 - **Input:** `s = "0.(52)", t = "0.5(25)"`
 - **Output:** `true`
 - **Explanation:** Because "0.(52)" represents 0.52525252..., and "0.5(25)" represents 0.52525252525..... , the strings represent the same number.
+
 #### Example 2
 
 - **Input:** `s = "0.1666(6)", t = "0.166(66)"`
 - **Output:** `true`
+
 #### Example 3
 
 - **Input:** `s = "0.9(9)", t = "1."`

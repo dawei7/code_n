@@ -14,39 +14,35 @@ Return the **minimum** length of the final string `s` that you can achieve.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abaacbcbb"
+- **Input:** s = "abaacbcbb"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-We do the following operations:
+- **Explanation:** We do the following operations:
 
 - Choose index 2, then remove the characters at indices 0 and 3. The resulting string is `s = "bacbcbb"`.
 
 - Choose index 3, then remove the characters at indices 0 and 5. The resulting string is `s = "acbcb"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aa"
+- **Input:** s = "aa"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We cannot perform any operations, so we return the length of the original string.
-
-</div>
+- **Explanation:** We cannot perform any operations, so we return the length of the original string.
 
 ### 4. Constraints
 

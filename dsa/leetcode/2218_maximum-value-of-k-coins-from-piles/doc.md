@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/) |
 
 ## Problem Description
+
 ### Goal
 
 There are $n$ nonempty piles of coins. Every coin has a positive value, and each inner list `piles[i]` describes one pile from top to bottom.
@@ -16,6 +17,7 @@ There are $n$ nonempty piles of coins. Every coin has a positive value, and each
 In one move, you may remove the top coin from any pile and add its value to your wallet. Choose exactly `k` coins across all piles, respecting this top-to-bottom access rule, and return the maximum total value obtainable.
 
 ### Function Contract
+
 **Inputs**
 
 - `piles`: A nonempty list of nonempty coin-value lists, each ordered from top to bottom.
@@ -32,17 +34,18 @@ $$
 Return the maximum sum achievable by removing exactly `k` coins through legal top-of-pile moves.
 
 ### Examples
-**Example 1**
 
-- Input: `piles = [[1, 100, 3], [7, 8, 9]], k = 2`
-- Output: `101`
+#### Example 1
 
-**Example 2**
+- **Input:** `piles = [[1, 100, 3], [7, 8, 9]], k = 2`
+- **Output:** `101`
 
-- Input: `piles = [[100], [100], [100], [100], [100], [100], [1, 1, 1, 1, 1, 1, 700]], k = 7`
-- Output: `706`
+#### Example 2
 
-**Example 3**
+- **Input:** `piles = [[100], [100], [100], [100], [100], [100], [1, 1, 1, 1, 1, 1, 700]], k = 7`
+- **Output:** `706`
 
-- Input: `piles = [[5, 4], [3]], k = 1`
-- Output: `5`
+#### Example 3
+
+- **Input:** `piles = [[5, 4], [3]], k = 1`
+- **Output:** `5`

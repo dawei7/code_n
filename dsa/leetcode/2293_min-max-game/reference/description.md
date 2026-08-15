@@ -18,8 +18,13 @@ Return *the last number that remains in *`nums`* after applying the algorithm.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,6 +39,7 @@ First: nums = [1,5,4,2]
 Second: nums = [1,4]
 Third: nums = [1]
 1 is the last remaining number, so we return 1.
+
 #### Example 2
 
 - **Input:** `nums = [3]`

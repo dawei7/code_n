@@ -35,23 +35,23 @@ Return `[maximum_length, minimum_nodes]`. The first component is the greatest ed
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1,1],[1,2,3],[1,3,1],[2,4,6],[4,7,2],[3,5,2],[3,6,5],[6,8,3]]`, `nums = [1,1,0,3,1,2,1,1,0]`
-- Output: `[9, 3]`
+- **Input:** `edges = [[0,1,1],[1,2,3],[1,3,1],[2,4,6],[4,7,2],[3,5,2],[3,6,5],[6,8,3]]`, `nums = [1,1,0,3,1,2,1,1,0]`
+- **Output:** `[9, 3]`
 
 Paths `1 -> 2 -> 4` and `1 -> 3 -> 6 -> 8` both have length 9. The former uses only three nodes, so the tie-breaking component is 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[1,0,3],[0,2,4],[0,3,5]]`, `nums = [1,1,0,2]`
-- Output: `[5, 2]`
+- **Input:** `edges = [[1,0,3],[0,2,4],[0,3,5]]`, `nums = [1,1,0,2]`
+- **Output:** `[5, 2]`
 
 The downward edge `0 -> 3` is the longest special path.
 
-**Example 3**
+#### Example 3
 
-- Input: `edges = [[0,1,2],[1,2,3],[2,3,4]]`, `nums = [1,2,1,3]`
-- Output: `[9, 4]`
+- **Input:** `edges = [[0,1,2],[1,2,3],[2,3,4]]`, `nums = [1,2,1,3]`
+- **Output:** `[9, 4]`
 
 The complete root-to-node-3 path is legal because only value 1 is repeated, and it occurs exactly twice.

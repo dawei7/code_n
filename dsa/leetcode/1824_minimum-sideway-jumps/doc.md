@@ -31,19 +31,19 @@ The frog may advance from point $i$ to $i+1$ in its current lane when the destin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obstacles = [0,1,2,3,0]`
-- Output: `2`
+- **Input:** `obstacles = [0,1,2,3,0]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `obstacles = [0,1,1,3,3,0]`
-- Output: `0`
+- **Input:** `obstacles = [0,1,1,3,3,0]`
+- **Output:** `0`
 
 Lane 2 remains clear throughout, so forward movement alone reaches the end.
 
-**Example 3**
+#### Example 3
 
-- Input: `obstacles = [0,2,1,0,3,0]`
-- Output: `2`
+- **Input:** `obstacles = [0,2,1,0,3,0]`
+- **Output:** `2`

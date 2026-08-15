@@ -6,8 +6,14 @@ Find the maximum profit you can achieve. You may complete as many transactions a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `prices`: Input parameter (`List[int]`).
+- `fee`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,6 +33,7 @@ Find the maximum profit you can achieve. You may complete as many transactions a
 - Buying at prices[4] = 4
 - Selling at prices[5] = 9
 The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
+
 #### Example 2
 
 - **Input:** $prices = [1,3,7,5,10,3], fee = 3$

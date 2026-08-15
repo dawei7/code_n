@@ -30,20 +30,20 @@ The result can exceed the range of a signed 32-bit integer, so calculations must
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aba"`
-- Output: `6`
-- Explanation: Across `"a"`, `"ab"`, `"aba"`, `"b"`, `"ba"`, and `"a"`, the vowel counts sum to $6$.
+- **Input:** `word = "aba"`
+- **Output:** `6`
+- **Explanation:** Across `"a"`, `"ab"`, `"aba"`, `"b"`, `"ba"`, and `"a"`, the vowel counts sum to $6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "abc"`
-- Output: `3`
-- Explanation: The first `a` occurs in `"a"`, `"ab"`, and `"abc"`.
+- **Input:** `word = "abc"`
+- **Output:** `3`
+- **Explanation:** The first `a` occurs in `"a"`, `"ab"`, and `"abc"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "ltcd"`
-- Output: `0`
-- Explanation: No substring contains a vowel because the string has none.
+- **Input:** `word = "ltcd"`
+- **Output:** `0`
+- **Explanation:** No substring contains a vowel because the string has none.

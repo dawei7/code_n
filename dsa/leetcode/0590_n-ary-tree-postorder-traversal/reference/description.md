@@ -6,8 +6,10 @@ Nary-Tree input serialization is represented in their level order traversal. Eac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Node(val: Optional[int] = None, children: Optional[List['Node']] = None)`: Initializes the data structure.
+- `postorder(root: 'Node') -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ Nary-Tree input serialization is represented in their level order traversal. Eac
 
 - **Input:** `root = [1,null,3,2,4,null,5,6]`
 - **Output:** `[5,6,3,2,4,1]`
+
 #### Example 2
 
 ![](images/sample_4_964.png)

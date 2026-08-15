@@ -16,8 +16,14 @@ The tests are generated such that `sessionTime` is **greater** than or **equal**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tasks`: Input parameter (`List[int]`).
+- `sessionTime`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ The tests are generated such that `sessionTime` is **greater** than or **equal**
 - **Explanation:** You can finish the tasks in two work sessions.
 - First work session: finish the first and the second tasks in 1 + 2 = 3 hours.
 - Second work session: finish the third task in 3 hours.
+
 #### Example 2
 
 - **Input:** $tasks = [3,1,3,1,1], sessionTime = 8$
@@ -35,6 +42,7 @@ The tests are generated such that `sessionTime` is **greater** than or **equal**
 - **Explanation:** You can finish the tasks in two work sessions.
 - First work session: finish all the tasks except the last one in 3 + 1 + 3 + 1 = 8 hours.
 - Second work session: finish the last task in 1 hour.
+
 #### Example 3
 
 - **Input:** $tasks = [1,2,3,4,5], sessionTime = 15$

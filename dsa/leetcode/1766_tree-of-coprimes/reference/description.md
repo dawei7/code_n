@@ -12,8 +12,14 @@ Return *an array *`ans`* of size *`n`, *where *$\text{ans}[i]$* is the closest a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -34,6 +40,7 @@ Return *an array *`ans`* of size *`n`, *where *$\text{ans}[i]$* is the closest a
 value is (gcd(2,3) == 1), so node 0 is the closest valid ancestor.
 - Node 3 has two ancestors, nodes 1 and 0. It is coprime with node 1 (gcd(3,2) == 1), so node 1 is its
 closest valid ancestor.
+
 #### Example 2
 
 ![](images/untitled-diagram1.png)

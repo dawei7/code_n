@@ -37,14 +37,11 @@ Division is rational (exact), not integer division. For example, $2 / 4 = 1 / 2$
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,2], k = 6
+- **Input:** nums = [2,3,2], k = 6
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The following 2 distinct sequences of choices result in $val = k$:
+- **Explanation:** The following 2 distinct sequences of choices result in $val = k$:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -73,17 +70,14 @@ The following 2 distinct sequences of choices result in $val = k$:
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,6,3], k = 2
+- **Input:** nums = [4,6,3], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The following 2 distinct sequences of choices result in $val = k$:
+- **Explanation:** The following 2 distinct sequences of choices result in $val = k$:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -112,17 +106,14 @@ The following 2 distinct sequences of choices result in $val = k$:
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,5], k = 1
+- **Input:** nums = [1,5], k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The following 3 distinct sequences of choices result in $val = k$:
+- **Explanation:** The following 3 distinct sequences of choices result in $val = k$:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -154,7 +145,6 @@ The following 3 distinct sequences of choices result in $val = k$:
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 5. Constraints
 

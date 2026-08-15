@@ -6,8 +6,13 @@ Note that the subarray needs to be **non-empty** after deleting one element.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +21,13 @@ Note that the subarray needs to be **non-empty** after deleting one element.
 - **Input:** `arr = [1,-2,0,3]`
 - **Output:** `4`
 - **Explanation:** Because we can choose [1, -2, 0, 3] and drop -2, thus the subarray [1, 0, 3] becomes the maximum value.
+
 #### Example 2
 
 - **Input:** `arr = [1,-2,-2,3]`
 - **Output:** `3`
 - **Explanation:** We just choose [3] and it's the maximum sum.
+
 #### Example 3
 
 - **Input:** `arr = [-1,-1,-1,-1]`

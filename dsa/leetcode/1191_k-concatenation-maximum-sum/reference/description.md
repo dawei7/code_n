@@ -10,8 +10,14 @@ As the answer can be very large, return the answer **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,10 +25,12 @@ As the answer can be very large, return the answer **modulo** $10^{9} + 7$.
 
 - **Input:** `arr = [1,2], k = 3`
 - **Output:** `9`
+
 #### Example 2
 
 - **Input:** `arr = [1,-2,1], k = 5`
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** `arr = [-1,-2], k = 7`

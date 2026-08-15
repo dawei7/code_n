@@ -16,8 +16,13 @@ Given a string `sentence`, return *the **number** of valid words in *`sentence`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sentence`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Given a string `sentence`, return *the **number** of valid words in *`sentence`.
 - **Input:** $sentence = "<u>cat</u> <u>and</u> <u>dog</u>"$
 - **Output:** `3`
 - **Explanation:** The valid words in the sentence are "cat", "and", and "dog".
+
 #### Example 2
 
 - **Input:** $sentence = "!this 1-s b8d!"$
@@ -33,6 +39,7 @@ Given a string `sentence`, return *the **number** of valid words in *`sentence`.
 - **Explanation:** There are no valid words in the sentence.
 "!this" is invalid because it starts with a punctuation mark.
 "1-s" and "b8d" are invalid because they contain digits.
+
 #### Example 3
 
 - **Input:** $sentence = "<u>alice</u> <u>and</u> <u>bob</u> <u>are</u> <u>playing</u> stone-game10"$

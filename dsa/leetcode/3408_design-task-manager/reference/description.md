@@ -16,8 +16,13 @@ Implement the `TaskManager` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TaskManager(tasks: List[List[int]])`: Initializes the data structure.
+- `add(userId: int, taskId: int, priority: int)`: Executes operation.
+- `edit(taskId: int, newPriority: int)`: Executes operation.
+- `rmv(taskId: int)`: Executes operation.
+- `execTop() -> `int``: Executes operation.
 
 ### 3. Note
 
@@ -27,14 +32,13 @@ that a user may be assigned multiple tasks.
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["TaskManager", "add", "edit", "execTop", "rmv", "add", "execTop"]
 
 [[[[1, 101, 10], [2, 102, 20], [3, 103, 15]]], [4, 104, 5], [102, 8], [], [101], [5, 105, 15], []]
 
-**Output:**
+- **Output:** 
 
 [null, null, null, 3, null, null, 5]
 
@@ -52,7 +56,7 @@ taskManager.rmv(101); // Removes task 101 from the system.
 
 taskManager.add(5, 105, 15); // Adds task 105 with priority 15 for User 5.
 
-taskManager.execTop(); // return 5. Executes task 105 for User 5.</div>
+taskManager.execTop(); // return 5. Executes task 105 for User 5.
 
 ### 5. Constraints
 

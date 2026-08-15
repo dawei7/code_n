@@ -4,8 +4,13 @@ Given an integer array `nums`, *find three numbers whose product is maximum and 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -13,10 +18,12 @@ Given an integer array `nums`, *find three numbers whose product is maximum and 
 
 - **Input:** `nums = [1,2,3]`
 - **Output:** `6`
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `24`
+
 #### Example 3
 
 - **Input:** `nums = [-1,-2,-3]`

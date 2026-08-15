@@ -16,8 +16,16 @@ We want to pick exactly `k` items among the available items. Return *the **maxim
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `numOnes`: Input parameter (`int`).
+- `numZeros`: Input parameter (`int`).
+- `numNegOnes`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +35,7 @@ We want to pick exactly `k` items among the available items. Return *the **maxim
 - **Output:** `2`
 - **Explanation:** We have a bag of items with numbers written on them {1, 1, 1, 0, 0}. We take 2 items with 1 written on them and get a sum in a total of 2.
 It can be proven that 2 is the maximum possible sum.
+
 #### Example 2
 
 - **Input:** $numOnes = 3, numZeros = 2, numNegOnes = 0, k = 4$

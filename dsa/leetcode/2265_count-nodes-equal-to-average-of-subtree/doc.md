@@ -36,18 +36,18 @@ values in their subtree divided by the number of nodes in that subtree.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [4,8,5,0,1,null,6]`
-- Output: `5`
+- **Input:** `root = [4,8,5,0,1,null,6]`
+- **Output:** `5`
 
 The root's subtree has sum $24$ and six nodes, so its average is $4$. The
 nodes with values `5`, `0`, `1`, and `6` also match their respective subtree
 averages.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1]`
-- Output: `1`
+- **Input:** `root = [1]`
+- **Output:** `1`
 
 The only node is also the only member of its subtree.

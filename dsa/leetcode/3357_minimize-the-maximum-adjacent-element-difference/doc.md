@@ -32,20 +32,20 @@ The array length $n$ satisfies $2\le n\le 10^5$. Every entry is either `-1` or a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, -1, 10, 8]`
-- Output: `4`
-- Explanation: Choose $(6,7)$ and replace the missing value with $6$. The completed array is `[1, 2, 6, 10, 8]`, whose adjacent differences are $1$, $4$, $4$, and $2$.
+- **Input:** `nums = [1, 2, -1, 10, 8]`
+- **Output:** `4`
+- **Explanation:** Choose $(6,7)$ and replace the missing value with $6$. The completed array is `[1, 2, 6, 10, 8]`, whose adjacent differences are $1$, $4$, $4$, and $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1, -1, -1]`
-- Output: `0`
-- Explanation: Choose equal positive integers, such as $(4,4)$, and give every position the same value.
+- **Input:** `nums = [-1, -1, -1]`
+- **Output:** `0`
+- **Explanation:** Choose equal positive integers, such as $(4,4)$, and give every position the same value.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-1, 10, -1, 8]`
-- Output: `1`
-- Explanation: With $(11,9)$, the completed array can be `[11, 10, 9, 8]`, so every adjacent difference is $1$.
+- **Input:** `nums = [-1, 10, -1, 8]`
+- **Output:** `1`
+- **Explanation:** With $(11,9)$, the completed array can be `[11, 10, 9, 8]`, so every adjacent difference is $1$.

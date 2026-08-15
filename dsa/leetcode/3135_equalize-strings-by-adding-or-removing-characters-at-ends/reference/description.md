@@ -14,26 +14,19 @@ Return the **minimum** number of operations required to *transform* `initial` in
 
 #### Example 1
 
-<div class="example-block">
-**Input:** initial = "abcde", target = "cdef"
+- **Input:** initial = "abcde", target = "cdef"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** Remove `'a'` and `'b'` from the beginning of `initial`, then add `'f'` to the end.
 
-Remove `'a'` and `'b'` from the beginning of `initial`, then add `'f'` to the end.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** initial = "axxy", target = "yabx"
+- **Input:** initial = "axxy", target = "yabx"
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-<table border="1">
+- **Explanation:** <table border="1">
 	<tbody>
 		<tr>
 			<th>Operation</th>
@@ -65,19 +58,14 @@ Remove `'a'` and `'b'` from the beginning of `initial`, then add `'f'` to the en
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** initial = "xyz", target = "xyz"
+- **Input:** initial = "xyz", target = "xyz"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No operations are needed as the strings are already equal.
-
-</div>
+- **Explanation:** No operations are needed as the strings are already equal.
 
 ### 4. Constraints
 

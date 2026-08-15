@@ -14,19 +14,23 @@ Return an array `ans` where $\text{ans}[i]$ is the **maximum** **value** reachab
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,3]
+- **Input:** nums = [2,1,3]
 
-**Output:** [2,2,3]
+- **Output:** [2,2,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$: No jump increases the value.
 
@@ -36,15 +40,13 @@ Return an array `ans` where $\text{ans}[i]$ is the **maximum** **value** reachab
 
 Thus, $ans = [2, 2, 3]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,1]
+- **Input:** nums = [2,3,1]
 
-**Output:** [3,3,3]
+- **Output:** [3,3,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$: Jump forward to $j = 2$ as $\text{nums}[j] = 1$ is less than $\text{nums}[i] = 2$, then from $i = 2$ jump to $j = 1$ as $\text{nums}[j] = 3$ is greater than $\text{nums}[2]$.
 
@@ -53,8 +55,6 @@ Thus, $ans = [2, 2, 3]$.
 - For $i = 2$: Jump to $j = 1$ as $\text{nums}[j] = 3$ is greater than $\text{nums}[2] = 1$.
 
 Thus, $ans = [3, 3, 3]$.
-
-</div>
 
 ### 4. Constraints
 

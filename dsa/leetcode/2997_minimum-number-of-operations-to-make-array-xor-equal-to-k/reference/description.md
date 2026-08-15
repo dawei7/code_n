@@ -10,8 +10,14 @@ Return *the **minimum** number of operations required to make the bitwise *`XOR`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -28,6 +34,7 @@ that you can flip leading zero bits in the binary representation of elements. Fo
 - Choose element 0 which is 2 == (010)_2, we flip the third bit and we obtain (110)_2 = 6. nums becomes [6,1,2,4].
 The XOR of elements of the final array is (6 XOR 1 XOR 2 XOR 4) == 1 == k.
 It can be shown that we cannot make the XOR equal to k in less than 2 operations.
+
 #### Example 2
 
 - **Input:** `nums = [2,0,2,0], k = 0`

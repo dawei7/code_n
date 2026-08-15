@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-moves-to-capture-the-queen/) |
 
 ## Problem Description
+
 ### Goal
+
 A 1-indexed $8\times8$ chessboard contains a white rook, a white bishop, and a
 stationary black queen. The rook is at `(a, b)`, the bishop is at `(c, d)`, and
 the queen is at `(e, f)`; the three squares are distinct.
@@ -24,6 +26,7 @@ the queen when the moving white piece reaches its square.
 Return the minimum number of white moves required to capture the queen.
 
 ### Function Contract
+
 **Inputs**
 
 - `a`: the rook's row
@@ -41,17 +44,18 @@ same square.
 Return the minimum number of legal white-piece moves needed for a capture.
 
 ### Examples
-**Example 1**
 
-- Input: `a = 1, b = 1, c = 8, d = 8, e = 2, f = 3`
-- Output: `2`
+#### Example 1
+
+- **Input:** `a = 1, b = 1, c = 8, d = 8, e = 2, f = 3`
+- **Output:** `2`
 
 Neither white piece initially attacks the queen, but the rook can capture it
 after repositioning once.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = 5, b = 3, c = 3, d = 4, e = 5, f = 2`
-- Output: `1`
+- **Input:** `a = 5, b = 3, c = 3, d = 4, e = 5, f = 2`
+- **Output:** `1`
 
 The rook and bishop each have an unobstructed capture in one move.

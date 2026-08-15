@@ -29,11 +29,13 @@ By all of the **uncovered** ranges with **maximal** length, we mean satisfying t
 - **Input:** $n = 10, ranges = [[3,5],[7,8]]$
 - **Output:** `[[0,2],[6,6],[9,9]]`
 - **Explanation:** The ranges (3, 5) and (7, 8) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [0,0,0,1,1,1,0,1,1,0] in which we can observe that the ranges (0, 2), (6, 6) and (9, 9) aren't covered.
+
 #### Example 2
 
 - **Input:** $n = 3, ranges = [[0,2]]$
 - **Output:** `[]`
 - **Explanation:** In this example, the whole of the array nums is covered and there are no uncovered cells so the output is an empty array.
+
 #### Example 3
 
 - **Input:** $n = 7, ranges = [[2,4],[0,3]]$

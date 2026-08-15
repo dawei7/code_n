@@ -32,14 +32,14 @@ Creating the function and calling it are separate operations: `createHelloWorld(
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `args = []`
-- Output: `"Hello World"`
-- Explanation: Calling the returned function without arguments produces the required constant.
+- **Input:** `args = []`
+- **Output:** `"Hello World"`
+- **Explanation:** Calling the returned function without arguments produces the required constant.
 
-**Example 2**
+#### Example 2
 
-- Input: `args = [{},null,42]`
-- Output: `"Hello World"`
-- Explanation: Objects, null values, numbers, and every other supplied argument are ignored.
+- **Input:** `args = [{},null,42]`
+- **Output:** `"Hello World"`
+- **Explanation:** Objects, null values, numbers, and every other supplied argument are ignored.

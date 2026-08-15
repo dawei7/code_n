@@ -8,8 +8,14 @@ Given two integer arrays `days` and `apples` of length `n`, return *the maximum 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `apples`: Input parameter (`List[int]`).
+- `days`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Given two integer arrays `days` and `apples` of length `n`, return *the maximum 
 - On the second day, you eat an apple that grew on the second day.
 - On the third day, you eat an apple that grew on the second day. After this day, the apples that grew on the third day rot.
 - On the fourth to the seventh days, you eat apples that grew on the fourth day.
+
 #### Example 2
 
 - **Input:** $apples = [3,0,0,0,0,2], days = [3,0,0,0,0,2]$

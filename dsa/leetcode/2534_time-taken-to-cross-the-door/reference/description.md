@@ -47,6 +47,7 @@ that:
 - At t = 2: Person 1 still wants to exit, and person 3 wants to enter. Since the door was used the previous second for entering, person 3 enters.
 - At t = 3: Person 1 is the only one who wants to exit, so they just exit through the door.
 - At t = 4: Person 4 is the only one who wants to exit, so they just exit through the door.
+
 #### Example 2
 
 - **Input:** $arrival = [0,0,0], state = [1,0,1]$

@@ -14,8 +14,13 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 - Subarray [3, 1, 4] with an imbalance number of 1.
 - Subarray [1, 4] with an imbalance number of 1.
 The imbalance number of all other subarrays is 0. Hence, the sum of imbalance numbers of all the subarrays of nums is 3.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,3,3,5]`

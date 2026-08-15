@@ -37,20 +37,20 @@ Every task requirement, worker strength, and `strength` lies between $0$ and $10
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tasks = [3,2,1], workers = [0,3,3], pills = 1, strength = 1`
-- Output: `3`
-- Explanation: Boost worker `0` to complete task `1`; the two strength-`3` workers complete requirements `2` and `3`.
+- **Input:** `tasks = [3,2,1], workers = [0,3,3], pills = 1, strength = 1`
+- **Output:** `3`
+- **Explanation:** Boost worker `0` to complete task `1`; the two strength-`3` workers complete requirements `2` and `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `tasks = [5,4], workers = [0,0,0], pills = 1, strength = 5`
-- Output: `1`
-- Explanation: One boosted worker can complete one task, but only one pill is available.
+- **Input:** `tasks = [5,4], workers = [0,0,0], pills = 1, strength = 5`
+- **Output:** `1`
+- **Explanation:** One boosted worker can complete one task, but only one pill is available.
 
-**Example 3**
+#### Example 3
 
-- Input: `tasks = [10,15,30], workers = [0,10,10,10,10], pills = 3, strength = 10`
-- Output: `2`
-- Explanation: Two boosted workers can meet requirements `10` and `15`; no worker can reach `30`.
+- **Input:** `tasks = [10,15,30], workers = [0,10,10,10,10], pills = 3, strength = 10`
+- **Output:** `2`
+- **Explanation:** Two boosted workers can meet requirements `10` and `15`; no worker can reach `30`.

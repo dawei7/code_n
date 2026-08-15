@@ -8,8 +8,13 @@ Return the **maximum** total score you can achieve.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,12 +22,11 @@ Return the **maximum** total score you can achieve.
 
 ![](images/grid1.png)
 
-<div class="example-block">
-**Input:** grid = [[9,5,7,3],[8,9,6,1],[6,7,14,3],[2,5,3,1]]
+- **Input:** grid = [[9,5,7,3],[8,9,6,1],[6,7,14,3],[2,5,3,1]]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:** We start at the cell `(0, 1)`, and we perform the following moves:
+- **Explanation:** We start at the cell `(0, 1)`, and we perform the following moves:
 
 - Move from the cell `(0, 1)` to `(2, 1)` with a score of $7 - 5 = 2$.
 
@@ -30,19 +34,15 @@ Return the **maximum** total score you can achieve.
 
 The total score is $2 + 7 = 9$.
 
-</div>
 #### Example 2
 
 ![](images/moregridsdrawio-1.png)
 
-<div class="example-block">
-**Input:** grid = [[4,3,2],[3,2,1]]
+- **Input:** grid = [[4,3,2],[3,2,1]]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:** We start at the cell `(0, 0)`, and we perform one move: `(0, 0)` to `(0, 1)`. The score is $3 - 4 = -1$.
-
-</div>
+- **Explanation:** We start at the cell `(0, 0)`, and we perform one move: `(0, 0)` to `(0, 1)`. The score is $3 - 4 = -1$.
 
 ### 4. Constraints
 

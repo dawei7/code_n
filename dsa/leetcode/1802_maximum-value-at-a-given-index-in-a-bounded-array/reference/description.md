@@ -18,8 +18,15 @@ Note that `abs(x)` equals `x` if $x \ge 0$, and `-x` otherwise.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `index`: Input parameter (`int`).
+- `maxSum`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +36,7 @@ Note that `abs(x)` equals `x` if $x \ge 0$, and `-x` otherwise.
 - **Output:** `2`
 - **Explanation:** nums = [1,2,<u>**2**</u>,1] is one array that satisfies all the conditions.
 There are no arrays that satisfy all the conditions and have nums[2] == 3, so 2 is the maximum nums[2].
+
 #### Example 2
 
 - **Input:** $n = 6, index = 1, maxSum = 10$

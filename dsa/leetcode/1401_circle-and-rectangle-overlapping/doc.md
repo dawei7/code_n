@@ -33,17 +33,17 @@ Determine whether the circle and rectangle overlap: they overlap when at least o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `radius = 1, xCenter = 0, yCenter = 0, x1 = 1, y1 = -1, x2 = 3, y2 = 1`
-- Output: `true`
+- **Input:** `radius = 1, xCenter = 0, yCenter = 0, x1 = 1, y1 = -1, x2 = 3, y2 = 1`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `radius = 1, xCenter = 0, yCenter = 0, x1 = 2, y1 = 2, x2 = 4, y2 = 4`
-- Output: `false`
+- **Input:** `radius = 1, xCenter = 0, yCenter = 0, x1 = 2, y1 = 2, x2 = 4, y2 = 4`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `radius = 2, xCenter = 1, yCenter = 1, x1 = 0, y1 = 0, x2 = 2, y2 = 2`
-- Output: `true`
+- **Input:** `radius = 2, xCenter = 1, yCenter = 1, x1 = 0, y1 = 0, x2 = 2, y2 = 2`
+- **Output:** `true`

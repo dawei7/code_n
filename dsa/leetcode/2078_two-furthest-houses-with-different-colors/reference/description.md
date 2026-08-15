@@ -8,8 +8,13 @@ The distance between the $$i^{\text{th}}$$ and $$j^{\text{th}}$$ houses is $abs(
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `colors`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ The distance between the $$i^{\text{th}}$$ and $$j^{\text{th}}$$ houses is $abs(
 The furthest two houses with different colors are house 0 and house 3.
 House 0 has color 1, and house 3 has color 6. The distance between them is abs(0 - 3) = 3.
 Note that houses 3 and 6 can also produce the optimal answer.
+
 #### Example 2
 
 ![](images/eg2.png)
@@ -32,6 +38,7 @@ Note that houses 3 and 6 can also produce the optimal answer.
 - **Explanation:** In the above image, color 1 is blue, color 8 is yellow, and color 3 is green.
 The furthest two houses with different colors are house 0 and house 4.
 House 0 has color 1, and house 4 has color 3. The distance between them is abs(0 - 4) = 4.
+
 #### Example 3
 
 - **Input:** $colors = [<u>**0**</u>,**<u>1</u>**]$

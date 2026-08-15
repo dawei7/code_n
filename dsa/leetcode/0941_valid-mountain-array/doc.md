@@ -30,17 +30,17 @@ Return `true` exactly when there is an index $p$ with $0<p<n-1$ such that the va
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [2,1]`
-- Output: `false`
+- **Input:** `arr = [2,1]`
+- **Output:** `false`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [3,5,5]`
-- Output: `false`
+- **Input:** `arr = [3,5,5]`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [0,3,2,1]`
-- Output: `true`
+- **Input:** `arr = [0,3,2,1]`
+- **Output:** `true`

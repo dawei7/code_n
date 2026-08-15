@@ -4,8 +4,13 @@ Given an integer `n`, return *a binary string representing its representation in
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -18,11 +23,13 @@ that the returned string should not have leading zeros unless the string is `"0"
 - **Input:** $n = 2$
 - **Output:** `"110"`
 **Explantion:** (-2)^2 + (-2)^1 = 2
+
 #### Example 2
 
 - **Input:** $n = 3$
 - **Output:** `"111"`
 **Explantion:** (-2)^2 + (-2)^1 + (-2)^0 = 3
+
 #### Example 3
 
 - **Input:** $n = 4$

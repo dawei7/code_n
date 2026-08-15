@@ -33,20 +33,20 @@ Return the largest even sum obtainable from exactly `k` elements, or `-1` if no 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,1,5,3,1]`, `k = 3`
-- Output: `12`
-- Explanation: The subsequence `[4,5,3]` has the largest even sum, $4 + 5 + 3 = 12$.
+- **Input:** `nums = [4,1,5,3,1]`, `k = 3`
+- **Output:** `12`
+- **Explanation:** The subsequence `[4,5,3]` has the largest even sum, $4 + 5 + 3 = 12$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,6,2]`, `k = 3`
-- Output: `12`
-- Explanation: All three values are selected.
+- **Input:** `nums = [4,6,2]`, `k = 3`
+- **Output:** `12`
+- **Explanation:** All three values are selected.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,3,5]`, `k = 1`
-- Output: `-1`
-- Explanation: Every possible one-element sum is odd.
+- **Input:** `nums = [1,3,5]`, `k = 1`
+- **Output:** `-1`
+- **Explanation:** Every possible one-element sum is odd.

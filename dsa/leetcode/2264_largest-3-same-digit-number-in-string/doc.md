@@ -36,17 +36,17 @@ when no such substring exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "6777133339"`
-- Output: `"777"`
+- **Input:** `num = "6777133339"`
+- **Output:** `"777"`
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "2300019"`
-- Output: `"000"`
+- **Input:** `num = "2300019"`
+- **Output:** `"000"`
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "42352338"`
-- Output: `""`
+- **Input:** `num = "42352338"`
+- **Output:** `""`

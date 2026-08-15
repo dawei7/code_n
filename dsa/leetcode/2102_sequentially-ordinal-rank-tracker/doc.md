@@ -36,15 +36,15 @@ Construction and `add` return no value. Each `get` returns the requested locatio
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Operations: `["SORTracker","add","add","get","add","get","add","get","add","get","add","get","get"]`
 - Arguments: `[[],["bradford",2],["branford",3],[],["alps",2],[],["orland",2],[],["orlando",3],[],["alpine",2],[],[]]`
-- Output: `[null,null,null,"branford",null,"alps",null,"bradford",null,"bradford",null,"bradford","orland"]`
+- **Output:** `[null,null,null,"branford",null,"alps",null,"bradford",null,"bradford",null,"bradford","orland"]`
 
-**Example 2**
+#### Example 2
 
 - Operations: `["SORTracker","add","get","add","get"]`
 - Arguments: `[[],["zoo",5],[],["alpha",5],[]]`
-- Output: `[null,null,"zoo",null,"zoo"]`
-- Explanation: After the second addition, `"alpha"` ranks first, so the second query returns the second-ranked `"zoo"`.
+- **Output:** `[null,null,"zoo",null,"zoo"]`
+- **Explanation:** After the second addition, `"alpha"` ranks first, so the second query returns the second-ranked `"zoo"`.

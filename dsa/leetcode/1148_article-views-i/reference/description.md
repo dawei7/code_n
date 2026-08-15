@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Views table:
 +------------+-----------+-----------+------------+
 | article_id | author_id | viewer_id | view_date  |
@@ -45,7 +45,7 @@ Views table:
 | 3          | 4         | 4         | 2019-07-21 |
 | 3          | 4         | 4         | 2019-07-21 |
 +------------+-----------+-----------+------------+
-**Output:**
+- **Output:** 
 +------+
 | id   |
 +------+

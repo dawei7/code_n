@@ -52,7 +52,6 @@ The query result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `Transactions` table:
@@ -96,7 +95,7 @@ The query result format is in the following example.
 
 - For customer 101:
 
-		<li>Total amount spent: 100.00 + 150.00 + 200.00 = 450.00
+		- Total amount spent: 100.00 + 150.00 + 200.00 = 450.00
 
 - Number of transactions: 3
 
@@ -108,10 +107,9 @@ The query result format is in the following example.
 
 - Loyalty score: (3 * 10) + (450.00 / 100) = 34.50
 
-	</li>
 - For customer 102:
 
-		<li>Total amount spent: 100.00 + 200.00 = 300.00
+		- Total amount spent: 100.00 + 200.00 = 300.00
 
 - Number of transactions: 2
 
@@ -123,8 +121,6 @@ The query result format is in the following example.
 
 - Loyalty score: (2 * 10) + (300.00 / 100) = 23.00
 
-	</li>
-
 ### 2. Function Contract
 
 - Refer to method signature.
@@ -132,5 +128,3 @@ The query result format is in the following example.
 ### 3. Note
 
 The output is ordered by loyalty_score in descending order, then by customer_id in ascending order.
-
-</div>

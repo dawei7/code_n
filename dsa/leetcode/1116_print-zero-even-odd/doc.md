@@ -31,14 +31,14 @@ Coordinate the three methods so the combined callback sequence alternates a zero
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`
-- Output: `"0102"`
+- **Input:** `n = 2`
+- **Output:** `"0102"`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`
-- Output: `"0102030405"`
+- **Input:** `n = 5`
+- **Output:** `"0102030405"`
 
 The display concatenates callback values without separators; values are still passed to the callback as integers.

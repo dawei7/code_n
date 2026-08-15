@@ -31,20 +31,20 @@ Return $n$, the number of houses in the circular street.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `street = [0,0,0,0], k = 10`
-- Output: `4`
-- Explanation: The four entries represent four houses whose doors are initially closed; the starting point is arbitrary and does not change the cycle length.
+- **Input:** `street = [0,0,0,0], k = 10`
+- **Output:** `4`
+- **Explanation:** The four entries represent four houses whose doors are initially closed; the starting point is arbitrary and does not change the cycle length.
 
-**Example 2**
+#### Example 2
 
-- Input: `street = [1,0,1,1,0], k = 5`
-- Output: `5`
-- Explanation: The street contains five houses, regardless of the mixed initial door states.
+- **Input:** `street = [1,0,1,1,0], k = 5`
+- **Output:** `5`
+- **Explanation:** The street contains five houses, regardless of the mixed initial door states.
 
-**Example 3**
+#### Example 3
 
-- Input: `street = [1], k = 1`
-- Output: `1`
-- Explanation: Moving once around a one-house street returns to the same marked door.
+- **Input:** `street = [1], k = 1`
+- **Output:** `1`
+- **Explanation:** Moving once around a one-house street returns to the same marked door.

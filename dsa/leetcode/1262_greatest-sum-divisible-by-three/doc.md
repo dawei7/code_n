@@ -30,18 +30,18 @@ Return the largest achievable sum that is divisible by $3$. Selecting no element
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 6, 5, 1, 8]`
-- Output: `18`
-- Explanation: Selecting `3`, `6`, `1`, and `8` gives the largest divisible sum.
+- **Input:** `nums = [3, 6, 5, 1, 8]`
+- **Output:** `18`
+- **Explanation:** Selecting `3`, `6`, `1`, and `8` gives the largest divisible sum.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4]`
-- Output: `0`
+- **Input:** `nums = [4]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4, 4]`
-- Output: `12`
+- **Input:** `nums = [1, 2, 3, 4, 4]`
+- **Output:** `12`

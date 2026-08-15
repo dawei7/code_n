@@ -10,35 +10,32 @@ Return the **minimum** possible integer* *`x`* *that achieves this equivalence.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [4,20,16,12,8], nums2 = [14,18,10]
+- **Input:** nums1 = [4,20,16,12,8], nums2 = [14,18,10]
 
-**Output:** -2
+- **Output:** -2
 
-**Explanation:**
+- **Explanation:** After removing elements at indices `[0,4]` and adding -2, `nums1` becomes `[18,14,10]`.
 
-After removing elements at indices `[0,4]` and adding -2, `nums1` becomes `[18,14,10]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [3,5,5,3], nums2 = [7,7]
+- **Input:** nums1 = [3,5,5,3], nums2 = [7,7]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-After removing elements at indices `[0,3]` and adding 2, `nums1` becomes `[7,7]`.
-
-</div>
+- **Explanation:** After removing elements at indices `[0,3]` and adding 2, `nums1` becomes `[7,7]`.
 
 ### 4. Constraints
 

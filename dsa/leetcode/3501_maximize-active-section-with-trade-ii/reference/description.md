@@ -20,8 +20,14 @@ Return an array `answer`, where $\text{answer}[i]$ is the result for $\text{quer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -33,24 +39,19 @@ Return an array `answer`, where $\text{answer}[i]$ is the result for $\text{quer
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "01", queries = [[0,1]]
+- **Input:** s = "01", queries = [[0,1]]
 
-**Output:** [1]
+- **Output:** [1]
 
-**Explanation:**
+- **Explanation:** Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.
 
-Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "0100", queries = [[0,3],[0,2],[1,3],[2,3]]
+- **Input:** s = "0100", queries = [[0,3],[0,2],[1,3],[2,3]]
 
-**Output:** [4,3,1,1]
+- **Output:** [4,3,1,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - Query `[0, 3]` → Substring `"0100"` → Augmented to `"101001"`
 
@@ -72,15 +73,13 @@ Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is poss
 
 	Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1000100", queries = [[1,5],[0,6],[0,4]]
+- **Input:** s = "1000100", queries = [[1,5],[0,6],[0,4]]
 
-**Output:** [6,7,2]
+- **Output:** [6,7,2]
 
-**Explanation:**
+- **Explanation:** 
 
 - Query `[1, 5]` → Substring `"00010"` → Augmented to `"1000101"`<br data-end="285" data-start="282" />
 	Choose `"00010"`, convert `"00010"` → `"00000"` → `"11111"`.
@@ -95,15 +94,13 @@ Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is poss
 - Query `[0, 4]` → Substring `"10001"` → Augmented to `"1100011"`<br data-end="630" data-start="627" />
 	Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 2.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "01010", queries = [[0,3],[1,4],[1,3]]
+- **Input:** s = "01010", queries = [[0,3],[1,4],[1,3]]
 
-**Output:** [4,4,2]
+- **Output:** [4,4,2]
 
-**Explanation:**
+- **Explanation:** 
 
 - Query `[0, 3]` → Substring `"0101"` → Augmented to `"101011"`
 
@@ -120,8 +117,6 @@ Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is poss
 - Query `[1, 3]` → Substring `"101"` → Augmented to `"11011"`
 
 	Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 2.
-
-</div>
 
 ### 5. Constraints
 

@@ -37,20 +37,20 @@ Let $N$ be the length of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, -1, 1, 2]`
-- Output: `5`
-- Explanation: Subarray `[3, -1, 1]` contributes `3 - (-1) + 1 = 5`.
+- **Input:** `nums = [3, -1, 1, 2]`
+- **Output:** `5`
+- **Explanation:** Subarray `[3, -1, 1]` contributes `3 - (-1) + 1 = 5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2, 2, 2, 2]`
-- Output: `2`
-- Explanation: A one-element subarray has sum `2`; odd-length alternating
+- **Input:** `nums = [2, 2, 2, 2, 2]`
+- **Output:** `2`
+- **Explanation:** A one-element subarray has sum `2`; odd-length alternating
   segments also have sum `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1]`
-- Output: `1`
+- **Input:** `nums = [1]`
+- **Output:** `1`

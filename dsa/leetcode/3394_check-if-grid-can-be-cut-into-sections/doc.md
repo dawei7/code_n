@@ -33,23 +33,23 @@ Return `True` when either orientation permits such a division, and `False` other
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, rectangles = [[1, 0, 5, 2], [0, 2, 2, 4], [3, 2, 5, 3], [0, 4, 4, 5]]`
-- Output: `True`
+- **Input:** `n = 5, rectangles = [[1, 0, 5, 2], [0, 2, 2, 4], [3, 2, 5, 3], [0, 4, 4, 5]]`
+- **Output:** `True`
 
 Horizontal cuts at `y = 2` and `y = 4` assign every rectangle wholly to one of three nonempty sections.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, rectangles = [[0, 0, 1, 1], [2, 0, 3, 4], [0, 2, 2, 3], [3, 0, 4, 3]]`
-- Output: `True`
+- **Input:** `n = 4, rectangles = [[0, 0, 1, 1], [2, 0, 3, 4], [0, 2, 2, 3], [3, 0, 4, 3]]`
+- **Output:** `True`
 
 Vertical cuts at `x = 2` and `x = 3` satisfy all requirements.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, rectangles = [[0, 2, 2, 4], [1, 0, 3, 2], [2, 2, 3, 4], [3, 0, 4, 2], [3, 2, 4, 4]]`
-- Output: `False`
+- **Input:** `n = 4, rectangles = [[0, 2, 2, 4], [1, 0, 3, 2], [2, 2, 3, 4], [3, 0, 4, 2], [3, 2, 4, 4]]`
+- **Output:** `False`
 
 Neither two horizontal cuts nor two vertical cuts can create three valid nonempty sections.

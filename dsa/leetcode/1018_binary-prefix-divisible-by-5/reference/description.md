@@ -10,8 +10,13 @@ Return *an array of booleans *`answer`* where *$\text{answer}[i]$* is *`true`* i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *an array of booleans *`answer`* where *$\text{answer}[i]$* is *`true`* i
 - **Output:** `[true,false,false]`
 - **Explanation:** The input numbers in binary are 0, 01, 011; which are 0, 1, and 3 in base-10.
 Only the first number is divisible by 5, so answer[0] is true.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1]`

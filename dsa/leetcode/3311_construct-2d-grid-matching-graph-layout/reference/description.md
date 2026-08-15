@@ -14,47 +14,40 @@ Return a 2D integer array satisfying the conditions above. If there are multiple
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[0,2],[1,3],[2,3]]
+- **Input:** n = 4, edges = [[0,1],[0,2],[1,3],[2,3]]
 
-**Output:** [[3,1],[2,0]]
+- **Output:** [[3,1],[2,0]]
 
-**Explanation:**
+- **Explanation:** ![](images/screenshot-from-2024-08-11-14-07-59.png)
 
-![](images/screenshot-from-2024-08-11-14-07-59.png)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, edges = [[0,1],[1,3],[2,3],[2,4]]
+- **Input:** n = 5, edges = [[0,1],[1,3],[2,3],[2,4]]
 
-**Output:** [[4,2,3,1,0]]
+- **Output:** [[4,2,3,1,0]]
 
-**Explanation:**
+- **Explanation:** ![](images/screenshot-from-2024-08-11-14-06-02.png)
 
-![](images/screenshot-from-2024-08-11-14-06-02.png)
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 9, edges = [[0,1],[0,4],[0,5],[1,7],[2,3],[2,4],[2,5],[3,6],[4,6],[4,7],[6,8],[7,8]]
+- **Input:** n = 9, edges = [[0,1],[0,4],[0,5],[1,7],[2,3],[2,4],[2,5],[3,6],[4,6],[4,7],[6,8],[7,8]]
 
-**Output:** [[8,6,3],[7,4,2],[1,0,5]]
+- **Output:** [[8,6,3],[7,4,2],[1,0,5]]
 
-**Explanation:**
-
-![](images/screenshot-from-2024-08-11-14-06-38.png)
-
-</div>
+- **Explanation:** ![](images/screenshot-from-2024-08-11-14-06-38.png)
 
 ### 4. Constraints
 

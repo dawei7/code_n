@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-experiments/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Experiments` table records individual experiments by unique identifier.
 Every row uses one of three platforms—`Android`, `IOS`, or `Web`—and one of
 three experiment names—`Reading`, `Sports`, or `Programming`.
@@ -19,6 +21,7 @@ platform-and-name combinations. A combination must still appear with count `0`
 when no input row uses it. Return the result rows in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Experiments(experiment_id, platform, experiment_name)`: `experiment_id` is
@@ -35,7 +38,8 @@ when no input row uses it. Return the result rows in any order.
 - Result-row order is irrelevant.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 For experiments `(IOS, Programming)`, `(IOS, Sports)`,
 `(Android, Reading)`, two copies of `(Web, Reading)`, and
@@ -53,12 +57,12 @@ For experiments `(IOS, Programming)`, `(IOS, Sports)`,
 | Web | Sports | 0 |
 | Web | Programming | 1 |
 
-**Example 2**
+#### Example 2
 
-- Input: one `(Android, Sports)` row
-- Output: count `1` for `(Android, Sports)` and `0` for the other eight pairs.
+- **Input:** one `(Android, Sports)` row
+- **Output:** count `1` for `(Android, Sports)` and `0` for the other eight pairs.
 
-**Example 3**
+#### Example 3
 
-- Input: three `(Web, Programming)` rows
-- Output: count `3` for that pair and `0` for every other pair.
+- **Input:** three `(Web, Programming)` rows
+- **Output:** count `3` for that pair and `0` for every other pair.

@@ -18,6 +18,7 @@ Return *the **smallest** fair integer that is **greater than or equal** to *`n`.
 - **Output:** `10`
 - **Explanation:** The smallest fair integer that is greater than or equal to 2 is 10.
 10 is fair because it has an equal number of even and odd digits (one odd digit and one even digit).
+
 #### Example 2
 
 - **Input:** $n = 403$

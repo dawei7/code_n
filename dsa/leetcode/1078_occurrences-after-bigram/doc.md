@@ -32,12 +32,12 @@ Return an array containing the word `third` from every such occurrence, preservi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `text = "alice is a good girl she is a good student"`, `first = "a"`, `second = "good"`
-- Output: `["girl", "student"]`
+- **Input:** `text = "alice is a good girl she is a good student"`, `first = "a"`, `second = "good"`
+- **Output:** `["girl", "student"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `text = "we will we will rock you"`, `first = "we"`, `second = "will"`
-- Output: `["we", "rock"]`
+- **Input:** `text = "we will we will rock you"`, `first = "we"`, `second = "will"`
+- **Output:** `["we", "rock"]`

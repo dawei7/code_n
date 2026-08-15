@@ -12,21 +12,24 @@ Return the **maximum** possible total value you can achieve.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,2], k = 2
+- **Input:** nums = [1,3,2], k = 2
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-One optimal approach is:
+- **Explanation:** One optimal approach is:
 
 - Choose $nums[0..1] = [1, 3]$. The maximum is 3 and the minimum is 1, giving a value of $3 - 1 = 2$.
 
@@ -34,17 +37,13 @@ One optimal approach is:
 
 Adding these gives $2 + 2 = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,2,5,1], k = 3
+- **Input:** nums = [4,2,5,1], k = 3
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-One optimal approach is:
+- **Explanation:** One optimal approach is:
 
 - Choose $nums[0..3] = [4, 2, 5, 1]$. The maximum is 5 and the minimum is 1, giving a value of $5 - 1 = 4$.
 
@@ -53,8 +52,6 @@ One optimal approach is:
 - Choose $nums[2..3] = [5, 1]$. The maximum is 5 and the minimum is 1, so the value is again `4`.
 
 Adding these gives $4 + 4 + 4 = 12$.
-
-</div>
 
 ### 4. Constraints
 

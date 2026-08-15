@@ -28,12 +28,11 @@ Return the number of indices `i` whose value is strictly greater than the averag
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,4,3]
+- **Input:** nums = [5,4,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - At index $i = 0$, the value 5 is dominant as $5 > average(4, 3) = 3.5$.
 
@@ -41,23 +40,19 @@ Return the number of indices `i` whose value is strictly greater than the averag
 
 - Index $i = 2$ is not dominant as there are no elements to its right. Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,1,2]
+- **Input:** nums = [4,1,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - At index $i = 0$, the value 4 is dominant over the subarray `[1, 2]`.
 
 - At index $i = 1$, the value 1 is not dominant.
 
 - Index $i = 2$ is not dominant as there are no elements to its right. Thus, the answer is 1.
-
-</div>
 
 ### 5. Constraints
 

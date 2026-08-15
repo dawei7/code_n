@@ -35,58 +35,46 @@ Return the greatest intersection score attainable by any valid pair of paths.
 ![](images/image.png)
 
 ​​​​​​​​​​​​​​​​​​​​​
-<div class="example-block">
-**Input:** grid = [[1,2,0,-3],[1,-2,1,0],[-4,2,-1,3],[3,-3,3,-2],[-1,-5,0,1]]
 
-**Output:** 4
+- **Input:** grid = [[1,2,0,-3],[1,-2,1,0],[-4,2,-1,3],[3,-3,3,-2],[-1,-5,0,1]]
 
-**Explanation:**
+- **Output:** 4
 
-The diagram shows one optimal choice of paths.
+- **Explanation:** The diagram shows one optimal choice of paths.
 
 - Player 1 follows the red/purple path from the top-left cell to the bottom-right cell:
 
-		<li>`(0, 0) → (1, 0) → (2, 0) → (2, 1) → (2, 2) → (2, 3) → (3, 3) → (4, 3)`
+		- `(0, 0) → (1, 0) → (2, 0) → (2, 1) → (2, 2) → (2, 3) → (3, 3) → (4, 3)`
 
-	</li>
 - Player 2 follows the blue/purple path from the bottom-left cell to the top-right cell:
 
-		<li>`(4, 0) → (4, 1) → (3, 1) → (2, 1) → (2, 2) → (2, 3) → (1, 3) → (0, 3)`
+		- `(4, 0) → (4, 1) → (3, 1) → (2, 1) → (2, 2) → (2, 3) → (1, 3) → (0, 3)`
 
-	</li>
 - The shared cells are `(2, 1)`, `(2, 2)`, and `(2, 3)`.
 
 - The sum is $2 + (-1) + 3 = 4$, which is the maximum possible sum.
 
-</div>
 #### Example 2
 
 ![](images/chatgpt-image-may-19-2026-01_39_39-pm.png)
 
-<div class="example-block">
-**Input:** grid = [[4,-2,-3],[-1,-3,-1],[-4,2,-1]]
+- **Input:** grid = [[4,-2,-3],[-1,-3,-1],[-4,2,-1]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One optimal pair of paths is shown in the diagram.
+- **Explanation:** One optimal pair of paths is shown in the diagram.
 
 - Player 1 follows the red/purple path:
 
-		<li>`(0, 0) → (1, 0) → (1, 1) → (1, 2) → (2, 2)`
+		- `(0, 0) → (1, 0) → (1, 1) → (1, 2) → (2, 2)`
 
-	</li>
 - Player 2 follows the blue/purple path:
 
-		<li>`(2, 0) → (1, 0) → (0, 0) → (0, 1) → (0, 2)`
+		- `(2, 0) → (1, 0) → (0, 0) → (0, 1) → (0, 2)`
 
-	</li>
 - The shared cells are `(0, 0)` and `(1, 0)`.
 
 - The sum is $4 + (-1) = 3$, which is the maximum possible.
-
-</div>
 
 ### 4. Constraints
 

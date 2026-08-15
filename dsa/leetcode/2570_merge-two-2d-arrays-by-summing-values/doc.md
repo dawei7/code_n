@@ -33,20 +33,20 @@ Each `id` and `value` is between $1$ and $1000$, inclusive.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [[1, 2], [2, 3], [4, 5]], nums2 = [[1, 4], [3, 2], [4, 1]]`
-- Output: `[[1, 6], [2, 3], [3, 2], [4, 6]]`
-- Explanation: IDs $1$ and $4$ occur in both inputs, so their paired values are added.
+- **Input:** `nums1 = [[1, 2], [2, 3], [4, 5]], nums2 = [[1, 4], [3, 2], [4, 1]]`
+- **Output:** `[[1, 6], [2, 3], [3, 2], [4, 6]]`
+- **Explanation:** IDs $1$ and $4$ occur in both inputs, so their paired values are added.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [[2, 4], [3, 6], [5, 5]], nums2 = [[1, 3], [4, 3]]`
-- Output: `[[1, 3], [2, 4], [3, 6], [4, 3], [5, 5]]`
-- Explanation: The ID sets are disjoint, so all records are interleaved without changing their values.
+- **Input:** `nums1 = [[2, 4], [3, 6], [5, 5]], nums2 = [[1, 3], [4, 3]]`
+- **Output:** `[[1, 3], [2, 4], [3, 6], [4, 3], [5, 5]]`
+- **Explanation:** The ID sets are disjoint, so all records are interleaved without changing their values.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [[1, 1]], nums2 = [[1, 2]]`
-- Output: `[[1, 3]]`
-- Explanation: The only shared ID appears once with the sum of its two values.
+- **Input:** `nums1 = [[1, 1]], nums2 = [[1, 2]]`
+- **Output:** `[[1, 3]]`
+- **Explanation:** The only shared ID appears once with the sum of its two values.

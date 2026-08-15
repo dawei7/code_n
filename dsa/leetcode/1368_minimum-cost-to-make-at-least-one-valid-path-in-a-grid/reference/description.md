@@ -20,8 +20,13 @@ Return *the minimum cost to make the grid have at least one valid path*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,6 +39,7 @@ Return *the minimum cost to make the grid have at least one valid path*.
 - **Explanation:** You will start at point (0, 0).
 The path to (3, 3) is as follows. (0, 0) --> (0, 1) --> (0, 2) --> (0, 3) change the arrow to down with cost = 1 --> (1, 3) --> (1, 2) --> (1, 1) --> (1, 0) change the arrow to down with cost = 1 --> (2, 0) --> (2, 1) --> (2, 2) --> (2, 3) change the arrow to down with cost = 1 --> (3, 3)
 The total cost = 3.
+
 #### Example 2
 
 ![](images/grid2.png)
@@ -41,6 +47,7 @@ The total cost = 3.
 - **Input:** `grid = [[1,1,3],[3,2,2],[1,1,4]]`
 - **Output:** `0`
 - **Explanation:** You can follow the path from (0, 0) to (2, 2).
+
 #### Example 3
 
 ![](images/grid3.png)

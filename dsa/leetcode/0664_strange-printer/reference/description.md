@@ -10,8 +10,13 @@ Given a string `s`, return *the minimum number of turns the printer needed to pr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Given a string `s`, return *the minimum number of turns the printer needed to pr
 - **Input:** `s = "aaabbb"`
 - **Output:** `2`
 - **Explanation:** Print "aaa" first and then print "bbb".
+
 #### Example 2
 
 - **Input:** `s = "aba"`

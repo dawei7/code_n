@@ -35,23 +35,23 @@ An integer array of length `n`, where `answer[i]` is the minimum number of edge 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, edges = [[2, 0], [2, 1], [1, 3]]`
-- Output: `[1, 1, 0, 2]`
+- **Input:** `n = 4, edges = [[2, 0], [2, 1], [1, 3]]`
+- **Output:** `[1, 1, 0, 2]`
 
 Node `2` already reaches the whole tree, while starting at node `3` requires reversing two edges on the route outward.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[1, 2], [2, 0]]`
-- Output: `[2, 0, 1]`
+- **Input:** `n = 3, edges = [[1, 2], [2, 0]]`
+- **Output:** `[2, 0, 1]`
 
 The original directions form a path outward from node `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, edges = [[0, 1], [0, 2], [0, 3], [0, 4]]`
-- Output: `[0, 1, 1, 1, 1]`
+- **Input:** `n = 5, edges = [[0, 1], [0, 2], [0, 3], [0, 4]]`
+- **Output:** `[0, 1, 1, 1, 1]`
 
 The center reaches every leaf already; a leaf needs only its incident edge reversed to reach the center and then all other leaves.

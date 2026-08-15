@@ -14,8 +14,13 @@ Return *the **minimum number of operations** required to make the array alternat
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,16 +28,15 @@ Return *the **minimum number of operations** required to make the array alternat
 
 - **Input:** `nums = [3,1,3,2,4,3]`
 - **Output:** `3`
-- **Explanation:**
-One way to make the array alternating is by converting it to [3,1,3,<u>**1**</u>,<u>**3**</u>,<u>**1**</u>].
+- **Explanation:** One way to make the array alternating is by converting it to [3,1,3,<u>**1**</u>,<u>**3**</u>,<u>**1**</u>].
 The number of operations required in this case is 3.
 It can be proven that it is not possible to make the array alternating in less than 3 operations.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,2,2,2]`
 - **Output:** `2`
-- **Explanation:**
-One way to make the array alternating is by converting it to [1,2,<u>**1**</u>,2,<u>**1**</u>].
+- **Explanation:** One way to make the array alternating is by converting it to [1,2,<u>**1**</u>,2,<u>**1**</u>].
 The number of operations required in this case is 2.
 Note that the array cannot be converted to [<u>**2**</u>,2,2,2,2] because in this case nums[0] == nums[1] which violates the conditions of an alternating array.
 

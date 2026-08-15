@@ -32,19 +32,19 @@ Continue until the list contains no consecutive sequence with sum zero, then ret
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [1,2,-3,3,1]`
-- Output: `[3,1]`
+- **Input:** `head = [1,2,-3,3,1]`
+- **Output:** `[3,1]`
 
 Removing `[1,2,-3]` leaves `[3,1]`. The list `[1,2,1]` is another accepted result because removing `[-3,3]` is also valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [1,2,3,-3,4]`
-- Output: `[1,2,4]`
+- **Input:** `head = [1,2,3,-3,4]`
+- **Output:** `[1,2,4]`
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [1,2,3,-3,-2]`
-- Output: `[1]`
+- **Input:** `head = [1,2,3,-3,-2]`
+- **Output:** `[1]`

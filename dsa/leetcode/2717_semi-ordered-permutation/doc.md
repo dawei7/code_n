@@ -30,20 +30,20 @@ Return the minimum number of adjacent swaps needed to place $1$ first and $n$ la
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,4,3]`
-- Output: `2`
-- Explanation: Swap $1$ left once and $4$ right once to obtain `[1,2,3,4]`.
+- **Input:** `nums = [2,1,4,3]`
+- **Output:** `2`
+- **Explanation:** Swap $1$ left once and $4$ right once to obtain `[1,2,3,4]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,4,1,3]`
-- Output: `3`
-- Explanation: Moving $1$ two places left crosses $4$ and helps move $4$ one place right; one more swap puts it last.
+- **Input:** `nums = [2,4,1,3]`
+- **Output:** `3`
+- **Explanation:** Moving $1$ two places left crosses $4$ and helps move $4$ one place right; one more swap puts it last.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,3,4,2,5]`
-- Output: `0`
-- Explanation: The permutation already starts with $1$ and ends with $5$.
+- **Input:** `nums = [1,3,4,2,5]`
+- **Output:** `0`
+- **Explanation:** The permutation already starts with $1$ and ends with $5$.

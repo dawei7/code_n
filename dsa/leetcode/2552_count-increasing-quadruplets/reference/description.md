@@ -10,8 +10,13 @@ A quadruplet `(i, j, k, l)` is increasing if:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,10 +24,11 @@ A quadruplet `(i, j, k, l)` is increasing if:
 
 - **Input:** `nums = [1,3,2,4,5]`
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - When i = 0, j = 1, k = 2, and l = 3, nums[i] < nums[k] < nums[j] < nums[l].
 - When i = 0, j = 1, k = 2, and l = 4, nums[i] < nums[k] < nums[j] < nums[l].
 There are no other quadruplets, so we return 2.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`

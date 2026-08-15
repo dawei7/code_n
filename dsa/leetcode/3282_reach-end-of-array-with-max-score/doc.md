@@ -30,20 +30,20 @@ Return the maximum total jump score for a forward path from index `0` to index `
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 1, 5]`
-- Output: `7`
-- Explanation: Jump from index `0` to `1`, then from `1` to `3`, scoring `1 + 6`.
+- **Input:** `nums = [1, 3, 1, 5]`
+- **Output:** `7`
+- **Explanation:** Jump from index `0` to `1`, then from `1` to `3`, scoring `1 + 6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 3, 1, 3, 2]`
-- Output: `16`
-- Explanation: Jumping directly from index `0` to `4` scores `4 * 4`.
+- **Input:** `nums = [4, 3, 1, 3, 2]`
+- **Output:** `16`
+- **Explanation:** Jumping directly from index `0` to `4` scores `4 * 4`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5]`
-- Output: `0`
-- Explanation: No jump is required.
+- **Input:** `nums = [5]`
+- **Output:** `0`
+- **Explanation:** No jump is required.

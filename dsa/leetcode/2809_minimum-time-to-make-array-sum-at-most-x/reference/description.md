@@ -10,8 +10,15 @@ Return *the **minimum** time in which you can make the sum of all elements of *`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,11 +26,11 @@ Return *the **minimum** time in which you can make the sum of all elements of *`
 
 - **Input:** $nums1 = [1,2,3], nums2 = [1,2,3], x = 4$
 - **Output:** `3`
-- **Explanation:**
-For the 1st second, we apply the operation on i = 0. Therefore nums1 = [0,2+2,3+3] = [0,4,6].
+- **Explanation:** For the 1st second, we apply the operation on i = 0. Therefore nums1 = [0,2+2,3+3] = [0,4,6].
 For the 2nd second, we apply the operation on i = 1. Therefore nums1 = [0+1,0,6+3] = [1,0,9].
 For the 3rd second, we apply the operation on i = 2. Therefore nums1 = [1+1,0+2,0] = [2,2,0].
 Now sum of nums1 = 4. It can be shown that these operations are optimal, so we return 3.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,2,3], nums2 = [3,3,3], x = 4$

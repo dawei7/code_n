@@ -8,8 +8,14 @@ Return *the **minimum** **total space wasted** if you can resize the array at mo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -24,6 +30,7 @@ The array can have **any size** at the start and does** not **count towards the 
 - **Explanation:** size = [20,20].
 We can set the initial size to be 20.
 The total wasted space is (20 - 10) + (20 - 20) = 10.
+
 #### Example 2
 
 - **Input:** `nums = [10,20,30], k = 1`
@@ -31,6 +38,7 @@ The total wasted space is (20 - 10) + (20 - 20) = 10.
 - **Explanation:** size = [20,20,30].
 We can set the initial size to be 20 and resize to 30 at time 2.
 The total wasted space is (20 - 10) + (20 - 20) + (30 - 30) = 10.
+
 #### Example 3
 
 - **Input:** `nums = [10,20,15,30,20], k = 2`

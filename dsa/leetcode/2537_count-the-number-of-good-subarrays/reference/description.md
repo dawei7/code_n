@@ -8,8 +8,14 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 - **Input:** `nums = [1,1,1,1,1], k = 10`
 - **Output:** `1`
 - **Explanation:** The only good subarray is the array nums itself.
+
 #### Example 2
 
 - **Input:** `nums = [3,1,4,3,2,2,4], k = 2`

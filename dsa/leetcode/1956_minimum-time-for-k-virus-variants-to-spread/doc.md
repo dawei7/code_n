@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-for-k-virus-variants-to-spread/) |
 
 ## Problem Description
+
 ### Goal
+
 There are $N$ distinct virus variants on an infinite integer grid. Variant
 $i$ begins at `points[i]` on day zero; multiple distinct variants may share
 the same starting coordinate.
@@ -20,6 +22,7 @@ even when several occupy the same cell. Given `k`, return the earliest integer
 day on which some grid point contains at least `k` distinct variants.
 
 ### Function Contract
+
 **Inputs**
 
 - `points`: a list of $N$ coordinate pairs, where $2\le N\le50$ and every
@@ -34,17 +37,18 @@ day on which some grid point contains at least `k` distinct variants.
   point contains at least `k` variants.
 
 ### Examples
-**Example 1**
 
-- Input: `points = [[1, 1], [6, 1]], k = 2`
-- Output: `3`
+#### Example 1
 
-**Example 2**
+- **Input:** `points = [[1, 1], [6, 1]], k = 2`
+- **Output:** `3`
 
-- Input: `points = [[3, 3], [1, 2], [9, 2]], k = 2`
-- Output: `2`
+#### Example 2
 
-**Example 3**
+- **Input:** `points = [[3, 3], [1, 2], [9, 2]], k = 2`
+- **Output:** `2`
 
-- Input: `points = [[3, 3], [1, 2], [9, 2]], k = 3`
-- Output: `4`
+#### Example 3
+
+- **Input:** `points = [[3, 3], [1, 2], [9, 2]], k = 3`
+- **Output:** `4`

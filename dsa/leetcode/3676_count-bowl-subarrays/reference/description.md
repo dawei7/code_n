@@ -12,51 +12,43 @@ Return the number of **bowl** subarrays in `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,5,3,1,4]
+- **Input:** nums = [2,5,3,1,4]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The bowl subarrays are `[3, 1, 4]` and `[5, 3, 1, 4]`.
+- **Explanation:** The bowl subarrays are `[3, 1, 4]` and `[5, 3, 1, 4]`.
 
 - `[3, 1, 4]` is a bowl because $min(3, 4) = 3 > max(1) = 1$.
 
 - `[5, 3, 1, 4]` is a bowl because $min(5, 4) = 4 > max(3, 1) = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,1,2,3,4]
+- **Input:** nums = [5,1,2,3,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The bowl subarrays are `[5, 1, 2]`, `[5, 1, 2, 3]` and `[5, 1, 2, 3, 4]`.
 
-The bowl subarrays are `[5, 1, 2]`, `[5, 1, 2, 3]` and `[5, 1, 2, 3, 4]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1000000000,999999999,999999998]
+- **Input:** nums = [1000000000,999999999,999999998]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No subarray is a bowl.
-
-</div>
+- **Explanation:** No subarray is a bowl.
 
 ### 4. Constraints
 

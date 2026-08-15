@@ -34,16 +34,16 @@ Return the number of artifacts for which every covered grid cell appears in `dig
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`, `artifacts = [[0,0,0,0],[0,1,1,1]]`, `dig = [[0,0],[0,1]]`
-- Output: `1`
+- **Input:** `n = 2`, `artifacts = [[0,0,0,0],[0,1,1,1]]`, `dig = [[0,0],[0,1]]`
+- **Output:** `1`
 
 The single-cell artifact is complete, but the vertical artifact still has an undug cell at `(1,1)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`, `artifacts = [[0,0,0,0],[0,1,1,1]]`, `dig = [[0,0],[0,1],[1,1]]`
-- Output: `2`
+- **Input:** `n = 2`, `artifacts = [[0,0,0,0],[0,1,1,1]]`, `dig = [[0,0],[0,1],[1,1]]`
+- **Output:** `2`
 
 Every cell belonging to either artifact has been dug.

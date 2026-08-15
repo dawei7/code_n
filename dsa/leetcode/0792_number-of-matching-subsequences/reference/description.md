@@ -8,8 +8,14 @@ A **subsequence** of a string is a new string generated from the original string
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ A **subsequence** of a string is a new string generated from the original string
 - **Input:** `s = "abcde", words = ["a","bb","acd","ace"]`
 - **Output:** `3`
 - **Explanation:** There are three strings in words that are a subsequence of s: "a", "acd", "ace".
+
 #### Example 2
 
 - **Input:** `s = "dsahjpjauf", words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"]`

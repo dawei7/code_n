@@ -38,20 +38,20 @@ Return the minimum total cost needed to reach `target` from `start` using any co
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `start = [1,1], target = [4,5], specialRoads = [[1,2,3,3,2],[3,4,4,5,1]]`
-- Output: `5`
-- Explanation: Move normally to `(1,2)`, take the first road, move to `(3,4)`, and take the second road. The costs are `1 + 2 + 1 + 1`.
+- **Input:** `start = [1,1], target = [4,5], specialRoads = [[1,2,3,3,2],[3,4,4,5,1]]`
+- **Output:** `5`
+- **Explanation:** Move normally to `(1,2)`, take the first road, move to `(3,4)`, and take the second road. The costs are `1 + 2 + 1 + 1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `start = [3,2], target = [5,7], specialRoads = [[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]]`
-- Output: `7`
-- Explanation: Direct Manhattan travel is optimal. The inexpensive first road points from the target back toward the start, so it cannot help.
+- **Input:** `start = [3,2], target = [5,7], specialRoads = [[5,7,3,2,1],[3,2,3,4,4],[3,3,5,5,5],[3,4,5,6,6]]`
+- **Output:** `7`
+- **Explanation:** Direct Manhattan travel is optimal. The inexpensive first road points from the target back toward the start, so it cannot help.
 
-**Example 3**
+#### Example 3
 
-- Input: `start = [1,1], target = [10,4], specialRoads = [[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]]`
-- Output: `8`
-- Explanation: Pay `1` to reach `(1,2)`, pay `4` for the road to `(7,4)`, then pay `3` to reach the target normally.
+- **Input:** `start = [1,1], target = [10,4], specialRoads = [[4,2,1,1,3],[1,2,7,4,4],[10,3,6,1,2],[6,1,1,2,3]]`
+- **Output:** `8`
+- **Explanation:** Pay `1` to reach `(1,2)`, pay `4` for the road to `(7,4)`, then pay `3` to reach the target normally.

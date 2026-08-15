@@ -10,8 +10,14 @@ A **special substring** is a substring where:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -23,12 +29,11 @@ Return `true` if it is possible to select `k` such disjoint special substrings; 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcdbaefab", k = 2
+- **Input:** s = "abcdbaefab", k = 2
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - We can select two disjoint special substrings: `"cd"` and `"ef"`.
 
@@ -36,27 +41,19 @@ Return `true` if it is possible to select `k` such disjoint special substrings; 
 
 - `"ef"` contains the characters `'e'` and `'f'`, which do not appear elsewhere in `s`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "cdefdc", k = 3
+- **Input:** s = "cdefdc", k = 3
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** There can be at most 2 disjoint special substrings: `"e"` and `"f"`. Since $k = 3$, the output is `false`.
 
-There can be at most 2 disjoint special substrings: `"e"` and `"f"`. Since $k = 3$, the output is `false`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "abeabe", k = 0
+- **Input:** s = "abeabe", k = 0
 
-**Output:** true
-
-</div>
+- **Output:** true
 
 ### 5. Constraints
 

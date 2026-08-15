@@ -6,35 +6,31 @@ Return the **score** of* *`s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "hello"
+- **Input:** s = "hello"
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
+- **Explanation:** The **ASCII** values of the characters in `s` are: $'h' = 104$, $'e' = 101$, $'l' = 108$, $'o' = 111$. So, the score of `s` would be $|104 - 101| + |101 - 108| + |108 - 108| + |108 - 111| = 3 + 7 + 0 + 3 = 13$.
 
-The **ASCII** values of the characters in `s` are: $'h' = 104$, $'e' = 101$, $'l' = 108$, $'o' = 111$. So, the score of `s` would be $|104 - 101| + |101 - 108| + |108 - 108| + |108 - 111| = 3 + 7 + 0 + 3 = 13$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "zaz"
+- **Input:** s = "zaz"
 
-**Output:** 50
+- **Output:** 50
 
-**Explanation:**
-
-The **ASCII** values of the characters in `s` are: $'z' = 122$, $'a' = 97$. So, the score of `s` would be $|122 - 97| + |97 - 122| = 25 + 25 = 50$.
-
-</div>
+- **Explanation:** The **ASCII** values of the characters in `s` are: $'z' = 122$, $'a' = 97$. So, the score of `s` would be $|122 - 97| + |97 - 122| = 25 + 25 = 50$.
 
 ### 4. Constraints
 

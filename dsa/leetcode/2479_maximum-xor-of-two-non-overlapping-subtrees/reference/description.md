@@ -29,6 +29,7 @@ that:
 - **Input:** $n = 6, edges = [[0,1],[0,2],[1,3],[1,4],[2,5]], values = [2,8,3,6,2,5]$
 - **Output:** `24`
 - **Explanation:** Node 1's subtree has sum of values 16, while node 2's subtree has sum of values 8, so choosing these nodes will yield a score of 16 XOR 8 = 24. It can be proved that is the maximum possible score we can obtain.
+
 #### Example 2
 
 ![](images/tree3drawio.png)

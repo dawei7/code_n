@@ -35,20 +35,20 @@ The dimensions satisfy $1 \le R,C,p,q \le 50$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `board = [[1, 2, 2], [2, 2, 3], [2, 3, 3]]`, `pattern = ["ab", "bb"]`
-- Output: `[0, 0]`
-- Explanation: At `(0, 0)`, assigning `a` to `1` and `b` to `2` produces the selected board region. Another match begins at `(1, 1)`, but row-major order selects `(0, 0)`.
+- **Input:** `board = [[1, 2, 2], [2, 2, 3], [2, 3, 3]]`, `pattern = ["ab", "bb"]`
+- **Output:** `[0, 0]`
+- **Explanation:** At `(0, 0)`, assigning `a` to `1` and `b` to `2` produces the selected board region. Another match begins at `(1, 1)`, but row-major order selects `(0, 0)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `board = [[1, 1, 2], [3, 3, 4], [6, 6, 6]]`, `pattern = ["ab", "66"]`
-- Output: `[1, 1]`
-- Explanation: The placement at `(1, 1)` maps `a` to `3` and `b` to `4`, while both literal `6` cells match exactly. The placement at `(1, 0)` fails because distinct letters would both receive digit `3`.
+- **Input:** `board = [[1, 1, 2], [3, 3, 4], [6, 6, 6]]`, `pattern = ["ab", "66"]`
+- **Output:** `[1, 1]`
+- **Explanation:** The placement at `(1, 1)` maps `a` to `3` and `b` to `4`, while both literal `6` cells match exactly. The placement at `(1, 0)` fails because distinct letters would both receive digit `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `board = [[1, 2], [2, 1]]`, `pattern = ["xx"]`
-- Output: `[-1, -1]`
-- Explanation: The repeated letter requires two equal adjacent digits, which neither row contains.
+- **Input:** `board = [[1, 2], [2, 1]]`, `pattern = ["xx"]`
+- **Output:** `[-1, -1]`
+- **Explanation:** The repeated letter requires two equal adjacent digits, which neither row contains.

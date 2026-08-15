@@ -10,8 +10,14 @@ Return *the **largest color value** of any valid path in the given graph, or *`-
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `colors`: Input parameter (`str`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *the **largest color value** of any valid path in the given graph, or *`-
 - **Input:** $colors = "abaca", edges = [[0,1],[0,2],[2,3],[3,4]]$
 - **Output:** `3`
 - **Explanation:** The path 0 -> 2 -> 3 -> 4 contains 3 nodes that are colored "a" (red in the above image).
+
 #### Example 2
 
 ![](images/leet2.png)

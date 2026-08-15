@@ -30,34 +30,25 @@ Return the sum of the node-value sums of every path from the root to a leaf.
 
 ![](images/pathsum4-1-tree.jpg)
 
-<div class="example-block">
-**Input:** nums = [113,215,221]
+- **Input:** nums = [113,215,221]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The tree that the list represents is shown.
+- **Explanation:** The tree that the list represents is shown.
 
 The path sum is (3 + 5) + (3 + 1) = 12.
 
-</div>
 #### Example 2
 
 ![](images/pathsum4-2-tree.jpg)
 
-<div class="example-block">
-**Input:** nums = [113,221]
+- **Input:** nums = [113,221]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The tree that the list represents is shown.
+- **Explanation:** The tree that the list represents is shown.
 
 The path sum is (3 + 1) = 4.
-
-</div>
 
 ### 4. Constraints
 

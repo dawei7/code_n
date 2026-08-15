@@ -20,10 +20,12 @@ Return `true` exactly when some permutation of `s` reads the same from left to r
 
 - **Input:** `s = "code"`
 - **Output:** `false`
+
 #### Example 2
 
 - **Input:** `s = "aab"`
 - **Output:** `true`
+
 #### Example 3
 
 - **Input:** `s = "carerac"`

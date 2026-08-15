@@ -35,22 +35,22 @@ Return the maximum total weight below `t` among paths with exactly `k` edges, or
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, edges = [[0, 1, 1], [1, 2, 2]], k = 2, t = 4`
-- Output: `3`
-- Explanation: The only two-edge path has total weight $1 + 2 = 3$, which is below `t`.
+- **Input:** `n = 3, edges = [[0, 1, 1], [1, 2, 2]], k = 2, t = 4`
+- **Output:** `3`
+- **Explanation:** The only two-edge path has total weight $1 + 2 = 3$, which is below `t`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0, 1, 2], [0, 2, 3]], k = 1, t = 3`
-- Output: `2`
-- Explanation: Weight $3$ equals the exclusive bound, leaving weight $2$ as the best valid choice.
+- **Input:** `n = 3, edges = [[0, 1, 2], [0, 2, 3]], k = 1, t = 3`
+- **Output:** `2`
+- **Explanation:** Weight $3$ equals the exclusive bound, leaving weight $2$ as the best valid choice.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, edges = [[0, 1, 6], [1, 2, 8]], k = 1, t = 6`
-- Output: `-1`
-- Explanation: Neither one-edge path has total weight strictly below `6`.
+- **Input:** `n = 3, edges = [[0, 1, 6], [1, 2, 8]], k = 1, t = 6`
+- **Output:** `-1`
+- **Explanation:** Neither one-edge path has total weight strictly below `6`.
 
 ---

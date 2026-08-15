@@ -23,11 +23,13 @@ Let $N = \lvert\texttt{nums}\rvert$. Each pair of inclusive left and right bound
 - **Input:** `nums = [1,4,2,5,3]`
 - **Output:** `11`
 - **Explanation:** There are 11 valid subarrays: [1],[4],[2],[5],[3],[1,4],[2,5],[1,4,2],[2,5,3],[1,4,2,5],[1,4,2,5,3].
+
 #### Example 2
 
 - **Input:** `nums = [3,2,1]`
 - **Output:** `3`
 - **Explanation:** The 3 valid subarrays are: [3],[2],[1].
+
 #### Example 3
 
 - **Input:** `nums = [2,2,2]`

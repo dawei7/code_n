@@ -18,8 +18,13 @@ Return *the difference matrix *`diff`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -29,7 +34,7 @@ Return *the difference matrix *`diff`.
 
 - **Input:** `grid = [[0,1,1],[1,0,1],[0,0,1]]`
 - **Output:** `[[0,0,4],[0,0,4],[-2,-2,2]]`
-- **Explanation:**
+- **Explanation:** 
 - diff[0][0] = onesRow_0 + onesCol_0 - zerosRow_0 - zerosCol_0 = 2 + 1 - 1 - 2 = 0
 - diff[0][1] = onesRow_0 + onesCol_1 - zerosRow_0 - zerosCol_1 = 2 + 1 - 1 - 2 = 0
 - diff[0][2] = onesRow_0 + onesCol_2 - zerosRow_0 - zerosCol_2 = 2 + 3 - 1 - 0 = 4
@@ -39,13 +44,14 @@ Return *the difference matrix *`diff`.
 - diff[2][0] = onesRow_2 + onesCol_0 - zerosRow_2 - zerosCol_0 = 1 + 1 - 2 - 2 = -2
 - diff[2][1] = onesRow_2 + onesCol_1 - zerosRow_2 - zerosCol_1 = 1 + 1 - 2 - 2 = -2
 - diff[2][2] = onesRow_2 + onesCol_2 - zerosRow_2 - zerosCol_2 = 1 + 3 - 2 - 0 = 2
+
 #### Example 2
 
 ![](images/image-20221106171747-6.png)
 
 - **Input:** `grid = [[1,1,1],[1,1,1]]`
 - **Output:** `[[5,5,5],[5,5,5]]`
-- **Explanation:**
+- **Explanation:** 
 - diff[0][0] = onesRow_0 + onesCol_0 - zerosRow_0 - zerosCol_0 = 3 + 2 - 0 - 0 = 5
 - diff[0][1] = onesRow_0 + onesCol_1 - zerosRow_0 - zerosCol_1 = 3 + 2 - 0 - 0 = 5
 - diff[0][2] = onesRow_0 + onesCol_2 - zerosRow_0 - zerosCol_2 = 3 + 2 - 0 - 0 = 5

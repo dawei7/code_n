@@ -18,8 +18,14 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +37,7 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 The importance value of [1,2] is 2 + (0) = 2.
 The importance value of [1,2,1,3,3] is 2 + (2 + 2) = 6.
 The cost of the split is 2 + 6 = 8. It can be shown that this is the minimum possible cost among all the possible splits.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,1,2,1], k = 2`
@@ -39,6 +46,7 @@ The cost of the split is 2 + 6 = 8. It can be shown that this is the minimum pos
 The importance value of [1,2] is 2 + (0) = 2.
 The importance value of [1,2,1] is 2 + (2) = 4.
 The cost of the split is 2 + 4 = 6. It can be shown that this is the minimum possible cost among all the possible splits.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,1,2,1], k = 5`
@@ -55,10 +63,9 @@ The cost of the split is 10. It can be shown that this is the minimum possible c
 
 - $1 \le k \le 10^{9}$
 
-<style type="text/css">.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
+.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
 }
 .spoiler {overflow:hidden;}
 .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;}
 .spoilerbutton[value="Show Message"] + .spoiler > div {margin-top:-500%;}
 .spoilerbutton[value="Hide Message"] + .spoiler {padding:5px;}
-</style>

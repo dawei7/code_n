@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/gcd-of-odd-and-even-sums/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a positive integer `n`, consider two finite sequences. The first contains the smallest `n` positive odd integers, and the second contains the smallest `n` positive even integers.
@@ -29,22 +30,22 @@ Return the integer $\gcd(\texttt{sumOdd},\texttt{sumEven})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
+- **Input:** `n = 4`
 - Odd sum: `1 + 3 + 5 + 7 = 16`
 - Even sum: `2 + 4 + 6 + 8 = 20`
-- Output: `4`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`
+- **Input:** `n = 5`
 - Odd sum: `1 + 3 + 5 + 7 + 9 = 25`
 - Even sum: `2 + 4 + 6 + 8 + 10 = 30`
-- Output: `5`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1`
+- **Input:** `n = 1`
 - The sums are `1` and `2`, whose greatest common divisor is `1`.
-- Output: `1`
+- **Output:** `1`

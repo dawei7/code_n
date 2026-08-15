@@ -42,7 +42,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +----+----------+
 | id | name     |
@@ -61,7 +61,7 @@ EmployeeUNI table:
 | 11 | 2         |
 | 90 | 3         |
 +----+-----------+
-**Output:**
+- **Output:** 
 +-----------+----------+
 | unique_id | name     |
 +-----------+----------+
@@ -71,8 +71,7 @@ EmployeeUNI table:
 | 3         | Winston  |
 | 1         | Jonathan |
 +-----------+----------+
-**Explanation:**
-Alice and Bob do not have a unique ID, We will show null instead.
+- **Explanation:** Alice and Bob do not have a unique ID, We will show null instead.
 The unique ID of Meir is 2.
 The unique ID of Winston is 3.
 The unique ID of Jonathan is 1.

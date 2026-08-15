@@ -24,14 +24,11 @@ Return `true` if the score of `s[0..i]` equals the score of $s[(i + 1)..(n - 1)]
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "adcb"
+- **Input:** s = "adcb"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-Split at index $i = 1$:
+- **Explanation:** Split at index $i = 1$:
 
 - Left substring = $s[0..1] = "ad"$ with $score = 1 + 4 = 5$
 
@@ -39,19 +36,15 @@ Split at index $i = 1$:
 
 Both substrings have equal scores, so the output is `true`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "bace"
+- **Input:** s = "bace"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:​​​​​​**
+- **Explanation:** ​​​​​​**
 
 **​​​​​​​**No split produces equal scores, so the output is `false`.
-
-</div>
 
 ### 4. Constraints
 

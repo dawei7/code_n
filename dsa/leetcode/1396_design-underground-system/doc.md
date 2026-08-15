@@ -33,17 +33,17 @@ Let $A$ be the maximum number of simultaneously active passengers and $R$ the nu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: check in passenger `1` at `"A"` at time `3`, check out at `"B"` at time `13`, then query `("A", "B")`.
-- Output: `[null,null,10.0]`
+- **Input:** check in passenger `1` at `"A"` at time `3`, check out at `"B"` at time `13`, then query `("A", "B")`.
+- **Output:** `[null,null,10.0]`
 
-**Example 2**
+#### Example 2
 
-- Input: complete route `"A"` to `"B"` in `10` and then in `20` time units, querying afterward.
-- Output: average `15.0`.
+- **Input:** complete route `"A"` to `"B"` in `10` and then in `20` time units, querying afterward.
+- **Output:** average `15.0`.
 
-**Example 3**
+#### Example 3
 
-- Input: complete trips on routes `"A"` to `"B"` and `"B"` to `"A"`.
-- Output: each ordered route has its own average.
+- **Input:** complete trips on routes `"A"` to `"B"` and `"B"` to `"A"`.
+- **Output:** each ordered route has its own average.

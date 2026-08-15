@@ -6,8 +6,13 @@ Return *the shortest such subarray and output its length*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,10 +21,12 @@ Return *the shortest such subarray and output its length*.
 - **Input:** `nums = [2,6,4,8,10,9,15]`
 - **Output:** `5`
 - **Explanation:** You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `0`
+
 #### Example 3
 
 - **Input:** `nums = [1]`

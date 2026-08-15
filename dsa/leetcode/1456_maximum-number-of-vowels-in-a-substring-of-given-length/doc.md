@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a lowercase English string `s` and an integer `k`, consider every
@@ -23,6 +24,7 @@ from $0$ when no eligible window contains a vowel to $k$ when some whole
 window consists of vowels.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a string of $n$ lowercase English letters, where
@@ -36,22 +38,23 @@ Return an integer equal to the maximum number of characters from
 exactly length `k`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "abciiidef", k = 3`
-- Output: `3`
-- Explanation: The window `"iii"` contains three vowels, which is the largest
+#### Example 1
+
+- **Input:** `s = "abciiidef", k = 3`
+- **Output:** `3`
+- **Explanation:** The window `"iii"` contains three vowels, which is the largest
   possible count for a length-$3$ window.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aeiou", k = 2`
-- Output: `2`
-- Explanation: Every adjacent pair consists only of vowels.
+- **Input:** `s = "aeiou", k = 2`
+- **Output:** `2`
+- **Explanation:** Every adjacent pair consists only of vowels.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "leetcode", k = 3`
-- Output: `2`
-- Explanation: Windows such as `"lee"`, `"eet"`, and `"ode"` each contain
+- **Input:** `s = "leetcode", k = 3`
+- **Output:** `2`
+- **Explanation:** Windows such as `"lee"`, `"eet"`, and `"ode"` each contain
   two vowels.

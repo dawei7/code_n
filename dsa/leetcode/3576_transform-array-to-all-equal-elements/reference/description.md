@@ -8,8 +8,14 @@ You can perform the following operation at most `k` times:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -21,32 +27,23 @@ Return `true` if it is possible to make all elements of the array **equal** afte
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,-1,1,-1,1], k = 3
+- **Input:** nums = [1,-1,1,-1,1], k = 3
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-We can make all elements in the array equal in 2 operations as follows:
+- **Explanation:** We can make all elements in the array equal in 2 operations as follows:
 
 - Choose index $i = 1$, and multiply both $\text{nums}[1]$ and $\text{nums}[2]$ by -1. Now `nums = [1,1,-1,-1,1]`.
 
 - Choose index $i = 2$, and multiply both $\text{nums}[2]$ and $\text{nums}[3]$ by -1. Now `nums = [1,1,1,1,1]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-1,-1,-1,1,1,1], k = 5
+- **Input:** nums = [-1,-1,-1,1,1,1], k = 5
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-It is not possible to make all array elements equal in at most 5 operations.
-
-</div>
+- **Explanation:** It is not possible to make all array elements equal in at most 5 operations.
 
 ### 5. Constraints
 

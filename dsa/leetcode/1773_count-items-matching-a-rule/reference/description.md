@@ -14,8 +14,15 @@ Return *the number of items that match the given rule*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `items`: Input parameter (`List[List[str]]`).
+- `ruleKey`: Input parameter (`str`).
+- `ruleValue`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +31,7 @@ Return *the number of items that match the given rule*.
 - **Input:** $items = [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]], ruleKey = "color", ruleValue = "silver"$
 - **Output:** `1`
 - **Explanation:** There is only one item matching the given rule, which is ["computer","silver","lenovo"].
+
 #### Example 2
 
 - **Input:** $items = [["phone","blue","pixel"],["computer","silver","phone"],["phone","gold","iphone"]], ruleKey = "type", ruleValue = "phone"$

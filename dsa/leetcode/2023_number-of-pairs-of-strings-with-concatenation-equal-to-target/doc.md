@@ -41,21 +41,21 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = ["777", "7", "77", "77"], target = "7777"`
-- Output: `4`
-- Explanation: The qualifying value pairs are `"777" + "7"`,
+- **Input:** `nums = ["777", "7", "77", "77"], target = "7777"`
+- **Output:** `4`
+- **Explanation:** The qualifying value pairs are `"777" + "7"`,
   `"7" + "777"`, and the two ordered choices of distinct `"77"` indices.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = ["123", "4", "12", "34"], target = "1234"`
-- Output: `2`
+- **Input:** `nums = ["123", "4", "12", "34"], target = "1234"`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = ["1", "1", "1"], target = "11"`
-- Output: `6`
-- Explanation: Any of three indices can be first and either remaining index
+- **Input:** `nums = ["1", "1", "1"], target = "11"`
+- **Output:** `6`
+- **Explanation:** Any of three indices can be first and either remaining index
   can be second.

@@ -31,17 +31,17 @@ Preserve the original input order in the returned array. Equal values do not cou
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [8,1,2,2,3]`
-- Output: `[4,0,1,1,3]`
+- **Input:** `nums = [8,1,2,2,3]`
+- **Output:** `[4,0,1,1,3]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6,5,4,8]`
-- Output: `[2,1,0,3]`
+- **Input:** `nums = [6,5,4,8]`
+- **Output:** `[2,1,0,3]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7,7,7,7]`
-- Output: `[0,0,0,0]`
+- **Input:** `nums = [7,7,7,7]`
+- **Output:** `[0,0,0,0]`

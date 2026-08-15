@@ -6,8 +6,14 @@ Given a string `text` of words separated by a single space (no leading or traili
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+- `brokenLetters`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Given a string `text` of words separated by a single space (no leading or traili
 - **Input:** $text = "hello world", brokenLetters = "ad"$
 - **Output:** `1`
 - **Explanation:** We cannot type "world" because the 'd' key is broken.
+
 #### Example 2
 
 - **Input:** $text = "leet code", brokenLetters = "lt"$
 - **Output:** `1`
 - **Explanation:** We cannot type "leet" because the 'l' and 't' keys are broken.
+
 #### Example 3
 
 - **Input:** $text = "leet code", brokenLetters = "e"$

@@ -8,17 +8,22 @@ You begin with a score of `0`. You want to perform **exactly** `m` operations. O
 
 - Add $\text{multipliers}[i] * x$ to your score.
 
-        <li>Note that $\text{multipliers}[0]$ corresponds to the first operation, $\text{multipliers}[1]$ to the second operation, and so on.
+        - Note that $\text{multipliers}[0]$ corresponds to the first operation, $\text{multipliers}[1]$ to the second operation, and so on.
 
-    </li>
 - Remove `x` from `nums`.
 
 Return *the **maximum** score after performing *`m` *operations.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `multipliers`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +36,7 @@ Return *the **maximum** score after performing *`m` *operations.*
 - Choose from the end, [1,**<u>2</u>**], adding 2 * 2 = 4 to the score.
 - Choose from the end, [**<u>1</u>**], adding 1 * 1 = 1 to the score.
 The total score is 9 + 4 + 1 = 14.
+
 #### Example 2
 
 - **Input:** `nums = [-5,-3,-3,-2,7,1], multipliers = [-10,-5,3,4,6]`

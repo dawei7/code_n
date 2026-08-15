@@ -30,19 +30,19 @@ Consider every substring that can be taken from `s`. Return the one that appears
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abab"`
-- Output: `"bab"`
+- **Input:** `s = "abab"`
+- **Output:** `"bab"`
 
 The distinct substrings include `"b"`, `"ba"`, and `"bab"`; `"bab"` is lexicographically largest.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leetcode"`
-- Output: `"tcode"`
+- **Input:** `s = "leetcode"`
+- **Output:** `"tcode"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "zzzz"`
-- Output: `"zzzz"`
+- **Input:** `s = "zzzz"`
+- **Output:** `"zzzz"`

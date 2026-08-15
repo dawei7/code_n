@@ -31,19 +31,19 @@ Given an uppercase English string `s`, consider every nonempty substring selecte
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "ABC"`
-- Output: `10`
-- Explanation: Every character in every substring is unique, so the six substrings contribute `1 + 1 + 1 + 2 + 2 + 3`.
+- **Input:** `s = "ABC"`
+- **Output:** `10`
+- **Explanation:** Every character in every substring is unique, so the six substrings contribute `1 + 1 + 1 + 2 + 2 + 3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ABA"`
-- Output: `8`
-- Explanation: The complete substring has only `B` as a unique character, while the shorter positional substrings contribute the remaining `7`.
+- **Input:** `s = "ABA"`
+- **Output:** `8`
+- **Explanation:** The complete substring has only `B` as a unique character, while the shorter positional substrings contribute the remaining `7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "LEETCODE"`
-- Output: `92`
+- **Input:** `s = "LEETCODE"`
+- **Output:** `92`

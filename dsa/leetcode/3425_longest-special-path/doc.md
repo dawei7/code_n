@@ -34,14 +34,14 @@ Return `[maximum_length, minimum_node_count]`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], nums = [2,1,2,1,3,1]`
-- Output: `[6,2]`
-- Explanation: Paths `2 -> 5` and `0 -> 1 -> 4` both have length `6` and unique values. The former uses only two nodes, which wins the tie-break.
+- **Input:** `edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], nums = [2,1,2,1,3,1]`
+- **Output:** `[6,2]`
+- **Explanation:** Paths `2 -> 5` and `0 -> 1 -> 4` both have length `6` and unique values. The former uses only two nodes, which wins the tie-break.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[1,0,8]], nums = [2,2]`
-- Output: `[0,1]`
-- Explanation: The two-node path repeats value `2`, so only single-node paths are special.
+- **Input:** `edges = [[1,0,8]], nums = [2,2]`
+- **Output:** `[0,1]`
+- **Explanation:** The two-node path repeats value `2`, so only single-node paths are special.

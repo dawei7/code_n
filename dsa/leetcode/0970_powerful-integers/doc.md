@@ -33,12 +33,12 @@ Return every distinct value $x^i+y^j\le\texttt{bound}$ for integers $i,j\ge0$, i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `x = 2, y = 3, bound = 10`
-- Output: `[2,3,4,5,7,9,10]`
+- **Input:** `x = 2, y = 3, bound = 10`
+- **Output:** `[2,3,4,5,7,9,10]`
 
-**Example 2**
+#### Example 2
 
-- Input: `x = 3, y = 5, bound = 15`
-- Output: `[2,4,6,8,10,14]`
+- **Input:** `x = 3, y = 5, bound = 15`
+- **Output:** `[2,4,6,8,10,14]`

@@ -30,20 +30,20 @@ Return all safe node labels sorted in ascending order. The requirement covers ev
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `graph = [[1,2],[2,3],[5],[0],[5],[],[]]`
-- Output: `[2,4,5,6]`
-- Explanation: Nodes `0`, `1`, and `3` can enter a cycle; every route from the other nodes terminates.
+- **Input:** `graph = [[1,2],[2,3],[5],[0],[5],[],[]]`
+- **Output:** `[2,4,5,6]`
+- **Explanation:** Nodes `0`, `1`, and `3` can enter a cycle; every route from the other nodes terminates.
 
-**Example 2**
+#### Example 2
 
-- Input: `graph = [[1,2,3,4],[1,2],[3,4],[0,4],[]]`
-- Output: `[4]`
-- Explanation: Node `4` is terminal, while each other node is in or can reach a cycle.
+- **Input:** `graph = [[1,2,3,4],[1,2],[3,4],[0,4],[]]`
+- **Output:** `[4]`
+- **Explanation:** Node `4` is terminal, while each other node is in or can reach a cycle.
 
-**Example 3**
+#### Example 3
 
-- Input: `graph = [[],[],[]]`
-- Output: `[0,1,2]`
-- Explanation: Every node is already terminal and therefore safe.
+- **Input:** `graph = [[],[],[]]`
+- **Output:** `[0,1,2]`
+- **Explanation:** Every node is already terminal and therefore safe.

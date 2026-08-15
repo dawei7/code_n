@@ -12,8 +12,13 @@ Return *the size of the **largest** combination of *`candidates`* with a bitwise
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `candidates`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ The size of the combination is 4.
 It can be shown that no combination with a size greater than 4 has a bitwise AND greater than 0.
 Note that more than one combination may have the largest size.
 For example, the combination [62,12,24,14] has a bitwise AND of 62 & 12 & 24 & 14 = 8 > 0.
+
 #### Example 2
 
 - **Input:** $candidates = [8,8]$

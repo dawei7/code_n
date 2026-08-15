@@ -16,14 +16,11 @@ Return the **minimum** number of operations needed to make `nums` **sortable**. 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1,2,3,2], locked = [1,0,1,1,0,1]
+- **Input:** nums = [1,2,1,2,3,2], locked = [1,0,1,1,0,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-We can sort `nums` using the following swaps:
+- **Explanation:** We can sort `nums` using the following swaps:
 
 - swap indices 1 with 2
 
@@ -31,17 +28,13 @@ We can sort `nums` using the following swaps:
 
 So, there is no need to unlock any index.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,1,1,3,2,2], locked = [1,0,1,1,0,1,0]
+- **Input:** nums = [1,2,1,1,3,2,2], locked = [1,0,1,1,0,1,0]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-If we unlock indices 2 and 5, we can sort `nums` using the following swaps:
+- **Explanation:** If we unlock indices 2 and 5, we can sort `nums` using the following swaps:
 
 - swap indices 1 with 2
 
@@ -51,19 +44,13 @@ If we unlock indices 2 and 5, we can sort `nums` using the following swaps:
 
 - swap indices 5 with 6
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,1,2,3,2,1], locked = [0,0,0,0,0,0,0]
+- **Input:** nums = [1,2,1,2,3,2,1], locked = [0,0,0,0,0,0,0]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-Even if all indices are unlocked, it can be shown that `nums` is not sortable.
-
-</div>
+- **Explanation:** Even if all indices are unlocked, it can be shown that `nums` is not sortable.
 
 ### 4. Constraints
 

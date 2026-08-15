@@ -10,8 +10,15 @@ Return *the least number of buses you must take to travel from *`source`* to *`t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `routes`: Input parameter (`List[List[int]]`).
+- `source`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +27,7 @@ Return *the least number of buses you must take to travel from *`source`* to *`t
 - **Input:** $routes = [[1,2,7],[3,6,7]], source = 1, target = 6$
 - **Output:** `2`
 - **Explanation:** The best strategy is take the first bus to the bus stop 7, then take the second bus to the bus stop 6.
+
 #### Example 2
 
 - **Input:** $routes = [[7,12],[4,5,15],[6],[15,19],[9,12,13]], source = 15, target = 12$

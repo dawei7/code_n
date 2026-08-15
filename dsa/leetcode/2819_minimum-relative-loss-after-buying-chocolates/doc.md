@@ -35,20 +35,20 @@ Return a list of $q$ integers, where entry `i` is the minimum possible value of 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prices = [1,9,22,10,19], queries = [[18,4],[5,2]]`
-- Output: `[34,-21]`
-- Explanation: The first query can choose prices `[1,9,10,22]`; the second benefits from choosing the expensive prices `[19,22]`.
+- **Input:** `prices = [1,9,22,10,19], queries = [[18,4],[5,2]]`
+- **Output:** `[34,-21]`
+- **Explanation:** The first query can choose prices `[1,9,10,22]`; the second benefits from choosing the expensive prices `[19,22]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `prices = [1,5,4,3,7,11,9], queries = [[5,4],[5,7],[7,3],[4,5]]`
-- Output: `[4,16,7,1]`
-- Explanation: Each query applies its own threshold and exact selection count to the same price collection.
+- **Input:** `prices = [1,5,4,3,7,11,9], queries = [[5,4],[5,7],[7,3],[4,5]]`
+- **Output:** `[4,16,7,1]`
+- **Explanation:** Each query applies its own threshold and exact selection count to the same price collection.
 
-**Example 3**
+#### Example 3
 
-- Input: `prices = [5,6,7], queries = [[10,1],[5,3],[3,3]]`
-- Output: `[5,12,0]`
-- Explanation: A threshold above every price favors the cheapest chocolate, while queries selecting all prices have no choice of subset.
+- **Input:** `prices = [5,6,7], queries = [[10,1],[5,3],[3,3]]`
+- **Output:** `[5,12,0]`
+- **Explanation:** A threshold above every price favors the cheapest chocolate, while queries selecting all prices have no choice of subset.

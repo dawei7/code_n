@@ -14,12 +14,11 @@ Return the **minimum index sum** $i + j$ among all possible good pairs. If no su
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [3,2,1], nums2 = [1,3,1]
+- **Input:** nums1 = [3,2,1], nums2 = [1,3,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Common elements between `nums1` and `nums2` are 1 and 3.
 
@@ -29,15 +28,13 @@ Return the **minimum index sum** $i + j$ among all possible good pairs. If no su
 
 - The minimum index sum is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [5,1,2], nums2 = [2,1,3]
+- **Input:** nums1 = [5,1,2], nums2 = [2,1,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Common elements between `nums1` and `nums2` are 1 and 2.
 
@@ -47,19 +44,15 @@ Return the **minimum index sum** $i + j$ among all possible good pairs. If no su
 
 - The minimum index sum is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [6,4], nums2 = [7,8]
+- **Input:** nums1 = [6,4], nums2 = [7,8]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - Since no common elements between `nums1` and `nums2`, the output is -1.
-
-</div>
 
 ### 4. Constraints
 

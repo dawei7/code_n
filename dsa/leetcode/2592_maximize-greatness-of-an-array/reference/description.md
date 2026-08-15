@@ -8,8 +8,13 @@ Return *the **maximum** possible greatness you can achieve after permuting* `num
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return *the **maximum** possible greatness you can achieve after permuting* `num
 - **Output:** `4`
 - **Explanation:** One of the optimal rearrangements is perm = [2,5,1,3,3,1,1].
 At indices = 0, 1, 3, and 4, perm[i] > nums[i]. Hence, we return 4.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`

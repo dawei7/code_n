@@ -32,14 +32,14 @@ There are at most $1000$ days and at most $1000$ responses per day. Every respon
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `responses = [["good", "ok", "good", "ok"], ["ok", "bad", "good", "ok", "ok"], ["good"], ["bad"]]`
-- Output: `"good"`
-- Explanation: The deduplicated days are `[["good", "ok"], ["ok", "bad", "good"], ["good"], ["bad"]]`; `"good"` occurs on three days.
+- **Input:** `responses = [["good", "ok", "good", "ok"], ["ok", "bad", "good", "ok", "ok"], ["good"], ["bad"]]`
+- **Output:** `"good"`
+- **Explanation:** The deduplicated days are `[["good", "ok"], ["ok", "bad", "good"], ["good"], ["bad"]]`; `"good"` occurs on three days.
 
-**Example 2**
+#### Example 2
 
-- Input: `responses = [["good", "ok", "good"], ["ok", "bad"], ["bad", "notsure"], ["great", "good"]]`
-- Output: `"bad"`
-- Explanation: `"bad"`, `"good"`, and `"ok"` each occur twice after deduplication, and `"bad"` is lexicographically smallest.
+- **Input:** `responses = [["good", "ok", "good"], ["ok", "bad"], ["bad", "notsure"], ["great", "good"]]`
+- **Output:** `"bad"`
+- **Explanation:** `"bad"`, `"good"`, and `"ok"` each occur twice after deduplication, and `"bad"` is lexicographically smallest.

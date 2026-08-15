@@ -14,8 +14,14 @@ Return an integer array `assigned`, where $\text{assigned}[i]$ is the index of t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `groups`: Input parameter (`List[int]`).
+- `elements`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -25,12 +31,11 @@ Return an integer array `assigned`, where $\text{assigned}[i]$ is the index of t
 
 #### Example 1
 
-<div class="example-block">
-**Input:** groups = [8,4,3,2,4], elements = [4,2]
+- **Input:** groups = [8,4,3,2,4], elements = [4,2]
 
-**Output:** [0,0,-1,1,0]
+- **Output:** [0,0,-1,1,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{elements}[0] = 4$ is assigned to groups 0, 1, and 4.
 
@@ -38,15 +43,13 @@ Return an integer array `assigned`, where $\text{assigned}[i]$ is the index of t
 
 - Group 2 cannot be assigned any element.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** groups = [2,3,5,7], elements = [5,3,3]
+- **Input:** groups = [2,3,5,7], elements = [5,3,3]
 
-**Output:** [-1,1,0,-1]
+- **Output:** [-1,1,0,-1]
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{elements}[1] = 3$ is assigned to group 1.
 
@@ -54,19 +57,13 @@ Return an integer array `assigned`, where $\text{assigned}[i]$ is the index of t
 
 - Groups 0 and 3 cannot be assigned any element.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** groups = [10,21,30,41], elements = [2,1]
+- **Input:** groups = [10,21,30,41], elements = [2,1]
 
-**Output:** [0,1,0,1]
+- **Output:** [0,1,0,1]
 
-**Explanation:**
-
-$\text{elements}[0] = 2$ is assigned to the groups with even values, and $\text{elements}[1] = 1$ is assigned to the groups with odd values.
-
-</div>
+- **Explanation:** $\text{elements}[0] = 2$ is assigned to the groups with even values, and $\text{elements}[1] = 1$ is assigned to the groups with odd values.
 
 ### 5. Constraints
 

@@ -24,6 +24,7 @@ A black lonely pixel is a character `'B'` that located at a specific position wh
 - **Input:** $picture = [["W","W","B"],["W","B","W"],["B","W","W"]]$
 - **Output:** `3`
 - **Explanation:** All the three 'B's are black lonely pixels.
+
 #### Example 2
 
 ![](images/pixel2.jpg)

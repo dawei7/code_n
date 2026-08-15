@@ -31,22 +31,22 @@ The native `makeImmutable(obj)` returns a deeply protected view of `obj`. The ap
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obj = {"x":5}` followed by assigning `obj.x = 5`.
-- Output: `{"value":null,"error":"Error Modifying: x"}`
+- **Input:** `obj = {"x":5}` followed by assigning `obj.x = 5`.
+- **Output:** `{"value":null,"error":"Error Modifying: x"}`
 
-**Example 2**
+#### Example 2
 
-- Input: `obj = [1,2,3]` followed by assigning index `1`.
-- Output: `{"value":null,"error":"Error Modifying Index: 1"}`
+- **Input:** `obj = [1,2,3]` followed by assigning index `1`.
+- **Output:** `{"value":null,"error":"Error Modifying Index: 1"}`
 
-**Example 3**
+#### Example 3
 
-- Input: `obj = {"arr":[1,2,3]}` followed by calling `obj.arr.push(4)`.
-- Output: `{"value":null,"error":"Error Calling Method: push"}`
+- **Input:** `obj = {"arr":[1,2,3]}` followed by calling `obj.arr.push(4)`.
+- **Output:** `{"value":null,"error":"Error Calling Method: push"}`
 
-**Example 4**
+#### Example 4
 
-- Input: `obj = {"x":2,"y":2}` followed by `Object.keys(obj)`.
-- Output: `{"value":["x","y"],"error":null}`
+- **Input:** `obj = {"x":2,"y":2}` followed by `Object.keys(obj)`.
+- **Output:** `{"value":["x","y"],"error":null}`

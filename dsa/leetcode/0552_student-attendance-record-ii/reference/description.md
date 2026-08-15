@@ -18,8 +18,13 @@ Given an integer `n`, return *the **number** of possible attendance records of l
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,10 +35,12 @@ Given an integer `n`, return *the **number** of possible attendance records of l
 - **Explanation:** There are 8 records with length 2 that are eligible for an award:
 "PP", "AP", "PA", "LP", "PL", "AL", "LA", "LL"
 Only "AA" is not eligible because there are 2 absences (there need to be fewer than 2).
+
 #### Example 2
 
 - **Input:** $n = 1$
 - **Output:** `3`
+
 #### Example 3
 
 - **Input:** $n = 10101$

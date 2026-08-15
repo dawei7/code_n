@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/next-special-palindrome-number/) |
 
 ## Problem Description
+
 ### Goal
 
 A positive integer is special when its decimal representation is a palindrome and every digit that occurs satisfies a frequency rule: digit $k$ must appear exactly $k$ times. For example, `22` is special because it is palindromic and contains two copies of digit 2. Digit 0 cannot occur because an occurring digit cannot appear zero times.
@@ -16,6 +17,7 @@ A positive integer is special when its decimal representation is a palindrome an
 Given a non-negative integer `n`, find the numerically smallest special palindrome that is strictly greater than `n`. Equality is not sufficient when `n` is already special.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: An integer satisfying $0\le n\le 10^{15}$.
@@ -25,14 +27,15 @@ Given a non-negative integer `n`, find the numerically smallest special palindro
 Return the smallest special palindrome strictly greater than `n`.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 2`
-- Output: `22`
-- Explanation: `22` is the first larger palindrome whose digit 2 occurs exactly twice.
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 2`
+- **Output:** `22`
+- **Explanation:** `22` is the first larger palindrome whose digit 2 occurs exactly twice.
 
-- Input: `n = 33`
-- Output: `212`
-- Explanation: `212` is palindromic, digit 1 occurs once, and digit 2 occurs twice.
+#### Example 2
+
+- **Input:** `n = 33`
+- **Output:** `212`
+- **Explanation:** `212` is palindromic, digit 1 occurs once, and digit 2 occurs twice.

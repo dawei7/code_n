@@ -36,19 +36,19 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tiles = "AAB"`
-- Output: `8`
+- **Input:** `tiles = "AAB"`
+- **Output:** `8`
 
 The sequences are `"A"`, `"B"`, `"AA"`, `"AB"`, `"BA"`, `"AAB"`, `"ABA"`, and `"BAA"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `tiles = "AAABBC"`
-- Output: `188`
+- **Input:** `tiles = "AAABBC"`
+- **Output:** `188`
 
-**Example 3**
+#### Example 3
 
-- Input: `tiles = "V"`
-- Output: `1`
+- **Input:** `tiles = "V"`
+- **Output:** `1`

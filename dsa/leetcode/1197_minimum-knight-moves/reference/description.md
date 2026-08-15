@@ -28,6 +28,7 @@ Return the smallest number of legal knight moves in any route from `[0,0]` to `[
 - **Input:** $x = 2, y = 1$
 - **Output:** `1`
 - **Explanation:** [0, 0] → [2, 1]
+
 #### Example 2
 
 - **Input:** $x = 5, y = 5$

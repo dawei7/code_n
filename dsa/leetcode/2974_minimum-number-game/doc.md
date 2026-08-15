@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-game/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed integer array `nums` with even length and begin with
 an empty array `arr`. Alice and Bob repeatedly play one round until `nums` is
 empty.
@@ -23,6 +25,7 @@ by Alice's value.
 Return the final contents of `arr` after all rounds.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: an even-length array of positive integers used by the game
@@ -36,14 +39,15 @@ The array formed by appending Bob's removal and then Alice's removal in every
 round.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [5,4,2,3]`
-- Output: `[3,2,5,4]`
-- Explanation: The removed pairs are `(2,3)` and `(4,5)`, each appended in reverse player order.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [5,4,2,3]`
+- **Output:** `[3,2,5,4]`
+- **Explanation:** The removed pairs are `(2,3)` and `(4,5)`, each appended in reverse player order.
 
-- Input: `nums = [2,5]`
-- Output: `[5,2]`
-- Explanation: Alice removes `2`, Bob removes `5`, and Bob appends first.
+#### Example 2
+
+- **Input:** `nums = [2,5]`
+- **Output:** `[5,2]`
+- **Explanation:** Alice removes `2`, Bob removes `5`, and Bob appends first.

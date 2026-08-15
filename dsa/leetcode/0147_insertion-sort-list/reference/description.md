@@ -32,6 +32,7 @@ Return the head of the list after its nodes have been rearranged into non-decrea
 
 - **Input:** $head = [4,2,1,3]$
 - **Output:** `[1,2,3,4]`
+
 #### Example 2
 
 ![](images/sort2linked-list.jpg)

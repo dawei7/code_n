@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-xor-product/) |
 
 ## Problem Description
+
 ### Goal
+
 Given nonnegative integers `a` and `b`, choose a nonnegative integer `x`
 whose binary representation uses only the lowest `n` bit positions; formally,
 $0 \le x < 2^n$. The same chosen value is XORed with both inputs, producing
@@ -23,6 +25,7 @@ be large, return the maximum value modulo $10^9+7$. The maximization is
 performed before taking the modulus.
 
 ### Function Contract
+
 **Inputs**
 
 - `a`: the first nonnegative integer
@@ -37,21 +40,22 @@ The maximum possible product of the two XOR results, reduced modulo
 $10^9+7$.
 
 ### Examples
-**Example 1**
 
-- Input: `a = 12, b = 5, n = 4`
-- Output: `98`
-- Explanation: Choosing `x = 2` produces factors `14` and `7`, whose
+#### Example 1
+
+- **Input:** `a = 12, b = 5, n = 4`
+- **Output:** `98`
+- **Explanation:** Choosing `x = 2` produces factors `14` and `7`, whose
   product is `98`.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = 6, b = 7, n = 5`
-- Output: `930`
-- Explanation: Choosing `x = 25` produces factors `31` and `30`.
+- **Input:** `a = 6, b = 7, n = 5`
+- **Output:** `930`
+- **Explanation:** Choosing `x = 25` produces factors `31` and `30`.
 
-**Example 3**
+#### Example 3
 
-- Input: `a = 1, b = 6, n = 3`
-- Output: `12`
-- Explanation: Choosing `x = 5` produces factors `4` and `3`.
+- **Input:** `a = 1, b = 6, n = 3`
+- **Output:** `12`
+- **Explanation:** Choosing `x = 5` produces factors `4` and `3`.

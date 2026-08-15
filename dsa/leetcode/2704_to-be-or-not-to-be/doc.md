@@ -31,20 +31,20 @@ Return an object exposing callable methods `toBe` and `notToBe`. A satisfied ass
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `expect(5).toBe(5)`
-- Output: `true`
-- Explanation: The two numbers are strictly equal.
+- **Input:** `expect(5).toBe(5)`
+- **Output:** `true`
+- **Explanation:** The two numbers are strictly equal.
 
-**Example 2**
+#### Example 2
 
-- Input: `expect(5).toBe(null)`
-- Output: throws `Error("Not Equal")`
-- Explanation: A number and `null` are not strictly equal.
+- **Input:** `expect(5).toBe(null)`
+- **Output:** throws `Error("Not Equal")`
+- **Explanation:** A number and `null` are not strictly equal.
 
-**Example 3**
+#### Example 3
 
-- Input: `expect(5).notToBe(null)`
-- Output: `true`
-- Explanation: Strict inequality satisfies the negative assertion.
+- **Input:** `expect(5).notToBe(null)`
+- **Output:** `true`
+- **Explanation:** Strict inequality satisfies the negative assertion.

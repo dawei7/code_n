@@ -10,8 +10,14 @@ At every second, you must perform the following operations:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -28,12 +34,14 @@ Return *the **minimum** time greater than zero required for* `word` *to revert t
 - **Explanation:** At the 1st second, we remove characters "aba" from the prefix of word, and add characters "bac" to the end of word. Thus, word becomes equal to "cababac".
 At the 2nd second, we remove characters "cab" from the prefix of word, and add "aba" to the end of word. Thus, word becomes equal to "abacaba" and reverts to its initial state.
 It can be shown that 2 seconds is the minimum time greater than zero required for word to revert to its initial state.
+
 #### Example 2
 
 - **Input:** $word = "abacaba", k = 4$
 - **Output:** `1`
 - **Explanation:** At the 1st second, we remove characters "abac" from the prefix of word, and add characters "caba" to the end of word. Thus, word becomes equal to "abacaba" and reverts to its initial state.
 It can be shown that 1 second is the minimum time greater than zero required for word to revert to its initial state.
+
 #### Example 3
 
 - **Input:** $word = "abcbabcd", k = 2$

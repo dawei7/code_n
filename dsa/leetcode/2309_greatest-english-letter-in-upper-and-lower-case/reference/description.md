@@ -6,8 +6,13 @@ An English letter `b` is **greater** than another letter `a` if `b` appears **af
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,21 +20,20 @@ An English letter `b` is **greater** than another letter `a` if `b` appears **af
 
 - **Input:** `s = "l**<u>Ee</u>**TcOd<u>**E**</u>"`
 - **Output:** `"E"`
-- **Explanation:**
-The letter 'E' is the only letter to appear in both lower and upper case.
+- **Explanation:** The letter 'E' is the only letter to appear in both lower and upper case.
+
 #### Example 2
 
 - **Input:** `s = "a**<u>rR</u>**AzFif"`
 - **Output:** `"R"`
-- **Explanation:**
-The letter 'R' is the greatest letter to appear in both lower and upper case.
+- **Explanation:** The letter 'R' is the greatest letter to appear in both lower and upper case.
 Note that 'A' and 'F' also appear in both lower and upper case, but 'R' is greater than 'F' or 'A'.
+
 #### Example 3
 
 - **Input:** `s = "AbCdEfGhIjK"`
 - **Output:** `""`
-- **Explanation:**
-There is no letter that appears in both lower and upper case.
+- **Explanation:** There is no letter that appears in both lower and upper case.
 
 ### 4. Constraints
 

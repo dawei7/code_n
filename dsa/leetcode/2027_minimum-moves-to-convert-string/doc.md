@@ -36,19 +36,19 @@ Let $N$ be the length of `s`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "XXX"`
-- Output: `1`
+- **Input:** `s = "XXX"`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "XXOX"`
-- Output: `2`
-- Explanation: One move covers the first three positions, and a second covers
+- **Input:** `s = "XXOX"`
+- **Output:** `2`
+- **Explanation:** One move covers the first three positions, and a second covers
   the final `X`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "OOOO"`
-- Output: `0`
+- **Input:** `s = "OOOO"`
+- **Output:** `0`

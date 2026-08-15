@@ -38,14 +38,14 @@ The coordinate constraints are $1\le\texttt{sx},\texttt{sy},\texttt{fx},\texttt{
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sx = 2, sy = 4, fx = 7, fy = 7, t = 6`
-- Output: `true`
-- Explanation: The destination's Chebyshev distance is `5`, and a six-move route can include one detour.
+- **Input:** `sx = 2, sy = 4, fx = 7, fy = 7, t = 6`
+- **Output:** `true`
+- **Explanation:** The destination's Chebyshev distance is `5`, and a six-move route can include one detour.
 
-**Example 2**
+#### Example 2
 
-- Input: `sx = 3, sy = 1, fx = 7, fy = 3, t = 3`
-- Output: `false`
-- Explanation: At least `4` moves are required because the horizontal coordinate differs by `4`.
+- **Input:** `sx = 3, sy = 1, fx = 7, fy = 3, t = 3`
+- **Output:** `false`
+- **Explanation:** At least `4` moves are required because the horizontal coordinate differs by `4`.

@@ -30,14 +30,14 @@ Return the sum of the imbalance numbers of every non-empty contiguous subarray o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,1,4]`
-- Output: `3`
-- Explanation: Exactly three subarrays have nonzero imbalance: `[3,1]`, `[3,1,4]`, and `[1,4]`. Each contributes one.
+- **Input:** `nums = [2,3,1,4]`
+- **Output:** `3`
+- **Explanation:** Exactly three subarrays have nonzero imbalance: `[3,1]`, `[3,1,4]`, and `[1,4]`. Each contributes one.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,3,3,3,5]`
-- Output: `8`
-- Explanation: Six qualifying subarrays contribute one each, while `[1,3,3,3,5]` contributes two; all remaining subarrays contribute zero.
+- **Input:** `nums = [1,3,3,3,5]`
+- **Output:** `8`
+- **Explanation:** Six qualifying subarrays contribute one each, while `[1,3,3,3,5]` contributes two; all remaining subarrays contribute zero.

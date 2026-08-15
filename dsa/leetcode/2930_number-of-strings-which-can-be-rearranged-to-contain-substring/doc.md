@@ -40,14 +40,14 @@ The constraint is $1\le\texttt{n}\le10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `12`
-- Explanation: A good four-character string must be one of the 12 distinct permutations of the multiset `{l, e, e, t}`.
+- **Input:** `n = 4`
+- **Output:** `12`
+- **Explanation:** A good four-character string must be one of the 12 distinct permutations of the multiset `{l, e, e, t}`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 10`
-- Output: `83943898`
-- Explanation: There are `526083947580` good strings before applying the modulus.
+- **Input:** `n = 10`
+- **Output:** `83943898`
+- **Explanation:** There are `526083947580` good strings before applying the modulus.

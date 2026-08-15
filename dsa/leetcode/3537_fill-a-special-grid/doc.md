@@ -34,20 +34,20 @@ The grid has side length $2^n$ and contains $4^n$ cells. Let $k=4$ denote the fi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 0`
-- Output: `[[0]]`
-- Explanation: The one-cell base case contains the only available value.
+- **Input:** `n = 0`
+- **Output:** `[[0]]`
+- **Explanation:** The one-cell base case contains the only available value.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`
-- Output: `[[3,0],[2,1]]`
-- Explanation: The one-cell quadrants appear in increasing order from top-right to bottom-right to bottom-left to top-left.
+- **Input:** `n = 1`
+- **Output:** `[[3,0],[2,1]]`
+- **Explanation:** The one-cell quadrants appear in increasing order from top-right to bottom-right to bottom-left to top-left.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2`
-- Output: `[[15,12,3,0],[14,13,2,1],[11,8,7,4],[10,9,6,5]]`
-- Explanation: Each quadrant repeats the same special pattern, with successive value blocks assigned in the required quadrant order.
+- **Input:** `n = 2`
+- **Output:** `[[15,12,3,0],[14,13,2,1],[11,8,7,4],[10,9,6,5]]`
+- **Explanation:** Each quadrant repeats the same special pattern, with successive value blocks assigned in the required quadrant order.

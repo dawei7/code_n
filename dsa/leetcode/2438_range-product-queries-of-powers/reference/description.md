@@ -8,8 +8,14 @@ Return* an array *`answers`*, equal in length to *`queries`*, where *$\text{answ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,18 +23,17 @@ Return* an array *`answers`*, equal in length to *`queries`*, where *$\text{answ
 
 - **Input:** $n = 15, queries = [[0,1],[2,2],[0,3]]$
 - **Output:** `[2,4,64]`
-- **Explanation:**
-For n = 15, powers = [1,2,4,8]. It can be shown that powers cannot be a smaller size.
+- **Explanation:** For n = 15, powers = [1,2,4,8]. It can be shown that powers cannot be a smaller size.
 Answer to 1st query: powers[0] * powers[1] = 1 * 2 = 2.
 Answer to 2nd query: powers[2] = 4.
 Answer to 3rd query: powers[0] * powers[1] * powers[2] * powers[3] = 1 * 2 * 4 * 8 = 64.
 Each answer modulo $10^{9}$ + 7 yields the same answer, so [2,4,64] is returned.
+
 #### Example 2
 
 - **Input:** $n = 2, queries = [[0,0]]$
 - **Output:** `[2]`
-- **Explanation:**
-For n = 2, powers = [2].
+- **Explanation:** For n = 2, powers = [2].
 The answer to the only query is powers[0] = 2. The answer modulo $10^{9}$ + 7 is the same, so [2] is returned.
 
 ### 4. Constraints

@@ -31,13 +31,13 @@ Return `true` when the three points form a boomerang. A boomerang requires all t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[1,1],[2,3],[3,2]]`
-- Output: `true`
+- **Input:** `points = [[1,1],[2,3],[3,2]]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[1,1],[2,2],[3,3]]`
-- Output: `false`
-- Explanation: All three points lie on the same diagonal line.
+- **Input:** `points = [[1,1],[2,2],[3,3]]`
+- **Output:** `false`
+- **Explanation:** All three points lie on the same diagonal line.

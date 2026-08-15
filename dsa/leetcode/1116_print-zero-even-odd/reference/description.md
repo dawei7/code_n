@@ -26,8 +26,12 @@ Implement the `ZeroEvenOdd` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ZeroEvenOdd(n)`: Initializes the data structure.
+- `zero(printNumber: 'Callable[[int], None]')`: Executes operation.
+- `even(printNumber: 'Callable[[int], None]')`: Executes operation.
+- `odd(printNumber: 'Callable[[int], None]')`: Executes operation.
 
 ### 3. Examples
 
@@ -38,6 +42,7 @@ Implement the `ZeroEvenOdd` class:
 - **Explanation:** There are three threads being fired asynchronously.
 One of them calls zero(), the other calls even(), and the last one calls odd().
 "0102" is the correct output.
+
 #### Example 2
 
 - **Input:** $n = 5$

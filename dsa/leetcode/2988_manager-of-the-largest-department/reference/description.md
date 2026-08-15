@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +--------+----------+--------+---------------+
 | emp_id | emp_name | dep_id | position      |

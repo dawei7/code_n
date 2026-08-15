@@ -1,4 +1,3 @@
-
 # Minimum Common Value
 
 | Field | Value |
@@ -34,14 +33,14 @@ Return the smallest value appearing in both arrays, or `-1` when no such value e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1,2,3], nums2 = [2,4]`
-- Output: `2`
-- Explanation: The value 2 is the first and only common value.
+- **Input:** `nums1 = [1,2,3], nums2 = [2,4]`
+- **Output:** `2`
+- **Explanation:** The value 2 is the first and only common value.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1,2,3,6], nums2 = [2,3,4,5]`
-- Output: `2`
-- Explanation: Both 2 and 3 are common, and 2 is smaller.
+- **Input:** `nums1 = [1,2,3,6], nums2 = [2,3,4,5]`
+- **Output:** `2`
+- **Explanation:** Both 2 and 3 are common, and 2 is smaller.

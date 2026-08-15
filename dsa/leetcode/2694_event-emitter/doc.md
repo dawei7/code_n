@@ -36,22 +36,22 @@ The test trace contains from $1$ through $10$ actions. Valid actions are constru
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Emit `"firstEvent"` before subscribing, then subscribe callbacks returning `5` and `6`, and emit again.
-- Output: The first emission returns `[]`; the second returns `[5,6]`.
+- **Input:** Emit `"firstEvent"` before subscribing, then subscribe callbacks returning `5` and `6`, and emit again.
+- **Output:** The first emission returns `[]`; the second returns `[5,6]`.
 
-**Example 2**
+#### Example 2
 
-- Input: Subscribe `(...args) => args.join(',')` to `"firstEvent"`, then emit with `[1,2,3]` and later `[3,4,6]`.
-- Output: `["1,2,3"]` and `["3,4,6"]`.
+- **Input:** Subscribe `(...args) => args.join(',')` to `"firstEvent"`, then emit with `[1,2,3]` and later `[3,4,6]`.
+- **Output:** `["1,2,3"]` and `["3,4,6"]`.
 
-**Example 3**
+#### Example 3
 
-- Input: Subscribe a callback to `"firstEvent"`, emit once, unsubscribe it, and emit again.
-- Output: The first emission contains the callback result; the second returns `[]`.
+- **Input:** Subscribe a callback to `"firstEvent"`, emit once, unsubscribe it, and emit again.
+- **Output:** The first emission contains the callback result; the second returns `[]`.
 
-**Example 4**
+#### Example 4
 
-- Input: Subscribe `x => x + 1` and then `x => x + 2`, unsubscribe the first subscription, and emit with `[5]`.
-- Output: `[7]`.
+- **Input:** Subscribe `x => x + 1` and then `x => x + 2`, unsubscribe the first subscription, and emit with `[5]`.
+- **Output:** `[7]`.

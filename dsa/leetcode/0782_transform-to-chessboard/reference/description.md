@@ -8,8 +8,13 @@ A **chessboard board** is a board where no `0`'s and no `1`'s are 4-directionall
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ A **chessboard board** is a board where no `0`'s and no `1`'s are 4-directionall
 - **Explanation:** One potential sequence of moves is shown.
 The first move swaps the first and second column.
 The second move swaps the second and third row.
+
 #### Example 2
 
 ![](images/chessboard2-grid.jpg)
@@ -29,6 +35,7 @@ The second move swaps the second and third row.
 - **Input:** $board = [[0,1],[1,0]]$
 - **Output:** `0`
 - **Explanation:** Also note that the board with 0 in the top left corner, is also a valid chessboard.
+
 #### Example 3
 
 ![](images/chessboard3-grid.jpg)

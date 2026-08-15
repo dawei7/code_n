@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Calls table:
 +-----------+--------------+---------------------+
 | caller_id | recipient_id | call_time           |
@@ -41,7 +41,7 @@ Calls table:
 | 11        | 3            | 2021-08-17 13:07:00 |
 | 8         | 11           | 2021-08-17 22:22:22 |
 +-----------+--------------+---------------------+
-**Output:**
+- **Output:** 
 +---------+
 | user_id |
 +---------+
@@ -50,8 +50,7 @@ Calls table:
 | 5       |
 | 8       |
 +---------+
-**Explanation:**
-On 2021-08-24, the first and last call of this day for user 8 was with user 4. User 8 should be included in the answer.
+- **Explanation:** On 2021-08-24, the first and last call of this day for user 8 was with user 4. User 8 should be included in the answer.
 Similarly, user 4 on 2021-08-24 had their first and last call with user 8. User 4 should be included in the answer.
 On 2021-08-11, user 1 and 5 had a call. This call was the only call for both of them on this day. Since this call is the first and last call of the day for both of them, they should both be included in the answer.
 ```

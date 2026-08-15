@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/) |
 
 ## Problem Description
+
 ### Goal
+
 Given a string `s` and an ordered array of strings `words`, determine whether
 `s` is a prefix string of the array.
 
@@ -20,6 +22,7 @@ ending partway through the next word is not sufficient. Return whether such a
 prefix exists.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a lowercase English string of length $L$, where $1\le L\le1000$.
@@ -32,17 +35,18 @@ prefix exists.
   positive valid `k`; otherwise `False`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "iloveleetcode", words = ["i", "love", "leetcode", "apples"]`
-- Output: `True`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "iloveleetcode", words = ["i", "love", "leetcode", "apples"]`
+- **Output:** `True`
 
-- Input: `s = "iloveleetcode", words = ["apples", "i", "love", "leetcode"]`
-- Output: `False`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "iloveleetcode", words = ["apples", "i", "love", "leetcode"]`
+- **Output:** `False`
 
-- Input: `s = "abc", words = ["ab", "cd"]`
-- Output: `False`
+#### Example 3
+
+- **Input:** `s = "abc", words = ["ab", "cd"]`
+- **Output:** `False`

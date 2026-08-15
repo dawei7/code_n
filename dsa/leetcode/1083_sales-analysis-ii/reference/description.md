@@ -62,7 +62,7 @@ Repeated `Sales` rows are permitted but do not create repeated output buyers. If
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Product table:
 +------------+--------------+------------+
 | product_id | product_name | unit_price |
@@ -80,11 +80,11 @@ Sales table:
 | 2         | 1          | 3        | 2019-06-02 | 1        | 800   |
 | 3         | 3          | 3        | 2019-05-13 | 2        | 2800  |
 +-----------+------------+----------+------------+----------+-------+
-**Output:**
+- **Output:** 
 +-------------+
 | buyer_id    |
 +-------------+
 | 1           |
 +-------------+
-**Explanation:** The buyer with id 1 bought an S8 but did not buy an iPhone. The buyer with id 3 bought both.
+- **Explanation:** The buyer with id 1 bought an S8 but did not buy an iPhone. The buyer with id 3 bought both.
 ```

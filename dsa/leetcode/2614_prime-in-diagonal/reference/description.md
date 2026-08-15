@@ -16,8 +16,13 @@ In the above diagram, one diagonal is **[1,5,9]** and another diagonal is** [3,5
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ In the above diagram, one diagonal is **[1,5,9]** and another diagonal is** [3,5
 - **Input:** `nums = [[1,2,3],[5,6,7],[9,10,11]]`
 - **Output:** `11`
 - **Explanation:** The numbers 1, 3, 6, 9, and 11 are the only numbers present on at least one of the diagonals. Since 11 is the largest prime, we return 11.
+
 #### Example 2
 
 - **Input:** `nums = [[1,2,3],[5,17,7],[9,11,10]]`

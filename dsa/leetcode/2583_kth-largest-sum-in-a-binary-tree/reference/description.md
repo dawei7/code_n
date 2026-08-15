@@ -8,8 +8,10 @@ Return* the *$$k^{\text{th}}$$* **largest** level sum in the tree (not necessari
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `kthLargestLevelSum(root: Optional[TreeNode], k: int) -> `int``: Executes operation.
 
 ### 3. Note
 
@@ -29,6 +31,7 @@ that two nodes are on the same level if they have the same distance from the roo
 - Level 3: 2 + 1 + 3 + 7 = 13.
 - Level 4: 4 + 6 = 10.
 The 2^nd largest level sum is 13.
+
 #### Example 2
 
 ![](images/treedrawio-3.png)

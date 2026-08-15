@@ -8,8 +8,13 @@ A **substring** is a contiguous sequence of characters within a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** `s = "ababccc"`
 - **Output:** `5`
 **Explanation**: One way to split maximally is ['a', 'b', 'ab', 'c', 'cc']. Splitting like ['a', 'b', 'a', 'b', 'c', 'cc'] is not valid as you have 'a' and 'b' multiple times.
+
 #### Example 2
 
 - **Input:** `s = "aba"`
 - **Output:** `2`
 **Explanation**: One way to split maximally is ['a', 'ba'].
+
 #### Example 3
 
 - **Input:** `s = "aa"`

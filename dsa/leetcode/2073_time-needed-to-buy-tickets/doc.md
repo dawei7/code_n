@@ -31,14 +31,14 @@ The front person buys exactly one ticket in one second. If that person still nee
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tickets = [2,3,2], k = 2`
-- Output: `6`
-- Explanation: The tracked person finishes on the sixth purchase after two complete passes through the original queue.
+- **Input:** `tickets = [2,3,2], k = 2`
+- **Output:** `6`
+- **Explanation:** The tracked person finishes on the sixth purchase after two complete passes through the original queue.
 
-**Example 2**
+#### Example 2
 
-- Input: `tickets = [5,1,1,1], k = 0`
-- Output: `8`
-- Explanation: Everyone buys once, then the tracked person buys the remaining four tickets alone.
+- **Input:** `tickets = [5,1,1,1], k = 0`
+- **Output:** `8`
+- **Explanation:** Everyone buys once, then the tracked person buys the remaining four tickets alone.

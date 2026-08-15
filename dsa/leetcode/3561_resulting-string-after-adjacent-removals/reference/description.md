@@ -12,8 +12,13 @@ Return the resulting string after no more operations can be performed.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -23,26 +28,23 @@ Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abc"
+- **Input:** s = "abc"
 
-**Output:** "c"
+- **Output:** "c"
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove `"ab"` from the string, leaving `"c"` as the remaining string.
 
 - No further operations are possible. Thus, the resulting string after all possible removals is `"c"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "adcb"
+- **Input:** s = "adcb"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove `"dc"` from the string, leaving `"ab"` as the remaining string.
 
@@ -50,21 +52,17 @@ Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.
 
 - No further operations are possible. Thus, the resulting string after all possible removals is `""`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "zadb"
+- **Input:** s = "zadb"
 
-**Output:** "db"
+- **Output:** "db"
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove `"za"` from the string, leaving `"db"` as the remaining string.
 
 - No further operations are possible. Thus, the resulting string after all possible removals is `"db"`.
-
-</div>
 
 ### 5. Constraints
 

@@ -39,17 +39,17 @@ be the number of positions that can still participate in a walk returning to ind
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `steps = 3, arrLen = 2`
-- Output: `4`
+- **Input:** `steps = 3, arrLen = 2`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `steps = 2, arrLen = 4`
-- Output: `2`
+- **Input:** `steps = 2, arrLen = 4`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `steps = 4, arrLen = 2`
-- Output: `8`
+- **Input:** `steps = 4, arrLen = 2`
+- **Output:** `8`

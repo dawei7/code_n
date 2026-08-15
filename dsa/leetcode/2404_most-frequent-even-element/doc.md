@@ -37,20 +37,20 @@ by smaller numeric value. Return `-1` when $u=0$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0,1,2,2,4,4,1]`
-- Output: `2`
-- Explanation: Values 2 and 4 both occur twice, so the smaller is returned.
+- **Input:** `nums = [0,1,2,2,4,4,1]`
+- **Output:** `2`
+- **Explanation:** Values 2 and 4 both occur twice, so the smaller is returned.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,4,4,9,2,4]`
-- Output: `4`
-- Explanation: Four occurrences make 4 the unique most frequent even value.
+- **Input:** `nums = [4,4,4,9,2,4]`
+- **Output:** `4`
+- **Explanation:** Four occurrences make 4 the unique most frequent even value.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [29,47,21,41,13,37,25,7]`
-- Output: `-1`
-- Explanation: The array contains no even element.
+- **Input:** `nums = [29,47,21,41,13,37,25,7]`
+- **Output:** `-1`
+- **Explanation:** The array contains no even element.

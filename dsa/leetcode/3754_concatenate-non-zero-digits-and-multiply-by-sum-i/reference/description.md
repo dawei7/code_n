@@ -24,12 +24,11 @@ Return the concatenation of all nonzero digits multiplied by the sum of those sa
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 10203004
+- **Input:** n = 10203004
 
-**Output:** 12340
+- **Output:** 12340
 
-**Explanation:**
+- **Explanation:** 
 
 - The non-zero digits are 1, 2, 3, and 4. Thus, $x = 1234$.
 
@@ -37,21 +36,17 @@ Return the concatenation of all nonzero digits multiplied by the sum of those sa
 
 - Therefore, the answer is $x * sum = 1234 * 10 = 12340$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1000
+- **Input:** n = 1000
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The non-zero digit is 1, so $x = 1$ and $sum = 1$.
 
 - Therefore, the answer is $x * sum = 1 * 1 = 1$.
-
-</div>
 
 ### 4. Constraints
 

@@ -30,7 +30,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Orders table:
 +----------+------------+----------+---------------+
 | order_id | product_id | quantity | purchase_date |
@@ -43,13 +43,12 @@ Orders table:
 | 6        | 1          | 6        | 2021-10-11    |
 | 7        | 2          | 6        | 2022-10-11    |
 +----------+------------+----------+---------------+
-**Output:**
+- **Output:** 
 +------------+
 | product_id |
 +------------+
 | 1          |
 +------------+
-**Explanation:**
-Product 1 was ordered in 2020 three times and in 2021 three times. Since it was ordered three times in two consecutive years, we include it in the answer.
+- **Explanation:** Product 1 was ordered in 2020 three times and in 2021 three times. Since it was ordered three times in two consecutive years, we include it in the answer.
 Product 2 was ordered one time in 2022. We do not include it in the answer.
 ```

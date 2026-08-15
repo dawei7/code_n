@@ -38,26 +38,26 @@ Return `True` exactly when `nums` is a permutation of `base[n]` for a positive i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 1, 3]`
-- Output: `False`
-- Explanation: The maximum is $3$, but `base[3]` has four elements, so this three-element array cannot be its permutation.
+- **Input:** `nums = [2, 1, 3]`
+- **Output:** `False`
+- **Explanation:** The maximum is $3$, but `base[3]` has four elements, so this three-element array cannot be its permutation.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 3, 2]`
-- Output: `True`
-- Explanation: Reordering the values produces `base[3] = [1, 2, 3, 3]`.
+- **Input:** `nums = [1, 3, 3, 2]`
+- **Output:** `True`
+- **Explanation:** Reordering the values produces `base[3] = [1, 2, 3, 3]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1]`
-- Output: `True`
-- Explanation: The array already equals `base[1]`.
+- **Input:** `nums = [1, 1]`
+- **Output:** `True`
+- **Explanation:** The array already equals `base[1]`.
 
-**Example 4**
+#### Example 4
 
-- Input: `nums = [3, 4, 4, 1, 2, 1]`
-- Output: `False`
-- Explanation: `base[4]` has five elements and contains only one `1`, whereas this array has six elements and two occurrences of `1`.
+- **Input:** `nums = [3, 4, 4, 1, 2, 1]`
+- **Output:** `False`
+- **Explanation:** `base[4]` has five elements and contains only one `1`, whereas this array has six elements and two occurrences of `1`.

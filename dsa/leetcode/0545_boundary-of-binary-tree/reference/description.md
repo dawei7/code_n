@@ -42,19 +42,20 @@ right, and non-leaf right boundary from bottom to top. No physical node is inclu
 
 - **Input:** `root = [1,null,2,3,4]`
 - **Output:** `[1,3,4,2]`
-- **Explanation:**
+- **Explanation:** 
 - The left boundary is empty because the root does not have a left child.
 - The right boundary follows the path starting from the root's right child 2 -> 4.
 4 is a leaf, so the right boundary is [2].
 - The leaves from left to right are [3,4].
 Concatenating everything results in [1] + [] + [3,4] + [2] = [1,3,4,2].
+
 #### Example 2
 
 ![](images/boundary2.jpg)
 
 - **Input:** `root = [1,2,3,4,5,6,null,null,null,7,8,9,10]`
 - **Output:** `[1,2,4,7,8,9,10,6,3]`
-- **Explanation:**
+- **Explanation:** 
 - The left boundary follows the path starting from the root's left child 2 -> 4.
 4 is a leaf, so the left boundary is [2].
 - The right boundary follows the path starting from the root's right child 3 -> 6 -> 10.

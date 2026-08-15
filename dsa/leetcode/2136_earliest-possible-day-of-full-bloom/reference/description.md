@@ -12,8 +12,14 @@ Return *the **earliest** possible day where **all** seeds are blooming*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `plantTime`: Input parameter (`List[int]`).
+- `growTime`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ On day 0, plant the 0^th seed. The seed grows for 2 full days and blooms on day 
 On days 1, 2, 3, and 4, plant the 1^st seed. The seed grows for 3 full days and blooms on day 8.
 On days 5, 6, and 7, plant the 2^nd seed. The seed grows for 1 full day and blooms on day 9.
 Thus, on day 9, all the seeds are blooming.
+
 #### Example 2
 
 ![](images/2.png)
@@ -42,6 +49,7 @@ On days 0 and 3, plant the 1^st seed. The seed grows for 1 full day and blooms o
 On days 2, 4, and 5, plant the 2^nd seed. The seed grows for 2 full days and blooms on day 8.
 On days 6 and 7, plant the 3^rd seed. The seed grows for 1 full day and blooms on day 9.
 Thus, on day 9, all the seeds are blooming.
+
 #### Example 3
 
 - **Input:** $plantTime = [1], growTime = [1]$

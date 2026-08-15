@@ -31,20 +31,20 @@ Count how many rooted trees have exactly those ancestor-comparability pairs. Two
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `pairs = [[1,2],[2,3]]`
-- Output: `1`
-- Explanation: Node $2$ must be the root with $1$ and $3$ as its children, so the reconstruction is unique.
+- **Input:** `pairs = [[1,2],[2,3]]`
+- **Output:** `1`
+- **Explanation:** Node $2$ must be the root with $1$ and $3$ as its children, so the reconstruction is unique.
 
-**Example 2**
+#### Example 2
 
-- Input: `pairs = [[1,2],[2,3],[1,3]]`
-- Output: `2`
-- Explanation: All three nodes are mutually comparable, and more than one parent assignment forms a valid chain.
+- **Input:** `pairs = [[1,2],[2,3],[1,3]]`
+- **Output:** `2`
+- **Explanation:** All three nodes are mutually comparable, and more than one parent assignment forms a valid chain.
 
-**Example 3**
+#### Example 3
 
-- Input: `pairs = [[1,2],[2,3],[2,4],[1,5]]`
-- Output: `0`
-- Explanation: No node is comparable with every other node, so none can serve as the required root.
+- **Input:** `pairs = [[1,2],[2,3],[2,4],[1,5]]`
+- **Output:** `0`
+- **Explanation:** No node is comparable with every other node, so none can serve as the required root.

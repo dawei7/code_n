@@ -30,20 +30,20 @@ Among all smaller arrays obtainable by one swap, return the lexicographically la
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [3,2,1]`
-- Output: `[3,1,2]`
-- Explanation: Swap `2` and `1`.
+- **Input:** `arr = [3,2,1]`
+- **Output:** `[3,1,2]`
+- **Explanation:** Swap `2` and `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,1,5]`
-- Output: `[1,1,5]`
-- Explanation: No swap produces a smaller permutation.
+- **Input:** `arr = [1,1,5]`
+- **Output:** `[1,1,5]`
+- **Explanation:** No swap produces a smaller permutation.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [1,9,4,6,7]`
-- Output: `[1,7,4,6,9]`
-- Explanation: Swap `9` and `7`.
+- **Input:** `arr = [1,9,4,6,7]`
+- **Output:** `[1,7,4,6,9]`
+- **Explanation:** Swap `9` and `7`.

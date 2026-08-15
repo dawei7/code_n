@@ -12,8 +12,16 @@ Return *the number of minutes* needed to inform all the employees about the urge
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `headID`: Input parameter (`int`).
+- `manager`: Input parameter (`List[int]`).
+- `informTime`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +30,7 @@ Return *the number of minutes* needed to inform all the employees about the urge
 - **Input:** $n = 1, headID = 0, manager = [-1], informTime = [0]$
 - **Output:** `0`
 - **Explanation:** The head of the company is the only employee in the company.
+
 #### Example 2
 
 ![](images/graph.png)

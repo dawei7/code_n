@@ -12,53 +12,53 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcd", t = "cdab", k = 2
+- **Input:** s = "abcd", t = "cdab", k = 2
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `s` into 2 substrings of length 2: `["ab", "cd"]`.
 
 - Rearranging these substrings as `["cd", "ab"]`, and then concatenating them results in `"cdab"`, which matches `t`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aabbcc", t = "bbaacc", k = 3
+- **Input:** s = "aabbcc", t = "bbaacc", k = 3
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `s` into 3 substrings of length 2: `["aa", "bb", "cc"]`.
 
 - Rearranging these substrings as `["bb", "aa", "cc"]`, and then concatenating them results in `"bbaacc"`, which matches `t`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "aabbcc", t = "bbaacc", k = 2
+- **Input:** s = "aabbcc", t = "bbaacc", k = 2
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `s` into 2 substrings of length 3: `["aab", "bcc"]`.
 
 - These substrings cannot be rearranged to form $t = "bbaacc"$, so the output is `false`.
-
-</div>
 
 ### 4. Constraints
 

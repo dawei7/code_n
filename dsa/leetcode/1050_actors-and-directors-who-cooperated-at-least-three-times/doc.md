@@ -31,7 +31,7 @@ Find every distinct `(actor_id, director_id)` pair having at least three collabo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `ActorDirector`
 
@@ -45,7 +45,7 @@ Find every distinct `(actor_id, director_id)` pair having at least three collabo
 | 2 | 1 | 5 |
 | 2 | 1 | 6 |
 
-Output:
+- **Output:** 
 
 | actor_id | director_id |
 |---:|---:|

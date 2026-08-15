@@ -27,40 +27,27 @@ Return `-1` when the first version is smaller, `1` when it is larger, and `0` wh
 
 #### Example 1
 
-<div class="example-block">
-**Input:** version1 = "1.2", version2 = "1.10"
+- **Input:** version1 = "1.2", version2 = "1.10"
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** version1's second revision is "2" and version2's second revision is "10": 2 < 10, so version1 < version2.
 
-version1's second revision is "2" and version2's second revision is "10": 2 < 10, so version1 < version2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** version1 = "1.01", version2 = "1.001"
+- **Input:** version1 = "1.01", version2 = "1.001"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** Ignoring leading zeroes, both "01" and "001" represent the same integer "1".
 
-Ignoring leading zeroes, both "01" and "001" represent the same integer "1".
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** version1 = "1.0", version2 = "1.0.0.0"
+- **Input:** version1 = "1.0", version2 = "1.0.0.0"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-version1 has less revisions, which means every missing revision are treated as "0".
-
-</div>
+- **Explanation:** version1 has less revisions, which means every missing revision are treated as "0".
 
 ### 4. Constraints
 

@@ -32,13 +32,13 @@ Return the XOR of `((nums[i] | nums[j]) & nums[k])` over every ordered index tri
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 4]`
-- Output: `5`
-- Explanation: XORing the eight ordered triplets' effective values gives `1 ^ 0 ^ 1 ^ 4 ^ 1 ^ 4 ^ 0 ^ 4 = 5`.
+- **Input:** `nums = [1, 4]`
+- **Output:** `5`
+- **Explanation:** XORing the eight ordered triplets' effective values gives `1 ^ 0 ^ 1 ^ 4 ^ 1 ^ 4 ^ 0 ^ 4 = 5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [15, 45, 20, 2, 34, 35, 5, 44, 32, 30]`
-- Output: `34`
+- **Input:** `nums = [15, 45, 20, 2, 34, 35, 5, 44, 32, 30]`
+- **Output:** `34`

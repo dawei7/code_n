@@ -41,10 +41,10 @@ be the total number of path characters processed across all calls.
 [[],["/a",1],["/a"]]
 - **Output:** ``
 [null,true,1]
-- **Explanation:**
-FileSystem fileSystem = new FileSystem();
+- **Explanation:** FileSystem fileSystem = new FileSystem();
 fileSystem.createPath("/a", 1); // return true
 fileSystem.get("/a"); // return 1
+
 #### Example 2
 
 - **Input:** ``
@@ -52,8 +52,7 @@ fileSystem.get("/a"); // return 1
 [[],["/leet",1],["/leet/code",2],["/leet/code"],["/c/d",1],["/c"]]
 - **Output:** ``
 [null,true,true,2,false,-1]
-- **Explanation:**
-FileSystem fileSystem = new FileSystem();
+- **Explanation:** FileSystem fileSystem = new FileSystem();
 fileSystem.createPath("/leet", 1); // return true
 fileSystem.createPath("/leet/code", 2); // return true
 fileSystem.get("/leet/code"); // return 2

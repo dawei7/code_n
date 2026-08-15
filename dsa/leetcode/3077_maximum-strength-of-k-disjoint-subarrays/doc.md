@@ -41,20 +41,20 @@ The constraints are $1 \le n \le 10^4$, $-10^9 \le \texttt{nums[i]} \le 10^9$, $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, -1, 2]`, `k = 3`
-- Output: `22`
-- Explanation: Choose `nums[0..2]`, `nums[3..3]`, and `nums[4..4]`. Their strength is $3(1+2+3)-2(-1)+2=22$.
+- **Input:** `nums = [1, 2, 3, -1, 2]`, `k = 3`
+- **Output:** `22`
+- **Explanation:** Choose `nums[0..2]`, `nums[3..3]`, and `nums[4..4]`. Their strength is $3(1+2+3)-2(-1)+2=22$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [12, -2, -2, -2, -2]`, `k = 5`
-- Output: `64`
-- Explanation: Five non-empty subarrays require each element to stand alone. The resulting strength is $5(12)-4(-2)+3(-2)-2(-2)+(-2)=64$.
+- **Input:** `nums = [12, -2, -2, -2, -2]`, `k = 5`
+- **Output:** `64`
+- **Explanation:** Five non-empty subarrays require each element to stand alone. The resulting strength is $5(12)-4(-2)+3(-2)-2(-2)+(-2)=64$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-1, -2, -3]`, `k = 1`
-- Output: `-1`
-- Explanation: With one selected subarray, strength is its ordinary sum. The best choice is the single element `-1`.
+- **Input:** `nums = [-1, -2, -3]`, `k = 1`
+- **Output:** `-1`
+- **Explanation:** With one selected subarray, strength is its ordinary sum. The best choice is the single element `-1`.

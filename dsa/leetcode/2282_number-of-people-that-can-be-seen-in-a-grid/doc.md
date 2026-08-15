@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/) |
 
 ## Problem Description
+
 ### Goal
+
 An $m \times n$ grid contains one person in each cell, and
 `heights[i][j]` gives that person's positive height. A person may look only
 to the right within the same row or downward within the same column.
@@ -20,6 +22,7 @@ people. Return an $m \times n$ matrix whose entry at `(i, j)` counts everyone
 visible to the right or below the person in that cell.
 
 ### Function Contract
+
 **Inputs**
 
 - `heights`: A rectangular $m \times n$ integer matrix containing the height of each person.
@@ -33,17 +36,18 @@ An $m \times n$ integer matrix where each entry is the number of people visible
 from the corresponding input cell in the two permitted directions.
 
 ### Examples
-**Example 1**
 
-- Input: `heights = [[3, 1, 4, 2, 5]]`
-- Output: `[[2, 1, 2, 1, 0]]`
+#### Example 1
 
-**Example 2**
+- **Input:** `heights = [[3, 1, 4, 2, 5]]`
+- **Output:** `[[2, 1, 2, 1, 0]]`
 
-- Input: `heights = [[5, 1], [3, 1], [4, 1]]`
-- Output: `[[3, 1], [2, 1], [1, 0]]`
+#### Example 2
 
-**Example 3**
+- **Input:** `heights = [[5, 1], [3, 1], [4, 1]]`
+- **Output:** `[[3, 1], [2, 1], [1, 0]]`
 
-- Input: `heights = [[2, 2], [2, 2]]`
-- Output: `[[2, 1], [1, 0]]`
+#### Example 3
+
+- **Input:** `heights = [[2, 2], [2, 2]]`
+- **Output:** `[[2, 1], [1, 0]]`

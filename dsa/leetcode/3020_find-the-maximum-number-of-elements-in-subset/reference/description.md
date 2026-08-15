@@ -10,8 +10,13 @@ Return *the **maximum** number of elements in a subset that satisfies these cond
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the **maximum** number of elements in a subset that satisfies these cond
 - **Input:** `nums = [5,4,1,2,2]`
 - **Output:** `3`
 - **Explanation:** We can select the subset {4,2,2}, which can be placed in the array as [2,4,2] which follows the pattern and $2^{2}$ == 4. Hence the answer is 3.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,2,4]`

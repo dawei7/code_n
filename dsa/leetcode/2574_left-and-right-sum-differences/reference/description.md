@@ -12,8 +12,13 @@ Return an integer array `answer` of size `n` where $\text{answer}[i] = |\text{le
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Return an integer array `answer` of size `n` where $\text{answer}[i] = |\text{le
 - **Output:** `[15,1,11,22]`
 - **Explanation:** The array leftSum is [0,10,14,22] and the array rightSum is [15,11,3,0].
 The array answer is [|0 - 15|,|10 - 11|,|14 - 3|,|22 - 0|] = [15,1,11,22].
+
 #### Example 2
 
 - **Input:** `nums = [1]`

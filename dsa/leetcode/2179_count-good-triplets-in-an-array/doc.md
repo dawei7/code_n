@@ -39,19 +39,19 @@ permutations.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [2,0,1,3]`, `nums2 = [0,1,2,3]`
-- Output: `1`
-- Explanation: the values `(0,1,3)` are the only three that occur in the same
+- **Input:** `nums1 = [2,0,1,3]`, `nums2 = [0,1,2,3]`
+- **Output:** `1`
+- **Explanation:** the values `(0,1,3)` are the only three that occur in the same
   relative order.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [4,0,1,3,2]`, `nums2 = [4,1,0,2,3]`
-- Output: `4`
+- **Input:** `nums1 = [4,0,1,3,2]`, `nums2 = [4,1,0,2,3]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [0,1,2]`, `nums2 = [2,1,0]`
-- Output: `0`
+- **Input:** `nums1 = [0,1,2]`, `nums2 = [2,1,0]`
+- **Output:** `0`

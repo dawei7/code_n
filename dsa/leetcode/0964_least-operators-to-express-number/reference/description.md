@@ -16,8 +16,14 @@ We would like to write an expression with the least number of operators such tha
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,12 +33,14 @@ We would like to write an expression with the least number of operators such tha
 - **Output:** `5`
 - **Explanation:** 3 * 3 + 3 * 3 + 3 / 3.
 The expression contains 5 operations.
+
 #### Example 2
 
 - **Input:** $x = 5, target = 501$
 - **Output:** `8`
 - **Explanation:** 5 * 5 * 5 * 5 - 5 * 5 * 5 + 5 / 5.
 The expression contains 8 operations.
+
 #### Example 3
 
 - **Input:** $x = 100, target = 100000000$

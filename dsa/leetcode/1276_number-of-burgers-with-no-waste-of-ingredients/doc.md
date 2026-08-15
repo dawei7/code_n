@@ -31,17 +31,17 @@ Given the available numbers of tomato and cheese slices, determine nonnegative c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tomatoSlices = 16, cheeseSlices = 7`
-- Output: `[1,6]`
+- **Input:** `tomatoSlices = 16, cheeseSlices = 7`
+- **Output:** `[1,6]`
 
-**Example 2**
+#### Example 2
 
-- Input: `tomatoSlices = 17, cheeseSlices = 4`
-- Output: `[]`
+- **Input:** `tomatoSlices = 17, cheeseSlices = 4`
+- **Output:** `[]`
 
-**Example 3**
+#### Example 3
 
-- Input: `tomatoSlices = 4, cheeseSlices = 17`
-- Output: `[]`
+- **Input:** `tomatoSlices = 4, cheeseSlices = 17`
+- **Output:** `[]`

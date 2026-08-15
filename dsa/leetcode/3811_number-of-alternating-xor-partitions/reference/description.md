@@ -38,12 +38,11 @@ A single block is valid if its **XOR** equals `target1`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,1,4], target1 = 1, target2 = 5
+- **Input:** nums = [2,3,1,4], target1 = 1, target2 = 5
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - The XOR of `[2, 3]` is 1, which matches `target1`.
 
@@ -51,15 +50,13 @@ A single block is valid if its **XOR** equals `target1`.
 
 - This is the only valid alternating partition, so the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,0,0], target1 = 1, target2 = 0
+- **Input:** nums = [1,0,0], target1 = 1, target2 = 0
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - **​​​​​​​**The XOR of `[1, 0, 0]` is 1, which matches `target1`.
 
@@ -69,19 +66,15 @@ A single block is valid if its **XOR** equals `target1`.
 
 - Thus, the answer is 3.​​​​​​​
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7], target1 = 1, target2 = 7
+- **Input:** nums = [7], target1 = 1, target2 = 7
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The XOR of `[7]` is 7, which does not match `target1`, so no valid partition exists.
-
-</div>
 
 ### 5. Constraints
 

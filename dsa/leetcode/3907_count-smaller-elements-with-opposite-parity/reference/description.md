@@ -28,12 +28,11 @@ Return an integer array `answer` of length $n$, where $\text{answer}[i]$ counts 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,2,4,1,3]
+- **Input:** nums = [5,2,4,1,3]
 
-**Output:** [2,1,2,0,0]
+- **Output:** [2,1,2,0,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$, the elements $\text{nums}[1] = 2$ and $\text{nums}[2] = 4$ are smaller and have different parity.
 
@@ -45,31 +44,23 @@ Return an integer array `answer` of length $n$, where $\text{answer}[i]$ counts 
 
 Thus, the $answer = [2, 1, 2, 0, 0]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,4,1]
+- **Input:** nums = [4,4,1]
 
-**Output:** [1,1,0]
+- **Output:** [1,1,0]
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 For $i = 0$ and $i = 1$, the element $\text{nums}[2] = 1$ is smaller and has different parity. Thus, the $answer = [1, 1, 0]$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7]
+- **Input:** nums = [7]
 
-**Output:** [0]
+- **Output:** [0]
 
-**Explanation:**
-
-No elements exist to the right of index 0, so its score is 0. Thus, the $answer = [0]$.
-
-</div>
+- **Explanation:** No elements exist to the right of index 0, so its score is 0. Thus, the $answer = [0]$.
 
 ### 4. Constraints
 

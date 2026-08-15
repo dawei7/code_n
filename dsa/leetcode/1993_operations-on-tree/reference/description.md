@@ -10,13 +10,11 @@ The data structure should support the following functions:
 
 - **Upgrade****: Locks** the given node for the given user and **unlocks** all of its descendants **regardless** of who locked it. You may only upgrade a node if **all** 3 conditions are true:
 
-		<li>The node is unlocked,
+		- The node is unlocked,
 
 - It has at least one locked descendant (by **any** user), and
 
 - It does not have any locked ancestors.
-
-	</li>
 
 Implement the `LockingTree` class:
 
@@ -30,8 +28,12 @@ Implement the `LockingTree` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `LockingTree(parent: List[int])`: Initializes the data structure.
+- `lock(num: int, user: int) -> `bool``: Executes operation.
+- `unlock(num: int, user: int) -> `bool``: Executes operation.
+- `upgrade(num: int, user: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

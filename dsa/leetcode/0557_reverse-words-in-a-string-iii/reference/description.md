@@ -4,8 +4,13 @@ Given a string `s`, reverse the order of characters in each word within a senten
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given a string `s`, reverse the order of characters in each word within a senten
 
 - **Input:** `s = "Let's take LeetCode contest"`
 - **Output:** `"s'teL ekat edoCteeL tsetnoc"`
+
 #### Example 2
 
 - **Input:** `s = "Mr Ding"`

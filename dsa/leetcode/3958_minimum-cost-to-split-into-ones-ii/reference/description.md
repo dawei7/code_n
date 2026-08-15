@@ -24,14 +24,11 @@ Return the minimum possible sum of operation costs after every remaining piece e
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3
+- **Input:** n = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One optimal set of operations is:
+- **Explanation:** One optimal set of operations is:
 
 <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<tbody>
@@ -64,15 +61,13 @@ One optimal set of operations is:
 
 Thus, the minimum total cost is $2 + 1 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4
+- **Input:** n = 4
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:​​​​​​​**
+- **Explanation:** ​​​​​​​**
 
 One optimal set of operations is:
 
@@ -106,8 +101,6 @@ One optimal set of operations is:
 </table>
 
 Thus, the minimum total cost is $4 + 1 + 1 = 6$.
-
-</div>
 
 ### 4. Constraints
 

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/generate-schedule/) |
 
 ## Problem Description
+
 ### Goal
 
 Create a match schedule for `n` teams numbered from 0 through `n - 1`. Every ordered pair of distinct teams must appear exactly once: each pair of teams plays twice overall, with each team serving as the home team once.
@@ -29,23 +30,23 @@ Return a list of $n(n-1)$ two-element matches when a schedule exists. In each ma
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`
-- Output: `[]`
+- **Input:** `n = 3`
+- **Output:** `[]`
 
 Every pair of matches among three teams shares a participant, so consecutive-day play cannot be avoided.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`
-- Output: any valid list of 20 directed matches
+- **Input:** `n = 5`
+- **Output:** any valid list of 20 directed matches
 
 All 20 home-away fixtures can be ordered so neighboring matches use four distinct teams.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4`
-- Output: `[]`
+- **Input:** `n = 4`
+- **Output:** `[]`
 
 Each two-team matchup has only its complementary pair as a disjoint neighbor, splitting the matchup graph into components that cannot cover the full schedule.

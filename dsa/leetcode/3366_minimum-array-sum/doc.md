@@ -35,14 +35,14 @@ Let $n=\lvert\texttt{nums}\rvert$. The constraints are $1\le n\le100$, $0\le\tex
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 8, 3, 19, 3]`, `k = 3`, `op1 = 1`, `op2 = 1`
-- Output: `23`
-- Explanation: Subtract 3 from 8 and halve 19 with upward rounding, producing `[2, 5, 3, 10, 3]`.
+- **Input:** `nums = [2, 8, 3, 19, 3]`, `k = 3`, `op1 = 1`, `op2 = 1`
+- **Output:** `23`
+- **Explanation:** Subtract 3 from 8 and halve 19 with upward rounding, producing `[2, 5, 3, 10, 3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 4, 3]`, `k = 3`, `op1 = 2`, `op2 = 1`
-- Output: `3`
-- Explanation: Halve 2 and 4, then subtract 3 from the final element to obtain `[1, 2, 0]`.
+- **Input:** `nums = [2, 4, 3]`, `k = 3`, `op1 = 2`, `op2 = 1`
+- **Output:** `3`
+- **Explanation:** Halve 2 and 4, then subtract 3 from the final element to obtain `[1, 2, 0]`.

@@ -10,8 +10,14 @@ Return *the selected subsequence. If there are multiple answers, return **any** 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `groups`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Note
 
@@ -21,42 +27,19 @@ The elements in `words` are distinct.
 
 #### Example 1
 
-<div class="example-block" style="
-    border-color: var(--border-tertiary);
-    border-left-width: 2px;
-    color: var(--text-secondary);
-    font-size: .875rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: visible;
-    padding-left: 1rem;
-">
-**Input:** words = ["e","a","b"], groups = [0,0,1]
+- **Input:** words = ["e","a","b"], groups = [0,0,1]
 
-**Output:** ["e","b"]
+- **Output:** ["e","b"]
 
-**Explanation:** A subsequence that can be selected is `["e","b"]` because $\text{groups}[0] \neq \text{groups}[2]$. Another subsequence that can be selected is `["a","b"]` because $\text{groups}[1] \neq \text{groups}[2]$. It can be demonstrated that the length of the longest subsequence of indices that satisfies the condition is `2`.
+- **Explanation:** A subsequence that can be selected is `["e","b"]` because $\text{groups}[0] \neq \text{groups}[2]$. Another subsequence that can be selected is `["a","b"]` because $\text{groups}[1] \neq \text{groups}[2]$. It can be demonstrated that the length of the longest subsequence of indices that satisfies the condition is `2`.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="
-    border-color: var(--border-tertiary);
-    border-left-width: 2px;
-    color: var(--text-secondary);
-    font-size: .875rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: visible;
-    padding-left: 1rem;
-">
-**Input:** words = ["a","b","c","d"], groups = [1,0,1,1]
+- **Input:** words = ["a","b","c","d"], groups = [1,0,1,1]
 
-**Output:** ["a","b","c"]
+- **Output:** ["a","b","c"]
 
-**Explanation:** A subsequence that can be selected is `["a","b","c"]` because $\text{groups}[0] \neq \text{groups}[1]$ and $\text{groups}[1] \neq \text{groups}[2]$. Another subsequence that can be selected is `["a","b","d"]` because $\text{groups}[0] \neq \text{groups}[1]$ and $\text{groups}[1] \neq \text{groups}[3]$. It can be shown that the length of the longest subsequence of indices that satisfies the condition is `3`.
-
-</div>
+- **Explanation:** A subsequence that can be selected is `["a","b","c"]` because $\text{groups}[0] \neq \text{groups}[1]$ and $\text{groups}[1] \neq \text{groups}[2]$. Another subsequence that can be selected is `["a","b","d"]` because $\text{groups}[0] \neq \text{groups}[1]$ and $\text{groups}[1] \neq \text{groups}[3]$. It can be shown that the length of the longest subsequence of indices that satisfies the condition is `3`.
 
 ### 5. Constraints
 

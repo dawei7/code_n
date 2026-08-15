@@ -8,8 +8,14 @@ Return *an integer array *`answer`*, where each *$\text{answer}[i]$* is the answ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[str]`).
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *an integer array *`answer`*, where each *$\text{answer}[i]$* is the answ
 - **Input:** $queries = ["cbd"], words = ["zaaaz"]$
 - **Output:** `[1]`
 - **Explanation:** On the first query we have f("cbd") = 1, f("zaaaz") = 3 so f("cbd") < f("zaaaz").
+
 #### Example 2
 
 - **Input:** $queries = ["bbb","cc"], words = ["a","aa","aaa","aaaa"]$

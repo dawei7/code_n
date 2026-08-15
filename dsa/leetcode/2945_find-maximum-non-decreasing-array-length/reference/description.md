@@ -10,8 +10,13 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,11 +31,13 @@ Second, choosing subarray [5,2] converts the array to [7,2].
 In these two ways the array is not non-decreasing.
 And if we choose subarray [5,2,2] and replace it with [9] it becomes non-decreasing.
 So the answer is 1.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `4`
 - **Explanation:** The array is non-decreasing. So the answer is 4.
+
 #### Example 3
 
 - **Input:** `nums = [4,3,2,6]`

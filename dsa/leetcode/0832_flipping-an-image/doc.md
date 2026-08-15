@@ -30,19 +30,19 @@ Then invert the flipped image: replace every `0` with `1` and every `1` with `0`
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `image = [[1, 1, 0], [1, 0, 1], [0, 0, 0]]`
-- Output: `[[1, 0, 0], [0, 1, 0], [1, 1, 1]]`
-- Explanation: Reversing the rows produces `[[0, 1, 1], [1, 0, 1], [0, 0, 0]]`; inverting those bits gives the output.
+- **Input:** `image = [[1, 1, 0], [1, 0, 1], [0, 0, 0]]`
+- **Output:** `[[1, 0, 0], [0, 1, 0], [1, 1, 1]]`
+- **Explanation:** Reversing the rows produces `[[0, 1, 1], [1, 0, 1], [0, 0, 0]]`; inverting those bits gives the output.
 
-**Example 2**
+#### Example 2
 
-- Input: `image = [[1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 1, 1], [1, 0, 1, 0]]`
-- Output: `[[1, 1, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1], [1, 0, 1, 0]]`
+- **Input:** `image = [[1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 1, 1], [1, 0, 1, 0]]`
+- **Output:** `[[1, 1, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1], [1, 0, 1, 0]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `image = [[0]]`
-- Output: `[[1]]`
-- Explanation: Reversal leaves the one-cell row in place, and inversion changes its bit.
+- **Input:** `image = [[0]]`
+- **Output:** `[[1]]`
+- **Explanation:** Reversal leaves the one-cell row in place, and inversion changes its bit.

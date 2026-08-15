@@ -12,8 +12,13 @@ Return *the most frequent prime number **greater** than *`10`* out of all the nu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -32,8 +37,7 @@ It is invalid to change the direction during the move.
 **
 - **Input:** $mat = [[1,1],[9,9],[1,1]]$
 - **Output:** `19`
-- **Explanation:**
-From cell (0,0) there are 3 possible directions and the numbers greater than 10 which can be created in those directions are:
+- **Explanation:** From cell (0,0) there are 3 possible directions and the numbers greater than 10 which can be created in those directions are:
 East: [11], South-East: [19], South: [19,191].
 Numbers greater than 10 created from the cell (0,1) in all possible directions are: [19,191,19,11].
 Numbers greater than 10 created from the cell (1,0) in all possible directions are: [99,91,91,91,91].
@@ -41,17 +45,18 @@ Numbers greater than 10 created from the cell (1,1) in all possible directions a
 Numbers greater than 10 created from the cell (2,0) in all possible directions are: [11,19,191,19].
 Numbers greater than 10 created from the cell (2,1) in all possible directions are: [11,19,19,191].
 The most frequent prime number among all the created numbers is 19.
+
 #### Example 2
 
 - **Input:** $mat = [[7]]$
 - **Output:** `-1`
 - **Explanation:** The only number which can be formed is 7. It is a prime number however it is not greater than 10, so return -1.
+
 #### Example 3
 
 - **Input:** $mat = [[9,7,8],[4,6,5],[2,8,6]]$
 - **Output:** `97`
-- **Explanation:**
-Numbers greater than 10 created from the cell (0,0) in all possible directions are: [97,978,96,966,94,942].
+- **Explanation:** Numbers greater than 10 created from the cell (0,0) in all possible directions are: [97,978,96,966,94,942].
 Numbers greater than 10 created from the cell (0,1) in all possible directions are: [78,75,76,768,74,79].
 Numbers greater than 10 created from the cell (0,2) in all possible directions are: [85,856,86,862,87,879].
 Numbers greater than 10 created from the cell (1,0) in all possible directions are: [46,465,48,42,49,47].

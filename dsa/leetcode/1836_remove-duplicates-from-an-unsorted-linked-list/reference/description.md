@@ -17,6 +17,7 @@ Return *the linked list after the deletions.*
 - **Input:** $head = [1,2,3,2]$
 - **Output:** `[1,3]`
 - **Explanation:** 2 appears twice in the linked list, so all 2's should be deleted. After deleting all 2's, we are left with [1,3].
+
 #### Example 2
 
 ![](images/tmp-linked-list-1.jpg)
@@ -24,6 +25,7 @@ Return *the linked list after the deletions.*
 - **Input:** $head = [2,1,1,2]$
 - **Output:** `[]`
 - **Explanation:** 2 and 1 both appear twice. All the elements should be deleted.
+
 #### Example 3
 
 ![](images/tmp-linked-list-2.jpg)

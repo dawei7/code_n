@@ -4,8 +4,14 @@ Given two non-negative integers `low` and `high`. Return the *count of odd numbe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `low`: Input parameter (`int`).
+- `high`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +20,7 @@ Given two non-negative integers `low` and `high`. Return the *count of odd numbe
 - **Input:** $low = 3, high = 7$
 - **Output:** `3`
 - **Explanation:** The odd numbers between 3 and 7 are [3,5,7].
+
 #### Example 2
 
 - **Input:** $low = 8, high = 10$

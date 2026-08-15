@@ -16,8 +16,13 @@ Return the **maximum** value achievable.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,14 +32,11 @@ If multiple partitions result in the same **maximum** sum, you can consider any 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3]
+- **Input:** nums = [2,3]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-One optimal partition is:
+- **Explanation:** One optimal partition is:
 
 - $A = [3], XOR(A) = 3$
 
@@ -44,17 +46,13 @@ One optimal partition is:
 
 The maximum value of: $XOR(A) + AND(B) + XOR(C) = 3 + 2 + 0 = 5$. Thus, the answer is 5.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,3,2]
+- **Input:** nums = [1,3,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-One optimal partition is:
+- **Explanation:** One optimal partition is:
 
 - $A = [1], XOR(A) = 1$
 
@@ -64,17 +62,13 @@ One optimal partition is:
 
 The maximum value of: $XOR(A) + AND(B) + XOR(C) = 1 + 2 + 3 = 6$. Thus, the answer is 6.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2,3,6,7]
+- **Input:** nums = [2,3,6,7]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-One optimal partition is:
+- **Explanation:** One optimal partition is:
 
 - $A = [7], XOR(A) = 7$
 
@@ -83,8 +77,6 @@ One optimal partition is:
 - $C = [6], XOR(C) = 6$
 
 The maximum value of: $XOR(A) + AND(B) + XOR(C) = 7 + 2 + 6 = 15$. Thus, the answer is 15.
-
-</div>
 
 ### 5. Constraints
 

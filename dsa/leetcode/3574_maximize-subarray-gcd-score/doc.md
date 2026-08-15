@@ -33,22 +33,22 @@ Return the maximum possible product of a non-empty subarray's length and its GCD
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,4], k = 1`
-- Output: `8`
-- Explanation: Double `2` to obtain `[4,4]`; the whole array has length `2` and GCD `4`.
+- **Input:** `nums = [2,4], k = 1`
+- **Output:** `8`
+- **Explanation:** Double `2` to obtain `[4,4]`; the whole array has length `2` and GCD `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,5,7], k = 2`
-- Output: `14`
-- Explanation: Doubling `7` makes the singleton subarray `[14]` attain score `14`.
+- **Input:** `nums = [3,5,7], k = 2`
+- **Output:** `14`
+- **Explanation:** Doubling `7` makes the singleton subarray `[14]` attain score `14`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5,5,5], k = 1`
-- Output: `15`
-- Explanation: The whole array already scores `3 * 5`; doubling only one of its three elements cannot raise their common divisor.
+- **Input:** `nums = [5,5,5], k = 1`
+- **Output:** `15`
+- **Explanation:** The whole array already scores `3 * 5`; doubling only one of its three elements cannot raise their common divisor.
 
 ---

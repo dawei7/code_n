@@ -32,18 +32,18 @@ Return the minimum number of steps needed to make `t` an anagram of `s`. The ord
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "bab", t = "aba"`
-- Output: `1`
-- Explanation: Replacing one `a` in `t` with `b` gives matching frequencies.
+- **Input:** `s = "bab", t = "aba"`
+- **Output:** `1`
+- **Explanation:** Replacing one `a` in `t` with `b` gives matching frequencies.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leetcode", t = "practice"`
-- Output: `5`
+- **Input:** `s = "leetcode", t = "practice"`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "anagram", t = "mangaar"`
-- Output: `0`
+- **Input:** `s = "anagram", t = "mangaar"`
+- **Output:** `0`

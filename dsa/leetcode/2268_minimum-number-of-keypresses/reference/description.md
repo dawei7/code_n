@@ -41,6 +41,7 @@ Type 'p' by pressing button 6 once.
 Type 'l' by pressing button 5 once.
 Type 'e' by pressing button 3 once.
 A total of 5 button presses are needed, so return 5.
+
 #### Example 2
 
 ![](images/image-20220505203823-1.png)

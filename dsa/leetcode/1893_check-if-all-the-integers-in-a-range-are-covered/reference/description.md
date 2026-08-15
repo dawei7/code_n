@@ -8,8 +8,15 @@ An integer `x` is covered by an interval $\text{ranges}[i] = [\text{start}_{i}, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `ranges`: Input parameter (`List[List[int]]`).
+- `left`: Input parameter (`int`).
+- `right`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -21,6 +28,7 @@ An integer `x` is covered by an interval $\text{ranges}[i] = [\text{start}_{i}, 
 - 2 is covered by the first range.
 - 3 and 4 are covered by the second range.
 - 5 is covered by the third range.
+
 #### Example 2
 
 - **Input:** $ranges = [[1,10],[10,20]], left = 21, right = 21$

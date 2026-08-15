@@ -35,7 +35,7 @@ Return columns `state`, `cities`, and `matching_letter_count`. The `cities` valu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input table:
 
@@ -57,7 +57,7 @@ Input table:
 | Pennsylvania | Pittsburgh |
 | Pennsylvania | Pottstown |
 
-Output:
+- **Output:** 
 
 | state | cities | matching_letter_count |
 |---|---|---:|

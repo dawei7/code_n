@@ -33,20 +33,20 @@ The constraints are $1\leq n\leq100$, $1\leq\texttt{nums[i]}\leq100$, and $1\leq
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,2,5,4,5]`, `k = 2`
-- Output: `2`
-- Explanation: Valid thresholds `4` and then `2` remove the two distinct levels above `k`.
+- **Input:** `nums = [5,2,5,4,5]`, `k = 2`
+- **Output:** `2`
+- **Explanation:** Valid thresholds `4` and then `2` remove the two distinct levels above `k`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,1,2]`, `k = 2`
-- Output: `-1`
-- Explanation: The value `1` cannot be increased to `2`.
+- **Input:** `nums = [2,1,2]`, `k = 2`
+- **Output:** `-1`
+- **Explanation:** The value `1` cannot be increased to `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [9,7,5,3]`, `k = 1`
-- Output: `4`
-- Explanation: Thresholds `7`, `5`, `3`, and `1` remove one distinct level per operation.
+- **Input:** `nums = [9,7,5,3]`, `k = 1`
+- **Output:** `4`
+- **Explanation:** Thresholds `7`, `5`, `3`, and `1` remove one distinct level per operation.

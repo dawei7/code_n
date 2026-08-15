@@ -31,19 +31,19 @@ Return `[earliest, latest]`, the minimum and maximum possible one-based round nu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 11, firstPlayer = 2, secondPlayer = 4`
-- Output: `[3, 4]`
-- Explanation: Choosing different winners in unrelated matches can make the two players meet in round three or postpone their meeting until round four.
+- **Input:** `n = 11, firstPlayer = 2, secondPlayer = 4`
+- **Output:** `[3, 4]`
+- **Explanation:** Choosing different winners in unrelated matches can make the two players meet in round three or postpone their meeting until round four.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, firstPlayer = 1, secondPlayer = 5`
-- Output: `[1, 1]`
-- Explanation: The first and last players are paired immediately, so no other outcome can change their meeting round.
+- **Input:** `n = 5, firstPlayer = 1, secondPlayer = 5`
+- **Output:** `[1, 1]`
+- **Explanation:** The first and last players are paired immediately, so no other outcome can change their meeting round.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, firstPlayer = 1, secondPlayer = 3`
-- Output: `[2, 3]`
+- **Input:** `n = 5, firstPlayer = 1, secondPlayer = 3`
+- **Output:** `[2, 3]`

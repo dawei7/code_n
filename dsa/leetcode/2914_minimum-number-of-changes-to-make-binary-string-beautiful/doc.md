@@ -37,20 +37,20 @@ Return the minimum number of character changes required to make `s` beautiful.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1001"`
-- Output: `2`
-- Explanation: Changing the result to `"1100"` permits the partition `"11|00"`.
+- **Input:** `s = "1001"`
+- **Output:** `2`
+- **Explanation:** Changing the result to `"1100"` permits the partition `"11|00"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "10"`
-- Output: `1`
-- Explanation: One character must change so that the only length-two part is uniform.
+- **Input:** `s = "10"`
+- **Output:** `1`
+- **Explanation:** One character must change so that the only length-two part is uniform.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "0000"`
-- Output: `0`
-- Explanation: The whole string is already one even-length uniform part.
+- **Input:** `s = "0000"`
+- **Output:** `0`
+- **Explanation:** The whole string is already one even-length uniform part.

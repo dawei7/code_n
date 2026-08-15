@@ -31,14 +31,14 @@ Use 24-hour time for the result. Hours wrap after `23`: midnight is represented 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arrivalTime = 15`, `delayedTime = 5`
-- Output: `20`
-- Explanation: The sum remains within the same 24-hour cycle.
+- **Input:** `arrivalTime = 15`, `delayedTime = 5`
+- **Output:** `20`
+- **Explanation:** The sum remains within the same 24-hour cycle.
 
-**Example 2**
+#### Example 2
 
-- Input: `arrivalTime = 13`, `delayedTime = 11`
-- Output: `0`
-- Explanation: Hour `24` is midnight, represented by `0` in 24-hour time.
+- **Input:** `arrivalTime = 13`, `delayedTime = 11`
+- **Output:** `0`
+- **Explanation:** Hour `24` is midnight, represented by `0` in 24-hour time.

@@ -32,20 +32,20 @@ Return a length-$q$ integer array whose $i$th value is the longest equal-charact
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "babacc"`, `queryCharacters = "bcb"`, `queryIndices = [1, 3, 3]`
-- Output: `[3, 3, 4]`
-- Explanation: the longest runs after the updates are `bbb`, then either `bbb` or `ccc`, then `bbbb`.
+- **Input:** `s = "babacc"`, `queryCharacters = "bcb"`, `queryIndices = [1, 3, 3]`
+- **Output:** `[3, 3, 4]`
+- **Explanation:** the longest runs after the updates are `bbb`, then either `bbb` or `ccc`, then `bbbb`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abyzz"`, `queryCharacters = "aa"`, `queryIndices = [2, 1]`
-- Output: `[2, 3]`
-- Explanation: the unchanged `zz` first remains longest, then the prefix becomes `aaa`.
+- **Input:** `s = "abyzz"`, `queryCharacters = "aa"`, `queryIndices = [2, 1]`
+- **Output:** `[2, 3]`
+- **Explanation:** the unchanged `zz` first remains longest, then the prefix becomes `aaa`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "a"`, `queryCharacters = "bb"`, `queryIndices = [0, 0]`
-- Output: `[1, 1]`
-- Explanation: every version of a one-character string has maximum run length one.
+- **Input:** `s = "a"`, `queryCharacters = "bb"`, `queryIndices = [0, 0]`
+- **Output:** `[1, 1]`
+- **Explanation:** every version of a one-character string has maximum run length one.

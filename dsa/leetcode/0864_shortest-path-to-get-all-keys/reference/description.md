@@ -22,8 +22,13 @@ Return *the lowest number of moves to acquire all keys*. If it is impossible, re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,12 +39,14 @@ Return *the lowest number of moves to acquire all keys*. If it is impossible, re
 - **Input:** $grid = ["@.a..","###.#","\text{b.A}.B"]$
 - **Output:** `8`
 - **Explanation:** Note that the goal is to obtain all the keys not to open all the locks.
+
 #### Example 2
 
 ![](images/lc-key2.jpg)
 
 - **Input:** $grid = ["@..aA","..B#.","....b"]$
 - **Output:** `6`
+
 #### Example 3
 
 ![](images/lc-keys3.jpg)

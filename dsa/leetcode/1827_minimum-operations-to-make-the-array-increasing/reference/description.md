@@ -10,8 +10,13 @@ An array `nums` is **strictly increasing** if $\text{nums}[i] < nums[i+1]$ for a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,10 +28,12 @@ An array `nums` is **strictly increasing** if $\text{nums}[i] < nums[i+1]$ for a
 1) Increment nums[2], so nums becomes [1,1,<u>**2**</u>].
 2) Increment nums[1], so nums becomes [1,<u>**2**</u>,2].
 3) Increment nums[2], so nums becomes [1,2,<u>**3**</u>].
+
 #### Example 2
 
 - **Input:** `nums = [1,5,2,4,1]`
 - **Output:** `14`
+
 #### Example 3
 
 - **Input:** `nums = [8]`

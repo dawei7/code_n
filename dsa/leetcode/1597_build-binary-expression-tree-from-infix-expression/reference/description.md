@@ -31,6 +31,7 @@ Return the root `Node` of the constructed binary expression tree. Operands are l
 - **Input:** `s = "3*4-2*5"`
 - **Output:** `[-,*,*,3,4,2,5]`
 - **Explanation:** The tree above is the only valid tree whose inorder traversal produces s.
+
 #### Example 2
 
 ![](images/ex1-2.png)
@@ -42,6 +43,7 @@ The tree below is also a valid binary expression tree with the same inorder trav
 ![](images/ex1-1.png)
 The third tree below is also not valid. Although it produces the same result and is equivalent to the above trees, its inorder traversal does not produce s and its operands are not in the same order as s.
 ![](images/ex1-3.png)
+
 #### Example 3
 
 - **Input:** `s = "1+2+3+4+5"`

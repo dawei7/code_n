@@ -23,32 +23,31 @@ Return `True` exactly when every row is identical to the column at the same zero
 
 - **Input:** $words = ["abcd","bnrt","crmy","dtye"]$
 - **Output:** `true`
-- **Explanation:**
-The 1^st row and 1^st column both read "abcd".
+- **Explanation:** The 1^st row and 1^st column both read "abcd".
 The 2^nd row and 2^nd column both read "bnrt".
 The 3^rd row and 3^rd column both read "crmy".
 The 4^th row and 4^th column both read "dtye".
 Therefore, it is a valid word square.
+
 #### Example 2
 
 ![](images/validsq2-grid.jpg)
 
 - **Input:** $words = ["abcd","bnrt","crm","dt"]$
 - **Output:** `true`
-- **Explanation:**
-The 1^st row and 1^st column both read "abcd".
+- **Explanation:** The 1^st row and 1^st column both read "abcd".
 The 2^nd row and 2^nd column both read "bnrt".
 The 3^rd row and 3^rd column both read "crm".
 The 4^th row and 4^th column both read "dt".
 Therefore, it is a valid word square.
+
 #### Example 3
 
 ![](images/validsq3-grid.jpg)
 
 - **Input:** $words = ["ball","area","read","lady"]$
 - **Output:** `false`
-- **Explanation:**
-The 3^rd row reads "read" while the 3^rd column reads "lead".
+- **Explanation:** The 3^rd row reads "read" while the 3^rd column reads "lead".
 Therefore, it is NOT a valid word square.
 
 ### 4. Constraints

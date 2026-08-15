@@ -31,64 +31,51 @@ $S = 1 + \sum_{v \in \texttt{nums}} \max(v, 0).$
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,1,-5,2], m = 2, l = 1, r = 3
+- **Input:** nums = [4,1,-5,2], m = 2, l = 1, r = 3
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-One optimal strategy is to:
+- **Explanation:** One optimal strategy is to:
 
 - Select the subarray `[4, 1]` with sum $4 + 1 = 5$ and the subarray `[2]` with sum 2. Both subarrays have length between `[l, r]`.
 
 - The total sum of these subarrays is $5 + 2 = 7$, which is the maximum achievable sum with at most $m = 2$ subarrays.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,0,3,4], m = 2, l = 1, r = 2
+- **Input:** nums = [1,0,3,4], m = 2, l = 1, r = 2
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-One optimal strategy is to:
+- **Explanation:** One optimal strategy is to:
 
 - Select the subarray `[1]` with sum `1` and the subarray `[3, 4]` with sum $3 + 4 = 7$. Both subarrays have length between `[l, r]`.
 
 - The total sum of these subarrays is $1 + 7 = 8$, which is the maximum achievable sum with at most $m = 2$ subarrays.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [-1,7,-4], m = 1, l = 2, r = 3
+- **Input:** nums = [-1,7,-4], m = 1, l = 2, r = 3
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Select the subarray `[-1, 7]` from `nums` which has length between `[l, r]`.
 
 - The total sum of this subarray is $-1 + 7 = 6$, which is the maximum achievable sum with at most $m = 1$ subarray.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** nums = [-3,-4,-1], m = 2, l = 1, r = 2
+- **Input:** nums = [-3,-4,-1], m = 2, l = 1, r = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - All subarrays of `nums` have negative sums. The optimal strategy is to select the subarray `[-1]`, which has length between `[l, r]`.
 
 - The total sum of this subarray is -1, which is the maximum achievable sum with at most $m = 2$ subarrays.
-
-</div>
 
 ### 4. Constraints
 

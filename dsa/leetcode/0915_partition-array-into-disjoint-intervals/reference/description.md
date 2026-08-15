@@ -14,8 +14,13 @@ Test cases are generated such that partitioning exists.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Test cases are generated such that partitioning exists.
 - **Input:** `nums = [5,0,3,8,6]`
 - **Output:** `3`
 - **Explanation:** left = [5,0,3], right = [8,6]
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,0,6,12]`

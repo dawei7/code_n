@@ -10,8 +10,14 @@ Return *the **minimum** degree of a connected trio in the graph, or* `-1` *if th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *the **minimum** degree of a connected trio in the graph, or* `-1` *if th
 - **Input:** $n = 6, edges = [[1,2],[1,3],[3,2],[4,1],[5,2],[3,6]]$
 - **Output:** `3`
 - **Explanation:** There is exactly one trio, which is [1,2,3]. The edges that form its degree are bolded in the figure above.
+
 #### Example 2
 
 ![](images/trios2.png)

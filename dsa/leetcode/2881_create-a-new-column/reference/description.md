@@ -26,7 +26,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 DataFrame employees
 +---------+--------+
 | name    | salary |
@@ -38,7 +38,7 @@ DataFrame employees
 | Finn    | 74576  |
 | Thomas  | 24433  |
 +---------+--------+
-**Output:**
+- **Output:** 
 +---------+--------+--------+
 | name    | salary | bonus  |
 +---------+--------+--------+
@@ -49,6 +49,5 @@ DataFrame employees
 | Finn    | 74576  | 149152 |
 | Thomas  | 24433  | 48866  |
 +---------+--------+--------+
-**Explanation:**
-A new column bonus is created by doubling the value in the column salary.
+- **Explanation:** A new column bonus is created by doubling the value in the column salary.
 ```

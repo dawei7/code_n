@@ -34,14 +34,14 @@ Return a JavaScript generator object whose successive yielded values are the Fib
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `callCount = 5`
-- Output: `[0,1,1,2,3]`
-- Explanation: Five calls to `next()` retrieve the first five yielded Fibonacci values.
+- **Input:** `callCount = 5`
+- **Output:** `[0,1,1,2,3]`
+- **Explanation:** Five calls to `next()` retrieve the first five yielded Fibonacci values.
 
-**Example 2**
+#### Example 2
 
-- Input: `callCount = 0`
-- Output: `[]`
-- Explanation: The generator is never advanced, so it yields no observed values.
+- **Input:** `callCount = 0`
+- **Output:** `[]`
+- **Explanation:** The generator is never advanced, so it yields no observed values.

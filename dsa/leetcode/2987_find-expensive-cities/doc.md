@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-expensive-cities/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Listings` table contains one uniquely identified home listing, its city,
 and its price on each row. The national average home price is the average over
 all listing rows, so every listed home contributes once.
@@ -22,6 +24,7 @@ national value does not qualify. Return only the `city` column, sorted in
 ascending order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Listings(listing_id, city, price)`: uniquely identified home listings
@@ -33,17 +36,18 @@ Let $R$ be the number of listing rows.
 Return qualifying city names in ascending order.
 
 ### Examples
-**Example 1**
 
-- Input: The published Chicago, LosAngeles, SanFrancisco, and NewYork listings
-- Output: `[("Chicago"),("LosAngeles")]`
+#### Example 1
 
-**Example 2**
+- **Input:** The published Chicago, LosAngeles, SanFrancisco, and NewYork listings
+- **Output:** `[("Chicago"),("LosAngeles")]`
 
-- Input: One city containing every listing
-- Output: No rows, because its average equals the national average.
+#### Example 2
 
-**Example 3**
+- **Input:** One city containing every listing
+- **Output:** No rows, because its average equals the national average.
 
-- Input: Cities with respective listing averages `100` and `0`
-- Output: Only the first city.
+#### Example 3
+
+- **Input:** Cities with respective listing averages `100` and `0`
+- **Output:** Only the first city.

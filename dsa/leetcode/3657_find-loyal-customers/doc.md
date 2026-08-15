@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-loyal-customers/) |
 
 ## Problem Description
+
 ### Goal
 
 The `customer_transactions` table records every purchase and refund made by each customer. Identify customers whose history demonstrates all three required signs of loyalty.
@@ -33,14 +34,14 @@ Return an ordered table with one column, `customer_id`. Include a customer exact
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 A customer with four purchases, no refunds, and 46 days between the first and last transaction qualifies.
 
-**Example 2**
+#### Example 2
 
 A customer with three purchases and two refunds has a refund rate of $2/5=40\%$, so the customer is excluded even if the activity period is long enough.
 
-**Example 3**
+#### Example 3
 
 A customer with three purchases over exactly 30 days and no refunds qualifies because both the purchase and activity thresholds are inclusive.

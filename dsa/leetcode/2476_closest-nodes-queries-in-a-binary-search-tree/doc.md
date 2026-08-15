@@ -31,20 +31,20 @@ Return a length-`q` array. For each query `x`, its row is `[lower, upper]`, wher
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [6,2,13,1,4,9,15,null,null,null,null,null,null,14], queries = [2,5,16]`
-- Output: `[[2,2],[4,6],[15,-1]]`
-- Explanation: An exact match supplies both bounds for `2`; `5` lies between `4` and `6`; `16` exceeds the maximum tree value.
+- **Input:** `root = [6,2,13,1,4,9,15,null,null,null,null,null,null,14], queries = [2,5,16]`
+- **Output:** `[[2,2],[4,6],[15,-1]]`
+- **Explanation:** An exact match supplies both bounds for `2`; `5` lies between `4` and `6`; `16` exceeds the maximum tree value.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [4,null,9], queries = [3]`
-- Output: `[[-1,4]]`
-- Explanation: No tree value is at most `3`, while `4` is the least value above it.
+- **Input:** `root = [4,null,9], queries = [3]`
+- **Output:** `[[-1,4]]`
+- **Explanation:** No tree value is at most `3`, while `4` is the least value above it.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [2,1,3], queries = [1,4]`
-- Output: `[[1,1],[3,-1]]`
-- Explanation: The first query is exact and the second exceeds the tree maximum.
+- **Input:** `root = [2,1,3], queries = [1,4]`
+- **Output:** `[[1,1],[3,-1]]`
+- **Explanation:** The first query is exact and the second exceeds the tree maximum.

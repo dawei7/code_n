@@ -10,8 +10,13 @@ Given an integer `n`, return* the **minimum** possible number of boxes touching 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Given an integer `n`, return* the **minimum** possible number of boxes touching 
 - **Output:** `3`
 - **Explanation:** The figure above is for the placement of the three boxes.
 These boxes are placed in the corner of the room, where the corner is on the left side.
+
 #### Example 2
 
 ![](images/4-boxes.png)
@@ -31,6 +37,7 @@ These boxes are placed in the corner of the room, where the corner is on the lef
 - **Output:** `3`
 - **Explanation:** The figure above is for the placement of the four boxes.
 These boxes are placed in the corner of the room, where the corner is on the left side.
+
 #### Example 3
 
 ![](images/10-boxes.png)

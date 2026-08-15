@@ -12,47 +12,39 @@ Return the **maximum sum** of such a subarray.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5]
+- **Input:** nums = [1,2,3,4,5]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** Select the entire array without deleting any element to obtain the maximum sum.
 
-Select the entire array without deleting any element to obtain the maximum sum.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,0,1,1]
+- **Input:** nums = [1,1,0,1,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Delete the element $\text{nums}[0] = 1$, $\text{nums}[1] = 1$, $\text{nums}[2] = 0$, and $\text{nums}[3] = 1$. Select the entire array `[1]` to obtain the maximum sum.
 
-Delete the element $\text{nums}[0] = 1$, $\text{nums}[1] = 1$, $\text{nums}[2] = 0$, and $\text{nums}[3] = 1$. Select the entire array `[1]` to obtain the maximum sum.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,-1,-2,1,0,-1]
+- **Input:** nums = [1,2,-1,-2,1,0,-1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Delete the elements $\text{nums}[2] = -1$ and $\text{nums}[3] = -2$, and select the subarray `[2, 1]` from `[1, 2, 1, 0, -1]` to obtain the maximum sum.
-
-</div>
+- **Explanation:** Delete the elements $\text{nums}[2] = -1$ and $\text{nums}[3] = -2$, and select the subarray `[2, 1]` from `[1, 2, 1, 0, -1]` to obtain the maximum sum.
 
 ### 4. Constraints
 

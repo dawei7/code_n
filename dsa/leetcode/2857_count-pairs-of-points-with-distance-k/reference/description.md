@@ -8,8 +8,14 @@ Return *the number of pairs *`(i, j)`* such that *`i < j`* and the distance betw
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coordinates`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the number of pairs *`(i, j)`* such that *`i < j`* and the distance betw
 - **Explanation:** We can choose the following pairs:
 - (0,1): Because we have (1 XOR 4) + (2 XOR 2) = 5.
 - (2,3): Because we have (1 XOR 5) + (3 XOR 2) = 5.
+
 #### Example 2
 
 - **Input:** $coordinates = [[1,3],[1,3],[1,3],[1,3],[1,3]], k = 0$

@@ -10,8 +10,14 @@ For example, if $n = 160$ and $x = 3$, one way to express `n` is $n = 2^{3} + 3^
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ For example, if $n = 160$ and $x = 3$, one way to express `n` is $n = 2^{3} + 3^
 - **Output:** `1`
 - **Explanation:** We can express n as the following: n = $3^{2}$ + $1^{2}$ = 10.
 It can be shown that it is the only way to express 10 as the sum of the 2^nd power of unique integers.
+
 #### Example 2
 
 - **Input:** $n = 4, x = 1$

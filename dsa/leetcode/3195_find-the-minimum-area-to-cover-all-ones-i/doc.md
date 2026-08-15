@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-the-minimum-area-to-cover-all-ones-i/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a two-dimensional binary array `grid`. Choose a rectangle whose
 sides are horizontal and vertical and which contains every cell whose value is
 `1`. Cells containing `0` may also lie inside the rectangle.
@@ -19,6 +21,7 @@ contains at least one `1`, so a nonempty covering rectangle is guaranteed to
 exist.
 
 ### Function Contract
+
 **Inputs**
 
 - `grid`: A rectangular matrix of binary integers. Its row count $R$ and
@@ -33,17 +36,18 @@ The minimum area of an axis-aligned rectangle containing every `1` in the
 matrix.
 
 ### Examples
-**Example 1**
 
-- Input: `grid = [[0, 1, 0], [1, 0, 1]]`
-- Output: `6`
+#### Example 1
+
+- **Input:** `grid = [[0, 1, 0], [1, 0, 1]]`
+- **Output:** `6`
 
 The ones span both rows and all three columns, producing a rectangle of
 height `2`, width `3`, and area `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 0], [0, 0]]`
-- Output: `1`
+- **Input:** `grid = [[1, 0], [0, 0]]`
+- **Output:** `1`
 
 Only the upper-left cell must be covered, so a one-cell rectangle is enough.

@@ -14,8 +14,14 @@ If there is no way to reach index $n - 1$, return `-1`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ If there is no way to reach index $n - 1$, return `-1`.
 - Jump from index 1 to index 3.
 - Jump from index 3 to index 5.
 It can be proven that there is no other jumping sequence that goes from 0 to n - 1 with more than 3 jumps. Hence, the answer is 3.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,6,4,1,2], target = 3`
@@ -39,6 +46,7 @@ It can be proven that there is no other jumping sequence that goes from 0 to n -
 - Jump from index 3 to index 4.
 - Jump from index 4 to index 5.
 It can be proven that there is no other jumping sequence that goes from 0 to n - 1 with more than 5 jumps. Hence, the answer is 5.
+
 #### Example 3
 
 - **Input:** `nums = [1,3,6,4,1,2], target = 0`

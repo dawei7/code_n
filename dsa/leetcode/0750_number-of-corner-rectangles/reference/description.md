@@ -27,6 +27,7 @@ Return the number of choices of row indices $r_1 < r_2$ and column indices $c_1 
 - **Input:** `grid = [[1,0,0,1,0],[0,0,1,0,1],[0,0,0,1,0],[1,0,1,0,1]]`
 - **Output:** `1`
 - **Explanation:** There is only one corner rectangle, with corners grid[1][2], grid[1][4], grid[3][2], grid[3][4].
+
 #### Example 2
 
 ![](images/cornerrec2-grid.jpg)
@@ -34,6 +35,7 @@ Return the number of choices of row indices $r_1 < r_2$ and column indices $c_1 
 - **Input:** `grid = [[1,1,1],[1,1,1],[1,1,1]]`
 - **Output:** `9`
 - **Explanation:** There are four 2x2 rectangles, four 2x3 and 3x2 rectangles, and one 3x3 rectangle.
+
 #### Example 3
 
 ![](images/cornerrec3-grid.jpg)

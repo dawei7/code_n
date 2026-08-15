@@ -33,14 +33,11 @@ Return the number of distinct valid ordered sequences, reduced modulo $10^9+7$.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, k = 3
+- **Input:** n = 5, k = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The sequences of length $k = 3$ whose sum is 5 are:
+- **Explanation:** The sequences of length $k = 3$ whose sum is 5 are:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -84,17 +81,13 @@ The sequences of length $k = 3$ whose sum is 5 are:
 
 There are 3 sequences with an even product, thus the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, k = 2
+- **Input:** n = 3, k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The sequences of length $k = 2$ whose sum is 3 are:
+- **Explanation:** The sequences of length $k = 2$ whose sum is 3 are:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -118,19 +111,13 @@ The sequences of length $k = 2$ whose sum is 3 are:
 
 There are 2 sequences with an even product, thus the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, k = 5
+- **Input:** n = 5, k = 5
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The only possible sequence of length $k = 5$ whose sum is 5 is `[1, 1, 1, 1, 1]`, which has an odd product. Thus, the answer is 0.
-
-</div>
+- **Explanation:** The only possible sequence of length $k = 5$ whose sum is 5 is `[1, 1, 1, 1, 1]`, which has an odd product. Thus, the answer is 0.
 
 ### 4. Constraints
 

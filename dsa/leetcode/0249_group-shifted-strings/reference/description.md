@@ -26,20 +26,15 @@ Return $List[\text{List}[str]]$ containing grouped strings belonging to the same
 
 #### Example 1
 
-<div class="example-block">
-**Input:** strings = ["abc","bcd","acef","xyz","az","ba","a","z"]
+- **Input:** strings = ["abc","bcd","acef","xyz","az","ba","a","z"]
 
-**Output:** [["acef"],["a","z"],["abc","bcd","xyz"],["az","ba"]]
+- **Output:** [["acef"],["a","z"],["abc","bcd","xyz"],["az","ba"]]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** strings = ["a"]
+- **Input:** strings = ["a"]
 
-**Output:** [["a"]]
-
-</div>
+- **Output:** [["a"]]
 
 ### 4. Constraints
 

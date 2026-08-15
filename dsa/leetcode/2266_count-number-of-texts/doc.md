@@ -43,18 +43,18 @@ three, except groups of `7` or `9`, which may have length at most four.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `pressedKeys = "22233"`
-- Output: `8`
+- **Input:** `pressedKeys = "22233"`
+- **Output:** `8`
 
 The run `"222"` has four valid divisions and `"33"` has two, giving
 $4\cdot2=8$ possible messages.
 
-**Example 2**
+#### Example 2
 
-- Input: `pressedKeys = "222222222222222222222222222222222222"`
-- Output: `82876089`
+- **Input:** `pressedKeys = "222222222222222222222222222222222222"`
+- **Output:** `82876089`
 
 The unmodded count is `2082876103`; reducing it modulo $10^9+7$ gives the
 reported result.

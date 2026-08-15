@@ -33,20 +33,20 @@ The Hamming distance is the number of indices where the resulting `source` value
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `source = [1,2,3,4], target = [2,1,4,5], allowedSwaps = [[0,1],[2,3]]`
-- Output: `1`
-- Explanation: The first component can place $2,1$ exactly, and the second can place $4$ but has no $5$.
+- **Input:** `source = [1,2,3,4], target = [2,1,4,5], allowedSwaps = [[0,1],[2,3]]`
+- **Output:** `1`
+- **Explanation:** The first component can place $2,1$ exactly, and the second can place $4$ but has no $5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `source = [1,2,3,4], target = [1,3,2,4], allowedSwaps = []`
-- Output: `2`
-- Explanation: With no permitted swap, the two middle mismatches cannot be changed.
+- **Input:** `source = [1,2,3,4], target = [1,3,2,4], allowedSwaps = []`
+- **Output:** `2`
+- **Explanation:** With no permitted swap, the two middle mismatches cannot be changed.
 
-**Example 3**
+#### Example 3
 
-- Input: `source = [5,1,2,4,3], target = [1,5,4,2,3], allowedSwaps = [[0,4],[4,2],[1,3],[1,4]]`
-- Output: `0`
-- Explanation: All indices are connected transitively, so the source multiset can be permuted into the target order.
+- **Input:** `source = [5,1,2,4,3], target = [1,5,4,2,3], allowedSwaps = [[0,4],[4,2],[1,3],[1,4]]`
+- **Output:** `0`
+- **Explanation:** All indices are connected transitively, so the source multiset can be permuted into the target order.

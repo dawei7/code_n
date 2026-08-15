@@ -8,21 +8,23 @@ Return the **sum** of the **digit differences** between **all** pairs of integer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [13,23,12]
+- **Input:** nums = [13,23,12]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-We have the following:
+- **Explanation:** We have the following:
 
 - The digit difference between **1**3 and **2**3 is 1.
 
@@ -32,19 +34,13 @@ We have the following:
 
 So the total sum of digit differences between all pairs of integers is $1 + 1 + 2 = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [10,10,10,10]
+- **Input:** nums = [10,10,10,10]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-All the integers in the array are the same. So the total sum of digit differences between all pairs of integers will be 0.
-
-</div>
+- **Explanation:** All the integers in the array are the same. So the total sum of digit differences between all pairs of integers will be 0.
 
 ### 4. Constraints
 

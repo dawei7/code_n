@@ -31,14 +31,14 @@ Return the maximum achievable initial value of $x$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 4, t = 1`
-- Output: `6`
-- Explanation: Starting with $x=6$, decrease $x$ to $5$ while increasing `num` to $5$.
+- **Input:** `num = 4, t = 1`
+- **Output:** `6`
+- **Explanation:** Starting with $x=6$, decrease $x$ to $5$ while increasing `num` to $5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 3, t = 2`
-- Output: `7`
-- Explanation: Two operations decrease $x$ from $7$ to $5$ and increase `num` from $3$ to $5$.
+- **Input:** `num = 3, t = 2`
+- **Output:** `7`
+- **Explanation:** Two operations decrease $x$ from $7$ to $5$ and increase `num` from $3$ to $5$.

@@ -140,10 +140,12 @@ def parse_contest_sources(
             raise RuntimeError(f"Duplicate ZeroTrac ratings.txt frontend id: {frontend_id}")
 
         canonical_slug = canonical_slugs.get(frontend_id)
+        if canonical_slug is None:
+            continue
         expected_rating = expected_ratings.get(frontend_id)
-        if canonical_slug is None or expected_rating is None:
+        if expected_rating is None:
             raise RuntimeError(
-                f"ZeroTrac ratings.txt frontend id {frontend_id} is absent from the frozen snapshot"
+                f"ZeroTrac ratings.txt frontend id {frontend_id} is absent from the rating snapshot"
             )
         if canonical_slug != source_slug:
             raise RuntimeError(

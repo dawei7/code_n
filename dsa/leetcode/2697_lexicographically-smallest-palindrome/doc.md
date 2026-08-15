@@ -32,20 +32,20 @@ Return the lexicographically smallest palindrome obtainable with the minimum num
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "egcfe"`
-- Output: `"efcfe"`
-- Explanation: One replacement is necessary; changing `'g'` to `'f'` gives the smallest result among the one-operation palindromes.
+- **Input:** `s = "egcfe"`
+- **Output:** `"efcfe"`
+- **Explanation:** One replacement is necessary; changing `'g'` to `'f'` gives the smallest result among the one-operation palindromes.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd"`
-- Output: `"abba"`
-- Explanation: Both mirrored pairs differ, so two replacements are necessary. Choosing the smaller letter in each pair produces the smallest qualifying palindrome.
+- **Input:** `s = "abcd"`
+- **Output:** `"abba"`
+- **Explanation:** Both mirrored pairs differ, so two replacements are necessary. Choosing the smaller letter in each pair produces the smallest qualifying palindrome.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "seven"`
-- Output: `"neven"`
-- Explanation: Only the outer pair differs, and replacing `'s'` with `'n'` completes the palindrome in one operation.
+- **Input:** `s = "seven"`
+- **Output:** `"neven"`
+- **Explanation:** Only the outer pair differs, and replacing `'s'` with `'n'` completes the palindrome in one operation.

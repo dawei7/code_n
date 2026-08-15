@@ -39,6 +39,7 @@ Return the smallest total move count for a route that carries every nut to `tree
 - **Input:** $height = 5, width = 7, tree = [2,2], squirrel = [4,4], nuts = [[3,0], [2,5]]$
 - **Output:** `12`
 - **Explanation:** The squirrel should go to the nut at [2, 5] first to achieve a minimal distance.
+
 #### Example 2
 
 ![](images/squirrel2-grid.jpg)

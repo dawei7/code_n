@@ -35,11 +35,10 @@ Write a solution to calculate the **dominance score** for each team in** both ha
 
 - The dominance score is calculated based on successful and intercepted passes:
 
-		<li>When pass_to is a player from the **same team**: +`1` point
+		- When pass_to is a player from the **same team**: +`1` point
 
 - When pass_to is a player from the **opposing team** (interception): `-1` point
 
-	</li>
 - A higher dominance score indicates better passing performance
 
 Return *the result table ordered **by* $\text{team}_{name}$ and $\text{half}_{number}$ *in **ascending** order*.
@@ -48,7 +47,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Teams table:
@@ -100,43 +98,33 @@ Passes table:
 
 - **First Half (00:00-45:00):**
 
-		<li>Arsenal's passes:
-
-			<li>1 → 2 (00:15): Successful pass (+1)
+		- Arsenal's passes:
+- 1 → 2 (00:15): Successful pass (+1)
 
 - 2 → 3 (00:45): Successful pass (+1)
 
 - 3 → 1 (01:15): Successful pass (+1)
 
-		</li>
 - Chelsea's passes:
 
-			<li>4 → 1 (00:30): Intercepted by Arsenal (-1)
+			- 4 → 1 (00:30): Intercepted by Arsenal (-1)
 
-		</li>
-
-	</li>
+	
 - **Second Half (45:01-90:00):**
 
-		<li>Arsenal's passes:
-
-			<li>2 → 3 (46:00): Successful pass (+1)
+		- Arsenal's passes:
+- 2 → 3 (46:00): Successful pass (+1)
 
 - 3 → 4 (46:15): Intercepted by Chelsea (-1)
 
 - 1 → 2 (46:45): Successful pass (+1)
 
-		</li>
 - Chelsea's passes:
 
-			<li>5 → 6 (46:30): Successful pass (+1)
+			- 5 → 6 (46:30): Successful pass (+1)
 
-		</li>
-
-	</li>
+	
 - The results are ordered by team_name and then half_number
-
-</div>
 
 ### 2. Function Contract
 

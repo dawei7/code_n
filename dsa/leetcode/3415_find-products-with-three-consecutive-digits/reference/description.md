@@ -29,7 +29,6 @@ that the name may contain multiple such sequences, but each should have length t
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 products table:
@@ -73,5 +72,3 @@ products table:
 - Results are ordered by $\text{product}_{id}$ in ascending order.
 
 - Only products with exactly three consecutive digits in their names are included in the result.
-
-</div>

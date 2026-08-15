@@ -31,12 +31,12 @@ Among all enclosing circles, find one with the smallest possible radius. Return 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]`
-- Output: `[2.0, 2.0, 2.0]`
+- **Input:** `trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]`
+- **Output:** `[2.0, 2.0, 2.0]`
 
-**Example 2**
+#### Example 2
 
-- Input: `trees = [[1,2],[2,2],[4,2]]`
-- Output: `[2.5, 2.0, 1.5]`
+- **Input:** `trees = [[1,2],[2,2],[4,2]]`
+- **Output:** `[2.5, 2.0, 1.5]`

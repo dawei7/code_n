@@ -32,7 +32,7 @@ For every product appearing in `Prices`, report its average selling price: total
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Prices`
 
@@ -52,17 +52,17 @@ For every product appearing in `Prices`, report its average selling price: total
 | 2 | 2019-02-10 | 200 |
 | 2 | 2019-03-22 | 30 |
 
-Output:
+- **Output:** 
 
 | product_id | average_price |
 |---:|---:|
 | 1 | 6.96 |
 | 2 | 16.96 |
 
-**Example 2**
+#### Example 2
 
 A product with a price interval but no row in `UnitsSold` is returned with `average_price = 0`.
 
-**Example 3**
+#### Example 3
 
 Sales on `start_date` or `end_date` use that interval's price because interval boundaries are inclusive.

@@ -50,20 +50,20 @@ The source constraints guarantee $3 \le N \le 10^5$, $1 \le \texttt{nums}[i] \le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 2, 6, 4, 2]`, `k = 3`, `dist = 3`
-- Output: `5`
-- Explanation: Starts at indices $0$, $2$, and $5$ form `[1, 3]`, `[2, 6, 4]`, and `[2]`. Their cost is $1+2+2=5$, and $5-2=3$ satisfies the distance limit.
+- **Input:** `nums = [1, 3, 2, 6, 4, 2]`, `k = 3`, `dist = 3`
+- **Output:** `5`
+- **Explanation:** Starts at indices $0$, $2$, and $5$ form `[1, 3]`, `[2, 6, 4]`, and `[2]`. Their cost is $1+2+2=5$, and $5-2=3$ satisfies the distance limit.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10, 1, 2, 2, 2, 1]`, `k = 4`, `dist = 3`
-- Output: `15`
-- Explanation: Starts at indices $0$, $1$, $2$, and $3$ cost $10+1+2+2=15$. Choosing the final value at index $5$ together with index $1$ would span $4$ positions and is therefore invalid.
+- **Input:** `nums = [10, 1, 2, 2, 2, 1]`, `k = 4`, `dist = 3`
+- **Output:** `15`
+- **Explanation:** Starts at indices $0$, $1$, $2$, and $3$ cost $10+1+2+2=15$. Choosing the final value at index $5$ together with index $1$ would span $4$ positions and is therefore invalid.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10, 8, 18, 9]`, `k = 3`, `dist = 1`
-- Output: `36`
-- Explanation: The only two additional starts that fit the optimal legal span are indices $1$ and $2$, giving $10+8+18=36$.
+- **Input:** `nums = [10, 8, 18, 9]`, `k = 3`, `dist = 1`
+- **Output:** `36`
+- **Explanation:** The only two additional starts that fit the optimal legal span are indices $1$ and $2$, giving $10+8+18=36$.

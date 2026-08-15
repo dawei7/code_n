@@ -22,8 +22,13 @@ Return *the text after replacing the entities by the special characters*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ Return *the text after replacing the entities by the special characters*.
 - **Input:** $text = "\& is an HTML entity but \&ambassador; is not."$
 - **Output:** `"& is an HTML entity but &ambassador; is not."`
 - **Explanation:** The parser will replace the & entity by &
+
 #### Example 2
 
 - **Input:** $text = "and I quote: "...""$

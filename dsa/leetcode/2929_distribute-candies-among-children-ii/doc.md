@@ -39,14 +39,14 @@ Both values satisfy $1\le\texttt{n},\texttt{limit}\le10^6$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, limit = 2`
-- Output: `3`
-- Explanation: Exactly `(1, 2, 2)`, `(2, 1, 2)`, and `(2, 2, 1)` satisfy the cap.
+- **Input:** `n = 5, limit = 2`
+- **Output:** `3`
+- **Explanation:** Exactly `(1, 2, 2)`, `(2, 1, 2)`, and `(2, 2, 1)` satisfy the cap.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, limit = 3`
-- Output: `10`
-- Explanation: Every non-negative ordered triple summing to 3 is within the cap.
+- **Input:** `n = 3, limit = 3`
+- **Output:** `10`
+- **Explanation:** Every non-negative ordered triple summing to 3 is within the cap.

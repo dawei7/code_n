@@ -12,35 +12,32 @@ The coordinate will always represent a valid chessboard square. The coordinate w
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coordinate1`: Input parameter (`str`).
+- `coordinate2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** coordinate1 = "a1", coordinate2 = "c3"
+- **Input:** coordinate1 = "a1", coordinate2 = "c3"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** Both squares are black.
 
-Both squares are black.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** coordinate1 = "a1", coordinate2 = "h3"
+- **Input:** coordinate1 = "a1", coordinate2 = "h3"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-Square `"a1"` is black and `"h3"` is white.
-
-</div>
+- **Explanation:** Square `"a1"` is black and `"h3"` is white.
 
 ### 4. Constraints
 

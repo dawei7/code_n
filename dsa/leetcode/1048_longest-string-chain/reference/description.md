@@ -12,8 +12,13 @@ Return *the **length** of the **longest possible word chain** with words chosen 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ Return *the **length** of the **longest possible word chain** with words chosen 
 - **Input:** $words = ["a","b","ba","bca","bda","bdca"]$
 - **Output:** `4`
 **Explanation**: One of the longest word chains is ["a","<u>b</u>a","b<u>d</u>a","bd<u>c</u>a"].
+
 #### Example 2
 
 - **Input:** $words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]$
 - **Output:** `5`
 - **Explanation:** All the words can be put in a word chain ["xb", "xb<u>c</u>", "<u>c</u>xbc", "<u>p</u>cxbc", "pcxbc<u>f</u>"].
+
 #### Example 3
 
 - **Input:** $words = ["abcd","dbqca"]$

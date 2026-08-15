@@ -28,8 +28,13 @@ Given a `graph`, and assuming both players play optimally, return
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `graph`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -39,6 +44,7 @@ Given a `graph`, and assuming both players play optimally, return
 
 - **Input:** $graph = [[2,5],[3],[0,4,5],[1,4,5],[2,3],[0,2,3]]$
 - **Output:** `0`
+
 #### Example 2
 
 ![](images/cat2.jpg)

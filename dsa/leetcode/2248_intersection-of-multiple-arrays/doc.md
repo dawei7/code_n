@@ -33,17 +33,17 @@ ascending order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [[3,1,2,4,5],[1,2,3,4],[3,4,5,6]]`
-- Output: `[3,4]`
+- **Input:** `nums = [[3,1,2,4,5],[1,2,3,4],[3,4,5,6]]`
+- **Output:** `[3,4]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [[1,2,3],[4,5,6]]`
-- Output: `[]`
+- **Input:** `nums = [[1,2,3],[4,5,6]]`
+- **Output:** `[]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [[5,1,3]]`
-- Output: `[1,3,5]`
+- **Input:** `nums = [[5,1,3]]`
+- **Output:** `[1,3,5]`

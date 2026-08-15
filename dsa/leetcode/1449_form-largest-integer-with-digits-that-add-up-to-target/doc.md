@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/form-largest-integer-with-digits-that-add-up-to-target/) |
 
 ## Problem Description
+
 ### Goal
 
 Nine painting costs are given, one for each decimal digit from `1` through
@@ -23,6 +24,7 @@ type. If no non-empty sequence has exactly the required total cost, return
 `"0"`.
 
 ### Function Contract
+
 **Inputs**
 
 - `cost`: a list of exactly nine integers. `cost[i]` is the cost of digit
@@ -38,29 +40,30 @@ Return the decimal string for the largest positive integer whose digit costs
 sum to exactly `target`. Return `"0"` when the exact cost is unreachable.
 
 ### Examples
-**Example 1**
 
-- Input: `cost = [4, 3, 2, 5, 6, 7, 2, 5, 5], target = 9`
-- Output: `"7772"`
-- Explanation: Three `7` digits cost $3\cdot2$ and digit `2` costs $3$, for a
+#### Example 1
+
+- **Input:** `cost = [4, 3, 2, 5, 6, 7, 2, 5, 5], target = 9`
+- **Output:** `"7772"`
+- **Explanation:** Three `7` digits cost $3\cdot2$ and digit `2` costs $3$, for a
   total of $9$. Although `"977"` is also feasible, the four-digit answer is
   numerically larger.
 
-**Example 2**
+#### Example 2
 
-- Input: `cost = [7, 6, 5, 5, 5, 6, 8, 7, 8], target = 12`
-- Output: `"85"`
+- **Input:** `cost = [7, 6, 5, 5, 5, 6, 8, 7, 8], target = 12`
+- **Output:** `"85"`
 
-**Example 3**
+#### Example 3
 
-- Input: `cost = [2, 4, 6, 2, 4, 6, 4, 4, 4], target = 5`
-- Output: `"0"`
-- Explanation: Every available cost is even, so no combination totals the odd
+- **Input:** `cost = [2, 4, 6, 2, 4, 6, 4, 4, 4], target = 5`
+- **Output:** `"0"`
+- **Explanation:** Every available cost is even, so no combination totals the odd
   target.
 
-**Example 4**
+#### Example 4
 
-- Input: `cost = [1, 1, 1, 1, 1, 1, 1, 1, 1], target = 3`
-- Output: `"999"`
-- Explanation: Every three-digit choice has the same cost and length, so the
+- **Input:** `cost = [1, 1, 1, 1, 1, 1, 1, 1, 1], target = 3`
+- **Output:** `"999"`
+- **Explanation:** Every three-digit choice has the same cost and length, so the
   largest digit is selected at every position.

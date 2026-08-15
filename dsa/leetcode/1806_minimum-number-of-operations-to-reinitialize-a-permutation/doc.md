@@ -30,23 +30,23 @@ Repeat this fixed transformation until the permutation first becomes the identit
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`
-- Output: `1`
+- **Input:** `n = 2`
+- **Output:** `1`
 
 The only transformation already preserves `[0,1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`
-- Output: `2`
+- **Input:** `n = 4`
+- **Output:** `2`
 
 The first transformation changes the permutation and the second restores it.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 6`
-- Output: `4`
+- **Input:** `n = 6`
+- **Output:** `4`
 
 Four repeated applications are required for the identity to return.

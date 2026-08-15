@@ -8,8 +8,13 @@ Given a string `s` consisting of lowercase letters only, return the *length of t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Given a string `s` consisting of lowercase letters only, return the *length of t
 - **Output:** `2`
 - **Explanation:** There are 4 distinct continuous substrings: "a", "b", "c" and "ab".
 "ab" is the longest continuous substring.
+
 #### Example 2
 
 - **Input:** `s = "abcde"`

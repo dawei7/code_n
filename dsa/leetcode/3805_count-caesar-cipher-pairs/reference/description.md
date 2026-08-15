@@ -36,14 +36,11 @@ Return an integer equal to the number of index pairs whose two strings can be ma
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["fusion","layout"]
+- **Input:** words = ["fusion","layout"]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-$\text{words}[0] = "fusion"$ and $\text{words}[1] = "layout"$ are similar because we can apply the operation to `"fusion"` 6 times. The string `"fusion"` changes as follows.
+- **Explanation:** $\text{words}[0] = "fusion"$ and $\text{words}[1] = "layout"$ are similar because we can apply the operation to `"fusion"` 6 times. The string `"fusion"` changes as follows.
 
 - `"fusion"`
 
@@ -59,19 +56,13 @@ $\text{words}[0] = "fusion"$ and $\text{words}[1] = "layout"$ are similar becaus
 
 - `"layout"`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["ab","aa","za","aa"]
+- **Input:** words = ["ab","aa","za","aa"]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-$\text{words}[0] = "ab"$ and $\text{words}[2] = "za"$ are similar. $\text{words}[1] = "aa"$ and $\text{words}[3] = "aa"$ are similar.
-
-</div>
+- **Explanation:** $\text{words}[0] = "ab"$ and $\text{words}[2] = "za"$ are similar. $\text{words}[1] = "aa"$ and $\text{words}[3] = "aa"$ are similar.
 
 ### 4. Constraints
 

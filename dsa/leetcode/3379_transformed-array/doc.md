@@ -32,20 +32,20 @@ The constraints are $1\leq n\leq100$ and $-100\leq\texttt{nums[i]}\leq100$, wher
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,-2,1,1]`
-- Output: `[1,1,1,3]`
-- Explanation: The four destinations are indices `3`, `3`, `3`, and `0`.
+- **Input:** `nums = [3,-2,1,1]`
+- **Output:** `[1,1,1,3]`
+- **Explanation:** The four destinations are indices `3`, `3`, `3`, and `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1,4,-1]`
-- Output: `[-1,-1,4]`
-- Explanation: Left and oversized right movements wrap to indices `2`, `2`, and `1`.
+- **Input:** `nums = [-1,4,-1]`
+- **Output:** `[-1,-1,4]`
+- **Explanation:** Left and oversized right movements wrap to indices `2`, `2`, and `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0,0,0]`
-- Output: `[0,0,0]`
-- Explanation: Every zero offset reads the value at its current index.
+- **Input:** `nums = [0,0,0]`
+- **Output:** `[0,0,0]`
+- **Explanation:** Every zero offset reads the value at its current index.

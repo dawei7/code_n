@@ -4,8 +4,13 @@ Given an integer array `nums` of `2n` integers, group these integers into `n` pa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Given an integer array `nums` of `2n` integers, group these integers into `n` pa
 2. (1, 3), (2, 4) -> min(1, 3) + min(2, 4) = 1 + 2 = 3
 3. (1, 2), (3, 4) -> min(1, 2) + min(3, 4) = 1 + 3 = 4
 So the maximum possible sum is 4.
+
 #### Example 2
 
 - **Input:** `nums = [6,2,6,5,1,2]`

@@ -14,55 +14,48 @@ Return the grid `result`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `image`: Input parameter (`List[List[int]]`).
+- `threshold`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** image = [[5,6,7,10],[8,9,10,10],[11,12,13,10]], threshold = 3
+- **Input:** image = [[5,6,7,10],[8,9,10,10],[11,12,13,10]], threshold = 3
 
-**Output:** [[9,9,9,9],[9,9,9,9],[9,9,9,9]]
+- **Output:** [[9,9,9,9],[9,9,9,9],[9,9,9,9]]
 
-**Explanation:**
-
-![](images/example0corrected.png)
+- **Explanation:** ![](images/example0corrected.png)
 
 There are two regions as illustrated above. The average intensity of the first region is 9, while the average intensity of the second region is 9.67 which is rounded down to 9. The average intensity of both of the regions is (9 + 9) / 2 = 9. As all the pixels belong to either region 1, region 2, or both of them, the intensity of every pixel in the result is 9.
 
 Please note that the rounded-down values are used when calculating the average of multiple regions, hence the calculation is done using 9 as the average intensity of region 2, not 9.67.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** image = [[10,20,30],[15,25,35],[20,30,40],[25,35,45]], threshold = 12
+- **Input:** image = [[10,20,30],[15,25,35],[20,30,40],[25,35,45]], threshold = 12
 
-**Output:** [[25,25,25],[27,27,27],[27,27,27],[30,30,30]]
+- **Output:** [[25,25,25],[27,27,27],[27,27,27],[30,30,30]]
 
-**Explanation:**
-
-![](images/example1corrected.png)
+- **Explanation:** ![](images/example1corrected.png)
 
 There are two regions as illustrated above. The average intensity of the first region is 25, while the average intensity of the second region is 30. The average intensity of both of the regions is (25 + 30) / 2 = 27.5 which is rounded down to 27.
 
 All the pixels in row 0 of the image belong to region 1, hence all the pixels in row 0 in the result are 25. Similarly, all the pixels in row 3 in the result are 30. The pixels in rows 1 and 2 of the image belong to region 1 and region 2, hence their assigned value is 27 in the result.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** image = [[5,6,7],[8,9,10],[11,12,13]], threshold = 1
+- **Input:** image = [[5,6,7],[8,9,10],[11,12,13]], threshold = 1
 
-**Output:** [[5,6,7],[8,9,10],[11,12,13]]
+- **Output:** [[5,6,7],[8,9,10],[11,12,13]]
 
-**Explanation:**
-
-There is only one `3 x 3` subgrid, while it does not have the condition on difference of adjacent pixels, for example, the difference between $\text{image}[0][0]$ and $\text{image}[1][0]$ is $|5 - 8| = 3 > threshold = 1$. None of them belong to any valid regions, so the `result` should be the same as `image`.
-
-</div>
+- **Explanation:** There is only one `3 x 3` subgrid, while it does not have the condition on difference of adjacent pixels, for example, the difference between $\text{image}[0][0]$ and $\text{image}[1][0]$ is $|5 - 8| = 3 > threshold = 1$. None of them belong to any valid regions, so the `result` should be the same as `image`.
 
 ### 4. Constraints
 

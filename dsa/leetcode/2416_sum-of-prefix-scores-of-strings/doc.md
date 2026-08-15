@@ -38,17 +38,17 @@ Return an integer array where element $i$ is the sum of the scores of every non-
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["abc","ab","bc","b"]`
-- Output: `[5,4,3,2]`
+- **Input:** `words = ["abc","ab","bc","b"]`
+- **Output:** `[5,4,3,2]`
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["abcd"]`
-- Output: `[4]`
+- **Input:** `words = ["abcd"]`
+- **Output:** `[4]`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["a","aa","aaa"]`
-- Output: `[3,5,6]`
+- **Input:** `words = ["a","aa","aaa"]`
+- **Output:** `[3,5,6]`

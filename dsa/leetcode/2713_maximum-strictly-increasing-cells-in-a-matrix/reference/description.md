@@ -10,8 +10,13 @@ Return *an integer denoting the maximum number of cells that can be visited.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *an integer denoting the maximum number of cells that can be visited.*
 - **Input:** $mat = [[3,1],[3,4]]$
 - **Output:** `2`
 - **Explanation:** The image shows how we can visit 2 cells starting from row 1, column 2. It can be shown that we cannot visit more than 2 cells no matter where we start from, so the answer is 2.
+
 #### Example 2
 
 **
@@ -37,6 +43,7 @@ Return *an integer denoting the maximum number of cells that can be visited.*
 - **Input:** $mat = [[1,1],[1,1]]$
 - **Output:** `1`
 - **Explanation:** Since the cells must be strictly increasing, we can only visit one cell in this example.
+
 #### Example 3
 
 **

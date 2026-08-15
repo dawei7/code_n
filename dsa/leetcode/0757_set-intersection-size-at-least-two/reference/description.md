@@ -10,8 +10,13 @@ Return *the minimum possible size of a containing set*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `intervals`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ Return *the minimum possible size of a containing set*.
 - **Output:** `5`
 - **Explanation:** let nums = [2, 3, 4, 8, 9].
 It can be shown that there cannot be any containing array of size 4.
+
 #### Example 2
 
 - **Input:** $intervals = [[1,3],[1,4],[2,5],[3,5]]$
 - **Output:** `3`
 - **Explanation:** let nums = [2, 3, 4].
 It can be shown that there cannot be any containing array of size 2.
+
 #### Example 3
 
 - **Input:** $intervals = [[1,2],[2,3],[2,4],[4,5]]$

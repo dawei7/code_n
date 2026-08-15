@@ -26,28 +26,21 @@ Return the total number of commas in the formatted representations of all intege
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 1002
+- **Input:** n = 1002
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The numbers `"1,000"`, `"1,001"`, and `"1,002"` each contain one comma, giving a total of 3.
 
-The numbers `"1,000"`, `"1,001"`, and `"1,002"` each contain one comma, giving a total of 3.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 998
+- **Input:** n = 998
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 **​​​​​​​**All numbers from 1 to 998 have fewer than four digits. Therefore, no commas are used.
-
-</div>
 
 ### 4. Constraints
 

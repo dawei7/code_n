@@ -39,12 +39,12 @@ Here $1 \le n,m \le 1000$, and every array or query value is at most $10^6$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,5,2,1], queries = [3,10,21]`
-- Output: `[2,3,4]`
+- **Input:** `nums = [4,5,2,1], queries = [3,10,21]`
+- **Output:** `[2,3,4]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,3,4,5], queries = [1]`
-- Output: `[0]`
+- **Input:** `nums = [2,3,4,5], queries = [1]`
+- **Output:** `[0]`

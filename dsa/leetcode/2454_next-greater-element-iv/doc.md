@@ -30,14 +30,14 @@ More precisely, `nums[j]` is the second greater value for index `i` when $j>i$, 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 4, 0, 9, 6]`
-- Output: `[9, 6, 6, -1, -1]`
-- Explanation: For 2, the greater values arrive as 4 then 9. For 4, they arrive as 9 then 6. To the right of 0, they arrive as 9 then 6.
+- **Input:** `nums = [2, 4, 0, 9, 6]`
+- **Output:** `[9, 6, 6, -1, -1]`
+- **Explanation:** For 2, the greater values arrive as 4 then 9. For 4, they arrive as 9 then 6. To the right of 0, they arrive as 9 then 6.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 3]`
-- Output: `[-1, -1]`
-- Explanation: Equal values are not strictly greater, and neither index has two qualifying later values.
+- **Input:** `nums = [3, 3]`
+- **Output:** `[-1, -1]`
+- **Explanation:** Equal values are not strictly greater, and neither index has two qualifying later values.

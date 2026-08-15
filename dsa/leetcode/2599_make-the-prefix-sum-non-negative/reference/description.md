@@ -20,6 +20,7 @@ Return *the minimum number of operations such that the prefix sum array does not
 - **Output:** `0`
 - **Explanation:** we do not need to do any operations.
 The array is [2,3,-5,4]. The prefix sum array is [2, 5, 0, 4].
+
 #### Example 2
 
 - **Input:** `nums = [3,-5,-2,6]`

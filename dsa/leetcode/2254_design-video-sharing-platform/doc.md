@@ -52,17 +52,17 @@ absent.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["VideoSharingPlatform","upload","upload","remove","upload","watch","like","getLikesAndDislikes","getViews"], arguments = [[],["123"],["456"],[0],["789"],[1,0,5],[1],[1],[1]]`
-- Output: `[null,0,1,null,0,"456",null,[1,0],1]`
+- **Input:** `operations = ["VideoSharingPlatform","upload","upload","remove","upload","watch","like","getLikesAndDislikes","getViews"], arguments = [[],["123"],["456"],[0],["789"],[1,0,5],[1],[1],[1]]`
+- **Output:** `[null,0,1,null,0,"456",null,[1,0],1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["VideoSharingPlatform","remove","watch","like","getLikesAndDislikes","getViews"], arguments = [[],[0],[0,0,1],[0],[0],[0]]`
-- Output: `[null,null,"-1",null,[-1],-1]`
+- **Input:** `operations = ["VideoSharingPlatform","remove","watch","like","getLikesAndDislikes","getViews"], arguments = [[],[0],[0,0,1],[0],[0],[0]]`
+- **Output:** `[null,null,"-1",null,[-1],-1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["VideoSharingPlatform","upload","remove","upload","getViews"], arguments = [[],["12"],[0],["345"],[0]]`
-- Output: `[null,0,null,0,0]`
+- **Input:** `operations = ["VideoSharingPlatform","upload","remove","upload","getViews"], arguments = [[],["12"],[0],["345"],[0]]`
+- **Output:** `[null,0,null,0,0]`

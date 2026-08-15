@@ -8,8 +8,13 @@ Given an integer `k`, return the number of non-negative integers `x` have the pr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Given an integer `k`, return the number of non-negative integers `x` have the pr
 - **Input:** $k = 0$
 - **Output:** `5`
 - **Explanation:** 0!, 1!, 2!, 3!, and 4! end with k = 0 zeroes.
+
 #### Example 2
 
 - **Input:** $k = 5$
 - **Output:** `0`
 - **Explanation:** There is no x such that x! ends in k = 5 zeroes.
+
 #### Example 3
 
 - **Input:** $k = 3$

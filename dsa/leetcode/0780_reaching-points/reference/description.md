@@ -6,8 +6,16 @@ The allowed operation on some point `(x, y)` is to convert it to either $(x, x +
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sx`: Input parameter (`int`).
+- `sy`: Input parameter (`int`).
+- `tx`: Input parameter (`int`).
+- `ty`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -15,15 +23,16 @@ The allowed operation on some point `(x, y)` is to convert it to either $(x, x +
 
 - **Input:** $sx = 1, sy = 1, tx = 3, ty = 5$
 - **Output:** `true`
-- **Explanation:**
-One series of moves that transforms the starting point to the target is:
+- **Explanation:** One series of moves that transforms the starting point to the target is:
 (1, 1) -> (1, 2)
 (1, 2) -> (3, 2)
 (3, 2) -> (3, 5)
+
 #### Example 2
 
 - **Input:** $sx = 1, sy = 1, tx = 2, ty = 2$
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** $sx = 1, sy = 1, tx = 1, ty = 1$

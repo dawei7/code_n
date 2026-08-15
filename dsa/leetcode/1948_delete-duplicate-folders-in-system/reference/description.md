@@ -8,7 +8,7 @@ Two folders (not necessarily on the same level) are **identical** if they contai
 
 - For example, folders `"/a"` and `"/b"` in the file structure below are identical. They (as well as their subfolders) should **all** be marked:
 
-		<li>`/a`
+		- `/a`
 
 - `/a/x`
 
@@ -24,7 +24,6 @@ Two folders (not necessarily on the same level) are **identical** if they contai
 
 - `/b/z`
 
-	</li>
 - However, if the file structure also included the path `"/b/w"`, then the folders `"/a"` and `"/b"` would not be identical. Note that `"/a/x"` and `"/b/x"` would still be considered identical even with the added folder.
 
 Once all the identical folders and their subfolders have been marked, the file system will **delete** all of them. The file system only runs the deletion once, so any folders that become identical after the initial deletion are not deleted.
@@ -33,8 +32,13 @@ Return *the 2D array *`ans` *containing the paths of the **remaining** folders a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `paths`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `List[List[str]]`.
 
 ### 3. Examples
 
@@ -47,6 +51,7 @@ Return *the 2D array *`ans` *containing the paths of the **remaining** folders a
 - **Explanation:** The file structure is as shown.
 Folders "/a" and "/c" (and their subfolders) are marked for deletion because they both contain an empty
 folder named "b".
+
 #### Example 2
 
 ![](images/lc-dupfolder2.jpg)
@@ -56,6 +61,7 @@ folder named "b".
 - **Explanation:** The file structure is as shown.
 Folders "/a/b/x" and "/w" (and their subfolders) are marked for deletion because they both contain an empty folder named "y".
 Note that folders "/a" and "/c" are identical after the deletion, but they are not deleted because they were not marked beforehand.
+
 #### Example 3
 
 ![](images/lc-dupfolder3.jpg)

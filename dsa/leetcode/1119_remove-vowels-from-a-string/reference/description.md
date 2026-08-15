@@ -20,6 +20,7 @@ Process every character from left to right. Discard a character exactly when it 
 
 - **Input:** `s = "leetcodeisacommunityforcoders"`
 - **Output:** `"ltcdscmmntyfrcdrs"`
+
 #### Example 2
 
 - **Input:** `s = "aeiou"`

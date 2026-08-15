@@ -12,39 +12,35 @@ Return the **number of ways** you can make this split.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,2,1]
+- **Input:** nums = [1,1,2,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The beautiful splits are:
+- **Explanation:** The beautiful splits are:
 
 - A split with $nums1 = [1]$, $nums2 = [1,2]$, $nums3 = [1]$.
 
 - A split with $nums1 = [1]$, $nums2 = [1]$, $nums3 = [2,1]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are 0 beautiful splits.
-
-</div>
+- **Explanation:** There are 0 beautiful splits.
 
 ### 4. Constraints
 

@@ -34,14 +34,14 @@ The length satisfies $1 \leq \lvert s \rvert \leq 10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "???"`
-- Output: `"abc"`
-- Explanation: Three distinct letters give value zero, and `"abc"` is the lexicographically smallest such completion.
+- **Input:** `s = "???"`
+- **Output:** `"abc"`
+- **Explanation:** Three distinct letters give value zero, and `"abc"` is the lexicographically smallest such completion.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "a?a?"`
-- Output: `"abac"`
-- Explanation: The completed letter counts give value one, which is minimal; assigning the selected letters in sorted order produces the smallest string.
+- **Input:** `s = "a?a?"`
+- **Output:** `"abac"`
+- **Explanation:** The completed letter counts give value one, which is minimal; assigning the selected letters in sorted order produces the smallest string.

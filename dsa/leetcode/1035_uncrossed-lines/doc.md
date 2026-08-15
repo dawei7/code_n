@@ -34,18 +34,18 @@ Return the maximum number of connecting lines that can be drawn under these rule
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1,4,2], nums2 = [1,2,4]`
-- Output: `2`
-- Explanation: Connecting all three equal values would force the lines for `4` and `2` to cross.
+- **Input:** `nums1 = [1,4,2], nums2 = [1,2,4]`
+- **Output:** `2`
+- **Explanation:** Connecting all three equal values would force the lines for `4` and `2` to cross.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2,5,1,2,5], nums2 = [10,5,2,1,5,2]`
-- Output: `3`
+- **Input:** `nums1 = [2,5,1,2,5], nums2 = [10,5,2,1,5,2]`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1,3,7,1,7,5], nums2 = [1,9,2,5,1]`
-- Output: `2`
+- **Input:** `nums1 = [1,3,7,1,7,5], nums2 = [1,9,2,5,1]`
+- **Output:** `2`

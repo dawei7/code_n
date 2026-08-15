@@ -33,7 +33,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +-----+-------+------------+-----------+
 | id  | name  | department | managerId |
@@ -45,7 +45,7 @@ Employee table:
 | 105 | Anne  | A          | 101       |
 | 106 | Ron   | B          | 101       |
 +-----+-------+------------+-----------+
-**Output:**
+- **Output:** 
 +------+
 | name |
 +------+

@@ -33,12 +33,12 @@ Return `true` if all $N$ nodes have one common value; otherwise return `false`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,1,1,1,1,null,1]`
-- Output: `true`
+- **Input:** `root = [1,1,1,1,1,null,1]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [2,2,2,5,2]`
-- Output: `false`
+- **Input:** `root = [2,2,2,5,2]`
+- **Output:** `false`

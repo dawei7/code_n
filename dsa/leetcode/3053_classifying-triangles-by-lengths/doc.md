@@ -40,15 +40,15 @@ Let $n$ be the number of rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Sides `(20, 20, 23)` form an `Isosceles` triangle because exactly two sides
 are equal and all triangle inequalities hold.
 
-**Example 2**
+#### Example 2
 
 Sides `(20, 20, 20)` are `Equilateral`, while `(20, 21, 22)` are `Scalene`.
 
-**Example 3**
+#### Example 3
 
 Sides `(13, 14, 30)` yield `Not A Triangle` because $13+14 \le 30$.

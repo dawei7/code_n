@@ -31,14 +31,14 @@ Modify `Foo` so that `printSecond()` cannot run until `printFirst()` has complet
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3]`
-- Output: `"firstsecondthird"`
+- **Input:** `nums = [1,2,3]`
+- **Output:** `"firstsecondthird"`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,3,2]`
-- Output: `"firstsecondthird"`
+- **Input:** `nums = [1,3,2]`
+- **Output:** `"firstsecondthird"`
 
 Even if the third-method thread starts before the second-method thread, it must wait for both earlier phases.

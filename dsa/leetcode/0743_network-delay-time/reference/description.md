@@ -6,8 +6,15 @@ We will send a signal from a given node `k`. Return *the **minimum** time it tak
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `times`: Input parameter (`List[List[int]]`).
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,10 +24,12 @@ We will send a signal from a given node `k`. Return *the **minimum** time it tak
 
 - **Input:** $times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2$
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** $times = [[1,2,1]], n = 2, k = 1$
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** $times = [[1,2,1]], n = 2, k = 2$

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/confirmation-rate/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Signups` table contains one row for every registered user. The
 `Confirmations` table records confirmation-message requests: each row belongs
 to a signed-up user and has action `"confirmed"` when the request succeeded or
@@ -21,6 +23,7 @@ has rate zero. Round every rate to two decimal places and return one result row
 per signed-up user in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Signups(user_id, time_stamp)`: `user_id` is unique and `time_stamp` records
@@ -41,7 +44,8 @@ Let $S$ be the number of `Signups` rows and $C$ the number of
   requests. Row order is unrestricted.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 Given signup users `3`, `7`, `2`, and `6`, with two timeouts for user `3`,
 three confirmations for user `7`, one confirmation and one timeout for user
@@ -54,12 +58,12 @@ three confirmations for user `7`, one confirmation and one timeout for user
 | 2 | 0.50 |
 | 6 | 0.00 |
 
-**Example 2**
+#### Example 2
 
 - One user has one confirmed request.
-- Output: that user's confirmation rate is `1.00`.
+- **Output:** that user's confirmation rate is `1.00`.
 
-**Example 3**
+#### Example 3
 
 - Two users have no confirmation rows.
-- Output: both users appear with confirmation rate `0.00`.
+- **Output:** both users appear with confirmation rate `0.00`.

@@ -12,8 +12,14 @@ Return *an array consisting of **good** indices in **any order***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `variables`: Input parameter (`List[List[int]]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *an array consisting of **good** indices in **any order***.
 2) For the index 1, variables[1] = [3,3,3,1], ($3^{3}$ % 10)^3 % 1 = 0.
 3) For the index 2, variables[2] = [6,1,1,4], ($6^{1}$ % 10)^1 % 4 = 2.
 Therefore we return [0,2] as the answer.
+
 #### Example 2
 
 - **Input:** $variables = [[39,3,1000,1000]], target = 17$

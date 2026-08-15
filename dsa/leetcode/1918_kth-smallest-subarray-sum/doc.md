@@ -32,16 +32,16 @@ The choice concerns values rather than intervals: the function returns only the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 1, 3], k = 4`
-- Output: `3`
+- **Input:** `nums = [2, 1, 3], k = 4`
+- **Output:** `3`
 
 The sorted subarray sums are `1, 2, 3, 3, 4, 6`, so the fourth value is `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 3, 5, 5], k = 7`
-- Output: `10`
+- **Input:** `nums = [3, 3, 5, 5], k = 7`
+- **Output:** `10`
 
 The sorted sums are `3, 3, 5, 5, 6, 8, 10, 11, 13, 16`.

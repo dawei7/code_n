@@ -16,8 +16,13 @@ Return *the phone number after formatting.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `number`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -29,6 +34,7 @@ Return *the phone number after formatting.*
 Step 1: There are more than 4 digits, so group the next 3 digits. The 1st block is "123".
 Step 2: There are 3 digits remaining, so put them in a single block of length 3. The 2nd block is "456".
 Joining the blocks gives "123-456".
+
 #### Example 2
 
 - **Input:** $number = "123 4-567"$
@@ -37,6 +43,7 @@ Joining the blocks gives "123-456".
 Step 1: There are more than 4 digits, so group the next 3 digits. The 1st block is "123".
 Step 2: There are 4 digits left, so split them into two blocks of length 2. The blocks are "45" and "67".
 Joining the blocks gives "123-45-67".
+
 #### Example 3
 
 - **Input:** $number = "123 4-5678"$

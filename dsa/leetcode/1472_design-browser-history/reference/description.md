@@ -34,8 +34,12 @@ browserHistory.back(7);                   // You are in "google.com", you can mo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `BrowserHistory(homepage: str)`: Initializes the data structure.
+- `visit(url: str)`: Executes operation.
+- `back(steps: int) -> `str``: Executes operation.
+- `forward(steps: int) -> `str``: Executes operation.
 
 ### 3. Constraints
 

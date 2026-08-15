@@ -33,14 +33,14 @@ Return `true` if the tree is complete; otherwise return `false`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,2,3,4,5,6]`
-- Output: `true`
-- Explanation: Earlier levels are full, and nodes 4, 5, and 6 occupy the leftmost last-level positions.
+- **Input:** `root = [1,2,3,4,5,6]`
+- **Output:** `true`
+- **Explanation:** Earlier levels are full, and nodes 4, 5, and 6 occupy the leftmost last-level positions.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1,2,3,4,5,null,7]`
-- Output: `false`
-- Explanation: Node 7 occurs after an empty position on the last level.
+- **Input:** `root = [1,2,3,4,5,null,7]`
+- **Output:** `false`
+- **Explanation:** Node 7 occurs after an empty position on the last level.

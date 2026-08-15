@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **+-----------+----------+-----+-------------+--------------------+
 | player_id | name     | age | position    | team               |
 +-----------+----------+-----+-------------+--------------------+
@@ -46,8 +46,7 @@ The result format is in the following example.
 | 761       | Jack     | 33  | Midfielder  | ManchesterCity     |
 | 642       | Charlie  | 36  | Center-back | Arsenal            |
 +-----------+----------+-----+-------------+--------------------+**
-Output:
+- **Output:** 
 **[10, 5]
-**Explanation:**
-This DataFrame contains 10 rows and 5 columns.
+- **Explanation:** This DataFrame contains 10 rows and 5 columns.
 ```

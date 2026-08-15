@@ -30,20 +30,20 @@ Return that length, or return `-1` if no such integer exists. The all-ones integ
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 1`
-- Output: `1`
-- Explanation: The one-digit integer `1` is divisible by `1`.
+- **Input:** `k = 1`
+- **Output:** `1`
+- **Explanation:** The one-digit integer `1` is divisible by `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 2`
-- Output: `-1`
-- Explanation: An all-ones integer is odd and cannot be divisible by `2`.
+- **Input:** `k = 2`
+- **Output:** `-1`
+- **Explanation:** An all-ones integer is odd and cannot be divisible by `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `k = 3`
-- Output: `3`
-- Explanation: `111` is divisible by `3`, while `1` and `11` are not.
+- **Input:** `k = 3`
+- **Output:** `3`
+- **Explanation:** `111` is divisible by `3`, while `1` and `11` are not.

@@ -14,8 +14,10 @@ Implement the `RLEIterator` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `RLEIterator(encoding: List[int])`: Initializes the data structure.
+- `next(n: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

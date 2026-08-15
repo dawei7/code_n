@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-students-with-study-spiral-pattern/) |
 
 ## Problem Description
+
 ### Goal
 
 The `students` table identifies students and their majors. The `study_sessions` table records each student's subject, session date, and studied hours. Order every student's sessions chronologically to obtain that student's subject sequence.
@@ -34,14 +35,14 @@ Return an ordered table with columns `student_id`, `student_name`, `major`, `cyc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Alice studies `Math, Physics, Chemistry` twice in that order on consecutive dates. Her cycle length is `3` and her six sessions total `15.0` hours.
 
-**Example 2**
+#### Example 2
 
 Bob repeats a four-subject sequence twice, so his cycle length `4` places him before Alice's cycle length `3`.
 
-**Example 3**
+#### Example 3
 
 A student alternating only two subjects is excluded even when the alternation repeats, because a study spiral requires at least three distinct subjects.

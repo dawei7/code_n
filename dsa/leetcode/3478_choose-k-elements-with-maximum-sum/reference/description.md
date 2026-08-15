@@ -12,19 +12,25 @@ Return an array `answer` of size `n`, where $\text{answer}[i]$ represents the re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [4,2,1,5,3], nums2 = [10,20,30,40,50], k = 2
+- **Input:** nums1 = [4,2,1,5,3], nums2 = [10,20,30,40,50], k = 2
 
-**Output:** [80,30,0,80,50]
+- **Output:** [80,30,0,80,50]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $i = 0$: Select the 2 largest values from `nums2` at indices `[1, 2, 4]` where $\text{nums1}[j] < \text{nums1}[0]$, resulting in $50 + 30 = 80$.
 
@@ -36,19 +42,13 @@ Return an array `answer` of size `n`, where $\text{answer}[i]$ represents the re
 
 - For $i = 4$: Select the 2 largest values from `nums2` at indices `[1, 2]` where $\text{nums1}[j] < \text{nums1}[4]$, resulting in $30 + 20 = 50$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [2,2,2,2], nums2 = [3,1,2,3], k = 1
+- **Input:** nums1 = [2,2,2,2], nums2 = [3,1,2,3], k = 1
 
-**Output:** [0,0,0,0]
+- **Output:** [0,0,0,0]
 
-**Explanation:**
-
-Since all elements in `nums1` are equal, no indices satisfy the condition $\text{nums1}[j] < \text{nums1}[i]$ for any `i`, resulting in 0 for all positions.
-
-</div>
+- **Explanation:** Since all elements in `nums1` are equal, no indices satisfy the condition $\text{nums1}[j] < \text{nums1}[i]$ for any `i`, resulting in 0 for all positions.
 
 ### 4. Constraints
 

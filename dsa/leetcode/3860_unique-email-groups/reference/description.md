@@ -8,18 +8,15 @@ The normalization rules are as follows:
 
 - The local name is the part **before** the `'@'` symbol.
 
-		<li>Ignore all dots `'.'`.
+		- Ignore all dots `'.'`.
 
 - Ignore everything after the first `'+'`, if present.
 
 - Convert to lowercase.
 
-	</li>
 - The domain name is the part **after** the `'@'` symbol.
 
-		<li>Convert to lowercase.
-
-	</li>
+		- Convert to lowercase.
 
 Return an integer denoting the number of **unique** email groups after normalization.
 
@@ -46,16 +43,11 @@ unique email groups.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** emails = ["test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"]
+- **Input:** emails = ["test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-</div>
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Email</th>
@@ -95,16 +87,14 @@ unique email groups.
 </table>
 
 Unique emails are [`"testemail@leetcode.com"`, `"testemail@lee.tcode.com"`]. Thus, the answer is 2.
+
 #### Example 2
 
-<div class="example-block">
-**Input:** emails = ["A@B.com", "a@b.com", "ab+xy@b.com", "a.b@b.com"]
+- **Input:** emails = ["A@B.com", "a@b.com", "ab+xy@b.com", "a.b@b.com"]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Email</th>
@@ -153,17 +143,13 @@ Unique emails are [`"testemail@leetcode.com"`, `"testemail@lee.tcode.com"`]. Thu
 
 Unique emails are [`"a@b.com"`, `"ab@b.com"`]. Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** emails = ["a.b+c.d+e@DoMain.com", "ab+xyz@domain.com", "ab@domain.com"]
+- **Input:** emails = ["a.b+c.d+e@DoMain.com", "ab+xyz@domain.com", "ab@domain.com"]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Email</th>
@@ -203,8 +189,6 @@ Unique emails are [`"a@b.com"`, `"ab@b.com"`]. Thus, the answer is 2.
 </table>
 
 All emails normalize to `"ab@domain.com"`. Thus, the answer is 1.
-
-</div>
 
 ### 4. Constraints
 

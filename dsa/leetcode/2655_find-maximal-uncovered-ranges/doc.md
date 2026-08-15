@@ -31,20 +31,20 @@ Partition every uncovered index into maximal contiguous uncovered ranges. Each u
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10, ranges = [[3,5],[7,8]]`
-- Output: `[[0,2],[6,6],[9,9]]`
-- Explanation: The three gaps before, between, and after the covered intervals are maximal.
+- **Input:** `n = 10, ranges = [[3,5],[7,8]]`
+- **Output:** `[[0,2],[6,6],[9,9]]`
+- **Explanation:** The three gaps before, between, and after the covered intervals are maximal.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, ranges = [[0,2]]`
-- Output: `[]`
-- Explanation: The complete index domain is covered.
+- **Input:** `n = 3, ranges = [[0,2]]`
+- **Output:** `[]`
+- **Explanation:** The complete index domain is covered.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7, ranges = [[2,4],[0,3]]`
-- Output: `[[5,6]]`
-- Explanation: The overlapping input intervals together cover indices `0` through `4`.
+- **Input:** `n = 7, ranges = [[2,4],[0,3]]`
+- **Output:** `[[5,6]]`
+- **Explanation:** The overlapping input intervals together cover indices `0` through `4`.

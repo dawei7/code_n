@@ -14,39 +14,35 @@ Return the **maximum** score you can achieve.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,2,3],[4,3,2],[1,1,1]]
+- **Input:** grid = [[1,2,3],[4,3,2],[1,1,1]]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-![](images/grid1drawio.png)
+- **Explanation:** ![](images/grid1drawio.png)
 
 We can select the cells with values 1, 3, and 4 that are colored above.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[8,7,6],[8,3,2]]
+- **Input:** grid = [[8,7,6],[8,3,2]]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-![](images/grid8_8drawio.png)
+- **Explanation:** ![](images/grid8_8drawio.png)
 
 We can select the cells with values 7 and 8 that are colored above.
-
-</div>
 
 ### 4. Constraints
 

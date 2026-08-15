@@ -18,21 +18,24 @@ Return the $$k^{\text{th}}$$ character of the final string `result`. If `k` is o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "a#b%*", k = 1
+- **Input:** s = "a#b%*", k = 1
 
-**Output:** "a"
+- **Output:** "a"
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -77,17 +80,13 @@ Return the $$k^{\text{th}}$$ character of the final string `result`. If `k` is o
 
 The final `result` is `"ba"`. The character at index $k = 1$ is `'a'`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "cd%#*#", k = 3
+- **Input:** s = "cd%#*#", k = 3
 
-**Output:** "d"
+- **Output:** "d"
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -138,17 +137,13 @@ The final `result` is `"ba"`. The character at index $k = 1$ is `'a'`.
 
 The final `result` is `"dcddcd"`. The character at index $k = 3$ is `'d'`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "z*#", k = 0
+- **Input:** s = "z*#", k = 0
 
-**Output:** "."
+- **Output:** "."
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -180,8 +175,6 @@ The final `result` is `"dcddcd"`. The character at index $k = 3$ is `'d'`.
 </table>
 
 The final `result` is `""`. Since index $k = 0$ is out of bounds, the output is `'.'`.
-
-</div>
 
 ### 4. Constraints
 

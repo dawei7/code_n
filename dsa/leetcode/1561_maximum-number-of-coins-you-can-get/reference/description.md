@@ -18,8 +18,13 @@ Return the maximum number of coins that you can have.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `piles`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,10 +36,12 @@ Return the maximum number of coins that you can have.
 Choose the triplet (1, 2, 4), Alice Pick the pile with 4 coins, you the pile with **2** coins and Bob the last one.
 The maximum number of coins which you can have are: 7 + 2 = 9.
 On the other hand if we choose this arrangement (1, **2**, 8), (2, **4**, 7) you only get 2 + 4 = 6 coins which is not optimal.
+
 #### Example 2
 
 - **Input:** $piles = [2,4,5]$
 - **Output:** `4`
+
 #### Example 3
 
 - **Input:** $piles = [9,8,7,6,5,1,2,3,4]$

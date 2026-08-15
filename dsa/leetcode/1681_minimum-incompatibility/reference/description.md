@@ -10,8 +10,14 @@ A subset is a group integers that appear in the array with no particular order.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,12 +28,14 @@ A subset is a group integers that appear in the array with no particular order.
 - **Explanation:** The optimal distribution of subsets is [1,2] and [1,4].
 The incompatibility is (2-1) + (4-1) = 4.
 Note that [1,1] and [2,4] would result in a smaller sum, but the first subset contains 2 equal elements.
+
 #### Example 2
 
 - **Input:** `nums = [6,3,8,1,3,1,2,2], k = 4`
 - **Output:** `6`
 - **Explanation:** The optimal distribution of subsets is [1,2], [2,3], [6,8], and [1,3].
 The incompatibility is (2-1) + (3-2) + (8-6) + (3-1) = 6.
+
 #### Example 3
 
 - **Input:** `nums = [5,3,3,6,3,3], k = 3`

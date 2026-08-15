@@ -10,8 +10,14 @@ Return *the largest possible sum of the array after modifying it in this way*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Return *the largest possible sum of the array after modifying it in this way*.
 - **Input:** `nums = [4,2,3], k = 1`
 - **Output:** `5`
 - **Explanation:** Choose index 1 and nums becomes [4,-2,3].
+
 #### Example 2
 
 - **Input:** `nums = [3,-1,0,2], k = 3`
 - **Output:** `6`
 - **Explanation:** Choose indices (1, 2, 2) and nums becomes [3,1,0,2].
+
 #### Example 3
 
 - **Input:** `nums = [2,-3,-1,5,-4], k = 2`

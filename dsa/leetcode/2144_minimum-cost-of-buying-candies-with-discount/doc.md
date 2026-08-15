@@ -39,21 +39,21 @@ valid free candy.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `cost = [1,2,3]`
-- Output: `5`
-- Explanation: Pay for costs `3` and `2`, then take cost `1` for free.
+- **Input:** `cost = [1,2,3]`
+- **Output:** `5`
+- **Explanation:** Pay for costs `3` and `2`, then take cost `1` for free.
 
-**Example 2**
+#### Example 2
 
-- Input: `cost = [6,5,7,9,2,2]`
-- Output: `23`
-- Explanation: Pay for `9` and `7` to receive `6` free, then pay for `5` and
+- **Input:** `cost = [6,5,7,9,2,2]`
+- **Output:** `23`
+- **Explanation:** Pay for `9` and `7` to receive `6` free, then pay for `5` and
   `2` to receive the remaining `2` free.
 
-**Example 3**
+#### Example 3
 
-- Input: `cost = [5,5]`
-- Output: `10`
-- Explanation: Fewer than three candies means neither candy can be free.
+- **Input:** `cost = [5,5]`
+- **Output:** `10`
+- **Explanation:** Fewer than three candies means neither candy can be free.

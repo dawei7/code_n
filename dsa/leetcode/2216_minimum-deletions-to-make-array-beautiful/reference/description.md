@@ -14,8 +14,13 @@ Return *the **minimum** number of elements to delete from *`nums`* to make it **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the **minimum** number of elements to delete from *`nums`* to make it **
 - **Input:** `nums = [1,1,2,3,5]`
 - **Output:** `1`
 - **Explanation:** You can delete either nums[0] or nums[1] to make nums = [1,2,3,5] which is beautiful. It can be proven you need at least 1 deletion to make nums beautiful.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,2,2,3,3]`

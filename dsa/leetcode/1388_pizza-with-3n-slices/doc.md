@@ -31,17 +31,17 @@ Alice therefore receives exactly $n$ slices, and no two slices she originally ch
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `slices = [1,2,3,4,5,6]`
-- Output: `10`
+- **Input:** `slices = [1,2,3,4,5,6]`
+- **Output:** `10`
 
-**Example 2**
+#### Example 2
 
-- Input: `slices = [8,9,8,6,1,1]`
-- Output: `16`
+- **Input:** `slices = [8,9,8,6,1,1]`
+- **Output:** `16`
 
-**Example 3**
+#### Example 3
 
-- Input: `slices = [4,1,2,5,8,3]`
-- Output: `12`
+- **Input:** `slices = [4,1,2,5,8,3]`
+- **Output:** `12`

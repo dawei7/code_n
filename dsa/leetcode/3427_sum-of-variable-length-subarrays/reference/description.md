@@ -6,21 +6,23 @@ Return the total sum of all elements from the subarray defined for each index in
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,1]
+- **Input:** nums = [2,3,1]
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">i</th>
@@ -52,17 +54,13 @@ Return the total sum of all elements from the subarray defined for each index in
 
 The total sum is 11. Hence, 11 is the output.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,1,1,2]
+- **Input:** nums = [3,1,1,2]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">i</th>
@@ -98,8 +96,6 @@ The total sum is 11. Hence, 11 is the output.
 </table>
 
 The total sum is 13. Hence, 13 is the output.
-
-</div>
 
 ### 4. Constraints
 

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/booking-concert-tickets-in-groups/) |
 
 ## Problem Description
+
 ### Goal
+
 A concert hall has $n$ rows numbered from 0 through $n-1$, with $m$ seats in
 each row numbered from 0 through $m-1$. Design a booking system for groups that
 restrict every allocated seat to a row no greater than the operation's
@@ -26,6 +28,7 @@ and seats first. If capacity is insufficient, it returns `false` without
 allocating anything.
 
 ### Function Contract
+
 **Inputs**
 
 - `BookMyShow(n, m)`: Creates $n$ rows with $m$ initially empty seats each.
@@ -42,20 +45,21 @@ the full group was allocated. Successful calls permanently reserve their
 chosen seats.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 - Operations: `["BookMyShow", "gather", "gather", "scatter", "scatter"]`
 - Arguments: `[[2, 5], [4, 0], [2, 0], [5, 1], [5, 1]]`
-- Output: `[null, [0, 0], [], true, false]`
+- **Output:** `[null, [0, 0], [], true, false]`
 
-**Example 2**
+#### Example 2
 
 - Operations: `["BookMyShow", "scatter", "gather"]`
 - Arguments: `[[2, 3], [4, 1], [2, 1]]`
-- Output: `[null, true, [1, 1]]`
+- **Output:** `[null, true, [1, 1]]`
 
-**Example 3**
+#### Example 3
 
 - Operations: `["BookMyShow", "gather", "scatter"]`
 - Arguments: `[[1, 1000000000], [999999999, 0], [1, 0]]`
-- Output: `[null, [0, 0], true]`
+- **Output:** `[null, [0, 0], true]`

@@ -14,21 +14,25 @@ In a rooted tree, the subtree of a node `v` includes `v` and all nodes whose pat
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `par`: Input parameter (`List[int]`).
+- `vals`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** par = [-1,0,0], vals = [1,1,1], queries = [[0,1],[0,2],[0,3]]
+- **Input:** par = [-1,0,0], vals = [1,1,1], queries = [[0,1],[0,2],[0,3]]
 
-**Output:** [0,1,-1]
+- **Output:** [0,1,-1]
 
-**Explanation:**
-
-![](images/screenshot-2025-05-29-at-204434.png)
+- **Explanation:** ![](images/screenshot-2025-05-29-at-204434.png)
 
 **Path XORs:**
 
@@ -48,19 +52,15 @@ In a rooted tree, the subtree of a node `v` includes `v` and all nodes whose pat
 
 - $\text{queries}[2] = [0, 3]$: Since there are only two distinct path XORs in this subtree, the answer is -1.
 
-**Output:** `[0, 1, -1]`
+- **Output:** `[0, 1, -1]`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** par = [-1,0,1], vals = [5,2,7], queries = [[0,1],[1,2],[1,3],[2,1]]
+- **Input:** par = [-1,0,1], vals = [5,2,7], queries = [[0,1],[1,2],[1,3],[2,1]]
 
-**Output:** [0,7,-1,0]
+- **Output:** [0,7,-1,0]
 
-**Explanation:**
-
-![](images/screenshot-2025-05-29-at-204534.png)
+- **Explanation:** ![](images/screenshot-2025-05-29-at-204534.png)
 
 **Path XORs:**
 
@@ -88,9 +88,7 @@ In a rooted tree, the subtree of a node `v` includes `v` and all nodes whose pat
 
 - $\text{queries}[3] = [2, 1]$: The 1st smallest distinct path XOR in the subtree of node 2 is 0.
 
-**Output:** `[0, 7, -1, 0]`
-
-</div>
+- **Output:** `[0, 7, -1, 0]`
 
 ### 4. Constraints
 

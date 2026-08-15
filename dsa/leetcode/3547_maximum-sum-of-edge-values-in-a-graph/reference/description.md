@@ -12,8 +12,14 @@ Return the **maximum** score you can achieve.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,30 +27,21 @@ Return the **maximum** score you can achieve.
 
 ![](images/screenshot-from-2025-05-13-01-27-52.png)
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[1,2],[2,3]]
+- **Input:** n = 4, edges = [[0,1],[1,2],[2,3]]
 
-**Output:** 23
+- **Output:** 23
 
-**Explanation:**
+- **Explanation:** The diagram above illustrates an optimal assignment of values to nodes. The sum of the values of the edges is: $(1 * 3) + (3 * 4) + (4 * 2) = 23$.
 
-The diagram above illustrates an optimal assignment of values to nodes. The sum of the values of the edges is: $(1 * 3) + (3 * 4) + (4 * 2) = 23$.
-
-</div>
 #### Example 2
 
 ![](images/graphproblemex2drawio.png)
 
-<div class="example-block">
-**Input:** n = 6, edges = [[0,3],[4,5],[2,0],[1,3],[2,4],[1,5]]
+- **Input:** n = 6, edges = [[0,3],[4,5],[2,0],[1,3],[2,4],[1,5]]
 
-**Output:** 82
+- **Output:** 82
 
-**Explanation:**
-
-The diagram above illustrates an optimal assignment of values to nodes. The sum of the values of the edges is: $(1 * 2) + (2 * 4) + (4 * 6) + (6 * 5) + (5 * 3) + (3 * 1) = 82$.
-
-</div>
+- **Explanation:** The diagram above illustrates an optimal assignment of values to nodes. The sum of the values of the edges is: $(1 * 2) + (2 * 4) + (4 * 6) + (6 * 5) + (5 * 3) + (3 * 1) = 82$.
 
 ### 4. Constraints
 

@@ -6,47 +6,39 @@ Return the number of* ***special** letters in* *`word`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word = "aaAbcBC"
+- **Input:** word = "aaAbcBC"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The special characters in `word` are `'a'`, `'b'`, and `'c'`.
 
-The special characters in `word` are `'a'`, `'b'`, and `'c'`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word = "abc"
+- **Input:** word = "abc"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** No character in `word` appears in uppercase.
 
-No character in `word` appears in uppercase.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word = "abBCab"
+- **Input:** word = "abBCab"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The only special character in `word` is `'b'`.
-
-</div>
+- **Explanation:** The only special character in `word` is `'b'`.
 
 ### 4. Constraints
 

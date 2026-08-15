@@ -30,14 +30,14 @@ You may perform this operation any number of times, including zero. Because ever
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 7, 1, 6]`
-- Output: `5`
-- Explanation: Operations can transform the array through `[4, 6, 1, 6]` and `[4, 6, 2, 5]` to `[5, 5, 2, 5]`. No arrangement with maximum below 5 is possible.
+- **Input:** `nums = [3, 7, 1, 6]`
+- **Output:** `5`
+- **Explanation:** Operations can transform the array through `[4, 6, 1, 6]` and `[4, 6, 2, 5]` to `[5, 5, 2, 5]`. No arrangement with maximum below 5 is possible.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10, 1]`
-- Output: `10`
-- Explanation: The first value cannot move right, so leaving the array unchanged is optimal.
+- **Input:** `nums = [10, 1]`
+- **Output:** `10`
+- **Explanation:** The first value cannot move right, so leaving the array unchanged is optimal.

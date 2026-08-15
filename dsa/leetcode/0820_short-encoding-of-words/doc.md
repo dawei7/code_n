@@ -38,20 +38,20 @@ Then $S$ is the total number of input characters.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["time", "me", "bell"]`
-- Output: `10`
-- Explanation: `"time#bell#"` stores `"me"` as a suffix of `"time"`.
+- **Input:** `words = ["time", "me", "bell"]`
+- **Output:** `10`
+- **Explanation:** `"time#bell#"` stores `"me"` as a suffix of `"time"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["t"]`
-- Output: `2`
-- Explanation: The shortest reference string is `"t#"`.
+- **Input:** `words = ["t"]`
+- **Output:** `2`
+- **Explanation:** The shortest reference string is `"t#"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["time", "time", "me"]`
-- Output: `5`
-- Explanation: Both duplicate words and the suffix `"me"` share `"time#"`.
+- **Input:** `words = ["time", "time", "me"]`
+- **Output:** `5`
+- **Explanation:** Both duplicate words and the suffix `"me"` share `"time#"`.

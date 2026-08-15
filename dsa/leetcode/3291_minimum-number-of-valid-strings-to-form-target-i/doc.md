@@ -33,20 +33,20 @@ Let $S$ be the sum of all word lengths and $T$ be the length of `target`. The co
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["abc","aaaaa","bcdef"]`, `target = "aabcdabc"`
-- Output: `3`
-- Explanation: The valid prefixes `"aa"`, `"bcd"`, and `"abc"` concatenate to the target.
+- **Input:** `words = ["abc","aaaaa","bcdef"]`, `target = "aabcdabc"`
+- **Output:** `3`
+- **Explanation:** The valid prefixes `"aa"`, `"bcd"`, and `"abc"` concatenate to the target.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["abababab","ab"]`, `target = "ababaababa"`
-- Output: `2`
-- Explanation: Two copies of the valid prefix `"ababa"` form the target.
+- **Input:** `words = ["abababab","ab"]`, `target = "ababaababa"`
+- **Output:** `2`
+- **Explanation:** Two copies of the valid prefix `"ababa"` form the target.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["abcdef"]`, `target = "xyz"`
-- Output: `-1`
-- Explanation: No valid prefix begins with `"x"`.
+- **Input:** `words = ["abcdef"]`, `target = "xyz"`
+- **Output:** `-1`
+- **Explanation:** No valid prefix begins with `"x"`.

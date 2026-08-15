@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-area-of-longest-diagonal-rectangle/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a list of rectangles. Each row contains the positive integer
 length and width of one rectangle.
 
@@ -24,6 +26,7 @@ $\sqrt{a^2+b^2}$ and its area is $ab$. The returned value is the selected
 rectangle's integer area, not its diagonal length or its dimensions.
 
 ### Function Contract
+
 **Inputs**
 
 - `dimensions`: rows of the form `[length, width]`
@@ -37,16 +40,17 @@ between 1 and 100 inclusive.
 Return the area of the rectangle selected by diagonal length and then area.
 
 ### Examples
-**Example 1**
 
-- Input: `dimensions = [[9,3],[8,6]]`
-- Output: `48`
+#### Example 1
+
+- **Input:** `dimensions = [[9,3],[8,6]]`
+- **Output:** `48`
 
 The squared diagonals are 90 and 100, so the second rectangle is selected.
 
-**Example 2**
+#### Example 2
 
-- Input: `dimensions = [[3,4],[4,3]]`
-- Output: `12`
+- **Input:** `dimensions = [[3,4],[4,3]]`
+- **Output:** `12`
 
 Both diagonals have length 5 and both areas are 12.

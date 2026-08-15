@@ -33,23 +33,23 @@ You may rearrange the elements of `nums2` in any order while leaving `nums1` fix
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1,2], nums2 = [2,3]`
-- Output: `2`
+- **Input:** `nums1 = [1,2], nums2 = [2,3]`
+- **Output:** `2`
 
 Rearranging `nums2` to `[3,2]` gives `(1 XOR 3) + (2 XOR 2) = 2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1,0,3], nums2 = [5,3,4]`
-- Output: `8`
+- **Input:** `nums1 = [1,0,3], nums2 = [5,3,4]`
+- **Output:** `8`
 
 The arrangement `[5,4,3]` contributes $4+4+0$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [2,4,6], nums2 = [1,3,5]`
-- Output: `9`
+- **Input:** `nums1 = [2,4,6], nums2 = [1,3,5]`
+- **Output:** `9`
 
 No permutation produces an XOR sum below $9$.

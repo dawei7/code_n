@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +-------------+---------+--------+
 | employee_id | name    | salary |
@@ -41,7 +41,7 @@ Employees table:
 | 8           | Juan    | 6100   |
 | 9           | Kannon  | 7700   |
 +-------------+---------+--------+
-**Output:**
+- **Output:** 
 +-------------+-------+
 | employee_id | bonus |
 +-------------+-------+
@@ -51,8 +51,7 @@ Employees table:
 | 8           | 0     |
 | 9           | 7700  |
 +-------------+-------+
-**Explanation:**
-The employees with IDs 2 and 8 get 0 bonus because they have an even employee_id.
+- **Explanation:** The employees with IDs 2 and 8 get 0 bonus because they have an even employee_id.
 The employee with ID 3 gets 0 bonus because their name starts with 'M'.
 The rest of the employees get a 100% bonus.
 ```

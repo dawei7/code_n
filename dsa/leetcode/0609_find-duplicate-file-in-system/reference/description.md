@@ -16,8 +16,13 @@ The output is a list of groups of duplicate file paths. For each group, it conta
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `paths`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[List[str]]`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ The output is a list of groups of duplicate file paths. For each group, it conta
 
 - **Input:** $paths = ["root/a 1.txt(abcd) 2.txt(efgh)","root/c 3.txt(abcd)","root/c/d 4.txt(efgh)","root 4.txt(efgh)"]$
 - **Output:** `[["root/a/2.txt","root/c/d/4.txt","root/4.txt"],["root/a/1.txt","root/c/3.txt"]]`
+
 #### Example 2
 
 - **Input:** $paths = ["root/a 1.txt(abcd) 2.txt(efgh)","root/c 3.txt(abcd)","root/c/d 4.txt(efgh)"]$

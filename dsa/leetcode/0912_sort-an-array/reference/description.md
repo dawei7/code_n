@@ -6,8 +6,13 @@ You must solve the problem **without using any built-in** functions in `O(nlog(n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ You must solve the problem **without using any built-in** functions in `O(nlog(n
 - **Input:** `nums = [5,2,3,1]`
 - **Output:** `[1,2,3,5]`
 - **Explanation:** After sorting the array, the positions of some numbers are not changed (for example, 2 and 3), while the positions of other numbers are changed (for example, 1 and 5).
+
 #### Example 2
 
 - **Input:** `nums = [5,1,1,2,0,0]`

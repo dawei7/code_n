@@ -12,8 +12,11 @@ Implement the `Graph` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Graph(n: int, edges: List[List[int]])`: Initializes the data structure.
+- `addEdge(edge: List[int])`: Executes operation.
+- `shortestPath(node1: int, node2: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

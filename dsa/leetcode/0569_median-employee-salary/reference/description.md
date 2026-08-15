@@ -35,7 +35,7 @@ Return a table with columns `id`, `company`, and `salary`. For each company, inc
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employee table:
 +----+---------+--------+
 | id | company | salary |
@@ -58,7 +58,7 @@ Employee table:
 | 16 | C       | 2652   |
 | 17 | C       | 65     |
 +----+---------+--------+
-**Output:**
+- **Output:** 
 +----+---------+--------+
 | id | company | salary |
 +----+---------+--------+
@@ -68,8 +68,7 @@ Employee table:
 | 9  | B       | 1154   |
 | 14 | C       | 2645   |
 +----+---------+--------+
-**Explanation:**
-For company A, the rows sorted are as follows:
+- **Explanation:** For company A, the rows sorted are as follows:
 +----+---------+--------+
 | id | company | salary |
 +----+---------+--------+

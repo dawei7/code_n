@@ -30,17 +30,17 @@ Determine whether the characters of `s1` and `s2` can be rearranged so that a pe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "abc", s2 = "xya"`
-- Output: `true`
+- **Input:** `s1 = "abc", s2 = "xya"`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "abe", s2 = "acd"`
-- Output: `false`
+- **Input:** `s1 = "abe", s2 = "acd"`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `s1 = "leetcode", s2 = "interview"`
-- Output: `true`
+- **Input:** `s1 = "leetcode", s2 = "interview"`
+- **Output:** `true`

@@ -20,6 +20,7 @@ Return $\text{List}[str]$ containing all strobogrammatic numbers of length `n`.
 
 - **Input:** $n = 2$
 - **Output:** `["11","69","88","96"]`
+
 #### Example 2
 
 - **Input:** $n = 1$

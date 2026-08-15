@@ -31,20 +31,20 @@ Order all such fractions by their numerical values and return the numerator and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,2,3,5], k = 3`
-- Output: `[2,5]`
-- Explanation: The first fractions are $1/5$, $1/3$, and $2/5$.
+- **Input:** `arr = [1,2,3,5], k = 3`
+- **Output:** `[2,5]`
+- **Explanation:** The first fractions are $1/5$, $1/3$, and $2/5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,7], k = 1`
-- Output: `[1,7]`
-- Explanation: Only one eligible pair exists.
+- **Input:** `arr = [1,7], k = 1`
+- **Output:** `[1,7]`
+- **Explanation:** Only one eligible pair exists.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [1,2,3,5], k = 6`
-- Output: `[2,3]`
-- Explanation: This is the largest of the six eligible fractions.
+- **Input:** `arr = [1,2,3,5], k = 6`
+- **Output:** `[2,3]`
+- **Explanation:** This is the largest of the six eligible fractions.

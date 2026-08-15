@@ -33,7 +33,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Friendship table:
 +----------+----------+
 | user1_id | user2_id |
@@ -51,15 +51,14 @@ Friendship table:
 | 3        | 6        |
 | 2        | 6        |
 +----------+----------+
-**Output:**
+- **Output:** 
 +----------+----------+---------------+
 | user1_id | user2_id | common_friend |
 +----------+----------+---------------+
 | 1        | 2        | 4             |
 | 1        | 3        | 3             |
 +----------+----------+---------------+
-**Explanation:**
-Users 1 and 2 have 4 common friends (3, 4, 5, and 6).
+- **Explanation:** Users 1 and 2 have 4 common friends (3, 4, 5, and 6).
 Users 1 and 3 have 3 common friends (2, 6, and 7).
 We did not include the friendship of users 2 and 3 because they only have two common friends (1 and 6).
 ```

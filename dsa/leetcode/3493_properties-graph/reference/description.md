@@ -10,51 +10,44 @@ Return the number of **connected components** in the resulting graph.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `properties`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** properties = [[1,2],[1,1],[3,4],[4,5],[5,6],[7,7]], k = 1
+- **Input:** properties = [[1,2],[1,1],[3,4],[4,5],[5,6],[7,7]], k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The graph formed has 3 connected components:
+- **Explanation:** The graph formed has 3 connected components:
 
 ![](images/image.png)
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** properties = [[1,2,3],[2,3,4],[4,3,5]], k = 2
+- **Input:** properties = [[1,2,3],[2,3,4],[4,3,5]], k = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The graph formed has 1 connected component:
+- **Explanation:** The graph formed has 1 connected component:
 
 ![](images/screenshot-from-2025-02-27-23-58-34.png)
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** properties = [[1,1],[1,1]], k = 2
+- **Input:** properties = [[1,1],[1,1]], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-$intersect(\text{properties}[0], \text{properties}[1]) = 1$, which is less than `k`. This means there is no edge between $\text{properties}[0]$ and $\text{properties}[1]$ in the graph.
-
-</div>
+- **Explanation:** $intersect(\text{properties}[0], \text{properties}[1]) = 1$, which is less than `k`. This means there is no edge between $\text{properties}[0]$ and $\text{properties}[1]$ in the graph.
 
 ### 4. Constraints
 

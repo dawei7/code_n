@@ -30,21 +30,21 @@ Form one value `arr1[i] & arr2[j]` for every pair of valid indices, using bitwis
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr1 = [1,2,3], arr2 = [6,5]`
-- Output: `0`
+- **Input:** `arr1 = [1,2,3], arr2 = [6,5]`
+- **Output:** `0`
 
 The pair results are `[0,1,2,0,2,1]`, whose equal nonzero values cancel under XOR.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr1 = [12], arr2 = [4]`
-- Output: `4`
+- **Input:** `arr1 = [12], arr2 = [4]`
+- **Output:** `4`
 
 There is only one pair, and `12 & 4 = 4`.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr1 = [5,1], arr2 = [3,7]`
-- Output: `4`
+- **Input:** `arr1 = [5,1], arr2 = [3,7]`
+- **Output:** `4`

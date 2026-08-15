@@ -8,8 +8,14 @@ Return a 2D array `ans` of size $(m - k + 1) x (n - k + 1)$, where $\text{ans}[i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Note
 
@@ -21,12 +27,11 @@ A submatrix `(x1, y1, x2, y2)` is a matrix that is formed by choosing all cells 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,8],[3,-2]], k = 2
+- **Input:** grid = [[1,8],[3,-2]], k = 2
 
-**Output:** [[2]]
+- **Output:** [[2]]
 
-**Explanation:**
+- **Explanation:** 
 
 - There is only one possible `k x k` submatrix: `[[1, 8], [3, -2]]`.
 
@@ -34,51 +39,41 @@ A submatrix `(x1, y1, x2, y2)` is a matrix that is formed by choosing all cells 
 
 - The minimum absolute difference in the submatrix is $|1 - 3| = 2$. Thus, the answer is `[[2]]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[3,-1]], k = 1
+- **Input:** grid = [[3,-1]], k = 1
 
-**Output:** [[0,0]]
+- **Output:** [[0,0]]
 
-**Explanation:**
+- **Explanation:** 
 
 - Both `k x k` submatrix has only one distinct element.
 
 - Thus, the answer is `[[0, 0]]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1,-2,3],[2,3,5]], k = 2
+- **Input:** grid = [[1,-2,3],[2,3,5]], k = 2
 
-**Output:** [[1,2]]
+- **Output:** [[1,2]]
 
-**Explanation:**
+- **Explanation:** 
 
 - There are two possible `k × k` submatrix:
 
-		<li>Starting at `(0, 0)`: `[[1, -2], [2, 3]]`.
-
-			<li>Distinct values in the submatrix are `[1, -2, 2, 3]`.
+		- Starting at `(0, 0)`: `[[1, -2], [2, 3]]`.
+- Distinct values in the submatrix are `[1, -2, 2, 3]`.
 
 - The minimum absolute difference in the submatrix is $|1 - 2| = 1$.
 
-		</li>
 - Starting at `(0, 1)`: `[[-2, 3], [3, 5]]`.
 
-			<li>Distinct values in the submatrix are `[-2, 3, 5]`.
+			- Distinct values in the submatrix are `[-2, 3, 5]`.
 
 - The minimum absolute difference in the submatrix is $|3 - 5| = 2$.
 
-		</li>
-
-	</li>
+	
 - Thus, the answer is `[[1, 2]]`.
-
-</div>
 
 ### 5. Constraints
 

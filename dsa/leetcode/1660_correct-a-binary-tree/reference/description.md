@@ -39,6 +39,7 @@ After the binary tree rooted at `root` is parsed, the `TreeNode` with value of `
 - **Input:** `root = [1,2,3], fromNode = 2, toNode = 3`
 - **Output:** `[1,null,3]`
 - **Explanation:** The node with value 2 is invalid, so remove it.
+
 #### Example 2
 
 **

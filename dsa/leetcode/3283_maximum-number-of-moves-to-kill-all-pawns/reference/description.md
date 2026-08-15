@@ -18,33 +18,35 @@ Note that in one **move, **a chess knight has eight possible positions it can mo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `kx`: Input parameter (`int`).
+- `ky`: Input parameter (`int`).
+- `positions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** kx = 1, ky = 1, positions = [[0,0]]
+- **Input:** kx = 1, ky = 1, positions = [[0,0]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-![](images/gif3.gif)
+- **Explanation:** ![](images/gif3.gif)
 
 The knight takes 4 moves to reach the pawn at `(0, 0)`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** kx = 0, ky = 2, positions = [[1,1],[2,2],[3,3]]
+- **Input:** kx = 0, ky = 2, positions = [[1,1],[2,2],[3,3]]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -58,21 +60,17 @@ The knight takes 4 moves to reach the pawn at `(0, 0)`.
 
 - Alice picks the pawn at `(1, 1)` and captures it in four moves: `(3, 3) -> (4, 1) -> (2, 2) -> (0, 3) -> (1, 1)`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** kx = 0, ky = 0, positions = [[1,2],[2,4]]
+- **Input:** kx = 0, ky = 0, positions = [[1,2],[2,4]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Alice picks the pawn at `(2, 4)` and captures it in two moves: `(0, 0) -> (1, 2) -> (2, 4)`. Note that the pawn at `(1, 2)` is not captured.
 
 - Bob picks the pawn at `(1, 2)` and captures it in one move: `(2, 4) -> (1, 2)`.
-
-</div>
 
 ### 4. Constraints
 

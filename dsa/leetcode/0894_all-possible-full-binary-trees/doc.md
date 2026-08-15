@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/all-possible-full-binary-trees/) |
 
 ## Problem Description
+
 ### Goal
+
 A full binary tree is a binary tree in which every node has either exactly zero children or exactly two children. Every node in this problem must store the value `0`.
 
 Given `n`, construct all structurally distinct full binary trees containing exactly `n` nodes. Return a list of their root nodes in any order. Each returned root represents one possible tree shape; when no full binary tree can contain `n` nodes, return an empty list.
 
 ### Function Contract
+
 Let $F(n)$ be the number of full binary tree shapes with $n$ nodes. For odd $n=2m+1$,
 
 $$
@@ -32,19 +35,20 @@ and $F(n)=0$ for even $n$.
 Return the roots of all $F(n)$ structurally distinct full binary trees with `n` nodes and value `0` at every node; the root-list order is unrestricted.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 7`
-- Output: `[[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]`
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 7`
+- **Output:** `[[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]`
 
-- Input: `n = 3`
-- Output: `[[0,0,0]]`
+#### Example 2
 
-**Example 3**
+- **Input:** `n = 3`
+- **Output:** `[[0,0,0]]`
 
-- Input: `n = 2`
-- Output: `[]`
+#### Example 3
+
+- **Input:** `n = 2`
+- **Output:** `[]`
 
 A full binary tree always has an odd number of nodes.

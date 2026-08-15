@@ -35,14 +35,14 @@ Return the maximum number of groups in a valid assignment, or `-1` if no valid a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, edges = [[1, 2], [1, 4], [1, 5], [2, 6], [2, 3], [4, 6]]`
-- Output: `4`
-- Explanation: One valid ordering places node `5`, then node `1`, then nodes `2` and `4`, then nodes `3` and `6`. Every edge crosses between consecutive groups, and no fifth group can be added.
+- **Input:** `n = 6, edges = [[1, 2], [1, 4], [1, 5], [2, 6], [2, 3], [4, 6]]`
+- **Output:** `4`
+- **Explanation:** One valid ordering places node `5`, then node `1`, then nodes `2` and `4`, then nodes `3` and `6`. Every edge crosses between consecutive groups, and no fifth group can be added.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[1, 2], [2, 3], [3, 1]]`
-- Output: `-1`
-- Explanation: The triangle is an odd cycle. Consecutive-group differences cannot be assigned consistently around it.
+- **Input:** `n = 3, edges = [[1, 2], [2, 3], [3, 1]]`
+- **Output:** `-1`
+- **Explanation:** The triangle is an odd cycle. Consecutive-group differences cannot be assigned consistently around it.

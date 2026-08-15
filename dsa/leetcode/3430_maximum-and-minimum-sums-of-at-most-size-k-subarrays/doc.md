@@ -31,12 +31,12 @@ Return the sum of the minimum and maximum elements over every subarray of length
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3], k = 2`
-- Output: `20`
+- **Input:** `nums = [1,2,3], k = 2`
+- **Output:** `20`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,-3,1], k = 2`
-- Output: `-6`
+- **Input:** `nums = [1,-3,1], k = 2`
+- **Output:** `-6`

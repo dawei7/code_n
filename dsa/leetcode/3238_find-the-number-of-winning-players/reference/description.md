@@ -16,8 +16,14 @@ Return the number of players who **win** the game.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `pick`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,40 +33,27 @@ that *multiple* players can win the game.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, pick = [[0,0],[1,0],[1,0],[2,1],[2,1],[2,0]]
+- **Input:** n = 4, pick = [[0,0],[1,0],[1,0],[2,1],[2,1],[2,0]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** Player 0 and player 1 win the game, while players 2 and 3 do not win.
 
-Player 0 and player 1 win the game, while players 2 and 3 do not win.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 5, pick = [[1,1],[1,2],[1,3],[1,4]]
+- **Input:** n = 5, pick = [[1,1],[1,2],[1,3],[1,4]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** No player wins the game.
 
-No player wins the game.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, pick = [[1,1],[2,4],[2,4],[2,4]]
+- **Input:** n = 5, pick = [[1,1],[2,4],[2,4],[2,4]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Player 2 wins the game by picking 3 balls with color 4.
-
-</div>
+- **Explanation:** Player 2 wins the game by picking 3 balls with color 4.
 
 ### 5. Constraints
 

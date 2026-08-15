@@ -6,8 +6,14 @@ Return* the **minimum** number of minutes needed for you to take **at least** *`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,11 +21,11 @@ Return* the **minimum** number of minutes needed for you to take **at least** *`
 
 - **Input:** `s = "aabaaaacaabc", k = 2`
 - **Output:** `8`
-- **Explanation:**
-Take three characters from the left of s. You now have two 'a' characters, and one 'b' character.
+- **Explanation:** Take three characters from the left of s. You now have two 'a' characters, and one 'b' character.
 Take five characters from the right of s. You now have four 'a' characters, two 'b' characters, and two 'c' characters.
 A total of 3 + 5 = 8 minutes is needed.
 It can be proven that 8 is the minimum number of minutes needed.
+
 #### Example 2
 
 - **Input:** `s = "a", k = 1`

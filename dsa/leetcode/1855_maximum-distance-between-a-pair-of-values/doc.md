@@ -33,19 +33,19 @@ The distance of a valid pair is $j-i$. Return the largest distance over all vali
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [55, 30, 5, 4, 2]`, `nums2 = [100, 20, 10, 10, 5]`
-- Output: `2`
+- **Input:** `nums1 = [55, 30, 5, 4, 2]`, `nums2 = [100, 20, 10, 10, 5]`
+- **Output:** `2`
 
 Indices `(2, 4)` form a valid pair because $5\le5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2, 2, 2]`, `nums2 = [10, 10, 1]`
-- Output: `1`
+- **Input:** `nums1 = [2, 2, 2]`, `nums2 = [10, 10, 1]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [30, 29, 19, 5]`, `nums2 = [25, 25, 25, 25, 25]`
-- Output: `2`
+- **Input:** `nums1 = [30, 29, 19, 5]`, `nums2 = [25, 25, 25, 25, 25]`
+- **Output:** `2`

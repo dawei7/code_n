@@ -16,31 +16,38 @@ Return the **minimum** **total** **travel time** (in minutes) to travel from 0 t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `l`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+- `position`: Input parameter (`List[int]`).
+- `time`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 10, n = 4, k = 1, position = [0,3,8,10], time = [5,8,3,6]
+- **Input:** l = 10, n = 4, k = 1, position = [0,3,8,10], time = [5,8,3,6]
 
-**Output:** 62
+- **Output:** 62
 
-**Explanation:**
+- **Explanation:** 
 
 - Merge the signs at indices 1 and 2. Remove the sign at index 1, and change the time at index 2 to $8 + 3 = 11$.
 
 - After the merge:
 
-		<li data-end="214" data-start="145">`position` array: `[0, 8, 10]`
+		- `position` array: `[0, 8, 10]`
 
 - `time` array: `[5, 11, 6]`
 
 -
 
-	</li>
 - <table data-end="386" data-start="231" style="border: 1px solid black;">
 		<thead data-end="269" data-start="231">
 			<tr data-end="269" data-start="231">
@@ -68,27 +75,24 @@ Return the **minimum** **total** **travel time** (in minutes) to travel from 0 t
 
 - Total Travel Time: $40 + 22 = 62$, which is the minimum possible time after exactly 1 merge.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 5, n = 5, k = 1, position = [0,1,2,3,5], time = [8,3,9,3,3]
+- **Input:** l = 5, n = 5, k = 1, position = [0,1,2,3,5], time = [8,3,9,3,3]
 
-**Output:** 34
+- **Output:** 34
 
-**Explanation:**
+- **Explanation:** 
 
 - Merge the signs at indices 1 and 2. Remove the sign at index 1, and change the time at index 2 to $3 + 9 = 12$.
 
 - After the merge:
 
-		<li data-end="755" data-start="568">`position` array: `[0, 2, 3, 5]`
+		- `position` array: `[0, 2, 3, 5]`
 
 - `time` array: `[8, 12, 3, 3]`
 
 -
 
-	</li>
 - <table data-end="966" data-start="772" style="border: 1px solid black;">
 		<thead data-end="810" data-start="772">
 			<tr data-end="810" data-start="772">
@@ -121,8 +125,6 @@ Return the **minimum** **total** **travel time** (in minutes) to travel from 0 t
 	</table>
 
 - Total Travel Time: $16 + 12 + 6 = 34$**, **which is the minimum possible time after exactly 1 merge.
-
-</div>
 
 ### 4. Constraints
 

@@ -8,8 +8,13 @@ Students must be placed in seats in good condition.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `seats`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Students must be placed in seats in good condition.
 ["#",".","#","#",".","#"]]
 - **Output:** `4`
 - **Explanation:** Teacher can place 4 students in available seats so they don't cheat on the exam.
+
 #### Example 2
 
 - **Input:** $seats = [[".","#"],$
@@ -31,6 +37,7 @@ Students must be placed in seats in good condition.
 [".","#"]]
 - **Output:** `3`
 - **Explanation:** Place all students in available seats.
+
 #### Example 3
 
 - **Input:** $seats = [["#",".","**.**",".","#"],$

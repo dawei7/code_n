@@ -4,8 +4,14 @@ Given two arrays of **unique** digits `nums1` and `nums2`, return *the **smalles
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +20,7 @@ Given two arrays of **unique** digits `nums1` and `nums2`, return *the **smalles
 - **Input:** $nums1 = [4,1,3], nums2 = [5,7]$
 - **Output:** `15`
 - **Explanation:** The number 15 contains the digit 1 from nums1 and the digit 5 from nums2. It can be proven that 15 is the smallest number we can have.
+
 #### Example 2
 
 - **Input:** $nums1 = [3,5,2,6], nums2 = [3,1,7]$

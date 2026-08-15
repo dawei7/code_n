@@ -32,6 +32,7 @@ It's guaranteed that no subtree will yield a value that exceeds $10^{9}$ in abso
 - **Input:** $s = ["3","4","+","2","*","7","/"]$
 - **Output:** `2`
 - **Explanation:** this expression evaluates to the above binary tree with expression ((3+4)*2)/7) = 14/7 = 2.
+
 #### Example 2
 
 ![](images/untitled-diagram2.png)

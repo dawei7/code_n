@@ -30,20 +30,20 @@ Starting at `(0, 0)`, return the minimum time at which $(n - 1, n - 1)$ can be r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,2],[1,3]]`
-- Output: `3`
-- Explanation: The destination itself has elevation `3`, so no earlier arrival is possible.
+- **Input:** `grid = [[0,2],[1,3]]`
+- **Output:** `3`
+- **Explanation:** The destination itself has elevation `3`, so no earlier arrival is possible.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]`
-- Output: `16`
-- Explanation: The low-elevation route winds around the grid and reaches the destination once elevation `16` is available.
+- **Input:** `grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]`
+- **Output:** `16`
+- **Explanation:** The low-elevation route winds around the grid and reaches the destination once elevation `16` is available.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0]]`
-- Output: `0`
-- Explanation: The start is already the destination.
+- **Input:** `grid = [[0]]`
+- **Output:** `0`
+- **Explanation:** The start is already the destination.

@@ -35,16 +35,16 @@ The constraints are $1 \leq n, m \leq 10^5$ and $1 \leq \texttt{nums[i]}, \textt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,1,6,8], queries = [1,5]`
-- Output: `[14,10]`
+- **Input:** `nums = [3,1,6,8], queries = [1,5]`
+- **Output:** `[14,10]`
 
 Making every value equal to $1$ costs $2 + 0 + 5 + 7 = 14$. Making every value equal to $5$ costs $2 + 4 + 1 + 3 = 10$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,9,6,3], queries = [10]`
-- Output: `[20]`
+- **Input:** `nums = [2,9,6,3], queries = [10]`
+- **Output:** `[20]`
 
 The required increases are $8$, $1$, $4$, and $7$, for a total of $20$.

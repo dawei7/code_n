@@ -32,17 +32,17 @@ Return the length of the longest contiguous subarray attaining the maximum possi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,3,2,2]`
-- Output: `2`
+- **Input:** `nums = [1,2,3,3,2,2]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`
-- Output: `1`
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7,7,7,7]`
-- Output: `4`
+- **Input:** `nums = [7,7,7,7]`
+- **Output:** `4`

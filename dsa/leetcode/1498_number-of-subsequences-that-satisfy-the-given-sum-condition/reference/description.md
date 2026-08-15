@@ -6,8 +6,14 @@ Return *the number of **non-empty** subsequences of *`nums`* such that the sum o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,12 +26,14 @@ Return *the number of **non-empty** subsequences of *`nums`* such that the sum o
 [3,5] -> (3 + 5 <= 9)
 [3,5,6] -> (3 + 6 <= 9)
 [3,6] -> (3 + 6 <= 9)
+
 #### Example 2
 
 - **Input:** `nums = [3,3,6,8], target = 10`
 - **Output:** `6`
 - **Explanation:** There are 6 subsequences that satisfy the condition. (nums can have repeated numbers).
 [3] , [3] , [3,3], [3,6] , [3,6] , [3,3,6]
+
 #### Example 3
 
 - **Input:** `nums = [2,3,3,4,6,7], target = 12`

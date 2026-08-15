@@ -32,23 +32,23 @@ The average pass ratio is the sum of all individual class ratios divided by the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `classes = [[1, 2], [3, 5], [2, 2]], extraStudents = 2`
-- Output: `0.78333`
+- **Input:** `classes = [[1, 2], [3, 5], [2, 2]], extraStudents = 2`
+- **Output:** `0.78333`
 
 Assigning both students to the first class gives ratios $3/4$, $3/5$, and $2/2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `classes = [[2, 4], [3, 9], [4, 5], [2, 10]], extraStudents = 4`
-- Output: `0.53485`
+- **Input:** `classes = [[2, 4], [3, 9], [4, 5], [2, 10]], extraStudents = 4`
+- **Output:** `0.53485`
 
 The best recipient can change after each assignment because that class's next gain becomes smaller.
 
-**Example 3**
+#### Example 3
 
-- Input: `classes = [[5, 5]], extraStudents = 3`
-- Output: `1.00000`
+- **Input:** `classes = [[5, 5]], extraStudents = 3`
+- **Output:** `1.00000`
 
 The only class remains at a perfect pass ratio after every assignment.

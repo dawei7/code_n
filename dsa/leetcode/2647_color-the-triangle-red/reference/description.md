@@ -18,9 +18,8 @@ Initially, all the unit triangles are **white**. You want to choose `k` triangle
 
 - Choose a white triangle that has **at least two** red neighbors.
 
-		<li>If there is no such triangle, stop the algorithm.
+		- If there is no such triangle, stop the algorithm.
 
-	</li>
 - Color that triangle **red**.
 
 - Go to step 1.
@@ -47,6 +46,7 @@ Return *a 2D list of the coordinates of the triangles that you will color red in
 - Choose (3,4) that has three red neighbors and color it red.
 - Choose (3,3) that has three red neighbors and color it red.
 It can be shown that choosing any 4 triangles and running the algorithm will not make all triangles red.
+
 #### Example 2
 
 ![](images/example2.jpg)

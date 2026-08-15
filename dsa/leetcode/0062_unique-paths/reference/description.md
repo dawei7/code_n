@@ -25,6 +25,7 @@ Return the number of unique right-and-down paths from the top-left cell to the b
 
 - **Input:** $m = 3, n = 7$
 - **Output:** `28`
+
 #### Example 2
 
 - **Input:** $m = 3, n = 2$

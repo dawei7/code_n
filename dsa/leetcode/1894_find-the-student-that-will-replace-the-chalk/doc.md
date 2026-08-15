@@ -31,23 +31,23 @@ The classroom begins with `k` pieces of chalk. If the remaining amount is strict
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `chalk = [5,1,5], k = 22`
-- Output: `0`
+- **Input:** `chalk = [5,1,5], k = 22`
+- **Output:** `0`
 
 Two complete rounds consume all `22` pieces, so student `0` replaces the chalk.
 
-**Example 2**
+#### Example 2
 
-- Input: `chalk = [3,4,1,2], k = 25`
-- Output: `1`
+- **Input:** `chalk = [3,4,1,2], k = 25`
+- **Output:** `1`
 
 After two complete rounds and student `0`'s next turn, only two pieces remain; student `1` needs four.
 
-**Example 3**
+#### Example 3
 
-- Input: `chalk = [2,3], k = 2`
-- Output: `1`
+- **Input:** `chalk = [2,3], k = 2`
+- **Output:** `1`
 
 Student `0` uses exactly two pieces, leaving none for student `1`.

@@ -10,19 +10,23 @@ Return the **maximum** number of operations you can perform.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,2,1,4,5]
+- **Input:** nums = [3,2,1,4,5]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - We can perform the first operation with the score $3 + 2 = 5$. After this operation, `nums = [1,4,5]`.
 
@@ -30,15 +34,13 @@ Return the **maximum** number of operations you can perform.
 
 - As there are fewer than two elements, we can't perform more operations.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,5,3,3,4,1,3,2,2,3]
+- **Input:** nums = [1,5,3,3,4,1,3,2,2,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - We can perform the first operation with the score $1 + 5 = 6$. After this operation, `nums = [3,3,4,1,3,2,2,3]`.
 
@@ -46,15 +48,11 @@ Return the **maximum** number of operations you can perform.
 
 - We cannot perform the next operation as its score is $4 + 1 = 5$, which is different from the previous scores.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,3]
+- **Input:** nums = [5,3]
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

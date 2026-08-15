@@ -16,8 +16,13 @@ Note:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -27,11 +32,13 @@ Note:
 - **Output:** `"777"`
 - **Explanation:** There are two distinct good integers: "777" and "333".
 "777" is the largest, so we return "777".
+
 #### Example 2
 
 - **Input:** $num = "23**<u>000</u>**19"$
 - **Output:** `"000"`
 - **Explanation:** "000" is the only good integer.
+
 #### Example 3
 
 - **Input:** $num = "42352338"$

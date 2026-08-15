@@ -33,20 +33,20 @@ Let $E$ be the number of employee rows and $M$ the number of employees having at
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Hercy (`9`, age `43`) has direct reports Alice (age `41`) and Bob (age `36`); Winston reports to nobody.
-- Output: `(9, "Hercy", 2, 39)`
-- Explanation: Hercy's direct reports average $(41 + 36) / 2 = 38.5$, which rounds to $39$.
+- **Input:** Hercy (`9`, age `43`) has direct reports Alice (age `41`) and Bob (age `36`); Winston reports to nobody.
+- **Output:** `(9, "Hercy", 2, 39)`
+- **Explanation:** Hercy's direct reports average $(41 + 36) / 2 = 38.5$, which rounds to $39$.
 
-**Example 2**
+#### Example 2
 
-- Input: Michael manages Alice and Bob; Alice manages Charlie and David; Bob manages Eve.
-- Output: Michael with `(2, 40)`, Alice with `(2, 37)`, and Bob with `(1, 37)`, in employee-ID order.
-- Explanation: Each manager's count and average use only that manager's immediate reports.
+- **Input:** Michael manages Alice and Bob; Alice manages Charlie and David; Bob manages Eve.
+- **Output:** Michael with `(2, 40)`, Alice with `(2, 37)`, and Bob with `(1, 37)`, in employee-ID order.
+- **Explanation:** Each manager's count and average use only that manager's immediate reports.
 
-**Example 3**
+#### Example 3
 
-- Input: employee `20` reports to employee `10`, and employee `30` reports to employee `20`.
-- Output: one row for employee `10` based only on employee `20`, and one row for employee `20` based only on employee `30`.
-- Explanation: The grandchild employee `30` is not included in employee `10`'s aggregate.
+- **Input:** employee `20` reports to employee `10`, and employee `30` reports to employee `20`.
+- **Output:** one row for employee `10` based only on employee `20`, and one row for employee `20` based only on employee `30`.
+- **Explanation:** The grandchild employee `30` is not included in employee `10`'s aggregate.

@@ -31,7 +31,7 @@ For each customer, identify only that customer's first order, meaning the row wi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Delivery`
 
@@ -45,7 +45,7 @@ For each customer, identify only that customer's first order, meaning the row wi
 | 6 | 2 | 2019-08-11 | 2019-08-13 |
 | 7 | 4 | 2019-08-09 | 2019-08-09 |
 
-Output:
+- **Output:** 
 
 | immediate_percentage |
 |---:|
@@ -53,10 +53,10 @@ Output:
 
 The first orders for customers `1` and `3` are scheduled, while those for customers `2` and `4` are immediate.
 
-**Example 2**
+#### Example 2
 
 A later immediate order does not count when the same customer's first order was scheduled.
 
-**Example 3**
+#### Example 3
 
 A customer with exactly one order contributes according to that single row.

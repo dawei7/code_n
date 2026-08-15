@@ -39,21 +39,21 @@ Return `True` if there are distinct starting indices $i$ and $j$ such that
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4, 2, 4]`
-- Output: `True`
-- Explanation: The pairs at indices 0 and 1 both sum to 6.
+- **Input:** `nums = [4, 2, 4]`
+- **Output:** `True`
+- **Explanation:** The pairs at indices 0 and 1 both sum to 6.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4, 5]`
-- Output: `False`
-- Explanation: The adjacent-pair sums are 3, 5, 7, and 9, all distinct.
+- **Input:** `nums = [1, 2, 3, 4, 5]`
+- **Output:** `False`
+- **Explanation:** The adjacent-pair sums are 3, 5, 7, and 9, all distinct.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0, 0, 0]`
-- Output: `True`
-- Explanation: The two overlapping subarrays have the same contents and sum,
+- **Input:** `nums = [0, 0, 0]`
+- **Output:** `True`
+- **Explanation:** The two overlapping subarrays have the same contents and sum,
   but their different starting indices make them distinct subarrays.

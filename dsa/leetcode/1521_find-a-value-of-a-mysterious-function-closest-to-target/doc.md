@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-a-value-of-a-mysterious-function-closest-to-target/) |
 
 ## Problem Description
+
 ### Goal
 
 For indices `l` and `r`, the given function takes the bitwise AND of every array value in the inclusive range from `min(l, r)` through `max(l, r)`. Thus every function result is the AND of one nonempty contiguous subarray.
@@ -16,6 +17,7 @@ For indices `l` and `r`, the given function takes the bitwise AND of every array
 Choose any legal pair of indices so that the absolute difference between this AND value and `target` is as small as possible. Return that minimum difference; the indices and the chosen subarray itself are not returned.
 
 ### Function Contract
+
 **Inputs**
 
 Let $n$ be the array length and $M$ its maximum value.
@@ -34,20 +36,21 @@ $$
 over every nonempty contiguous interval with $0 \leq l \leq r < n$.
 
 ### Examples
-**Example 1**
 
-- Input: `arr = [9, 12, 3, 7, 15], target = 5`
-- Output: `2`
-- Explanation: Reachable AND values include 3 and 7, both two away from 5.
+#### Example 1
 
-**Example 2**
+- **Input:** `arr = [9, 12, 3, 7, 15], target = 5`
+- **Output:** `2`
+- **Explanation:** Reachable AND values include 3 and 7, both two away from 5.
 
-- Input: `arr = [1000000, 1000000, 1000000], target = 1`
-- Output: `999999`
-- Explanation: Every nonempty subarray has AND value 1000000.
+#### Example 2
 
-**Example 3**
+- **Input:** `arr = [1000000, 1000000, 1000000], target = 1`
+- **Output:** `999999`
+- **Explanation:** Every nonempty subarray has AND value 1000000.
 
-- Input: `arr = [1, 2, 4, 8, 16], target = 0`
-- Output: `0`
-- Explanation: The AND of any adjacent pair is zero.
+#### Example 3
+
+- **Input:** `arr = [1, 2, 4, 8, 16], target = 0`
+- **Output:** `0`
+- **Explanation:** The AND of any adjacent pair is zero.

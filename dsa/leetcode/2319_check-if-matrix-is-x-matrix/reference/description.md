@@ -10,8 +10,13 @@ Given a 2D integer array `grid` of size `n x n` representing a square matrix, re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Given a 2D integer array `grid` of size `n x n` representing a square matrix, re
 - **Explanation:** Refer to the diagram above.
 An X-Matrix should have the green elements (diagonals) be non-zero and the red elements be 0.
 Thus, grid is an X-Matrix.
+
 #### Example 2
 
 ![](images/ex2.jpg)

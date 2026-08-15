@@ -33,23 +33,23 @@ The sum of every `nums[i]` for which the binary representation of `i` contains e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, 10, 1, 5, 2], k = 1`
-- Output: `13`
+- **Input:** `nums = [5, 10, 1, 5, 2], k = 1`
+- **Output:** `13`
 
 Indices `1`, `2`, and `4` each have one set bit, so the sum is `10 + 1 + 2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 3, 2, 1], k = 2`
-- Output: `1`
+- **Input:** `nums = [4, 3, 2, 1], k = 2`
+- **Output:** `1`
 
 Only index `3`, whose binary form is `11`, has two set bits.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10, 20, 30], k = 0`
-- Output: `10`
+- **Input:** `nums = [10, 20, 30], k = 0`
+- **Output:** `10`
 
 Index `0` is the only nonnegative index with zero set bits.

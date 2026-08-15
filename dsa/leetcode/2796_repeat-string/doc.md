@@ -32,20 +32,20 @@ Return the concatenation of `times` consecutive copies of the receiver string.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `str = "hello"`, `times = 2`
-- Output: `"hellohello"`
-- Explanation: Two copies of `"hello"` are joined.
+- **Input:** `str = "hello"`, `times = 2`
+- **Output:** `"hellohello"`
+- **Explanation:** Two copies of `"hello"` are joined.
 
-**Example 2**
+#### Example 2
 
-- Input: `str = "code"`, `times = 3`
-- Output: `"codecodecode"`
-- Explanation: The result contains three consecutive copies of `"code"`.
+- **Input:** `str = "code"`, `times = 3`
+- **Output:** `"codecodecode"`
+- **Explanation:** The result contains three consecutive copies of `"code"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `str = "js"`, `times = 1`
-- Output: `"js"`
-- Explanation: Repeating once leaves the string content unchanged.
+- **Input:** `str = "js"`, `times = 1`
+- **Output:** `"js"`
+- **Explanation:** Repeating once leaves the string content unchanged.

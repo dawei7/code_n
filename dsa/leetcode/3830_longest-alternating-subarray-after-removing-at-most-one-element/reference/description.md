@@ -34,46 +34,39 @@ Return the maximum length of an alternating subarray obtainable after removing z
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,3,2]
+- **Input:** nums = [2,1,3,2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose not to remove elements.
 
 - Select the entire array `[<u>**2, 1, 3, 2**</u>]`, which is alternating because `2 > 1 < 3 > 2`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,2,1,2,3,2,1]
+- **Input:** nums = [3,2,1,2,3,2,1]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose to remove $\text{nums}[3]$ i.e., `[3, 2, 1, <u>**2**</u>, 3, 2, 1]`. The array becomes `[3, 2, 1, 3, 2, 1]`.
 
 - Select the subarray `[3, **<u>2, 1, 3, 2</u>**, 1]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [100000,100000]
+- **Input:** nums = [100000,100000]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose not to remove elements.
 
 - Select the subarray `[100000, <u>**100000**</u>]`.
-
-</div>
 
 ### 4. Constraints
 

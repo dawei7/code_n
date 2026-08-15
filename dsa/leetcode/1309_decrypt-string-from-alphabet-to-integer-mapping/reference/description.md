@@ -12,8 +12,13 @@ The test cases are generated so that a unique mapping will always exist.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ The test cases are generated so that a unique mapping will always exist.
 - **Input:** `s = "10#11#12"`
 - **Output:** `"jkab"`
 - **Explanation:** "j" -> "10#" , "k" -> "11#" , "a" -> "1" , "b" -> "2".
+
 #### Example 2
 
 - **Input:** `s = "1326#"`

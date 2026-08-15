@@ -32,16 +32,16 @@ Return the largest greatness achievable by any permutation.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,5,2,1,3,1]`
-- Output: `4`
+- **Input:** `nums = [1,3,5,2,1,3,1]`
+- **Output:** `4`
 
 For example, `perm = [2,5,1,3,3,1,1]` wins at indices `0`, `1`, `3`, and `4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`
-- Output: `3`
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `3`
 
 The permutation `[2,3,4,1]` wins at the first three positions.

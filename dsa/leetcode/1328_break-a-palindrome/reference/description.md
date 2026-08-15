@@ -8,8 +8,13 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `palindrome`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 - **Output:** `"aaccba"`
 - **Explanation:** There are many ways to make "abccba" not a palindrome, such as "<u>z</u>bccba", "a<u>a</u>ccba", and "ab<u>a</u>cba".
 Of all the ways, "aaccba" is the lexicographically smallest.
+
 #### Example 2
 
 - **Input:** $palindrome = "a"$

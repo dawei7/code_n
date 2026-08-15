@@ -12,21 +12,24 @@ Return the **minimum** number of changes required to satisfy the above condition
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,0,1,2,4,3], k = 4
+- **Input:** nums = [1,0,1,2,4,3], k = 4
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can perform the following changes:
+- **Explanation:** We can perform the following changes:
 
 - Replace $\text{nums}[1]$ by 2. The resulting array is `nums = [1,<u>**2**</u>,1,2,4,3]`.
 
@@ -34,25 +37,19 @@ We can perform the following changes:
 
 The integer `X` will be 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,1,2,3,3,6,5,4], k = 6
+- **Input:** nums = [0,1,2,3,3,6,5,4], k = 6
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can perform the following operations:
+- **Explanation:** We can perform the following operations:
 
 - Replace $\text{nums}[3]$ by 0. The resulting array is `nums = [0,1,2,<u>**0**</u>,3,6,5,4]`.
 
 - Replace $\text{nums}[4]$ by 4. The resulting array is `nums = [0,1,2,0,**<u>4</u>**,6,5,4]`.
 
 The integer `X` will be 4.
-
-</div>
 
 ### 4. Constraints
 

@@ -30,20 +30,20 @@ Return the length of the longest substring of `s` containing at most one index $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "52233"`
-- Output: `4`
-- Explanation: `"5223"` has the single equal pair `22`; including the final `3` would add the pair `33`.
+- **Input:** `s = "52233"`
+- **Output:** `4`
+- **Explanation:** `"5223"` has the single equal pair `22`; including the final `3` would add the pair `33`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "5494"`
-- Output: `4`
-- Explanation: The whole string has no equal adjacent pair, so it is semi-repetitive.
+- **Input:** `s = "5494"`
+- **Output:** `4`
+- **Explanation:** The whole string has no equal adjacent pair, so it is semi-repetitive.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1111111"`
-- Output: `2`
-- Explanation: Any two adjacent characters form one allowed pair, whereas any three contain two overlapping pairs.
+- **Input:** `s = "1111111"`
+- **Output:** `2`
+- **Explanation:** Any two adjacent characters form one allowed pair, whereas any three contain two overlapping pairs.

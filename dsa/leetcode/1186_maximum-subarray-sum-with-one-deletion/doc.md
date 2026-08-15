@@ -30,23 +30,23 @@ Return that maximum sum. Deletion is optional, so an unchanged subarray is allow
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,-2,0,3]`
-- Output: `4`
+- **Input:** `arr = [1,-2,0,3]`
+- **Output:** `4`
 
 Choose the entire subarray and delete `-2`; the remaining elements sum to `1 + 0 + 3 = 4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,-2,-2,3]`
-- Output: `3`
+- **Input:** `arr = [1,-2,-2,3]`
+- **Output:** `3`
 
 Choosing the one-element subarray `[3]` is better than connecting the separated positive values.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [-1,-1,-1,-1]`
-- Output: `-1`
+- **Input:** `arr = [-1,-1,-1,-1]`
+- **Output:** `-1`
 
 The result cannot be empty, so deleting the only value from a one-element choice cannot produce zero.

@@ -31,19 +31,19 @@ Count the valid permutations. Because the count can be large, return it modulo $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `12`
+- **Input:** `n = 5`
+- **Output:** `12`
 
 There are three prime values and prime positions, so the count is $3!\times 2!=12$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 100`
-- Output: `682289015`
+- **Input:** `n = 100`
+- **Output:** `682289015`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1`
-- Output: `1`
+- **Input:** `n = 1`
+- **Output:** `1`

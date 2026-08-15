@@ -10,8 +10,13 @@ A string is called **palindrome** if is one that reads the same backward as well
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,12 +25,14 @@ A string is called **palindrome** if is one that reads the same backward as well
 - **Input:** `s = "ababa"`
 - **Output:** `1`
 - **Explanation:** s is already a palindrome, so its entirety can be removed in a single step.
+
 #### Example 2
 
 - **Input:** `s = "abb"`
 - **Output:** `2`
 - **Explanation:** "<u>a</u>bb" -> "<u>bb</u>" -> "".
 Remove palindromic subsequence "a" then "bb".
+
 #### Example 3
 
 - **Input:** `s = "baabb"`

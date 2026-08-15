@@ -33,23 +33,23 @@ Both inputs lie in $[1,10^9]$. Let $U=\max(\texttt{num1},\texttt{num2})$; every 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num1 = 3, num2 = 5`
-- Output: `3`
+- **Input:** `num1 = 3, num2 = 5`
+- **Output:** `3`
 
 Both `3` and `5` contain two set bits, and choosing 3 makes the XOR zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `num1 = 1, num2 = 12`
-- Output: `3`
+- **Input:** `num1 = 1, num2 = 12`
+- **Output:** `3`
 
 Two set bits are required. Keeping the low set bit of `num1` and adding the next-lowest zero bit produces `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `num1 = 15, num2 = 1`
-- Output: `8`
+- **Input:** `num1 = 15, num2 = 1`
+- **Output:** `8`
 
 Only one set bit is allowed, so matching the highest set bit of `num1` minimizes the XOR.

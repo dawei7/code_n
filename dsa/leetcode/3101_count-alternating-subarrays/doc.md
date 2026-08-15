@@ -32,14 +32,14 @@ Subarrays with the same values at different positions are counted separately bec
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 1, 1, 1]`
-- Output: `5`
-- Explanation: The four one-element subarrays and the range `[0, 1]` are alternating.
+- **Input:** `nums = [0, 1, 1, 1]`
+- **Output:** `5`
+- **Explanation:** The four one-element subarrays and the range `[0, 1]` are alternating.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 0, 1, 0]`
-- Output: `10`
-- Explanation: Every subarray is alternating, so all $4 \cdot 5 / 2 = 10$ contiguous ranges are counted.
+- **Input:** `nums = [1, 0, 1, 0]`
+- **Output:** `10`
+- **Explanation:** Every subarray is alternating, so all $4 \cdot 5 / 2 = 10$ contiguous ranges are counted.

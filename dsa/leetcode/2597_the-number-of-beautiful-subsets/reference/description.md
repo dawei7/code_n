@@ -10,8 +10,14 @@ A **subset** of `nums` is an array that can be obtained by deleting some (possib
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ A **subset** of `nums` is an array that can be obtained by deleting some (possib
 - **Output:** `4`
 - **Explanation:** The beautiful subsets of the array nums are: [2], [4], [6], [2, 6].
 It can be proved that there are only 4 beautiful subsets in the array [2,4,6].
+
 #### Example 2
 
 - **Input:** `nums = [1], k = 1`

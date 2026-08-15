@@ -30,20 +30,20 @@ Return the number of rods containing red, green, and blue rings.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rings = "B0B6G0R6R0R6G9"`
-- Output: `1`
-- Explanation: Rod `0` has all three colors; rod `6` lacks green and rod `9` has only green.
+- **Input:** `rings = "B0B6G0R6R0R6G9"`
+- **Output:** `1`
+- **Explanation:** Rod `0` has all three colors; rod `6` lacks green and rod `9` has only green.
 
-**Example 2**
+#### Example 2
 
-- Input: `rings = "B0R0G0R9R0B0G0"`
-- Output: `1`
-- Explanation: Repeated rings do not change that only rod `0` has every color.
+- **Input:** `rings = "B0R0G0R9R0B0G0"`
+- **Output:** `1`
+- **Explanation:** Repeated rings do not change that only rod `0` has every color.
 
-**Example 3**
+#### Example 3
 
-- Input: `rings = "G4"`
-- Output: `0`
-- Explanation: A single ring cannot supply all three colors.
+- **Input:** `rings = "G4"`
+- **Output:** `0`
+- **Explanation:** A single ring cannot supply all three colors.

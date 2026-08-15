@@ -12,28 +12,21 @@ Return an integer array which contains the elements of the linked list **in orde
 
 #### Example 1
 
-<div class="example-block">
-**Input:** head = [1,2,3,4,3,2,1]
+- **Input:** head = [1,2,3,4,3,2,1]
 
-**Output:** [1,2,3,4,3,2,1]
+- **Output:** [1,2,3,4,3,2,1]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** head = [2,2,2,2,2]
+- **Input:** head = [2,2,2,2,2]
 
-**Output:** [2,2,2,2,2]
+- **Output:** [2,2,2,2,2]
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** head = [3,2,3,2,3,2]
+- **Input:** head = [3,2,3,2,3,2]
 
-**Output:** [3,2,3,2,3,2]
-
-</div>
+- **Output:** [3,2,3,2,3,2]
 
 ### 4. Constraints
 

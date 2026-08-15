@@ -33,20 +33,20 @@ Return the minimum number of lowercase letters that must be appended to the end 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "coaching", t = "coding"`
-- Output: `4`
-- Explanation: The prefix `"co"` already matches in `s`; appending `"ding"` completes `t`.
+- **Input:** `s = "coaching", t = "coding"`
+- **Output:** `4`
+- **Explanation:** The prefix `"co"` already matches in `s`; appending `"ding"` completes `t`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcde", t = "a"`
-- Output: `0`
-- Explanation: The target is already a subsequence of `s`.
+- **Input:** `s = "abcde", t = "a"`
+- **Output:** `0`
+- **Explanation:** The target is already a subsequence of `s`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "z", t = "abcde"`
-- Output: `5`
-- Explanation: No nonempty prefix of `t` matches, so all five target characters must be appended.
+- **Input:** `s = "z", t = "abcde"`
+- **Output:** `5`
+- **Explanation:** No nonempty prefix of `t` matches, so all five target characters must be appended.

@@ -6,21 +6,24 @@ Return an array of integers `ans` where $\text{ans}[i]$ is equal to the element 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,2,2,1,1], queries = [[0,5,4],[0,3,3],[2,3,2]]
+- **Input:** nums = [1,1,2,2,1,1], queries = [[0,5,4],[0,3,3],[2,3,2]]
 
-**Output:** [1,-1,2]
+- **Output:** [1,-1,2]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="left" style="border: 1px solid black;">Query</th>
@@ -54,17 +57,14 @@ Return an array of integers `ans` where $\text{ans}[i]$ is equal to the element 
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,2,3,2,3,2,3], queries = [[0,6,4],[1,5,2],[2,4,1],[3,3,1]]
+- **Input:** nums = [3,2,3,2,3,2,3], queries = [[0,6,4],[1,5,2],[2,4,1],[3,3,1]]
 
-**Output:** [3,2,3,2]
+- **Output:** [3,2,3,2]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="left" style="border: 1px solid black;">Query</th>
@@ -105,7 +105,6 @@ Return an array of integers `ans` where $\text{ans}[i]$ is equal to the element 
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

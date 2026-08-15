@@ -40,14 +40,14 @@ $1\le n\le10^4$, and $1\le\texttt{values[i][j]}\le10^6$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `values = [[8, 5, 2], [6, 4, 1], [9, 7, 3]]`
-- Output: `285`
-- Explanation: Buying values in the feasible order `1, 2, 3, 4, 5, 6, 7, 8, 9` assigns the largest day multipliers to the largest values.
+- **Input:** `values = [[8, 5, 2], [6, 4, 1], [9, 7, 3]]`
+- **Output:** `285`
+- **Explanation:** Buying values in the feasible order `1, 2, 3, 4, 5, 6, 7, 8, 9` assigns the largest day multipliers to the largest values.
 
-**Example 2**
+#### Example 2
 
-- Input: `values = [[10, 8, 6, 4, 2], [9, 7, 5, 3, 2]]`
-- Output: `386`
-- Explanation: A valid ascending merge is `2, 2, 3, 4, 5, 6, 7, 8, 9, 10`, which maximizes the weighted sum.
+- **Input:** `values = [[10, 8, 6, 4, 2], [9, 7, 5, 3, 2]]`
+- **Output:** `386`
+- **Explanation:** A valid ascending merge is `2, 2, 3, 4, 5, 6, 7, 8, 9, 10`, which maximizes the weighted sum.

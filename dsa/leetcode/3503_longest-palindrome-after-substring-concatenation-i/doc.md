@@ -33,26 +33,26 @@ Return the maximum length of a palindrome obtainable as `s[i:j] + t[k:l]`, where
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "a", t = "a"`
-- Output: `2`
-- Explanation: Taking the single character from each string produces `"aa"`.
+- **Input:** `s = "a", t = "a"`
+- **Output:** `2`
+- **Explanation:** Taking the single character from each string produces `"aa"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abc", t = "def"`
-- Output: `1`
-- Explanation: No characters match across the two strings, but any single character is a palindrome.
+- **Input:** `s = "abc", t = "def"`
+- **Output:** `1`
+- **Explanation:** No characters match across the two strings, but any single character is a palindrome.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "b", t = "aaaa"`
-- Output: `4`
-- Explanation: Choose an empty substring from `s` and all of `t`.
+- **Input:** `s = "b", t = "aaaa"`
+- **Output:** `4`
+- **Explanation:** Choose an empty substring from `s` and all of `t`.
 
-**Example 4**
+#### Example 4
 
-- Input: `s = "abcde", t = "ecdba"`
-- Output: `5`
-- Explanation: `"abc"` from `s` followed by `"ba"` from `t` forms `"abcba"`.
+- **Input:** `s = "abcde", t = "ecdba"`
+- **Output:** `5`
+- **Explanation:** `"abc"` from `s` followed by `"ba"` from `t` forms `"abcba"`.

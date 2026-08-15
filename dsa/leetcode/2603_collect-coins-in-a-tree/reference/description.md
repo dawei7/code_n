@@ -14,8 +14,14 @@ Note that if you pass an edge several times, you need to count it into the answe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coins`: Input parameter (`List[int]`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Note that if you pass an edge several times, you need to count it into the answe
 - **Input:** $coins = [1,0,0,0,0,1], edges = [[0,1],[1,2],[2,3],[3,4],[4,5]]$
 - **Output:** `2`
 - **Explanation:** Start at vertex 2, collect the coin at vertex 0, move to vertex 3, collect the coin at vertex 5 then move back to vertex 2.
+
 #### Example 2
 
 ![](images/graph-4.png)

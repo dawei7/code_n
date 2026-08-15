@@ -30,17 +30,17 @@ Return any rearrangement satisfying that rule while preserving every original ch
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "a0b1c2"`
-- Output: `"0a1b2c"`
+- **Input:** `s = "a0b1c2"`
+- **Output:** `"0a1b2c"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leetcode"`
-- Output: `""`
+- **Input:** `s = "leetcode"`
+- **Output:** `""`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "covid2019"`
-- Output: `"c2o0v1i9d"`
+- **Input:** `s = "covid2019"`
+- **Output:** `"c2o0v1i9d"`

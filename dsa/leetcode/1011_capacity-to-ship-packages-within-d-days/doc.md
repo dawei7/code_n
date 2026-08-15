@@ -37,20 +37,20 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], days = 5`
-- Output: `15`
-- Explanation: Capacity `15` supports daily groups `[1,2,3,4,5]`, `[6,7]`, `[8]`, `[9]`, and `[10]`; capacity `14` cannot preserve this order within five days.
+- **Input:** `weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], days = 5`
+- **Output:** `15`
+- **Explanation:** Capacity `15` supports daily groups `[1,2,3,4,5]`, `[6,7]`, `[8]`, `[9]`, and `[10]`; capacity `14` cannot preserve this order within five days.
 
-**Example 2**
+#### Example 2
 
-- Input: `weights = [3, 2, 2, 4, 1, 4], days = 3`
-- Output: `6`
-- Explanation: The packages can be shipped as `[3,2]`, `[2,4]`, and `[1,4]`.
+- **Input:** `weights = [3, 2, 2, 4, 1, 4], days = 3`
+- **Output:** `6`
+- **Explanation:** The packages can be shipped as `[3,2]`, `[2,4]`, and `[1,4]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `weights = [1, 2, 3, 1, 1], days = 4`
-- Output: `3`
-- Explanation: Use daily groups `[1]`, `[2]`, `[3]`, and `[1,1]`.
+- **Input:** `weights = [1, 2, 3, 1, 1], days = 4`
+- **Output:** `3`
+- **Explanation:** Use daily groups `[1]`, `[2]`, `[3]`, and `[1,1]`.

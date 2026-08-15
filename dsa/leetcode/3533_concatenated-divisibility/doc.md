@@ -33,20 +33,20 @@ Repeated values are separate elements and must each appear in the returned permu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,12,45], k = 5`
-- Output: `[3,12,45]`
-- Explanation: Both `[3,12,45]` and `[12,3,45]` produce a multiple of $5$; the first list is lexicographically smaller.
+- **Input:** `nums = [3,12,45], k = 5`
+- **Output:** `[3,12,45]`
+- **Explanation:** Both `[3,12,45]` and `[12,3,45]` produce a multiple of $5$; the first list is lexicographically smaller.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10,5], k = 10`
-- Output: `[5,10]`
-- Explanation: `510` is divisible by $10$, while `105` is not.
+- **Input:** `nums = [10,5], k = 10`
+- **Output:** `[5,10]`
+- **Explanation:** `510` is divisible by $10$, while `105` is not.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3], k = 5`
-- Output: `[]`
-- Explanation: Neither of the six full permutations produces a multiple of $5$.
+- **Input:** `nums = [1,2,3], k = 5`
+- **Output:** `[]`
+- **Explanation:** Neither of the six full permutations produces a multiple of $5$.

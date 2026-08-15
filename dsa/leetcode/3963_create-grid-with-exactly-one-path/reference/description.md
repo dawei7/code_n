@@ -16,11 +16,9 @@ A **valid path** is a sequence of free cells that:
 
 - Moves only:
 
-		<li>Right, from `(i, j)` to $(i, j + 1)$, or
+		- Right, from `(i, j)` to $(i, j + 1)$, or
 
 - Down, from `(i, j)` to $(i + 1, j)$.
-
-	</li>
 
 Return any grid such that there is **exactly one valid path** from the top-left cell to the bottom-right cell.
 
@@ -39,44 +37,31 @@ Return a list of `m` strings, each of length `n`, containing only `.` and `#`. T
 
 #### Example 1
 
-<div class="example-block">
-**Input:** m = 2, n = 3
+- **Input:** m = 2, n = 3
 
-**Output:** ["..#","#.."]
+- **Output:** ["..#","#.."]
 
-**Explanation:**
-
-![](images/screenshot-2026-05-26-at-61005pm.png)
+- **Explanation:** ![](images/screenshot-2026-05-26-at-61005pm.png)
 
 The only valid path is: `(0,0) → (0,1) → (1,1) → (1,2)`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** m = 3, n = 3
+- **Input:** m = 3, n = 3
 
-**Output:** ["..#","#..","##."]
+- **Output:** ["..#","#..","##."]
 
-**Explanation:**
-
-![](images/screenshot-2026-05-26-at-61129pm.png)
+- **Explanation:** ![](images/screenshot-2026-05-26-at-61129pm.png)
 
 The only valid path is: `(0,0) → (0,1) → (1,1) → (1,2) → (2,2)`
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** m = 1, n = 4
+- **Input:** m = 1, n = 4
 
-**Output:** ["...."]
+- **Output:** ["...."]
 
-**Explanation:**
-
-The only valid path is: `(0,0) → (0,1) → (0,2) → (0,3)`
-
-</div>
+- **Explanation:** The only valid path is: `(0,0) → (0,1) → (0,2) → (0,3)`
 
 ### 4. Constraints
 

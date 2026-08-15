@@ -6,8 +6,13 @@ A **continuous increasing subsequence** is defined by two indices `l` and `r` (`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ A **continuous increasing subsequence** is defined by two indices `l` and `r` (`
 - **Explanation:** The longest continuous increasing subsequence is [1,3,5] with length 3.
 Even though [1,3,5,7] is an increasing subsequence, it is not continuous as elements 5 and 7 are separated by element
 4.
+
 #### Example 2
 
 - **Input:** `nums = [2,2,2,2,2]`

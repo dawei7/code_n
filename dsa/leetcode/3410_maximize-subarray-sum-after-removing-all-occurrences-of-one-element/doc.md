@@ -32,16 +32,16 @@ The constraints are $1\le\lvert\texttt{nums}\rvert\le10^5$ and $-10^6\le\texttt{
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [-3, 2, -2, -1, 3, -2, 3]`
-- Output: `7`
+- **Input:** `nums = [-3, 2, -2, -1, 3, -2, 3]`
+- **Output:** `7`
 
 Removing every `-2` produces `[-3, 2, -1, 3, 3]`. Its subarray `[2, -1, 3, 3]` has sum 7, which is optimal.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `10`
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `10`
 
 It is optimal to skip the operation and use the complete array.

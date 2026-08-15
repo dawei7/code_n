@@ -25,6 +25,7 @@ Return *the size of such subtree with the **maximum** number of nodes possible.*
 - **Input:** $edges = [[0,1],[0,2],[0,3]], colors = [1,1,2,3]$
 - **Output:** `1`
 - **Explanation:** Each color is represented as: 1 -> Red, 2 -> Green, 3 -> Blue. We can see that the subtree rooted at node 0 has children with different colors. Any other subtree is of the same color and has a size of 1. Hence, we return 1.
+
 #### Example 2
 
 - **Input:** $edges = [[0,1],[0,2],[0,3]], colors = [1,1,1,1]$
@@ -36,6 +37,7 @@ Return *the size of such subtree with the **maximum** number of nodes possible.*
 ![](images/20231216-134017.png)
 
 **
+
 #### Example 3
 
 - **Input:** $edges = [[0,1],[0,2],[2,3],[2,4]], colors = [1,2,3,3,3]$

@@ -30,19 +30,19 @@ Produce one list for each column, beginning with the leftmost column and continu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [3, 9, 20, null, null, 15, 7]`
-- Output: `[[9], [3, 15], [20], [7]]`
+- **Input:** `root = [3, 9, 20, null, null, 15, 7]`
+- **Output:** `[[9], [3, 15], [20], [7]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1, 2, 3, 4, 5, 6, 7]`
-- Output: `[[4], [2], [1, 5, 6], [3], [7]]`
-- Explanation: nodes `5` and `6` share position $(2,0)$, so their values decide their order.
+- **Input:** `root = [1, 2, 3, 4, 5, 6, 7]`
+- **Output:** `[[4], [2], [1, 5, 6], [3], [7]]`
+- **Explanation:** nodes `5` and `6` share position $(2,0)$, so their values decide their order.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1, 2, 3, 4, 6, 5, 7]`
-- Output: `[[4], [2], [1, 5, 6], [3], [7]]`
-- Explanation: swapping the two same-position values in the tree does not change their required increasing output order.
+- **Input:** `root = [1, 2, 3, 4, 6, 5, 7]`
+- **Output:** `[[4], [2], [1, 5, 6], [3], [7]]`
+- **Explanation:** swapping the two same-position values in the tree does not change their required increasing output order.

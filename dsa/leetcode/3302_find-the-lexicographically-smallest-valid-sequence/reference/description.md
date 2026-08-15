@@ -14,8 +14,14 @@ Return an array of size `word2.length` representing the lexicographically smalle
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word1`: Input parameter (`str`).
+- `word2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -25,14 +31,11 @@ that the answer must represent the *lexicographically smallest array*, **not** t
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word1 = "vbcca", word2 = "abc"
+- **Input:** word1 = "vbcca", word2 = "abc"
 
-**Output:** [0,1,2]
+- **Output:** [0,1,2]
 
-**Explanation:**
-
-The lexicographically smallest valid sequence of indices is `[0, 1, 2]`:
+- **Explanation:** The lexicographically smallest valid sequence of indices is `[0, 1, 2]`:
 
 - Change $\text{word1}[0]$ to `'a'`.
 
@@ -40,17 +43,13 @@ The lexicographically smallest valid sequence of indices is `[0, 1, 2]`:
 
 - $\text{word1}[2]$ is already `'c'`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word1 = "bacdc", word2 = "abc"
+- **Input:** word1 = "bacdc", word2 = "abc"
 
-**Output:** [1,2,4]
+- **Output:** [1,2,4]
 
-**Explanation:**
-
-The lexicographically smallest valid sequence of indices is `[1, 2, 4]`:
+- **Explanation:** The lexicographically smallest valid sequence of indices is `[1, 2, 4]`:
 
 - $\text{word1}[1]$ is already `'a'`.
 
@@ -58,27 +57,19 @@ The lexicographically smallest valid sequence of indices is `[1, 2, 4]`:
 
 - $\text{word1}[4]$ is already `'c'`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word1 = "aaaaaa", word2 = "aaabc"
+- **Input:** word1 = "aaaaaa", word2 = "aaabc"
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
+- **Explanation:** There is no valid sequence of indices.
 
-There is no valid sequence of indices.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** word1 = "abc", word2 = "ab"
+- **Input:** word1 = "abc", word2 = "ab"
 
-**Output:** [0,1]
-
-</div>
+- **Output:** [0,1]
 
 ### 5. Constraints
 

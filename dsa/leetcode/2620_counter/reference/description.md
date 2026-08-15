@@ -15,10 +15,11 @@ Given an integer `n`, return a `counter` function. This `counter` function initi
 n = 10
 ["call","call","call"]
 - **Output:** `[10,11,12]`
-- **Explanation:**
+- **Explanation:** 
 **counter() = 10 // The first time counter() is called, it returns n.
 counter() = 11 // Returns 1 more than the previous time.
 counter() = 12 // Returns 1 more than the previous time.
+
 #### Example 2
 
 - **Input:** ``

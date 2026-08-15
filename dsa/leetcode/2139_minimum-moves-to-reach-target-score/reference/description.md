@@ -14,8 +14,14 @@ Given the two integers `target` and `maxDoubles`, return *the minimum number of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`int`).
+- `maxDoubles`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ Given the two integers `target` and `maxDoubles`, return *the minimum number of 
 - **Input:** $target = 5, maxDoubles = 0$
 - **Output:** `4`
 - **Explanation:** Keep incrementing by 1 until you reach target.
+
 #### Example 2
 
 - **Input:** $target = 19, maxDoubles = 2$
@@ -34,6 +41,7 @@ Double once so x = 8
 Increment once so x = 9
 Double again so x = 18
 Increment once so x = 19
+
 #### Example 3
 
 - **Input:** $target = 10, maxDoubles = 4$

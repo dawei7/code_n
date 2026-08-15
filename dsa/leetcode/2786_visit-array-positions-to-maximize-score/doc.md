@@ -33,20 +33,20 @@ Return the greatest score obtainable by an increasing sequence of visited indice
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,6,1,9,2]`, `x = 5`
-- Output: `13`
-- Explanation: Visiting indices `0 -> 2 -> 3 -> 4` scores `2 + 6 + 1 + 9 - 5 = 13`. Only the move from `6` to `1` changes parity.
+- **Input:** `nums = [2,3,6,1,9,2]`, `x = 5`
+- **Output:** `13`
+- **Explanation:** Visiting indices `0 -> 2 -> 3 -> 4` scores `2 + 6 + 1 + 9 - 5 = 13`. Only the move from `6` to `1` changes parity.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,4,6,8]`, `x = 3`
-- Output: `20`
-- Explanation: All four values are even, so visiting every index earns their full sum without a penalty.
+- **Input:** `nums = [2,4,6,8]`, `x = 3`
+- **Output:** `20`
+- **Explanation:** All four values are even, so visiting every index earns their full sum without a penalty.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,100]`, `x = 10`
-- Output: `91`
-- Explanation: Index $0$ is mandatory. Moving to the even value changes parity, but `1 + 100 - 10` is better than stopping at the first index.
+- **Input:** `nums = [1,100]`, `x = 10`
+- **Output:** `91`
+- **Explanation:** Index $0$ is mandatory. Moving to the even value changes parity, but `1 + 100 - 10` is better than stopping at the first index.

@@ -30,20 +30,20 @@ Return a boolean array `answer` of the same length, where `answer[i]` is `true` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 1, 1]`
-- Output: `[True, False, False]`
-- Explanation: The prefixes represent `0`, `1`, and `3`; only zero is divisible by `5`.
+- **Input:** `nums = [0, 1, 1]`
+- **Output:** `[True, False, False]`
+- **Explanation:** The prefixes represent `0`, `1`, and `3`; only zero is divisible by `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1]`
-- Output: `[False, False, False]`
-- Explanation: The prefixes represent `1`, `3`, and `7`.
+- **Input:** `nums = [1, 1, 1]`
+- **Output:** `[False, False, False]`
+- **Explanation:** The prefixes represent `1`, `3`, and `7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 0, 1, 0]`
-- Output: `[False, False, True, True]`
-- Explanation: The final two prefixes represent `5` and `10`.
+- **Input:** `nums = [1, 0, 1, 0]`
+- **Output:** `[False, False, True, True]`
+- **Explanation:** The final two prefixes represent `5` and `10`.

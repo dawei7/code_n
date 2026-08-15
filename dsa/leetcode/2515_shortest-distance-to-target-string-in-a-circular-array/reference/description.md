@@ -10,8 +10,15 @@ Return *the **shortest** distance needed to reach the string* `target`. If the s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `target`: Input parameter (`str`).
+- `startIndex`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +32,7 @@ Return *the **shortest** distance needed to reach the string* `target`. If the s
 - moving 4 units to the right to reach index 0.
 - moving 1 unit to the left to reach index 0.
 The shortest distance to reach "hello" is 1.
+
 #### Example 2
 
 - **Input:** $words = ["a","b","leetcode"], target = "leetcode", startIndex = 0$
@@ -33,6 +41,7 @@ The shortest distance to reach "hello" is 1.
 - moving 2 units to the right to reach index 2.
 - moving 1 unit to the left to reach index 2.
 The shortest distance to reach "leetcode" is 1.
+
 #### Example 3
 
 - **Input:** $words = ["i","eat","leetcode"], target = "ate", startIndex = 0$

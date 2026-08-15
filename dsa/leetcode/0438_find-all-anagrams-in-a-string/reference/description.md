@@ -20,15 +20,14 @@ multiplicities as `p`. Any order is valid; the reviewed implementation produces 
 
 - **Input:** `s = "cbaebabacd", p = "abc"`
 - **Output:** `[0,6]`
-- **Explanation:**
-The substring with start index = 0 is "cba", which is an anagram of "abc".
+- **Explanation:** The substring with start index = 0 is "cba", which is an anagram of "abc".
 The substring with start index = 6 is "bac", which is an anagram of "abc".
+
 #### Example 2
 
 - **Input:** `s = "abab", p = "ab"`
 - **Output:** `[0,1,2]`
-- **Explanation:**
-The substring with start index = 0 is "ab", which is an anagram of "ab".
+- **Explanation:** The substring with start index = 0 is "ab", which is an anagram of "ab".
 The substring with start index = 1 is "ba", which is an anagram of "ab".
 The substring with start index = 2 is "ab", which is an anagram of "ab".
 

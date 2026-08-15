@@ -18,8 +18,13 @@ It is **guaranteed** that the given expression is valid and follows the given ru
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `expression`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -27,21 +32,21 @@ It is **guaranteed** that the given expression is valid and follows the given ru
 
 - **Input:** $expression = "\&(|(f))"$
 - **Output:** `false`
-- **Explanation:**
-First, evaluate |(f) --> f. The expression is now "&(f)".
+- **Explanation:** First, evaluate |(f) --> f. The expression is now "&(f)".
 Then, evaluate &(f) --> f. The expression is now "f".
 Finally, return false.
+
 #### Example 2
 
 - **Input:** $expression = "|(f,f,f,t)"$
 - **Output:** `true`
 - **Explanation:** The evaluation of (false OR false OR false OR true) is true.
+
 #### Example 3
 
 - **Input:** $expression = "!(\&(f,t))"$
 - **Output:** `true`
-- **Explanation:**
-First, evaluate &(f,t) --> (false AND true) --> false --> f. The expression is now "!(f)".
+- **Explanation:** First, evaluate &(f,t) --> (false AND true) --> false --> f. The expression is now "!(f)".
 Then, evaluate !(f) --> NOT false --> true. We return true.
 
 ### 4. Constraints

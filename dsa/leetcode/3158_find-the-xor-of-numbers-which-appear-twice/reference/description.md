@@ -6,47 +6,39 @@ Return the bitwise* *`XOR` of all the numbers that appear twice in the array, or
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1,3]
+- **Input:** nums = [1,2,1,3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only number that appears twice in `nums` is 1.
 
-The only number that appears twice in `nums` is 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** No number appears twice in `nums`.
 
-No number appears twice in `nums`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,2,1]
+- **Input:** nums = [1,2,2,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Numbers 1 and 2 appeared twice. $1 XOR 2 = 3$.
-
-</div>
+- **Explanation:** Numbers 1 and 2 appeared twice. $1 XOR 2 = 3$.
 
 ### 4. Constraints
 

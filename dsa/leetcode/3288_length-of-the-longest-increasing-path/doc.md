@@ -33,14 +33,14 @@ The constraints guarantee $1 \le n \le 10^5$, $0 \le x, y \le 10^9$, and $0 \le 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coordinates = [[3,1],[2,2],[4,1],[0,0],[5,3]]`, `k = 1`
-- Output: `3`
-- Explanation: The path `[0,0] -> [2,2] -> [5,3]` is increasing in both coordinates and contains `coordinates[1]`.
+- **Input:** `coordinates = [[3,1],[2,2],[4,1],[0,0],[5,3]]`, `k = 1`
+- **Output:** `3`
+- **Explanation:** The path `[0,0] -> [2,2] -> [5,3]` is increasing in both coordinates and contains `coordinates[1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `coordinates = [[2,1],[7,0],[5,6]]`, `k = 2`
-- Output: `2`
-- Explanation: The path `[2,1] -> [5,6]` contains `coordinates[2]` and has the maximum possible length.
+- **Input:** `coordinates = [[2,1],[7,0],[5,6]]`, `k = 2`
+- **Output:** `2`
+- **Explanation:** The path `[2,1] -> [5,6]` contains `coordinates[2]` and has the maximum possible length.

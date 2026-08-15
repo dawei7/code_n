@@ -33,20 +33,20 @@ Each string has length five, uses valid 24-hour time, and each event's start is 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `event1 = ["01:15", "02:00"], event2 = ["02:00", "03:00"]`
-- Output: `true`
-- Explanation: Both events include `"02:00"`.
+- **Input:** `event1 = ["01:15", "02:00"], event2 = ["02:00", "03:00"]`
+- **Output:** `true`
+- **Explanation:** Both events include `"02:00"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `event1 = ["01:00", "02:00"], event2 = ["01:20", "03:00"]`
-- Output: `true`
-- Explanation: Their common interval runs from `"01:20"` through `"02:00"`.
+- **Input:** `event1 = ["01:00", "02:00"], event2 = ["01:20", "03:00"]`
+- **Output:** `true`
+- **Explanation:** Their common interval runs from `"01:20"` through `"02:00"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `event1 = ["10:00", "11:00"], event2 = ["14:00", "15:00"]`
-- Output: `false`
-- Explanation: The first event ends before the second begins.
+- **Input:** `event1 = ["10:00", "11:00"], event2 = ["14:00", "15:00"]`
+- **Output:** `false`
+- **Explanation:** The first event ends before the second begins.

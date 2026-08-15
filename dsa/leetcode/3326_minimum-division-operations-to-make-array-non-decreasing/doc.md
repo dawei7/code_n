@@ -32,20 +32,20 @@ Return the minimum number of allowed divisions that makes `nums` non-decreasing,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [25, 7]`
-- Output: `1`
-- Explanation: The greatest proper divisor of $25$ is $5$. Dividing produces $5$, so the array becomes `[5, 7]`.
+- **Input:** `nums = [25, 7]`
+- **Output:** `1`
+- **Explanation:** The greatest proper divisor of $25$ is $5$. Dividing produces $5$, so the array becomes `[5, 7]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [7, 7, 6]`
-- Output: `-1`
-- Explanation: The middle $7$ exceeds $6$, but $7$ is prime and the operation cannot reduce it.
+- **Input:** `nums = [7, 7, 6]`
+- **Output:** `-1`
+- **Explanation:** The middle $7$ exceeds $6$, but $7$ is prime and the operation cannot reduce it.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 1]`
-- Output: `0`
-- Explanation: The array is already non-decreasing.
+- **Input:** `nums = [1, 1, 1, 1]`
+- **Output:** `0`
+- **Explanation:** The array is already non-decreasing.

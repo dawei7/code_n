@@ -10,8 +10,13 @@ You must write an algorithm that runs in `O(m log(n))` or `O(n log(m))` time.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ You must write an algorithm that runs in `O(m log(n))` or `O(n log(m))` time.
 - **Input:** $mat = [[1,4],[3,2]]$
 - **Output:** `[0,1]`
 - **Explanation:** Both 3 and 4 are peak elements so [1,0] and [0,1] are both acceptable answers.
+
 #### Example 2
 
 **

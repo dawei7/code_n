@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/top-three-wineries/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Wineries` table contains uniquely identified point awards associated with
 a country and winery. A winery's score is the sum of all its `points` rows
 within its country.
@@ -24,6 +26,7 @@ country with strings `"name (total)"` for ranks one, two, and three under
 Order countries ascending.
 
 ### Function Contract
+
 **Inputs**
 
 - `Wineries(id, country, points, winery)`: uniquely identified winery point rows
@@ -36,17 +39,18 @@ Return each country's formatted top-three columns, with required placeholders
 for missing ranks, ordered by `country` ascending.
 
 ### Examples
-**Example 1**
 
-- Input: The published Australia, Hungary, India, and USA winery rows
-- Output: Australia ranks HarmonyHill, GrapesGalore, and WhisperingPines; USA aggregates RoyalVines to `86`.
+#### Example 1
 
-**Example 2**
+- **Input:** The published Australia, Hungary, India, and USA winery rows
+- **Output:** Australia ranks HarmonyHill, GrapesGalore, and WhisperingPines; USA aggregates RoyalVines to `86`.
 
-- Input: A country with one winery
-- Output: Its top winery plus both missing-rank placeholders.
+#### Example 2
 
-**Example 3**
+- **Input:** A country with one winery
+- **Output:** Its top winery plus both missing-rank placeholders.
 
-- Input: Equal totals for wineries `Alpha` and `Beta`
-- Output: `Alpha` ranks before `Beta`.
+#### Example 3
+
+- **Input:** Equal totals for wineries `Alpha` and `Beta`
+- **Output:** `Alpha` ranks before `Beta`.

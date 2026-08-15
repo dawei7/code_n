@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-words-you-can-type/) |
 
 ## Problem Description
+
 ### Goal
+
 A keyboard has some malfunctioning lowercase letter keys, while every other
 key works normally. The string `text` contains lowercase English words
 separated by exactly one space, with no space before the first word or after
@@ -21,6 +23,7 @@ how many complete words in `text` remain typeable; partially typeable words do
 not contribute.
 
 ### Function Contract
+
 **Inputs**
 
 - `text`: one or more lowercase words separated by single spaces, with total
@@ -34,19 +37,20 @@ not contribute.
   `brokenLetters`.
 
 ### Examples
-**Example 1**
 
-- Input: `text = "hello world", brokenLetters = "ad"`
-- Output: `1`
+#### Example 1
+
+- **Input:** `text = "hello world", brokenLetters = "ad"`
+- **Output:** `1`
 
 Only `"hello"` avoids all broken keys.
 
-**Example 2**
+#### Example 2
 
-- Input: `text = "leet code", brokenLetters = "lt"`
-- Output: `1`
+- **Input:** `text = "leet code", brokenLetters = "lt"`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `text = "leet code", brokenLetters = "e"`
-- Output: `0`
+- **Input:** `text = "leet code", brokenLetters = "e"`
+- **Output:** `0`

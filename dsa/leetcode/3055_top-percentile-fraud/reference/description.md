@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Fraud table:
 +-----------+------------+-------------+
 | policy_id | state      | fraud_score |
@@ -51,7 +51,7 @@ Fraud table:
 | 13        | Florida    | 0.88        |
 | 14        | Florida    | 0.66        |
 +-----------+------------+-------------+
-**Output:**
+- **Output:** 
 +-----------+------------+-------------+
 | policy_id | state      | fraud_score |
 +-----------+------------+-------------+

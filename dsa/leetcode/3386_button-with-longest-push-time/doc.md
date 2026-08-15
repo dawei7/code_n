@@ -34,14 +34,14 @@ Return the button index whose press has maximum duration, breaking duration ties
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `events = [[1, 2], [2, 5], [3, 9], [1, 15]]`
-- Output: `1`
-- Explanation: The durations are 2, 3, 4, and 6. The last press of button 1 is longest.
+- **Input:** `events = [[1, 2], [2, 5], [3, 9], [1, 15]]`
+- **Output:** `1`
+- **Explanation:** The durations are 2, 3, 4, and 6. The last press of button 1 is longest.
 
-**Example 2**
+#### Example 2
 
-- Input: `events = [[10, 5], [1, 7]]`
-- Output: `10`
-- Explanation: The first press lasts 5 units, while the second lasts 2.
+- **Input:** `events = [[10, 5], [1, 7]]`
+- **Output:** `10`
+- **Explanation:** The first press lasts 5 units, while the second lasts 2.

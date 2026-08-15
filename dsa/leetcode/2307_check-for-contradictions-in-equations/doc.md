@@ -33,16 +33,16 @@ Return `true` if at least one equation conflicts with the relationships implied 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `equations = [["a","b"],["b","c"],["a","c"]], values = [3.0,0.5,1.5]`
-- Output: `false`
+- **Input:** `equations = [["a","b"],["b","c"],["a","c"]], values = [3.0,0.5,1.5]`
+- **Output:** `false`
 
 The first two equations imply $a/c = 3 \cdot 0.5 = 1.5$, which agrees with the third equation.
 
-**Example 2**
+#### Example 2
 
-- Input: `equations = [["le","et"],["le","code"],["code","et"]], values = [2.0,5.0,0.5]`
-- Output: `true`
+- **Input:** `equations = [["le","et"],["le","code"],["code","et"]], values = [2.0,5.0,0.5]`
+- **Output:** `true`
 
 The first two equations imply $\texttt{code}/\texttt{et} = 2/5 = 0.4$, which contradicts the stated value $0.5$.

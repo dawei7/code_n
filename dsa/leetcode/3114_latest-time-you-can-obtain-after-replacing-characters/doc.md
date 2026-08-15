@@ -30,14 +30,14 @@ Replace every `"?"` with a decimal digit so that the completed string is a valid
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1?:?4"`
-- Output: `"11:54"`
-- Explanation: The second hour digit can be `1`, and the largest valid minute with final digit `4` is `54`.
+- **Input:** `s = "1?:?4"`
+- **Output:** `"11:54"`
+- **Explanation:** The second hour digit can be `1`, and the largest valid minute with final digit `4` is `54`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0?:5?"`
-- Output: `"09:59"`
-- Explanation: The fixed leading zero permits hour `09`, while both minute positions can complete to `59`.
+- **Input:** `s = "0?:5?"`
+- **Output:** `"09:59"`
+- **Explanation:** The fixed leading zero permits hour `09`, while both minute positions can complete to `59`.

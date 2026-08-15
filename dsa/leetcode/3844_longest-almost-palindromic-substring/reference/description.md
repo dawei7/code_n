@@ -26,14 +26,11 @@ Return the maximum value of $r-l+1$ over all almost-palindromic substrings. Sinc
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abca"
+- **Input:** s = "abca"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Choose the substring `"<u>**abca**</u>"`.
+- **Explanation:** Choose the substring `"<u>**abca**</u>"`.
 
 - Remove `"ab<u>**c**</u>a"`.
 
@@ -41,17 +38,13 @@ Choose the substring `"<u>**abca**</u>"`.
 
 - Therefore, `"abca"` is almost-palindromic.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abba"
+- **Input:** s = "abba"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Choose the substring `"<u>**abba**</u>"`.
+- **Explanation:** Choose the substring `"<u>**abba**</u>"`.
 
 - Remove `"a<u>**b**</u>ba"`.
 
@@ -59,25 +52,19 @@ Choose the substring `"<u>**abba**</u>"`.
 
 - Therefore, `"abba"` is almost-palindromic.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "zzabba"
+- **Input:** s = "zzabba"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-Choose the substring `"z<u>**zabba**</u>"`.
+- **Explanation:** Choose the substring `"z<u>**zabba**</u>"`.
 
 - Remove `"<u>**z**</u>abba"`.
 
 - The string becomes `"abba"`, which is a palindrome.
 
 - Therefore, `"zabba"` is almost-palindromic.
-
-</div>
 
 ### 4. Constraints
 

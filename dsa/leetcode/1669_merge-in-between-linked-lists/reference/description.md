@@ -12,8 +12,10 @@ The blue edges and nodes in the following figure indicate the result:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `mergeInBetween(list1: ListNode, a: int, b: int, list2: ListNode) -> `ListNode``: Executes operation.
 
 ### 3. Examples
 
@@ -24,6 +26,7 @@ The blue edges and nodes in the following figure indicate the result:
 - **Input:** $list1 = [10,1,13,6,9,5], a = 3, b = 4, list2 = [1000000,1000001,1000002]$
 - **Output:** `[10,1,13,1000000,1000001,1000002,5]`
 - **Explanation:** We remove the nodes 3 and 4 and put the entire list2 in their place. The blue edges and nodes in the above figure indicate the result.
+
 #### Example 2
 
 ![](images/merge_linked_list_ex2.png)

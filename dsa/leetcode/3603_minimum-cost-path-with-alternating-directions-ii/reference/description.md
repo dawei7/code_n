@@ -18,21 +18,25 @@ Return the **minimum** total cost required to reach $(m - 1, n - 1)$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `waitCost`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** m = 1, n = 2, waitCost = [[1,2]]
+- **Input:** m = 1, n = 2, waitCost = [[1,2]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Start at cell `(0, 0)` at second 1 with entry cost $(0 + 1) * (0 + 1) = 1$.
 
@@ -40,17 +44,13 @@ The optimal path is:
 
 Thus, the total cost is $1 + 2 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** m = 2, n = 2, waitCost = [[3,5],[2,4]]
+- **Input:** m = 2, n = 2, waitCost = [[3,5],[2,4]]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Start at cell `(0, 0)` at second 1 with entry cost $(0 + 1) * (0 + 1) = 1$.
 
@@ -62,17 +62,13 @@ The optimal path is:
 
 Thus, the total cost is $1 + 2 + 2 + 4 = 9$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** m = 2, n = 3, waitCost = [[6,1,4],[3,2,5]]
+- **Input:** m = 2, n = 3, waitCost = [[6,1,4],[3,2,5]]
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-The optimal path is:
+- **Explanation:** The optimal path is:
 
 - Start at cell `(0, 0)` at second 1 with entry cost $(0 + 1) * (0 + 1) = 1$.
 
@@ -87,8 +83,6 @@ The optimal path is:
 - **Second 5**: Move right to cell `(1, 2)` with entry cost $(1 + 1) * (2 + 1) = 6$.
 
 Thus, the total cost is $1 + 2 + 1 + 4 + 2 + 6 = 16$.
-
-</div>
 
 ### 4. Constraints
 

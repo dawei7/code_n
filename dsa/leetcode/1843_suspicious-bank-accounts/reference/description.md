@@ -48,7 +48,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Accounts table:
 +------------+------------+
 | account_id | max_income |
@@ -71,14 +71,13 @@ Transactions table:
 | 8              | 3          | Creditor | 64900  | 2021-07-26 15:09:56 |
 | 7              | 3          | Creditor | 90900  | 2021-06-14 11:23:07 |
 +----------------+------------+----------+--------+---------------------+
-**Output:**
+- **Output:** 
 +------------+
 | account_id |
 +------------+
 | 3          |
 +------------+
-**Explanation:**
-For account 3:
+- **Explanation:** For account 3:
 - In 6-2021, the user had an income of 107100 + 102100 + 90900 = 300100.
 - In 7-2021, the user had an income of 64900.
 We can see that the income exceeded the max income of 21000 for two consecutive months, so we include 3 in the result table.

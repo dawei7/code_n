@@ -14,8 +14,14 @@ A **suffix** of an array is a subarray that starts at any point within the array
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -25,25 +31,23 @@ that the prefix and suffix to be chosen for the operation can be **empty**.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5], k = 3
+- **Input:** nums = [1,2,3,4,5], k = 3
 
-**Output:** [9,2,4]
+- **Output:** [9,2,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $x = 0$, the possible operations include all possible ways to remove non-overlapping prefix/suffix that do not remove $\text{nums}[2] = 3$.
 
 - For $x = 1$, the possible operations are:
 
-		<li>Remove the empty prefix and the suffix `[2, 3, 4, 5]`. `nums` becomes `[1]`.
+		- Remove the empty prefix and the suffix `[2, 3, 4, 5]`. `nums` becomes `[1]`.
 
 - Remove the prefix `[1, 2, 3]` and the suffix `[5]`. `nums` becomes `[4]`.
 
-	</li>
 - For $x = 2$, the possible operations are:
 
-		<li>Remove the empty prefix and the suffix `[3, 4, 5]`. `nums` becomes `[1, 2]`.
+		- Remove the empty prefix and the suffix `[3, 4, 5]`. `nums` becomes `[1, 2]`.
 
 - Remove the prefix `[1]` and the suffix `[3, 4, 5]`. `nums` becomes `[2]`.
 
@@ -51,50 +55,39 @@ that the prefix and suffix to be chosen for the operation can be **empty**.
 
 - Remove the prefix `[1, 2, 3, 4]` and the empty suffix. `nums` becomes `[5]`.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,4,8,16,32], k = 4
+- **Input:** nums = [1,2,4,8,16,32], k = 4
 
-**Output:** [18,1,2,0]
+- **Output:** [18,1,2,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - For $x = 0$, the only operations that **do not** result in $x = 0$ are:
 
-		<li>Remove the empty prefix and the suffix `[4, 8, 16, 32]`. `nums` becomes `[1, 2]`.
+		- Remove the empty prefix and the suffix `[4, 8, 16, 32]`. `nums` becomes `[1, 2]`.
 
 - Remove the empty prefix and the suffix `[2, 4, 8, 16, 32]`. `nums` becomes `[1]`.
 
 - Remove the prefix `[1]` and the suffix `[4, 8, 16, 32]`. `nums` becomes `[2]`.
 
-	</li>
 - For $x = 1$, the only possible operation is:
 
-		<li>Remove the empty prefix and the suffix `[2, 4, 8, 16, 32]`. `nums` becomes `[1]`.
+		- Remove the empty prefix and the suffix `[2, 4, 8, 16, 32]`. `nums` becomes `[1]`.
 
-	</li>
 - For $x = 2$, the possible operations are:
 
-		<li>Remove the empty prefix and the suffix `[4, 8, 16, 32]`. `nums` becomes `[1, 2]`.
+		- Remove the empty prefix and the suffix `[4, 8, 16, 32]`. `nums` becomes `[1, 2]`.
 
 - Remove the prefix `[1]` and the suffix `[4, 8, 16, 32]`. `nums` becomes `[2]`.
 
-	</li>
 - For $x = 3$, there is no possible way to perform the operation.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,2,1,1], k = 2
+- **Input:** nums = [1,1,2,1,1], k = 2
 
-**Output:** [9,6]
-
-</div>
+- **Output:** [9,6]
 
 ### 5. Constraints
 

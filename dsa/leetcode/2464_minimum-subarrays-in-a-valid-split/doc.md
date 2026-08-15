@@ -32,20 +32,20 @@ The constraints are $1\le\lvert\texttt{nums}\rvert\le1000$ and $1\le\texttt{nums
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 6, 3, 4, 3]`
-- Output: `2`
-- Explanation: `[2, 6]` has endpoint GCD `2`, and `[3, 4, 3]` has endpoint GCD `3`.
+- **Input:** `nums = [2, 6, 3, 4, 3]`
+- **Output:** `2`
+- **Explanation:** `[2, 6]` has endpoint GCD `2`, and `[3, 4, 3]` has endpoint GCD `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 5]`
-- Output: `2`
-- Explanation: Each value forms a valid singleton, and the two values cannot be endpoints of one valid part.
+- **Input:** `nums = [3, 5]`
+- **Output:** `2`
+- **Explanation:** Each value forms a valid singleton, and the two values cannot be endpoints of one valid part.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 1]`
-- Output: `-1`
-- Explanation: A part starting or ending with `1` has endpoint GCD `1`, so no valid partition covers the array.
+- **Input:** `nums = [1, 2, 1]`
+- **Output:** `-1`
+- **Explanation:** A part starting or ending with `1` has endpoint GCD `1`, so no valid partition covers the array.

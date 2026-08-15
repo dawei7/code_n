@@ -29,14 +29,11 @@ Let $R$ denote the number of strings in the returned list.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, k = 1
+- **Input:** n = 3, k = 1
 
-**Output:** ["000","010","100"]
+- **Output:** ["000","010","100"]
 
-**Explanation:**
-
-The binary strings of length 3 without consecutive `'1'` characters are:
+- **Explanation:** The binary strings of length 3 without consecutive `'1'` characters are:
 
 - `"000"` : $cost = 0$
 
@@ -52,21 +49,15 @@ Among these, the strings with cost less than or equal to $k = 1$ are `"000"`, `"
 
 Thus, the valid strings are `["000", "010", "100"]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1, k = 0
+- **Input:** n = 1, k = 0
 
-**Output:** ["0","1"]
+- **Output:** ["0","1"]
 
-**Explanation:**
-
-The valid binary strings of length 1 are `"0"` and `"1"`.
+- **Explanation:** The valid binary strings of length 1 are `"0"` and `"1"`.
 
 Thus the answer is `["0", "1"]`.
-
-</div>
 
 ### 4. Constraints
 

@@ -18,8 +18,13 @@ Return *the integer denoting the value of such partition*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ Return *the integer denoting the value of such partition*.
 - The minimum element of the array nums2 is equal to 3.
 The value of the partition is |2 - 3| = 1.
 It can be proven that 1 is the minimum value out of all partitions.
+
 #### Example 2
 
 - **Input:** `nums = [100,1,10]`

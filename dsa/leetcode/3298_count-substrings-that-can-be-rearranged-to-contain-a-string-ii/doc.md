@@ -33,20 +33,20 @@ The length of `word1` is from 1 through $10^6$, while the length of `word2` is f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "bcca"`, `word2 = "abc"`
-- Output: `1`
-- Explanation: Only the entire source has at least one occurrence of each required letter.
+- **Input:** `word1 = "bcca"`, `word2 = "abc"`
+- **Output:** `1`
+- **Explanation:** Only the entire source has at least one occurrence of each required letter.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "abcabc"`, `word2 = "abc"`
-- Output: `10`
-- Explanation: Ten positional ranges contain an `a`, a `b`, and a `c` and can therefore be rearranged to begin with `"abc"`.
+- **Input:** `word1 = "abcabc"`, `word2 = "abc"`
+- **Output:** `10`
+- **Explanation:** Ten positional ranges contain an `a`, a `b`, and a `c` and can therefore be rearranged to begin with `"abc"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "abcabc"`, `word2 = "aaabc"`
-- Output: `0`
-- Explanation: No range can supply three copies of `a` because the entire source has only two.
+- **Input:** `word1 = "abcabc"`, `word2 = "aaabc"`
+- **Output:** `0`
+- **Explanation:** No range can supply three copies of `a` because the entire source has only two.

@@ -31,17 +31,17 @@ Return the total number of entries whose value is strictly less than zero. Zero 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]`
-- Output: `8`
+- **Input:** `grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]`
+- **Output:** `8`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[3,2],[1,0]]`
-- Output: `0`
+- **Input:** `grid = [[3,2],[1,0]]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,-1],[-1,-1]]`
-- Output: `3`
+- **Input:** `grid = [[1,-1],[-1,-1]]`
+- **Output:** `3`

@@ -14,8 +14,13 @@ A **subsequence** of an array is a new array that is formed from the original ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ A **subsequence** of an array is a new array that is formed from the original ar
 - **Explanation:** nums can be split into the following subsequences:
 [**<u>1</u>**,**<u>2</u>**,**<u>3</u>**,3,4,5] --> 1, 2, 3
 [1,2,3,**<u>3</u>**,**<u>4</u>**,**<u>5</u>**] --> 3, 4, 5
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,3,4,4,5,5]`
@@ -33,6 +39,7 @@ A **subsequence** of an array is a new array that is formed from the original ar
 - **Explanation:** nums can be split into the following subsequences:
 [**<u>1</u>**,**<u>2</u>**,**<u>3</u>**,3,**<u>4</u>**,4,**<u>5</u>**,5] --> 1, 2, 3, 4, 5
 [1,2,3,**<u>3</u>**,4,**<u>4</u>**,5,**<u>5</u>**] --> 3, 4, 5
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3,4,4,5]`

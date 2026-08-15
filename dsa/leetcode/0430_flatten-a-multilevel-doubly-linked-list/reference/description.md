@@ -32,6 +32,7 @@ reciprocal.
 - **Explanation:** The multilevel linked list in the input is shown.
 After flattening the multilevel linked list it becomes:
 ![](images/flatten12.jpg)
+
 #### Example 2
 
 ![](images/flatten2.1jpg)
@@ -41,6 +42,7 @@ After flattening the multilevel linked list it becomes:
 - **Explanation:** The multilevel linked list in the input is shown.
 After flattening the multilevel linked list it becomes:
 ![](images/list.jpg)
+
 #### Example 3
 
 - **Input:** $head = []$

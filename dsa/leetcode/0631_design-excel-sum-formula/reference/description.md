@@ -12,18 +12,14 @@ Implement the `Excel` class:
 
 - `int sum(int row, char column, List<String> numbers)` Sets the value at $\text{mat}[row][column]$ to be the sum of cells represented by `numbers` and returns the value at $\text{mat}[row][column]$. This sum formula **should exist** until this cell is overlapped by another value or another sum formula. $\text{numbers}[i]$ could be on the format:
 
-		<li>`"ColRow"` that represents a single cell.
+		- `"ColRow"` that represents a single cell.
+- For example, `"F7"` represents the cell $\text{mat}[7]['F']$.
 
-			<li>For example, `"F7"` represents the cell $\text{mat}[7]['F']$.
-
-		</li>
 - `"ColRow1:ColRow2"` that represents a range of cells. The range will always be a rectangle where `"ColRow1"` represent the position of the top-left cell, and `"ColRow2"` represents the position of the bottom-right cell.
 
-			<li>For example, `"B3:F7"` represents the cells $\text{mat}[i][j]$ for $3 \le i \le 7$ and $'B' \le j \le 'F'$.
+			- For example, `"B3:F7"` represents the cells $\text{mat}[i][j]$ for $3 \le i \le 7$ and $'B' \le j \le 'F'$.
 
-		</li>
-
-	</li>
+	
 
 ### 2. Function Contract
 

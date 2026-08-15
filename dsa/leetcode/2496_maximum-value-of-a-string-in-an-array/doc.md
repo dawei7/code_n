@@ -38,20 +38,20 @@ Return the maximum string value as an integer, using numeric interpretation only
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `strs = ["alic3", "bob", "3", "4", "00000"]`
-- Output: `5`
-- Explanation: `"alic3"` has value `5` by length, while `"00000"` is numeric and has value `0`.
+- **Input:** `strs = ["alic3", "bob", "3", "4", "00000"]`
+- **Output:** `5`
+- **Explanation:** `"alic3"` has value `5` by length, while `"00000"` is numeric and has value `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `strs = ["1", "01", "001", "0001"]`
-- Output: `1`
-- Explanation: Every string is numeric and represents the integer `1`, regardless of its leading zeroes.
+- **Input:** `strs = ["1", "01", "001", "0001"]`
+- **Output:** `1`
+- **Explanation:** Every string is numeric and represents the integer `1`, regardless of its leading zeroes.
 
-**Example 3**
+#### Example 3
 
-- Input: `strs = ["abcde", "999", "12x"]`
-- Output: `999`
-- Explanation: The three values are `5`, `999`, and `3`, respectively.
+- **Input:** `strs = ["abcde", "999", "12x"]`
+- **Output:** `999`
+- **Explanation:** The three values are `5`, `999`, and `3`, respectively.

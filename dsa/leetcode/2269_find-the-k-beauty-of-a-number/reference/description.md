@@ -18,8 +18,14 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +37,7 @@ A **substring** is a contiguous sequence of characters in a string.
 - "24" from "**<u>24</u>**0": 24 is a divisor of 240.
 - "40" from "2<u>**40**</u>": 40 is a divisor of 240.
 Therefore, the k-beauty is 2.
+
 #### Example 2
 
 - **Input:** $num = 430043, k = 2$

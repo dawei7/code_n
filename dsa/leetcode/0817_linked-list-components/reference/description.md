@@ -6,8 +6,10 @@ Return the number of **connected** **components** in `nums`. A connected compone
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `numComponents(head: Optional[ListNode], nums: List[int]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -18,6 +20,7 @@ Return the number of **connected** **components** in `nums`. A connected compone
 - **Input:** $head = [0,1,2,3], nums = [0,1,3]$
 - **Output:** `2`
 - **Explanation:** 0 and 1 are connected, so [0, 1] and [3] are the two connected components.
+
 #### Example 2
 
 ![](images/lc-linkedlistcom2.jpg)

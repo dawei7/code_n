@@ -35,26 +35,26 @@ Return an asynchronous function. Each invocation returns a promise that mirrors 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: a function that resolves to $n^2$ after $100$ ms, `inputs = [5]`, `t = 50`
-- Output: rejection `"Time Limit Exceeded"` at $50$ ms
-- Explanation: The timeout wins before the function can produce `25`.
+- **Input:** a function that resolves to $n^2$ after $100$ ms, `inputs = [5]`, `t = 50`
+- **Output:** rejection `"Time Limit Exceeded"` at $50$ ms
+- **Explanation:** The timeout wins before the function can produce `25`.
 
-**Example 2**
+#### Example 2
 
-- Input: the same $100$ ms square function, `inputs = [5]`, `t = 150`
-- Output: resolved value `25` at about $100$ ms
-- Explanation: The source promise settles before the longer limit.
+- **Input:** the same $100$ ms square function, `inputs = [5]`, `t = 150`
+- **Output:** resolved value `25` at about $100$ ms
+- **Explanation:** The source promise settles before the longer limit.
 
-**Example 3**
+#### Example 3
 
-- Input: a function that returns `a + b` after $120$ ms, `inputs = [5,10]`, `t = 150`
-- Output: resolved value `15` at about $120$ ms
-- Explanation: Both arguments are forwarded and the function finishes within the limit.
+- **Input:** a function that returns `a + b` after $120$ ms, `inputs = [5,10]`, `t = 150`
+- **Output:** resolved value `15` at about $120$ ms
+- **Explanation:** Both arguments are forwarded and the function finishes within the limit.
 
-**Example 4**
+#### Example 4
 
-- Input: an async function that immediately throws `"Error"`, `inputs = []`, `t = 1000`
-- Output: rejection `"Error"` immediately
-- Explanation: The source rejection settles the race long before the timeout.
+- **Input:** an async function that immediately throws `"Error"`, `inputs = []`, `t = 1000`
+- **Output:** rejection `"Error"` immediately
+- **Explanation:** The source rejection settles the race long before the timeout.

@@ -10,8 +10,14 @@ Given two integers `startValue` and `target`, return *the minimum number of oper
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `startValue`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Given two integers `startValue` and `target`, return *the minimum number of oper
 - **Input:** $startValue = 2, target = 3$
 - **Output:** `2`
 - **Explanation:** Use double operation and then decrement operation {2 -> 4 -> 3}.
+
 #### Example 2
 
 - **Input:** $startValue = 5, target = 8$
 - **Output:** `2`
 - **Explanation:** Use decrement and then double {5 -> 4 -> 8}.
+
 #### Example 3
 
 - **Input:** $startValue = 3, target = 10$

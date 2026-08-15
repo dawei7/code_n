@@ -33,14 +33,14 @@ Return the maximum total number of full bottles that can be drunk by choosing th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `numBottles = 13, numExchange = 6`
-- Output: `15`
-- Explanation: Drinking the initial bottles gives thirteen empties. Exchanges at prices six and seven are possible, producing two more bottles; the next price is eight and too few empties remain.
+- **Input:** `numBottles = 13, numExchange = 6`
+- **Output:** `15`
+- **Explanation:** Drinking the initial bottles gives thirteen empties. Exchanges at prices six and seven are possible, producing two more bottles; the next price is eight and too few empties remain.
 
-**Example 2**
+#### Example 2
 
-- Input: `numBottles = 10, numExchange = 3`
-- Output: `13`
-- Explanation: Three successive exchanges are possible at prices three, four, and five, so three bottles are added to the initial ten.
+- **Input:** `numBottles = 10, numExchange = 3`
+- **Output:** `13`
+- **Explanation:** Three successive exchanges are possible at prices three, four, and five, so three bottles are added to the initial ten.

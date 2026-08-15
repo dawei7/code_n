@@ -44,15 +44,15 @@ REPORT_PATH = LEETCODE_ROOT / "_meta" / "leetcode-metrics.json"
 COOKIE_PATH = LEETCODE_ROOT / "_local" / ".leetcode_cookie"
 GRAPHQL_URL = "https://leetcode.com/graphql"
 USER_AGENT = "Mozilla/5.0 cOde(n) mutable metadata sync"
-MODEL_VERSION = "difficulty-acceptance-v1"
+MODEL_VERSION = "difficulty-acceptance-v2"
 
 DIFFICULTIES = ("Easy", "Medium", "Hard")
-BASE_QUANTILE = 1 / 3
-MINIMUM_QUANTILE = 0.10
-MAXIMUM_QUANTILE = 0.75
+BASE_QUANTILE = 0.50
+MINIMUM_QUANTILE = 0.05
+MAXIMUM_QUANTILE = 0.95
 TIER_GAP = 20.0
-PERCENTILE_FLOOR = 0.05
-PERCENTILE_CEILING = 0.95
+PERCENTILE_FLOOR = 0.01
+PERCENTILE_CEILING = 0.99
 
 ACCOUNT_QUERY = """
 query globalData {
@@ -99,6 +99,8 @@ class EstimateModel:
     base: float
     minimum: float
     maximum: float
+    median_z: float = 0.0
+    slope: float = 0.0
     calibration_offset: float = 0.0
     real_rating_count: int = 0
     acceptance_count: int = 0
@@ -184,50 +186,43 @@ def quantile(sorted_values: list[float], position: float) -> float:
     return sorted_values[lower] + (sorted_values[upper] - sorted_values[lower]) * fraction
 
 
-def acceptance_percentile(value: float, sorted_values: list[float]) -> float | None:
-    if not sorted_values:
+def logit_acceptance(acceptance_rate: float | None) -> float | None:
+    if acceptance_rate is None or not isinstance(acceptance_rate, (int, float)) or not math.isfinite(float(acceptance_rate)):
         return None
-    first = bisect.bisect_left(sorted_values, value)
-    last = bisect.bisect_right(sorted_values, value) - 1
-    mid_rank = (first + max(first, last)) / 2
-    return 0.5 if len(sorted_values) == 1 else mid_rank / (len(sorted_values) - 1)
+    p = max(PERCENTILE_FLOOR, min(PERCENTILE_CEILING, float(acceptance_rate) / 100.0))
+    return math.log((1.0 - p) / p)
 
 
 def estimated_elo_from_acceptance(
     model: EstimateModel,
-    percentile: float | None,
+    acceptance_rate: float | None,
+    topic_adjustment: float = 0.0,
     calibration_offset: float | None = None,
 ) -> float:
-    if percentile is None:
-        return model.base
-    robust_percentile = max(
-        PERCENTILE_FLOOR,
-        min(PERCENTILE_CEILING, percentile),
-    )
-    if robust_percentile >= 0.5:
-        fraction = (robust_percentile - 0.5) / 0.5
-        estimate = model.base - (model.base - model.minimum) * fraction
+    z = logit_acceptance(acceptance_rate)
+    if z is None:
+        raw_estimate = model.base + topic_adjustment
     else:
-        fraction = (0.5 - robust_percentile) / 0.5
-        estimate = model.base + (model.maximum - model.base) * fraction
+        raw_estimate = model.base + model.slope * (z - model.median_z) + topic_adjustment
     offset = model.calibration_offset if calibration_offset is None else calibration_offset
-    return max(model.minimum, min(model.maximum, estimate + offset))
+    return max(model.minimum, min(model.maximum, raw_estimate + offset))
 
 
 def _calibration_offset(
     model: EstimateModel,
-    percentiles: list[float | None],
+    acceptance_rates: list[float | None],
+    topic_adjustments: list[float],
 ) -> float:
-    if not percentiles or all(percentile is None for percentile in percentiles):
+    if not acceptance_rates:
         return 0.0
     lower = model.minimum - model.maximum
     upper = model.maximum - model.minimum
     for _ in range(48):
         candidate = (lower + upper) / 2
         average = sum(
-            estimated_elo_from_acceptance(model, percentile, candidate)
-            for percentile in percentiles
-        ) / len(percentiles)
+            estimated_elo_from_acceptance(model, ac, top_adj, candidate)
+            for ac, top_adj in zip(acceptance_rates, topic_adjustments)
+        ) / len(acceptance_rates)
         if average < model.base:
             lower = candidate
         else:
@@ -240,21 +235,30 @@ def calculate_estimated_elos(
     ratings: dict[str, float],
     legacy_ids: set[str],
 ) -> tuple[dict[str, float], dict[str, EstimateModel]]:
+    from collections import defaultdict
+
     question_list = list(questions)
     ratings_by_difficulty = {difficulty: [] for difficulty in DIFFICULTIES}
     acceptance_by_difficulty = {difficulty: [] for difficulty in DIFFICULTIES}
+    rated_items_by_difficulty = {difficulty: [] for difficulty in DIFFICULTIES}
 
     for question in question_list:
         frontend_id = str(question.get("frontend_id") or "")
         difficulty = str(question.get("difficulty") or "")
         if difficulty not in ratings_by_difficulty:
             continue
+        acceptance = question.get("acceptance_rate")
+        ac_val = float(acceptance) if isinstance(acceptance, (int, float)) and math.isfinite(float(acceptance)) else None
+        if ac_val is not None:
+            acceptance_by_difficulty[difficulty].append(ac_val)
+
         rating = ratings.get(frontend_id)
         if rating is not None:
             ratings_by_difficulty[difficulty].append(rating)
-        acceptance = question.get("acceptance_rate")
-        if isinstance(acceptance, (int, float)) and math.isfinite(float(acceptance)):
-            acceptance_by_difficulty[difficulty].append(float(acceptance))
+            if ac_val is not None:
+                raw_topics = question.get("topics", [])
+                topics = [t["slug"] if isinstance(t, dict) else str(t) for t in raw_topics]
+                rated_items_by_difficulty[difficulty].append((ac_val, rating, topics))
 
     for values in ratings_by_difficulty.values():
         values.sort()
@@ -267,6 +271,22 @@ def calculate_estimated_elos(
         if not real_values:
             raise RuntimeError(f"No real ZeroTrac ratings are available for {difficulty}")
         acceptance_values = acceptance_by_difficulty[difficulty]
+
+        rated_items = rated_items_by_difficulty[difficulty]
+        if rated_items:
+            zs = [logit_acceptance(ac) for ac, _, _ in rated_items]
+            ys = [r for _, r, _ in rated_items]
+            sorted_zs = sorted(zs)
+            median_z = sorted_zs[len(sorted_zs) // 2]
+            mean_z = sum(zs) / len(zs)
+            mean_y = sum(ys) / len(ys)
+            cov = sum((z - mean_z) * (y - mean_y) for z, y in zip(zs, ys))
+            var_z = sum((z - mean_z) ** 2 for z in zs)
+            slope = max(10.0, cov / var_z if var_z > 0 else 50.0)
+        else:
+            median_z = 0.0
+            slope = 50.0
+
         models[difficulty] = EstimateModel(
             difficulty=difficulty,
             real_minimum=real_values[0],
@@ -274,9 +294,37 @@ def calculate_estimated_elos(
             base=quantile(real_values, BASE_QUANTILE),
             minimum=quantile(real_values, MINIMUM_QUANTILE),
             maximum=quantile(real_values, MAXIMUM_QUANTILE),
+            median_z=median_z,
+            slope=slope,
             real_rating_count=len(real_values),
             acceptance_count=len(acceptance_values),
         )
+
+    topic_residuals: dict[str, list[float]] = defaultdict(list)
+    for difficulty in DIFFICULTIES:
+        m = models[difficulty]
+        for ac, r, topics in rated_items_by_difficulty[difficulty]:
+            z = logit_acceptance(ac)
+            pred = m.base + m.slope * (z - m.median_z)
+            res = r - pred
+            for t in topics:
+                topic_residuals[t].append(res)
+
+    topic_weights: dict[str, float] = {}
+    for t, res_list in topic_residuals.items():
+        if len(res_list) >= 15:
+            delta = sum(res_list) / len(res_list)
+            shrinkage = len(res_list) / (len(res_list) + 20.0)
+            topic_weights[t] = delta * shrinkage
+
+    def compute_topic_adj(question_dict: dict[str, Any]) -> float:
+        raw_topics = question_dict.get("topics", [])
+        topics = [t["slug"] if isinstance(t, dict) else str(t) for t in raw_topics]
+        active_deltas = [topic_weights[t] for t in topics if t in topic_weights]
+        if not active_deltas:
+            return 0.0
+        raw_sum = sum(active_deltas) / math.sqrt(len(active_deltas))
+        return max(-120.0, min(120.0, raw_sum))
 
     for easier_name, harder_name in zip(DIFFICULTIES, DIFFICULTIES[1:]):
         easier = models[easier_name]
@@ -297,8 +345,8 @@ def calculate_estimated_elos(
 
     for difficulty in DIFFICULTIES:
         model = models[difficulty]
-        acceptance_values = acceptance_by_difficulty[difficulty]
-        legacy_percentiles: list[float | None] = []
+        legacy_acs: list[float | None] = []
+        legacy_top_adjs: list[float] = []
         for question in question_list:
             frontend_id = str(question.get("frontend_id") or "")
             if (
@@ -308,13 +356,10 @@ def calculate_estimated_elos(
             ):
                 continue
             acceptance = question.get("acceptance_rate")
-            percentile = (
-                acceptance_percentile(float(acceptance), acceptance_values)
-                if isinstance(acceptance, (int, float)) and math.isfinite(float(acceptance))
-                else None
-            )
-            legacy_percentiles.append(percentile)
-        model.calibration_offset = _calibration_offset(model, legacy_percentiles)
+            ac_val = float(acceptance) if isinstance(acceptance, (int, float)) and math.isfinite(float(acceptance)) else None
+            legacy_acs.append(ac_val)
+            legacy_top_adjs.append(compute_topic_adj(question))
+        model.calibration_offset = _calibration_offset(model, legacy_acs, legacy_top_adjs)
 
     estimates: dict[str, float] = {}
     for question in question_list:
@@ -326,16 +371,11 @@ def calculate_estimated_elos(
         if model is None:
             continue
         acceptance = question.get("acceptance_rate")
-        percentile = (
-            acceptance_percentile(
-                float(acceptance),
-                acceptance_by_difficulty[difficulty],
-            )
-            if isinstance(acceptance, (int, float)) and math.isfinite(float(acceptance))
-            else None
-        )
-        estimates[frontend_id] = estimated_elo_from_acceptance(model, percentile)
+        ac_val = float(acceptance) if isinstance(acceptance, (int, float)) and math.isfinite(float(acceptance)) else None
+        top_adj = compute_topic_adj(question)
+        estimates[frontend_id] = estimated_elo_from_acceptance(model, ac_val, top_adj)
     return estimates, models
+
 
 
 def _cookie_header(cookie_path: Path) -> str:

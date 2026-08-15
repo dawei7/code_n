@@ -33,16 +33,16 @@ Return the minimum number of leaf values that must be flipped so the complete tr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [3,5,4,2,null,1,1,1,0], result = true`
-- Output: `2`
+- **Input:** `root = [3,5,4,2,null,1,1,1,0], result = true`
+- **Output:** `2`
 
 At least two leaves must change for the AND expression at the root to become true.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [0], result = false`
-- Output: `0`
+- **Input:** `root = [0], result = false`
+- **Output:** `0`
 
 The single leaf already has the desired value.

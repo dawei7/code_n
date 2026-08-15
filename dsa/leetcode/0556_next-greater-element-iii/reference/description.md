@@ -4,8 +4,13 @@ Given a positive integer `n`, find *the smallest integer which has exactly the s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -17,6 +22,7 @@ that the returned integer should fit in **32-bit integer**, if there is a valid 
 
 - **Input:** $n = 12$
 - **Output:** `21`
+
 #### Example 2
 
 - **Input:** $n = 21$

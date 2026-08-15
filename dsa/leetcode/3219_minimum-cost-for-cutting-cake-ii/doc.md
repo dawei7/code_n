@@ -33,17 +33,17 @@ Return the minimum total cost of producing only $1 \times 1$ pieces.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 3, n = 2, horizontalCut = [1, 3], verticalCut = [5]`
-- Output: `13`
+- **Input:** `m = 3, n = 2, horizontalCut = [1, 3], verticalCut = [5]`
+- **Output:** `13`
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 2, n = 2, horizontalCut = [7], verticalCut = [4]`
-- Output: `15`
+- **Input:** `m = 2, n = 2, horizontalCut = [7], verticalCut = [4]`
+- **Output:** `15`
 
-**Example 3**
+#### Example 3
 
-- Input: `m = 1, n = 4, horizontalCut = [], verticalCut = [2, 1, 3]`
-- Output: `6`
+- **Input:** `m = 1, n = 4, horizontalCut = [], verticalCut = [2, 1, 3]`
+- **Output:** `6`

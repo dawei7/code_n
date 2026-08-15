@@ -26,12 +26,11 @@ Return a length-$n$ integer array. At each index `i`, store the number of indice
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** [2,1,1,0]
+- **Output:** [2,1,1,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - $\text{nums}[0] = 1$, which is odd. Thus, the indices $j = 1$ and $j = 3$ satisfy the conditions, so the score of index 0 is 2.
 
@@ -43,19 +42,13 @@ Return a length-$n$ integer array. At each index `i`, store the number of indice
 
 Thus, the $answer = [2, 1, 1, 0]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** [0]
+- **Output:** [0]
 
-**Explanation:**
-
-There is only one element in `nums`. Thus, the score of index 0 is 0.
-
-</div>
+- **Explanation:** There is only one element in `nums`. Thus, the score of index 0 is 0.
 
 ### 4. Constraints
 

@@ -32,32 +32,27 @@ Return the greatest value that can appear in any valid sequence while the maximu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 10, restrictions = [[3,1],[8,1]], diff = [2,2,3,1,4,5,1,1,2]
+- **Input:** n = 10, restrictions = [[3,1],[8,1]], diff = [2,2,3,1,4,5,1,1,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - The sequence $a = [0, 2, 4, 1, 2, 6, 2, 1, 1, 3]$ satisfies the given constraints ($a[3] \le 1$ and $a[8] \le 1$).
 
 - The maximum value in the sequence is 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 8, restrictions = [[3,2]], diff = [3,5,2,4,2,3,1]
+- **Input:** n = 8, restrictions = [[3,2]], diff = [3,5,2,4,2,3,1]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - The sequence $a = [0, 3, 3, 2, 6, 8, 11, 12]$ satisfies the given constraints ($a[3] \le 2$).
 
 - The maximum value in the sequence is 12.
-
-</div>
 
 ### 4. Constraints
 

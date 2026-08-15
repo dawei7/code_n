@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/balanced-k-factor-decomposition/) |
 
 ## Problem Description
+
 ### Goal
 
 Given positive integers `n` and `k`, decompose `n` into exactly `k` positive integer factors. Multiplying all returned factors must reproduce `n`.
@@ -34,20 +35,20 @@ Return exactly `k` positive integers whose product is `n` and whose maximum-minu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 100`, `k = 2`
-- Output: `[10, 10]`
+- **Input:** `n = 100`, `k = 2`
+- **Output:** `[10, 10]`
 - The product is `100` and the spread is zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 44`, `k = 3`
-- Output: `[2, 2, 11]`
+- **Input:** `n = 44`, `k = 3`
+- **Output:** `[2, 2, 11]`
 - Its spread `9` is smaller than those of `[1, 1, 44]`, `[1, 2, 22]`, and `[1, 4, 11]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 36`, `k = 4`
-- Output: `[2, 2, 3, 3]`
+- **Input:** `n = 36`, `k = 4`
+- **Output:** `[2, 2, 3, 3]`
 - The factors differ by at most one.

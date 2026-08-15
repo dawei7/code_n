@@ -20,9 +20,7 @@ Return *the **maximum** sum of the chosen edges*.
 
 - Two edges $\text{Edge}_{1}$ and $\text{Edge}_{2}$ in the tree are **adjacent** if they have a **common** node.
 
-		<li>In other words, they are adjacent if $\text{Edge}_{1}$ connects nodes `a` and `b` and $\text{Edge}_{2}$ connects nodes `b` and `c`.
-
-	</li>
+		- In other words, they are adjacent if $\text{Edge}_{1}$ connects nodes `a` and `b` and $\text{Edge}_{2}$ connects nodes `b` and `c`.
 
 ### 4. Examples
 
@@ -35,6 +33,7 @@ Return *the **maximum** sum of the chosen edges*.
 - **Explanation:** The above diagram shows the edges that we have to choose colored in red.
 The total score is 5 + 6 = 11.
 It can be shown that no better score can be obtained.
+
 #### Example 2
 
 ![](images/treee1293712983719827.png)

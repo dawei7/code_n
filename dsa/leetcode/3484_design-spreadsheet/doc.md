@@ -39,16 +39,16 @@ The package adapter receives parallel `operations` and `arguments` lists. It con
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Spreadsheet", "getValue", "setCell", "getValue", "setCell", "getValue", "resetCell", "getValue"]`, `arguments = [[3], ["=5+7"], ["A1", 10], ["=A1+6"], ["B2", 15], ["=A1+B2"], ["A1"], ["=A1+B2"]]`
-- Output: `[null, 12, null, 16, null, 25, null, 15]`
+- **Input:** `operations = ["Spreadsheet", "getValue", "setCell", "getValue", "setCell", "getValue", "resetCell", "getValue"]`, `arguments = [[3], ["=5+7"], ["A1", 10], ["=A1+6"], ["B2", 15], ["=A1+B2"], ["A1"], ["=A1+B2"]]`
+- **Output:** `[null, 12, null, 16, null, 25, null, 15]`
 
 The first query adds two literals. Later queries use the current values of `A1` and `B2`; after `A1` is reset, it contributes zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["Spreadsheet", "getValue", "setCell", "getValue"]`, `arguments = [[1000], ["=Z1000+A1"], ["Z1000", 100000], ["=Z1000+100000"]]`
-- Output: `[null, 0, null, 200000]`
+- **Input:** `operations = ["Spreadsheet", "getValue", "setCell", "getValue"]`, `arguments = [[1000], ["=Z1000+A1"], ["Z1000", 100000], ["=Z1000+100000"]]`
+- **Output:** `[null, 0, null, 200000]`
 
 Unset cells read as zero, and the maximum cell value may be added to the maximum literal.

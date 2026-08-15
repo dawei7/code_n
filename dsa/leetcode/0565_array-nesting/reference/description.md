@@ -14,8 +14,13 @@ Return *the longest length of a set* $s[k]$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,10 +28,10 @@ Return *the longest length of a set* $s[k]$.
 
 - **Input:** `nums = [5,4,0,3,1,6,2]`
 - **Output:** `4`
-- **Explanation:**
-nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
+- **Explanation:** nums[0] = 5, nums[1] = 4, nums[2] = 0, nums[3] = 3, nums[4] = 1, nums[5] = 6, nums[6] = 2.
 One of the longest sets s[k]:
 s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
+
 #### Example 2
 
 - **Input:** `nums = [0,1,2]`

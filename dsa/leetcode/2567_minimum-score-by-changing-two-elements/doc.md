@@ -30,20 +30,20 @@ Change the values at two array positions to any integers you choose. Return the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 4, 7, 8, 5]`
-- Output: `3`
-- Explanation: Changing `1` and `4` to `6` creates a duplicate, so the low score is $0$; the remaining range from $5$ to $8$ makes the high score $3$.
+- **Input:** `nums = [1, 4, 7, 8, 5]`
+- **Output:** `3`
+- **Explanation:** Changing `1` and `4` to `6` creates a duplicate, so the low score is $0$; the remaining range from $5$ to $8$ makes the high score $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 4, 3]`
-- Output: `0`
-- Explanation: Change two entries to match the third, making all three values equal.
+- **Input:** `nums = [1, 4, 3]`
+- **Output:** `0`
+- **Explanation:** Change two entries to match the third, making all three values equal.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [31, 25, 72, 79, 74, 65]`
-- Output: `14`
-- Explanation: Neutralizing the two smallest values leaves unchanged values from $65$ through $79$, whose range is $14$.
+- **Input:** `nums = [31, 25, 72, 79, 74, 65]`
+- **Output:** `14`
+- **Explanation:** Neutralizing the two smallest values leaves unchanged values from $65$ through $79$, whose range is $14$.

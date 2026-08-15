@@ -12,8 +12,13 @@ The **length of a clear path** is the number of visited cells of this path.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,12 +28,14 @@ The **length of a clear path** is the number of visited cells of this path.
 
 - **Input:** `grid = [[0,1],[1,0]]`
 - **Output:** `2`
+
 #### Example 2
 
 ![](images/example2_1.png)
 
 - **Input:** `grid = [[0,0,0],[1,1,0],[1,1,0]]`
 - **Output:** `4`
+
 #### Example 3
 
 - **Input:** `grid = [[1,0,0],[1,1,0],[1,1,0]]`

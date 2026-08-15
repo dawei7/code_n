@@ -34,16 +34,16 @@ Return the minimum total edge weight of a subgraph containing a path from each s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6`, `edges = [[0,2,2],[0,5,6],[1,0,3],[1,4,5],[2,1,1],[2,3,3],[2,3,4],[3,4,2],[4,5,1]]`, `src1 = 0`, `src2 = 1`, `dest = 5`
-- Output: `9`
+- **Input:** `n = 6`, `edges = [[0,2,2],[0,5,6],[1,0,3],[1,4,5],[2,1,1],[2,3,3],[2,3,4],[3,4,2],[4,5,1]]`, `src1 = 0`, `src2 = 1`, `dest = 5`
+- **Output:** `9`
 
 The two routes can share edges after meeting, and an optimal qualifying subgraph has total weight `9`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`, `edges = [[0,1,1],[2,1,1]]`, `src1 = 0`, `src2 = 1`, `dest = 2`
-- Output: `-1`
+- **Input:** `n = 3`, `edges = [[0,1,1],[2,1,1]]`, `src1 = 0`, `src2 = 1`, `dest = 2`
+- **Output:** `-1`
 
 There is no directed route from the second source to the destination.

@@ -12,8 +12,10 @@ Return `true` if and only if the two given trees with head nodes `root1` and `ro
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `leafSimilar(root1: Optional[TreeNode], root2: Optional[TreeNode]) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -23,6 +25,7 @@ Return `true` if and only if the two given trees with head nodes `root1` and `ro
 
 - **Input:** $root1 = [3,5,1,6,2,9,8,null,null,7,4], root2 = [3,5,1,6,7,4,2,null,null,null,null,null,null,9,8]$
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/leaf-similar-2.jpg)

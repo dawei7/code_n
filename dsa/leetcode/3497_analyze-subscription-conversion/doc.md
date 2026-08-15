@@ -30,12 +30,12 @@ Return columns `user_id`, `trial_avg_duration`, and `paid_avg_duration`, ordered
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: User 1 has free-trial durations `45`, `30`, and `60`, followed by paid durations `75`, `90`, and `65`. User 2 has free-trial and cancelled activity but no paid row.
-- Output: User 1 appears with `trial_avg_duration = 45.00` and `paid_avg_duration = 76.67`; user 2 is excluded.
+- **Input:** User 1 has free-trial durations `45`, `30`, and `60`, followed by paid durations `75`, `90`, and `65`. User 2 has free-trial and cancelled activity but no paid row.
+- **Output:** User 1 appears with `trial_avg_duration = 45.00` and `paid_avg_duration = 76.67`; user 2 is excluded.
 
-**Example 2**
+#### Example 2
 
-- Input: A user has free-trial durations `40` and `35`, one paid duration `45`, and a later cancelled row.
-- Output: The user appears with `trial_avg_duration = 37.50` and `paid_avg_duration = 45.00`; cancellation does not remove a prior conversion or affect either average.
+- **Input:** A user has free-trial durations `40` and `35`, one paid duration `45`, and a later cancelled row.
+- **Output:** The user appears with `trial_avg_duration = 37.50` and `paid_avg_duration = 45.00`; cancellation does not remove a prior conversion or affect either average.

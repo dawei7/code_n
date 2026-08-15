@@ -35,20 +35,20 @@ Return a list `answer` of length $n$. For each index `i`, `answer[i]` is the max
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 2, 1]`, `freq = [3, 2, -3, 1]`
-- Output: `[3, 3, 2, 2]`
-- Explanation: ID 2 first reaches count 3, then ID 3 reaches 2. Removing all copies of ID 2 makes 2 the maximum, and the last update does not exceed it.
+- **Input:** `nums = [2, 3, 2, 1]`, `freq = [3, 2, -3, 1]`
+- **Output:** `[3, 3, 2, 2]`
+- **Explanation:** ID 2 first reaches count 3, then ID 3 reaches 2. Removing all copies of ID 2 makes 2 the maximum, and the last update does not exceed it.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 5, 3]`, `freq = [2, -2, 1]`
-- Output: `[2, 0, 1]`
-- Explanation: Removing both copies of ID 5 empties the collection before ID 3 is added.
+- **Input:** `nums = [5, 5, 3]`, `freq = [2, -2, 1]`
+- **Output:** `[2, 0, 1]`
+- **Explanation:** Removing both copies of ID 5 empties the collection before ID 3 is added.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 1, 2]`, `freq = [4, 4, -1, 2]`
-- Output: `[4, 4, 4, 6]`
-- Explanation: The first two IDs tie at 4; after ID 1 drops to 3, ID 2 remains the maximum and later rises to 6.
+- **Input:** `nums = [1, 2, 1, 2]`, `freq = [4, 4, -1, 2]`
+- **Output:** `[4, 4, 4, 6]`
+- **Explanation:** The first two IDs tie at 4; after ID 1 drops to 3, ID 2 remains the maximum and later rises to 6.

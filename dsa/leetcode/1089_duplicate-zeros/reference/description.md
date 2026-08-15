@@ -4,8 +4,13 @@ Given a fixed-length integer array `arr`, duplicate each occurrence of zero, shi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `None`.
 
 ### 3. Note
 
@@ -18,6 +23,7 @@ that elements beyond the length of the original array are not written. Do the ab
 - **Input:** `arr = [1,0,2,3,0,4,5,0]`
 - **Output:** `[1,0,0,2,3,0,0,4]`
 - **Explanation:** After calling your function, the input array is modified to: [1,0,0,2,3,0,0,4]
+
 #### Example 2
 
 - **Input:** `arr = [1,2,3]`

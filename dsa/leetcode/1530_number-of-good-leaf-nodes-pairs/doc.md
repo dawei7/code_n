@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/) |
 
 ## Problem Description
+
 ### Goal
 
 Given the root of a binary tree and an integer `distance`, consider every unordered pair of two different leaf nodes. A pair is good when the length of the shortest path between its leaves, measured in tree edges, is at most `distance`.
@@ -16,6 +17,7 @@ Given the root of a binary tree and an integer `distance`, consider every unorde
 Return the number of good leaf-node pairs. Internal node values do not affect which pairs qualify; only the tree structure and the path-length limit matter.
 
 ### Function Contract
+
 **Inputs**
 
 - `root`: The root of a nonempty binary tree containing between 1 and $2^{10}$ nodes.
@@ -27,20 +29,21 @@ Return the number of good leaf-node pairs. Internal node values do not affect wh
 Return the number of unordered pairs of distinct leaves whose shortest connecting path contains at most `distance` edges.
 
 ### Examples
-**Example 1**
 
-- Input: `root = [1, 2, 3, null, 4], distance = 3`
-- Output: `1`
-- Explanation: Leaves 3 and 4 are three edges apart, so their only pair is good.
+#### Example 1
 
-**Example 2**
+- **Input:** `root = [1, 2, 3, null, 4], distance = 3`
+- **Output:** `1`
+- **Explanation:** Leaves 3 and 4 are three edges apart, so their only pair is good.
 
-- Input: `root = [1, 2, 3, 4, 5, 6, 7], distance = 3`
-- Output: `2`
-- Explanation: The sibling pairs `(4, 5)` and `(6, 7)` have distance 2; cross-subtree leaf pairs have distance 4.
+#### Example 2
 
-**Example 3**
+- **Input:** `root = [1, 2, 3, 4, 5, 6, 7], distance = 3`
+- **Output:** `2`
+- **Explanation:** The sibling pairs `(4, 5)` and `(6, 7)` have distance 2; cross-subtree leaf pairs have distance 4.
 
-- Input: `root = [7, 1, 4, 6, null, 5, 3, null, null, null, null, null, 2], distance = 3`
-- Output: `1`
-- Explanation: Only the pair formed by leaves 2 and 5 meets the limit.
+#### Example 3
+
+- **Input:** `root = [7, 1, 4, 6, null, 5, 3, null, null, null, null, null, 2], distance = 3`
+- **Output:** `1`
+- **Explanation:** Only the pair formed by leaves 2 and 5 meets the limit.

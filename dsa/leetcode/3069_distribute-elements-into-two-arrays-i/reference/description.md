@@ -12,8 +12,13 @@ Return *the array* `result`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the array* `result`.
 In the 3^rd operation, as the last element of arr1 is greater than the last element of arr2 (2 > 1), append nums[3] to arr1.
 After 3 operations, arr1 = [2,3] and arr2 = [1].
 Hence, the array result formed by concatenation is [2,3,1].
+
 #### Example 2
 
 - **Input:** `nums = [5,4,3,8]`

@@ -8,8 +8,13 @@ In other words, $\text{result}[i]$ is equal to $sum(|\text{nums}[i]-\text{nums}[
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ In other words, $\text{result}[i]$ is equal to $sum(|\text{nums}[i]-\text{nums}[
 result[0] = |2-2| + |2-3| + |2-5| = 0 + 1 + 3 = 4,
 result[1] = |3-2| + |3-3| + |3-5| = 1 + 0 + 2 = 3,
 result[2] = |5-2| + |5-3| + |5-5| = 3 + 2 + 0 = 5.
+
 #### Example 2
 
 - **Input:** `nums = [1,4,6,8,10]`

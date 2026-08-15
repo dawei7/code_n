@@ -12,8 +12,10 @@ It is **guaranteed** that every call to `ping` uses a strictly larger value of `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `RecentCounter()`: Initializes the data structure.
+- `ping(t: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

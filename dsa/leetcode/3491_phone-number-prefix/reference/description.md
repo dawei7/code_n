@@ -10,28 +10,19 @@ You are given a string array `numbers` that represents phone numbers. Return `tr
 
 #### Example 1
 
-<div class="example-block">
-**Input:** numbers = ["1","2","4","3"]
+- **Input:** numbers = ["1","2","4","3"]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** No number is a prefix of another number, so the output is `true`.
 
-No number is a prefix of another number, so the output is `true`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** numbers = ["001","007","15","00153"]
+- **Input:** numbers = ["001","007","15","00153"]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-The string `"001"` is a prefix of the string `"00153"`. Thus, the output is `false`.
-
-</div>
+- **Explanation:** The string `"001"` is a prefix of the string `"00153"`. Thus, the output is `false`.
 
 ### 4. Constraints
 

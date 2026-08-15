@@ -29,8 +29,7 @@ The function `fn` should be called with `args` immediately and then called again
 {"time": 140, "returned": 8},
 {"time": 175, "returned": 8}
 ]
-- **Explanation:**
-const cancelTimeMs = 190;
+- **Explanation:** const cancelTimeMs = 190;
 const cancelFn = cancellable((x) => x * 2, [4], 35);
 setTimeout(cancelFn, cancelTimeMs);
 Every 35ms, fn(4) is called. Until t=190ms, then it is cancelled.
@@ -41,6 +40,7 @@ Every 35ms, fn(4) is called. Until t=190ms, then it is cancelled.
 5th fn call is at 140ms. fn(4) returns 8.
 6th fn call is at 175ms. fn(4) returns 8.
 Cancelled at 190ms
+
 #### Example 2
 
 - **Input:** $fn = (x1, x2) => (x1 * x2), args = [2, 5], t = 30$
@@ -53,8 +53,7 @@ Cancelled at 190ms
 {"time": 120, "returned": 10},
 {"time": 150, "returned": 10}
 ]
-- **Explanation:**
-const cancelTimeMs = 165;
+- **Explanation:** const cancelTimeMs = 165;
 const cancelFn = cancellable((x1, x2) => (x1 * x2), [2, 5], 30)
 setTimeout(cancelFn, cancelTimeMs)
 Every 30ms, fn(2, 5) is called. Until t=165ms, then it is cancelled.
@@ -65,6 +64,7 @@ Every 30ms, fn(2, 5) is called. Until t=165ms, then it is cancelled.
 5th fn call is at 120ms
 6th fn call is at 150ms
 Cancelled at 165ms
+
 #### Example 3
 
 - **Input:** $fn = (x1, x2, x3) => (x1 + x2 + x3), args = [5, 1, 3], t = 50$
@@ -75,8 +75,7 @@ Cancelled at 165ms
 {"time": 100, "returned": 9},
 {"time": 150, "returned": 9}
 ]
-- **Explanation:**
-const cancelTimeMs = 180;
+- **Explanation:** const cancelTimeMs = 180;
 const cancelFn = cancellable((x1, x2, x3) => (x1 + x2 + x3), [5, 1, 3], 50)
 setTimeout(cancelFn, cancelTimeMs)
 Every 50ms, fn(5, 1, 3) is called. Until t=180ms, then it is cancelled.

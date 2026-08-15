@@ -16,14 +16,11 @@ Return the final state of the array `windows`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** windows = [1,2,3], queries = [3,3,2]
+- **Input:** windows = [1,2,3], queries = [3,3,2]
 
-**Output:** [2,3,1]
+- **Output:** [2,3,1]
 
-**Explanation:**
-
-Here is the window array after each query:
+- **Explanation:** Here is the window array after each query:
 
 - Initial order: `[1,2,3]`
 
@@ -33,17 +30,13 @@ Here is the window array after each query:
 
 - After the last query: `[<u>**2**</u>,3,1]`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** windows = [1,4,2,3], queries = [4,1,3]
+- **Input:** windows = [1,4,2,3], queries = [4,1,3]
 
-**Output:** [3,1,4,2]
+- **Output:** [3,1,4,2]
 
-**Explanation:**
-
-Here is the window array after each query:
+- **Explanation:** Here is the window array after each query:
 
 - Initial order: `[1,4,2,3]`
 
@@ -52,8 +45,6 @@ Here is the window array after each query:
 - After the second query: `[<u>**1**</u>,4,2,3]`
 
 - After the last query: `[<u>**3**</u>,1,4,2]`
-
-</div>
 
 ### 4. Constraints
 

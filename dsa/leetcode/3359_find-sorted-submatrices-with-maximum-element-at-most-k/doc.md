@@ -33,20 +33,20 @@ Let $m=\lvert\texttt{grid}\rvert$ and $n=\lvert\texttt{grid[0]}\rvert$. Both dim
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[4, 3, 2, 1], [8, 7, 6, 1]], k = 3`
-- Output: `8`
-- Explanation: The qualifying rectangles use only values at most $3$ and preserve non-increasing order in each selected row. They include six one-row choices and two rectangles that span both rows at the last column.
+- **Input:** `grid = [[4, 3, 2, 1], [8, 7, 6, 1]], k = 3`
+- **Output:** `8`
+- **Explanation:** The qualifying rectangles use only values at most $3$ and preserve non-increasing order in each selected row. They include six one-row choices and two rectangles that span both rows at the last column.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 1, 1], [1, 1, 1], [1, 1, 1]], k = 1`
-- Output: `36`
-- Explanation: Every rectangle qualifies. There are $3\cdot4/2=6$ row intervals and the same number of column intervals, giving $36$ submatrices.
+- **Input:** `grid = [[1, 1, 1], [1, 1, 1], [1, 1, 1]], k = 1`
+- **Output:** `36`
+- **Explanation:** Every rectangle qualifies. There are $3\cdot4/2=6$ row intervals and the same number of column intervals, giving $36$ submatrices.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1]], k = 1`
-- Output: `1`
-- Explanation: The single cell itself is the only submatrix and satisfies both conditions.
+- **Input:** `grid = [[1]], k = 1`
+- **Output:** `1`
+- **Explanation:** The single cell itself is the only submatrix and satisfies both conditions.

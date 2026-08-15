@@ -33,18 +33,18 @@ Return the minimum number of common column indices that must be deleted.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `strs = ["babca","bbazb"]`
-- Output: `3`
-- Explanation: Deleting columns `0`, `1`, and `4` leaves `["bc","az"]`; both remaining rows are individually ordered.
+- **Input:** `strs = ["babca","bbazb"]`
+- **Output:** `3`
+- **Explanation:** Deleting columns `0`, `1`, and `4` leaves `["bc","az"]`; both remaining rows are individually ordered.
 
-**Example 2**
+#### Example 2
 
-- Input: `strs = ["edcba"]`
-- Output: `4`
+- **Input:** `strs = ["edcba"]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `strs = ["ghi","def","abc"]`
-- Output: `0`
+- **Input:** `strs = ["ghi","def","abc"]`
+- **Output:** `0`

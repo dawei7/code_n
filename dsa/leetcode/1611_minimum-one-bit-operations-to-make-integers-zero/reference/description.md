@@ -10,8 +10,13 @@ Return *the minimum number of operations to transform *`n`* into *`0`*.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return *the minimum number of operations to transform *`n`* into *`0`*.*
 - **Explanation:** The binary representation of 3 is "11".
 "<u>1</u>1" -> "<u>0</u>1" with the 2^nd operation since the 0^th bit is 1.
 "0<u>1</u>" -> "0<u>0</u>" with the 1^st operation.
+
 #### Example 2
 
 - **Input:** $n = 6$

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given the root of a non-empty binary tree. Every node stores a digit
@@ -26,6 +27,7 @@ not distinct value sequences, so two different leaves contribute separately
 even when their paths contain the same values.
 
 ### Function Contract
+
 **Inputs**
 
 - `root`: the root of a binary tree containing $n$ nodes, where
@@ -40,20 +42,21 @@ Return the integer number of root-to-leaf paths whose node values can be
 permuted to form a palindrome.
 
 ### Examples
-**Example 1**
 
-- Input: `root = [2,3,1,3,1,null,1]`
-- Output: `2`
-- Explanation: Paths `[2,3,3]` and `[2,1,1]` can be rearranged as palindromes,
+#### Example 1
+
+- **Input:** `root = [2,3,1,3,1,null,1]`
+- **Output:** `2`
+- **Explanation:** Paths `[2,3,3]` and `[2,1,1]` can be rearranged as palindromes,
   while `[2,3,1]` cannot.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [2,1,1,1,3,null,null,null,null,null,1]`
-- Output: `1`
+- **Input:** `root = [2,1,1,1,3,null,null,null,null,null,1]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [9]`
-- Output: `1`
-- Explanation: Every one-value sequence is already a palindrome.
+- **Input:** `root = [9]`
+- **Output:** `1`
+- **Explanation:** Every one-value sequence is already a palindrome.

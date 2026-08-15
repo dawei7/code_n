@@ -12,19 +12,23 @@ Calculate the following statistics:
 
 - `median`:
 
-		<li>If the sample has an odd number of elements, then the `median` is the middle element once the sample is sorted.
+		- If the sample has an odd number of elements, then the `median` is the middle element once the sample is sorted.
 
 - If the sample has an even number of elements, then the `median` is the average of the two middle elements once the sample is sorted.
 
-	</li>
 - `mode`: The number that appears the most in the sample. It is guaranteed to be **unique**.
 
 Return *the statistics of the sample as an array of floating-point numbers *`[minimum, maximum, mean, median, mode]`*. Answers within *$10^{-5}$* of the actual answer will be accepted.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `count`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[float]`.
 
 ### 3. Examples
 
@@ -37,6 +41,7 @@ The minimum and maximum are 1 and 3 respectively.
 The mean is (1+2+2+2+3+3+3+3) / 8 = 19 / 8 = 2.375.
 Since the size of the sample is even, the median is the average of the two middle elements 2 and 3, which is 2.5.
 The mode is 3 as it appears the most in the sample.
+
 #### Example 2
 
 - **Input:** $count = [0,4,3,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]$

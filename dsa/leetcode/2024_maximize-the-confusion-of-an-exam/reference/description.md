@@ -10,8 +10,14 @@ Return *the **maximum** number of consecutive* `'T'`s or `'F'`s *in the answer k
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `answerKey`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return *the **maximum** number of consecutive* `'T'`s or `'F'`s *in the answer k
 - **Output:** `4`
 - **Explanation:** We can replace both the 'F's with 'T's to make answerKey = "<u>TTTT</u>".
 There are four consecutive 'T's.
+
 #### Example 2
 
 - **Input:** $answerKey = "TFFT", k = 1$
@@ -28,6 +35,7 @@ There are four consecutive 'T's.
 - **Explanation:** We can replace the first 'T' with an 'F' to make answerKey = "<u>FFF</u>T".
 Alternatively, we can replace the second 'T' with an 'F' to make answerKey = "T<u>FFF</u>".
 In both cases, there are three consecutive 'F's.
+
 #### Example 3
 
 - **Input:** $answerKey = "TTFTTFTT", k = 1$

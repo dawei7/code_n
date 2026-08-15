@@ -31,12 +31,12 @@ Coordinate the two methods so their callbacks alternate strictly, beginning with
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `"foobar"`
+- **Input:** `n = 1`
+- **Output:** `"foobar"`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `"foobarfoobar"`
+- **Input:** `n = 2`
+- **Output:** `"foobarfoobar"`

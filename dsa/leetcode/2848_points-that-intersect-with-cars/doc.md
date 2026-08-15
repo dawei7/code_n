@@ -32,14 +32,14 @@ The constraints are $1\le\lvert\texttt{nums}\rvert\le100$ and $1\le\texttt{start
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [[3,6],[1,5],[4,7]]`
-- Output: `7`
-- Explanation: Every integer point from `1` through `7` is covered.
+- **Input:** `nums = [[3,6],[1,5],[4,7]]`
+- **Output:** `7`
+- **Explanation:** Every integer point from `1` through `7` is covered.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [[1,3],[5,8]]`
-- Output: `7`
-- Explanation: The covered points are `1`, `2`, `3`, `5`, `6`, `7`, and `8`.
+- **Input:** `nums = [[1,3],[5,8]]`
+- **Output:** `7`
+- **Explanation:** The covered points are `1`, `2`, `3`, `5`, `6`, `7`, and `8`.

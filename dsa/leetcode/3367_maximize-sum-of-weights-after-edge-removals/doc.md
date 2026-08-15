@@ -33,14 +33,14 @@ The constraints are $2\le n\le10^5$, $1\le k\le n-1$, $1\le w\le10^6$, and `edge
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1,4],[0,2,2],[2,3,12],[2,4,6]]`, `k = 2`
-- Output: `22`
-- Explanation: Removing the weight-2 edge leaves weights 4, 12, and 6 while reducing node 2's degree to two.
+- **Input:** `edges = [[0,1,4],[0,2,2],[2,3,12],[2,4,6]]`, `k = 2`
+- **Output:** `22`
+- **Explanation:** Removing the weight-2 edge leaves weights 4, 12, and 6 while reducing node 2's degree to two.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0,1,5],[1,2,10],[0,3,15],[3,4,20],[3,5,5],[0,6,10]]`, `k = 3`
-- Output: `65`
-- Explanation: Every original degree already respects the limit, so all edge weights remain.
+- **Input:** `edges = [[0,1,5],[1,2,10],[0,3,15],[3,4,20],[3,5,5],[0,6,10]]`, `k = 3`
+- **Output:** `65`
+- **Explanation:** Every original degree already respects the limit, so all edge weights remain.

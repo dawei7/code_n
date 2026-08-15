@@ -36,12 +36,12 @@ The input is guaranteed to make every required removal possible: whenever a star
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leet**cod*e"`
-- Output: `"lecoe"`
+- **Input:** `s = "leet**cod*e"`
+- **Output:** `"lecoe"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "erase*****"`
-- Output: `""`
+- **Input:** `s = "erase*****"`
+- **Output:** `""`

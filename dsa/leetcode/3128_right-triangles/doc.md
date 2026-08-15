@@ -32,20 +32,20 @@ Return the number of distinct right triangles whose three selected cells all con
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,1,0],[0,1,1],[0,1,0]]`
-- Output: `2`
-- Explanation: The middle-right `1` can be paired with either of the other two `1` cells in its column, producing two triangles.
+- **Input:** `grid = [[0,1,0],[0,1,1],[0,1,0]]`
+- **Output:** `2`
+- **Explanation:** The middle-right `1` can be paired with either of the other two `1` cells in its column, producing two triangles.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,0,0],[0,1,0,1],[1,0,0,0]]`
-- Output: `0`
-- Explanation: No `1` has both another `1` in its row and another `1` in its column.
+- **Input:** `grid = [[1,0,0,0],[0,1,0,1],[1,0,0,0]]`
+- **Output:** `0`
+- **Explanation:** No `1` has both another `1` in its row and another `1` in its column.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,0,1],[1,0,0],[1,0,0]]`
-- Output: `2`
-- Explanation: The upper-left `1` can use the upper-right cell together with either lower `1` in the first column.
+- **Input:** `grid = [[1,0,1],[1,0,0],[1,0,0]]`
+- **Output:** `2`
+- **Explanation:** The upper-left `1` can use the upper-right cell together with either lower `1` in the first column.

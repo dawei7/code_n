@@ -25,14 +25,11 @@ Return the greatest alternating sum obtainable after any valid sequence of swaps
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], swaps = [[0,2],[1,2]]
+- **Input:** nums = [1,2,3], swaps = [[0,2],[1,2]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The maximum alternating sum is achieved when `nums` is `[2, 1, 3]` or `[3, 1, 2]`. As an example, you can obtain `nums = [2, 1, 3]` as follows.
+- **Explanation:** The maximum alternating sum is achieved when `nums` is `[2, 1, 3]` or `[3, 1, 2]`. As an example, you can obtain `nums = [2, 1, 3]` as follows.
 
 - Swap $\text{nums}[0]$ and $\text{nums}[2]$. `nums` is now `[3, 2, 1]`.
 
@@ -40,31 +37,21 @@ The maximum alternating sum is achieved when `nums` is `[2, 1, 3]` or `[3, 1, 2]
 
 - Swap $\text{nums}[0]$ and $\text{nums}[2]$. `nums` is now `[2, 1, 3]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3], swaps = [[1,2]]
+- **Input:** nums = [1,2,3], swaps = [[1,2]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The maximum alternating sum is achieved by not performing any swaps.
 
-The maximum alternating sum is achieved by not performing any swaps.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1000000000,1,1000000000,1,1000000000], swaps = []
+- **Input:** nums = [1,1000000000,1,1000000000,1,1000000000], swaps = []
 
-**Output:** -2999999997
+- **Output:** -2999999997
 
-**Explanation:**
-
-Since we cannot perform any swaps, the maximum alternating sum is achieved by not performing any swaps.
-
-</div>
+- **Explanation:** Since we cannot perform any swaps, the maximum alternating sum is achieved by not performing any swaps.
 
 ### 4. Constraints
 

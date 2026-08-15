@@ -20,6 +20,7 @@ Return the $n \times n$ matrix filled from `1` to $n^2$ along a clockwise inward
 
 - **Input:** $n = 3$
 - **Output:** `[[1,2,3],[8,9,4],[7,6,5]]`
+
 #### Example 2
 
 - **Input:** $n = 1$

@@ -24,6 +24,7 @@ Return the smallest number of valid palindromic-subarray removals that leaves `a
 
 - **Input:** `arr = [1,2]`
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** `arr = [1,3,4,1,5]`

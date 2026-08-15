@@ -24,64 +24,43 @@ Return the maximum element sum among all palindromic subarrays of `nums`. The re
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [10,10]
+- **Input:** nums = [10,10]
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
+- **Explanation:** The whole array `[10,10]` is a palindrome. Therefore, the maximum sum is $10 + 10 = 20$.
 
-The whole array `[10,10]` is a palindrome. Therefore, the maximum sum is $10 + 10 = 20$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,2,1,5,6]
+- **Input:** nums = [1,2,3,2,1,5,6]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** The contiguous subarray `[1,2,3,2,1]` is a palindrome. Its sum is $1 + 2 + 3 + 2 + 1 = 9$ and it is the maximum sum.
 
-The contiguous subarray `[1,2,3,2,1]` is a palindrome. Its sum is $1 + 2 + 3 + 2 + 1 = 9$ and it is the maximum sum.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7,1,2,1,7,3,4,3,4]
+- **Input:** nums = [7,1,2,1,7,3,4,3,4]
 
-**Output:** 18
+- **Output:** 18
 
-**Explanation:**
+- **Explanation:** The contiguous subarray `[7,1,2,1,7]` is a palindrome. Its sum is $7 + 1 + 2 + 1 + 7 = 18$ and it is the maximum sum.
 
-The contiguous subarray `[7,1,2,1,7]` is a palindrome. Its sum is $7 + 1 + 2 + 1 + 7 = 18$ and it is the maximum sum.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5]
+- **Input:** nums = [1,2,3,4,5]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** No subarray with length greater than 1 is a palindrome. The largest element in the array is 5. Therefore, the answer is 5.
 
-No subarray with length greater than 1 is a palindrome. The largest element in the array is 5. Therefore, the answer is 5.
-
-</div>
 #### Example 5
 
-<div class="example-block">
-**Input:** nums = [1000]
+- **Input:** nums = [1000]
 
-**Output:** 1000
+- **Output:** 1000
 
-**Explanation:**
-
-The subarray with only one element is a palindrome. Therefore, the answer is 1000.
-
-</div>
+- **Explanation:** The subarray with only one element is a palindrome. Therefore, the answer is 1000.
 
 ### 4. Constraints
 

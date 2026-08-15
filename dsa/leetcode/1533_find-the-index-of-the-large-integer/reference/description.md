@@ -4,13 +4,12 @@ We have an integer array `arr`, where all the integers in `arr` are equal except
 
 - `int compareSub(int l, int r, int x, int y)`: where $0 \le l, r, x, y < \text{ArrayReader.length}()$, $l \le r and$ $x \le y$. The function compares the sum of sub-array `arr[l..r]` with the sum of the sub-array `arr[x..y]` and returns:
 
-		<li>**1** if $\text{arr}[l]+arr[l+1]+...+\text{arr}[r] > \text{arr}[x]+arr[x+1]+...+\text{arr}[y]$.
+		- **1** if $\text{arr}[l]+arr[l+1]+...+\text{arr}[r] > \text{arr}[x]+arr[x+1]+...+\text{arr}[y]$.
 
 - **0** if $\text{arr}[l]+arr[l+1]+...+\text{arr}[r] = \text{arr}[x]+arr[x+1]+...+\text{arr}[y]$.
 
 - **-1** if $\text{arr}[l]+arr[l+1]+...+\text{arr}[r] < \text{arr}[x]+arr[x+1]+...+\text{arr}[y]$.
 
-	</li>
 - `int length()`: Returns the size of the array.
 
 You are allowed to call `compareSub()` **20 times** at most. You can assume both functions work in `O(1)` time.
@@ -42,6 +41,7 @@ Thus we know that arr[0] and arr[1] doesn't contain the largest element.
 reader.compareSub(2, 2, 3, 3) // returns 0, we can exclude arr[2] and arr[3].
 reader.compareSub(4, 4, 5, 5) // returns 1, thus for sure arr[4] is the largest element in the array.
 Notice that we made only 3 calls, so the answer is valid.
+
 #### Example 2
 
 - **Input:** `nums = [6,6,12]`

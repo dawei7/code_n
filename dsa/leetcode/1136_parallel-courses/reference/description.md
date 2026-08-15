@@ -32,6 +32,7 @@ There is no limit on how many currently eligible courses can be taken together. 
 - **Explanation:** The figure above represents the given graph.
 In the first semester, you can take courses 1 and 2.
 In the second semester, you can take course 3.
+
 #### Example 2
 
 ![](images/course2graph.jpg)

@@ -33,14 +33,14 @@ Each list contains from 1 through $10^5$ words, and every word has length from 1
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `message = ["hello","world","leetcode"]`, `bannedWords = ["world","hello"]`
-- Output: `true`
-- Explanation: Both `"hello"` and `"world"` are exact banned matches.
+- **Input:** `message = ["hello","world","leetcode"]`, `bannedWords = ["world","hello"]`
+- **Output:** `true`
+- **Explanation:** Both `"hello"` and `"world"` are exact banned matches.
 
-**Example 2**
+#### Example 2
 
-- Input: `message = ["hello","programming","fun"]`, `bannedWords = ["world","programming","leetcode"]`
-- Output: `false`
-- Explanation: Only `"programming"` matches.
+- **Input:** `message = ["hello","programming","fun"]`, `bannedWords = ["world","programming","leetcode"]`
+- **Output:** `false`
+- **Explanation:** Only `"programming"` matches.

@@ -32,20 +32,20 @@ Let $H$ denote the height of the constructed tree, with a single-node tree havin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `preorder = [8, 5, 1, 7, 10, 12]`
-- Output: `[8, 5, 10, 1, 7, null, 12]`
-- Explanation: The output uses level-order tree serialization; its preorder traversal is the given array.
+- **Input:** `preorder = [8, 5, 1, 7, 10, 12]`
+- **Output:** `[8, 5, 10, 1, 7, null, 12]`
+- **Explanation:** The output uses level-order tree serialization; its preorder traversal is the given array.
 
-**Example 2**
+#### Example 2
 
-- Input: `preorder = [1, 3]`
-- Output: `[1, null, 3]`
-- Explanation: Since `3` is strictly greater than `1`, it is the root's right child.
+- **Input:** `preorder = [1, 3]`
+- **Output:** `[1, null, 3]`
+- **Explanation:** Since `3` is strictly greater than `1`, it is the root's right child.
 
-**Example 3**
+#### Example 3
 
-- Input: `preorder = [4, 2]`
-- Output: `[4, 2]`
-- Explanation: Since `2` is strictly less than `4`, it is the root's left child.
+- **Input:** `preorder = [4, 2]`
+- **Output:** `[4, 2]`
+- **Explanation:** Since `2` is strictly less than `4`, it is the root's left child.

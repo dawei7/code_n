@@ -32,7 +32,7 @@ For every distinct calendar month and country combination, report the number and
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Transactions`
 
@@ -43,7 +43,7 @@ For every distinct calendar month and country combination, report the number and
 | 123 | US | approved | 2000 | 2019-01-01 |
 | 124 | DE | approved | 2000 | 2019-01-07 |
 
-Output:
+- **Output:** 
 
 | month | country | trans_count | approved_count | trans_total_amount | approved_total_amount |
 |---|---|---:|---:|---:|---:|
@@ -51,10 +51,10 @@ Output:
 | 2019-01 | DE | 1 | 1 | 2000 | 2000 |
 | 2019-01 | US | 1 | 1 | 2000 | 2000 |
 
-**Example 2**
+#### Example 2
 
 A group containing only declined transactions still appears with `approved_count = 0` and `approved_total_amount = 0`.
 
-**Example 3**
+#### Example 3
 
 Transactions from the same country in different calendar months belong to separate result rows.

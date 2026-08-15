@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/running-sum-of-1d-array/) |
 
 ## Problem Description
+
 ### Goal
 
 For an integer array `nums`, construct its running sum. At every index `i`, the returned value must equal the sum of the input elements from index `0` through `i`, inclusive.
@@ -16,6 +17,7 @@ For an integer array `nums`, construct its running sum. At every index `i`, the 
 Preserve the input order and return one prefix total for every input position. Negative values may reduce a later total, zeros leave it unchanged, and no sorting or omission is permitted.
 
 ### Function Contract
+
 **Inputs**
 
 Let $N$ be the length of `nums`.
@@ -34,18 +36,19 @@ $$
 for every index $0 \le i < N$.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,2,3,4]`
-- Output: `[1,3,6,10]`
-- Explanation: The prefixes contain one, two, three, and four input values respectively.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `[1,3,6,10]`
+- **Explanation:** The prefixes contain one, two, three, and four input values respectively.
 
-- Input: `nums = [1,1,1,1,1]`
-- Output: `[1,2,3,4,5]`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1,1,1,1,1]`
+- **Output:** `[1,2,3,4,5]`
 
-- Input: `nums = [3,1,2,10,1]`
-- Output: `[3,4,6,16,17]`
+#### Example 3
+
+- **Input:** `nums = [3,1,2,10,1]`
+- **Output:** `[3,4,6,16,17]`

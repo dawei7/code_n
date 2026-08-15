@@ -22,8 +22,13 @@ Return the resulting string after reordering `s` using this algorithm.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -36,6 +41,7 @@ After steps 4, 5 and 6 of the first iteration, result = "abccba"
 First iteration is done. Now s = "aabbcc" and we go back to step 1
 After steps 1, 2 and 3 of the second iteration, result = "abccbaabc"
 After steps 4, 5 and 6 of the second iteration, result = "abccbaabccba"
+
 #### Example 2
 
 - **Input:** `s = "rat"`

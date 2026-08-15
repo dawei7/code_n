@@ -8,8 +8,13 @@ Return *the minimum number of operations to make an array that is sorted in **no
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the minimum number of operations to make an array that is sorted in **no
 - From [3,9,3], replace the 9 with 3 and 6 so the array becomes [3,3,6,3]
 - From [3,3,6,3], replace the 6 with 3 and 3 so the array becomes [3,3,3,3,3]
 There are 2 steps to sort the array in non-decreasing order. Therefore, we return 2.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5]`

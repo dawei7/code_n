@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Seat table:
 +----+---------+
 | id | student |
@@ -41,7 +41,7 @@ Seat table:
 | 4  | Green   |
 | 5  | Jeames  |
 +----+---------+
-**Output:**
+- **Output:** 
 +----+---------+
 | id | student |
 +----+---------+
@@ -51,6 +51,5 @@ Seat table:
 | 4  | Emerson |
 | 5  | Jeames  |
 +----+---------+
-**Explanation:**
-Note that if the number of students is odd, there is no need to change the last one's seat.
+- **Explanation:** Note that if the number of students is odd, there is no need to change the last one's seat.
 ```

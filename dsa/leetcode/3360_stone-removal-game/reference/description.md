@@ -12,37 +12,37 @@ Given a positive integer `n`, return `true` if Alice wins the game and `false` o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 12
+- **Input:** n = 12
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Alice removes 10 stones on her first turn, leaving 2 stones for Bob.
 
 - Bob cannot remove 9 stones, so Alice wins.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1
+- **Input:** n = 1
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - Alice cannot remove 10 stones, so Alice loses.
-
-</div>
 
 ### 4. Constraints
 

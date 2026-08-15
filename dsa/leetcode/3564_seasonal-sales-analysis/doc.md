@@ -35,10 +35,10 @@ Return columns `season`, `category`, `total_quantity`, and `total_revenue`. Incl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Sales span all four seasons and products belong to Apparel, Kitchen, Tech, and Fitness.
-- Output: `[(Fall,Apparel,10,120.00), (Spring,Kitchen,3,54.00), (Summer,Tech,5,100.00), (Winter,Apparel,9,110.00)]`
-- Explanation: Quantity selects the winner except in Summer, where Tech and Fitness each sell five units; Tech wins because its revenue is higher.
+- **Input:** Sales span all four seasons and products belong to Apparel, Kitchen, Tech, and Fitness.
+- **Output:** `[(Fall,Apparel,10,120.00), (Spring,Kitchen,3,54.00), (Summer,Tech,5,100.00), (Winter,Apparel,9,110.00)]`
+- **Explanation:** Quantity selects the winner except in Summer, where Tech and Fitness each sell five units; Tech wins because its revenue is higher.
 
 ---

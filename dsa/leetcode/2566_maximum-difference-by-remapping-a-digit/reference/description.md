@@ -6,8 +6,13 @@ Return *the difference between the maximum and minimum values Bob can make by re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,16 +30,15 @@ Return *the difference between the maximum and minimum values Bob can make by re
 
 - **Input:** $num = 11891$
 - **Output:** `99009`
-- **Explanation:**
-To achieve the maximum value, Bob can remap the digit 1 to the digit 9 to yield 99899.
+- **Explanation:** To achieve the maximum value, Bob can remap the digit 1 to the digit 9 to yield 99899.
 To achieve the minimum value, Bob can remap the digit 1 to the digit 0, yielding 890.
 The difference between these two numbers is 99009.
+
 #### Example 2
 
 - **Input:** $num = 90$
 - **Output:** `99`
-- **Explanation:**
-The maximum value that can be returned by the function is 99 (if 0 is replaced by 9) and the minimum value that can be returned by the function is 0 (if 9 is replaced by 0).
+- **Explanation:** The maximum value that can be returned by the function is 99 (if 0 is replaced by 9) and the minimum value that can be returned by the function is 0 (if 9 is replaced by 0).
 Thus, we return 99.
 
 ### 5. Constraints

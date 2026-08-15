@@ -37,20 +37,20 @@ Return the number of characters dominated in both statistics by at least one oth
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `properties = [[5, 5], [6, 3], [3, 6]]`
-- Output: `0`
-- Explanation: Each possible comparison loses in at least one statistic.
+- **Input:** `properties = [[5, 5], [6, 3], [3, 6]]`
+- **Output:** `0`
+- **Explanation:** Each possible comparison loses in at least one statistic.
 
-**Example 2**
+#### Example 2
 
-- Input: `properties = [[2, 2], [3, 3]]`
-- Output: `1`
-- Explanation: The character `[3, 3]` has strictly greater attack and defense than `[2, 2]`.
+- **Input:** `properties = [[2, 2], [3, 3]]`
+- **Output:** `1`
+- **Explanation:** The character `[3, 3]` has strictly greater attack and defense than `[2, 2]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `properties = [[1, 5], [10, 4], [4, 3]]`
-- Output: `1`
-- Explanation: `[10, 4]` dominates `[4, 3]`, while no character has both statistics above `[1, 5]`.
+- **Input:** `properties = [[1, 5], [10, 4], [4, 3]]`
+- **Output:** `1`
+- **Explanation:** `[10, 4]` dominates `[4, 3]`, while no character has both statistics above `[1, 5]`.

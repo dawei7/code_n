@@ -18,8 +18,10 @@ Return *the constructed matrix *`res`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `printTree(root: Optional[TreeNode]) -> `List[List[str]]``: Executes operation.
 
 ### 3. Examples
 
@@ -31,6 +33,7 @@ Return *the constructed matrix *`res`.
 - **Output:** ``
 [["","1",""],
 ["2","",""]]
+
 #### Example 2
 
 ![](images/print2-tree.jpg)

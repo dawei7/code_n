@@ -8,8 +8,14 @@ Note that the strings are considered in the **order in which they appear** in th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[str]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -17,23 +23,22 @@ Note that the strings are considered in the **order in which they appear** in th
 
 - **Input:** `arr = ["d","b","c","b","c","a"], k = 2`
 - **Output:** `"a"`
-- **Explanation:**
-The only distinct strings in arr are "d" and "a".
+- **Explanation:** The only distinct strings in arr are "d" and "a".
 "d" appears 1^st, so it is the 1^st distinct string.
 "a" appears 2^nd, so it is the 2^nd distinct string.
 Since k == 2, "a" is returned.
+
 #### Example 2
 
 - **Input:** `arr = ["aaa","aa","a"], k = 1`
 - **Output:** `"aaa"`
-- **Explanation:**
-All strings in arr are distinct, so the 1^st string "aaa" is returned.
+- **Explanation:** All strings in arr are distinct, so the 1^st string "aaa" is returned.
+
 #### Example 3
 
 - **Input:** `arr = ["a","b","a"], k = 3`
 - **Output:** `""`
-- **Explanation:**
-The only distinct string is "b". Since there are fewer than 3 distinct strings, we return an empty string "".
+- **Explanation:** The only distinct string is "b". Since there are fewer than 3 distinct strings, we return an empty string "".
 
 ### 4. Constraints
 

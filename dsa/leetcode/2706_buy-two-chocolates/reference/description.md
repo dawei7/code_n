@@ -8,8 +8,14 @@ Return *the amount of money you will have leftover after buying the two chocolat
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `prices`: Input parameter (`List[int]`).
+- `money`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the amount of money you will have leftover after buying the two chocolat
 - **Input:** $prices = [1,2,2], money = 3$
 - **Output:** `0`
 - **Explanation:** Purchase the chocolates priced at 1 and 2 units respectively. You will have 3 - 3 = 0 units of money afterwards. Thus, we return 0.
+
 #### Example 2
 
 - **Input:** $prices = [3,2,3], money = 3$

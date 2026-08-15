@@ -30,14 +30,14 @@ Return the minimum number of unit increments and decrements needed to make all e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,-3,2,1,-4,6]`, `k = 3`
-- Output: `5`
-- Explanation: In the window `[-3,2,1]`, raise `-3` to `1` using four operations and lower `2` to `1` using one.
+- **Input:** `nums = [4,-3,2,1,-4,6]`, `k = 3`
+- **Output:** `5`
+- **Explanation:** In the window `[-3,2,1]`, raise `-3` to `1` using four operations and lower `2` to `1` using one.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-2,-2,3,1,4]`, `k = 2`
-- Output: `0`
-- Explanation: The first length-two window already contains equal values.
+- **Input:** `nums = [-2,-2,3,1,4]`, `k = 2`
+- **Output:** `0`
+- **Explanation:** The first length-two window already contains equal values.

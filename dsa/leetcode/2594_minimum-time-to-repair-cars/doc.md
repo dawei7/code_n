@@ -35,16 +35,16 @@ Let $m = \lvert\texttt{ranks}\rvert$ and $c = \texttt{cars}$. The constraints ar
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `ranks = [4,2,3,1], cars = 10`
-- Output: `16`
+- **Input:** `ranks = [4,2,3,1], cars = 10`
+- **Output:** `16`
 
 In 16 minutes, the four mechanics can repair `2`, `2`, `2`, and `4` cars respectively. That repairs all 10 cars, and no smaller time is sufficient.
 
-**Example 2**
+#### Example 2
 
-- Input: `ranks = [5,1,8], cars = 6`
-- Output: `16`
+- **Input:** `ranks = [5,1,8], cars = 6`
+- **Output:** `16`
 
 The mechanics can repair `1`, `4`, and `1` cars respectively within 16 minutes, for a total of 6.

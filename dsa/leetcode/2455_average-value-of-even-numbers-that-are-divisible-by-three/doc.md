@@ -34,14 +34,14 @@ The array length is between $1$ and $1000$, inclusive, and every element is betw
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 6, 10, 12, 15]`
-- Output: `9`
-- Explanation: The qualifying values are `6` and `12`, whose average is $(6+12)/2=9$.
+- **Input:** `nums = [1, 3, 6, 10, 12, 15]`
+- **Output:** `9`
+- **Explanation:** The qualifying values are `6` and `12`, whose average is $(6+12)/2=9$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 4, 7, 10]`
-- Output: `0`
-- Explanation: No element is both even and divisible by $3$.
+- **Input:** `nums = [1, 2, 4, 7, 10]`
+- **Output:** `0`
+- **Explanation:** No element is both even and divisible by $3$.

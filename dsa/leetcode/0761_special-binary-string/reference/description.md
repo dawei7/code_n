@@ -14,8 +14,13 @@ Return *the lexicographically largest resulting string possible after applying t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the lexicographically largest resulting string possible after applying t
 - **Output:** `"11100100"`
 - **Explanation:** The strings "10" [occuring at s[1]] and "1100" [at s[3]] are swapped.
 This is the lexicographically largest string possible after some number of swaps.
+
 #### Example 2
 
 - **Input:** `s = "10"`

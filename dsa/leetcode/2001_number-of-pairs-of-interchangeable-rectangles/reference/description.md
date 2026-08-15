@@ -8,8 +8,13 @@ Return *the **number** of pairs of **interchangeable** rectangles in *`rectangle
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rectangles`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the **number** of pairs of **interchangeable** rectangles in *`rectangle
 - Rectangle 1 with rectangle 2: 3/6 == 10/20.
 - Rectangle 1 with rectangle 3: 3/6 == 15/30.
 - Rectangle 2 with rectangle 3: 10/20 == 15/30.
+
 #### Example 2
 
 - **Input:** $rectangles = [[4,5],[7,8]]$

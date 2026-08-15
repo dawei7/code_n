@@ -6,8 +6,13 @@ Return `true`* if it is possible to assign integers to variable names so as to s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `equations`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ Return `true`* if it is possible to assign integers to variable names so as to s
 - **Output:** `false`
 - **Explanation:** If we assign say, a = 1 and b = 1, then the first equation is satisfied, but not the second.
 There is no way to assign the variables to satisfy both equations.
+
 #### Example 2
 
 - **Input:** $equations = ["b = a","a = b"]$

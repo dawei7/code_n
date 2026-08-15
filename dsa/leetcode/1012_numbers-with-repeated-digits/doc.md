@@ -32,19 +32,19 @@ Let $D$ be the number of decimal digits in `n`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 20`
-- Output: `1`
-- Explanation: Only `11` has a repeated digit.
+- **Input:** `n = 20`
+- **Output:** `1`
+- **Explanation:** Only `11` has a repeated digit.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 100`
-- Output: `10`
-- Explanation: The qualifying values are `11`, `22`, through `99`, plus `100`.
+- **Input:** `n = 100`
+- **Output:** `10`
+- **Explanation:** The qualifying values are `11`, `22`, through `99`, plus `100`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1000`
-- Output: `262`
+- **Input:** `n = 1000`
+- **Output:** `262`

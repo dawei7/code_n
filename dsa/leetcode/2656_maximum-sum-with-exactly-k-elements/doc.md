@@ -31,14 +31,14 @@ Return the greatest score attainable after all `k` operations. The inserted valu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4,5], k = 3`
-- Output: `18`
-- Explanation: Select `5`, then the inserted `6`, then the inserted `7`, contributing `5 + 6 + 7`.
+- **Input:** `nums = [1,2,3,4,5], k = 3`
+- **Output:** `18`
+- **Explanation:** Select `5`, then the inserted `6`, then the inserted `7`, contributing `5 + 6 + 7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,5,5], k = 2`
-- Output: `11`
-- Explanation: Select one `5`, then select the `6` created by the first operation.
+- **Input:** `nums = [5,5,5], k = 2`
+- **Output:** `11`
+- **Explanation:** Select one `5`, then select the `6` created by the first operation.

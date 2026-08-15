@@ -43,20 +43,20 @@ Rows must be ordered by `flight_id` ascending.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: flights `(1,2)`, `(2,2)`, and `(3,1)`; passenger requests `[1,1,1,2,2,3,3]`.
-- Output: `[[1,2,1], [2,2,0], [3,1,1]]`.
-- Explanation: flight 1 has one request beyond capacity, flight 2 is exactly full, and flight 3 has one passenger waiting.
+- **Input:** flights `(1,2)`, `(2,2)`, and `(3,1)`; passenger requests `[1,1,1,2,2,3,3]`.
+- **Output:** `[[1,2,1], [2,2,0], [3,1,1]]`.
+- **Explanation:** flight 1 has one request beyond capacity, flight 2 is exactly full, and flight 3 has one passenger waiting.
 
-**Example 2**
+#### Example 2
 
-- Input: flights `(4,3)` and `(9,2)`, with one passenger requesting flight 4 and none requesting flight 9.
-- Output: `[[4,1,0], [9,0,0]]`.
-- Explanation: the left join keeps the empty flight, whose booked and waitlist counts are both zero.
+- **Input:** flights `(4,3)` and `(9,2)`, with one passenger requesting flight 4 and none requesting flight 9.
+- **Output:** `[[4,1,0], [9,0,0]]`.
+- **Explanation:** the left join keeps the empty flight, whose booked and waitlist counts are both zero.
 
-**Example 3**
+#### Example 3
 
-- Input: flight `(7,1)`; two valid requests for flight 7 and one request for nonexistent flight 99.
-- Output: `[[7,1,1]]`.
-- Explanation: only requests joining an existing flight are counted.
+- **Input:** flight `(7,1)`; two valid requests for flight 7 and one request for nonexistent flight 99.
+- **Output:** `[[7,1,1]]`.
+- **Explanation:** only requests joining an existing flight are counted.

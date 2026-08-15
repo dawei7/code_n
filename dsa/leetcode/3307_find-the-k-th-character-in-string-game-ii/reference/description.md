@@ -14,8 +14,14 @@ Return the value of the $$k^{\text{th}}$$ character in `word` after performing a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+- `operations`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -25,14 +31,11 @@ that the character `'z'` can be changed to `'a'` in the second type of operation
 
 #### Example 1
 
-<div class="example-block">
-**Input:** k = 5, operations = [0,0,0]
+- **Input:** k = 5, operations = [0,0,0]
 
-**Output:** "a"
+- **Output:** "a"
 
-**Explanation:**
-
-Initially, $word = "a"$. Alice performs the three operations as follows:
+- **Explanation:** Initially, $word = "a"$. Alice performs the three operations as follows:
 
 - Appends `"a"` to `"a"`, `word` becomes `"aa"`.
 
@@ -40,17 +43,13 @@ Initially, $word = "a"$. Alice performs the three operations as follows:
 
 - Appends `"aaaa"` to `"aaaa"`, `word` becomes `"aaaaaaaa"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** k = 10, operations = [0,1,0,1]
+- **Input:** k = 10, operations = [0,1,0,1]
 
-**Output:** "b"
+- **Output:** "b"
 
-**Explanation:**
-
-Initially, $word = "a"$. Alice performs the four operations as follows:
+- **Explanation:** Initially, $word = "a"$. Alice performs the four operations as follows:
 
 - Appends `"a"` to `"a"`, `word` becomes `"aa"`.
 
@@ -59,8 +58,6 @@ Initially, $word = "a"$. Alice performs the four operations as follows:
 - Appends `"aabb"` to `"aabb"`, `word` becomes `"aabbaabb"`.
 
 - Appends `"bbccbbcc"` to `"aabbaabb"`, `word` becomes `"aabbaabbbbccbbcc"`.
-
-</div>
 
 ### 5. Constraints
 

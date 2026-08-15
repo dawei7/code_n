@@ -30,20 +30,20 @@ Return any value strictly between the global minimum and maximum of `nums`, or `
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,2,1,4]`
-- Output: `2`
-- Explanation: The global extremes are `1` and `4`, so either `2` or `3` is valid.
+- **Input:** `nums = [3,2,1,4]`
+- **Output:** `2`
+- **Explanation:** The global extremes are `1` and `4`, so either `2` or `3` is valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2]`
-- Output: `-1`
-- Explanation: With two distinct elements, one is the minimum and the other is the maximum.
+- **Input:** `nums = [1,2]`
+- **Output:** `-1`
+- **Explanation:** With two distinct elements, one is the minimum and the other is the maximum.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,1,3]`
-- Output: `2`
-- Explanation: `2` is the only value strictly between `1` and `3`.
+- **Input:** `nums = [2,1,3]`
+- **Output:** `2`
+- **Explanation:** `2` is the only value strictly between `1` and `3`.

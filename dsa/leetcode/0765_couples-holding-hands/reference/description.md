@@ -8,8 +8,13 @@ Return *the minimum number of swaps so that every couple is sitting side by side
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `row`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the minimum number of swaps so that every couple is sitting side by side
 - **Input:** $row = [0,2,1,3]$
 - **Output:** `1`
 - **Explanation:** We only need to swap the second (row[1]) and third (row[2]) person.
+
 #### Example 2
 
 - **Input:** $row = [3,2,0,1]$

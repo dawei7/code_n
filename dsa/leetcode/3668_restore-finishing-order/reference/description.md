@@ -10,35 +10,32 @@ Return an array containing your friends' IDs in their **finishing** order.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `order`: Input parameter (`List[int]`).
+- `friends`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** order = [3,1,2,5,4], friends = [1,3,4]
+- **Input:** order = [3,1,2,5,4], friends = [1,3,4]
 
-**Output:** [3,1,4]
+- **Output:** [3,1,4]
 
-**Explanation:**
+- **Explanation:** The finishing order is `[<u>**3**</u>, <u>**1**</u>, 2, 5, <u>**4**</u>]`. Therefore, the finishing order of your friends is `[3, 1, 4]`.
 
-The finishing order is `[<u>**3**</u>, <u>**1**</u>, 2, 5, <u>**4**</u>]`. Therefore, the finishing order of your friends is `[3, 1, 4]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** order = [1,4,5,3,2], friends = [2,5]
+- **Input:** order = [1,4,5,3,2], friends = [2,5]
 
-**Output:** [5,2]
+- **Output:** [5,2]
 
-**Explanation:**
-
-The finishing order is `[1, 4, <u>**5**</u>, 3, <u>**2**</u>]`. Therefore, the finishing order of your friends is `[5, 2]`.
-
-</div>
+- **Explanation:** The finishing order is `[1, 4, <u>**5**</u>, 3, <u>**2**</u>]`. Therefore, the finishing order of your friends is `[5, 2]`.
 
 ### 4. Constraints
 

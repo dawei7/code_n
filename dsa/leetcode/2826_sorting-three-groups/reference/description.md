@@ -4,47 +4,39 @@ You are given an integer array `nums`. Each element in `nums` is 1, 2 or 3. In e
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,3,2,1]
+- **Input:** nums = [2,1,3,2,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** One of the optimal solutions is to remove $\text{nums}[0]$, $\text{nums}[2]$ and $\text{nums}[3]$.
 
-One of the optimal solutions is to remove $\text{nums}[0]$, $\text{nums}[2]$ and $\text{nums}[3]$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,3,2,1,3,3]
+- **Input:** nums = [1,3,2,1,3,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** One of the optimal solutions is to remove $\text{nums}[1]$ and $\text{nums}[2]$.
 
-One of the optimal solutions is to remove $\text{nums}[1]$ and $\text{nums}[2]$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2,2,2,2,3,3]
+- **Input:** nums = [2,2,2,2,3,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-`nums` is already non-decreasing.
-
-</div>
+- **Explanation:** `nums` is already non-decreasing.
 
 ### 4. Constraints
 

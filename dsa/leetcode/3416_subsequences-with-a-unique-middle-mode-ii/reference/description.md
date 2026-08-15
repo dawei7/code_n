@@ -18,31 +18,27 @@ A sequence of numbers `seq` of size 5 contains a **unique middle mode** if the *
 
 #### Example 1
 
-**Input:** nums = [1,1,1,1,1,1]
+- **Input:** nums = [1,1,1,1,1,1]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** `[1, 1, 1, 1, 1]` is the only subsequence of size 5 that can be formed from this list, and it has a unique middle mode of 1.
 
-`[1, 1, 1, 1, 1]` is the only subsequence of size 5 that can be formed from this list, and it has a unique middle mode of 1.
 #### Example 2
 
-**Input:** nums = [1,2,2,3,3,4]
+- **Input:** nums = [1,2,2,3,3,4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** `[1, 2, 2, 3, 4]` and `[1, 2, 3, 3, 4]` have unique middle modes because the number at index 2 has the greatest frequency in the subsequence. `[1, 2, 2, 3, 3]` does not have a unique middle mode because 2 and 3 both appear twice in the subsequence.
 
-`[1, 2, 2, 3, 4]` and `[1, 2, 3, 3, 4]` have unique middle modes because the number at index 2 has the greatest frequency in the subsequence. `[1, 2, 2, 3, 3]` does not have a unique middle mode because 2 and 3 both appear twice in the subsequence.
 #### Example 3
 
-**Input:** nums = [0,1,2,3,4,5,6,7,8]
+- **Input:** nums = [0,1,2,3,4,5,6,7,8]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There does not exist a subsequence of length 5 with a unique middle mode.
+- **Explanation:** There does not exist a subsequence of length 5 with a unique middle mode.
 
 ### 4. Constraints
 

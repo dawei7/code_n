@@ -30,17 +30,17 @@ Return the number of partitions whose left-sum minus right-sum difference is eve
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10,10,3,7,6]`
-- Output: `4`
+- **Input:** `nums = [10,10,3,7,6]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,2]`
-- Output: `0`
+- **Input:** `nums = [1,2,2]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,4,6,8]`
-- Output: `3`
+- **Input:** `nums = [2,4,6,8]`
+- **Output:** `3`

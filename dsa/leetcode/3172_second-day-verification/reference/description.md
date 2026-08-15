@@ -38,7 +38,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 emails table:
@@ -81,8 +80,6 @@ texts table:
 - User with user_id 7005 and email_id 234 signed up on 2022-08-20 10:00:00 and verified on second day of the signup.
 
 - User with user_id 7771 and email_id 125 signed up on 2022-06-14 09:30:00 and verified on second day of the signup.
-
-</div>
 
 ### 2. Function Contract
 

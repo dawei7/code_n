@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input: **
+- **Input:** 
 Employees table:
 +-------------+-----------+------------+--------+
 | employee_id | name      | manager_id | salary |
@@ -43,15 +43,14 @@ Employees table:
 | 9           | Mikaela   | null       | 50937  |
 | 11          | Joziah    | 6          | 28485  |
 +-------------+-----------+------------+--------+
-**Output:**
+- **Output:** 
 +-------------+
 | employee_id |
 +-------------+
 | 11          |
 +-------------+
 
-**Explanation:**
-The employees with a salary less than $30000 are 1 (Kalel) and 11 (Joziah).
+- **Explanation:** The employees with a salary less than $30000 are 1 (Kalel) and 11 (Joziah).
 Kalel's manager is employee 11, who is still in the company (Joziah).
 Joziah's manager is employee 6, who left the company because there is no row for employee 6 as it was deleted.
 ```

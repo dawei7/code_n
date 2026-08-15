@@ -24,12 +24,11 @@ Return a string with the same words and spacing structure, except that each word
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "cat and mice"
+- **Input:** s = "cat and mice"
 
-**Output:** "cat dna mice"
+- **Output:** "cat dna mice"
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - The first word `"cat"` has 1 vowel.
 
@@ -39,15 +38,13 @@ Return a string with the same words and spacing structure, except that each word
 
 - Thus, the resulting string is `"cat dna mice"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "book is nice"
+- **Input:** s = "book is nice"
 
-**Output:** "book is ecin"
+- **Output:** "book is ecin"
 
-**Explanation:**
+- **Explanation:** 
 
 - The first word `"book"` has 2 vowels.
 
@@ -57,23 +54,19 @@ Return a string with the same words and spacing structure, except that each word
 
 - Thus, the resulting string is `"book is ecin"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "banana healthy"
+- **Input:** s = "banana healthy"
 
-**Output:** "banana healthy"
+- **Output:** "banana healthy"
 
-**Explanation:**
+- **Explanation:** 
 
 - The first word `"banana"` has 3 vowels.
 
 - `"healthy"` has 2 vowels, so it remains unchanged.
 
 - Thus, the resulting string is `"banana healthy"`.
-
-</div>
 
 ### 4. Constraints
 

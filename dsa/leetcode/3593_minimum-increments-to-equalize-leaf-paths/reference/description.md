@@ -12,21 +12,25 @@ Return the **minimum** number of nodes whose cost must be increased to make all 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[0,2]], cost = [2,1,3]
+- **Input:** n = 3, edges = [[0,1],[0,2]], cost = [2,1,3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/screenshot-2025-05-28-at-134018.png)
+- **Explanation:** ![](images/screenshot-2025-05-28-at-134018.png)
 
 There are two root-to-leaf paths:
 
@@ -38,17 +42,13 @@ To make all root-to-leaf path scores equal to 5, increase the cost of node 1 by 
 
 Only one node is increased, so the output is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], cost = [5,1,4]
+- **Input:** n = 3, edges = [[0,1],[1,2]], cost = [5,1,4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-![](images/screenshot-2025-05-28-at-134249.png)
+- **Explanation:** ![](images/screenshot-2025-05-28-at-134249.png)
 
 There is only** **one root-to-leaf path:
 
@@ -56,17 +56,13 @@ There is only** **one root-to-leaf path:
 
 Since only one root-to-leaf path exists, all path costs are trivially equal, and the output is 0.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, edges = [[0,4],[0,1],[1,2],[1,3]], cost = [3,4,1,1,7]
+- **Input:** n = 5, edges = [[0,4],[0,1],[1,2],[1,3]], cost = [3,4,1,1,7]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/screenshot-2025-05-28-at-135704.png)
+- **Explanation:** ![](images/screenshot-2025-05-28-at-135704.png)
 
 There are three root-to-leaf paths:
 
@@ -77,8 +73,6 @@ There are three root-to-leaf paths:
 - Path `0 → 1 → 3` has a score of $3 + 4 + 1 = 8$.
 
 To make all root-to-leaf path scores equal to 10, increase the cost of node 1 by 2. Thus, the output is 1.
-
-</div>
 
 ### 4. Constraints
 

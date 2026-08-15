@@ -32,19 +32,19 @@ Given `n` and the three divisors, return the $n$th ugly number in increasing ord
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`, `a = 2`, `b = 3`, `c = 5`
-- Output: `4`
+- **Input:** `n = 3`, `a = 2`, `b = 3`, `c = 5`
+- **Output:** `4`
 
 The sequence begins `2,3,4,5,6,8,...`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`, `a = 2`, `b = 3`, `c = 4`
-- Output: `6`
+- **Input:** `n = 4`, `a = 2`, `b = 3`, `c = 4`
+- **Output:** `6`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`, `a = 2`, `b = 11`, `c = 13`
-- Output: `10`
+- **Input:** `n = 5`, `a = 2`, `b = 11`, `c = 13`
+- **Output:** `10`

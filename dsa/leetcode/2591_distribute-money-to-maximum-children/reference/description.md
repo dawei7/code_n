@@ -14,8 +14,14 @@ Return *the **maximum** number of children who may receive **exactly** *`8` *dol
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `money`: Input parameter (`int`).
+- `children`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,12 +29,12 @@ Return *the **maximum** number of children who may receive **exactly** *`8` *dol
 
 - **Input:** $money = 20, children = 3$
 - **Output:** `1`
-- **Explanation:**
-The maximum number of children with 8 dollars will be 1. One of the ways to distribute the money is:
+- **Explanation:** The maximum number of children with 8 dollars will be 1. One of the ways to distribute the money is:
 - 8 dollars to the first child.
 - 9 dollars to the second child.
 - 3 dollars to the third child.
 It can be proven that no distribution exists such that number of children getting 8 dollars is greater than 1.
+
 #### Example 2
 
 - **Input:** $money = 16, children = 2$

@@ -49,7 +49,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 NewYork table:
 +------------+-------+
 | student_id | score |
@@ -64,19 +64,19 @@ California table:
 | 2          | 89    |
 | 3          | 88    |
 +------------+-------+
-**Output:**
+- **Output:** 
 +---------------------+
 | winner              |
 +---------------------+
 | New York University |
 +---------------------+
-**Explanation:**
-New York University has 1 excellent student, and California University has 0 excellent students.
+- **Explanation:** New York University has 1 excellent student, and California University has 0 excellent students.
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 NewYork table:
 +------------+-------+
 | student_id | score |
@@ -91,19 +91,19 @@ California table:
 | 2          | 90    |
 | 3          | 87    |
 +------------+-------+
-**Output:**
+- **Output:** 
 +-----------------------+
 | winner                |
 +-----------------------+
 | California University |
 +-----------------------+
-**Explanation:**
-New York University has 0 excellent students, and California University has 1 excellent student.
+- **Explanation:** New York University has 0 excellent students, and California University has 1 excellent student.
 ```
+
 #### Example 3
 
 ```
-**Input:**
+- **Input:** 
 NewYork table:
 +------------+-------+
 | student_id | score |
@@ -118,12 +118,11 @@ California table:
 | 2          | 87    |
 | 3          | 99    |
 +------------+-------+
-**Output:**
+- **Output:** 
 +-----------+
 | winner    |
 +-----------+
 | No Winner |
 +-----------+
-**Explanation:**
-Both New York University and California University have 1 excellent student.
+- **Explanation:** Both New York University and California University have 1 excellent student.
 ```

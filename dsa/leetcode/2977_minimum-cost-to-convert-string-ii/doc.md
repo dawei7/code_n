@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-cost-to-convert-string-ii/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given equal-length lowercase strings `source` and `target`. Rule `i`
 converts the whole string `original[i]` into the equal-length string
 `changed[i]` for `cost[i]`.
@@ -26,6 +28,7 @@ Apply any number of operations and return the minimum total cost to transform
 directed rules may occur.
 
 ### Function Contract
+
 **Inputs**
 
 - `source`: the initial lowercase string
@@ -46,20 +49,21 @@ The minimum cost of a legal collection of disjoint-or-identical interval
 operations, or `-1` when the target cannot be reached.
 
 ### Examples
-**Example 1**
 
-- Input: `source = "abcd"`, `target = "acbe"`, `original = ["a","b","c","c","e","d"]`, `changed = ["b","c","b","e","b","e"]`, `cost = [2,5,5,1,2,20]`
-- Output: `28`
-- Explanation: Single-character intervals independently realize the cheapest conversions.
+#### Example 1
 
-**Example 2**
+- **Input:** `source = "abcd"`, `target = "acbe"`, `original = ["a","b","c","c","e","d"]`, `changed = ["b","c","b","e","b","e"]`, `cost = [2,5,5,1,2,20]`
+- **Output:** `28`
+- **Explanation:** Single-character intervals independently realize the cheapest conversions.
 
-- Input: `source = "abcdefgh"`, `target = "acdeeghh"`, `original = ["bcd","fgh","thh"]`, `changed = ["cde","thh","ghh"]`, `cost = [1,3,5]`
-- Output: `9`
-- Explanation: Convert `bcd` once and convert the identical `fgh` interval twice through `thh`.
+#### Example 2
 
-**Example 3**
+- **Input:** `source = "abcdefgh"`, `target = "acdeeghh"`, `original = ["bcd","fgh","thh"]`, `changed = ["cde","thh","ghh"]`, `cost = [1,3,5]`
+- **Output:** `9`
+- **Explanation:** Convert `bcd` once and convert the identical `fgh` interval twice through `thh`.
 
-- Input: `source = "abcdefgh"`, `target = "addddddd"`, `original = ["bcd","defgh"]`, `changed = ["ddd","ddddd"]`, `cost = [100,1578]`
-- Output: `-1`
-- Explanation: The two necessary intervals partially overlap, which the operation rules prohibit.
+#### Example 3
+
+- **Input:** `source = "abcdefgh"`, `target = "addddddd"`, `original = ["bcd","defgh"]`, `changed = ["ddd","ddddd"]`, `cost = [100,1578]`
+- **Output:** `-1`
+- **Explanation:** The two necessary intervals partially overlap, which the operation rules prohibit.

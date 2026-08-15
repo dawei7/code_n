@@ -32,21 +32,21 @@ The split is valid only when its values form a descending consecutive sequence: 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1234"`
-- Output: `false`
+- **Input:** `s = "1234"`
+- **Output:** `false`
 
 No placement of boundaries produces the required descending consecutive values.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "050043"`
-- Output: `true`
+- **Input:** `s = "050043"`
+- **Output:** `true`
 
 The substrings `"05"`, `"004"`, and `"3"` have values 5, 4, and 3.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "9080701"`
-- Output: `false`
+- **Input:** `s = "9080701"`
+- **Output:** `false`

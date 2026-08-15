@@ -10,31 +10,31 @@ Start iterating from the beginning of the array `nums`.
 
 - If `-1` is encountered, let `k` be the number of **consecutive** `-1`s seen so far (including the current `-1`),
 
-		<li>If `k` is less than or equal to the length of `seen`, append the `k`-th element of `seen` to `ans`.
+		- If `k` is less than or equal to the length of `seen`, append the `k`-th element of `seen` to `ans`.
 
 - If `k` is strictly greater than the length of `seen`, append `-1` to `ans`.
-
-	</li>
 
 Return the array* *`ans`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,-1,-1,-1]
+- **Input:** nums = [1,2,-1,-1,-1]
 
-**Output:** [2,1,-1]
+- **Output:** [2,1,-1]
 
-**Explanation:**
-
-Start with $seen = []$ and $ans = []$.
+- **Explanation:** Start with $seen = []$ and $ans = []$.
 
 - Process $\text{nums}[0]$: The first element in nums is `1`. We prepend it to the front of `seen`. Now, $seen = [1]$.
 
@@ -46,17 +46,13 @@ Start with $seen = []$ and $ans = []$.
 
 - Process $\text{nums}[4]$: Another `-1`, the third in a row, making $k = 3$. However, `seen` only has two elements (`[2, 1]`). Since `k` is greater than the number of elements in `seen`, we append `-1` to `ans`. Finally, $ans = [2, 1, -1]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,-1,2,-1,-1]
+- **Input:** nums = [1,-1,2,-1,-1]
 
-**Output:** [1,2,1]
+- **Output:** [1,2,1]
 
-**Explanation:**
-
-Start with $seen = []$ and $ans = []$.
+- **Explanation:** Start with $seen = []$ and $ans = []$.
 
 - Process $\text{nums}[0]$: The first element in nums is `1`. We prepend it to the front of `seen`. Now, $seen = [1]$.
 
@@ -67,8 +63,6 @@ Start with $seen = []$ and $ans = []$.
 - Process $\text{nums}[3]$: The next element is `-1`. This `-1` is not consecutive to the first `-1` since `2` was in between. Thus, `k` resets to `1`. The first element in `seen` is `2`, so append `2` to `ans`. Now, $ans = [1, 2]$.
 
 - Process $\text{nums}[4]$: Another `-1`. This is consecutive to the previous `-1`, so $k = 2$. The second element in `seen` is `1`, append `1` to `ans`. Finally, $ans = [1, 2, 1]$.
-
-</div>
 
 ### 4. Constraints
 

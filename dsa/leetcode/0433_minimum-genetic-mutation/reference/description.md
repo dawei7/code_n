@@ -31,6 +31,7 @@ unreachable through valid bank genes.
 
 - **Input:** $startGene = "AACCGGTT", endGene = "AACCGGTA", bank = ["AACCGGTA"]$
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** $startGene = "AACCGGTT", endGene = "AAACGGTA", bank = ["AACCGGTA","AACCGCTA","AAACGGTA"]$

@@ -10,8 +10,15 @@ Return *the sum of distances between all the pairs of robots *`d` *seconds after
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `s`: Input parameter (`str`).
+- `d`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,11 +28,9 @@ Return *the sum of distances between all the pairs of robots *`d` *seconds after
 
 - Collision happens when two robots share the same place in a moment.
 
-		<li>For example, if a robot is positioned in 0 going to the right and another is positioned in 2 going to the left, the next second they'll be both in 1 and they will change direction and the next second the first one will be in 0, heading left, and another will be in 2, heading right.
+		- For example, if a robot is positioned in 0 going to the right and another is positioned in 2 going to the left, the next second they'll be both in 1 and they will change direction and the next second the first one will be in 0, heading left, and another will be in 2, heading right.
 
 - For example, if a robot is positioned in 0 going to the right and another is positioned in 1 going to the left, the next second the first one will be in 0, heading left, and another will be in 1, heading right.
-
-	</li>
 
 ### 4. Examples
 
@@ -33,20 +38,19 @@ Return *the sum of distances between all the pairs of robots *`d` *seconds after
 
 - **Input:** `nums = [-2,0,2], s = "RLL", d = 3`
 - **Output:** `8`
-- **Explanation:**
-After 1 second, the positions are [-1,-1,1]. Now, the robot at index 0 will move left, and the robot at index 1 will move right.
+- **Explanation:** After 1 second, the positions are [-1,-1,1]. Now, the robot at index 0 will move left, and the robot at index 1 will move right.
 After 2 seconds, the positions are [-2,0,0]. Now, the robot at index 1 will move left, and the robot at index 2 will move right.
 After 3 seconds, the positions are [-3,-1,1].
 The distance between the robot at index 0 and 1 is abs(-3 - (-1)) = 2.
 The distance between the robot at index 0 and 2 is abs(-3 - 1) = 4.
 The distance between the robot at index 1 and 2 is abs(-1 - 1) = 2.
 The sum of the pairs of all distances = 2 + 4 + 2 = 8.
+
 #### Example 2
 
 - **Input:** `nums = [1,0], s = "RL", d = 2`
 - **Output:** `5`
-- **Explanation:**
-After 1 second, the positions are [2,-1].
+- **Explanation:** After 1 second, the positions are [2,-1].
 After 2 seconds, the positions are [3,-2].
 The distance between the two robots is abs(-2 - 3) = 5.
 

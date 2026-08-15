@@ -35,14 +35,14 @@ Both $n$ and $m$ lie from $1$ through $50$, and every value in both lists lies f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `apple = [1, 3, 2]`, `capacity = [4, 3, 1, 5, 2]`
-- Output: `2`
-- Explanation: There are six apples, and the boxes of capacities `5` and `4` hold them using two boxes. No single box has enough capacity.
+- **Input:** `apple = [1, 3, 2]`, `capacity = [4, 3, 1, 5, 2]`
+- **Output:** `2`
+- **Explanation:** There are six apples, and the boxes of capacities `5` and `4` hold them using two boxes. No single box has enough capacity.
 
-**Example 2**
+#### Example 2
 
-- Input: `apple = [5, 5, 5]`, `capacity = [2, 4, 2, 7]`
-- Output: `4`
-- Explanation: All four boxes are necessary because their combined capacity is exactly fifteen.
+- **Input:** `apple = [5, 5, 5]`, `capacity = [2, 4, 2, 7]`
+- **Output:** `4`
+- **Explanation:** All four boxes are necessary because their combined capacity is exactly fifteen.

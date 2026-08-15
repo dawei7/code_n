@@ -8,8 +8,13 @@ Return *the number of remaining intervals*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `intervals`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the number of remaining intervals*.
 - **Input:** $intervals = [[1,4],[3,6],[2,8]]$
 - **Output:** `2`
 - **Explanation:** Interval [3,6] is covered by [2,8], therefore it is removed.
+
 #### Example 2
 
 - **Input:** $intervals = [[1,4],[2,3]]$

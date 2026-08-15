@@ -46,17 +46,17 @@ The edges form a tree and every endpoint lies in $[0,n-1]$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0, 1], [1, 2], [2, 3]], coins = [10, 10, 3, 3], k = 5`
-- Output: `11`
-- Explanation: Use the first method at nodes 0 and 1 for five points each.
+- **Input:** `edges = [[0, 1], [1, 2], [2, 3]], coins = [10, 10, 3, 3], k = 5`
+- **Output:** `11`
+- **Explanation:** Use the first method at nodes 0 and 1 for five points each.
   Use the second method at node 2 for one point; it halves node 3 to one coin,
   whose second method then yields zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0, 1], [0, 2]], coins = [8, 4, 4], k = 0`
-- Output: `16`
-- Explanation: With no penalty, using the first method at all three nodes
+- **Input:** `edges = [[0, 1], [0, 2]], coins = [8, 4, 4], k = 0`
+- **Output:** `16`
+- **Explanation:** With no penalty, using the first method at all three nodes
   collects their full values.

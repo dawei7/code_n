@@ -24,44 +24,33 @@ Return `True` when every bracket is correctly matched and nested; otherwise retu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "()"
+- **Input:** s = "()"
 
-**Output:** true
+- **Output:** true
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "()[]{}"
+- **Input:** s = "()[]{}"
 
-**Output:** true
+- **Output:** true
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "(]"
+- **Input:** s = "(]"
 
-**Output:** false
+- **Output:** false
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "([])"
+- **Input:** s = "([])"
 
-**Output:** true
+- **Output:** true
 
-</div>
 #### Example 5
 
-<div class="example-block">
-**Input:** s = "([)]"
+- **Input:** s = "([)]"
 
-**Output:** false
-
-</div>
+- **Output:** false
 
 ### 4. Constraints
 

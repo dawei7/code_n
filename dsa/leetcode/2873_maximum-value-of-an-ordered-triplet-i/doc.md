@@ -38,20 +38,20 @@ Let $n = \lvert\texttt{nums}\rvert$. The constraints are $3 \le n \le 100$ and $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [12,6,1,2,7]`
-- Output: `77`
-- Explanation: Indices $(0,2,4)$ give $(12 - 1) \cdot 7 = 77$.
+- **Input:** `nums = [12,6,1,2,7]`
+- **Output:** `77`
+- **Explanation:** Indices $(0,2,4)$ give $(12 - 1) \cdot 7 = 77$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,10,3,4,19]`
-- Output: `133`
-- Explanation: Indices $(1,2,4)$ give $(10 - 3) \cdot 19 = 133$.
+- **Input:** `nums = [1,10,3,4,19]`
+- **Output:** `133`
+- **Explanation:** Indices $(1,2,4)$ give $(10 - 3) \cdot 19 = 133$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3]`
-- Output: `0`
-- Explanation: The only triplet has value $(1 - 2) \cdot 3 = -3$, so the required nonnegative result is zero.
+- **Input:** `nums = [1,2,3]`
+- **Output:** `0`
+- **Explanation:** The only triplet has value $(1 - 2) \cdot 3 = -3$, so the required nonnegative result is zero.

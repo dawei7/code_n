@@ -31,23 +31,23 @@ A subsequence is formed by deleting any number of elements without changing the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,2,3,4]`, `difference = 1`
-- Output: `4`
+- **Input:** `arr = [1,2,3,4]`, `difference = 1`
+- **Output:** `4`
 
 The entire array already has the required adjacent difference.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,3,5,7]`, `difference = 1`
-- Output: `1`
+- **Input:** `arr = [1,3,5,7]`, `difference = 1`
+- **Output:** `1`
 
 No two values in their existing order differ by `1`, so any single value is optimal.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [1,5,7,8,5,3,4,2,1]`, `difference = -2`
-- Output: `4`
+- **Input:** `arr = [1,5,7,8,5,3,4,2,1]`, `difference = -2`
+- **Output:** `4`
 
 One longest valid subsequence is `[7,5,3,1]`.

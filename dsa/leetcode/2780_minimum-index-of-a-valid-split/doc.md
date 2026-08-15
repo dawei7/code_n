@@ -32,20 +32,20 @@ Return the minimum valid split index `i`, or `-1` if no index before the final e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,2,2]`
-- Output: `2`
-- Explanation: Splitting after index `2` gives `[1,2,2]` and `[2]`; `2` is dominant in both parts. Earlier split points do not satisfy both strict-majority tests.
+- **Input:** `nums = [1,2,2,2]`
+- **Output:** `2`
+- **Explanation:** Splitting after index `2` gives `[1,2,2]` and `[2]`; `2` is dominant in both parts. Earlier split points do not satisfy both strict-majority tests.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,1,3,1,1,1,7,1,2,1]`
-- Output: `4`
-- Explanation: Each five-element side contains three copies of `1`, so `1` is dominant on both sides. No smaller index creates two parts with that property.
+- **Input:** `nums = [2,1,3,1,1,1,7,1,2,1]`
+- **Output:** `4`
+- **Explanation:** Each five-element side contains three copies of `1`, so `1` is dominant on both sides. No smaller index creates two parts with that property.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,3,3,3,7,2,2]`
-- Output: `-1`
-- Explanation: Although `3` dominates the complete array, every possible split leaves at least one side on which `3` does not occur more than half the time.
+- **Input:** `nums = [3,3,3,3,7,2,2]`
+- **Output:** `-1`
+- **Explanation:** Although `3` dominates the complete array, every possible split leaves at least one side on which `3` does not occur more than half the time.

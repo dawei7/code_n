@@ -27,6 +27,7 @@ Return the single-character terminal selected by evaluating `expression`.
 - **Input:** $expression = "T?2:3"$
 - **Output:** `"2"`
 - **Explanation:** If true, then result is 2; otherwise result is 3.
+
 #### Example 2
 
 - **Input:** $expression = "F?1:T?4:5"$
@@ -34,6 +35,7 @@ Return the single-character terminal selected by evaluating `expression`.
 - **Explanation:** The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:
 "(F ? 1 : (T ? 4 : 5))" --> "(F ? 1 : 4)" --> "4"
 or "(F ? 1 : (T ? 4 : 5))" --> "(T ? 4 : 5)" --> "4"
+
 #### Example 3
 
 - **Input:** $expression = "T?T?F:5:3"$

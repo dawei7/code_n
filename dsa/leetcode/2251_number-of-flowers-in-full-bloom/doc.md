@@ -35,17 +35,17 @@ of intervals satisfying $\texttt{start}\le\texttt{time}\le\texttt{end}$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `flowers = [[1,6],[3,7],[9,12],[4,13]], people = [2,3,7,11]`
-- Output: `[1,2,2,2]`
+- **Input:** `flowers = [[1,6],[3,7],[9,12],[4,13]], people = [2,3,7,11]`
+- **Output:** `[1,2,2,2]`
 
-**Example 2**
+#### Example 2
 
-- Input: `flowers = [[1,10],[3,3]], people = [3,3,2]`
-- Output: `[2,2,1]`
+- **Input:** `flowers = [[1,10],[3,3]], people = [3,3,2]`
+- **Output:** `[2,2,1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `flowers = [[5,5]], people = [4,5,6]`
-- Output: `[0,1,0]`
+- **Input:** `flowers = [[5,5]], people = [4,5,6]`
+- **Output:** `[0,1,0]`

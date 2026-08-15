@@ -2,9 +2,7 @@ import type { ReactNode } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import type { RunCaseResult, RunResponse } from '../types/api';
 
-
 type AnalysisTone = 'success' | 'warning' | 'danger' | 'neutral';
-
 
 export function ComplexityAnalysis() {
   const detail = useAppStore((s) => s.currentDetail);
@@ -45,7 +43,8 @@ export function ComplexityAnalysis() {
     );
   }
 
-  const customFailures = runResult.case_results.filter(
+  const caseResults = runResult.case_results ?? [];
+  const customFailures = caseResults.filter(
     (caseResult) => !caseResult.counts_toward_verdict && !caseResult.correct,
   );
   const state = analysisState(runResult, customFailures.length);
@@ -67,7 +66,7 @@ export function ComplexityAnalysis() {
       />
 
       <CorrectnessBreakdown
-        results={runResult.case_results}
+        results={caseResults}
         officialCorrect={runResult.correct}
         onOpenEditor={() => setActiveTopic('coden')}
       />
@@ -86,8 +85,8 @@ export function ComplexityAnalysis() {
         <ContextCard
           label="Correctness"
           value={runResult.correct ? 'Verified' : 'Needs work'}
-          note={runResult.case_results.length
-            ? officialCorrectnessNote(runResult.case_results)
+          note={caseResults.length
+            ? officialCorrectnessNote(caseResults)
             : runResult.correct ? 'Output verified by the challenge judge' : 'The challenge judge rejected the output'}
           tone={runResult.correct ? 'success' : 'danger'}
         />
@@ -99,7 +98,7 @@ export function ComplexityAnalysis() {
         />
         <ContextCard
           label="Evaluation"
-          value={runResult.mode === 'real_test' ? 'Full run' : runResult.case_results.length > 1 ? 'Multiple cases' : 'Single case'}
+          value={runResult.mode === 'real_test' ? 'Full run' : caseResults.length > 1 ? 'Multiple cases' : 'Single case'}
           note={runResult.runtime_check
             ? `Timed against ${workloadLabel}`
             : runResult.complexity_check
@@ -115,7 +114,6 @@ export function ComplexityAnalysis() {
     </AnalysisShell>
   );
 }
-
 
 function AnalysisShell({
   title,
@@ -144,7 +142,6 @@ function AnalysisShell({
     </div>
   );
 }
-
 
 function VerdictHero({
   tone,
@@ -181,7 +178,6 @@ function VerdictHero({
     </section>
   );
 }
-
 
 function RuntimeComparison({ result, baselineLabel }: { result: RunResponse; baselineLabel: string }) {
   const userMs = result.runtime_user_ms!;

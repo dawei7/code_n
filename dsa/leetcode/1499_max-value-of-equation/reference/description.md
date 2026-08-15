@@ -8,8 +8,14 @@ It is guaranteed that there exists at least one pair of points that satisfy the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ It is guaranteed that there exists at least one pair of points that satisfy the 
 - **Output:** `4`
 - **Explanation:** The first two points satisfy the condition |x_i - x_j| <= 1 and if we calculate the equation we get 3 + 0 + |1 - 2| = 4. Third and fourth points also satisfy the condition and give a value of 10 + -10 + |5 - 6| = 1.
 No other pairs satisfy the condition, so we return the max of 4 and 1.
+
 #### Example 2
 
 - **Input:** $points = [[0,0],[3,0],[9,2]], k = 3$

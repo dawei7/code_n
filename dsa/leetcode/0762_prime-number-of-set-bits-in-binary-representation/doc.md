@@ -31,20 +31,20 @@ Return how many range values have a prime number of set bits. Primality applies 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `left = 6`, `right = 10`
-- Output: `4`
-- Explanation: `6`, `7`, `9`, and `10` have respectively `2`, `3`, `2`, and `2` set bits.
+- **Input:** `left = 6`, `right = 10`
+- **Output:** `4`
+- **Explanation:** `6`, `7`, `9`, and `10` have respectively `2`, `3`, `2`, and `2` set bits.
 
-**Example 2**
+#### Example 2
 
-- Input: `left = 10`, `right = 15`
-- Output: `5`
-- Explanation: Every value except `15`, which has four set bits, qualifies.
+- **Input:** `left = 10`, `right = 15`
+- **Output:** `5`
+- **Explanation:** Every value except `15`, which has four set bits, qualifies.
 
-**Example 3**
+#### Example 3
 
-- Input: `left = 1`, `right = 1`
-- Output: `0`
-- Explanation: One set bit is not a prime count.
+- **Input:** `left = 1`, `right = 1`
+- **Output:** `0`
+- **Explanation:** One set bit is not a prime count.

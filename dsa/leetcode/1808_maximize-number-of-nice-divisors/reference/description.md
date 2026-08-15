@@ -12,8 +12,13 @@ Note that a prime number is a natural number greater than `1` that is not a prod
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `primeFactors`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Note that a prime number is a natural number greater than `1` that is not a prod
 - **Explanation:** 200 is a valid value of n.
 It has 5 prime factors: [2,2,2,5,5], and it has 6 nice divisors: [10,20,40,50,100,200].
 There is not other value of n that has at most 5 prime factors and more nice divisors.
+
 #### Example 2
 
 - **Input:** $primeFactors = 8$

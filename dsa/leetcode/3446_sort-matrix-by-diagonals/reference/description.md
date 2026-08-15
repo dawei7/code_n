@@ -8,21 +8,23 @@ You are given an `n x n` square matrix of integers `grid`. Return the matrix suc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,7,3],[9,8,2],[4,5,6]]
+- **Input:** grid = [[1,7,3],[9,8,2],[4,5,6]]
 
-**Output:** [[8,2,3],[9,6,7],[4,5,1]]
+- **Output:** [[8,2,3],[9,6,7],[4,5,1]]
 
-**Explanation:**
-
-![](images/4052example1drawio.png)
+- **Explanation:** ![](images/4052example1drawio.png)
 
 The diagonals with a black arrow (bottom-left triangle) should be sorted in non-increasing order:
 
@@ -36,33 +38,23 @@ The diagonals with a blue arrow (top-right triangle) should be sorted in non-dec
 
 - `[3]` remains unchanged.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[0,1],[1,2]]
+- **Input:** grid = [[0,1],[1,2]]
 
-**Output:** [[2,1],[1,0]]
+- **Output:** [[2,1],[1,0]]
 
-**Explanation:**
-
-![](images/4052example2adrawio.png)
+- **Explanation:** ![](images/4052example2adrawio.png)
 
 The diagonals with a black arrow must be non-increasing, so `[0, 2]` is changed to `[2, 0]`. The other diagonals are already in the correct order.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1]]
+- **Input:** grid = [[1]]
 
-**Output:** [[1]]
+- **Output:** [[1]]
 
-**Explanation:**
-
-Diagonals with exactly one element are already in order, so no changes are needed.
-
-</div>
+- **Explanation:** Diagonals with exactly one element are already in order, so no changes are needed.
 
 ### 4. Constraints
 

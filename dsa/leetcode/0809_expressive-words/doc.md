@@ -31,20 +31,20 @@ Given candidate array `words`, return how many entries are stretchy. Character-g
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "heeellooo", words = ["hello","hi","helo"]`
-- Output: `1`
-- Explanation: `hello` can expand its `e` and `o` groups, while the other candidates have incompatible character groups.
+- **Input:** `s = "heeellooo", words = ["hello","hi","helo"]`
+- **Output:** `1`
+- **Explanation:** `hello` can expand its `e` and `o` groups, while the other candidates have incompatible character groups.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "zzzzzyyyyy", words = ["zzyy","zy","zyy"]`
-- Output: `3`
-- Explanation: Both target runs have length five, so every shorter positive run of the matching character can expand to it.
+- **Input:** `s = "zzzzzyyyyy", words = ["zzyy","zy","zyy"]`
+- **Output:** `3`
+- **Explanation:** Both target runs have length five, so every shorter positive run of the matching character can expand to it.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcd", words = ["abc"]`
-- Output: `0`
-- Explanation: Stretching cannot introduce the missing `d` group.
+- **Input:** `s = "abcd", words = ["abc"]`
+- **Output:** `0`
+- **Explanation:** Stretching cannot introduce the missing `d` group.

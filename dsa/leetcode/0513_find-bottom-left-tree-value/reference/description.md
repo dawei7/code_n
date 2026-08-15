@@ -4,8 +4,10 @@ Given the `root` of a binary tree, return the leftmost value in the last row of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `findBottomLeftValue(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -15,6 +17,7 @@ Given the `root` of a binary tree, return the leftmost value in the last row of 
 
 - **Input:** `root = [2,1,3]`
 - **Output:** `1`
+
 #### Example 2
 
 ![](images/tree2.jpg)

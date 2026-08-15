@@ -37,20 +37,20 @@ Return `true` exactly when `words` is in non-decreasing alien lexicographic orde
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["hello","leetcode"]`, `order = "hlabcdefgijkmnopqrstuvwxyz"`
-- Output: `true`
-- Explanation: The first differing letters are `h` and `l`, and `h` comes earlier in the alien alphabet.
+- **Input:** `words = ["hello","leetcode"]`, `order = "hlabcdefgijkmnopqrstuvwxyz"`
+- **Output:** `true`
+- **Explanation:** The first differing letters are `h` and `l`, and `h` comes earlier in the alien alphabet.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["word","world","row"]`, `order = "worldabcefghijkmnpqstuvxyz"`
-- Output: `false`
-- Explanation: In the first pair, `d` comes after `l` in the supplied order.
+- **Input:** `words = ["word","world","row"]`, `order = "worldabcefghijkmnpqstuvxyz"`
+- **Output:** `false`
+- **Explanation:** In the first pair, `d` comes after `l` in the supplied order.
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["apple","app"]`, `order = "abcdefghijklmnopqrstuvwxyz"`
-- Output: `false`
-- Explanation: `"app"` is a prefix of `"apple"` and therefore must appear first.
+- **Input:** `words = ["apple","app"]`, `order = "abcdefghijklmnopqrstuvwxyz"`
+- **Output:** `false`
+- **Explanation:** `"app"` is a prefix of `"apple"` and therefore must appear first.

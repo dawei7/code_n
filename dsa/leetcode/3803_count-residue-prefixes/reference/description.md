@@ -24,12 +24,11 @@ Return an integer equal to the number of prefix lengths for which those two valu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abc"
+- **Input:** s = "abc"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Prefix `"a"` has 1 distinct character and length modulo 3 is 1, so it is a residue.
 
@@ -37,35 +36,29 @@ Return an integer equal to the number of prefix lengths for which those two valu
 
 - Prefix `"abc"` does not satisfy the condition. Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "dd"
+- **Input:** s = "dd"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Prefix `"d"` has 1 distinct character and length modulo 3 is 1, so it is a residue.
 
 - Prefix `"dd"` has 1 distinct character but length modulo 3 is 2, so it is not a residue. Thus, the answer is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "bob"
+- **Input:** s = "bob"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Prefix `"b"` has 1 distinct character and length modulo 3 is 1, so it is a residue.
 
 - Prefix `"bo"` has 2 distinct characters and length mod 3 is 2, so it is a residue. Thus, the answer is 2.
-
-</div>
 
 ### 4. Constraints
 

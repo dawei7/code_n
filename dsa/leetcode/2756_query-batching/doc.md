@@ -40,20 +40,20 @@ The constructor creates a batcher. Each `getValue(key)` returns a promise that f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `t = 100`, immediate bulk queries, and calls `a` at 10 ms, `b` at 20 ms, and `c` at 30 ms.
-- Output: `a!` resolves at 10 ms; `b!` and `c!` resolve together at about 110 ms.
-- Explanation: `a` starts an immediate one-key query, while `b` and `c` share the next legal batch.
+- **Input:** `t = 100`, immediate bulk queries, and calls `a` at 10 ms, `b` at 20 ms, and `c` at 30 ms.
+- **Output:** `a!` resolves at 10 ms; `b!` and `c!` resolve together at about 110 ms.
+- **Explanation:** `a` starts an immediate one-key query, while `b` and `c` share the next legal batch.
 
-**Example 2**
+#### Example 2
 
-- Input: the same schedule, but every bulk query takes 100 ms.
-- Output: `a!` resolves at about 110 ms; `b!` and `c!` resolve at about 210 ms.
-- Explanation: Query latency shifts fulfillment times but does not shift the next batch's 110 ms start.
+- **Input:** the same schedule, but every bulk query takes 100 ms.
+- **Output:** `a!` resolves at about 110 ms; `b!` and `c!` resolve at about 210 ms.
+- **Explanation:** Query latency shifts fulfillment times but does not shift the next batch's 110 ms start.
 
-**Example 3**
+#### Example 3
 
-- Input: `t = 100`, bulk latency of 100 ms per key, and requests arriving while earlier batches remain in flight.
-- Output: Later legal batches may resolve before an earlier larger batch.
-- Explanation: Only consecutive query start times must be separated by the throttle.
+- **Input:** `t = 100`, bulk latency of 100 ms per key, and requests arriving while earlier batches remain in flight.
+- **Output:** Later legal batches may resolve before an earlier larger batch.
+- **Explanation:** Only consecutive query start times must be separated by the throttle.

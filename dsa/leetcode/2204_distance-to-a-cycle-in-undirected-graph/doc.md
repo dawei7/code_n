@@ -31,16 +31,16 @@ Return a length-$n$ list whose entry at index $i$ is the minimum number of edges
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 7`, `edges = [[1,2],[2,4],[4,3],[3,1],[0,1],[5,2],[6,5]]`
-- Output: `[1,0,0,0,0,1,2]`
+- **Input:** `n = 7`, `edges = [[1,2],[2,4],[4,3],[3,1],[0,1],[5,2],[6,5]]`
+- **Output:** `[1,0,0,0,0,1,2]`
 
 Nodes `1`, `2`, `3`, and `4` form the cycle; the other nodes lie on attached trees.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 9`, `edges = [[0,1],[1,2],[0,2],[2,6],[6,7],[6,8],[0,3],[3,4],[3,5]]`
-- Output: `[0,0,0,1,2,2,1,2,2]`
+- **Input:** `n = 9`, `edges = [[0,1],[1,2],[0,2],[2,6],[6,7],[6,8],[0,3],[3,4],[3,5]]`
+- **Output:** `[0,0,0,1,2,2,1,2,2]`
 
 The triangle on nodes `0`, `1`, and `2` is the unique cycle.

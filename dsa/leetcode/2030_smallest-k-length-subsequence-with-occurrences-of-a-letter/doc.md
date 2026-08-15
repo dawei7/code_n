@@ -41,17 +41,17 @@ Let $N$ be the length of `s`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leet", k = 3, letter = "e", repetition = 1`
-- Output: `"eet"`
+- **Input:** `s = "leet", k = 3, letter = "e", repetition = 1`
+- **Output:** `"eet"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leetcode", k = 4, letter = "e", repetition = 2`
-- Output: `"ecde"`
+- **Input:** `s = "leetcode", k = 4, letter = "e", repetition = 2`
+- **Output:** `"ecde"`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "bb", k = 2, letter = "b", repetition = 2`
-- Output: `"bb"`
+- **Input:** `s = "bb", k = 2, letter = "b", repetition = 2`
+- **Output:** `"bb"`

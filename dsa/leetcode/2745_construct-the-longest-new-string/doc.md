@@ -32,14 +32,14 @@ Return the maximum number of characters in a valid concatenation that contains n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `x = 2, y = 5, z = 1`
-- Output: `12`
-- Explanation: Six pieces can be arranged without creating either forbidden substring.
+- **Input:** `x = 2, y = 5, z = 1`
+- **Output:** `12`
+- **Explanation:** Six pieces can be arranged without creating either forbidden substring.
 
-**Example 2**
+#### Example 2
 
-- Input: `x = 3, y = 2, z = 2`
-- Output: `14`
-- Explanation: All seven usable pieces can be included in a valid order.
+- **Input:** `x = 3, y = 2, z = 2`
+- **Output:** `14`
+- **Explanation:** All seven usable pieces can be included in a valid order.

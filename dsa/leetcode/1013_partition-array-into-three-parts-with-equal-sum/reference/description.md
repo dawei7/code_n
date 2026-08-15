@@ -6,8 +6,13 @@ Formally, we can partition the array if we can find indexes $i + 1 < j$ with $(\
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,10 +21,12 @@ Formally, we can partition the array if we can find indexes $i + 1 < j$ with $(\
 - **Input:** `arr = [0,2,1,-6,6,-7,9,1,2,0,1]`
 - **Output:** `true`
 - **Explanation:** 0 + 2 + 1 = -6 + 6 - 7 + 9 + 1 = 2 + 0 + 1
+
 #### Example 2
 
 - **Input:** `arr = [0,2,1,-6,6,7,9,-1,2,0,1]`
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** `arr = [3,3,6,5,-2,2,5,1,-9,4]`

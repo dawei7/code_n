@@ -6,31 +6,31 @@ Return *the **sum **of encrypted elements*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output: **6
+- **Output:** 6
 
-**Explanation:** The encrypted elements are `[1,2,3]`. The sum of encrypted elements is $1 + 2 + 3 = 6$.
+- **Explanation:** The encrypted elements are `[1,2,3]`. The sum of encrypted elements is $1 + 2 + 3 = 6$.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **nums = [10,21,31]
+- **Input:** nums = [10,21,31]
 
-**Output: **66
+- **Output:** 66
 
-**Explanation:** The encrypted elements are `[11,22,33]`. The sum of encrypted elements is $11 + 22 + 33 = 66$.
-
-</div>
+- **Explanation:** The encrypted elements are `[11,22,33]`. The sum of encrypted elements is $11 + 22 + 33 = 66$.
 
 ### 4. Constraints
 

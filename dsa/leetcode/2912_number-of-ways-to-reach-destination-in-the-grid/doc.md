@@ -43,19 +43,19 @@ reduced modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, m = 2, k = 2, source = [1, 1], dest = [2, 2]`
-- Output: `2`
-- Explanation: The two routes use `[1, 2]` or `[2, 1]` as their intermediate cell.
+- **Input:** `n = 3, m = 2, k = 2, source = [1, 1], dest = [2, 2]`
+- **Output:** `2`
+- **Explanation:** The two routes use `[1, 2]` or `[2, 1]` as their intermediate cell.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, m = 4, k = 3, source = [1, 2], dest = [2, 3]`
-- Output: `9`
+- **Input:** `n = 3, m = 4, k = 3, source = [1, 2], dest = [2, 3]`
+- **Output:** `9`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, m = 4, k = 2, source = [2, 3], dest = [2, 3]`
-- Output: `5`
-- Explanation: The route must leave and return; there are three other cells in the row and two in the column.
+- **Input:** `n = 3, m = 4, k = 2, source = [2, 3], dest = [2, 3]`
+- **Output:** `5`
+- **Explanation:** The route must leave and return; there are three other cells in the row and two in the column.

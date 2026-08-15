@@ -33,14 +33,14 @@ Return the number of employees whose recorded hours are at least `target`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `hours = [0, 1, 2, 3, 4]`, `target = 2`
-- Output: `3`
-- Explanation: The values `2`, `3`, and `4` meet the inclusive threshold.
+- **Input:** `hours = [0, 1, 2, 3, 4]`, `target = 2`
+- **Output:** `3`
+- **Explanation:** The values `2`, `3`, and `4` meet the inclusive threshold.
 
-**Example 2**
+#### Example 2
 
-- Input: `hours = [5, 1, 4, 2, 2]`, `target = 6`
-- Output: `0`
-- Explanation: No employee worked at least six hours.
+- **Input:** `hours = [5, 1, 4, 2, 2]`, `target = 6`
+- **Output:** `0`
+- **Explanation:** No employee worked at least six hours.

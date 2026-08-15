@@ -10,8 +10,13 @@ Given the final string `s`, return* the **sum** of the **score** of every *$s_{i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,19 +24,18 @@ Given the final string `s`, return* the **sum** of the **score** of every *$s_{i
 
 - **Input:** `s = "babab"`
 - **Output:** `9`
-- **Explanation:**
-For s_1 == "b", the longest common prefix is "b" which has a score of 1.
+- **Explanation:** For s_1 == "b", the longest common prefix is "b" which has a score of 1.
 For s_2 == "ab", there is no common prefix so the score is 0.
 For s_3 == "bab", the longest common prefix is "bab" which has a score of 3.
 For s_4 == "abab", there is no common prefix so the score is 0.
 For s_5 == "babab", the longest common prefix is "babab" which has a score of 5.
 The sum of the scores is 1 + 0 + 3 + 0 + 5 = 9, so we return 9.
+
 #### Example 2
 
 - **Input:** `s = "azbazbzaz"`
 - **Output:** `14`
-- **Explanation:**
-For s_2 == "az", the longest common prefix is "az" which has a score of 2.
+- **Explanation:** For s_2 == "az", the longest common prefix is "az" which has a score of 2.
 For s_6 == "azbzaz", the longest common prefix is "azb" which has a score of 3.
 For s_9 == "azbazbzaz", the longest common prefix is "azbazbzaz" which has a score of 9.
 For all other s_i, the score is 0.

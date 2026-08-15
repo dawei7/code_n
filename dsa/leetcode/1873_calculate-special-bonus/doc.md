@@ -32,23 +32,23 @@ An employee receives a bonus equal to their full salary only when both condition
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: employees `(2,"Meir",3000)`, `(3,"Michael",3800)`, `(7,"Addilyn",7400)`, `(8,"Juan",6100)`, `(9,"Kannon",7700)`
-- Output: `[[2,0],[3,0],[7,7400],[8,0],[9,7700]]`
+- **Input:** employees `(2,"Meir",3000)`, `(3,"Michael",3800)`, `(7,"Addilyn",7400)`, `(8,"Juan",6100)`, `(9,"Kannon",7700)`
+- **Output:** `[[2,0],[3,0],[7,7400],[8,0],[9,7700]]`
 
 Even identifiers receive zero, as does Michael because his name starts with `"M"`.
 
-**Example 2**
+#### Example 2
 
-- Input: employee `(1,"Alice",5000)`
-- Output: `[[1,5000]]`
+- **Input:** employee `(1,"Alice",5000)`
+- **Output:** `[[1,5000]]`
 
 The identifier is odd and the name does not start with `"M"`.
 
-**Example 3**
+#### Example 3
 
-- Input: employees `(5,"Mina",4200)` and `(6,"Noah",6100)`
-- Output: `[[5,0],[6,0]]`
+- **Input:** employees `(5,"Mina",4200)` and `(6,"Noah",6100)`
+- **Output:** `[[5,0],[6,0]]`
 
 The first fails the name rule and the second fails the identifier rule.

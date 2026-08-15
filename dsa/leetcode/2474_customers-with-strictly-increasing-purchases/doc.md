@@ -34,20 +34,20 @@ A customer represented in only one calendar year qualifies because there is no a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Customer 1 has yearly totals `2300, 3000, 3100, 4700`; customer 2 skips its middle year; customer 3 has totals `900, 900`.
-- Output: `customer_id = 1`
-- Explanation: Only customer 1 has consecutive years and a strict increase at every transition.
+- **Input:** Customer 1 has yearly totals `2300, 3000, 3100, 4700`; customer 2 skips its middle year; customer 3 has totals `900, 900`.
+- **Output:** `customer_id = 1`
+- **Explanation:** Only customer 1 has consecutive years and a strict increase at every transition.
 
-**Example 2**
+#### Example 2
 
-- Input: Customer 4 has one order in 2022.
-- Output: `customer_id = 4`
-- Explanation: A one-year interval contains no decreasing or equal transition.
+- **Input:** Customer 4 has one order in 2022.
+- **Output:** `customer_id = 4`
+- **Explanation:** A one-year interval contains no decreasing or equal transition.
 
-**Example 3**
+#### Example 3
 
-- Input: Customer 5 has yearly totals `10, 10, 12` from 2020 through 2022.
-- Output: An empty relation.
-- Explanation: Equality between the first two totals violates strict increase.
+- **Input:** Customer 5 has yearly totals `10, 10, 12` from 2020 through 2022.
+- **Output:** An empty relation.
+- **Explanation:** Equality between the first two totals violates strict increase.

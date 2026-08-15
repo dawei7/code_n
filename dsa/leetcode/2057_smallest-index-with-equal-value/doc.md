@@ -30,18 +30,18 @@ Return the smallest qualifying index. If no array position satisfies the equalit
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0,1,2]`
-- Output: `0`
-- Explanation: Every index qualifies, so the smallest is zero.
+- **Input:** `nums = [0,1,2]`
+- **Output:** `0`
+- **Explanation:** Every index qualifies, so the smallest is zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,3,2,1]`
-- Output: `2`
+- **Input:** `nums = [4,3,2,1]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3,4,5,6,7,8,9,0]`
-- Output: `-1`
+- **Input:** `nums = [1,2,3,4,5,6,7,8,9,0]`
+- **Output:** `-1`

@@ -38,16 +38,16 @@ A five-element list `[minimum, maximum, mean, median, mode]`. The unique mode is
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `count = [0, 1, 3, 4] + [0] * 252`
-- Output: `[1.0, 3.0, 2.375, 2.5, 3.0]`
+- **Input:** `count = [0, 1, 3, 4] + [0] * 252`
+- **Output:** `[1.0, 3.0, 2.375, 2.5, 3.0]`
 
 The represented sorted sample is `[1, 2, 2, 2, 3, 3, 3, 3]`. Its two middle values are 2 and 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `count = [0, 4, 3, 2, 2] + [0] * 251`
-- Output: `[1.0, 4.0, 2.1818181818, 2.0, 1.0]`
+- **Input:** `count = [0, 4, 3, 2, 2] + [0] * 251`
+- **Output:** `[1.0, 4.0, 2.1818181818, 2.0, 1.0]`
 
 There are 11 observations, so the sixth sorted observation determines the median.

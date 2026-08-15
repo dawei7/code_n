@@ -8,31 +8,30 @@ Given two **sentences** `s1` and `s2`, return *a list of all the **uncommon word
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s1 = "this apple is sweet", s2 = "this apple is sour"
+- **Input:** s1 = "this apple is sweet", s2 = "this apple is sour"
 
-**Output:** ["sweet","sour"]
+- **Output:** ["sweet","sour"]
 
-**Explanation:**
+- **Explanation:** The word `"sweet"` appears only in `s1`, while the word `"sour"` appears only in `s2`.
 
-The word `"sweet"` appears only in `s1`, while the word `"sour"` appears only in `s2`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s1 = "apple apple", s2 = "banana"
+- **Input:** s1 = "apple apple", s2 = "banana"
 
-**Output:** ["banana"]
-
-</div>
+- **Output:** ["banana"]
 
 ### 4. Constraints
 

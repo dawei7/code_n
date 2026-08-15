@@ -24,36 +24,27 @@ Return the greatest integer score among all permutations of `nums`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-A possible rearrangement for `nums` is `[2,1,3]`, which gives the maximum alternating score among all possible rearrangements.
+- **Explanation:** A possible rearrangement for `nums` is `[2,1,3]`, which gives the maximum alternating score among all possible rearrangements.
 
 The alternating score is calculated as:
 
 $score = 2^{2} - 1^{2} + 3^{2} = 4 - 1 + 9 = 12$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,-1,2,-2,3,-3]
+- **Input:** nums = [1,-1,2,-2,3,-3]
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-A possible rearrangement for `nums` is `[-3,-1,-2,1,3,2]`, which gives the maximum alternating score among all possible rearrangements.
+- **Explanation:** A possible rearrangement for `nums` is `[-3,-1,-2,1,3,2]`, which gives the maximum alternating score among all possible rearrangements.
 
 The alternating score is calculated as:
 
 $score = (-3)^2 - (-1)^2 + (-2)^2 - (1)^2 + (3)^2 - (2)^2 = 9 - 1 + 4 - 1 + 9 - 4 = 16$
-
-</div>
 
 ### 4. Constraints
 

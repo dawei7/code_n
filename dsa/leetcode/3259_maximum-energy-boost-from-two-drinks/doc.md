@@ -33,23 +33,23 @@ The common length satisfies $3 \le n \le 10^5$, and every energy value is betwee
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: \`energyDrinkA = [1,3,1], energyDrinkB = [3,1,1]\`
-- Output: \`5\`
+- **Input:** \`energyDrinkA = [1,3,1], energyDrinkB = [3,1,1]\`
+- **Output:** \`5\`
 
 Staying with either one drink for all three hours yields 5.
 
-**Example 2**
+#### Example 2
 
-- Input: \`energyDrinkA = [4,1,1], energyDrinkB = [1,1,3]\`
-- Output: \`7\`
+- **Input:** \`energyDrinkA = [4,1,1], energyDrinkB = [1,1,3]\`
+- **Output:** \`7\`
 
 Drink A in hour 0, cleanse during hour 1, and drink B in hour 2.
 
-**Example 3**
+#### Example 3
 
-- Input: \`energyDrinkA = [5,5,5], energyDrinkB = [1,1,1]\`
-- Output: \`15\`
+- **Input:** \`energyDrinkA = [5,5,5], energyDrinkB = [1,1,1]\`
+- **Output:** \`15\`
 
 Drink A throughout; switching cannot improve the result.

@@ -30,14 +30,14 @@ Compute the sum of the digits of `x`. If that sum divides `x` evenly, return the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `x = 18`
-- Output: `9`
-- Explanation: The digit sum is $1 + 8 = 9$, and $18$ is divisible by $9$.
+- **Input:** `x = 18`
+- **Output:** `9`
+- **Explanation:** The digit sum is $1 + 8 = 9$, and $18$ is divisible by $9$.
 
-**Example 2**
+#### Example 2
 
-- Input: `x = 23`
-- Output: `-1`
-- Explanation: The digit sum is $2 + 3 = 5$, which does not divide $23$ evenly.
+- **Input:** `x = 23`
+- **Output:** `-1`
+- **Explanation:** The digit sum is $2 + 3 = 5$, which does not divide $23$ evenly.

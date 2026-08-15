@@ -4,8 +4,13 @@ Given a **circular** array `nums`, find the **maximum** absolute difference betw
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -15,28 +20,19 @@ Given a **circular** array `nums`, find the **maximum** absolute difference betw
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,4]
+- **Input:** nums = [1,2,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** Because `nums` is circular, $\text{nums}[0]$ and $\text{nums}[2]$ are adjacent. They have the maximum absolute difference of $|4 - 1| = 3$.
 
-Because `nums` is circular, $\text{nums}[0]$ and $\text{nums}[2]$ are adjacent. They have the maximum absolute difference of $|4 - 1| = 3$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-5,-10,-5]
+- **Input:** nums = [-5,-10,-5]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-The adjacent elements $\text{nums}[0]$ and $\text{nums}[1]$ have the maximum absolute difference of $|-5 - (-10)| = 5$.
-
-</div>
+- **Explanation:** The adjacent elements $\text{nums}[0]$ and $\text{nums}[1]$ have the maximum absolute difference of $|-5 - (-10)| = 5$.
 
 ### 5. Constraints
 

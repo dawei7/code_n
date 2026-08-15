@@ -12,41 +12,39 @@ Return the **maximum** possible frequency of any element in `nums` after perform
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `numOperations`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,5], k = 1, numOperations = 2
+- **Input:** nums = [1,4,5], k = 1, numOperations = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can achieve a maximum frequency of two by:
+- **Explanation:** We can achieve a maximum frequency of two by:
 
 - Adding 0 to $\text{nums}[1]$, after which `nums` becomes `[1, 4, 5]`.
 
 - Adding -1 to $\text{nums}[2]$, after which `nums` becomes `[1, 4, 4]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,11,20,20], k = 5, numOperations = 1
+- **Input:** nums = [5,11,20,20], k = 5, numOperations = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can achieve a maximum frequency of two by:
+- **Explanation:** We can achieve a maximum frequency of two by:
 
 - Adding 0 to $\text{nums}[1]$.
-
-</div>
 
 ### 4. Constraints
 

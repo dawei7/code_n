@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/match-substring-after-replacement/) |
 
 ## Problem Description
+
 ### Goal
+
 Given strings `s` and `sub`, determine whether `sub` can become a contiguous
 substring of `s`. A directed mapping `[old, new]` permits one occurrence of
 `old` in `sub` to be replaced by `new`. Any mapping may be used for any number
@@ -24,6 +26,7 @@ Return whether some alignment of `sub` within `s` matches position by position
 under those rules.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: The string in which a transformed `sub` must appear contiguously.
@@ -42,17 +45,18 @@ valid one-step replacements independently to positions of `sub`; otherwise
 `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "fool3e7bar"`, `sub = "leet"`, `mappings = [["e", "3"], ["t", "7"], ["t", "8"]]`
-- Output: `true`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "fool3e7bar"`, `sub = "leet"`, `mappings = [["e", "3"], ["t", "7"], ["t", "8"]]`
+- **Output:** `true`
 
-- Input: `s = "fooleetbar"`, `sub = "f00l"`, `mappings = [["o", "0"]]`
-- Output: `false`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "fooleetbar"`, `sub = "f00l"`, `mappings = [["o", "0"]]`
+- **Output:** `false`
 
-- Input: `s = "Fool33tbaR"`, `sub = "leetd"`, `mappings = [["e", "3"], ["t", "7"], ["t", "8"], ["d", "b"], ["p", "b"]]`
-- Output: `true`
+#### Example 3
+
+- **Input:** `s = "Fool33tbaR"`, `sub = "leetd"`, `mappings = [["e", "3"], ["t", "7"], ["t", "8"], ["d", "b"], ["p", "b"]]`
+- **Output:** `true`

@@ -31,14 +31,11 @@ give each of those integers a frequency of at least `m`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1,2,2], k = 2, m = 2
+- **Input:** nums = [1,2,1,2,2], k = 2, m = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The possible subarrays with $k = 2$ distinct integers, each appearing at least $m = 2$ times are:
+- **Explanation:** The possible subarrays with $k = 2$ distinct integers, each appearing at least $m = 2$ times are:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -66,17 +63,13 @@ The possible subarrays with $k = 2$ distinct integers, each appearing at least $
 
 Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,1,2,4], k = 2, m = 1
+- **Input:** nums = [3,1,2,4], k = 2, m = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The possible subarrays with $k = 2$ distinct integers, each appearing at least $m = 1$ times are:
+- **Explanation:** The possible subarrays with $k = 2$ distinct integers, each appearing at least $m = 1$ times are:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -108,8 +101,6 @@ The possible subarrays with $k = 2$ distinct integers, each appearing at least $
 </table>
 
 Thus, the answer is 3.
-
-</div>
 
 ### 4. Constraints
 

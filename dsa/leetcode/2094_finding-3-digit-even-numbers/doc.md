@@ -31,18 +31,18 @@ Return the sorted list of unique three-digit even integers constructible from th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `digits = [2, 1, 3, 0]`
-- Output: `[102,120,130,132,210,230,302,310,312,320]`
+- **Input:** `digits = [2, 1, 3, 0]`
+- **Output:** `[102,120,130,132,210,230,302,310,312,320]`
 
-**Example 2**
+#### Example 2
 
-- Input: `digits = [2, 2, 8, 8, 2]`
-- Output: `[222,228,282,288,822,828,882]`
-- Explanation: A value may be reused up to its number of copies in the input.
+- **Input:** `digits = [2, 2, 8, 8, 2]`
+- **Output:** `[222,228,282,288,822,828,882]`
+- **Explanation:** A value may be reused up to its number of copies in the input.
 
-**Example 3**
+#### Example 3
 
-- Input: `digits = [3, 7, 5]`
-- Output: `[]`
+- **Input:** `digits = [3, 7, 5]`
+- **Output:** `[]`

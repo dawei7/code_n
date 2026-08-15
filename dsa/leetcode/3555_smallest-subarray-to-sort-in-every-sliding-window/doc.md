@@ -35,16 +35,16 @@ Return an integer array of length $n-k+1$. Its value at index $s$ is the shortes
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,2,4,5], k = 3`
-- Output: `[2,2,0]`
-- Explanation: In each of the first two windows, sorting the adjacent pair `[3,2]` is sufficient. The last window is already non-decreasing.
+- **Input:** `nums = [1,3,2,4,5], k = 3`
+- **Output:** `[2,2,0]`
+- **Explanation:** In each of the first two windows, sorting the adjacent pair `[3,2]` is sufficient. The last window is already non-decreasing.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,4,3,2,1], k = 4`
-- Output: `[4,4]`
-- Explanation: Each length-four window is strictly decreasing, so every element in that window must be included.
+- **Input:** `nums = [5,4,3,2,1], k = 4`
+- **Output:** `[4,4]`
+- **Explanation:** Each length-four window is strictly decreasing, so every element in that window must be included.
 
 ---

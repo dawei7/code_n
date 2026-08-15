@@ -33,14 +33,14 @@ Let $n=\lvert\texttt{nums}\rvert$ and let $D$ be the number of positive divisors
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,6,2,7,1], k = 6`
-- Output: `4`
-- Explanation: The qualifying subarrays are `[3,6]`, `[3,6,2]`, `[6]`, and `[6,2]`.
+- **Input:** `nums = [3,6,2,7,1], k = 6`
+- **Output:** `4`
+- **Explanation:** The qualifying subarrays are `[3,6]`, `[3,6,2]`, `[6]`, and `[6,2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3], k = 2`
-- Output: `0`
-- Explanation: The only subarray has least common multiple $3$, not $2$.
+- **Input:** `nums = [3], k = 2`
+- **Output:** `0`
+- **Explanation:** The only subarray has least common multiple $3$, not $2$.

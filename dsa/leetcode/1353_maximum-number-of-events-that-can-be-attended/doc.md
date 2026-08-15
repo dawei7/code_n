@@ -31,17 +31,17 @@ You may attend at most one event on a given day, and attending an event uses onl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `events = [[1,2],[2,3],[3,4]]`
-- Output: `3`
+- **Input:** `events = [[1,2],[2,3],[3,4]]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `events = [[1,2],[2,3],[3,4],[1,2]]`
-- Output: `4`
+- **Input:** `events = [[1,2],[2,3],[3,4],[1,2]]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `events = [[1,1],[1,1],[1,1]]`
-- Output: `1`
+- **Input:** `events = [[1,1],[1,1],[1,1]]`
+- **Output:** `1`

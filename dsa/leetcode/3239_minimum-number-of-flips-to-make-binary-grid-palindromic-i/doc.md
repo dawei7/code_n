@@ -32,20 +32,20 @@ Return the smaller flip count for making all rows palindromic and making all col
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,0,0],[0,0,0],[0,0,1]]`
-- Output: `2`
-- Explanation: Two flips can make every row palindromic.
+- **Input:** `grid = [[1,0,0],[0,0,0],[0,0,1]]`
+- **Output:** `2`
+- **Explanation:** Two flips can make every row palindromic.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,1],[0,1],[0,0]]`
-- Output: `1`
-- Explanation: One flip can make every column palindromic.
+- **Input:** `grid = [[0,1],[0,1],[0,0]]`
+- **Output:** `1`
+- **Explanation:** One flip can make every column palindromic.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1],[0]]`
-- Output: `0`
-- Explanation: Every one-cell row is already palindromic.
+- **Input:** `grid = [[1],[0]]`
+- **Output:** `0`
+- **Explanation:** Every one-cell row is already palindromic.

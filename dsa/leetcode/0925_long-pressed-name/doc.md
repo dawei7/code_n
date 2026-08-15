@@ -29,14 +29,14 @@ Return `true` if `typed` can represent `name` with zero or more long-pressed cha
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `name = "alex", typed = "aaleex"`
-- Output: `true`
-- Explanation: The keys for `a` and `e` may each have been long pressed.
+- **Input:** `name = "alex", typed = "aaleex"`
+- **Output:** `true`
+- **Explanation:** The keys for `a` and `e` may each have been long pressed.
 
-**Example 2**
+#### Example 2
 
-- Input: `name = "saeed", typed = "ssaaedd"`
-- Output: `false`
-- Explanation: The two intended `e` characters are not both represented in `typed`.
+- **Input:** `name = "saeed", typed = "ssaaedd"`
+- **Output:** `false`
+- **Explanation:** The two intended `e` characters are not both represented in `typed`.

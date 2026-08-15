@@ -39,14 +39,14 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4,5], k = 2`
-- Output: `5`
-- Explanation: The whole array is valid because every adjacent sum is odd and therefore has remainder $1$ modulo $2$.
+- **Input:** `nums = [1,2,3,4,5], k = 2`
+- **Output:** `5`
+- **Explanation:** The whole array is valid because every adjacent sum is odd and therefore has remainder $1$ modulo $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,4,2,3,1,4], k = 3`
-- Output: `4`
-- Explanation: `[1,4,1,4]` is valid because every adjacent sum has remainder $2$ modulo $3$.
+- **Input:** `nums = [1,4,2,3,1,4], k = 3`
+- **Output:** `4`
+- **Explanation:** `[1,4,1,4]` is valid because every adjacent sum has remainder $2$ modulo $3$.

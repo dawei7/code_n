@@ -29,20 +29,20 @@ Return the first day on which every room has been visited at least once, reduced
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nextVisit = [0, 0]`
-- Output: `2`
-- Explanation: The visits are rooms $0,0,1$ on days $0,1,2$.
+- **Input:** `nextVisit = [0, 0]`
+- **Output:** `2`
+- **Explanation:** The visits are rooms $0,0,1$ on days $0,1,2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nextVisit = [0, 0, 2]`
-- Output: `6`
-- Explanation: The room sequence through the first visit to room $2$ is `0, 0, 1, 0, 0, 1, 2`.
+- **Input:** `nextVisit = [0, 0, 2]`
+- **Output:** `6`
+- **Explanation:** The room sequence through the first visit to room $2$ is `0, 0, 1, 0, 0, 1, 2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nextVisit = [0, 1, 2, 0]`
-- Output: `6`
-- Explanation: The sequence begins `0, 0, 1, 1, 2, 2, 3`, so day $6$ is the first day covering every room.
+- **Input:** `nextVisit = [0, 1, 2, 0]`
+- **Output:** `6`
+- **Explanation:** The sequence begins `0, 0, 1, 1, 2, 2, 3`, so day $6$ is the first day covering every room.

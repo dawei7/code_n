@@ -31,17 +31,17 @@ For every zero-based index `i`, set `answer[i]` to the distance from `i` to the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "loveleetcode", c = "e"`
-- Output: `[3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]`
+- **Input:** `s = "loveleetcode", c = "e"`
+- **Output:** `[3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aaab", c = "b"`
-- Output: `[3, 2, 1, 0]`
+- **Input:** `s = "aaab", c = "b"`
+- **Output:** `[3, 2, 1, 0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "baaaab", c = "b"`
-- Output: `[0, 1, 2, 2, 1, 0]`
+- **Input:** `s = "baaaab", c = "b"`
+- **Output:** `[0, 1, 2, 2, 1, 0]`

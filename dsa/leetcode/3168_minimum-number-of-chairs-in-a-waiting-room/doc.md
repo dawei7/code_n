@@ -32,23 +32,23 @@ Let $n = \lvert\texttt{s}\rvert$. The constraints satisfy $1 \le n \le 50$. Vali
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "EEEEEEE"`
-- Output: `7`
+- **Input:** `s = "EEEEEEE"`
+- **Output:** `7`
 
 Seven people enter without any intervening departure, so all seven need chairs simultaneously.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ELELEEL"`
-- Output: `2`
+- **Input:** `s = "ELELEEL"`
+- **Output:** `2`
 
 The occupancy alternates between zero and one until two consecutive entries raise it to two.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "ELEELEELLL"`
-- Output: `3`
+- **Input:** `s = "ELEELEELLL"`
+- **Output:** `3`
 
 The greatest number of people present at the same time is three.

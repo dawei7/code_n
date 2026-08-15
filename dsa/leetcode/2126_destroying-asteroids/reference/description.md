@@ -8,8 +8,14 @@ Return `true`* if **all** asteroids can be destroyed. Otherwise, return *`false`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mass`: Input parameter (`int`).
+- `asteroids`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -24,12 +30,12 @@ Return `true`* if **all** asteroids can be destroyed. Otherwise, return *`false`
 - The planet collides with the asteroid with a mass of 3. New planet mass: 43 + 3 = 46
 - The planet collides with the asteroid with a mass of 21. New planet mass: 46 + 21 = 67
 All asteroids are destroyed.
+
 #### Example 2
 
 - **Input:** $mass = 5, asteroids = [4,9,23,4]$
 - **Output:** `false`
-- **Explanation:**
-The planet cannot ever gain enough mass to destroy the asteroid with a mass of 23.
+- **Explanation:** The planet cannot ever gain enough mass to destroy the asteroid with a mass of 23.
 After the planet destroys the other asteroids, it will have a mass of 5 + 4 + 9 + 4 = 22.
 This is less than 23, so a collision would not destroy the last asteroid.
 

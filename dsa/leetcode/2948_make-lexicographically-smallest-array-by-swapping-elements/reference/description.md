@@ -10,8 +10,14 @@ An array `a` is lexicographically smaller than an array `b` if in the first posi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `limit`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ An array `a` is lexicographically smaller than an array `b` if in the first posi
 - Swap nums[3] with nums[4]. The array becomes [1,3,5,8,9]
 We cannot obtain a lexicographically smaller array by applying any more operations.
 Note that it may be possible to get the same result by doing different operations.
+
 #### Example 2
 
 - **Input:** `nums = [1,7,6,18,2,1], limit = 3`
@@ -33,6 +40,7 @@ Note that it may be possible to get the same result by doing different operation
 - Swap nums[0] with nums[4]. The array becomes [2,6,7,18,1,1]
 - Swap nums[0] with nums[5]. The array becomes [1,6,7,18,1,2]
 We cannot obtain a lexicographically smaller array by applying any more operations.
+
 #### Example 3
 
 - **Input:** `nums = [1,7,28,19,10], limit = 3`

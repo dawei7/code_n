@@ -21,40 +21,29 @@ Return `true` exactly when a consistent one-to-one character mapping transforms 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "egg", t = "add"
+- **Input:** s = "egg", t = "add"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-The strings `s` and `t` can be made identical by:
+- **Explanation:** The strings `s` and `t` can be made identical by:
 
 - Mapping `'e'` to `'a'`.
 
 - Mapping `'g'` to `'d'`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "f11", t = "b23"
+- **Input:** s = "f11", t = "b23"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** The strings `s` and `t` can not be made identical as `'1'` needs to be mapped to both `'2'` and `'3'`.
 
-The strings `s` and `t` can not be made identical as `'1'` needs to be mapped to both `'2'` and `'3'`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "paper", t = "title"
+- **Input:** s = "paper", t = "title"
 
-**Output:** true
-
-</div>
+- **Output:** true
 
 ### 4. Constraints
 

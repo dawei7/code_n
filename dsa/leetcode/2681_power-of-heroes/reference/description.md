@@ -8,8 +8,13 @@ Return *the sum of the **power** of all **non-empty** groups of heroes possible.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,8 +22,7 @@ Return *the sum of the **power** of all **non-empty** groups of heroes possible.
 
 - **Input:** `nums = [2,1,4]`
 - **Output:** `141`
-- **Explanation:**
-1^st group: [2] has power = $2^{2}$ * 2 = 8.
+- **Explanation:** 1^st group: [2] has power = $2^{2}$ * 2 = 8.
 2^nd group: [1] has power = $1^{2}$ * 1 = 1.
 3^rd group: [4] has power = $4^{2}$ * 4 = 64.
 4^th group: [2,1] has power = $2^{2}$ * 1 = 4.
@@ -26,6 +30,7 @@ Return *the sum of the **power** of all **non-empty** groups of heroes possible.
 6^th group: [1,4] has power = $4^{2}$ * 1 = 16.
 ​​​​​​​7^th group: [2,1,4] has power = $4^{2}$​​​​​​​ * 1 = 16.
 The sum of powers of all groups is 8 + 1 + 64 + 4 + 32 + 16 + 16 = 141.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1]`

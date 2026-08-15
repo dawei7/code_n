@@ -36,7 +36,7 @@ Return a table with columns `month` (varchar `YYYY-MM`), $\text{order}_{count}$ 
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Orders table:
 +----------+------------+-------------+------------+
 | order_id | order_date | customer_id | invoice    |
@@ -52,7 +52,7 @@ Orders table:
 | 9        | 2021-01-07 | 3           | 31         |
 | 10       | 2021-01-15 | 2           | 20         |
 +----------+------------+-------------+------------+
-**Output:**
+- **Output:** 
 +---------+-------------+----------------+
 | month   | order_count | customer_count |
 +---------+-------------+----------------+
@@ -61,8 +61,7 @@ Orders table:
 | 2020-12 | 2           | 1              |
 | 2021-01 | 1           | 1              |
 +---------+-------------+----------------+
-**Explanation:**
-In September 2020 we have two orders from 2 different customers with invoices > $20.
+- **Explanation:** In September 2020 we have two orders from 2 different customers with invoices > $20.
 In October 2020 we have two orders from 1 customer, and only one of the two orders has invoice > $20.
 In November 2020 we have two orders from 2 different customers but invoices < $20, so we don't include that month.
 In December 2020 we have two orders from 1 customer both with invoices > $20.

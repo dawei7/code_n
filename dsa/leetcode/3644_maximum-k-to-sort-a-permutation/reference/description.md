@@ -8,47 +8,39 @@ Return the **maximum** value of `k` such that the array can be sorted in **non-d
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,3,2,1]
+- **Input:** nums = [0,3,2,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Choose $k = 1$. Swapping $\text{nums}[1] = 3$ and $\text{nums}[3] = 1$ is allowed since $\text{nums}[1] AND \text{nums}[3] = 1$, resulting in a sorted permutation: `[0, 1, 2, 3]`.
 
-Choose $k = 1$. Swapping $\text{nums}[1] = 3$ and $\text{nums}[3] = 1$ is allowed since $\text{nums}[1] AND \text{nums}[3] = 1$, resulting in a sorted permutation: `[0, 1, 2, 3]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,1,3,2]
+- **Input:** nums = [0,1,3,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** Choose $k = 2$. Swapping $\text{nums}[2] = 3$ and $\text{nums}[3] = 2$ is allowed since $\text{nums}[2] AND \text{nums}[3] = 2$, resulting in a sorted permutation: `[0, 1, 2, 3]`.
 
-Choose $k = 2$. Swapping $\text{nums}[2] = 3$ and $\text{nums}[3] = 2$ is allowed since $\text{nums}[2] AND \text{nums}[3] = 2$, resulting in a sorted permutation: `[0, 1, 2, 3]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,2,1,0]
+- **Input:** nums = [3,2,1,0]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Only $k = 0$ allows sorting since no greater `k` allows the required swaps where $\text{nums}[i] AND \text{nums}[j] = k$.
-
-</div>
+- **Explanation:** Only $k = 0$ allows sorting since no greater `k` allows the required swaps where $\text{nums}[i] AND \text{nums}[j] = k$.
 
 ### 4. Constraints
 

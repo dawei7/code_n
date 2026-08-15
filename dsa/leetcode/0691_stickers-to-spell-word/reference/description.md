@@ -8,8 +8,14 @@ Return *the minimum number of stickers that you need to spell out *`target`. If 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stickers`: Input parameter (`List[str]`).
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,16 +27,15 @@ In all test cases, all words were chosen randomly from the `1000` most common US
 
 - **Input:** $stickers = ["with","example","science"], target = "thehat"$
 - **Output:** `3`
-- **Explanation:**
-We can use 2 "with" stickers, and 1 "example" sticker.
+- **Explanation:** We can use 2 "with" stickers, and 1 "example" sticker.
 After cutting and rearrange the letters of those stickers, we can form the target "thehat".
 Also, this is the minimum number of stickers necessary to form the target string.
+
 #### Example 2
 
 - **Input:** $stickers = ["notice","possible"], target = "basicbasic"$
 - **Output:** `-1`
-- **Explanation:**
-We cannot form the target "basicbasic" from cutting letters from the given stickers.
+- **Explanation:** We cannot form the target "basicbasic" from cutting letters from the given stickers.
 
 ### 5. Constraints
 

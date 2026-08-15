@@ -48,14 +48,11 @@ Return an integer equal to the sum of the GCD of every formed pair. A singleton 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,6,4]
+- **Input:** nums = [2,6,4]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Construct `prefixGcd`:
+- **Explanation:** Construct `prefixGcd`:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -92,17 +89,13 @@ $prefixGcd = [2, 6, 2]$. After sorting, it forms `[2, 2, 6]`.
 
 Pair the smallest and largest elements: $gcd(2, 6) = 2$. The remaining middle element 2 is ignored. Thus, the sum is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,6,2,8]
+- **Input:** nums = [3,6,2,8]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-Construct `prefixGcd`:
+- **Explanation:** Construct `prefixGcd`:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -144,8 +137,6 @@ Construct `prefixGcd`:
 $prefixGcd = [3, 6, 2, 8]$. After sorting, it forms `[2, 3, 6, 8]`.
 
 Form pairs: $gcd(2, 8) = 2$ and $gcd(3, 6) = 3$. Thus, the sum is $2 + 3 = 5$.
-
-</div>
 
 ### 4. Constraints
 

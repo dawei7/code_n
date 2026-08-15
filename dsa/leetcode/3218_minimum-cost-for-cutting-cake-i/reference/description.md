@@ -22,21 +22,26 @@ Return the **minimum** total cost to cut the entire cake into `1 x 1` pieces.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `horizontalCut`: Input parameter (`List[int]`).
+- `verticalCut`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** m = 3, n = 2, horizontalCut = [1,3], verticalCut = [5]
+- **Input:** m = 3, n = 2, horizontalCut = [1,3], verticalCut = [5]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-![](images/ezgifcom-animated-gif-maker-1.gif)
+- **Explanation:** ![](images/ezgifcom-animated-gif-maker-1.gif)
 
 - Perform a cut on the vertical line 0 with cost 5, current total cost is 5.
 
@@ -50,15 +55,13 @@ Return the **minimum** total cost to cut the entire cake into `1 x 1` pieces.
 
 The total cost is $5 + 1 + 1 + 3 + 3 = 13$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** m = 2, n = 2, horizontalCut = [7], verticalCut = [4]
+- **Input:** m = 2, n = 2, horizontalCut = [7], verticalCut = [4]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** 
 
 - Perform a cut on the horizontal line 0 with cost 7.
 
@@ -67,8 +70,6 @@ The total cost is $5 + 1 + 1 + 3 + 3 = 13$.
 - Perform a cut on the vertical line 0 on `1 x 2` subgrid with cost 4.
 
 The total cost is $7 + 4 + 4 = 15$.
-
-</div>
 
 ### 4. Constraints
 

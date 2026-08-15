@@ -35,10 +35,12 @@ Return the minimum sum of distances from one reachable empty cell to every build
 - **Explanation:** Given three buildings at (0,0), (0,4), (2,2), and an obstacle at (0,2).
 The point (1,2) is an ideal empty land to build a house, as the total travel distance of 3+3+1=7 is minimal.
 So return 7.
+
 #### Example 2
 
 - **Input:** `grid = [[1,0]]`
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** `grid = [[1]]`

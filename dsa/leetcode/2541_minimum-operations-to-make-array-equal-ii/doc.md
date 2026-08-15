@@ -34,14 +34,14 @@ Return the minimum number of operations needed to transform `nums1` into `nums2`
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [4,3,1,4], nums2 = [1,3,7,1], k = 3`
-- Output: `2`
-- Explanation: Transfer one unit from index 0 to index 2, then one from index 3 to index 2.
+- **Input:** `nums1 = [4,3,1,4], nums2 = [1,3,7,1], k = 3`
+- **Output:** `2`
+- **Explanation:** Transfer one unit from index 0 to index 2, then one from index 3 to index 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [3,8,5,2], nums2 = [2,4,1,6], k = 1`
-- Output: `-1`
-- Explanation: The two totals differ, while every operation preserves the total.
+- **Input:** `nums1 = [3,8,5,2], nums2 = [2,4,1,6], k = 1`
+- **Output:** `-1`
+- **Explanation:** The two totals differ, while every operation preserves the total.

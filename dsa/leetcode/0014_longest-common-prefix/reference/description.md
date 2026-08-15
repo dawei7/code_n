@@ -20,6 +20,7 @@ Return the longest common prefix, or `""` when no non-empty prefix is shared.
 
 - **Input:** $strs = ["flower","flow","flight"]$
 - **Output:** `"fl"`
+
 #### Example 2
 
 - **Input:** $strs = ["dog","racecar","car"]$

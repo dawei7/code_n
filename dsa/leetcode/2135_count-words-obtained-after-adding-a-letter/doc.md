@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given two arrays of lowercase English words. No letter appears more
 than once within any individual word. To convert a start word, append exactly
 one lowercase letter that is not already present, then rearrange all letters
@@ -21,6 +23,7 @@ tested as possibilities and are not consumed or modified between targets.
 Return the number of obtainable target occurrences.
 
 ### Function Contract
+
 **Inputs**
 
 - `startWords`: Between $1$ and $5\cdot 10^4$ distinct-letter lowercase
@@ -37,16 +40,17 @@ The number of target word occurrences obtainable by adding exactly one new
 letter to some start word and rearranging.
 
 ### Examples
-**Example 1**
 
-- Input: `startWords = ["ant","act","tack"]`,
+#### Example 1
+
+- **Input:** `startWords = ["ant","act","tack"]`,
   `targetWords = ["tack","act","acti"]`
-- Output: `2`
-- Explanation: `"tack"` and `"acti"` can come from `"act"`. The target
+- **Output:** `2`
+- **Explanation:** `"tack"` and `"acti"` can come from `"act"`. The target
   `"act"` is not obtainable merely because it is already a start word; one
   new letter must be appended.
 
-**Example 2**
+#### Example 2
 
-- Input: `startWords = ["ab","a"]`, `targetWords = ["abc","abcd"]`
-- Output: `1`
+- **Input:** `startWords = ["ab","a"]`, `targetWords = ["abc","abcd"]`
+- **Output:** `1`

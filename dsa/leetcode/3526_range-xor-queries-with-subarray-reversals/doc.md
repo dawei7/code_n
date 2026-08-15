@@ -33,14 +33,14 @@ The constraints are $1 \le n \le 10^5$, $0 \le \texttt{nums[i]} \le 10^9$, and $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5], queries = [[2, 1, 3], [1, 2, 10], [3, 0, 4], [2, 0, 4]]`
-- Output: `[5, 8]`
-- Explanation: The first queried range has XOR `2 ^ 3 ^ 4 = 5`. After the update and full reversal, the array is `[5, 4, 10, 2, 1]`, whose full XOR is `8`.
+- **Input:** `nums = [1, 2, 3, 4, 5], queries = [[2, 1, 3], [1, 2, 10], [3, 0, 4], [2, 0, 4]]`
+- **Output:** `[5, 8]`
+- **Explanation:** The first queried range has XOR `2 ^ 3 ^ 4 = 5`. After the update and full reversal, the array is `[5, 4, 10, 2, 1]`, whose full XOR is `8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [7, 8, 9], queries = [[1, 0, 3], [2, 0, 2], [3, 1, 2]]`
-- Output: `[2]`
-- Explanation: The update produces `[3, 8, 9]`, and `3 ^ 8 ^ 9 = 2`. The final reversal produces no additional output.
+- **Input:** `nums = [7, 8, 9], queries = [[1, 0, 3], [2, 0, 2], [3, 1, 2]]`
+- **Output:** `[2]`
+- **Explanation:** The update produces `[3, 8, 9]`, and `3 ^ 8 ^ 9 = 2`. The final reversal produces no additional output.

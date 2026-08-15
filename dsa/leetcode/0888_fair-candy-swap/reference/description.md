@@ -8,8 +8,14 @@ Return a*n integer array *`answer`* where *$\text{answer}[0]$* is the number of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `aliceSizes`: Input parameter (`List[int]`).
+- `bobSizes`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,10 +23,12 @@ Return a*n integer array *`answer`* where *$\text{answer}[0]$* is the number of 
 
 - **Input:** $aliceSizes = [1,1], bobSizes = [2,2]$
 - **Output:** `[1,2]`
+
 #### Example 2
 
 - **Input:** $aliceSizes = [1,2], bobSizes = [2,3]$
 - **Output:** `[1,2]`
+
 #### Example 3
 
 - **Input:** $aliceSizes = [2], bobSizes = [1,3]$

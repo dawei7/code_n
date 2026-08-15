@@ -32,14 +32,14 @@ The game finishes when no legal move remains, which occurs when every stone occu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stones = [7,4,9]`
-- Output: `[1,2]`
-- Explanation: For the minimum, move `4 -> 8`. For the maximum, move `9 -> 5` and then `4 -> 6`.
+- **Input:** `stones = [7,4,9]`
+- **Output:** `[1,2]`
+- **Explanation:** For the minimum, move `4 -> 8`. For the maximum, move `9 -> 5` and then `4 -> 6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `stones = [6,5,4,3,10]`
-- Output: `[2,3]`
-- Explanation: Two moves can finish by moving `3 -> 8` and then `10 -> 7`. A longest play is `3 -> 7`, `4 -> 8`, and `5 -> 9`. Moving `10 -> 2` is not a legal shortcut because the moved stone would remain an endpoint.
+- **Input:** `stones = [6,5,4,3,10]`
+- **Output:** `[2,3]`
+- **Explanation:** Two moves can finish by moving `3 -> 8` and then `10 -> 7`. A longest play is `3 -> 7`, `4 -> 8`, and `5 -> 9`. Moving `10 -> 2` is not a legal shortcut because the moved stone would remain an endpoint.

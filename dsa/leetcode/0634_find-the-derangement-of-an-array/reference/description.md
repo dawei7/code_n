@@ -21,6 +21,7 @@ Return the number of permutations in which every integer occupies a position dif
 - **Input:** $n = 3$
 - **Output:** `2`
 - **Explanation:** The original array is [1,2,3]. The two derangements are [2,3,1] and [3,1,2].
+
 #### Example 2
 
 - **Input:** $n = 2$

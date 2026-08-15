@@ -33,20 +33,20 @@ Return a function that produces the same value as `fn` for every argument tuple 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: memoized `sum`, called with `(2, 2)`, `(2, 2)`, then `(1, 2)`
-- Output: `[4, 4, 3]`, with original call counts `1` and then `2`
-- Explanation: The repeated `(2, 2)` call uses the cached result.
+- **Input:** memoized `sum`, called with `(2, 2)`, `(2, 2)`, then `(1, 2)`
+- **Output:** `[4, 4, 3]`, with original call counts `1` and then `2`
+- **Explanation:** The repeated `(2, 2)` call uses the cached result.
 
-**Example 2**
+#### Example 2
 
-- Input: memoized `factorial`, called with `2`, `3`, `2`, then `3`
-- Output: `[2, 6, 2, 6]`
-- Explanation: Only the first call for each distinct argument invokes the original function.
+- **Input:** memoized `factorial`, called with `2`, `3`, `2`, then `3`
+- **Output:** `[2, 6, 2, 6]`
+- **Explanation:** Only the first call for each distinct argument invokes the original function.
 
-**Example 3**
+#### Example 3
 
-- Input: memoized `fib`, called with `5`
-- Output: `8`, with original call count `1`
-- Explanation: Memoization applies to calls of the wrapper; recursion inside the supplied `fib` function remains part of that one underlying invocation.
+- **Input:** memoized `fib`, called with `5`
+- **Output:** `8`, with original call count `1`
+- **Explanation:** Memoization applies to calls of the wrapper; recursion inside the supplied `fib` function remains part of that one underlying invocation.

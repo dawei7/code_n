@@ -10,8 +10,14 @@ Given two integers `a` and `b`, return **any** string `s` such that:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Given two integers `a` and `b`, return **any** string `s` such that:
 - **Input:** $a = 1, b = 2$
 - **Output:** `"abb"`
 - **Explanation:** "abb", "bab" and "bba" are all correct answers.
+
 #### Example 2
 
 - **Input:** $a = 4, b = 1$

@@ -24,6 +24,7 @@ Repeated occurrences of the minimum do not change the answer because the contrac
 - **Input:** `nums = [34,23,1,24,75,33,54,8]`
 - **Output:** `0`
 - **Explanation:** The minimal element is 1, and the sum of those digits is 1 which is odd, so the answer is 0.
+
 #### Example 2
 
 - **Input:** `nums = [99,77,33,66,55]`

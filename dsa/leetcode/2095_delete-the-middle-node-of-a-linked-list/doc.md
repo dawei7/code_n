@@ -31,19 +31,19 @@ Return the head after deleting the node at zero-based index $\lfloor n/2 \rfloor
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [1, 3, 4, 7, 1, 2, 6]`
-- Output: `[1, 3, 4, 1, 2, 6]`
-- Explanation: With $n=7$, index $\lfloor 7/2 \rfloor=3$ is deleted.
+- **Input:** `head = [1, 3, 4, 7, 1, 2, 6]`
+- **Output:** `[1, 3, 4, 1, 2, 6]`
+- **Explanation:** With $n=7$, index $\lfloor 7/2 \rfloor=3$ is deleted.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [1, 2, 3, 4]`
-- Output: `[1, 2, 4]`
-- Explanation: The selected middle index is `2`, the second central node.
+- **Input:** `head = [1, 2, 3, 4]`
+- **Output:** `[1, 2, 4]`
+- **Explanation:** The selected middle index is `2`, the second central node.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [2, 1]`
-- Output: `[2]`
+- **Input:** `head = [2, 1]`
+- **Output:** `[2]`

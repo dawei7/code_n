@@ -34,14 +34,14 @@ Let $k$ be the number of empty cells. Because the grid contains nine cells and n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,1,0],[1,1,1],[1,2,1]]`
-- Output: `3`
-- Explanation: The extra stone at `(2,1)` can travel right once and then upward twice until it reaches `(0,2)`. Those three side-adjacent transfers fill the only empty cell, and no shorter route exists.
+- **Input:** `grid = [[1,1,0],[1,1,1],[1,2,1]]`
+- **Output:** `3`
+- **Explanation:** The extra stone at `(2,1)` can travel right once and then upward twice until it reaches `(0,2)`. Those three side-adjacent transfers fill the only empty cell, and no shorter route exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,3,0],[1,0,0],[1,0,3]]`
-- Output: `4`
-- Explanation: Two extra stones from `(0,1)` fill `(0,2)` and `(1,1)`, while two extras from `(2,2)` fill `(1,2)` and `(2,1)`. Each transfer travels one edge, for four moves in total.
+- **Input:** `grid = [[1,3,0],[1,0,0],[1,0,3]]`
+- **Output:** `4`
+- **Explanation:** Two extra stones from `(0,1)` fill `(0,2)` and `(1,1)`, while two extras from `(2,2)` fill `(1,2)` and `(2,1)`. Each transfer travels one edge, for four moves in total.

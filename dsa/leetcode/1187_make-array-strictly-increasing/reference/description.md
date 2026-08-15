@@ -8,8 +8,14 @@ If there is no way to make `arr1` strictly increasing, return `-1`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr1`: Input parameter (`List[int]`).
+- `arr2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ If there is no way to make `arr1` strictly increasing, return `-1`.
 - **Input:** $arr1 = [1,5,3,6,7], arr2 = [1,3,2,4]$
 - **Output:** `1`
 - **Explanation:** Replace 5 with 2, then arr1 = [1, 2, 3, 6, 7].
+
 #### Example 2
 
 - **Input:** $arr1 = [1,5,3,6,7], arr2 = [4,3,1]$
 - **Output:** `2`
 - **Explanation:** Replace 5 with 3 and then replace 3 with 4. arr1 = [1, 3, 4, 6, 7].
+
 #### Example 3
 
 - **Input:** $arr1 = [1,5,3,6,7], arr2 = [1,6,3,3]$

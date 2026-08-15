@@ -4,8 +4,13 @@ Given an integer `num`, return *a string of its **base 7** representation*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given an integer `num`, return *a string of its **base 7** representation*.
 
 - **Input:** $num = 100$
 - **Output:** `"202"`
+
 #### Example 2
 
 - **Input:** $num = -7$

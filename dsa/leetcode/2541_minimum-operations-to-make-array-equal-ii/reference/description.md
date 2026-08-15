@@ -10,8 +10,15 @@ Return *the **minimum** number of operations required to make *`nums1`* equal to
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +30,7 @@ Return *the **minimum** number of operations required to make *`nums1`* equal to
 1^st operation: i = 2, j = 0. After applying the operation, nums1 = [1,3,4,4].
 2^nd operation: i = 2, j = 3. After applying the operation, nums1 = [1,3,7,1].
 One can prove that it is impossible to make arrays equal in fewer operations.
+
 #### Example 2
 
 - **Input:** $nums1 = [3,8,5,2], nums2 = [2,4,1,6], k = 1$

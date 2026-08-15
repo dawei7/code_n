@@ -14,21 +14,23 @@ Return `true` if `nums` is trionic, otherwise return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,5,4,2,6]
+- **Input:** nums = [1,3,5,4,2,6]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-Pick $p = 2$, $q = 4$:
+- **Explanation:** Pick $p = 2$, $q = 4$:
 
 - $nums[0...2] = [1, 3, 5]$ is strictly increasing (`1 < 3 < 5`).
 
@@ -36,19 +38,13 @@ Pick $p = 2$, $q = 4$:
 
 - $nums[4...5] = [2, 6]$ is strictly increasing (`2 < 6`).
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,3]
+- **Input:** nums = [2,1,3]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-There is no way to pick `p` and `q` to form the required three segments.
-
-</div>
+- **Explanation:** There is no way to pick `p` and `q` to form the required three segments.
 
 ### 4. Constraints
 

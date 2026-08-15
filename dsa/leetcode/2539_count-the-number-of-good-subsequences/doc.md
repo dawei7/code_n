@@ -1,4 +1,3 @@
-
 # Count the Number of Good Subsequences
 
 | Field | Value |
@@ -33,19 +32,19 @@ Return the number of nonempty subsequences in which all included characters have
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aabb"`
-- Output: `11`
-- Explanation: Of the $2^4$ position subsets, four nonempty choices have unequal positive character frequencies and the empty choice is not allowed.
+- **Input:** `s = "aabb"`
+- **Output:** `11`
+- **Explanation:** Of the $2^4$ position subsets, four nonempty choices have unequal positive character frequencies and the empty choice is not allowed.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leet"`
-- Output: `12`
+- **Input:** `s = "leet"`
+- **Output:** `12`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcd"`
-- Output: `15`
-- Explanation: Every nonempty subsequence contains each selected character exactly once.
+- **Input:** `s = "abcd"`
+- **Output:** `15`
+- **Explanation:** Every nonempty subsequence contains each selected character exactly once.

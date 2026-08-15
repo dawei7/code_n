@@ -31,23 +31,23 @@ Rearrange this wide representation into rows with the columns `(product_id, stor
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Products = [[0,95,100,105],[1,70,NULL,80]]`
-- Output: `[[0,"store1",95],[0,"store2",100],[0,"store3",105],[1,"store1",70],[1,"store3",80]]`
+- **Input:** `Products = [[0,95,100,105],[1,70,NULL,80]]`
+- **Output:** `[[0,"store1",95],[0,"store2",100],[0,"store3",105],[1,"store1",70],[1,"store3",80]]`
 
 Product `0` contributes three rows, while product `1` contributes none for `store2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `Products = [[7,NULL,42,NULL]]`
-- Output: `[[7,"store2",42]]`
+- **Input:** `Products = [[7,NULL,42,NULL]]`
+- **Output:** `[[7,"store2",42]]`
 
 Only the non-null second-store price becomes a result row.
 
-**Example 3**
+#### Example 3
 
-- Input: `Products = [[8,NULL,NULL,NULL]]`
-- Output: `[]`
+- **Input:** `Products = [[8,NULL,NULL,NULL]]`
+- **Output:** `[]`
 
 A product unavailable in every store contributes no rows.

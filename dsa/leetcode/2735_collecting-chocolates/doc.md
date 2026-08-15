@@ -31,20 +31,20 @@ Return the minimum total cost to collect every chocolate type.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [20,1,15], x = 5`
-- Output: `13`
-- Explanation: Two rotations cost `10`, and the chocolate of cost `1` can supply each of the three types at different stages, for a purchase total of `3`.
+- **Input:** `nums = [20,1,15], x = 5`
+- **Output:** `13`
+- **Explanation:** Two rotations cost `10`, and the chocolate of cost `1` can supply each of the three types at different stages, for a purchase total of `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3], x = 4`
-- Output: `6`
-- Explanation: Buying every type immediately costs `6`, and no rotation improves that total.
+- **Input:** `nums = [1,2,3], x = 4`
+- **Output:** `6`
+- **Explanation:** Buying every type immediately costs `6`, and no rotation improves that total.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10,1,10,10], x = 1`
-- Output: `7`
-- Explanation: After considering three rotations, every type can be bought for `1`; purchases cost `4` and operations cost `3`.
+- **Input:** `nums = [10,1,10,10], x = 1`
+- **Output:** `7`
+- **Explanation:** After considering three rotations, every type can be bought for `1`; purchases cost `4` and operations cost `3`.

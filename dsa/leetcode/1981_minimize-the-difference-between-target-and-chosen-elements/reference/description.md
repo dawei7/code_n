@@ -10,8 +10,14 @@ The **absolute difference** between two numbers `a` and `b` is the absolute valu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ The **absolute difference** between two numbers `a` and `b` is the absolute valu
 - Choose 5 from the second row.
 - Choose 7 from the third row.
 The sum of the chosen elements is 13, which equals the target, so the absolute difference is 0.
+
 #### Example 2
 
 ![](images/matrix1-1.png)
@@ -37,6 +44,7 @@ The sum of the chosen elements is 13, which equals the target, so the absolute d
 - Choose 2 from the second row.
 - Choose 3 from the third row.
 The sum of the chosen elements is 6, and the absolute difference is 94.
+
 #### Example 3
 
 ![](images/matrix1-3.png)

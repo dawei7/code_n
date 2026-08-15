@@ -10,8 +10,14 @@ Return *the minimum **score** of *`nums`* after changing the values at each inde
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Return *the minimum **score** of *`nums`* after changing the values at each inde
 - **Input:** `nums = [1], k = 0`
 - **Output:** `0`
 - **Explanation:** The score is max(nums) - min(nums) = 1 - 1 = 0.
+
 #### Example 2
 
 - **Input:** `nums = [0,10], k = 2`
 - **Output:** `6`
 - **Explanation:** Change nums to be [2, 8]. The score is max(nums) - min(nums) = 8 - 2 = 6.
+
 #### Example 3
 
 - **Input:** `nums = [1,3,6], k = 3`

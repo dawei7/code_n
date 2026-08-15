@@ -32,17 +32,17 @@ Return the employee DataFrame with every `salary` replaced by twice its original
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `employees = [{"name": "Jack", "salary": 19666}, {"name": "Piper", "salary": 74754}, {"name": "Mia", "salary": 62509}, {"name": "Ulysses", "salary": 54866}]`
-- Output: `[{"name": "Jack", "salary": 39332}, {"name": "Piper", "salary": 149508}, {"name": "Mia", "salary": 125018}, {"name": "Ulysses", "salary": 109732}]`
+- **Input:** `employees = [{"name": "Jack", "salary": 19666}, {"name": "Piper", "salary": 74754}, {"name": "Mia", "salary": 62509}, {"name": "Ulysses", "salary": 54866}]`
+- **Output:** `[{"name": "Jack", "salary": 39332}, {"name": "Piper", "salary": 149508}, {"name": "Mia", "salary": 125018}, {"name": "Ulysses", "salary": 109732}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `employees = [{"name": "Ada", "salary": 1}]`
-- Output: `[{"name": "Ada", "salary": 2}]`
+- **Input:** `employees = [{"name": "Ada", "salary": 1}]`
+- **Output:** `[{"name": "Ada", "salary": 2}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `employees = [{"name": "Lin", "salary": 3200}, {"name": "Sam", "salary": 3200}]`
-- Output: `[{"name": "Lin", "salary": 6400}, {"name": "Sam", "salary": 6400}]`
+- **Input:** `employees = [{"name": "Lin", "salary": 3200}, {"name": "Sam", "salary": 3200}]`
+- **Output:** `[{"name": "Lin", "salary": 6400}, {"name": "Sam", "salary": 6400}]`

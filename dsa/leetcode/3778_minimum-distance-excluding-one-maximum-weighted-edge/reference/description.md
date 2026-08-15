@@ -25,30 +25,23 @@ Return the least path-weight sum from node `0` to node $n - 1$ after omitting ex
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 5, edges = [[0,1,2],[1,2,7],[2,3,7],[3,4,4]]
+- **Input:** n = 5, edges = [[0,1,2],[1,2,7],[2,3,7],[3,4,4]]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-There is only one path going from node 0 to node 4: `0 -> 1 -> 2 -> 3 -> 4`.
+- **Explanation:** There is only one path going from node 0 to node 4: `0 -> 1 -> 2 -> 3 -> 4`.
 
 The edge weights on this path are 2, 7, 7, and 4.
 
 Excluding the first edge with maximum weight, which is `1 -> 2`, the cost of this path is $2 + 7 + 4 = 13$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,50000]]
+- **Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,50000]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are two paths going from node 0 to node 2:
+- **Explanation:** There are two paths going from node 0 to node 2:
 
 - `0 -> 1 -> 2`
 
@@ -63,8 +56,6 @@ The only edge weight on this path is 1.
 Excluding the first edge with maximum weight, which is `0 -> 2`, the cost of this path is 0.
 
 The minimum cost is $min(1, 0) = 0$.
-
-</div>
 
 ### 4. Constraints
 

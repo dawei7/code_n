@@ -16,8 +16,13 @@ Return an array `answer` of size `n` where $\text{answer}[i]$ is the **rank** of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `score`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return an array `answer` of size `n` where $\text{answer}[i]$ is the **rank** of
 - **Input:** $score = [5,4,3,2,1]$
 - **Output:** `["Gold Medal","Silver Medal","Bronze Medal","4","5"]`
 - **Explanation:** The placements are [1^st, 2^nd, 3^rd, 4^th, 5^th].
+
 #### Example 2
 
 - **Input:** $score = [10,3,8,9,4]$

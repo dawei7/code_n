@@ -8,8 +8,13 @@ Note that the start time and end time is **inclusive**: that is, you cannot atte
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `events`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Note that the start time and end time is **inclusive**: that is, you cannot atte
 - **Input:** $events = [[1,3,2],[4,5,2],[2,4,3]]$
 - **Output:** `4`
 - **Explanation:** Choose the green events, 0 and 1 for a sum of 2 + 2 = 4.
+
 #### Example 2
 
 ![Example 1 Diagram](images/2054b.png)
@@ -27,6 +33,7 @@ Note that the start time and end time is **inclusive**: that is, you cannot atte
 - **Input:** $events = [[1,3,2],[4,5,2],[1,5,5]]$
 - **Output:** `5`
 - **Explanation:** Choose event 2 for a sum of 5.
+
 #### Example 3
 
 ![](images/2054c.png)

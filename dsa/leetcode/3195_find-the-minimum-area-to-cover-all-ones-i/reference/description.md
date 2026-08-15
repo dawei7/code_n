@@ -6,39 +6,35 @@ Return the **minimum** possible area of the rectangle.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[0,1,0],[1,0,1]]
+- **Input:** grid = [[0,1,0],[1,0,1]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-![](images/examplerect0.png)
+- **Explanation:** ![](images/examplerect0.png)
 
 The smallest rectangle has a height of 2 and a width of 3, so it has an area of $2 * 3 = 6$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,0],[0,0]]
+- **Input:** grid = [[1,0],[0,0]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/examplerect1.png)
+- **Explanation:** ![](images/examplerect1.png)
 
 The smallest rectangle has both height and width 1, so its area is $1 * 1 = 1$.
-
-</div>
 
 ### 4. Constraints
 

@@ -42,11 +42,13 @@ Return the head `PolyNode` of the summed polynomial linked list in strictly decr
 - **Input:** $poly1 = [[1,1]], poly2 = [[1,0]]$
 - **Output:** `[[1,1],[1,0]]`
 - **Explanation:** poly1 = x. poly2 = 1. The sum is x + 1.
+
 #### Example 2
 
 - **Input:** $poly1 = [[2,2],[4,1],[3,0]], poly2 = [[3,2],[-4,1],[-1,0]]$
 - **Output:** `[[5,2],[2,0]]`
 - **Explanation:** poly1 = 2x^2 + 4x + 3. poly2 = 3x^2 - 4x - 1. The sum is 5x^2 + 2. Notice that we omit the "0x" term.
+
 #### Example 3
 
 - **Input:** $poly1 = [[1,2]], poly2 = [[-1,2]]$

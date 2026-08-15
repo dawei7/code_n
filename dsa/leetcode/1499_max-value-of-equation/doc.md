@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/max-value-of-equation/) |
 
 ## Problem Description
+
 ### Goal
 
 The array `points` describes points on a two-dimensional plane. Each entry is `[x_i, y_i]`, and the points are already ordered so their $x$-coordinates are strictly increasing.
@@ -22,6 +23,7 @@ $$
 At least one pair is guaranteed to satisfy the distance restriction. Return the largest equation value, which may be negative.
 
 ### Function Contract
+
 **Inputs**
 
 Let $N$ be the number of points.
@@ -37,20 +39,21 @@ Let $N$ be the number of points.
 Return the maximum value of $y_i+y_j+lvert x_i-x_j\rvert$ over all valid pairs $i<j$.
 
 ### Examples
-**Example 1**
 
-- Input: `points = [[1,3],[2,0],[5,10],[6,-10]], k = 1`
-- Output: `4`
-- Explanation: The valid pairs produce $3+0+1=4$ and $10-10+1=1$; the larger value is $4$.
+#### Example 1
 
-**Example 2**
+- **Input:** `points = [[1,3],[2,0],[5,10],[6,-10]], k = 1`
+- **Output:** `4`
+- **Explanation:** The valid pairs produce $3+0+1=4$ and $10-10+1=1$; the larger value is $4$.
 
-- Input: `points = [[0,0],[3,0],[9,2]], k = 3`
-- Output: `3`
-- Explanation: Only the first two points satisfy the distance limit, and their equation value is $3$.
+#### Example 2
 
-**Example 3**
+- **Input:** `points = [[0,0],[3,0],[9,2]], k = 3`
+- **Output:** `3`
+- **Explanation:** Only the first two points satisfy the distance limit, and their equation value is $3$.
 
-- Input: `points = [[1,1],[2,2],[3,3]], k = 2`
-- Output: `6`
-- Explanation: The first and third points give $1+3+2=6$.
+#### Example 3
+
+- **Input:** `points = [[1,1],[2,2],[3,3]], k = 2`
+- **Output:** `6`
+- **Explanation:** The first and third points give $1+3+2=6$.

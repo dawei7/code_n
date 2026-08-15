@@ -34,14 +34,14 @@ Return the number of nonempty contiguous substrings whose zero count divided by 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "0110011", num1 = 1, num2 = 2`
-- Output: `4`
-- Explanation: Three length-three intervals contain one zero and two ones, and one length-six interval contains two zeros and four ones.
+- **Input:** `s = "0110011", num1 = 1, num2 = 2`
+- **Output:** `4`
+- **Explanation:** Three length-three intervals contain one zero and two ones, and one length-six interval contains two zeros and four ones.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "10101", num1 = 3, num2 = 1`
-- Output: `0`
-- Explanation: No contiguous interval contains zeros and ones in the requested proportion.
+- **Input:** `s = "10101", num1 = 3, num2 = 1`
+- **Output:** `0`
+- **Explanation:** No contiguous interval contains zeros and ones in the requested proportion.

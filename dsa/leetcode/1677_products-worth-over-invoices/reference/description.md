@@ -56,7 +56,7 @@ Return a table with columns `name`, `rest`, `paid`, `canceled`, and `refunded` c
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Product table:
 +------------+-------+
 | product_id | name  |
@@ -75,14 +75,14 @@ Invoice table:
 | 3          | 1          | 0    | 1    | 1        | 1        |
 | 4          | 1          | 1    | 1    | 1        | 0        |
 +------------+------------+------+------+----------+----------+
-**Output:**
+- **Output:** 
 +-------+------+------+----------+----------+
 | name  | rest | paid | canceled | refunded |
 +-------+------+------+----------+----------+
 | bacon | 3    | 3    | 3        | 3        |
 | ham   | 2    | 4    | 5        | 3        |
 +-------+------+------+----------+----------+
-**Explanation:**
+- **Explanation:** 
 - The amount of money left to pay for bacon is 1 + 1 + 0 + 1 = 3
 - The amount of money paid for bacon is 1 + 0 + 1 + 1 = 3
 - The amount of money canceled for bacon is 0 + 1 + 1 + 1 = 3

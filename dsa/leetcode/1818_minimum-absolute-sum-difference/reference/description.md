@@ -16,8 +16,14 @@ Return the *minimum absolute sum difference **after** replacing at most one** **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,12 +35,14 @@ Return the *minimum absolute sum difference **after** replacing at most one** **
 - Replace the second element with the first: [1,<u>**7**</u>,5] => [1,<u>**1**</u>,5], or
 - Replace the second element with the third: [1,<u>**7**</u>,5] => [1,<u>**5**</u>,5].
 Both will yield an absolute sum difference of |1-2| + (|1-3| or |5-3|) + |5-5| = 3.
+
 #### Example 2
 
 - **Input:** $nums1 = [2,4,6,8,10], nums2 = [2,4,6,8,10]$
 - **Output:** `0`
 - **Explanation:** nums1 is equal to nums2 so no replacement is needed. This will result in an
 absolute sum difference of 0.
+
 #### Example 3
 
 - **Input:** $nums1 = [1,10,4,4,2,7], nums2 = [9,3,5,1,7,4]$

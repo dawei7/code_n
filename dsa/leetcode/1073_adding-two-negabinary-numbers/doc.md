@@ -36,18 +36,18 @@ Each input has no leading zeros: it is either `[0]` or begins with `1`. Add the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr1 = [1, 1, 1, 1, 1], arr2 = [1, 0, 1]`
-- Output: `[1, 0, 0, 0, 0]`
-- Explanation: The inputs represent 11 and 5, while the output represents 16.
+- **Input:** `arr1 = [1, 1, 1, 1, 1], arr2 = [1, 0, 1]`
+- **Output:** `[1, 0, 0, 0, 0]`
+- **Explanation:** The inputs represent 11 and 5, while the output represents 16.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr1 = [0], arr2 = [0]`
-- Output: `[0]`
+- **Input:** `arr1 = [0], arr2 = [0]`
+- **Output:** `[0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr1 = [0], arr2 = [1]`
-- Output: `[1]`
+- **Input:** `arr1 = [0], arr2 = [1]`
+- **Output:** `[1]`

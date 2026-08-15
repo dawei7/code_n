@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/rearrange-characters-to-make-target-string/) |
 
 ## Problem Description
+
 ### Goal
+
 Two 0-indexed strings, `s` and `target`, contain lowercase English letters.
 Letters may be taken from `s` and rearranged to form copies of `target`.
 Each occurrence in `s` can be used at most once, but unused letters do not
@@ -21,6 +23,7 @@ required frequency of each letter affects the answer; the original positions
 do not.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: The source string whose individual letter occurrences may be consumed.
@@ -37,17 +40,18 @@ The greatest nonnegative integer number of complete copies of `target` that
 the letters of `s` can form without reusing an occurrence.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "ilovecodingonleetcode"`, `target = "code"`
-- Output: `2`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "ilovecodingonleetcode"`, `target = "code"`
+- **Output:** `2`
 
-- Input: `s = "abcba"`, `target = "abc"`
-- Output: `1`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "abcba"`, `target = "abc"`
+- **Output:** `1`
 
-- Input: `s = "abbaccaddaeea"`, `target = "aaaaa"`
-- Output: `1`
+#### Example 3
+
+- **Input:** `s = "abbaccaddaeea"`, `target = "aaaaa"`
+- **Output:** `1`

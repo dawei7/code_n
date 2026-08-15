@@ -32,20 +32,20 @@ The constraints are $1\leq n\leq10$ and $0\leq x,y\leq100$ for every point.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[1,1],[1,3],[3,1],[3,3]]`
-- Output: `4`
-- Explanation: The four points form an empty square with width and height two.
+- **Input:** `points = [[1,1],[1,3],[3,1],[3,3]]`
+- **Output:** `4`
+- **Explanation:** The four points form an empty square with width and height two.
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[1,1],[1,3],[3,1],[3,3],[2,2]]`
-- Output: `-1`
-- Explanation: The only possible rectangle contains `[2,2]` in its interior.
+- **Input:** `points = [[1,1],[1,3],[3,1],[3,3],[2,2]]`
+- **Output:** `-1`
+- **Explanation:** The only possible rectangle contains `[2,2]` in its interior.
 
-**Example 3**
+#### Example 3
 
-- Input: `points = [[1,1],[1,3],[3,1],[3,3],[1,2],[3,2]]`
-- Output: `2`
-- Explanation: The middle boundary points invalidate the height-two rectangle but serve as corners of valid height-one rectangles.
+- **Input:** `points = [[1,1],[1,3],[3,1],[3,3],[1,2],[3,2]]`
+- **Output:** `2`
+- **Explanation:** The middle boundary points invalidate the height-two rectangle but serve as corners of valid height-one rectangles.

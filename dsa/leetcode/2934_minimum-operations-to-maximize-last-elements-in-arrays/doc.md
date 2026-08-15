@@ -40,20 +40,20 @@ are $1\le n\le1000$ and $1\le\texttt{nums1[i]},\texttt{nums2[i]}\le10^9$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1, 2, 7], nums2 = [4, 5, 3]`
-- Output: `1`
-- Explanation: Swap the last pair, producing final maxima 3 and 7.
+- **Input:** `nums1 = [1, 2, 7], nums2 = [4, 5, 3]`
+- **Output:** `1`
+- **Explanation:** Swap the last pair, producing final maxima 3 and 7.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [2, 3, 4, 5, 9], nums2 = [8, 8, 4, 4, 4]`
-- Output: `2`
-- Explanation: Swap indices 4 and 3; the resulting last values 4 and 9 are maxima of their arrays.
+- **Input:** `nums1 = [2, 3, 4, 5, 9], nums2 = [8, 8, 4, 4, 4]`
+- **Output:** `2`
+- **Explanation:** Swap indices 4 and 3; the resulting last values 4 and 9 are maxima of their arrays.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1, 5, 4], nums2 = [2, 5, 3]`
-- Output: `-1`
-- Explanation: Neither orientation of the last pair can dominate every earlier vertical pair.
+- **Input:** `nums1 = [1, 5, 4], nums2 = [2, 5, 3]`
+- **Output:** `-1`
+- **Explanation:** Neither orientation of the last pair can dominate every earlier vertical pair.

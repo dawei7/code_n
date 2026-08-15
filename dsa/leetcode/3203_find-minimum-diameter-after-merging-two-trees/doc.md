@@ -37,14 +37,14 @@ Let $N=n+m$ be the total number of nodes.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges1 = [[0,1],[0,2],[0,3]], edges2 = [[0,1]]`
-- Output: `3`
-- Explanation: Connect node `0` of the first tree to either node of the second tree.
+- **Input:** `edges1 = [[0,1],[0,2],[0,3]], edges2 = [[0,1]]`
+- **Output:** `3`
+- **Explanation:** Connect node `0` of the first tree to either node of the second tree.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges1 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]], edges2 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]]`
-- Output: `5`
-- Explanation: Connecting a center of each tree, such as node `0` to node `0`, minimizes the longest new cross-tree path.
+- **Input:** `edges1 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]], edges2 = [[0,1],[0,2],[0,3],[2,4],[2,5],[3,6],[2,7]]`
+- **Output:** `5`
+- **Explanation:** Connecting a center of each tree, such as node `0` to node `0`, minimizes the longest new cross-tree path.

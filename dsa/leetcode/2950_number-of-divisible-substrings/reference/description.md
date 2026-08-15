@@ -103,12 +103,14 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - **Input:** $word = "asdf"$
 - **Output:** `6`
 - **Explanation:** The table above contains the details about every substring of word, and we can see that 6 of them are divisible.
+
 #### Example 2
 
 - **Input:** $word = "bdh"$
 - **Output:** `4`
 - **Explanation:** The 4 divisible substrings are: "b", "d", "h", "bdh".
 It can be shown that there are no other substrings of word that are divisible.
+
 #### Example 3
 
 - **Input:** $word = "abcd"$

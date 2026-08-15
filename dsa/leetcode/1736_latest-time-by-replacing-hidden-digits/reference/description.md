@@ -8,8 +8,13 @@ Return *the latest valid time you can get from* `time`* by replacing the hidden*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `time`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -18,10 +23,12 @@ Return *the latest valid time you can get from* `time`* by replacing the hidden*
 - **Input:** $time = "2?:?0"$
 - **Output:** `"23:50"`
 - **Explanation:** The latest hour beginning with the digit '2' is 23 and the latest minute ending with the digit '0' is 50.
+
 #### Example 2
 
 - **Input:** $time = "0?:3?"$
 - **Output:** `"09:39"`
+
 #### Example 3
 
 - **Input:** $time = "1?:22"$

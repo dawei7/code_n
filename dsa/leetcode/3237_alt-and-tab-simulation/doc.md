@@ -33,14 +33,14 @@ Return the final permutation after applying every move-to-front query.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `windows = [1, 2, 3]`, `queries = [3, 3, 2]`
-- Output: `[2, 3, 1]`
-- Explanation: The orders become `[3, 1, 2]`, `[3, 1, 2]`, and finally `[2, 3, 1]`.
+- **Input:** `windows = [1, 2, 3]`, `queries = [3, 3, 2]`
+- **Output:** `[2, 3, 1]`
+- **Explanation:** The orders become `[3, 1, 2]`, `[3, 1, 2]`, and finally `[2, 3, 1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `windows = [1, 4, 2, 3]`, `queries = [4, 1, 3]`
-- Output: `[3, 1, 4, 2]`
-- Explanation: The most recently queried distinct window is `3`, followed by `1` and `4`.
+- **Input:** `windows = [1, 4, 2, 3]`, `queries = [4, 1, 3]`
+- **Output:** `[3, 1, 4, 2]`
+- **Explanation:** The most recently queried distinct window is `3`, followed by `1` and `4`.

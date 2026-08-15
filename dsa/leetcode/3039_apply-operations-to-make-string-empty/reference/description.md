@@ -18,8 +18,13 @@ Return *the value of the string *`s`* right **before** applying the **last** ope
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Return *the value of the string *`s`* right **before** applying the **last** ope
 - **Input:** `s = "aabcbbca"`
 - **Output:** `"ba"`
 - **Explanation:** Explained in the statement.
+
 #### Example 2
 
 - **Input:** `s = "abcd"`

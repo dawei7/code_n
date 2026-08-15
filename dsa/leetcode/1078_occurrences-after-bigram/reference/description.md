@@ -6,8 +6,15 @@ Return *an array of all the words* `third` *for each occurrence of* `"first seco
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+- `first`: Input parameter (`str`).
+- `second`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -15,6 +22,7 @@ Return *an array of all the words* `third` *for each occurrence of* `"first seco
 
 - **Input:** $text = "alice is a good girl she is a good student", first = "a", second = "good"$
 - **Output:** `["girl","student"]`
+
 #### Example 2
 
 - **Input:** $text = "we will we will rock you", first = "we", second = "will"$

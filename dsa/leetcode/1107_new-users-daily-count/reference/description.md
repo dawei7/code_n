@@ -40,7 +40,7 @@ Return one row for each qualifying date that has at least one new user. Dates wi
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Traffic table:
 +---------+----------+---------------+
 | user_id | activity | activity_date |
@@ -61,14 +61,13 @@ Traffic table:
 | 5       | login    | 2019-06-21    |
 | 5       | logout   | 2019-06-21    |
 +---------+----------+---------------+
-**Output:**
+- **Output:** 
 +------------+-------------+
 | login_date | user_count  |
 +------------+-------------+
 | 2019-05-01 | 1           |
 | 2019-06-21 | 2           |
 +------------+-------------+
-**Explanation:**
-Note that we only care about dates with non zero user count.
+- **Explanation:** Note that we only care about dates with non zero user count.
 The user with id 5 first logged in on 2019-03-01 so he's not counted on 2019-06-21.
 ```

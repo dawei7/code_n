@@ -33,20 +33,20 @@ Let $C=mn$ be the number of matrix cells.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[5,2],[1,6]], k = 1`
-- Output: `7`
-- Explanation: The four coordinate values are `5,7,4,0`; the largest is $7$.
+- **Input:** `matrix = [[5,2],[1,6]], k = 1`
+- **Output:** `7`
+- **Explanation:** The four coordinate values are `5,7,4,0`; the largest is $7$.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[5,2],[1,6]], k = 2`
-- Output: `5`
-- Explanation: Sorting the coordinate values in descending order gives `7,5,4,0`.
+- **Input:** `matrix = [[5,2],[1,6]], k = 2`
+- **Output:** `5`
+- **Explanation:** Sorting the coordinate values in descending order gives `7,5,4,0`.
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[5,2],[1,6]], k = 3`
-- Output: `4`
-- Explanation: The prefix rectangle ending at `(1,0)` has XOR `5 ^ 1 = 4`.
+- **Input:** `matrix = [[5,2],[1,6]], k = 3`
+- **Output:** `4`
+- **Explanation:** The prefix rectangle ending at `(1,0)` has XOR `5 ^ 1 = 4`.

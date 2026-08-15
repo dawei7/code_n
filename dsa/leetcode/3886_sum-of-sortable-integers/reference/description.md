@@ -28,12 +28,11 @@ Return the sum of all positive divisors $k$ of $n$ for which the permitted block
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,2]
+- **Input:** nums = [3,1,2]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - For $n = 3$, possible divisors are 1 and 3.
 
@@ -43,15 +42,13 @@ Return the sum of all positive divisors $k$ of $n$ for which the permitted block
 
 - Only $k = 3$ is sortable. Hence, the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [7,6,5]
+- **Input:** nums = [7,6,5]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - For $n = 3$, possible divisors are 1 and 3.
 
@@ -61,21 +58,17 @@ Return the sum of all positive divisors $k$ of $n$ for which the permitted block
 
 - No `k` is sortable. Hence, the answer is 0.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,8]
+- **Input:** nums = [5,8]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - For $n = 2$, possible divisors are 1 and 2.
 
 - Since `[5, 8]` is already sorted, every divisor is sortable. Hence, the answer is $1 + 2 = 3$.
-
-</div>
 
 ### 4. Constraints
 

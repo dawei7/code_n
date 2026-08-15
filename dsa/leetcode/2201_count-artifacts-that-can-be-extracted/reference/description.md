@@ -20,8 +20,15 @@ The test cases are generated such that:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `artifacts`: Input parameter (`List[List[int]]`).
+- `dig`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,11 +38,11 @@ The test cases are generated such that:
 
 - **Input:** $n = 2, artifacts = [[0,0,0,0],[0,1,1,1]], dig = [[0,0],[0,1]]$
 - **Output:** `1`
-- **Explanation:**
-The different colors represent different artifacts. Excavated cells are labeled with a 'D' in the grid.
+- **Explanation:** The different colors represent different artifacts. Excavated cells are labeled with a 'D' in the grid.
 There is 1 artifact that can be extracted, namely the red artifact.
 The blue artifact has one part in cell (1,1) which remains uncovered, so we cannot extract it.
 Thus, we return 1.
+
 #### Example 2
 
 ![](images/untitled-diagram-1.jpg)

@@ -41,6 +41,7 @@ Return `true` when every filled cell respects the row, column, and sub-box rules
 ,[".",".",".","4","1","9",".",".","5"]
 ,[".",".",".",".","8",".",".","7","9"]]
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** `board =`

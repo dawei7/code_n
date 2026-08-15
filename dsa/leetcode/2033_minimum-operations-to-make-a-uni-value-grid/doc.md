@@ -38,19 +38,19 @@ Let $P = MN$ be the number of cells.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[2, 4], [6, 8]], x = 2`
-- Output: `4`
-- Explanation: Targeting `4` costs one operation for `2`, none for `4`, one
+- **Input:** `grid = [[2, 4], [6, 8]], x = 2`
+- **Output:** `4`
+- **Explanation:** Targeting `4` costs one operation for `2`, none for `4`, one
   for `6`, and two for `8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 5], [2, 3]], x = 1`
-- Output: `5`
+- **Input:** `grid = [[1, 5], [2, 3]], x = 1`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1, 2], [3, 4]], x = 2`
-- Output: `-1`
+- **Input:** `grid = [[1, 2], [3, 4]], x = 2`
+- **Output:** `-1`

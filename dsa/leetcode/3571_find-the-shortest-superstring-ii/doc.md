@@ -33,16 +33,16 @@ Return any minimum-length string containing both `s1` and `s2` as substrings.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "aba", s2 = "bab"`
-- Output: `"abab"`
-- Explanation: The suffix `"ba"` of the first string matches the prefix of the second, so only one new character is needed. `"baba"` is another valid minimum-length answer.
+- **Input:** `s1 = "aba", s2 = "bab"`
+- **Output:** `"abab"`
+- **Explanation:** The suffix `"ba"` of the first string matches the prefix of the second, so only one new character is needed. `"baba"` is another valid minimum-length answer.
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "aa", s2 = "aaa"`
-- Output: `"aaa"`
-- Explanation: The longer string already contains the shorter one.
+- **Input:** `s1 = "aa", s2 = "aaa"`
+- **Output:** `"aaa"`
+- **Explanation:** The longer string already contains the shorter one.
 
 ---

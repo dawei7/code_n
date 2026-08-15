@@ -8,8 +8,13 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 [2,3], range = 3 - 2 = 1
 [1,2,3], range = 3 - 1 = 2
 So the sum of all ranges is 0 + 0 + 0 + 1 + 1 + 2 = 4.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,3]`
@@ -37,6 +43,7 @@ So the sum of all ranges is 0 + 0 + 0 + 1 + 1 + 2 = 4.
 [3,3], range = 3 - 3 = 0
 [1,3,3], range = 3 - 1 = 2
 So the sum of all ranges is 0 + 0 + 0 + 2 + 0 + 2 = 4.
+
 #### Example 3
 
 - **Input:** `nums = [4,-2,-3,4,1]`

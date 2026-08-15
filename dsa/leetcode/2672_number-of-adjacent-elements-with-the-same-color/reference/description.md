@@ -10,19 +10,24 @@ Return an array `answer` of the same length as `queries` where $\text{answer}[i]
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, queries = [[0,2],[1,2],[3,1],[1,1],[2,1]]
+- **Input:** n = 4, queries = [[0,2],[1,2],[3,1],[1,1],[2,1]]
 
-**Output:** [0,1,1,0,2]
+- **Output:** [0,1,1,0,2]
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially array colors = [0,0,0,0], where 0 denotes uncolored elements of the array.
 
@@ -36,19 +41,13 @@ Return an array `answer` of the same length as `queries` where $\text{answer}[i]
 
 - After the 5^th query colors = [2,1,1,1]. The count of adjacent pairs with the same color is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1, queries = [[0,100000]]
+- **Input:** n = 1, queries = [[0,100000]]
 
-**Output:** [0]
+- **Output:** [0]
 
-**Explanation:**
-
-After the 1^st query colors = [100000]. The count of adjacent pairs with the same color is 0.
-
-</div>
+- **Explanation:** After the 1^st query colors = [100000]. The count of adjacent pairs with the same color is 0.
 
 ### 4. Constraints
 

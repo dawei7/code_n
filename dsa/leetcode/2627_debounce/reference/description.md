@@ -32,8 +32,7 @@ calls = [
 {"t": 75, inputs: [2]}
 ]
 - **Output:** `[{"t": 125, inputs: [2]}]`
-- **Explanation:**
-let start = Date.now();
+- **Explanation:** let start = Date.now();
 function log(...inputs) {
 console.log([Date.now() - start, inputs ])
 }
@@ -42,6 +41,7 @@ setTimeout(() => dlog(1), 50);
 setTimeout(() => dlog(2), 75);
 The 1st call is cancelled by the 2nd call because the 2nd call occurred before 100ms
 The 2nd call is delayed by 50ms and executed at 125ms. The inputs were (2).
+
 #### Example 2
 
 - **Input:** ``
@@ -51,9 +51,9 @@ calls = [
 {"t": 100, inputs: [2]}
 ]
 - **Output:** `[{"t": 70, inputs: [1]}, {"t": 120, inputs: [2]}]`
-- **Explanation:**
-The 1st call is delayed until 70ms. The inputs were (1).
+- **Explanation:** The 1st call is delayed until 70ms. The inputs were (1).
 The 2nd call is delayed until 120ms. The inputs were (2).
+
 #### Example 3
 
 - **Input:** ``
@@ -64,8 +64,7 @@ calls = [
 {"t": 300, inputs: [5, 6]}
 ]
 - **Output:** `[{"t": 200, inputs: [1,2]}, {"t": 450, inputs: [5, 6]}]`
-- **Explanation:**
-The 1st call is delayed by 150ms and ran at 200ms. The inputs were (1, 2).
+- **Explanation:** The 1st call is delayed by 150ms and ran at 200ms. The inputs were (1, 2).
 The 2nd call is cancelled by the 3rd call
 The 3rd call is delayed by 150ms and ran at 450ms. The inputs were (5, 6).
 

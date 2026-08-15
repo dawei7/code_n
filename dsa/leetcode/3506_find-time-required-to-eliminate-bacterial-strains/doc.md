@@ -35,14 +35,14 @@ Return the minimum possible time until all bacterial strains have been eliminate
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `timeReq = [10,4,5], splitTime = 2`
-- Output: `12`
-- Explanation: Split once. One descendant handles the 10-unit strain, while the other splits again and assigns the 4- and 5-unit strains to its two descendants. The last completion occurs at time $12$.
+- **Input:** `timeReq = [10,4,5], splitTime = 2`
+- **Output:** `12`
+- **Explanation:** Split once. One descendant handles the 10-unit strain, while the other splits again and assigns the 4- and 5-unit strains to its two descendants. The last completion occurs at time $12$.
 
-**Example 2**
+#### Example 2
 
-- Input: `timeReq = [10,4], splitTime = 5`
-- Output: `15`
-- Explanation: After one 5-unit split, the two descendants eliminate the strains in parallel. The slower branch finishes at time $15$.
+- **Input:** `timeReq = [10,4], splitTime = 5`
+- **Output:** `15`
+- **Explanation:** After one 5-unit split, the two descendants eliminate the strains in parallel. The slower branch finishes at time $15$.

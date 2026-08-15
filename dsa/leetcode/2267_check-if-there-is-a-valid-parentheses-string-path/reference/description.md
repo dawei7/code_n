@@ -22,8 +22,13 @@ Return `true` *if there exists a **valid parentheses string path** in the grid.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -37,6 +42,7 @@ Return `true` *if there exists a **valid parentheses string path** in the grid.*
 The first path shown results in the valid parentheses string "()(())".
 The second path shown results in the valid parentheses string "((()))".
 Note that there may be other valid parentheses string paths.
+
 #### Example 2
 
 ![](images/example2drawio.png)

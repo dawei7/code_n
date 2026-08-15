@@ -31,20 +31,20 @@ Return the largest order of any plus sign in the grid. An order-`1` plus consist
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`, `mines = [[4,2]]`
-- Output: `2`
-- Explanation: Several centers support one one-cell in all four directions, but no order-three plus survives the mine and boundaries.
+- **Input:** `n = 5`, `mines = [[4,2]]`
+- **Output:** `2`
+- **Explanation:** Several centers support one one-cell in all four directions, but no order-three plus survives the mine and boundaries.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`, `mines = [[0,0]]`
-- Output: `0`
-- Explanation: The only cell is a mine.
+- **Input:** `n = 1`, `mines = [[0,0]]`
+- **Output:** `0`
+- **Explanation:** The only cell is a mine.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`, `mines = []`
-- Output: `2`
-- Explanation: The center and its four adjacent cells form an order-two plus.
+- **Input:** `n = 3`, `mines = []`
+- **Output:** `2`
+- **Explanation:** The center and its four adjacent cells form an order-two plus.

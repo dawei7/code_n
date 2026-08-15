@@ -39,17 +39,17 @@ Return the minimum total number of single-character appends needed to make
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leetcode"`, `t = "coats"`
-- Output: `7`
+- **Input:** `s = "leetcode"`, `t = "coats"`
+- **Output:** `7`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "night"`, `t = "thing"`
-- Output: `0`
+- **Input:** `s = "night"`, `t = "thing"`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "a"`, `t = "b"`
-- Output: `2`
+- **Input:** `s = "a"`, `t = "b"`
+- **Output:** `2`

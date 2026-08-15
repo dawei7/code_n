@@ -27,6 +27,7 @@ The operation reuses the original nodes. For every original parent-child edge wh
 
 - **Input:** `root = [4,2,6,1,3,5,7], target = 2`
 - **Output:** `[[2,1],[4,3,6,null,null,5,7]]`
+
 #### Example 2
 
 - **Input:** `root = [1], target = 1`

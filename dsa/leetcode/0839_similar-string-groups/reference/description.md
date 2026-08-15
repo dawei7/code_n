@@ -10,8 +10,13 @@ We are given a list `strs` of strings where every string in `strs` is an anagram
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `strs`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ We are given a list `strs` of strings where every string in `strs` is an anagram
 
 - **Input:** $strs = ["tars","rats","arts","star"]$
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** $strs = ["omv","ovm"]$

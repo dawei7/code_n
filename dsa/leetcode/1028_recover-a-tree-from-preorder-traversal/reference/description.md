@@ -10,8 +10,10 @@ Given the output `traversal` of this traversal, recover the tree and return *its
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `recoverFromPreorder(traversal: str) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -21,12 +23,14 @@ Given the output `traversal` of this traversal, recover the tree and return *its
 
 - **Input:** $traversal = "1-2--3--4-5--6--7"$
 - **Output:** `[1,2,5,3,4,6,7]`
+
 #### Example 2
 
 ![](images/recover_tree_ex2.png)
 
 - **Input:** $traversal = "1-2--3---4-5--6---7"$
 - **Output:** `[1,2,5,3,null,6,null,4,null,7]`
+
 #### Example 3
 
 ![](images/recover_tree_ex3.png)

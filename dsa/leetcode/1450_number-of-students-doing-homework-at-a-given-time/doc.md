@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-students-doing-homework-at-a-given-time/) |
 
 ## Problem Description
+
 ### Goal
 
 Two equal-length arrays describe the homework interval for each student.
@@ -20,6 +21,7 @@ Given a particular `queryTime`, count how many students have an interval that
 contains that time. Each student contributes independently and at most once.
 
 ### Function Contract
+
 **Inputs**
 
 - `startTime`: a list of $n$ integer start times.
@@ -36,22 +38,23 @@ Return the number of indices $i$ for which
 $\texttt{startTime[i]} \le \texttt{queryTime} \le \texttt{endTime[i]}$.
 
 ### Examples
-**Example 1**
 
-- Input: `startTime = [1, 2, 3], endTime = [3, 2, 7], queryTime = 4`
-- Output: `1`
-- Explanation: Only the third student's interval `[3, 7]` contains time `4`.
+#### Example 1
 
-**Example 2**
+- **Input:** `startTime = [1, 2, 3], endTime = [3, 2, 7], queryTime = 4`
+- **Output:** `1`
+- **Explanation:** Only the third student's interval `[3, 7]` contains time `4`.
 
-- Input: `startTime = [4], endTime = [4], queryTime = 4`
-- Output: `1`
-- Explanation: A zero-duration interval still contains its shared start and
+#### Example 2
+
+- **Input:** `startTime = [4], endTime = [4], queryTime = 4`
+- **Output:** `1`
+- **Explanation:** A zero-duration interval still contains its shared start and
   finish time.
 
-**Example 3**
+#### Example 3
 
-- Input: `startTime = [1, 2, 5], endTime = [2, 5, 6], queryTime = 5`
-- Output: `2`
-- Explanation: Time `5` is the inclusive finish of the second interval and the
+- **Input:** `startTime = [1, 2, 5], endTime = [2, 5, 6], queryTime = 5`
+- **Output:** `2`
+- **Explanation:** Time `5` is the inclusive finish of the second interval and the
   inclusive start of the third.

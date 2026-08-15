@@ -12,8 +12,13 @@ Return `true`* if *`n`* is fascinating, or *`false`* otherwise*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return `true`* if *`n`* is fascinating, or *`false`* otherwise*.
 - **Input:** $n = 192$
 - **Output:** `true`
 - **Explanation:** We concatenate the numbers n = 192 and 2 * n = 384 and 3 * n = 576. The resulting number is 192384576. This number contains all the digits from 1 to 9 exactly once.
+
 #### Example 2
 
 - **Input:** $n = 100$

@@ -42,7 +42,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Products table:
 +------------+-------+
 | product_id | price |
@@ -60,15 +60,14 @@ Purchases table:
 | 2          | 1          | 4        |
 | 4          | 1          | 10       |
 +------------+------------+----------+
-**Output:**
+- **Output:** 
 +------------+----------+-------+
 | product_id | quantity | price |
 +------------+----------+-------+
 | 2          | 3        | 600   |
 | 1          | 4        | 400   |
 +------------+----------+-------+
-**Explanation:**
-Invoice 1: price = (2 * 100) = $200
+- **Explanation:** Invoice 1: price = (2 * 100) = $200
 Invoice 2: price = (4 * 100) + (3 * 200) = $1000
 Invoice 3: price = (1 * 200) = $200
 Invoice 4: price = (10 * 100) = $1000

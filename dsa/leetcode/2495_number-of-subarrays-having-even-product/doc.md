@@ -32,20 +32,20 @@ Return an integer equal to the number of non-empty contiguous subarrays of `nums
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [9, 6, 7, 13]`
-- Output: `6`
-- Explanation: Exactly the subarrays containing the value `6` have even products.
+- **Input:** `nums = [9, 6, 7, 13]`
+- **Output:** `6`
+- **Explanation:** Exactly the subarrays containing the value `6` have even products.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [7, 3, 5]`
-- Output: `0`
-- Explanation: Every element is odd, so every subarray product is odd.
+- **Input:** `nums = [7, 3, 5]`
+- **Output:** `0`
+- **Explanation:** Every element is odd, so every subarray product is odd.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 4, 6]`
-- Output: `6`
-- Explanation: Every non-empty subarray contains an even element, so all $3 \cdot 4 / 2 = 6$ subarrays qualify.
+- **Input:** `nums = [2, 4, 6]`
+- **Output:** `6`
+- **Explanation:** Every non-empty subarray contains an even element, so all $3 \cdot 4 / 2 = 6$ subarrays qualify.

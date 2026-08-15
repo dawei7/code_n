@@ -36,18 +36,18 @@ to an even integer.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 4`
-- Output: `2`
-- Explanation: `2` and `4` have even digit sums.
+- **Input:** `num = 4`
+- **Output:** `2`
+- **Explanation:** `2` and `4` have even digit sums.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 30`
-- Output: `14`
+- **Input:** `num = 30`
+- **Output:** `14`
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 1`
-- Output: `0`
+- **Input:** `num = 1`
+- **Output:** `0`

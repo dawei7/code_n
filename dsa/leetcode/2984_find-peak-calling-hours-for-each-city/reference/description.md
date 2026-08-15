@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Calls table:
 +-----------+--------------+---------------------+----------+
 | caller_id | recipient_id | call_time           | city     |
@@ -42,7 +42,7 @@ Calls table:
 | 11        | 3            | 2021-08-17 13:07:00 | New York |
 | 8         | 11           | 2021-08-17 14:22:22 | New York |
 +-----------+--------------+---------------------+----------+
-**Output:**
+- **Output:** 
 +----------+-------------------+-----------------+
 | city     | peak_calling_hour | number_of_calls |
 +----------+-------------------+-----------------+
@@ -50,8 +50,7 @@ Calls table:
 | New York | 14                | 1               |
 | New York | 13                | 1               |
 +----------+-------------------+-----------------+
-**Explanation:**
-For Houston:
+- **Explanation:** For Houston:
   - The peak time is 22:00, with a total of 3 calls recorded.
 For New York:
   - Both 13:00 and 14:00 hours have equal call counts of 1, so both times are considered peak hours.

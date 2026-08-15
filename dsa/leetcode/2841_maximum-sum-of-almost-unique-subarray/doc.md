@@ -34,20 +34,20 @@ The constraints are $1\le\lvert\texttt{nums}\rvert\le2\cdot10^4$, $1\le m\le k\l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 6, 7, 3, 1, 7], m = 3, k = 4`
-- Output: `18`
-- Explanation: All three length-four windows meet the distinct-value threshold. The first and last each sum to `18`, which is maximal.
+- **Input:** `nums = [2, 6, 7, 3, 1, 7], m = 3, k = 4`
+- **Output:** `18`
+- **Explanation:** All three length-four windows meet the distinct-value threshold. The first and last each sum to `18`, which is maximal.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 9, 9, 2, 4, 5, 4], m = 1, k = 3`
-- Output: `23`
-- Explanation: Requiring only one distinct value makes every length-three window valid; `[5, 9, 9]` has the greatest sum.
+- **Input:** `nums = [5, 9, 9, 2, 4, 5, 4], m = 1, k = 3`
+- **Output:** `23`
+- **Explanation:** Requiring only one distinct value makes every length-three window valid; `[5, 9, 9]` has the greatest sum.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 1, 2, 1, 2, 1], m = 3, k = 3`
-- Output: `0`
-- Explanation: Every length-three window contains only the values `1` and `2`, so none reaches three distinct values.
+- **Input:** `nums = [1, 2, 1, 2, 1, 2, 1], m = 3, k = 3`
+- **Output:** `0`
+- **Explanation:** Every length-three window contains only the values `1` and `2`, so none reaches three distinct values.

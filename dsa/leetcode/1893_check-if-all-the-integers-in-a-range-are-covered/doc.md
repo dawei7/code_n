@@ -33,23 +33,23 @@ Given inclusive target bounds `left` and `right`, determine whether every intege
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `ranges = [[1,2],[3,4],[5,6]], left = 2, right = 5`
-- Output: `true`
+- **Input:** `ranges = [[1,2],[3,4],[5,6]], left = 2, right = 5`
+- **Output:** `true`
 
 The three intervals collectively cover integers `2`, `3`, `4`, and `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `ranges = [[1,10],[10,20]], left = 21, right = 21`
-- Output: `false`
+- **Input:** `ranges = [[1,10],[10,20]], left = 21, right = 21`
+- **Output:** `false`
 
 Neither interval includes `21`.
 
-**Example 3**
+#### Example 3
 
-- Input: `ranges = [[1,2],[4,5]], left = 1, right = 5`
-- Output: `false`
+- **Input:** `ranges = [[1,2],[4,5]], left = 1, right = 5`
+- **Output:** `false`
 
 Integer `3` is the uncovered gap.

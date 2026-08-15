@@ -20,10 +20,12 @@ Return `true` if `num` looks identical when rotated 180 degrees, otherwise `fals
 
 - **Input:** $num = "69"$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $num = "88"$
 - **Output:** `true`
+
 #### Example 3
 
 - **Input:** $num = "962"$

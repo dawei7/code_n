@@ -32,6 +32,7 @@ Given an integer array `nums`, representing the `sequence`, that contains **uniq
 **Explanation**:
 Searching for value 7 is guaranteed to be found.
 Since the sequence has only one element, 7 will be chosen as the pivot. Because the pivot equals the target, the function will return true.
+
 #### Example 2
 
 - **Input:** `nums = [-1,5,2]`

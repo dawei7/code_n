@@ -36,7 +36,7 @@ To mask a phone number:
 
 - The masked phone number should have the form:
 
-		<li>`"***-***-XXXX"` if the country code has 0 digits.
+		- `"***-***-XXXX"` if the country code has 0 digits.
 
 - `"+*-***-***-XXXX"` if the country code has 1 digit.
 
@@ -44,13 +44,17 @@ To mask a phone number:
 
 - `"+***-***-***-XXXX"` if the country code has 3 digits.
 
-	</li>
 - `"XXXX"` is the last 4 digits of the **local number**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -60,6 +64,7 @@ To mask a phone number:
 - **Output:** `"l*****e@leetcode.com"`
 - **Explanation:** s is an email address.
 The name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.
+
 #### Example 2
 
 - **Input:** `s = "AB@qq.com"`
@@ -67,6 +72,7 @@ The name and domain are converted to lowercase, and the middle of the name is re
 - **Explanation:** s is an email address.
 The name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.
 Note that even though "ab" is 2 characters, it still must have 5 asterisks in the middle.
+
 #### Example 3
 
 - **Input:** `s = "1(234)567-890"`
@@ -81,15 +87,12 @@ Thus, the resulting masked number is "***-***-7890".
 
 - If `s` is an email:
 
-		<li>$8 \le \text{s.length} \le 40$
+		- $8 \le \text{s.length} \le 40$
 
 - `s` consists of uppercase and lowercase English letters and exactly one `'@'` symbol and `'.'` symbol.
 
-	</li>
 - If `s` is a phone number:
 
-		<li>$10 \le \text{s.length} \le 20$
+		- $10 \le \text{s.length} \le 20$
 
 - `s` consists of digits, spaces, and the symbols `'('`, `')'`, `'-'`, and `'+'`.
-
-	</li>

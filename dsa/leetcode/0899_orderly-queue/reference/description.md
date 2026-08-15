@@ -6,8 +6,14 @@ Return *the lexicographically smallest string you could have after applying the 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,15 +21,14 @@ Return *the lexicographically smallest string you could have after applying the 
 
 - **Input:** `s = "cba", k = 1`
 - **Output:** `"acb"`
-- **Explanation:**
-In the first move, we move the 1^st character 'c' to the end, obtaining the string "bac".
+- **Explanation:** In the first move, we move the 1^st character 'c' to the end, obtaining the string "bac".
 In the second move, we move the 1^st character 'b' to the end, obtaining the final result "acb".
+
 #### Example 2
 
 - **Input:** `s = "baaca", k = 3`
 - **Output:** `"aaabc"`
-- **Explanation:**
-In the first move, we move the 1^st character 'b' to the end, obtaining the string "aacab".
+- **Explanation:** In the first move, we move the 1^st character 'b' to the end, obtaining the string "aacab".
 In the second move, we move the 3^rd character 'c' to the end, obtaining the final result "aaabc".
 
 ### 4. Constraints

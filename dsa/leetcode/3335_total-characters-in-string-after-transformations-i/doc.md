@@ -31,14 +31,14 @@ The special character `z` is replaced by the two-character string `"ab"`, so the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcyy", t = 2`
-- Output: `7`
-- Explanation: The successive strings are `"bcdzz"` and `"cdeabab"`.
+- **Input:** `s = "abcyy", t = 2`
+- **Output:** `7`
+- **Explanation:** The successive strings are `"bcdzz"` and `"cdeabab"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "azbk", t = 1`
-- Output: `5`
-- Explanation: The transformed string is `"babcl"`; the original `z` contributes `"ab"`.
+- **Input:** `s = "azbk", t = 1`
+- **Output:** `5`
+- **Explanation:** The transformed string is `"babcl"`; the original `z` contributes `"ab"`.

@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-same-end-substrings/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed lowercase English string `s` and an array `queries`.
 Each query `[left, right]` selects the inclusive substring from index `left`
 through index `right`.
@@ -23,6 +25,7 @@ entirely inside that range that are same-end. Return the counts in the same
 order as the input queries.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: the lowercase English source string
@@ -38,14 +41,15 @@ An array whose entry at index `i` is the number of same-end substrings inside
 the inclusive range described by `queries[i]`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "abcaab", queries = [[0,0],[1,4],[2,5],[0,5]]`
-- Output: `[1,5,5,10]`
-- Explanation: Each range counts its singletons plus longer substrings whose endpoint characters match.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "abcaab", queries = [[0,0],[1,4],[2,5],[0,5]]`
+- **Output:** `[1,5,5,10]`
+- **Explanation:** Each range counts its singletons plus longer substrings whose endpoint characters match.
 
-- Input: `s = "abcd", queries = [[0,3]]`
-- Output: `[4]`
-- Explanation: All letters differ, so only the four single-character substrings qualify.
+#### Example 2
+
+- **Input:** `s = "abcd", queries = [[0,3]]`
+- **Output:** `[4]`
+- **Explanation:** All letters differ, so only the four single-character substrings qualify.

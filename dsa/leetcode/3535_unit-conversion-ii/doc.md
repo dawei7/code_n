@@ -39,14 +39,14 @@ The number of units is $n = \lvert\texttt{conversions}\rvert+1$, with $2 \le n \
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `conversions = [[0,1,2],[0,2,6]], queries = [[1,2],[1,0]]`
-- Output: `[3,500000004]`
-- Explanation: One unit of `1` equals three units of `2`. Reversing the first conversion gives $1/2$, represented modulo $10^9+7$ by `500000004`.
+- **Input:** `conversions = [[0,1,2],[0,2,6]], queries = [[1,2],[1,0]]`
+- **Output:** `[3,500000004]`
+- **Explanation:** One unit of `1` equals three units of `2`. Reversing the first conversion gives $1/2$, represented modulo $10^9+7$ by `500000004`.
 
-**Example 2**
+#### Example 2
 
-- Input: `conversions = [[0,1,2],[0,2,6],[0,3,8],[2,4,2],[2,5,4],[3,6,3]], queries = [[1,2],[0,4],[6,5],[4,6],[6,1]]`
-- Output: `[3,12,1,2,83333334]`
-- Explanation: Conversion chains may pass through their common root; for example, one unit of `0` equals twelve units of `4`.
+- **Input:** `conversions = [[0,1,2],[0,2,6],[0,3,8],[2,4,2],[2,5,4],[3,6,3]], queries = [[1,2],[0,4],[6,5],[4,6],[6,1]]`
+- **Output:** `[3,12,1,2,83333334]`
+- **Explanation:** Conversion chains may pass through their common root; for example, one unit of `0` equals twelve units of `4`.

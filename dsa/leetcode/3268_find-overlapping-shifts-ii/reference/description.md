@@ -28,7 +28,6 @@ The query result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `EmployeeShifts` table:
@@ -62,25 +61,25 @@ The query result format is in the following example.
 
 - Employee 1 has 3 shifts:
 
-		<li>2023-10-01 09:00:00 to 2023-10-01 17:00:00
+		- 2023-10-01 09:00:00 to 2023-10-01 17:00:00
 
 - 2023-10-01 15:00:00 to 2023-10-01 23:00:00
 
 - 2023-10-01 16:00:00 to 2023-10-02 00:00:00
 
-	The maximum number of overlapping shifts is 3 (from 16:00 to 17:00). The total overlap duration is: - 2 hours (15:00-17:00) between 1st and 2nd shifts - 1 hour (16:00-17:00) between 1st and 3rd shifts - 7 hours (16:00-23:00) between 2nd and 3rd shifts Total: 10 hours = 600 minutes</li>
+	The maximum number of overlapping shifts is 3 (from 16:00 to 17:00). The total overlap duration is: - 2 hours (15:00-17:00) between 1st and 2nd shifts - 1 hour (16:00-17:00) between 1st and 3rd shifts - 7 hours (16:00-23:00) between 2nd and 3rd shifts Total: 10 hours = 600 minutes
+
 - Employee 2 has 2 shifts:
 
-		<li>2023-10-01 09:00:00 to 2023-10-01 17:00:00
+		- 2023-10-01 09:00:00 to 2023-10-01 17:00:00
 
 - 2023-10-01 11:00:00 to 2023-10-01 19:00:00
 
-	The maximum number of overlapping shifts is 2. The total overlap duration is 6 hours (11:00-17:00) = 360 minutes.</li>
+	The maximum number of overlapping shifts is 2. The total overlap duration is 6 hours (11:00-17:00) = 360 minutes.
+
 - Employee 3 has only 1 shift, so there are no overlaps.
 
 The output table contains the employee_id, the maximum number of simultaneous overlaps, and the total overlap duration in minutes for each employee, ordered by employee_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

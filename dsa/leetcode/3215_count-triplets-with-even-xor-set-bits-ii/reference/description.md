@@ -10,26 +10,19 @@ Given three integer arrays `a`, `b`, and `c`, return the number of triplets $(a[
 
 #### Example 1
 
-<div class="example-block">
-**Input:** a = [1], b = [2], c = [3]
+- **Input:** a = [1], b = [2], c = [3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only triplet is $(a[0], b[0], c[0])$ and their `XOR` is: $1 XOR 2 XOR 3 = \text{00}_{2}$.
 
-The only triplet is $(a[0], b[0], c[0])$ and their `XOR` is: $1 XOR 2 XOR 3 = \text{00}_{2}$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** a = [1,1], b = [2,3], c = [1,5]
+- **Input:** a = [1,1], b = [2,3], c = [1,5]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Consider these four triplets:
+- **Explanation:** Consider these four triplets:
 
 - $(a[0], b[1], c[0])$: $1 XOR 3 XOR 1 = \text{011}_{2}$
 
@@ -38,8 +31,6 @@ Consider these four triplets:
 - $(a[0], b[0], c[1])$: $1 XOR 2 XOR 5 = \text{110}_{2}$
 
 - $(a[1], b[0], c[1])$: $1 XOR 2 XOR 5 = \text{110}_{2}$
-
-</div>
 
 ### 4. Constraints
 

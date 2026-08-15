@@ -31,17 +31,17 @@ Return the minimum area of a rectangle whose four vertices belong to `points`, o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[1,2],[2,1],[1,0],[0,1]]`
-- Output: `2.00000`
+- **Input:** `points = [[1,2],[2,1],[1,0],[0,1]]`
+- **Output:** `2.00000`
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[0,1],[2,1],[1,1],[1,0],[2,0]]`
-- Output: `1.00000`
+- **Input:** `points = [[0,1],[2,1],[1,1],[1,0],[2,0]]`
+- **Output:** `1.00000`
 
-**Example 3**
+#### Example 3
 
-- Input: `points = [[0,3],[1,2],[3,1],[1,3],[2,1]]`
-- Output: `0`
+- **Input:** `points = [[0,3],[1,2],[3,1],[1,3],[2,1]]`
+- **Output:** `0`

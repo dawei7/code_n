@@ -10,8 +10,14 @@ Return* an integer denoting the **minimum** absolute difference between two elem
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return* an integer denoting the **minimum** absolute difference between two elem
 - **Explanation:** We can select nums[0] = 4 and nums[3] = 4.
 They are at least 2 indices apart, and their absolute difference is the minimum, 0.
 It can be shown that 0 is the optimal answer.
+
 #### Example 2
 
 - **Input:** `nums = [5,3,2,10,15], x = 1`
@@ -29,6 +36,7 @@ It can be shown that 0 is the optimal answer.
 - **Explanation:** We can select nums[1] = 3 and nums[2] = 2.
 They are at least 1 index apart, and their absolute difference is the minimum, 1.
 It can be shown that 1 is the optimal answer.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3,4], x = 3`

@@ -12,8 +12,13 @@ A **subsequence** is a sequence that can be derived from another sequence by del
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `binary`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,12 +28,14 @@ A **subsequence** is a sequence that can be derived from another sequence by del
 - **Output:** `2`
 - **Explanation:** The good subsequences of binary are ["0", "0", "1"].
 The unique good subsequences are "0" and "1".
+
 #### Example 2
 
 - **Input:** $binary = "11"$
 - **Output:** `2`
 - **Explanation:** The good subsequences of binary are ["1", "1", "11"].
 The unique good subsequences are "1" and "11".
+
 #### Example 3
 
 - **Input:** $binary = "101"$

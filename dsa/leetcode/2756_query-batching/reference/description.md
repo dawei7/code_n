@@ -39,8 +39,7 @@ calls = [
 {"resolved": "b!", "time": 110},
 {"resolved": "c!", "time": 110}
 ]
-- **Explanation:**
-const batcher = new QueryBatcher(queryMultiple, 100);
+- **Explanation:** const batcher = new QueryBatcher(queryMultiple, 100);
 setTimeout(() => batcher.getValue('a'), 10); // "a!" at t=10ms
 setTimeout(() => batcher.getValue('b'), 20); // "b!" at t=110ms
 setTimeout(() => batcher.getValue('c'), 30); // "c!" at t=110ms
@@ -49,6 +48,7 @@ At t=10ms, getValue('a') is called, queryMultiple(['a']) is immediately called a
 At t=20ms, getValue('b') is called but the query is queued
 At t=30ms, getValue('c') is called but the query is queued.
 At t=110ms, queryMultiple(['a', 'b']) is called and the results are immediately returned.
+
 #### Example 2
 
 - **Input:** ``
@@ -67,8 +67,8 @@ calls = [
 {"resolved": "b!", "time": 210},
 {"resolved": "c!", "time": 210}
 ]
-- **Explanation:**
-This example is the same as example 1 except there is a 100ms delay in queryMultiple. The results are the same except the promises resolve 100ms later.
+- **Explanation:** This example is the same as example 1 except there is a 100ms delay in queryMultiple. The results are the same except the promises resolve 100ms later.
+
 #### Example 3
 
 - **Input:** ``
@@ -93,7 +93,7 @@ calls = [
 {"resolved":"d!","time":410},
 {"resolved":"f!","time":450}
 ]
-- **Explanation:**
+- **Explanation:** 
 **queryMultiple(['a']) is called at t=10ms, it is resolved at t=110ms
 queryMultiple(['b', 'c', 'd']) is called at t=110ms, it is resolved at 410ms
 queryMultiple(['e']) is called at t=250ms, it is resolved at 350ms

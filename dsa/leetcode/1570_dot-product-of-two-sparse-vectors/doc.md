@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/dot-product-of-two-sparse-vectors/) |
 
 ## Problem Description
+
 ### Goal
 
 Design a `SparseVector` from a dense integer array while retaining an efficient representation of its nonzero entries. Two vectors used together always have the same dimension.
@@ -16,6 +17,7 @@ Design a `SparseVector` from a dense integer array while retaining an efficient 
 The method `dotProduct(vec)` must return the sum of the products of values at matching indices. Most values may be zero, so the multiplication stage should take advantage of sparsity instead of examining every coordinate again.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums1`: The dense values of the first vector of dimension $N$.
@@ -33,17 +35,18 @@ $$
 $$
 
 ### Examples
-**Example 1**
 
-- Input: `nums1 = [1,0,0,2,3], nums2 = [0,3,0,4,0]`
-- Output: `8`
+#### Example 1
 
-**Example 2**
+- **Input:** `nums1 = [1,0,0,2,3], nums2 = [0,3,0,4,0]`
+- **Output:** `8`
 
-- Input: `nums1 = [0,1,0,0,0], nums2 = [0,0,0,0,2]`
-- Output: `0`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums1 = [0,1,0,0,0], nums2 = [0,0,0,0,2]`
+- **Output:** `0`
 
-- Input: `nums1 = [0,1,0,0,2,0,0], nums2 = [1,0,0,0,3,0,4]`
-- Output: `6`
+#### Example 3
+
+- **Input:** `nums1 = [0,1,0,0,2,0,0], nums2 = [1,0,0,0,3,0,4]`
+- **Output:** `6`

@@ -50,24 +50,24 @@ where $k=r-l+1$. Return `0` if no nonempty interval qualifies.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `chargeTimes = [3,6,1,3,4]`,
+- **Input:** `chargeTimes = [3,6,1,3,4]`,
   `runningCosts = [2,1,3,4,5]`, `budget = 25`
-- Output: `3`
-- Explanation: The first three robots cost $6 + 3(2+1+3)=24$.
+- **Output:** `3`
+- **Explanation:** The first three robots cost $6 + 3(2+1+3)=24$.
 
-**Example 2**
+#### Example 2
 
-- Input: `chargeTimes = [11,12,19]`, `runningCosts = [10,8,7]`,
+- **Input:** `chargeTimes = [11,12,19]`, `runningCosts = [10,8,7]`,
   `budget = 19`
-- Output: `0`
-- Explanation: Every individual robot already exceeds the budget.
+- **Output:** `0`
+- **Explanation:** Every individual robot already exceeds the budget.
 
-**Example 3**
+#### Example 3
 
-- Input: `chargeTimes = [9,1,1]`, `runningCosts = [1,1,1]`,
+- **Input:** `chargeTimes = [9,1,1]`, `runningCosts = [1,1,1]`,
   `budget = 5`
-- Output: `2`
-- Explanation: After excluding the first robot, the last two cost
+- **Output:** `2`
+- **Explanation:** After excluding the first robot, the last two cost
   $1 + 2(1+1)=5$.

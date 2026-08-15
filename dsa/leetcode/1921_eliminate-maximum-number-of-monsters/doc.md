@@ -33,23 +33,23 @@ Choose the firing order that eliminates as many monsters as possible. Return tha
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `dist = [1, 3, 4], speed = [1, 1, 1]`
-- Output: `3`
+- **Input:** `dist = [1, 3, 4], speed = [1, 1, 1]`
+- **Output:** `3`
 
 Their arrival times are one, three, and four minutes, allowing shots at minutes zero, one, and two.
 
-**Example 2**
+#### Example 2
 
-- Input: `dist = [1, 1, 2, 3], speed = [1, 1, 1, 1]`
-- Output: `1`
+- **Input:** `dist = [1, 1, 2, 3], speed = [1, 1, 1, 1]`
+- **Output:** `1`
 
 After the first shot, another monster reaches the city exactly at minute one.
 
-**Example 3**
+#### Example 3
 
-- Input: `dist = [3, 2, 4], speed = [5, 3, 2]`
-- Output: `1`
+- **Input:** `dist = [3, 2, 4], speed = [5, 3, 2]`
+- **Output:** `1`
 
 Two monsters arrive before or at minute one, so only the initial shot is available.

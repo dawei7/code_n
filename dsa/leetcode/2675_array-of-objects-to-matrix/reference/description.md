@@ -29,10 +29,10 @@ arr = [
 [2, 1],
 [4, 3]
 ]
-- **Explanation:**
-There are two unique column names in the two objects: "a" and "b".
+- **Explanation:** There are two unique column names in the two objects: "a" and "b".
 "a" corresponds with [2, 4].
 "b" coresponds with [1, 3].
+
 #### Example 2
 
 - **Input:** ``
@@ -48,11 +48,11 @@ arr = [
 ["", "", 3, 4],
 ["", "", "", ""]
 ]
-- **Explanation:**
-There are 4 unique column names: "a", "b", "c", "d".
+- **Explanation:** There are 4 unique column names: "a", "b", "c", "d".
 The first object has values associated with "a" and "b".
 The second object has values associated with "c" and "d".
 The third object has no keys, so it is just a row of empty strings.
+
 #### Example 3
 
 - **Input:** ``
@@ -66,9 +66,9 @@ arr = [
 [1, 2, ""],
 [3, "", 4]
 ]
-- **Explanation:**
-In this example, the objects are nested. The keys represent the full path to each value separated by periods.
+- **Explanation:** In this example, the objects are nested. The keys represent the full path to each value separated by periods.
 There are three paths: "a.b", "a.c", "a.d".
+
 #### Example 4
 
 - **Input:** ``
@@ -84,9 +84,9 @@ arr = [
 ["", true, ""],
 ["", "", "x"]
 ]
-- **Explanation:**
-Arrays are also considered objects with their keys being their indices.
+- **Explanation:** Arrays are also considered objects with their keys being their indices.
 Each array has one element so the keys are "0.a", "0.b", and "0.c".
+
 #### Example 5
 
 - **Input:** ``
@@ -102,8 +102,7 @@ arr = [
 [],
 []
 ]
-- **Explanation:**
-There are no keys so every row is an empty array.
+- **Explanation:** There are no keys so every row is an empty array.
 
 ### 4. Constraints
 

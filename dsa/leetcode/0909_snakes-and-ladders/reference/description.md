@@ -6,9 +6,8 @@ You start on square `1` of the board. In each move, starting from square `curr`,
 
 - Choose a destination square `next` with a label in the range $[curr + 1, min(curr + 6, n^{2})]$.
 
-		<li>This choice simulates the result of a standard **6-sided die roll**: i.e., there are always at most 6 destinations, regardless of the size of the board.
+		- This choice simulates the result of a standard **6-sided die roll**: i.e., there are always at most 6 destinations, regardless of the size of the board.
 
-	</li>
 - If `next` has a snake or ladder, you **must** move to the destination of that snake or ladder. Otherwise, you move to `next`.
 
 - The game ends when you reach the square $n^{2}$.
@@ -23,8 +22,13 @@ Return *the least number of dice rolls required to reach the square *$n^{2}$*. I
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,13 +38,13 @@ Return *the least number of dice rolls required to reach the square *$n^{2}$*. I
 
 - **Input:** $board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]$
 - **Output:** `4`
-- **Explanation:**
-In the beginning, you start at square 1 (at row 5, column 0).
+- **Explanation:** In the beginning, you start at square 1 (at row 5, column 0).
 You decide to move to square 2 and must take the ladder to square 15.
 You then decide to move to square 17 and must take the snake to square 13.
 You then decide to move to square 14 and must take the ladder to square 35.
 You then decide to move to square 36, ending the game.
 This is the lowest possible number of moves to reach the last square, so return 4.
+
 #### Example 2
 
 - **Input:** $board = [[-1,-1],[-1,3]]$

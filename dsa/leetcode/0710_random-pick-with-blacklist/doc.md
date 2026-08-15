@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/random-pick-with-blacklist/) |
 
 ## Problem Description
+
 ### Goal
+
 Given an integer domain `[0, n)` and a list of distinct blacklisted values inside that domain, design a picker whose `pick()` method returns an integer that is not in the blacklist.
 
 Every allowed integer must be returned with equal probability on each call. After preprocessing, repeated picks should run in constant expected time, and the design must not allocate an array or set proportional to `n`, which may be much larger than the blacklist. A pick does not remove its result, so the same allowed value may be returned again later.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: the exclusive upper bound of the integer domain
@@ -26,17 +29,18 @@ Every allowed integer must be returned with equal probability on each call. Afte
 - The allowed value produced by remapping each raw draw
 
 ### Examples
-**Example 1**
 
-- Input: `n = 7, blacklist = [2,3,5], draws = [0,1,2,3,2]`
-- Output: `[0,1,4,6,4]`
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 7, blacklist = [2,3,5], draws = [0,1,2,3,2]`
+- **Output:** `[0,1,4,6,4]`
 
-- Input: `n = 4, blacklist = [0,1], draws = [0,1]`
-- Output: `[2,3]`
+#### Example 2
 
-**Example 3**
+- **Input:** `n = 4, blacklist = [0,1], draws = [0,1]`
+- **Output:** `[2,3]`
 
-- Input: `n = 1, blacklist = [], draws = [0,0]`
-- Output: `[0,0]`
+#### Example 3
+
+- **Input:** `n = 1, blacklist = [], draws = [0,0]`
+- **Output:** `[0,0]`

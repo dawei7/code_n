@@ -33,9 +33,9 @@ Return columns `user_id` and `product_id` for every product whose cumulative spe
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Sales = [(1,1,101,10),(2,3,101,7),(3,1,102,9),(4,2,102,6),(5,3,102,10),(6,1,102,6)]`, `Product = [(1,10),(2,25),(3,15)]`
-- Output: `[(101,3),(102,1),(102,2),(102,3)]`
+- **Input:** `Sales = [(1,1,101,10),(2,3,101,7),(3,1,102,9),(4,2,102,6),(5,3,102,10),(6,1,102,6)]`, `Product = [(1,10),(2,25),(3,15)]`
+- **Output:** `[(101,3),(102,1),(102,2),(102,3)]`
 
 User 101 spends 105 on product 3 versus 100 on product 1. User 102 spends 150 on each of the three products, so all three are returned.

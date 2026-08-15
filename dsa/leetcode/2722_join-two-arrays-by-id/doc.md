@@ -35,20 +35,20 @@ Return $U$ shallowly joined objects sorted by `id` in ascending order. Every ide
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr1 = [{"id":1,"x":1},{"id":2,"x":9}], arr2 = [{"id":3,"x":5}]`
-- Output: `[{"id":1,"x":1},{"id":2,"x":9},{"id":3,"x":5}]`
-- Explanation: No identifier overlaps, so the objects only need ordering.
+- **Input:** `arr1 = [{"id":1,"x":1},{"id":2,"x":9}], arr2 = [{"id":3,"x":5}]`
+- **Output:** `[{"id":1,"x":1},{"id":2,"x":9},{"id":3,"x":5}]`
+- **Explanation:** No identifier overlaps, so the objects only need ordering.
 
-**Example 2**
+#### Example 2
 
-- Input: Objects with `id = 2` occur in both arrays and carry different `x` and `y` values.
-- Output: The joined `id = 2` object uses both values from `arr2`.
-- Explanation: Properties from the second array override matching properties from the first.
+- **Input:** Objects with `id = 2` occur in both arrays and carry different `x` and `y` values.
+- **Output:** The joined `id = 2` object uses both values from `arr2`.
+- **Explanation:** Properties from the second array override matching properties from the first.
 
-**Example 3**
+#### Example 3
 
-- Input: Both `id = 1` objects contain nested property `b` and array property `v`, while only `arr1` contains `y`.
-- Output: `b` and `v` are replaced by the values from `arr2`, while `y` remains.
-- Explanation: The merge is shallow, so nested values are not recursively combined.
+- **Input:** Both `id = 1` objects contain nested property `b` and array property `v`, while only `arr1` contains `y`.
+- **Output:** `b` and `v` are replaced by the values from `arr2`, while `y` remains.
+- **Explanation:** The merge is shallow, so nested values are not recursively combined.

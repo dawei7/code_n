@@ -16,8 +16,14 @@ Return *the maximum score you can obtain of all possible **valid paths***. Since
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,11 +37,13 @@ Return *the maximum score you can obtain of all possible **valid paths***. Since
 [2,4,5,8,10], [2,4,5,8,9], [2,4,6,8,9], [2,4,6,8,10],  (starting from nums1)
 [4,6,8,9], [4,5,8,10], [4,5,8,9], [4,6,8,10]    (starting from nums2)
 The maximum is obtained with the path in green **[2,4,6,8,10]**.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,3,5,7,9], nums2 = [3,5,100]$
 - **Output:** `109`
 - **Explanation:** Maximum sum is obtained with the path **[1,3,5,100]**.
+
 #### Example 3
 
 - **Input:** $nums1 = [1,2,3,4,5], nums2 = [6,7,8,9,10]$

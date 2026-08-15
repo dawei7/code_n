@@ -16,8 +16,14 @@ Return *an integer denoting the **minimum** number of operations needed to meet 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +36,7 @@ When nums1[2] and nums2[2] are swapped, nums1 becomes [1,2,3] and nums2 becomes 
 Both conditions are now satisfied.
 It can be shown that the minimum number of operations needed to be performed is 1.
 So, the answer is 1.
+
 #### Example 2
 
 - **Input:** $nums1 = [2,3,4,5,9], nums2 = [8,8,4,4,4]$
@@ -42,6 +49,7 @@ When nums1[3] and nums2[3] are swapped, nums1 becomes [2,3,4,4,4], and nums2 bec
 Both conditions are now satisfied.
 It can be shown that the minimum number of operations needed to be performed is 2.
 So, the answer is 2.
+
 #### Example 3
 
 - **Input:** $nums1 = [1,5,4], nums2 = [2,5,3]$

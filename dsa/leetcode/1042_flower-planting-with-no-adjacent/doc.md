@@ -33,18 +33,18 @@ Return any valid assignment as an array `answer` of length $N$, where `answer[i]
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, paths = [[1,2],[2,3],[3,1]]`
-- Output: `[1,2,3]`
-- Explanation: Each pair of gardens in the triangle receives different flower types. Other valid assignments are also accepted.
+- **Input:** `n = 3, paths = [[1,2],[2,3],[3,1]]`
+- **Output:** `[1,2,3]`
+- **Explanation:** Each pair of gardens in the triangle receives different flower types. Other valid assignments are also accepted.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, paths = [[1,2],[3,4]]`
-- Output: `[1,2,1,2]`
+- **Input:** `n = 4, paths = [[1,2],[3,4]]`
+- **Output:** `[1,2,1,2]`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, paths = [[1,2],[2,3],[3,4],[4,1],[1,3],[2,4]]`
-- Output: `[1,2,3,4]`
+- **Input:** `n = 4, paths = [[1,2],[2,3],[3,4],[4,1],[1,3],[2,4]]`
+- **Output:** `[1,2,3,4]`

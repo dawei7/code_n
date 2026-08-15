@@ -31,23 +31,23 @@ Continue on the newly joined string until no occurrence remains, then return tha
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "daabcbaabcbc", part = "abc"`
-- Output: `"dab"`
+- **Input:** `s = "daabcbaabcbc", part = "abc"`
+- **Output:** `"dab"`
 
 The successive strings are `"dabaabcbc"`, `"dababc"`, and `"dab"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "axxxxyyyyb", part = "xy"`
-- Output: `"ab"`
+- **Input:** `s = "axxxxyyyyb", part = "xy"`
+- **Output:** `"ab"`
 
 Each deletion joins another `x` to another `y`, exposing the next `"xy"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaaa", part = "aa"`
-- Output: `"a"`
+- **Input:** `s = "aaaaa", part = "aa"`
+- **Output:** `"a"`
 
 Two leftmost pairs are removed, leaving one unmatched character.

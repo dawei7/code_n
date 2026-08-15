@@ -32,20 +32,20 @@ Return the greatest possible number of groups with pairwise distinct members ins
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `usageLimits = [1, 2, 5]`
-- Output: `3`
-- Explanation: Groups `[2]`, `[1, 2]`, and `[0, 1, 2]` have lengths $1$, $2$, and $3$ while respecting every limit.
+- **Input:** `usageLimits = [1, 2, 5]`
+- **Output:** `3`
+- **Explanation:** Groups `[2]`, `[1, 2]`, and `[0, 1, 2]` have lengths $1$, $2$, and $3$ while respecting every limit.
 
-**Example 2**
+#### Example 2
 
-- Input: `usageLimits = [2, 1, 2]`
-- Output: `2`
-- Explanation: One valid choice is `[0]` followed by `[1, 2]`. Three strictly increasing groups cannot be formed.
+- **Input:** `usageLimits = [2, 1, 2]`
+- **Output:** `2`
+- **Explanation:** One valid choice is `[0]` followed by `[1, 2]`. Three strictly increasing groups cannot be formed.
 
-**Example 3**
+#### Example 3
 
-- Input: `usageLimits = [1, 1]`
-- Output: `1`
-- Explanation: Each number is usable only once, which is insufficient for groups of both lengths $1$ and $2$.
+- **Input:** `usageLimits = [1, 1]`
+- **Output:** `1`
+- **Explanation:** Each number is usable only once, which is insufficient for groups of both lengths $1$ and $2$.

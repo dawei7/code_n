@@ -10,47 +10,40 @@ Return the integer `x`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums1 = [2,6,4], nums2 = [9,7,5]
+- **Input:** nums1 = [2,6,4], nums2 = [9,7,5]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The integer added to each element of `nums1` is 3.
 
-The integer added to each element of `nums1` is 3.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums1 = [10], nums2 = [5]
+- **Input:** nums1 = [10], nums2 = [5]
 
-**Output:** -5
+- **Output:** -5
 
-**Explanation:**
+- **Explanation:** The integer added to each element of `nums1` is -5.
 
-The integer added to each element of `nums1` is -5.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums1 = [1,1,1,1], nums2 = [1,1,1,1]
+- **Input:** nums1 = [1,1,1,1], nums2 = [1,1,1,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The integer added to each element of `nums1` is 0.
-
-</div>
+- **Explanation:** The integer added to each element of `nums1` is 0.
 
 ### 4. Constraints
 

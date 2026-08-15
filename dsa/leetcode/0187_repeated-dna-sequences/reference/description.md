@@ -24,6 +24,7 @@ Return each repeated length-10 substring once, in any order.
 
 - **Input:** `s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"`
 - **Output:** `["AAAAACCCCC","CCCCCAAAAA"]`
+
 #### Example 2
 
 - **Input:** `s = "AAAAAAAAAAAAA"`

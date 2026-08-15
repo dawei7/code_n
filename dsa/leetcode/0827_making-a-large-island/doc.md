@@ -30,20 +30,20 @@ You may change at most one cell containing `0` into `1`. Choose whether and wher
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1, 0], [0, 1]]`
-- Output: `3`
-- Explanation: Changing either `0` that touches both existing `1` cells joins them through the new land cell.
+- **Input:** `grid = [[1, 0], [0, 1]]`
+- **Output:** `3`
+- **Explanation:** Changing either `0` that touches both existing `1` cells joins them through the new land cell.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 1], [1, 0]]`
-- Output: `4`
-- Explanation: Changing the only `0` extends the existing island to the entire grid.
+- **Input:** `grid = [[1, 1], [1, 0]]`
+- **Output:** `4`
+- **Explanation:** Changing the only `0` extends the existing island to the entire grid.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1, 1], [1, 1]]`
-- Output: `4`
-- Explanation: There is no `0` to change, and the existing island already occupies all four cells.
+- **Input:** `grid = [[1, 1], [1, 1]]`
+- **Output:** `4`
+- **Explanation:** There is no `0` to change, and the existing island already occupies all four cells.

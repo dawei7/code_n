@@ -10,8 +10,13 @@ Return *the total number of **provinces***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `isConnected`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the total number of **provinces***.
 
 - **Input:** $isConnected = [[1,1,0],[1,1,0],[0,0,1]]$
 - **Output:** `2`
+
 #### Example 2
 
 ![](images/graph2.jpg)

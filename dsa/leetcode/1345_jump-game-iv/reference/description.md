@@ -16,8 +16,13 @@ Notice that you can not jump outside of the array at any time.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,11 +31,13 @@ Notice that you can not jump outside of the array at any time.
 - **Input:** `arr = [100,-23,-23,404,100,23,23,23,3,404]`
 - **Output:** `3`
 - **Explanation:** You need three jumps from index 0 --> 4 --> 3 --> 9. Note that index 9 is the last index of the array.
+
 #### Example 2
 
 - **Input:** `arr = [7]`
 - **Output:** `0`
 - **Explanation:** Start index is the last index. You do not need to jump.
+
 #### Example 3
 
 - **Input:** `arr = [7,6,9,6,9,6,9,7]`

@@ -31,14 +31,14 @@ Return the minimum number of operations that makes `num1` equal zero, or `-1` if
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num1 = 3, num2 = -2`
-- Output: `3`
-- Explanation: Powers $4$, $4$, and $1$ contribute $9$; together with three copies of $-2$, they sum to the starting value $3$.
+- **Input:** `num1 = 3, num2 = -2`
+- **Output:** `3`
+- **Explanation:** Powers $4$, $4$, and $1$ contribute $9$; together with three copies of $-2$, they sum to the starting value $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num1 = 5, num2 = 7`
-- Output: `-1`
-- Explanation: No allowed sequence of operations has total subtraction exactly equal to $5$.
+- **Input:** `num1 = 5, num2 = 7`
+- **Output:** `-1`
+- **Explanation:** No allowed sequence of operations has total subtraction exactly equal to $5$.

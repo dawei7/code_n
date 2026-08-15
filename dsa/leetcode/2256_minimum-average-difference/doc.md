@@ -45,17 +45,17 @@ where the second average is $0$ when $i=n-1$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,5,3,9,5,3]`
-- Output: `3`
+- **Input:** `nums = [2,5,3,9,5,3]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0]`
-- Output: `0`
+- **Input:** `nums = [0]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,1,1]`
-- Output: `0`
+- **Input:** `nums = [1,1,1,1]`
+- **Output:** `0`

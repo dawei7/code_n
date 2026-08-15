@@ -34,14 +34,14 @@ Let $n=\lvert\texttt{colors}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `colors = [1,1,1]`
-- Output: `0`
-- Explanation: Every possible middle tile matches both neighbors.
+- **Input:** `colors = [1,1,1]`
+- **Output:** `0`
+- **Explanation:** Every possible middle tile matches both neighbors.
 
-**Example 2**
+#### Example 2
 
-- Input: `colors = [0,1,0,0,1]`
-- Output: `3`
-- Explanation: Three choices of middle tile differ from their two circular neighbors.
+- **Input:** `colors = [0,1,0,0,1]`
+- **Output:** `3`
+- **Explanation:** Three choices of middle tile differ from their two circular neighbors.

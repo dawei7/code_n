@@ -32,40 +32,27 @@ Return the maximum of $sum(nums[0:i+1]) - min(nums[i+1:n])$ over every $0 \le i 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [10,-1,3,-4,-5]
+- **Input:** nums = [10,-1,3,-4,-5]
 
-**Output:** 17
+- **Output:** 17
 
-**Explanation:**
+- **Explanation:** The optimal split is at $i = 2$, $score(2) = prefixSum(2) - suffixMin(2) = (10 + (-1) + 3) - (-5) = 17$.
 
-The optimal split is at $i = 2$, $score(2) = prefixSum(2) - suffixMin(2) = (10 + (-1) + 3) - (-5) = 17$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-7,-5,3]
+- **Input:** nums = [-7,-5,3]
 
-**Output:** -2
+- **Output:** -2
 
-**Explanation:**
+- **Explanation:** The optimal split is at $i = 0$, $score(0) = prefixSum(0) - suffixMin(0) = (-7) - (-5) = -2$.
 
-The optimal split is at $i = 0$, $score(0) = prefixSum(0) - suffixMin(0) = (-7) - (-5) = -2$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1]
+- **Input:** nums = [1,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The only valid split is at $i = 0$, $score(0) = prefixSum(0) - suffixMin(0) = 1 - 1 = 0$.
-
-</div>
+- **Explanation:** The only valid split is at $i = 0$, $score(0) = prefixSum(0) - suffixMin(0) = 1 - 1 = 0$.
 
 ### 4. Constraints
 

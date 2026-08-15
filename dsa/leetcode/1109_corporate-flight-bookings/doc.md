@@ -31,14 +31,14 @@ Several bookings may overlap, so a flight's final reservation count is the sum o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `bookings = [[1,2,10],[2,3,20],[2,5,25]]`, `n = 5`
-- Output: `[10,55,45,25,25]`
+- **Input:** `bookings = [[1,2,10],[2,3,20],[2,5,25]]`, `n = 5`
+- **Output:** `[10,55,45,25,25]`
 
 The first booking adds 10 to flights 1 and 2, the second adds 20 to flights 2 and 3, and the third adds 25 to flights 2 through 5. Adding those contributions by flight gives the output.
 
-**Example 2**
+#### Example 2
 
-- Input: `bookings = [[1,2,10],[2,2,15]]`, `n = 2`
-- Output: `[10,25]`
+- **Input:** `bookings = [[1,2,10],[2,2,15]]`, `n = 2`
+- **Output:** `[10,25]`

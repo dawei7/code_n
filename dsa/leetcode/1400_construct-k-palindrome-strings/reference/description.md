@@ -4,8 +4,14 @@ Given a string `s` and an integer `k`, return `true` if you can use all the char
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -15,11 +21,13 @@ Given a string `s` and an integer `k`, return `true` if you can use all the char
 - **Output:** `true`
 - **Explanation:** You can construct two palindromes using all characters in s.
 Some possible constructions "anna" + "elble", "anbna" + "elle", "anellena" + "b"
+
 #### Example 2
 
 - **Input:** `s = "leetcode", k = 3`
 - **Output:** `false`
 - **Explanation:** It is impossible to construct 3 palindromes using all the characters of s.
+
 #### Example 3
 
 - **Input:** `s = "true", k = 4`

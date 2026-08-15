@@ -31,20 +31,20 @@ Return `True` if applying the operation zero or more times can transform `s` exa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcde", goal = "cdeab"`
-- Output: `True`
-- Explanation: Moving `a` and then `b` from the front to the back produces `cdeab`.
+- **Input:** `s = "abcde", goal = "cdeab"`
+- **Output:** `True`
+- **Explanation:** Moving `a` and then `b` from the front to the back produces `cdeab`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcde", goal = "abced"`
-- Output: `False`
-- Explanation: Cyclic shifts preserve the circular order of the characters, which this target changes.
+- **Input:** `s = "abcde", goal = "abced"`
+- **Output:** `False`
+- **Explanation:** Cyclic shifts preserve the circular order of the characters, which this target changes.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "a", goal = "a"`
-- Output: `True`
-- Explanation: Applying zero shifts is allowed, so an unchanged string is a rotation of itself.
+- **Input:** `s = "a", goal = "a"`
+- **Output:** `True`
+- **Explanation:** Applying zero shifts is allowed, so an unchanged string is a rotation of itself.

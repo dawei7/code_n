@@ -25,6 +25,7 @@ Return the maximum sum of values from houses chosen so that no selected node is 
 - **Input:** `root = [3,2,3,null,3,null,1]`
 - **Output:** `7`
 - **Explanation:** Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
+
 #### Example 2
 
 ![](images/rob2-tree.jpg)

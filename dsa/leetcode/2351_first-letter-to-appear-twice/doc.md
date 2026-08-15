@@ -39,22 +39,22 @@ The letter whose second occurrence has the smallest index.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abccbaacz"`
-- Output: `"c"`
-- Explanation: The second `c` appears at index 3, before the second
+- **Input:** `s = "abccbaacz"`
+- **Output:** `"c"`
+- **Explanation:** The second `c` appears at index 3, before the second
   appearances of `b` and `a`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcdd"`
-- Output: `"d"`
-- Explanation: `d` is the only repeated letter.
+- **Input:** `s = "abcdd"`
+- **Output:** `"d"`
+- **Explanation:** `d` is the only repeated letter.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "bacab"`
-- Output: `"a"`
-- Explanation: Although `b` appears first, the second `a` occurs before the
+- **Input:** `s = "bacab"`
+- **Output:** `"a"`
+- **Explanation:** Although `b` appears first, the second `a` occurs before the
   second `b`.

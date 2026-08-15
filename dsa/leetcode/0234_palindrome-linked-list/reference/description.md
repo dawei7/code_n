@@ -20,6 +20,7 @@ Return `true` when the node values read identically forward and backward; otherw
 
 - **Input:** $head = [1,2,2,1]$
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/pal2linked-list.jpg)

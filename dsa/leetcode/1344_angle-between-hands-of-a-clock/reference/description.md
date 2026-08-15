@@ -6,8 +6,14 @@ Answers within $10^{-5}$ of the actual value will be accepted as correct.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `hour`: Input parameter (`int`).
+- `minutes`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -17,12 +23,14 @@ Answers within $10^{-5}$ of the actual value will be accepted as correct.
 
 - **Input:** $hour = 12, minutes = 30$
 - **Output:** `165`
+
 #### Example 2
 
 ![](images/sample_2_1673.png)
 
 - **Input:** $hour = 3, minutes = 30$
 - **Output:** `75`
+
 #### Example 3
 
 ![](images/sample_3_1673.png)

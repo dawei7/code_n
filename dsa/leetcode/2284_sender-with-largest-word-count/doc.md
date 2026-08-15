@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sender-with-largest-word-count/) |
 
 ## Problem Description
+
 ### Goal
+
 A chat log contains $n$ messages. `messages[i]` was written by `senders[i]`,
 and the same sender may appear at several indices. Each message contains one or
 more words separated by single spaces, without leading or trailing spaces. A
@@ -22,6 +24,7 @@ case-sensitive: uppercase letters precede lowercase letters, and names such as
 `"Alice"` and `"alice"` identify different senders.
 
 ### Function Contract
+
 **Inputs**
 
 - `messages`: An array of $n$ valid space-separated messages.
@@ -37,17 +40,18 @@ The name with the largest accumulated word count, resolving a tie in favor of
 the lexicographically largest sender.
 
 ### Examples
-**Example 1**
 
-- Input: `messages = ["Hello userTwooo", "Hi userThree", "Wonderful day Alice", "Nice day userThree"]`, `senders = ["Alice", "userTwo", "userThree", "Alice"]`
-- Output: `"Alice"`
+#### Example 1
 
-**Example 2**
+- **Input:** `messages = ["Hello userTwooo", "Hi userThree", "Wonderful day Alice", "Nice day userThree"]`, `senders = ["Alice", "userTwo", "userThree", "Alice"]`
+- **Output:** `"Alice"`
 
-- Input: `messages = ["How is leetcode for everyone", "Leetcode is useful for practice"]`, `senders = ["Bob", "Charlie"]`
-- Output: `"Charlie"`
+#### Example 2
 
-**Example 3**
+- **Input:** `messages = ["How is leetcode for everyone", "Leetcode is useful for practice"]`, `senders = ["Bob", "Charlie"]`
+- **Output:** `"Charlie"`
 
-- Input: `messages = ["a", "b"]`, `senders = ["Alice", "alice"]`
-- Output: `"alice"`
+#### Example 3
+
+- **Input:** `messages = ["a", "b"]`, `senders = ["Alice", "alice"]`
+- **Output:** `"alice"`

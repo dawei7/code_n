@@ -25,12 +25,12 @@ Your `EventEmitter` class should have the following two methods:
 actions = ["EventEmitter", "emit", "subscribe", "subscribe", "emit"],
 values = [[], ["firstEvent"], ["firstEvent", "function cb1() { return 5; }"],  ["firstEvent", "function cb1() { return 6; }"], ["firstEvent"]]
 - **Output:** `[[],["emitted",[]],["subscribed"],["subscribed"],["emitted",[5,6]]]`
-- **Explanation:**
-const emitter = new EventEmitter();
+- **Explanation:** const emitter = new EventEmitter();
 emitter.emit("firstEvent"); // [], no callback are subscribed yet
 emitter.subscribe("firstEvent", function cb1() { return 5; });
 emitter.subscribe("firstEvent", function cb2() { return 6; });
 emitter.emit("firstEvent"); // [5, 6], returns the output of cb1 and cb2
+
 #### Example 2
 
 - **Input:** ``
@@ -42,26 +42,26 @@ const emitter = new EventEmitter();
 emitter.subscribe("firstEvent, function cb1(...args) { return args.join(','); });
 emitter.emit("firstEvent", [1, 2, 3]); // ["1,2,3"]
 emitter.emit("firstEvent", [3, 4, 6]); // ["3,4,6"]
+
 #### Example 3
 
 - **Input:** ``
 actions = ["EventEmitter", "subscribe", "emit", "unsubscribe", "emit"],
 values = [[], ["firstEvent", "(...args) => args.join(',')"], ["firstEvent", [1,2,3]], [0], ["firstEvent", [4,5,6]]]
 - **Output:** `[[],["subscribed"],["emitted",["1,2,3"]],["unsubscribed",0],["emitted",[]]]`
-- **Explanation:**
-const emitter = new EventEmitter();
+- **Explanation:** const emitter = new EventEmitter();
 const sub = emitter.subscribe("firstEvent", (...args) => args.join(','));
 emitter.emit("firstEvent", [1, 2, 3]); // ["1,2,3"]
 sub.unsubscribe(); // undefined
 emitter.emit("firstEvent", [4, 5, 6]); // [], there are no subscriptions
+
 #### Example 4
 
 - **Input:** ``
 actions = ["EventEmitter", "subscribe", "subscribe", "unsubscribe", "emit"],
 values = [[], ["firstEvent", "x => x + 1"], ["firstEvent", "x => x + 2"], [0], ["firstEvent", [5]]]
 - **Output:** `[[],["subscribed"],["subscribed"],["unsubscribed",0],["emitted",[7]]]`
-- **Explanation:**
-const emitter = new EventEmitter();
+- **Explanation:** const emitter = new EventEmitter();
 const sub1 = emitter.subscribe("firstEvent", x => x + 1);
 const sub2 = emitter.subscribe("firstEvent", x => x + 2);
 sub1.unsubscribe(); // undefined

@@ -34,16 +34,16 @@ Let $T$ be the largest `end_i`, and let $N=n+T$ denote the combined task-and-tim
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tasks = [[2,3,1],[4,5,1],[1,5,2]]`
-- Output: `2`
+- **Input:** `tasks = [[2,3,1],[4,5,1],[1,5,2]]`
+- **Output:** `2`
 
 Turning the computer on at seconds `2` and `5` satisfies all three tasks.
 
-**Example 2**
+#### Example 2
 
-- Input: `tasks = [[1,3,2],[2,5,3],[5,6,2]]`
-- Output: `4`
+- **Input:** `tasks = [[1,3,2],[2,5,3],[5,6,2]]`
+- **Output:** `4`
 
 One minimum schedule uses seconds `2`, `3`, `5`, and `6`.

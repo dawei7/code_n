@@ -6,8 +6,14 @@ Given two integers `steps` and `arrLen`, return the number of ways such that you
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `steps`: Input parameter (`int`).
+- `arrLen`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Right, Left, Stay
 Stay, Right, Left
 Right, Stay, Left
 Stay, Stay, Stay
+
 #### Example 2
 
 - **Input:** $steps = 2, arrLen = 4$
@@ -27,6 +34,7 @@ Stay, Stay, Stay
 - **Explanation:** There are 2 differents ways to stay at index 0 after 2 steps
 Right, Left
 Stay, Stay
+
 #### Example 3
 
 - **Input:** $steps = 4, arrLen = 2$

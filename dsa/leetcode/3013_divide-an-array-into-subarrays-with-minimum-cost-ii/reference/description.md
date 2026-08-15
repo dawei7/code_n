@@ -10,8 +10,15 @@ Return *the **minimum** possible sum of the cost of these* *subarrays*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `dist`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +28,7 @@ Return *the **minimum** possible sum of the cost of these* *subarrays*.
 - **Output:** `5`
 - **Explanation:** The best possible way to divide nums into 3 subarrays is: [1,3], [2,6,4], and [2]. This choice is valid because i_k-1 - i_1 is 5 - 2 = 3 which is equal to dist. The total cost is nums[0] + nums[2] + nums[5] which is 1 + 2 + 2 = 5.
 It can be shown that there is no possible way to divide nums into 3 subarrays at a cost lower than 5.
+
 #### Example 2
 
 - **Input:** `nums = [10,1,2,2,2,1], k = 4, dist = 3`
@@ -28,6 +36,7 @@ It can be shown that there is no possible way to divide nums into 3 subarrays at
 - **Explanation:** The best possible way to divide nums into 4 subarrays is: [10], [1], [2], and [2,2,1]. This choice is valid because i_k-1 - i_1 is 3 - 1 = 2 which is less than dist. The total cost is nums[0] + nums[1] + nums[2] + nums[3] which is 10 + 1 + 2 + 2 = 15.
 The division [10], [1], [2,2,2], and [1] is not valid, because the difference between i_k-1 and i_1 is 5 - 1 = 4, which is greater than dist.
 It can be shown that there is no possible way to divide nums into 4 subarrays at a cost lower than 15.
+
 #### Example 3
 
 - **Input:** `nums = [10,8,18,9], k = 3, dist = 1`

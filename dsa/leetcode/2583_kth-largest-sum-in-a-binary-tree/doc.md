@@ -33,14 +33,14 @@ The tree has $2 \leq n \leq 10^5$ nodes, every node value is between $1$ and $10
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [5,8,9,2,1,3,7,4,6], k = 2`
-- Output: `13`
-- Explanation: The level sums are `5`, `17`, `13`, and `10`; the second largest is `13`.
+- **Input:** `root = [5,8,9,2,1,3,7,4,6], k = 2`
+- **Output:** `13`
+- **Explanation:** The level sums are `5`, `17`, `13`, and `10`; the second largest is `13`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1,2,null,3], k = 1`
-- Output: `3`
-- Explanation: The three level sums are `1`, `2`, and `3`.
+- **Input:** `root = [1,2,null,3], k = 1`
+- **Output:** `3`
+- **Explanation:** The three level sums are `1`, `2`, and `3`.

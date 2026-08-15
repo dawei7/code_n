@@ -32,20 +32,20 @@ Return the fewest single-element replacements that make the array sums equal, or
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1,2,3,4,5,6], nums2 = [1,1,2,2,2,2]`
-- Output: `3`
-- Explanation: Three replacements can close the sum difference; no two replacements have enough combined effect.
+- **Input:** `nums1 = [1,2,3,4,5,6], nums2 = [1,1,2,2,2,2]`
+- **Output:** `3`
+- **Explanation:** Three replacements can close the sum difference; no two replacements have enough combined effect.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1,1,1,1,1,1,1], nums2 = [6]`
-- Output: `-1`
-- Explanation: Even the smallest possible sum of the seven-element array exceeds the largest possible sum of the one-element array.
+- **Input:** `nums1 = [1,1,1,1,1,1,1], nums2 = [6]`
+- **Output:** `-1`
+- **Explanation:** Even the smallest possible sum of the seven-element array exceeds the largest possible sum of the one-element array.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [6,6], nums2 = [1]`
-- Output: `3`
-- Explanation: Three replacements are necessary and sufficient to bring the sums together.
+- **Input:** `nums1 = [6,6], nums2 = [1]`
+- **Output:** `3`
+- **Explanation:** Three replacements are necessary and sufficient to bring the sums together.

@@ -30,13 +30,13 @@ The length of the longest contiguous interval containing strictly more tiring da
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `hours = [9,9,6,0,6,6,9]`
-- Output: `3`
-- Explanation: `[9,9,6]` is a well-performing interval of maximum length.
+- **Input:** `hours = [9,9,6,0,6,6,9]`
+- **Output:** `3`
+- **Explanation:** `[9,9,6]` is a well-performing interval of maximum length.
 
-**Example 2**
+#### Example 2
 
-- Input: `hours = [6,6,6]`
-- Output: `0`
+- **Input:** `hours = [6,6,6]`
+- **Output:** `0`

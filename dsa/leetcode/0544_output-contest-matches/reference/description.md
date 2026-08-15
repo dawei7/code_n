@@ -25,17 +25,16 @@ We will use parentheses `'('`, and `')'` and commas `','` to represent the conte
 
 - **Input:** $n = 4$
 - **Output:** `"((1,4),(2,3))"`
-- **Explanation:**
-In the first round, we pair the team 1 and 4, the teams 2 and 3 together, as we need to make the strong team and weak team together.
+- **Explanation:** In the first round, we pair the team 1 and 4, the teams 2 and 3 together, as we need to make the strong team and weak team together.
 And we got (1, 4),(2, 3).
 In the second round, the winners of (1, 4) and (2, 3) need to play again to generate the final winner, so you need to add the paratheses outside them.
 And we got the final answer ((1,4),(2,3)).
+
 #### Example 2
 
 - **Input:** $n = 8$
 - **Output:** `"(((1,8),(4,5)),((2,7),(3,6)))"`
-- **Explanation:**
-First round: (1, 8),(2, 7),(3, 6),(4, 5)
+- **Explanation:** First round: (1, 8),(2, 7),(3, 6),(4, 5)
 Second round: ((1, 8),(4, 5)),((2, 7),(3, 6))
 Third round: (((1, 8),(4, 5)),((2, 7),(3, 6)))
 Since the third round will generate the final winner, you need to output the answer (((1,8),(4,5)),((2,7),(3,6))).

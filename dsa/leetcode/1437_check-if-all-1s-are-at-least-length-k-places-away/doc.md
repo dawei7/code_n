@@ -31,17 +31,17 @@ Return `true` when the condition holds for the entire array. Arrays with fewer t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,0,0,0,1,0,0,1], k = 2`
-- Output: `true`
+- **Input:** `nums = [1,0,0,0,1,0,0,1], k = 2`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,0,0,1,0,1], k = 2`
-- Output: `false`
+- **Input:** `nums = [1,0,0,1,0,1], k = 2`
+- **Output:** `false`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0,1,0,0,1], k = 1`
-- Output: `true`
+- **Input:** `nums = [0,1,0,0,1], k = 1`
+- **Output:** `true`

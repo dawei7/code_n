@@ -88,7 +88,7 @@ Return columns $\text{product}_{name}$, $\text{product}_{id}$, $\text{order}_{id
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +-------------+-----------+
 | customer_id | name      |
@@ -123,7 +123,7 @@ Products table:
 | 3          | screen       | 600   |
 | 4          | hard disk    | 450   |
 +------------+--------------+-------+
-**Output:**
+- **Output:** 
 +--------------+------------+----------+------------+
 | product_name | product_id | order_id | order_date |
 +--------------+------------+----------+------------+
@@ -132,8 +132,7 @@ Products table:
 | mouse        | 2          | 8        | 2020-08-03 |
 | screen       | 3          | 3        | 2020-08-29 |
 +--------------+------------+----------+------------+
-**Explanation:**
-keyboard's most recent order is in 2020-08-01, it was ordered two times this day.
+- **Explanation:** keyboard's most recent order is in 2020-08-01, it was ordered two times this day.
 mouse's most recent order is in 2020-08-03, it was ordered only once this day.
 screen's most recent order is in 2020-08-29, it was ordered only once this day.
 The hard disk was never ordered and we do not include it in the result table.

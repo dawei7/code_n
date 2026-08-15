@@ -36,20 +36,20 @@ Return a function that forwards its arguments to `fn` after inserting a callback
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = (callback, a, b, c) => callback(a * b * c)`, `args = [1,2,3]`
-- Output: `{"resolved":6}`
-- Explanation: The callback receives `6` as its result and no error, so the converted function's promise resolves to `6`.
+- **Input:** `fn = (callback, a, b, c) => callback(a * b * c)`, `args = [1,2,3]`
+- **Output:** `{"resolved":6}`
+- **Explanation:** The callback receives `6` as its result and no error, so the converted function's promise resolves to `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `fn = (callback, a, b, c) => callback(a * b * c, "Promise Rejected")`, `args = [4,5,6]`
-- Output: `{"rejected":"Promise Rejected"}`
-- Explanation: Because the callback supplies an error argument, the promise rejects with that value even though a result was also supplied.
+- **Input:** `fn = (callback, a, b, c) => callback(a * b * c, "Promise Rejected")`, `args = [4,5,6]`
+- **Output:** `{"rejected":"Promise Rejected"}`
+- **Explanation:** Because the callback supplies an error argument, the promise rejects with that value even though a result was also supplied.
 
-**Example 3**
+#### Example 3
 
-- Input: `fn = (callback, value) => callback(value)`, `args = [42]`
-- Output: `{"resolved":42}`
-- Explanation: A single ordinary argument is forwarded after the inserted callback.
+- **Input:** `fn = (callback, value) => callback(value)`, `args = [42]`
+- **Output:** `{"resolved":42}`
+- **Explanation:** A single ordinary argument is forwarded after the inserted callback.

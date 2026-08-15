@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-common-elements-between-two-arrays/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given two integer arrays, `nums1` and `nums2`, with lengths $N$ and
 $M$. Determine two values based on whether each indexed element also occurs in
 the other array.
@@ -25,6 +27,7 @@ positions contributes to that array's answer.
 Return the two counts as `[answer1, answer2]`.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums1`: the first integer array
@@ -40,20 +43,21 @@ A two-element array whose first entry counts qualifying indices in `nums1` and
 whose second entry counts qualifying indices in `nums2`.
 
 ### Examples
-**Example 1**
 
-- Input: `nums1 = [2,3,2], nums2 = [1,2]`
-- Output: `[2,1]`
-- Explanation: Both positions containing `2` in `nums1` count, while the single `2` in `nums2` counts once.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums1 = [2,3,2], nums2 = [1,2]`
+- **Output:** `[2,1]`
+- **Explanation:** Both positions containing `2` in `nums1` count, while the single `2` in `nums2` counts once.
 
-- Input: `nums1 = [4,3,2,3,1], nums2 = [2,2,5,2,3,6]`
-- Output: `[3,4]`
-- Explanation: The `2` and both `3` positions qualify in the first array; three `2` positions and the `3` qualify in the second.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums1 = [4,3,2,3,1], nums2 = [2,2,5,2,3,6]`
+- **Output:** `[3,4]`
+- **Explanation:** The `2` and both `3` positions qualify in the first array; three `2` positions and the `3` qualify in the second.
 
-- Input: `nums1 = [3,4,2,3], nums2 = [1,5]`
-- Output: `[0,0]`
-- Explanation: The arrays share no value, so neither contains a qualifying index.
+#### Example 3
+
+- **Input:** `nums1 = [3,4,2,3], nums2 = [1,5]`
+- **Output:** `[0,0]`
+- **Explanation:** The arrays share no value, so neither contains a qualifying index.

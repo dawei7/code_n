@@ -14,8 +14,13 @@ Return *the **maximum** number of weeks you would be able to work on the project
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `milestones`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +36,7 @@ Return *the **maximum** number of weeks you would be able to work on the project
 - During the 5^th week, you will work on a milestone of project 1.
 - During the 6^th week, you will work on a milestone of project 2.
 The total number of weeks is 6.
+
 #### Example 2
 
 - **Input:** $milestones = [5,2,1]$

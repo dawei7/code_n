@@ -57,7 +57,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Salesperson table:
 +----------------+-------+
 | salesperson_id | name  |
@@ -83,7 +83,7 @@ Sales table:
 | 3       | 3           | 988   |
 | 4       | 3           | 856   |
 +---------+-------------+-------+
-**Output:**
+- **Output:** 
 +----------------+-------+-------+
 | salesperson_id | name  | total |
 +----------------+-------+-------+
@@ -91,8 +91,7 @@ Sales table:
 | 2              | Bob   | 1844  |
 | 3              | Jerry | 0     |
 +----------------+-------+-------+
-**Explanation:**
-Alice is the salesperson for customers 1 and 2.
+- **Explanation:** Alice is the salesperson for customers 1 and 2.
   - Customer 1 made one purchase with 354.
   - Customer 2 made one purchase with 892.
 The total for Alice is 354 + 892 = 1246.

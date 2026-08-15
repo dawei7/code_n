@@ -30,17 +30,17 @@ Return the minimum positive `startValue` that satisfies this condition for the e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [-3,2,-3,4,2]`
-- Output: `5`
+- **Input:** `nums = [-3,2,-3,4,2]`
+- **Output:** `5`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2]`
-- Output: `1`
+- **Input:** `nums = [1,2]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,-2,-3]`
-- Output: `5`
+- **Input:** `nums = [1,-2,-3]`
+- **Output:** `5`

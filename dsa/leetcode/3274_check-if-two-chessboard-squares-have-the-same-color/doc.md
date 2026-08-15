@@ -33,20 +33,20 @@ Return a boolean indicating whether the two named squares have the same color.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coordinate1 = "a1", coordinate2 = "c3"`
-- Output: `true`
-- Explanation: Both squares are black.
+- **Input:** `coordinate1 = "a1", coordinate2 = "c3"`
+- **Output:** `true`
+- **Explanation:** Both squares are black.
 
-**Example 2**
+#### Example 2
 
-- Input: `coordinate1 = "a1", coordinate2 = "h3"`
-- Output: `false`
-- Explanation: The two squares have different colors.
+- **Input:** `coordinate1 = "a1", coordinate2 = "h3"`
+- **Output:** `false`
+- **Explanation:** The two squares have different colors.
 
-**Example 3**
+#### Example 3
 
-- Input: `coordinate1 = "h8", coordinate2 = "a1"`
-- Output: `true`
-- Explanation: Moving seven columns and seven rows preserves the color.
+- **Input:** `coordinate1 = "h8", coordinate2 = "a1"`
+- **Output:** `true`
+- **Explanation:** Moving seven columns and seven rows preserves the color.

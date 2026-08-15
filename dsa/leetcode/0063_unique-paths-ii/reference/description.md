@@ -30,6 +30,7 @@ Return the number of right-and-down paths from the top-left to the bottom-right 
 There are two ways to reach the bottom-right corner:
 1. Right -> Right -> Down -> Down
 2. Down -> Down -> Right -> Right
+
 #### Example 2
 
 ![](images/robot2.jpg)

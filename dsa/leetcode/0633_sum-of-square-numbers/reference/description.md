@@ -4,8 +4,13 @@ Given a non-negative integer `c`, decide whether there're two integers `a` and `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -14,6 +19,7 @@ Given a non-negative integer `c`, decide whether there're two integers `a` and `
 - **Input:** $c = 5$
 - **Output:** `true`
 - **Explanation:** 1 * 1 + 2 * 2 = 5
+
 #### Example 2
 
 - **Input:** $c = 3$

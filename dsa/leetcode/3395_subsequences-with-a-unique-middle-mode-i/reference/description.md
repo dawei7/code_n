@@ -12,47 +12,39 @@ A sequence of numbers `seq` of size 5 contains a **unique middle mode** if the *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1,1,1]
+- **Input:** nums = [1,1,1,1,1,1]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** `[1, 1, 1, 1, 1]` is the only subsequence of size 5 that can be formed, and it has a unique middle mode of 1. This subsequence can be formed in 6 different ways, so the output is 6.
 
-`[1, 1, 1, 1, 1]` is the only subsequence of size 5 that can be formed, and it has a unique middle mode of 1. This subsequence can be formed in 6 different ways, so the output is 6.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,2,3,3,4]
+- **Input:** nums = [1,2,2,3,3,4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** `[1, 2, 2, 3, 4]` and `[1, 2, 3, 3, 4]` each have a unique middle mode because the number at index 2 has the greatest frequency in the subsequence. `[1, 2, 2, 3, 3]` does not have a unique middle mode because 2 and 3 appear twice.
 
-`[1, 2, 2, 3, 4]` and `[1, 2, 3, 3, 4]` each have a unique middle mode because the number at index 2 has the greatest frequency in the subsequence. `[1, 2, 2, 3, 3]` does not have a unique middle mode because 2 and 3 appear twice.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [0,1,2,3,4,5,6,7,8]
+- **Input:** nums = [0,1,2,3,4,5,6,7,8]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There is no subsequence of length 5 with a unique middle mode.
-
-</div>
+- **Explanation:** There is no subsequence of length 5 with a unique middle mode.
 
 ### 4. Constraints
 

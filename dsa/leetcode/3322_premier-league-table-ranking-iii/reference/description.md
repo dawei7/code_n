@@ -88,7 +88,7 @@ The query result format is in the following example.
 
 - For the 2021 season:
 
-		<li>Manchester City has 93 points (29 * 3 + 6 * 1) and a goal difference of 73 (99 - 26).
+		- Manchester City has 93 points (29 * 3 + 6 * 1) and a goal difference of 73 (99 - 26).
 
 - Liverpool has 92 points (28 * 3 + 8 * 1) and a goal difference of 68 (94 - 26).
 
@@ -98,10 +98,9 @@ The query result format is in the following example.
 
 - Arsenal has 69 points (22 * 3 + 3 * 1) and a goal difference of 13 (61 - 48).
 
-	</li>
 - For the 2022 season:
 
-		<li>Manchester City has 89 points (28 * 3 + 5 * 1) and a goal difference of 61 (94 - 33).
+		- Manchester City has 89 points (28 * 3 + 5 * 1) and a goal difference of 61 (94 - 33).
 
 - Arsenal has 84 points (26 * 3 + 6 * 1) and a goal difference of 45 (88 - 43).
 
@@ -111,7 +110,6 @@ The query result format is in the following example.
 
 - Liverpool has 67 points (19 * 3 + 10 * 1) and a goal difference of 28 (75 - 47).
 
-	</li>
 - The teams are ranked first by points, then by goal difference, and finally by team name.
 
 - The output is ordered by season_id ascending, then by rank ascending, and finally by team_name ascending.

@@ -14,8 +14,15 @@ A **subarray** is a **contiguous** part of an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `minK`: Input parameter (`int`).
+- `maxK`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +31,7 @@ A **subarray** is a **contiguous** part of an array.
 - **Input:** `nums = [1,3,5,2,7,5], minK = 1, maxK = 5`
 - **Output:** `2`
 - **Explanation:** The fixed-bound subarrays are [1,3,5] and [1,3,5,2].
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,1], minK = 1, maxK = 1`

@@ -8,59 +8,48 @@ Return the length of the **longest** palindrome that can be formed this way.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "a", t = "a"
+- **Input:** s = "a", t = "a"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** Concatenating `"a"` from `s` and `"a"` from `t` results in `"aa"`, which is a palindrome of length 2.
 
-Concatenating `"a"` from `s` and `"a"` from `t` results in `"aa"`, which is a palindrome of length 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abc", t = "def"
+- **Input:** s = "abc", t = "def"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Since all characters are different, the longest palindrome is any single character, so the answer is 1.
 
-Since all characters are different, the longest palindrome is any single character, so the answer is 1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "b", t = "aaaa"
+- **Input:** s = "b", t = "aaaa"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** Selecting "`aaaa`" from `t` is the longest palindrome, so the answer is 4.
 
-Selecting "`aaaa`" from `t` is the longest palindrome, so the answer is 4.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "abcde", t = "ecdba"
+- **Input:** s = "abcde", t = "ecdba"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-Concatenating `"abc"` from `s` and `"ba"` from `t` results in `"abcba"`, which is a palindrome of length 5.
-
-</div>
+- **Explanation:** Concatenating `"abc"` from `s` and `"ba"` from `t` results in `"abcba"`, which is a palindrome of length 5.
 
 ### 4. Constraints
 

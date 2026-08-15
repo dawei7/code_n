@@ -38,18 +38,18 @@ character's count.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aababbb"`
-- Output: `3`
+- **Input:** `s = "aababbb"`
+- **Output:** `3`
 
 The substring `"babbb"` contains four `b` characters and one `a`, producing
 variance $4-1=3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcde"`
-- Output: `0`
+- **Input:** `s = "abcde"`
+- **Output:** `0`
 
 Every character occurs once, so no substring has unequal positive counts for
 two characters that it contains.

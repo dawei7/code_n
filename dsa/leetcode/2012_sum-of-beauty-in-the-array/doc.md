@@ -34,22 +34,22 @@ Return the sum of all interior beauty scores.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3]`
-- Output: `2`
-- Explanation: The only interior value is greater than everything before it
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `2`
+- **Explanation:** The only interior value is greater than everything before it
   and smaller than everything after it.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 4, 6, 4]`
-- Output: `1`
-- Explanation: `4` lies strictly between its neighbors but fails the global
+- **Input:** `nums = [2, 4, 6, 4]`
+- **Output:** `1`
+- **Explanation:** `4` lies strictly between its neighbors but fails the global
   condition; `6` has beauty zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 2, 1]`
-- Output: `0`
-- Explanation: The only interior value satisfies neither condition.
+- **Input:** `nums = [3, 2, 1]`
+- **Output:** `0`
+- **Explanation:** The only interior value satisfies neither condition.

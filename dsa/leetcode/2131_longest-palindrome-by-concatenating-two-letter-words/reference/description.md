@@ -10,8 +10,13 @@ A **palindrome** is a string that reads the same forward and backward.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +26,14 @@ A **palindrome** is a string that reads the same forward and backward.
 - **Output:** `6`
 - **Explanation:** One longest palindrome is "lc" + "gg" + "cl" = "lcggcl", of length 6.
 Note that "clgglc" is another longest palindrome that can be created.
+
 #### Example 2
 
 - **Input:** $words = ["ab","ty","yt","lc","cl","ab"]$
 - **Output:** `8`
 - **Explanation:** One longest palindrome is "ty" + "lc" + "cl" + "yt" = "tylcclyt", of length 8.
 Note that "lcyttycl" is another longest palindrome that can be created.
+
 #### Example 3
 
 - **Input:** $words = ["cc","ll","xx"]$

@@ -34,16 +34,16 @@ Let $n = \lvert\texttt{nums1}\rvert$ and $m = \lvert\texttt{nums2}\rvert$. The c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1, 3, 4], nums2 = [1, 3, 4], k = 1`
-- Output: `5`
+- **Input:** `nums1 = [1, 3, 4], nums2 = [1, 3, 4], k = 1`
+- **Output:** `5`
 
 The good pairs are `(0, 0)`, `(1, 0)`, `(1, 1)`, `(2, 0)`, and `(2, 2)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1, 2, 4, 12], nums2 = [2, 4], k = 3`
-- Output: `2`
+- **Input:** `nums1 = [1, 2, 4, 12], nums2 = [2, 4], k = 3`
+- **Output:** `2`
 
 Only `nums1[3] = 12` is divisible by the scaled values `6` and `12`, producing pairs `(3, 0)` and `(3, 1)`.

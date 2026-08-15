@@ -34,13 +34,13 @@ Return the number of beautiful ways to divide `nums` into three non-empty contig
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1, 2, 1]`
-- Output: `2`
-- Explanation: The valid divisions are `[1] | [1, 2] | [1]` and `[1] | [1] | [2, 1]`.
+- **Input:** `nums = [1, 1, 2, 1]`
+- **Output:** `2`
+- **Explanation:** The valid divisions are `[1] | [1, 2] | [1]` and `[1] | [1] | [2, 1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `0`
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `0`

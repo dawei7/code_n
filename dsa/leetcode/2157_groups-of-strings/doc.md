@@ -40,16 +40,16 @@ A two-element list `[group_count, largest_group_size]`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["a", "b", "ab", "cde"]`
-- Output: `[2, 3]`
-- Explanation: `"a"`, `"b"`, and `"ab"` are connected by replacement and
+- **Input:** `words = ["a", "b", "ab", "cde"]`
+- **Output:** `[2, 3]`
+- **Explanation:** `"a"`, `"b"`, and `"ab"` are connected by replacement and
   addition/deletion operations, while `"cde"` is isolated.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["a", "ab", "abc"]`
-- Output: `[1, 3]`
-- Explanation: Consecutive words differ by adding one letter, so all three
+- **Input:** `words = ["a", "ab", "abc"]`
+- **Output:** `[1, 3]`
+- **Explanation:** Consecutive words differ by adding one letter, so all three
   belong to one group.

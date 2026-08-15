@@ -40,8 +40,7 @@ After each test case, the judge calls `size()`. Enqueue has no return value; deq
 [[2],[1],[],[],[0],[2],[3],[4],[]]
 - **Output:** ``
 [1,0,2,2]
-- **Explanation:**
-Number of producer threads = 1
+- **Explanation:** Number of producer threads = 1
 Number of consumer threads = 1
 BoundedBlockingQueue queue = new BoundedBlockingQueue(2);   // initialize the queue with capacity = 2.
 queue.enqueue(1);   // The producer thread enqueues 1 to the queue.
@@ -53,6 +52,7 @@ queue.enqueue(3);   // The producer thread enqueues 3 to the queue.
 queue.enqueue(4);   // The producer thread is blocked because the queue's capacity (2) is reached.
 queue.dequeue();    // The consumer thread returns 2 from the queue. The producer thread is unblocked and enqueues 4 to the queue.
 queue.size();       // 2 elements remaining in the queue. size() is always called at the end of each test case.
+
 #### Example 2
 
 - **Input:** ``
@@ -62,8 +62,7 @@ queue.size();       // 2 elements remaining in the queue. size() is always calle
 [[3],[1],[0],[2],[],[],[],[3]]
 - **Output:** ``
 [1,0,2,1]
-- **Explanation:**
-Number of producer threads = 3
+- **Explanation:** Number of producer threads = 3
 Number of consumer threads = 4
 BoundedBlockingQueue queue = new BoundedBlockingQueue(3);   // initialize the queue with capacity = 3.
 queue.enqueue(1);   // Producer thread P1 enqueues 1 to the queue.

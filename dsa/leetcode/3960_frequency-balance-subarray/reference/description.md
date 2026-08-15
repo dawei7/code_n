@@ -26,12 +26,11 @@ Return the maximum length of a frequency balanced subarray. At least one single-
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,2,1,2,3,3,3]
+- **Input:** nums = [1,2,2,1,2,3,3,3]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - The longest frequency balance subarray is `[2, 1, 2, 3, 3]`.
 
@@ -39,15 +38,13 @@ Return the maximum length of a frequency balanced subarray. At least one single-
 
 - The remaining element 1 appears once, meeting the requirements.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,5,5,5]
+- **Input:** nums = [5,5,5,5]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - The longest frequency balance subarray is `[5, 5, 5, 5]`.
 
@@ -55,19 +52,13 @@ Return the maximum length of a frequency balanced subarray. At least one single-
 
 - There are no other elements meeting the requirements.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Since all elements appear only once, the length of the longest frequency balance subarray is 1.
-
-</div>
+- **Explanation:** Since all elements appear only once, the length of the longest frequency balance subarray is 1.
 
 ### 4. Constraints
 

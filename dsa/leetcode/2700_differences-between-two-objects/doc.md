@@ -33,31 +33,31 @@ Return a nested object whose leaves are two-element difference arrays. Omit unch
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obj1 = {}`, `obj2 = {"a":1,"b":2}`
-- Output: `{}`
-- Explanation: The two keys exist only in `obj2`, so neither is compared.
+- **Input:** `obj1 = {}`, `obj2 = {"a":1,"b":2}`
+- **Output:** `{}`
+- **Explanation:** The two keys exist only in `obj2`, so neither is compared.
 
-**Example 2**
+#### Example 2
 
-- Input: `obj1 = {"a":1,"v":3,"x":[],"z":{"a":null}}`, `obj2 = {"a":2,"v":4,"x":[],"z":{"a":2}}`
-- Output: `{"a":[1,2],"v":[3,4],"z":{"a":[null,2]}}`
+- **Input:** `obj1 = {"a":1,"v":3,"x":[],"z":{"a":null}}`, `obj2 = {"a":2,"v":4,"x":[],"z":{"a":2}}`
+- **Output:** `{"a":[1,2],"v":[3,4],"z":{"a":[null,2]}}`
 
-**Example 3**
+#### Example 3
 
-- Input: `obj1 = {"a":5,"v":6,"z":[1,2,4,[2,5,7]]}`, `obj2 = {"a":5,"v":7,"z":[1,2,3,[1]]}`
-- Output: `{"v":[6,7],"z":{"2":[4,3],"3":{"0":[2,1]}}}`
-- Explanation: Array indices $2$ and $3$ differ. Removed tail indices are ignored.
+- **Input:** `obj1 = {"a":5,"v":6,"z":[1,2,4,[2,5,7]]}`, `obj2 = {"a":5,"v":7,"z":[1,2,3,[1]]}`
+- **Output:** `{"v":[6,7],"z":{"2":[4,3],"3":{"0":[2,1]}}}`
+- **Explanation:** Array indices $2$ and $3$ differ. Removed tail indices are ignored.
 
-**Example 4**
+#### Example 4
 
-- Input: `obj1 = {"a":{"b":1}}`, `obj2 = {"a":[5]}`
-- Output: `{"a":[{"b":1},[5]]}`
-- Explanation: An object and an array are different container types, so the entire values form one leaf difference.
+- **Input:** `obj1 = {"a":{"b":1}}`, `obj2 = {"a":[5]}`
+- **Output:** `{"a":[{"b":1},[5]]}`
+- **Explanation:** An object and an array are different container types, so the entire values form one leaf difference.
 
-**Example 5**
+#### Example 5
 
-- Input: `obj1 = {"a":[1,2,{}],"b":false}`, `obj2 = {"b":false,"a":[1,2,{}]}`
-- Output: `{}`
-- Explanation: The structures are equal despite their different property order.
+- **Input:** `obj1 = {"a":[1,2,{}],"b":false}`, `obj2 = {"b":false,"a":[1,2,{}]}`
+- **Output:** `{}`
+- **Explanation:** The structures are equal despite their different property order.

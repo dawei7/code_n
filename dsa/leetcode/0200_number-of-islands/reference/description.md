@@ -25,6 +25,7 @@ Return the number of horizontally or vertically connected land components.
 ["0","0","0","0","0"]
 ]
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** $grid = [$

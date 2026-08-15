@@ -16,28 +16,27 @@ All yielded dates must be in the string format `YYYY-MM-DD`.
 
 - **Input:** $start = "2023-04-01", end = "2023-04-04", step = 1$
 - **Output:** `["2023-04-01","2023-04-02","2023-04-03","2023-04-04"]`
-- **Explanation:**
-const g = dateRangeGenerator(start, end, step);
+- **Explanation:** const g = dateRangeGenerator(start, end, step);
 g.next().value // '2023-04-01'
 g.next().value // '2023-04-02'
 g.next().value // '2023-04-03'
 g.next().value // '2023-04-04'
+
 #### Example 2
 
 - **Input:** $start = "2023-04-10", end = "2023-04-20", step = 3$
 - **Output:** `["2023-04-10","2023-04-13","2023-04-16","2023-04-19"]`
-- **Explanation:**
-const g = dateRangeGenerator(start, end, step);
+- **Explanation:** const g = dateRangeGenerator(start, end, step);
 g.next().value // '2023-04-10'
 g.next().value // '2023-04-13'
 g.next().value // '2023-04-16'
 g.next().value // '2023-04-19'
+
 #### Example 3
 
 - **Input:** $start = "2023-04-10", end = "2023-04-10", step = 1$
 - **Output:** `["2023-04-10"]`
-- **Explanation:**
-const g = dateRangeGenerator(start, end, step);
+- **Explanation:** const g = dateRangeGenerator(start, end, step);
 g.next().value // '2023-04-10'
 
 ### 4. Constraints

@@ -8,8 +8,14 @@ Return *the **maximum possible frequency** of an element after performing **at m
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Return *the **maximum possible frequency** of an element after performing **at m
 - **Output:** `3**`
 - **Explanation:** Increment the first element three times and the second element two times to make nums = [4,4,4].
 4 has a frequency of 3.
+
 #### Example 2
 
 - **Input:** `nums = [1,4,8,13], k = 5`
@@ -27,6 +34,7 @@ Return *the **maximum possible frequency** of an element after performing **at m
 - Increment the first element three times to make nums = [4,4,8,13]. 4 has a frequency of 2.
 - Increment the second element four times to make nums = [1,8,8,13]. 8 has a frequency of 2.
 - Increment the third element five times to make nums = [1,4,13,13]. 13 has a frequency of 2.
+
 #### Example 3
 
 - **Input:** `nums = [3,9,6], k = 2`

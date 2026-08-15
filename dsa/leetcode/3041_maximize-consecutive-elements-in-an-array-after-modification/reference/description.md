@@ -10,8 +10,13 @@ Return *the **maximum** number of elements that you can select*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return *the **maximum** number of elements that you can select*.
 - **Explanation:** We can increase the elements at indices 0 and 3. The resulting array is nums = [3,1,5,2,1].
 We select the elements [<u>**3**</u>,<u>**1**</u>,5,<u>**2**</u>,1] and we sort them to obtain [1,2,3], which are consecutive.
 It can be shown that we cannot select more than 3 consecutive elements.
+
 #### Example 2
 
 - **Input:** `nums = [1,4,7,10]`

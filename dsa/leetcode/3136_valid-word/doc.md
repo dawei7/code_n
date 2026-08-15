@@ -34,20 +34,20 @@ Let $n = \lvert\texttt{word}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "234Adas"`
-- Output: `true`
-- Explanation: The length is sufficient, every character is alphanumeric, and the word contains vowels and consonants.
+- **Input:** `word = "234Adas"`
+- **Output:** `true`
+- **Explanation:** The length is sufficient, every character is alphanumeric, and the word contains vowels and consonants.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "b3"`
-- Output: `false`
-- Explanation: The word has fewer than three characters and contains no vowel.
+- **Input:** `word = "b3"`
+- **Output:** `false`
+- **Explanation:** The word has fewer than three characters and contains no vowel.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "a3$e"`
-- Output: `false`
-- Explanation: The dollar sign is not allowed, and the word contains no consonant.
+- **Input:** `word = "a3$e"`
+- **Output:** `false`
+- **Explanation:** The dollar sign is not allowed, and the word contains no consonant.

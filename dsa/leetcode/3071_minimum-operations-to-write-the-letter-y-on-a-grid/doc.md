@@ -32,14 +32,14 @@ Return the minimum number of individual cell-value changes needed to produce the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,2,2],[1,1,0],[0,1,0]]`
-- Output: `3`
-- Explanation: Three changes make every Y cell `1` and every background cell `0`.
+- **Input:** `grid = [[1,2,2],[1,1,0],[0,1,0]]`
+- **Output:** `3`
+- **Explanation:** Three changes make every Y cell `1` and every background cell `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0,1,0,1,0],[2,1,0,1,2],[2,2,2,0,1],[2,2,2,2,2],[2,1,2,2,2]]`
-- Output: `12`
-- Explanation: The minimum is achieved by assigning one value to all Y cells and a different value to all other cells, requiring twelve changes.
+- **Input:** `grid = [[0,1,0,1,0],[2,1,0,1,2],[2,2,2,0,1],[2,2,2,2,2],[2,1,2,2,2]]`
+- **Output:** `12`
+- **Explanation:** The minimum is achieved by assigning one value to all Y cells and a different value to all other cells, requiring twelve changes.

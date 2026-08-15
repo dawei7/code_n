@@ -8,21 +8,24 @@ Return the **permutation difference** between `s` and `t`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abc", t = "bac"
+- **Input:** s = "abc", t = "bac"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-For `s = "abc"` and $t = "bac"$, the permutation difference of `s` and `t` is equal to the sum of:
+- **Explanation:** For `s = "abc"` and $t = "bac"$, the permutation difference of `s` and `t` is equal to the sum of:
 
 - The absolute difference between the index of the occurrence of `"a"` in `s` and the index of the occurrence of `"a"` in `t`.
 
@@ -32,17 +35,13 @@ For `s = "abc"` and $t = "bac"$, the permutation difference of `s` and `t` is eq
 
 That is, the permutation difference between `s` and `t` is equal to $|0 - 1| + |1 - 0| + |2 - 2| = 2$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abcde", t = "edbac"
+- **Input:** s = "abcde", t = "edbac"
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:** The permutation difference between `s` and `t` is equal to $|0 - 3| + |1 - 2| + |2 - 4| + |3 - 1| + |4 - 0| = 12$.
-
-</div>
+- **Explanation:** The permutation difference between `s` and `t` is equal to $|0 - 3| + |1 - 2| + |2 - 4| + |3 - 1| + |4 - 0| = 12$.
 
 ### 4. Constraints
 

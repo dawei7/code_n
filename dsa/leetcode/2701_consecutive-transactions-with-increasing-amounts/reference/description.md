@@ -30,7 +30,7 @@ The query result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Transactions table:
 +----------------+-------------+------------------+--------+
 | transaction_id | customer_id | transaction_date | amount |
@@ -49,7 +49,7 @@ Transactions table:
 | 12             | 105         | 2023-05-13       | 260    |
 | 13             | 105         | 2023-05-14       | 270    |
 +----------------+-------------+------------------+--------+
-**Output:**
+- **Output:** 
 +-------------+-------------------+-----------------+
 | customer_id | consecutive_start | consecutive_end |
 +-------------+-------------------+-----------------+
@@ -57,7 +57,7 @@ Transactions table:
 | 105         |  2023-05-01       | 2023-05-04      |
 | 105         |  2023-05-12       | 2023-05-14      |
 +-------------+-------------------+-----------------+
-**Explanation:**
+- **Explanation:** 
 - customer_id 101 has made consecutive transactions with increasing amounts from May 1st, 2023, to May 3rd, 2023
 - customer_id 102 does not have any consecutive transactions for at least 3 days.
 - customer_id 105 has two sets of consecutive transactions: from May 1st, 2023, to May 4th, 2023, and from May 12th, 2023, to May 14th, 2023.

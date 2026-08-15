@@ -33,11 +33,13 @@ The standalone app defines a minimal local equivalent of LeetCode's injected `Tr
 One valid answer is [5,4,6,2,null,null,7], shown in the above BST.
 Please notice that another valid answer is [5,2,6,null,4,null,7] and it's also accepted.
 ![](images/del_node_supp.jpg)
+
 #### Example 2
 
 - **Input:** `root = [5,3,6,2,4,null,7], key = 0`
 - **Output:** `[5,3,6,2,4,null,7]`
 - **Explanation:** The tree does not contain a node with value = 0.
+
 #### Example 3
 
 - **Input:** `root = [], key = 0`

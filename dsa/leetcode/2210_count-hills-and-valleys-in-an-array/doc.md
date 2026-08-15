@@ -30,20 +30,20 @@ Return the number of distinct hill and valley features, counting each plateau of
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 4, 1, 1, 6, 5]`
-- Output: `3`
-- Explanation: `4` is a hill, the adjacent `1` values form one valley, and `6` is a hill.
+- **Input:** `nums = [2, 4, 1, 1, 6, 5]`
+- **Output:** `3`
+- **Explanation:** `4` is a hill, the adjacent `1` values form one valley, and `6` is a hill.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6, 6, 5, 5, 4, 1]`
-- Output: `0`
-- Explanation: after equal plateaus are treated as single values, the sequence decreases throughout.
+- **Input:** `nums = [6, 6, 5, 5, 4, 1]`
+- **Output:** `0`
+- **Explanation:** after equal plateaus are treated as single values, the sequence decreases throughout.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 2, 1]`
-- Output: `1`
-- Explanation: the two adjacent `2` values form one hill.
+- **Input:** `nums = [1, 2, 2, 1]`
+- **Output:** `1`
+- **Explanation:** the two adjacent `2` values form one hill.

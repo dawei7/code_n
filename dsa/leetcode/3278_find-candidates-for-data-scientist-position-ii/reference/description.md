@@ -34,15 +34,13 @@ Leetcode is staffing for multiple data science projects. Write a solution to fin
 
 - Calculate a **score** for each candidate-project pair as follows:
 
-		<li>**Start** with `100` points
+		- **Start** with `100` points
 
 - **Add** `10` points for each skill where **proficiency > importance**
 
 - **Subtract** `5` points for each skill where **proficiency < importance**
 
 - If the candidate's skill proficiency **equal **to the project's skill importance, the score remains unchanged
-
-	</li>
 
 Include only the top candidate (highest score) for each project. If there’s a **tie**, choose the candidate with the **lower** $\text{candidate}_{id}$. If there is **no suitable candidate** for a project, **do not return** that project.
 
@@ -52,7 +50,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `Candidates` table:
@@ -109,8 +106,6 @@ The result format is in the following example.
 - For Project 502, Candidate 102 has the highest score of 130.
 
 The output table is ordered by project_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

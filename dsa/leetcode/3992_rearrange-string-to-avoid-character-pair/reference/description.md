@@ -28,40 +28,27 @@ Return any permutation `t` of `s` for which the last occurrence of `y` is before
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aabc", x = "a", y = "c"
+- **Input:** s = "aabc", x = "a", y = "c"
 
-**Output:** "cbaa"
+- **Output:** "cbaa"
 
-**Explanation:**
+- **Explanation:** The string `"cbaa"` is a permutation of `"aabc"`, and every occurrence of `'c'` appears before every occurrence of `'a'`.
 
-The string `"cbaa"` is a permutation of `"aabc"`, and every occurrence of `'c'` appears before every occurrence of `'a'`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "dcab", x = "d", y = "b"
+- **Input:** s = "dcab", x = "d", y = "b"
 
-**Output:** "cabd"
+- **Output:** "cabd"
 
-**Explanation:**
+- **Explanation:** The string `"cabd"` is a permutation of `"dcab"`, and every occurrence of `'b'` appears before every occurrence of `'d'`.
 
-The string `"cabd"` is a permutation of `"dcab"`, and every occurrence of `'b'` appears before every occurrence of `'d'`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "axe", x = "o", y = "x"
+- **Input:** s = "axe", x = "o", y = "x"
 
-**Output:** "axe"
+- **Output:** "axe"
 
-**Explanation:**
-
-The string `"axe"` is already valid. Since `'o'` does not occur in the string, the required condition is automatically satisfied.
-
-</div>
+- **Explanation:** The string `"axe"` is already valid. Since `'o'` does not occur in the string, the required condition is automatically satisfied.
 
 ### 4. Constraints
 

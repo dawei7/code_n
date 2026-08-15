@@ -34,20 +34,20 @@ The source constraints allow $1 \le N \le 10^5$, where $N=\lvert\texttt{word}\rv
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "abcde"`
-- Output: `5`
-- Explanation: The five used letters can each occupy a one-push position.
+- **Input:** `word = "abcde"`
+- **Output:** `5`
+- **Explanation:** The five used letters can each occupy a one-push position.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "xyzxyzxyzxyz"`
-- Output: `12`
-- Explanation: Only three letters occur, so each can be placed first on its own key and every character costs one push.
+- **Input:** `word = "xyzxyzxyzxyz"`
+- **Output:** `12`
+- **Explanation:** Only three letters occur, so each can be placed first on its own key and every character costs one push.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "abcdefghijklmnopqrstuvwxyz"`
-- Output: `56`
-- Explanation: Eight letters cost one push, eight cost two, eight cost three, and the final two cost four.
+- **Input:** `word = "abcdefghijklmnopqrstuvwxyz"`
+- **Output:** `56`
+- **Explanation:** Eight letters cost one push, eight cost two, eight cost three, and the final two cost four.

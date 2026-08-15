@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Experiments table:
 +---------------+----------+-----------------+
 | experiment_id | platform | experiment_name |
@@ -43,7 +43,7 @@ Experiments table:
 | 12            | Web      | Reading         |
 | 18            | Web      | Programming     |
 +---------------+----------+-----------------+
-**Output:**
+- **Output:** 
 +----------+-----------------+-----------------+
 | platform | experiment_name | num_experiments |
 +----------+-----------------+-----------------+
@@ -57,8 +57,7 @@ Experiments table:
 | Web      | Sports          | 0               |
 | Web      | Programming     | 1               |
 +----------+-----------------+-----------------+
-**Explanation:**
-On the platform "Android", we had only one "Reading" experiment.
+- **Explanation:** On the platform "Android", we had only one "Reading" experiment.
 On the platform "IOS", we had one "Sports" experiment and one "Programming" experiment.
 On the platform "Web", we had two "Reading" experiments and one "Programming" experiment.
 ```

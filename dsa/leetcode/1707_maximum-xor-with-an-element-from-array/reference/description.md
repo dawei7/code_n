@@ -8,8 +8,14 @@ Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,10 +23,10 @@ Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries
 
 - **Input:** `nums = [0,1,2,3,4], queries = [[3,1],[1,3],[5,6]]`
 - **Output:** `[3,3,7]`
-- **Explanation:**
-1) 0 and 1 are the only two integers not greater than 1. 0 XOR 3 = 3 and 1 XOR 3 = 2. The larger of the two is 3.
+- **Explanation:** 1) 0 and 1 are the only two integers not greater than 1. 0 XOR 3 = 3 and 1 XOR 3 = 2. The larger of the two is 3.
 2) 1 XOR 2 = 3.
 3) 5 XOR 2 = 7.
+
 #### Example 2
 
 - **Input:** `nums = [5,2,4,6,6,3], queries = [[12,4],[8,1],[6,3]]`

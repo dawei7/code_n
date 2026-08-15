@@ -30,13 +30,13 @@ If $x=y$, both stones are destroyed. Otherwise the stone weighing $x$ is destroy
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `stones = [2,7,4,1,8,1]`
-- Output: `1`
-- Explanation: Suitable pair choices reduce the multiset until a stone of weight `1` remains, and zero is impossible.
+- **Input:** `stones = [2,7,4,1,8,1]`
+- **Output:** `1`
+- **Explanation:** Suitable pair choices reduce the multiset until a stone of weight `1` remains, and zero is impossible.
 
-**Example 2**
+#### Example 2
 
-- Input: `stones = [31,26,33,21,40]`
-- Output: `5`
+- **Input:** `stones = [31,26,33,21,40]`
+- **Output:** `5`

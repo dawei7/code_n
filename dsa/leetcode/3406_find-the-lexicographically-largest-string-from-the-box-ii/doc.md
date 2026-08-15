@@ -33,16 +33,16 @@ The constraints are $1\le \lvert\texttt{word}\rvert\le2\cdot10^5$ and $1\le\text
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "dbca", numFriends = 2`
-- Output: `"dbc"`
+- **Input:** `word = "dbca", numFriends = 2`
+- **Output:** `"dbc"`
 
 The three possible splits are `"d" | "bca"`, `"db" | "ca"`, and `"dbc" | "a"`. The largest piece among them is `"dbc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "gggg", numFriends = 4`
-- Output: `"g"`
+- **Input:** `word = "gggg", numFriends = 4`
+- **Output:** `"g"`
 
 Every character must be a separate non-empty piece, so the box contains only `"g"`.

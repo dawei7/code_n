@@ -8,8 +8,13 @@ Return *the **number of indices** where *$\text{heights}[i] \neq \text{expected}
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `heights`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,24 +22,23 @@ Return *the **number of indices** where *$\text{heights}[i] \neq \text{expected}
 
 - **Input:** $heights = [1,1,4,2,1,3]$
 - **Output:** `3`
-- **Explanation:**
-heights:  [1,1,<u>4</u>,2,<u>1</u>,<u>3</u>]
+- **Explanation:** heights:  [1,1,<u>4</u>,2,<u>1</u>,<u>3</u>]
 expected: [1,1,<u>1</u>,2,<u>3</u>,<u>4</u>]
 Indices 2, 4, and 5 do not match.
+
 #### Example 2
 
 - **Input:** $heights = [5,1,2,3,4]$
 - **Output:** `5`
-- **Explanation:**
-heights:  [<u>5</u>,<u>1</u>,<u>2</u>,<u>3</u>,<u>4</u>]
+- **Explanation:** heights:  [<u>5</u>,<u>1</u>,<u>2</u>,<u>3</u>,<u>4</u>]
 expected: [<u>1</u>,<u>2</u>,<u>3</u>,<u>4</u>,<u>5</u>]
 All indices do not match.
+
 #### Example 3
 
 - **Input:** $heights = [1,2,3,4,5]$
 - **Output:** `0`
-- **Explanation:**
-heights:  [1,2,3,4,5]
+- **Explanation:** heights:  [1,2,3,4,5]
 expected: [1,2,3,4,5]
 All indices match.
 

@@ -24,8 +24,14 @@ Given the encoded string `encodedText` and number of rows `rows`, return *the or
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `encodedText`: Input parameter (`str`).
+- `rows`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -38,6 +44,7 @@ Given the encoded string `encodedText` and number of rows `rows`, return *the or
 - **Input:** $encodedText = "ch ie pr", rows = 3$
 - **Output:** `"cipher"`
 - **Explanation:** This is the same example described in the problem description.
+
 #### Example 2
 
 ![](images/exam1.png)
@@ -46,6 +53,7 @@ Given the encoded string `encodedText` and number of rows `rows`, return *the or
 - **Output:** `"i love leetcode"`
 - **Explanation:** The figure above denotes the matrix that was used to encode originalText.
 The blue arrows show how we can find originalText from encodedText.
+
 #### Example 3
 
 ![](images/eg2.png)

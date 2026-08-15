@@ -23,14 +23,11 @@ Return the `n`th smallest positive integer whose binary representation contains 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, k = 2
+- **Input:** n = 4, k = 2
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-The 4 smallest positive integers that have exactly $k = 2$ ones in their binary representations are:
+- **Explanation:** The 4 smallest positive integers that have exactly $k = 2$ ones in their binary representations are:
 
 - $3 = \text{11}_{2}$
 
@@ -40,25 +37,19 @@ The 4 smallest positive integers that have exactly $k = 2$ ones in their binary 
 
 - $9 = \text{1001}_{2}$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, k = 1
+- **Input:** n = 3, k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The 3 smallest positive integers that have exactly $k = 1$ one in their binary representations are:
+- **Explanation:** The 3 smallest positive integers that have exactly $k = 1$ one in their binary representations are:
 
 - $1 = 1_{2}$
 
 - $2 = \text{10}_{2}$
 
 - $4 = \text{100}_{2}$
-
-</div>
 
 ### 4. Constraints
 

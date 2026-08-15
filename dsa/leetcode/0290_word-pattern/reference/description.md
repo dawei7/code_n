@@ -25,36 +25,27 @@ Return `true` exactly when the pattern letters and words form the required posit
 
 #### Example 1
 
-<div class="example-block">
-**Input:** pattern = "abba", s = "dog cat cat dog"
+- **Input:** pattern = "abba", s = "dog cat cat dog"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-The bijection can be established as:
+- **Explanation:** The bijection can be established as:
 
 - `'a'` maps to `"dog"`.
 
 - `'b'` maps to `"cat"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** pattern = "abba", s = "dog cat cat fish"
+- **Input:** pattern = "abba", s = "dog cat cat fish"
 
-**Output:** false
+- **Output:** false
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** pattern = "aaaa", s = "dog cat cat dog"
+- **Input:** pattern = "aaaa", s = "dog cat cat dog"
 
-**Output:** false
-
-</div>
+- **Output:** false
 
 ### 4. Constraints
 

@@ -8,8 +8,14 @@ Return *the sender with the **largest** word count*. If there is more than one s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `messages`: Input parameter (`List[str]`).
+- `senders`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -27,6 +33,7 @@ Return *the sender with the **largest** word count*. If there is more than one s
 userTwo sends a total of 2 words.
 userThree sends a total of 3 words.
 Since Alice has the largest word count, we return "Alice".
+
 #### Example 2
 
 - **Input:** $messages = ["How is leetcode for everyone","Leetcode is useful for practice"], senders = ["Bob","Charlie"]$

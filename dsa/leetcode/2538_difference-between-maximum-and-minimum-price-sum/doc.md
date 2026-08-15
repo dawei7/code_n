@@ -1,4 +1,3 @@
-
 # Difference Between Maximum and Minimum Price Sum
 
 | Field | Value |
@@ -35,14 +34,14 @@ Return the maximum possible difference between the largest and smallest price su
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, edges = [[0,1],[1,2],[1,3],[3,4],[3,5]], price = [9,8,7,6,10,5]`
-- Output: `24`
-- Explanation: With node 2 as root, the path through nodes `[2,1,3,4]` sums to $31$, while the one-node root path sums to $7$. Their difference is $24$.
+- **Input:** `n = 6, edges = [[0,1],[1,2],[1,3],[3,4],[3,5]], price = [9,8,7,6,10,5]`
+- **Output:** `24`
+- **Explanation:** With node 2 as root, the path through nodes `[2,1,3,4]` sums to $31$, while the one-node root path sums to $7$. Their difference is $24$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0,1],[1,2]], price = [1,1,1]`
-- Output: `2`
-- Explanation: Rooting at an endpoint gives path sums $1$ and $3$, producing cost $2$.
+- **Input:** `n = 3, edges = [[0,1],[1,2]], price = [1,1,1]`
+- **Output:** `2`
+- **Explanation:** Rooting at an endpoint gives path sums $1$ and $3$, producing cost $2$.

@@ -30,14 +30,11 @@ Return the sum of all values whose digit range equals the largest digit range pr
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5724,111,350]
+- **Input:** nums = [5724,111,350]
 
-**Output:** 6074
+- **Output:** 6074
 
-**Explanation:**
-
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<tbody>
 		<tr>
 			<th style="text-align:center;">`i`</th>
@@ -72,17 +69,13 @@ Return the sum of all values whose digit range equals the largest digit range pr
 
 The maximum digit range is 5. The integers with this digit range are 5724 and 350, so the answer is $5724 + 350 = 6074$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [90,900]
+- **Input:** nums = [90,900]
 
-**Output:** 990
+- **Output:** 990
 
-**Explanation:**
-
-<table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
+- **Explanation:** <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">
 	<tbody>
 		<tr>
 			<th style="text-align:center;">`i`</th>
@@ -109,8 +102,6 @@ The maximum digit range is 5. The integers with this digit range are 5724 and 35
 </table>
 
 The maximum digit range is 9. Both integers have this digit range, so the answer is $90 + 900 = 990$.
-
-</div>
 
 ### 4. Constraints
 

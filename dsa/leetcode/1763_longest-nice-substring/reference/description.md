@@ -6,8 +6,13 @@ Given a string `s`, return *the longest **substring** of `s` that is **nice**. I
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -17,11 +22,13 @@ Given a string `s`, return *the longest **substring** of `s` that is **nice**. I
 - **Output:** `"aAa"`
 - **Explanation:** "aAa" is a nice string because 'A/a' is the only letter of the alphabet in s, and both 'A' and 'a' appear.
 "aAa" is the longest nice substring.
+
 #### Example 2
 
 - **Input:** `s = "Bb"`
 - **Output:** `"Bb"`
 - **Explanation:** "Bb" is a nice string because both 'B' and 'b' appear. The whole string is a substring.
+
 #### Example 3
 
 - **Input:** `s = "c"`

@@ -40,18 +40,18 @@ Let $n$ be the number of nodes.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 In the supplied seven-node tree, node `5` has no parent and is `Root`; nodes
 `2` and `8` occur as parent values and are `Inner`; nodes `1`, `3`, `6`, and
 `9` are `Leaf` nodes.
 
-**Example 2**
+#### Example 2
 
 A one-row tree `(42, null)` contains only its root, so node `42` is `Root`
 rather than a leaf.
 
-**Example 3**
+#### Example 3
 
 For the chain `(10, null)`, `(20, 10)`, `(30, 20)`, node `10` is `Root`, node
 `20` is `Inner`, and node `30` is `Leaf`.

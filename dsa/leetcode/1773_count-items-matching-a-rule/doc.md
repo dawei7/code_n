@@ -37,20 +37,20 @@ Let $n=\lvert\texttt{items}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `items = [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]], ruleKey = "color", ruleValue = "silver"`
-- Output: `1`
-- Explanation: Only the computer has `"silver"` in its color field.
+- **Input:** `items = [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]], ruleKey = "color", ruleValue = "silver"`
+- **Output:** `1`
+- **Explanation:** Only the computer has `"silver"` in its color field.
 
-**Example 2**
+#### Example 2
 
-- Input: `items = [["phone","blue","pixel"],["computer","silver","phone"],["phone","gold","iphone"]], ruleKey = "type", ruleValue = "phone"`
-- Output: `2`
-- Explanation: The computer's name is `"phone"`, but its type is not, so it does not match this rule.
+- **Input:** `items = [["phone","blue","pixel"],["computer","silver","phone"],["phone","gold","iphone"]], ruleKey = "type", ruleValue = "phone"`
+- **Output:** `2`
+- **Explanation:** The computer's name is `"phone"`, but its type is not, so it does not match this rule.
 
-**Example 3**
+#### Example 3
 
-- Input: `items = [["a","b","c"]], ruleKey = "name", ruleValue = "c"`
-- Output: `1`
-- Explanation: The selected name field equals the requested value.
+- **Input:** `items = [["a","b","c"]], ruleKey = "name", ruleValue = "c"`
+- **Output:** `1`
+- **Explanation:** The selected name field equals the requested value.

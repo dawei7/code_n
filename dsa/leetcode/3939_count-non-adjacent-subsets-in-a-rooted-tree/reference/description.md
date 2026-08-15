@@ -34,12 +34,11 @@ Return the number of valid node subsets modulo $1{,}000{,}000{,}007$.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** parent = [-1,0,1], nums = [1,2,3], k = 3
+- **Input:** parent = [-1,0,1], nums = [1,2,3], k = 3
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -49,15 +48,13 @@ Return the number of valid node subsets modulo $1{,}000{,}000{,}007$.
 
 The only valid subset is `{2}`. It contains node 2 with value 3, which is divisible by 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** parent = [-1,0,0,0], nums = [2,1,2,1], k = 3
+- **Input:** parent = [-1,0,0,0], nums = [2,1,2,1], k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -73,8 +70,6 @@ The valid subsets are:
 
 No other subset satisfies both conditions. Therefore, the answer is 2.
 
-</div>
-
 ### 4. Constraints
 
 - $n = \text{parent.length} = \text{nums.length}$
@@ -85,9 +80,8 @@ No other subset satisfies both conditions. Therefore, the answer is 2.
 
 - For all $1 \le i < n$:
 
-		<li data-end="147" data-start="103">$0 \le \text{parent}[i] < i$
+		- $0 \le \text{parent}[i] < i$
 
-	</li>
 - $1 \le \text{nums}[i] \le 10^{9}$
 
 - $1 \le k \le 100$​​​​​​​​​​​​​​`​​​​​​​`

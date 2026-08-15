@@ -35,14 +35,11 @@ Return the number of index pairs $(l,r)$ for which $\operatorname{cost}(l,r)\le\
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,2], k = 4
+- **Input:** nums = [1,3,2], k = 4
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-We consider all subarrays of `nums`:
+- **Explanation:** We consider all subarrays of `nums`:
 
 - `nums[0..0]`: $cost = (1 - 1) * 1 = 0$
 
@@ -58,35 +55,25 @@ We consider all subarrays of `nums`:
 
 There are 5 subarrays whose cost is less than or equal to 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,5,5,5], k = 0
+- **Input:** nums = [5,5,5,5], k = 0
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-For any subarray of `nums`, the maximum and minimum values are the same, so the cost is always 0.
+- **Explanation:** For any subarray of `nums`, the maximum and minimum values are the same, so the cost is always 0.
 
 As a result, every subarray of `nums` has cost less than or equal to 0.
 
 For an array of length 4, the total number of subarrays is $(4 * 5) / 2 = 10$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 0
+- **Input:** nums = [1,2,3], k = 0
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The only subarrays of `nums` with cost 0 are the single-element subarrays, and there are 3 of them.
-
-</div>
+- **Explanation:** The only subarrays of `nums` with cost 0 are the single-element subarrays, and there are 3 of them.
 
 ### 4. Constraints
 

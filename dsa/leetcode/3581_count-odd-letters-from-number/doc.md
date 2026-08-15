@@ -30,16 +30,16 @@ Return the number of distinct lowercase letters whose frequency in the concatena
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 41`
-- Output: `5`
-- Explanation: The text is `"fourone"`; `f`, `u`, `r`, `n`, and `e` have odd frequencies.
+- **Input:** `n = 41`
+- **Output:** `5`
+- **Explanation:** The text is `"fourone"`; `f`, `u`, `r`, `n`, and `e` have odd frequencies.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 20`
-- Output: `5`
-- Explanation: The text is `"twozero"`; `t`, `w`, `z`, `e`, and `r` have odd frequencies.
+- **Input:** `n = 20`
+- **Output:** `5`
+- **Explanation:** The text is `"twozero"`; `t`, `w`, `z`, `e`, and `r` have odd frequencies.
 
 ---

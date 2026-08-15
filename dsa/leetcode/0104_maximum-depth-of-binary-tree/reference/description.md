@@ -22,6 +22,7 @@ Return the number of nodes on the longest root-to-leaf path. An empty tree has d
 
 - **Input:** `root = [3,9,20,null,null,15,7]`
 - **Output:** `3`
+
 #### Example 2
 
 - **Input:** `root = [1,null,2]`

@@ -10,8 +10,10 @@ A **preorder traversal** of a binary tree displays the value of the node first, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `bstFromPreorder(preorder: List[int]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -21,6 +23,7 @@ A **preorder traversal** of a binary tree displays the value of the node first, 
 
 - **Input:** $preorder = [8,5,1,7,10,12]$
 - **Output:** `[8,5,10,1,7,null,12]`
+
 #### Example 2
 
 - **Input:** $preorder = [1,3]$

@@ -36,14 +36,14 @@ The lexicographically sorted list of all distinct words represented by `expressi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `expression = "{a,b}{c,{d,e}}"`
-- Output: `["ac", "ad", "ae", "bc", "bd", "be"]`
+- **Input:** `expression = "{a,b}{c,{d,e}}"`
+- **Output:** `["ac", "ad", "ae", "bc", "bd", "be"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `expression = "{{a,z},a{b,c},{ab,z}}"`
-- Output: `["a", "ab", "ac", "z"]`
+- **Input:** `expression = "{{a,z},a{b,c},{ab,z}}"`
+- **Output:** `["a", "ab", "ac", "z"]`
 
 The alternatives generate `ab` and `z` more than once, but the result is a set.

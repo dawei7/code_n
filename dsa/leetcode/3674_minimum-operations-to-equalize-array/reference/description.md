@@ -10,35 +10,31 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2]
+- **Input:** nums = [1,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Choose `nums[0...1]`: $(1 AND 2) = 0$, so the array becomes `[0, 0]` and all elements are equal in 1 operation.
 
-Choose `nums[0...1]`: $(1 AND 2) = 0$, so the array becomes `[0, 0]` and all elements are equal in 1 operation.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,5,5]
+- **Input:** nums = [5,5,5]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-`nums` is `[5, 5, 5]` which already has all elements equal, so 0 operations are required.
-
-</div>
+- **Explanation:** `nums` is `[5, 5, 5]` which already has all elements equal, so 0 operations are required.
 
 ### 4. Constraints
 

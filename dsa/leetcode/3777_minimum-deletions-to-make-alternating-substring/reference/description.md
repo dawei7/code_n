@@ -29,14 +29,11 @@ Return one integer for each type-2 query, in the same relative order as those qu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "ABA", queries = [[2,1,2],[1,1],[2,0,2]]
+- **Input:** s = "ABA", queries = [[2,1,2],[1,1],[2,0,2]]
 
-**Output:** [0,2]
+- **Output:** [0,2]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">`**i**`</th>
@@ -89,17 +86,13 @@ Return one integer for each type-2 query, in the same relative order as those qu
 
 Thus, the answer is `[0, 2]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "ABB", queries = [[2,0,2],[1,2],[2,0,2]]
+- **Input:** s = "ABB", queries = [[2,0,2],[1,2],[2,0,2]]
 
-**Output:** [1,0]
+- **Output:** [1,0]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">`**i**`</th>
@@ -152,17 +145,13 @@ Thus, the answer is `[0, 2]`.
 
 Thus, the answer is `[1, 0]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "BABA", queries = [[2,0,3],[1,1],[2,1,3]]
+- **Input:** s = "BABA", queries = [[2,0,3],[1,1],[2,1,3]]
 
-**Output:** [0,1]
+- **Output:** [0,1]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th align="center" style="border: 1px solid black;">`**i**`</th>
@@ -215,8 +204,6 @@ Thus, the answer is `[1, 0]`.
 
 Thus, the answer is `[0, 1]`.
 
-</div>
-
 ### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
@@ -227,12 +214,10 @@ Thus, the answer is `[0, 1]`.
 
 - $\text{queries}[i].length = 2$ or `3`
 
-		<li>$\text{queries}[i] = [1, j]$ or,
+		- $\text{queries}[i] = [1, j]$ or,
 
 - $\text{queries}[i] = [2, l, r]$
 
 - $0 \le j \le n - 1$
 
 - $0 \le l \le r \le n - 1$
-
-	</li>

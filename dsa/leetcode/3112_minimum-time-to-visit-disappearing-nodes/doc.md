@@ -34,20 +34,20 @@ Let $m$ be the number of entries in `edges`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,1,5]`
-- Output: `[0,-1,4]`
-- Explanation: Node $1$ disappears before time $2$, so the route through it is invalid; node $2$ is reached directly at time $4$.
+- **Input:** `n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,1,5]`
+- **Output:** `[0,-1,4]`
+- **Explanation:** Node $1$ disappears before time $2$, so the route through it is invalid; node $2$ is reached directly at time $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,3,5]`
-- Output: `[0,2,3]`
-- Explanation: Node $1$ is reached before time $3$, enabling the shorter arrival at node $2$.
+- **Input:** `n = 3, edges = [[0,1,2],[1,2,1],[0,2,4]], disappear = [1,3,5]`
+- **Output:** `[0,2,3]`
+- **Explanation:** Node $1$ is reached before time $3$, enabling the shorter arrival at node $2$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 2, edges = [[0,1,1]], disappear = [1,1]`
-- Output: `[0,-1]`
-- Explanation: Reaching node $1$ at time $1$ is invalid because it disappears at that exact time.
+- **Input:** `n = 2, edges = [[0,1,1]], disappear = [1,1]`
+- **Output:** `[0,-1]`
+- **Explanation:** Reaching node $1$ at time $1$ is invalid because it disappears at that exact time.

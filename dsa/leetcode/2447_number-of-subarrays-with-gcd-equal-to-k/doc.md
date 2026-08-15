@@ -31,14 +31,14 @@ Count and return the number of subarrays whose greatest common divisor is exactl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [9, 3, 1, 2, 6, 3], k = 3`
-- Output: `4`
-- Explanation: The qualifying subarrays are the two singleton `[3]` occurrences, `[9, 3]`, and `[6, 3]`.
+- **Input:** `nums = [9, 3, 1, 2, 6, 3], k = 3`
+- **Output:** `4`
+- **Explanation:** The qualifying subarrays are the two singleton `[3]` occurrences, `[9, 3]`, and `[6, 3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4], k = 7`
-- Output: `0`
-- Explanation: The only subarray has GCD 4.
+- **Input:** `nums = [4], k = 7`
+- **Output:** `0`
+- **Explanation:** The only subarray has GCD 4.

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/split-the-array/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an integer array `nums` whose length is even. Split all of its elements into two arrays, `nums1` and `nums2`, subject to three requirements:
 
 - `nums1.length == nums2.length == nums.length / 2`.
@@ -19,6 +21,7 @@ You are given an integer array `nums` whose length is even. Split all of its ele
 Return `true` if at least one such split exists, and `false` otherwise. The relative order of elements is irrelevant; only assigning every occurrence to one of the two equal-sized parts matters.
 
 ### Function Contract
+
 Let $n=\lvert\texttt{nums}\rvert$.
 
 **Inputs**
@@ -30,14 +33,15 @@ Let $n=\lvert\texttt{nums}\rvert$.
 Return `True` exactly when the elements can be distributed into two length-$n/2$ arrays that each contain only distinct values.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,1,2,2,3,4]`
-- Output: `true`
-- Explanation: One valid split is `nums1 = [1,2,3]` and `nums2 = [1,2,4]`.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,1,2,2,3,4]`
+- **Output:** `true`
+- **Explanation:** One valid split is `nums1 = [1,2,3]` and `nums2 = [1,2,4]`.
 
-- Input: `nums = [1,1,1,1]`
-- Output: `false`
-- Explanation: Four copies of `1` cannot be placed into two arrays without repeating `1` inside at least one part.
+#### Example 2
+
+- **Input:** `nums = [1,1,1,1]`
+- **Output:** `false`
+- **Explanation:** Four copies of `1` cannot be placed into two arrays without repeating `1` inside at least one part.

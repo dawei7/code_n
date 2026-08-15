@@ -32,23 +32,23 @@ The requested target is the $k$th smallest wonderful integer; the input guarante
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "5489355142"`, `k = 4`
-- Output: `2`
+- **Input:** `num = "5489355142"`, `k = 4`
+- **Output:** `2`
 
 The fourth wonderful integer is `"5489355421"`, reachable with two adjacent swaps.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "11112"`, `k = 4`
-- Output: `4`
+- **Input:** `num = "11112"`, `k = 4`
+- **Output:** `4`
 
 The target is `"21111"`; the digit `2` must move four positions left.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "00123"`, `k = 1`
-- Output: `1`
+- **Input:** `num = "00123"`, `k = 1`
+- **Output:** `1`
 
 The next permutation is `"00132"`.

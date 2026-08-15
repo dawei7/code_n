@@ -30,20 +30,20 @@ Return a list containing the part lengths from left to right. A letter may occur
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "ababcbacadefegdehijhklij"`
-- Output: `[9,7,8]`
-- Explanation: Each letter is confined to one of the three parts, and no valid partition can end earlier.
+- **Input:** `s = "ababcbacadefegdehijhklij"`
+- **Output:** `[9,7,8]`
+- **Explanation:** Each letter is confined to one of the three parts, and no valid partition can end earlier.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "eccbbbbdec"`
-- Output: `[10]`
-- Explanation: Occurrences link every position into one required partition.
+- **Input:** `s = "eccbbbbdec"`
+- **Output:** `[10]`
+- **Explanation:** Occurrences link every position into one required partition.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "ynbi"`
-- Output: `[1,1,1,1]`
-- Explanation: Every character is unique, so every position can be its own part.
+- **Input:** `s = "ynbi"`
+- **Output:** `[1,1,1,1]`
+- **Explanation:** Every character is unique, so every position can be its own part.

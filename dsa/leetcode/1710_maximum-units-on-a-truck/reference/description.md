@@ -12,8 +12,14 @@ Return *the **maximum** total number of **units** that can be put on the truck.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `boxTypes`: Input parameter (`List[List[int]]`).
+- `truckSize`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +33,7 @@ Return *the **maximum** total number of **units** that can be put on the truck.*
 - 3 boxes of the third type that contain 1 unit each.
 You can take all the boxes of the first and second types, and one box of the third type.
 The total number of units will be = (1 * 3) + (2 * 2) + (1 * 1) = 8.
+
 #### Example 2
 
 - **Input:** $boxTypes = [[5,10],[2,5],[4,7],[3,9]], truckSize = 10$

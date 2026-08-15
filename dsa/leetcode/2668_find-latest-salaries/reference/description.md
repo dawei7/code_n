@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **Salary table:
 +--------+-----------+----------+--------+---------------+
 | emp_id | firstname | lastname | salary | department_id |
@@ -47,7 +47,7 @@ The result format is in the following example.
 | 6      | Natasha   | Swanson  | 79632  | D1005         |
 | 6      | Natasha   | Swanson  | 90000  | D1005         |
 +--------+-----------+----------+--------+---------------+
-**Output:
+- **Output:** 
 **+--------+-----------+----------+--------+---------------+
 | emp_id | firstname | lastname | salary | department_id |
 +--------+-----------+----------+--------+---------------+
@@ -59,7 +59,7 @@ The result format is in the following example.
 | 6      | Natasha   | Swanson  | 90000  | D1005         |
 +--------+-----------+----------+--------+---------------+**
 **
-**Explanation:**
+- **Explanation:** 
 - emp_id 1 has two records with a salary of 110000, 106119 out of these 110000 is an updated salary (Assuming salary is increasing each year)
 - emp_id 2 has two records with a salary of 128922, 130000 out of these 130000 is an updated salary.
 - emp_id 3 has only one salary record so that is already an updated salary.

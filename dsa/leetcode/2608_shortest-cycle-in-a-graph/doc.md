@@ -35,16 +35,16 @@ Let $m=\lvert\texttt{edges}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 7, edges = [[0,1],[1,2],[2,0],[3,4],[4,5],[5,6],[6,3]]`
-- Output: `3`
+- **Input:** `n = 7, edges = [[0,1],[1,2],[2,0],[3,4],[4,5],[5,6],[6,3]]`
+- **Output:** `3`
 
 The first connected component contains the triangle $0\to1\to2\to0$, which is shorter than the four-edge cycle in the other component.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, edges = [[0,1],[0,2]]`
-- Output: `-1`
+- **Input:** `n = 4, edges = [[0,1],[0,2]]`
+- **Output:** `-1`
 
 The graph is acyclic.

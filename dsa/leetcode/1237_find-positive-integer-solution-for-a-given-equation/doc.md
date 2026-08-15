@@ -35,23 +35,23 @@ Let $r$ be the number of returned solution pairs.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `customfunction = 1`, `z = 5`
-- Output: `[[1,4],[2,3],[3,2],[4,1]]`
+- **Input:** `customfunction = 1`, `z = 5`
+- **Output:** `[[1,4],[2,3],[3,2],[4,1]]`
 
 Fixture $1$ uses $f(x,y)=x+y$.
 
-**Example 2**
+#### Example 2
 
-- Input: `customfunction = 2`, `z = 5`
-- Output: `[[1,5],[5,1]]`
+- **Input:** `customfunction = 2`, `z = 5`
+- **Output:** `[[1,5],[5,1]]`
 
 Fixture $2$ uses $f(x,y)=xy$.
 
-**Example 3**
+#### Example 3
 
-- Input: `customfunction = 5`, `z = 25`
-- Output: `[[3,4],[4,3]]`
+- **Input:** `customfunction = 5`, `z = 25`
+- **Output:** `[[3,4],[4,3]]`
 
 Fixture $5$ uses $f(x,y)=x^2+y^2$.

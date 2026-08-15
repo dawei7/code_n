@@ -31,20 +31,20 @@ Return the minimum number of subarray increment or decrement operations required
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 5, 1, 2]`, `target = [4, 6, 2, 4]`
-- Output: `2`
-- Explanation: Increment the whole array once, then increment only its final element.
+- **Input:** `nums = [3, 5, 1, 2]`, `target = [4, 6, 2, 4]`
+- **Output:** `2`
+- **Explanation:** Increment the whole array once, then increment only its final element.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 2]`, `target = [2, 1, 4]`
-- Output: `5`
-- Explanation: The three required changes have alternating directions, so no operation can serve two adjacent positions.
+- **Input:** `nums = [1, 3, 2]`, `target = [2, 1, 4]`
+- **Output:** `5`
+- **Explanation:** The three required changes have alternating directions, so no operation can serve two adjacent positions.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 5, 5]`, `target = [6, 8, 7]`
-- Output: `4`
-- Explanation: Three nested increment layers reach the middle position, while one additional shared layer covers all three positions.
+- **Input:** `nums = [5, 5, 5]`, `target = [6, 8, 7]`
+- **Output:** `4`
+- **Explanation:** Three nested increment layers reach the middle position, while one additional shared layer covers all three positions.

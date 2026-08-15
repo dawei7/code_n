@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/) |
 
 ## Problem Description
+
 ### Goal
 
 An undirected tree has $n$ vertices numbered from $0$ through $n-1$. Some
@@ -22,6 +23,7 @@ apple. Return the minimum total traversal time required for the complete
 round trip.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: the number of vertices, where $1 \le n \le 10^5$.
@@ -36,19 +38,20 @@ Return the minimum number of seconds needed to start at vertex $0$, collect
 all apples, and finish again at vertex $0$.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 7, edges = [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], hasApple = [false, false, true, false, true, true, false]`
-- Output: `8`
-- Explanation: The required part of the tree contains four edges, each of
+#### Example 1
+
+- **Input:** `n = 7, edges = [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], hasApple = [false, false, true, false, true, true, false]`
+- **Output:** `8`
+- **Explanation:** The required part of the tree contains four edges, each of
   which must be traversed once outward and once on the return.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, edges = [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], hasApple = [false, false, true, false, false, true, false]`
-- Output: `6`
+- **Input:** `n = 7, edges = [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], hasApple = [false, false, true, false, false, true, false]`
+- **Output:** `6`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7, edges = [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], hasApple = [false, false, false, false, false, false, false]`
-- Output: `0`
+- **Input:** `n = 7, edges = [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], hasApple = [false, false, false, false, false, false, false]`
+- **Output:** `0`

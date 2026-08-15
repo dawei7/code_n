@@ -6,18 +6,23 @@ Alice wants the sum of values of tree nodes to be **maximum**, for which Alice c
 
 - Choose any edge `[u, v]` connecting the nodes `u` and `v`, and update their values as follows:
 
-		<li>$\text{nums}[u] = \text{nums}[u] XOR k$
+		- $\text{nums}[u] = \text{nums}[u] XOR k$
 
 - $\text{nums}[v] = \text{nums}[v] XOR k$
-
-	</li>
 
 Return *the **maximum** possible **sum** of the **values** Alice can achieve by performing the operation **any** number of times*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +36,7 @@ Return *the **maximum** possible **sum** of the **values** Alice can achieve by 
 - Choose the edge [0,2]. nums[0] and nums[2] become: 1 XOR 3 = 2, and the array nums becomes: [1,2,1] -> [2,2,2].
 The total sum of values is 2 + 2 + 2 = 6.
 It can be shown that 6 is the maximum achievable sum of values.
+
 #### Example 2
 
 ![](images/screenshot-2024-01-09-220017.png)
@@ -41,6 +47,7 @@ It can be shown that 6 is the maximum achievable sum of values.
 - Choose the edge [0,1]. nums[0] becomes: 2 XOR 7 = 5 and nums[1] become: 3 XOR 7 = 4, and the array nums becomes: [2,3] -> [5,4].
 The total sum of values is 5 + 4 = 9.
 It can be shown that 9 is the maximum achievable sum of values.
+
 #### Example 3
 
 ![](images/screenshot-2023-11-10-012641.png)

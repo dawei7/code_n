@@ -4,8 +4,13 @@ Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `circles`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,19 +26,18 @@ Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{
 
 - **Input:** $circles = [[2,2,1]]$
 - **Output:** `5`
-- **Explanation:**
-The figure above shows the given circle.
+- **Explanation:** The figure above shows the given circle.
 The lattice points present inside the circle are (1, 2), (2, 1), (2, 2), (2, 3), and (3, 2) and are shown in green.
 Other points such as (1, 1) and (1, 3), which are shown in red, are not considered inside the circle.
 Hence, the number of lattice points present inside at least one circle is 5.
+
 #### Example 2
 
 ![](images/exa-22.png)
 
 - **Input:** $circles = [[2,2,2],[3,4,1]]$
 - **Output:** `16`
-- **Explanation:**
-The figure above shows the given circles.
+- **Explanation:** The figure above shows the given circles.
 There are exactly 16 lattice points which are present inside at least one circle.
 Some of them are (0, 2), (2, 0), (2, 4), (3, 2), and (4, 4).
 

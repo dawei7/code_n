@@ -34,17 +34,17 @@ The platform calls the returned function between 1 and 10 times. Each call conta
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `t = 100`, `calls = [{"t":20,"inputs":[1]}]`
-- Output: `[{"t":20,"inputs":[1]}]`
+- **Input:** `t = 100`, `calls = [{"t":20,"inputs":[1]}]`
+- **Output:** `[{"t":20,"inputs":[1]}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `t = 50`, `calls = [{"t":50,"inputs":[1]},{"t":75,"inputs":[2]}]`
-- Output: `[{"t":50,"inputs":[1]},{"t":100,"inputs":[2]}]`
+- **Input:** `t = 50`, `calls = [{"t":50,"inputs":[1]},{"t":75,"inputs":[2]}]`
+- **Output:** `[{"t":50,"inputs":[1]},{"t":100,"inputs":[2]}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `t = 70`, `calls = [{"t":50,"inputs":[1]},{"t":75,"inputs":[2]},{"t":90,"inputs":[8]},{"t":140,"inputs":[5,7]},{"t":300,"inputs":[9,4]}]`
-- Output: `[{"t":50,"inputs":[1]},{"t":120,"inputs":[8]},{"t":190,"inputs":[5,7]},{"t":300,"inputs":[9,4]}]`
+- **Input:** `t = 70`, `calls = [{"t":50,"inputs":[1]},{"t":75,"inputs":[2]},{"t":90,"inputs":[8]},{"t":140,"inputs":[5,7]},{"t":300,"inputs":[9,4]}]`
+- **Output:** `[{"t":50,"inputs":[1]},{"t":120,"inputs":[8]},{"t":190,"inputs":[5,7]},{"t":300,"inputs":[9,4]}]`

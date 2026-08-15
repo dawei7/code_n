@@ -6,8 +6,13 @@ If there is exactly one solution for the equation, we ensure that the value of `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `equation`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,10 +20,12 @@ If there is exactly one solution for the equation, we ensure that the value of `
 
 - **Input:** $equation = "x+5-3+x=6+x-2"$
 - **Output:** `"x=2"`
+
 #### Example 2
 
 - **Input:** $equation = "x=x"$
 - **Output:** `"Infinite solutions"`
+
 #### Example 3
 
 - **Input:** $equation = "2x=x"$

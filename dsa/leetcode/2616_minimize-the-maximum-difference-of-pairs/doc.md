@@ -35,20 +35,20 @@ Return the smallest possible maximum absolute difference among the `p` selected 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10, 1, 2, 7, 1, 3], p = 2`
-- Output: `1`
-- Explanation: Pair the two values $1$, and pair $2$ with $3$. Their differences are $0$ and $1$.
+- **Input:** `nums = [10, 1, 2, 7, 1, 3], p = 2`
+- **Output:** `1`
+- **Explanation:** Pair the two values $1$, and pair $2$ with $3$. Their differences are $0$ and $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 2, 1, 2], p = 1`
-- Output: `0`
-- Explanation: The two occurrences of $2$ form a pair with difference zero.
+- **Input:** `nums = [4, 2, 1, 2], p = 1`
+- **Output:** `0`
+- **Explanation:** The two occurrences of $2$ form a pair with difference zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [8, 1, 5], p = 0`
-- Output: `0`
-- Explanation: The required set of pairs is empty.
+- **Input:** `nums = [8, 1, 5], p = 0`
+- **Output:** `0`
+- **Explanation:** The required set of pairs is empty.

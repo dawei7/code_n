@@ -30,20 +30,20 @@ Return any rearranged string satisfying the adjacency condition. If no such arra
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aab"`
-- Output: `"aba"`
-- Explanation: The two copies of `a` are separated by `b`.
+- **Input:** `s = "aab"`
+- **Output:** `"aba"`
+- **Explanation:** The two copies of `a` are separated by `b`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aaab"`
-- Output: `""`
-- Explanation: Three copies of `a` cannot fit into the two available separated positions.
+- **Input:** `s = "aaab"`
+- **Output:** `""`
+- **Explanation:** Three copies of `a` cannot fit into the two available separated positions.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "vvvlo"`
-- Output: `"vlvov"`
-- Explanation: This is one of multiple possible arrangements with no equal neighbors.
+- **Input:** `s = "vvvlo"`
+- **Output:** `"vlvov"`
+- **Explanation:** This is one of multiple possible arrangements with no equal neighbors.

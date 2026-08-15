@@ -10,20 +10,26 @@ An index `i` is **beautiful** if:
 
 - There exists an index `j` such that:
 
-		<li>$0 \le j \le \text{s.length} - \text{b.length}$
+		- $0 \le j \le \text{s.length} - \text{b.length}$
 
 - $s[j..(j + \text{b.length} - 1)] = b$
 
 - $|j - i| \le k$
 
-	</li>
-
 Return *the array that contains beautiful indices in **sorted order from smallest to largest***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `a`: Input parameter (`str`).
+- `b`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -35,6 +41,7 @@ Return *the array that contains beautiful indices in **sorted order from smalles
 - The index 16 is beautiful as s[16..17] == "my" and there exists an index 4 with s[4..11] == "squirrel" and |16 - 4| <= 15.
 - The index 33 is beautiful as s[33..34] == "my" and there exists an index 18 with s[18..25] == "squirrel" and |33 - 18| <= 15.
 Thus we return [16,33] as the result.
+
 #### Example 2
 
 - **Input:** `s = "abcd", a = "a", b = "a", k = 4`

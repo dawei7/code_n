@@ -65,7 +65,7 @@ Return columns $\text{player}_{id}$, $\text{player}_{name}$, and `grand_slams_co
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Players table:
 +-----------+-------------+
 | player_id | player_name |
@@ -82,15 +82,14 @@ Championships table:
 | 2019 | 1         | 1       | 2       | 2       |
 | 2020 | 2         | 1       | 2       | 2       |
 +------+-----------+---------+---------+---------+
-**Output:**
+- **Output:** 
 +-----------+-------------+-------------------+
 | player_id | player_name | grand_slams_count |
 +-----------+-------------+-------------------+
 | 2         | Federer     | 5                 |
 | 1         | Nadal       | 7                 |
 +-----------+-------------+-------------------+
-**Explanation:**
-Player 1 (Nadal) won 7 titles: Wimbledon (2018, 2019), Fr_open (2018, 2019, 2020), US_open (2018), and Au_open (2018).
+- **Explanation:** Player 1 (Nadal) won 7 titles: Wimbledon (2018, 2019), Fr_open (2018, 2019, 2020), US_open (2018), and Au_open (2018).
 Player 2 (Federer) won 5 titles: Wimbledon (2020), US_open (2019, 2020), and Au_open (2019, 2020).
 Player 3 (Novak) did not win anything, we did not include them in the result table.
 ```

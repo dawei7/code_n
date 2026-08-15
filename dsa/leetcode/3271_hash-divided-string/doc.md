@@ -31,23 +31,23 @@ Assign each lowercase letter its zero-based alphabet index: `a` has value 0 thro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcd", k = 2`
-- Output: `"bf"`
+- **Input:** `s = "abcd", k = 2`
+- **Output:** `"bf"`
 
 The groups `"ab"` and `"cd"` have sums 1 and 5.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "mxz", k = 3`
-- Output: `"i"`
+- **Input:** `s = "mxz", k = 3`
+- **Output:** `"i"`
 
 The only sum is $12 + 23 + 25 = 60$, whose remainder modulo 26 is 8.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "azby", k = 1`
-- Output: `"azby"`
+- **Input:** `s = "azby", k = 1`
+- **Output:** `"azby"`
 
 Every one-character group hashes to the same character.

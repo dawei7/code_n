@@ -31,20 +31,20 @@ Return `[lines, lastWidth]`, where `lines` is the total number of lines used and
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `widths = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "abcdefghijklmnopqrstuvwxyz"`
-- Output: `[3,60]`
-- Explanation: Ten letters fit per full line, leaving six letters on the third line.
+- **Input:** `widths = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "abcdefghijklmnopqrstuvwxyz"`
+- **Output:** `[3,60]`
+- **Explanation:** Ten letters fit per full line, leaving six letters on the third line.
 
-**Example 2**
+#### Example 2
 
-- Input: `widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "bbbcccdddaaa"`
-- Output: `[2,4]`
-- Explanation: The nine width-10 letters and two `a` characters occupy 98 units; the last `a` starts a new line.
+- **Input:** `widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], s = "bbbcccdddaaa"`
+- **Output:** `[2,4]`
+- **Explanation:** The nine width-10 letters and two `a` characters occupy 98 units; the last `a` starts a new line.
 
-**Example 3**
+#### Example 3
 
-- Input: `widths = [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5], s = "aaaaaaaaaaaaaaaaaaaa"`
-- Output: `[1,100]`
-- Explanation: A line exactly at the capacity does not wrap.
+- **Input:** `widths = [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5], s = "aaaaaaaaaaaaaaaaaaaa"`
+- **Output:** `[1,100]`
+- **Explanation:** A line exactly at the capacity does not wrap.

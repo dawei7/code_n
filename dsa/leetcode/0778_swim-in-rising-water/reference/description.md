@@ -10,8 +10,13 @@ Return *the minimum time until you can reach the bottom right square *$(n - 1, n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,11 +26,11 @@ Return *the minimum time until you can reach the bottom right square *$(n - 1, n
 
 - **Input:** `grid = [[0,2],[1,3]]`
 - **Output:** `3`
-- **Explanation:**
-At time 0, you are in grid location (0, 0).
+- **Explanation:** At time 0, you are in grid location (0, 0).
 You cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.
 You cannot reach point (1, 1) until time 3.
 When the depth of water is 3, we can swim anywhere inside the grid.
+
 #### Example 2
 
 ![](images/swim2-grid-1.jpg)

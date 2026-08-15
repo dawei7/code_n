@@ -12,8 +12,13 @@ The **distance** between coordinates $(x_{1}, y_{1})$ and $(x_{2}, y_{2})$ is $|
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -31,6 +36,7 @@ Finger 1 on letter 'A' -> cost = Distance from letter 'C' to letter 'A' = 2
 Finger 2 on letter 'K' -> cost = 0
 Finger 2 on letter 'E' -> cost = Distance from letter 'K' to letter 'E' = 1
 Total distance = 3
+
 #### Example 2
 
 - **Input:** $word = "HAPPY"$

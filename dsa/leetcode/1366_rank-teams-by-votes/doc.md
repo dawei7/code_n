@@ -31,17 +31,17 @@ Rank the teams by comparing how many first-place votes they received. If two tea
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `votes = ["ABC","ACB","ABC","ACB","ACB"]`
-- Output: `"ACB"`
+- **Input:** `votes = ["ABC","ACB","ABC","ACB","ACB"]`
+- **Output:** `"ACB"`
 
-**Example 2**
+#### Example 2
 
-- Input: `votes = ["WXYZ","XYZW"]`
-- Output: `"XWYZ"`
+- **Input:** `votes = ["WXYZ","XYZW"]`
+- **Output:** `"XWYZ"`
 
-**Example 3**
+#### Example 3
 
-- Input: `votes = ["ZMNAGUEDSJYLBOPHRQICWFXTVK"]`
-- Output: `"ZMNAGUEDSJYLBOPHRQICWFXTVK"`
+- **Input:** `votes = ["ZMNAGUEDSJYLBOPHRQICWFXTVK"]`
+- **Output:** `"ZMNAGUEDSJYLBOPHRQICWFXTVK"`

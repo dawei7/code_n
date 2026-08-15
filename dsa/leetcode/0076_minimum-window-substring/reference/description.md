@@ -22,11 +22,13 @@ Return the unique minimum-length substring of `s` containing all characters of `
 - **Input:** `s = "ADOBECODEBANC", t = "ABC"`
 - **Output:** `"BANC"`
 - **Explanation:** The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+
 #### Example 2
 
 - **Input:** `s = "a", t = "a"`
 - **Output:** `"a"`
 - **Explanation:** The entire string s is the minimum window.
+
 #### Example 3
 
 - **Input:** `s = "a", t = "aa"`

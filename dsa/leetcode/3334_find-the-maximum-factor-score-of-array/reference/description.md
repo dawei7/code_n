@@ -8,8 +8,13 @@ Return the **maximum factor score** of `nums` after removing **at most** one ele
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,36 +24,25 @@ that *both* the LCM and GCD of a single number are the number itself, and the *f
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,4,8,16]
+- **Input:** nums = [2,4,8,16]
 
-**Output:** 64
+- **Output:** 64
 
-**Explanation:**
+- **Explanation:** On removing 2, the GCD of the rest of the elements is 4 while the LCM is 16, which gives a maximum factor score of $4 * 16 = 64$.
 
-On removing 2, the GCD of the rest of the elements is 4 while the LCM is 16, which gives a maximum factor score of $4 * 16 = 64$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4,5]
+- **Input:** nums = [1,2,3,4,5]
 
-**Output:** 60
+- **Output:** 60
 
-**Explanation:**
+- **Explanation:** The maximum factor score of 60 can be obtained without removing any elements.
 
-The maximum factor score of 60 can be obtained without removing any elements.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3]
+- **Input:** nums = [3]
 
-**Output:** 9
-
-</div>
+- **Output:** 9
 
 ### 5. Constraints
 

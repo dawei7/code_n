@@ -6,8 +6,10 @@ Return the number of **good** nodes in the binary tree.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `goodNodes(root: TreeNode) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -26,6 +28,7 @@ Root Node (3) is always a good node.
 Node 4 -> (3,4) is the maximum value in the path starting from the root.
 Node 5 -> (3,4,5) is the maximum value in the path
 Node 3 -> (3,1,3) is the maximum value in the path.
+
 #### Example 2
 
 **
@@ -37,6 +40,7 @@ Node 3 -> (3,1,3) is the maximum value in the path.
 - **Input:** `root = [3,3,null,4,2]`
 - **Output:** `3`
 - **Explanation:** Node 2 -> (3, 3, 2) is not good, because "3" is higher than it.
+
 #### Example 3
 
 - **Input:** `root = [1]`

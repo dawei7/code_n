@@ -36,20 +36,20 @@ Return an object mapping every produced string key to the source items assigned 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `array = [{"id":"1"}, {"id":"1"}, {"id":"2"}]`, `fn = item => item.id`
-- Output: `{"1":[{"id":"1"},{"id":"1"}],"2":[{"id":"2"}]}`
-- Explanation: The two items whose `id` is `"1"` share one group, and the remaining item belongs to key `"2"`.
+- **Input:** `array = [{"id":"1"}, {"id":"1"}, {"id":"2"}]`, `fn = item => item.id`
+- **Output:** `{"1":[{"id":"1"},{"id":"1"}],"2":[{"id":"2"}]}`
+- **Explanation:** The two items whose `id` is `"1"` share one group, and the remaining item belongs to key `"2"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `array = [[1,2,3], [1,3,5], [1,5,9]]`, `fn = list => String(list[0])`
-- Output: `{"1":[[1,2,3],[1,3,5],[1,5,9]]}`
-- Explanation: Every nested array has the same first element, so all three remain together in one group.
+- **Input:** `array = [[1,2,3], [1,3,5], [1,5,9]]`, `fn = list => String(list[0])`
+- **Output:** `{"1":[[1,2,3],[1,3,5],[1,5,9]]}`
+- **Explanation:** Every nested array has the same first element, so all three remain together in one group.
 
-**Example 3**
+#### Example 3
 
-- Input: `array = [1,2,3,4,5,6,7,8,9,10]`, `fn = n => String(n > 5)`
-- Output: `{"false":[1,2,3,4,5],"true":[6,7,8,9,10]}`
-- Explanation: The selector separates values according to whether they exceed five.
+- **Input:** `array = [1,2,3,4,5,6,7,8,9,10]`, `fn = n => String(n > 5)`
+- **Output:** `{"false":[1,2,3,4,5],"true":[6,7,8,9,10]}`
+- **Explanation:** The selector separates values according to whether they exceed five.

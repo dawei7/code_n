@@ -30,20 +30,20 @@ Return the number of non-negative integers `x` satisfying $z(x) = k$. The answer
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 0`
-- Output: `5`
-- Explanation: $0!$ through $4!$ have no trailing zeroes.
+- **Input:** `k = 0`
+- **Output:** `5`
+- **Explanation:** $0!$ through $4!$ have no trailing zeroes.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 5`
-- Output: `0`
-- Explanation: The zero count jumps from `4` at $24!$ to `6` at $25!$, so it never equals five.
+- **Input:** `k = 5`
+- **Output:** `0`
+- **Explanation:** The zero count jumps from `4` at $24!$ to `6` at $25!$, so it never equals five.
 
-**Example 3**
+#### Example 3
 
-- Input: `k = 3`
-- Output: `5`
-- Explanation: $15!$ through $19!$ each have three trailing zeroes.
+- **Input:** `k = 3`
+- **Output:** `5`
+- **Explanation:** $15!$ through $19!$ each have three trailing zeroes.

@@ -32,23 +32,23 @@ Let $n = \lvert\texttt{compressed}\rvert$. The constraints satisfy $1 \le n \le 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `compressed = "a3c9b2c1"`
-- Output: `"a3b2c10"`
+- **Input:** `compressed = "a3c9b2c1"`
+- **Output:** `"a3b2c10"`
 
 The two `c` groups contribute $9+1=10$ copies in total.
 
-**Example 2**
+#### Example 2
 
-- Input: `compressed = "c2b3a1"`
-- Output: `"a1b3c2"`
+- **Input:** `compressed = "c2b3a1"`
+- **Output:** `"a1b3c2"`
 
 The groups already have unique letters, but they are reordered alphabetically.
 
-**Example 3**
+#### Example 3
 
-- Input: `compressed = "a2b4c1"`
-- Output: `"a2b4c1"`
+- **Input:** `compressed = "a2b4c1"`
+- **Output:** `"a2b4c1"`
 
 This input already satisfies both requirements of the better compression.

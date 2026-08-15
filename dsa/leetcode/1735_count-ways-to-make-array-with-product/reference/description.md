@@ -6,8 +6,13 @@ Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries
 [2,6]: There are 4 ways to fill an array of size 2 that multiply to 6: [1,6], [2,3], [3,2], [6,1].
 [5,1]: There is 1 way to fill an array of size 5 that multiply to 1: [1,1,1,1,1].
 [73,660]: There are 1050734917 ways to fill an array of size 73 that multiply to 660. 1050734917 modulo $10^{9}$ + 7 = 50734910.
+
 #### Example 2
 
 - **Input:** $queries = [[1,1],[2,2],[3,3],[4,4],[5,5]]$

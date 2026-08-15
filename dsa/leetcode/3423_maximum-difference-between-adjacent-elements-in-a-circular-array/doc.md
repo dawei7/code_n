@@ -29,14 +29,14 @@ Return the maximum absolute difference between two adjacent elements in the circ
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,4]`
-- Output: `3`
-- Explanation: The wrap-around pair `4` and `1` has difference `3`, larger than either internal adjacent difference.
+- **Input:** `nums = [1,2,4]`
+- **Output:** `3`
+- **Explanation:** The wrap-around pair `4` and `1` has difference `3`, larger than either internal adjacent difference.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-5,-10,-5]`
-- Output: `5`
-- Explanation: Both changes involving `-10` have absolute difference `5`.
+- **Input:** `nums = [-5,-10,-5]`
+- **Output:** `5`
+- **Explanation:** Both changes involving `-10` have absolute difference `5`.

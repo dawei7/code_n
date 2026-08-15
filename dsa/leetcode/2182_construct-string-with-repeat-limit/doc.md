@@ -41,19 +41,19 @@ characters without exceeding the consecutive-repeat limit.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "cczazcc"`, `repeatLimit = 3`
-- Output: `"zzcccac"`
+- **Input:** `s = "cczazcc"`, `repeatLimit = 3`
+- **Output:** `"zzcccac"`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aababab"`, `repeatLimit = 2`
-- Output: `"bbabaa"`
-- Explanation: one `a` remains unused because no smaller separator exists
+- **Input:** `s = "aababab"`, `repeatLimit = 2`
+- **Output:** `"bbabaa"`
+- **Explanation:** one `a` remains unused because no smaller separator exists
   after the final allowed run.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaaa"`, `repeatLimit = 2`
-- Output: `"aa"`
+- **Input:** `s = "aaaaa"`, `repeatLimit = 2`
+- **Output:** `"aa"`

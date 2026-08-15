@@ -21,6 +21,7 @@ Return the ugly number at position `n`, counting `1` as the first value.
 - **Input:** $n = 10$
 - **Output:** `12`
 - **Explanation:** [1, 2, 3, 4, 5, 6, 8, 9, 10, 12] is the sequence of the first 10 ugly numbers.
+
 #### Example 2
 
 - **Input:** $n = 1$

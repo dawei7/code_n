@@ -4,19 +4,20 @@ You are given an array of integers `nums` and the `head` of a linked list. Retur
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `modifiedList(nums: List[int], head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], head = [1,2,3,4,5]
+- **Input:** nums = [1,2,3], head = [1,2,3,4,5]
 
-**Output:** [4,5]
+- **Output:** [4,5]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -26,29 +27,23 @@ You are given an array of integers `nums` and the `head` of a linked list. Retur
 
 Remove the nodes with values 1, 2, and 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1], head = [1,2,1,2,1,2]
+- **Input:** nums = [1], head = [1,2,1,2,1,2]
 
-**Output:** [2,2,2]
+- **Output:** [2,2,2]
 
-**Explanation:**
-
-![](images/linkedlistexample1.png)
+- **Explanation:** ![](images/linkedlistexample1.png)
 
 Remove the nodes with value 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5], head = [1,2,3,4]
+- **Input:** nums = [5], head = [1,2,3,4]
 
-**Output:** [1,2,3,4]
+- **Output:** [1,2,3,4]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -57,8 +52,6 @@ Remove the nodes with value 1.
 **
 
 No node has value 5.
-
-</div>
 
 ### 4. Constraints
 

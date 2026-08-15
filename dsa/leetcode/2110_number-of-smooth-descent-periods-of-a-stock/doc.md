@@ -30,19 +30,19 @@ Return the number of contiguous smooth descent periods in `prices`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `prices = [3, 2, 1, 4]`
-- Output: `7`
-- Explanation: The four one-day periods, `[3, 2]`, `[2, 1]`, and `[3, 2, 1]` are valid.
+- **Input:** `prices = [3, 2, 1, 4]`
+- **Output:** `7`
+- **Explanation:** The four one-day periods, `[3, 2]`, `[2, 1]`, and `[3, 2, 1]` are valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `prices = [8, 6, 7, 7]`
-- Output: `4`
-- Explanation: Only the four one-day periods qualify; the drop from $8$ to $6$ is not exactly $1$.
+- **Input:** `prices = [8, 6, 7, 7]`
+- **Output:** `4`
+- **Explanation:** Only the four one-day periods qualify; the drop from $8$ to $6$ is not exactly $1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `prices = [1]`
-- Output: `1`
+- **Input:** `prices = [1]`
+- **Output:** `1`

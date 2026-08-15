@@ -8,8 +8,10 @@ Return the roots of the trees in the remaining forest. You may return the result
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `delNodes(root: Optional[TreeNode], to_delete: List[int]) -> `List[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -19,6 +21,7 @@ Return the roots of the trees in the remaining forest. You may return the result
 
 - **Input:** `root = [1,2,3,4,5,6,7], to_delete = [3,5]`
 - **Output:** `[[1,2,null,4],[6],[7]]`
+
 #### Example 2
 
 - **Input:** `root = [1,2,4,null,3], to_delete = [3]`

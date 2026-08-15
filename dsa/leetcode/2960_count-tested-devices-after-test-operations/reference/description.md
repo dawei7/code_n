@@ -6,21 +6,25 @@ Your task is to test each device `i` **in order** from `0` to $n - 1$, by perfor
 
 - If $\text{batteryPercentages}[i]$ is **greater** than `0`:
 
-		<li>**Increment** the count of tested devices.
+		- **Increment** the count of tested devices.
 
 - **Decrease** the battery percentage of all devices with indices `j` in the range `[i + 1, n - 1]` by `1`, ensuring their battery percentage **never goes below** `0`, i.e, $\text{batteryPercentages}[j] = max(0, \text{batteryPercentages}[j] - 1)$.
 
 - Move to the next device.
 
-	</li>
 - Otherwise, move to the next device without performing any test.
 
 Return *an integer denoting the number of devices that will be tested after performing the test operations in order.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `batteryPercentages`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +39,7 @@ At device 2, batteryPercentages[2] > 0, so there are now 2 tested devices, and b
 At device 3, batteryPercentages[3] == 0, so we move to the next device without testing.
 At device 4, batteryPercentages[4] > 0, so there are now 3 tested devices, and batteryPercentages stays the same.
 So, the answer is 3.
+
 #### Example 2
 
 - **Input:** $batteryPercentages = [0,1,2]$

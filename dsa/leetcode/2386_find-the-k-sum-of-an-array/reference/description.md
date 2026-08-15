@@ -10,8 +10,14 @@ A **subsequence** is an array that can be derived from another array by deleting
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -26,6 +32,7 @@ that the empty subsequence is considered to have a sum of `0`.
 - **Explanation:** All the possible subsequence sums that we can obtain are the following sorted in decreasing order:
 6, 4, 4, 2, <u>2</u>, 0, 0, -2.
 The 5-Sum of the array is 2.
+
 #### Example 2
 
 - **Input:** `nums = [1,-2,3,4,-10,12], k = 16`

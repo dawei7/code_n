@@ -64,7 +64,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 SalesPerson table:
 +----------+------+--------+-----------------+------------+
 | sales_id | name | salary | commission_rate | hire_date  |
@@ -93,7 +93,7 @@ Orders table:
 | 3        | 3/1/2014   | 1      | 1        | 50000  |
 | 4        | 4/1/2014   | 1      | 4        | 25000  |
 +----------+------------+--------+----------+--------+
-**Output:**
+- **Output:** 
 +------+
 | name |
 +------+
@@ -101,6 +101,5 @@ Orders table:
 | Mark |
 | Alex |
 +------+
-**Explanation:**
-According to orders 3 and 4 in the Orders table, it is easy to tell that only salesperson John and Pam have sales to company RED, so we report all the other names in the table salesperson.
+- **Explanation:** According to orders 3 and 4 in the Orders table, it is easy to tell that only salesperson John and Pam have sales to company RED, so we report all the other names in the table salesperson.
 ```

@@ -10,8 +10,14 @@ Note that the subarrays are **disjoint** if and only if there is no index `k` su
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `groups`: Input parameter (`List[List[int]]`).
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -21,12 +27,14 @@ Note that the subarrays are **disjoint** if and only if there is no index `k` su
 - **Output:** `true`
 - **Explanation:** You can choose the 0^th subarray as [1,-1,0,<u>**1,-1,-1**</u>,3,-2,0] and the 1^st one as [1,-1,0,1,-1,-1,<u>**3,-2,0**</u>].
 These subarrays are disjoint as they share no common nums[k] element.
+
 #### Example 2
 
 - **Input:** $groups = [[10,-2],[1,2,3,4]], nums = [1,2,3,4,10,-2]$
 - **Output:** `false`
 - **Explanation:** Note that choosing the subarrays [<u>**1,2,3,4**</u>,10,-2] and [1,2,3,4,<u>**10,-2**</u>] is incorrect because they are not in the same order as in groups.
 [10,-2] must come before [1,2,3,4].
+
 #### Example 3
 
 - **Input:** $groups = [[1,2,3],[3,4]], nums = [7,7,1,2,3,4,7,7]$

@@ -40,14 +40,11 @@ Return `[score, counter]`, where `score` is the sum contributed by processed num
 
 #### Example 1
 
-<div class="example-block">
-**Input:** events = ["1","4","W","6","WD"]
+- **Input:** events = ["1","4","W","6","WD"]
 
-**Output:** [12,1]
+- **Output:** [12,1]
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Event</th>
@@ -84,17 +81,13 @@ Return `[score, counter]`, where `score` is the sum contributed by processed num
 
 Final result: `[12, 1]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** events = ["WD","NB","0","4","4"]
+- **Input:** events = ["WD","NB","0","4","4"]
 
-**Output:** [10,0]
+- **Output:** [10,0]
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>Event</th>
@@ -131,19 +124,13 @@ Final result: `[12, 1]`.
 
 Final result: `[10, 0]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** events = ["W","W","W","W","W","W","W","W","W","W","W"]
+- **Input:** events = ["W","W","W","W","W","W","W","W","W","W","W"]
 
-**Output:** [0,10]
+- **Output:** [0,10]
 
-**Explanation:**
-
-After 10 occurrences of `"W"`, the counter reaches 10, so processing stops. The remaining events are ignored.
-
-</div>
+- **Explanation:** After 10 occurrences of `"W"`, the counter reaches 10, so processing stops. The remaining events are ignored.
 
 ### 4. Constraints
 

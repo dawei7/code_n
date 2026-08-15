@@ -8,8 +8,13 @@ Return *the maximum distance*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arrays`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *the maximum distance*.
 - **Input:** $arrays = [[1,2,3],[4,5],[1,2,3]]$
 - **Output:** `4`
 - **Explanation:** One way to reach the maximum distance 4 is to pick 1 in the first or third array and pick 5 in the second array.
+
 #### Example 2
 
 - **Input:** $arrays = [[1],[1]]$

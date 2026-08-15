@@ -6,8 +6,13 @@ An **alphanumeric**** **string is a string consisting of lowercase English lette
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ An **alphanumeric**** **string is a string consisting of lowercase English lette
 - **Input:** `s = "dfa12321afd"`
 - **Output:** `2`
 - **Explanation:** The digits that appear in s are [1, 2, 3]. The second largest digit is 2.
+
 #### Example 2
 
 - **Input:** `s = "abc1111"`

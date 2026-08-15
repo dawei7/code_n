@@ -14,21 +14,23 @@ Return the value of the $$k^{\text{th}}$$ character in `word`, after enough oper
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** k = 5
+- **Input:** k = 5
 
-**Output:** "b"
+- **Output:** "b"
 
-**Explanation:**
-
-Initially, $word = "a"$. We need to do the operation three times:
+- **Explanation:** Initially, $word = "a"$. We need to do the operation three times:
 
 - Generated string is `"b"`, `word` becomes `"ab"`.
 
@@ -36,15 +38,11 @@ Initially, $word = "a"$. We need to do the operation three times:
 
 - Generated string is `"bccd"`, `word` becomes `"abbcbccd"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** k = 10
+- **Input:** k = 10
 
-**Output:** "c"
-
-</div>
+- **Output:** "c"
 
 ### 4. Constraints
 

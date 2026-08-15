@@ -4,8 +4,14 @@ Given a binary array `nums` and an integer `k`, return *the maximum number of co
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,6 +21,7 @@ Given a binary array `nums` and an integer `k`, return *the maximum number of co
 - **Output:** `6`
 - **Explanation:** [1,1,1,0,0,<u>**1**,1,1,1,1,**1**</u>]
 Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+
 #### Example 2
 
 - **Input:** `nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3`

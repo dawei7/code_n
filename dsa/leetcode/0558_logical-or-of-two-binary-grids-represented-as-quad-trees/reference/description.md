@@ -39,8 +39,10 @@ If you want to know more about the Quad-Tree, you can refer to the <a href="http
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Node(val, isLeaf, topLeft, topRight, bottomLeft, bottomRight)`: Initializes the data structure.
+- `intersect(quadTree1: 'Node', quadTree2: 'Node') -> `'Node'``: Executes operation.
 
 ### 3. Quad-Tree Format
 
@@ -65,6 +67,7 @@ If the value of `isLeaf` or `val` is True we represent it as **1** in the list `
 If we apply logical bitwise OR on the two binary matrices we get the binary matrix below which is represented by the result Quad-Tree.
 Notice that the binary matrices shown are only for illustration, you don't have to construct the binary matrix to get the result tree.
 ![](images/qtr.png)
+
 #### Example 2
 
 - **Input:** $quadTree1 = [[1,0]], quadTree2 = [[1,0]]$

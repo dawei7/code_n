@@ -8,8 +8,14 @@ There are `k` workers that you can assign jobs to. Each job should be assigned t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `jobs`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ There are `k` workers that you can assign jobs to. Each job should be assigned t
 - **Input:** $jobs = [3,2,3], k = 3$
 - **Output:** `3`
 - **Explanation:** By assigning each person one job, the maximum time is 3.
+
 #### Example 2
 
 - **Input:** $jobs = [1,2,4,7,8], k = 2$

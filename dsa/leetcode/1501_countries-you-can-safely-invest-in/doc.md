@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/countries-you-can-safely-invest-in/) |
 
 ## Problem Description
+
 ### Goal
 
 The `Person` table identifies people and stores each telephone number in the form `xxx-yyyyyyy`, where the first three digits are a country code. The `Country` table translates those three-character codes into country names. The `Calls` table records a caller, a different callee, and the call duration in minutes; duplicate call rows are permitted.
@@ -16,6 +17,7 @@ The `Person` table identifies people and stores each telephone number in the for
 For each country represented by a participant in at least one call, consider every call endpoint belonging to that country. A domestic call therefore contributes its duration twice to that country's calculation, once for each participant, while an international call contributes once to each participant's country. Return the countries whose endpoint-weighted average duration is strictly greater than the global average duration across call rows. Name the only output column `country`; result rows may appear in any order.
 
 ### Function Contract
+
 **Inputs**
 
 Let $P$, $C$, and $L$ be the row counts of `Person`, `Country`, and `Calls`, and let $E=2L$ be the number of call endpoints.
@@ -50,24 +52,25 @@ The table has no uniqueness guarantee, so equal call rows count independently.
 Return one column named `country`. Include exactly the country names whose average over all incident call endpoints is strictly greater than `AVG(Calls.duration)`. Countries with no call endpoint are absent. Row order is unrestricted.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 With people in Peru (`051`), Morocco (`212`), and Israel (`972`), and call durations `33, 4, 59, 102, 330, 5, 13, 3, 1, 7`, the global average is $55.7$. Peru's six endpoint contributions average about $145.67$, while Morocco and Israel remain below the global value.
 
-- Output: `[["Peru"]]`
+- **Output:** `[["Peru"]]`
 
-**Example 2**
+#### Example 2
 
 - People: `[[1,"A","001-0000001"],[2,"B","002-0000002"],[3,"C","002-0000003"]]`
 - Countries: `[["Alpha","001"],["Beta","002"]]`
 - Calls: `[[1,2,10],[2,3,30]]`
-- Output: `[["Beta"]]`
-- Explanation: The global average is $20$. Alpha has endpoint average $10$, whereas Beta has endpoint values $10,30,30$ and therefore exceeds $20$.
+- **Output:** `[["Beta"]]`
+- **Explanation:** The global average is $20$. Alpha has endpoint average $10$, whereas Beta has endpoint values $10,30,30$ and therefore exceeds $20$.
 
-**Example 3**
+#### Example 3
 
 - People: `[[1,"A","001-0000001"],[2,"B","002-0000002"]]`
 - Countries: `[["Alpha","001"],["Beta","002"],["Unused","003"]]`
 - Calls: `[[1,2,7]]`
-- Output: `[]`
-- Explanation: Both represented countries have average $7$, exactly equal to the global average, and the comparison is strict. The country without a participant is not considered.
+- **Output:** `[]`
+- **Explanation:** Both represented countries have average $7$, exactly equal to the global average, and the comparison is strict. The country without a participant is not considered.

@@ -36,14 +36,14 @@ For every pattern position `i`, `'I'` requires `num[i] < num[i + 1]`, while `'D'
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `pattern = "IIIDIDDD"`
-- Output: `"123549876"`
-- Explanation: Every adjacent comparison matches the pattern, all nine digits are distinct, and no valid string is lexicographically smaller.
+- **Input:** `pattern = "IIIDIDDD"`
+- **Output:** `"123549876"`
+- **Explanation:** Every adjacent comparison matches the pattern, all nine digits are distinct, and no valid string is lexicographically smaller.
 
-**Example 2**
+#### Example 2
 
-- Input: `pattern = "DDD"`
-- Output: `"4321"`
-- Explanation: Four distinct digits must decrease throughout; using the smallest four digits in reverse order gives the smallest valid string.
+- **Input:** `pattern = "DDD"`
+- **Output:** `"4321"`
+- **Explanation:** Four distinct digits must decrease throughout; using the smallest four digits in reverse order gives the smallest valid string.

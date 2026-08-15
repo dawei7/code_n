@@ -16,90 +16,74 @@ Return the **minimum number of operations** required to transform `word1` into `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word1`: Input parameter (`str`).
+- `word2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word1 = "abcdf", word2 = "dacbe"
+- **Input:** word1 = "abcdf", word2 = "dacbe"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Divide `word1` into `"ab"`, `"c"`, and `"df"`. The operations are:
+- **Explanation:** Divide `word1` into `"ab"`, `"c"`, and `"df"`. The operations are:
 
 - For the substring `"ab"`,
 
-		<li>Perform operation of type 3 on `"ab" -> "ba"`.
+		- Perform operation of type 3 on `"ab" -> "ba"`.
 
 - Perform operation of type 1 on `"ba" -> "da"`.
 
-	</li>
 - For the substring `"c"` do no operations.
 
 - For the substring `"df"`,
 
-		<li>Perform operation of type 1 on `"df" -> "bf"`.
+		- Perform operation of type 1 on `"df" -> "bf"`.
 
 - Perform operation of type 1 on `"bf" -> "be"`.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word1 = "abceded", word2 = "baecfef"
+- **Input:** word1 = "abceded", word2 = "baecfef"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Divide `word1` into `"ab"`, `"ce"`, and `"ded"`. The operations are:
+- **Explanation:** Divide `word1` into `"ab"`, `"ce"`, and `"ded"`. The operations are:
 
 - For the substring `"ab"`,
 
-		<li>Perform operation of type 2 on `"ab" -> "ba"`.
+		- Perform operation of type 2 on `"ab" -> "ba"`.
 
-	</li>
 - For the substring `"ce"`,
 
-		<li>Perform operation of type 2 on `"ce" -> "ec"`.
+		- Perform operation of type 2 on `"ce" -> "ec"`.
 
-	</li>
 - For the substring `"ded"`,
 
-		<li>Perform operation of type 1 on `"ded" -> "fed"`.
+		- Perform operation of type 1 on `"ded" -> "fed"`.
 
 - Perform operation of type 1 on `"fed" -> "fef"`.
 
-	</li>
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word1 = "abcdef", word2 = "fedabc"
+- **Input:** word1 = "abcdef", word2 = "fedabc"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Divide `word1` into `"abcdef"`. The operations are:
+- **Explanation:** Divide `word1` into `"abcdef"`. The operations are:
 
 - For the substring `"abcdef"`,
 
-		<li>Perform operation of type 3 on `"abcdef" -> "fedcba"`.
+		- Perform operation of type 3 on `"abcdef" -> "fedcba"`.
 
 - Perform operation of type 2 on `"fedcba" -> "fedabc"`.
-
-	</li>
-
-</div>
 
 ### 4. Constraints
 

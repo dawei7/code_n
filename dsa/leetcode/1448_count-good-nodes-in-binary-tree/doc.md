@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-good-nodes-in-binary-tree/) |
 
 ## Problem Description
+
 ### Goal
 
 A node in a binary tree is good when no node on the path from the root to that
@@ -21,6 +22,7 @@ nodes. The root is always good because its root-to-root path contains no other
 value that could exceed it.
 
 ### Function Contract
+
 **Inputs**
 
 - `root`: the root node of a non-empty binary tree containing $n$ nodes, where
@@ -38,21 +40,22 @@ Return the number of nodes whose value is at least every value on their path
 from `root`.
 
 ### Examples
-**Example 1**
 
-- Input: `root = [3, 1, 4, 3, null, 1, 5]`
-- Output: `4`
-- Explanation: The root, the left leaf with value `3`, and the nodes with
+#### Example 1
+
+- **Input:** `root = [3, 1, 4, 3, null, 1, 5]`
+- **Output:** `4`
+- **Explanation:** The root, the left leaf with value `3`, and the nodes with
   values `4` and `5` are good. The other nodes have a larger ancestor.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [3, 3, null, 4, 2]`
-- Output: `3`
-- Explanation: Equal value `3` is allowed, and its child `4` is also good;
+- **Input:** `root = [3, 3, null, 4, 2]`
+- **Output:** `3`
+- **Explanation:** Equal value `3` is allowed, and its child `4` is also good;
   the node `2` is below an ancestor with value `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [1]`
-- Output: `1`
+- **Input:** `root = [1]`
+- **Output:** `1`

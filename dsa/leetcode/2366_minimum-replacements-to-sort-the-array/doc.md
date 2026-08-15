@@ -38,12 +38,12 @@ outside Python.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,9,3]`
-- Output: `2`
+- **Input:** `nums = [3,9,3]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4,5]`
-- Output: `0`
+- **Input:** `nums = [1,2,3,4,5]`
+- **Output:** `0`

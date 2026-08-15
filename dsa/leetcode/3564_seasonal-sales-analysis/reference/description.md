@@ -48,7 +48,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 sales table:
@@ -106,16 +105,15 @@ products table:
 
 - **Fall (Sep, Oct, Nov):**
 
-		<li>Apparel: 10 items sold (6 Jackets in Sep, 4 Jeans in Nov), revenue $120.00 (6×$10.00 + 4×$15.00)
+		- Apparel: 10 items sold (6 Jackets in Sep, 4 Jeans in Nov), revenue $120.00 (6×$10.00 + 4×$15.00)
 
 - Fitness: 3 Yoga Mats sold in Sep, revenue $36.00
 
 - Most popular: Apparel with highest total quantity (10)
 
-	</li>
 - **Spring (Mar, Apr, May):**
 
-		<li>Kitchen: 3 Cutting Boards sold in Mar, revenue $54.00
+		- Kitchen: 3 Cutting Boards sold in Mar, revenue $54.00
 
 - Tech: 1 Smart Speaker sold in Apr, revenue $20.00
 
@@ -123,10 +121,9 @@ products table:
 
 - Most popular: Kitchen with highest total quantity (3) and highest revenue ($54.00)
 
-	</li>
 - **Summer (Jun, Jul, Aug):**
 
-		<li>Apparel: 4 Designer Jeans sold in Jun, revenue $60.00
+		- Apparel: 4 Designer Jeans sold in Jun, revenue $60.00
 
 - Fitness: 5 Yoga Mats sold in Jun, revenue $60.00
 
@@ -136,10 +133,9 @@ products table:
 
 - Most popular: Tech and Fitness both have 5 items, but Tech has higher revenue ($100.00 vs$60.00)
 
-	</li>
 - **Winter (Dec, Jan, Feb):**
 
-		<li>Apparel: 9 items sold (5 Jackets in Jan, 4 Jeans in Jan), revenue $110.00
+		- Apparel: 9 items sold (5 Jackets in Jan, 4 Jeans in Jan), revenue $110.00
 
 - Kitchen: 6 Cutting Boards sold in Dec, revenue $108.00
 
@@ -149,11 +145,7 @@ products table:
 
 - Most popular: Apparel with highest total quantity (9) and highest revenue ($110.00)
 
-	</li>
-
 The result table is ordered by season in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

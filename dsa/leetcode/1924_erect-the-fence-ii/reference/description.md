@@ -25,6 +25,7 @@ Return *the center and radius of the circle as a length 3 array *`[x, y, r]`*.* 
 - **Input:** $trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]$
 - **Output:** `[2.00000,2.00000,2.00000]`
 - **Explanation:** The fence will have center = (2, 2) and radius = 2
+
 #### Example 2
 
 **

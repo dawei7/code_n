@@ -18,6 +18,7 @@ Return the smallest positive integer whose decimal digits multiply to `a`. Retur
 
 - **Input:** $num = 48$
 - **Output:** `68`
+
 #### Example 2
 
 - **Input:** $num = 15$

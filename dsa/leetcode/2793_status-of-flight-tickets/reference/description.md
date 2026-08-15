@@ -45,7 +45,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Flights table:
 +-----------+----------+
 | flight_id | capacity |
@@ -66,7 +66,7 @@ Passengers table:
 | 106          | 3         | 2023-07-08 11:10:00 |
 | 107          | 3         | 2023-07-08 09:10:00 |
 +--------------+-----------+---------------------+
-**Output:**
+- **Output:** 
 +--------------+-----------+
 | passenger_id | Status    |
 +--------------+-----------+
@@ -78,7 +78,7 @@ Passengers table:
 | 106          | Waitlist  |
 | 107          | Confirmed |
 +--------------+-----------+
-**Explanation:**
+- **Explanation:** 
 - Flight 1 has a capacity of 2 passengers. Passenger 101 and Passenger 103 were the first to book tickets, securing the available seats. Therefore, their bookings are confirmed. However, Passenger 102 was the third person to book a ticket for this flight, which means there are no more available seats. Passenger 102 is now placed on the waitlist,
 - Flight 2 has a capacity of 2 passengers, Flight 2 has exactly two passengers who booked tickets,  Passenger 104 and Passenger 105. Since the number of passengers who booked tickets matches the available seats, both bookings are confirmed.
 - Flight 3 has a capacity of 1 passenger. Passenger 107 booked earlier and secured the only available seat, confirming their booking. Passenger 106, who booked after Passenger 107, is on the waitlist.

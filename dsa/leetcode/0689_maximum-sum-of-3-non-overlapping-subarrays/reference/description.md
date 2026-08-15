@@ -6,8 +6,14 @@ Return the result as a list of indices representing the starting position of eac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,6 +23,7 @@ Return the result as a list of indices representing the starting position of eac
 - **Output:** `[0,3,5]`
 - **Explanation:** Subarrays [1, 2], [2, 6], [7, 5] correspond to the starting indices [0, 3, 5].
 We could have also taken [2, 1], but an answer of [1, 3, 5] would be lexicographically larger.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,1,2,1,2,1,2,1], k = 2`

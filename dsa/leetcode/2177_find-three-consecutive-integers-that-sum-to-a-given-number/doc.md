@@ -36,17 +36,17 @@ otherwise return `[]`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 33`
-- Output: `[10,11,12]`
+- **Input:** `num = 33`
+- **Output:** `[10,11,12]`
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 4`
-- Output: `[]`
+- **Input:** `num = 4`
+- **Output:** `[]`
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 0`
-- Output: `[-1,0,1]`
+- **Input:** `num = 0`
+- **Output:** `[-1,0,1]`

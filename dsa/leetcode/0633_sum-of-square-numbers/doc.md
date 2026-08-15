@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/sum-of-square-numbers/) |
 
 ## Problem Description
+
 ### Goal
+
 Given a non-negative integer `c`, decide whether there are two integers `a` and `b` such that $a^{2} + b^{2} = c$. The same value may be used twice, and either square may be zero.
 
 Return `True` when at least one such pair exists and `False` otherwise. Only exact integer equality counts; an approximate square-root match is insufficient. Because changing a sign does not change a square, a valid representation can always be expressed with non-negative `a` and `b` even though the question permits integers.
 
 ### Function Contract
+
 **Inputs**
 
 - `c`: a nonnegative integer
@@ -25,17 +28,18 @@ Return `True` when at least one such pair exists and `False` otherwise. Only exa
 - `false` otherwise
 
 ### Examples
-**Example 1**
 
-- Input: `c = 5`
-- Output: `true`, because $1^2+2^2=5$
+#### Example 1
 
-**Example 2**
+- **Input:** `c = 5`
+- **Output:** `true`, because $1^2+2^2=5$
 
-- Input: `c = 3`
-- Output: `false`
+#### Example 2
 
-**Example 3**
+- **Input:** `c = 3`
+- **Output:** `false`
 
-- Input: `c = 0`
-- Output: `true`, because $0^2+0^2=0$
+#### Example 3
+
+- **Input:** `c = 0`
+- **Output:** `true`, because $0^2+0^2=0$

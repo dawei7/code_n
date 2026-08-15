@@ -6,14 +6,11 @@ For each character, its **mirror character** is defined by reversing the order o
 
 - For letters, the mirror of a character is the letter at the same position from the end of the alphabet.
 
-		<li>For example, the mirror of `'a'` is `'z'`, and the mirror of `'b'` is `'y'`, and so on.
+		- For example, the mirror of `'a'` is `'z'`, and the mirror of `'b'` is `'y'`, and so on.
 
-	</li>
 - For digits, the mirror of a character is the digit at the same position from the end of the range `'0'` to `'9'`.
 
-		<li>For example, the mirror of `'0'` is `'9'`, and the mirror of `'1'` is `'8'`, and so on.
-
-	</li>
+		- For example, the mirror of `'0'` is `'9'`, and the mirror of `'1'` is `'8'`, and so on.
 
 For each **unique** character `c` in the string:
 
@@ -43,14 +40,11 @@ Return the sum of the absolute frequency differences for all distinct mirror pai
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "ab1z9"
+- **Input:** s = "ab1z9"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-For every mirror pair:
+- **Explanation:** For every mirror pair:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -96,17 +90,13 @@ For every mirror pair:
 
 Thus, the answer is $0 + 1 + 1 + 1 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "4m7n"
+- **Input:** s = "4m7n"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`c`</th>
@@ -143,17 +133,13 @@ Thus, the answer is $0 + 1 + 1 + 1 = 3$.
 
 Thus, the answer is $1 + 0 + 1 = 2$.​​​​​​​
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "byby"
+- **Input:** s = "byby"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`c`</th>
@@ -175,8 +161,6 @@ Thus, the answer is $1 + 0 + 1 = 2$.​​​​​​​
 </table>
 
 Thus, the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

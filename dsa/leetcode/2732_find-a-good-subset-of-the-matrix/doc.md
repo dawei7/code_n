@@ -30,20 +30,20 @@ Return ascending indices of any nonempty good row subset, or `[]` when none exis
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,1,1,0],[0,0,0,1],[1,1,1,1]]`
-- Output: `[0,1]`
-- Explanation: Across rows zero and one, every column has at most one `1`, which equals $\lfloor2/2\rfloor$.
+- **Input:** `grid = [[0,1,1,0],[0,0,0,1],[1,1,1,1]]`
+- **Output:** `[0,1]`
+- **Explanation:** Across rows zero and one, every column has at most one `1`, which equals $\lfloor2/2\rfloor$.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0]]`
-- Output: `[0]`
-- Explanation: The only column sum is zero, satisfying the bound $\lfloor1/2\rfloor=0$.
+- **Input:** `grid = [[0]]`
+- **Output:** `[0]`
+- **Explanation:** The only column sum is zero, satisfying the bound $\lfloor1/2\rfloor=0$.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1],[1,1,1]]`
-- Output: `[]`
-- Explanation: Neither row is all zero, and the two rows share a `1` in every column.
+- **Input:** `grid = [[1,1,1],[1,1,1]]`
+- **Output:** `[]`
+- **Explanation:** Neither row is all zero, and the two rows share a `1` in every column.

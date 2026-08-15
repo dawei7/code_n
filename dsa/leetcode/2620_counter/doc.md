@@ -32,20 +32,20 @@ Return a function with no parameters. Its successive return values must start at
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10`, `calls = ["call", "call", "call"]`
-- Output: `[10, 11, 12]`
-- Explanation: The closure first returns its starting value, then advances by one per invocation.
+- **Input:** `n = 10`, `calls = ["call", "call", "call"]`
+- **Output:** `[10, 11, 12]`
+- **Explanation:** The closure first returns its starting value, then advances by one per invocation.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = -2`, `calls = ["call", "call", "call", "call", "call"]`
-- Output: `[-2, -1, 0, 1, 2]`
-- Explanation: Incrementing continues normally through zero.
+- **Input:** `n = -2`, `calls = ["call", "call", "call", "call", "call"]`
+- **Output:** `[-2, -1, 0, 1, 2]`
+- **Explanation:** Incrementing continues normally through zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7`, `calls = []`
-- Output: `[]`
-- Explanation: Creating a counter does not itself emit a value; values are produced only when it is called.
+- **Input:** `n = 7`, `calls = []`
+- **Output:** `[]`
+- **Explanation:** Creating a counter does not itself emit a value; values are produced only when it is called.

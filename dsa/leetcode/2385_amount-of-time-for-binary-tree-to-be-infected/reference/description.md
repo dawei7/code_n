@@ -12,8 +12,10 @@ Return *the number of minutes needed for the entire tree to be infected.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `amountOfTime(root: Optional[TreeNode], start: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -30,6 +32,7 @@ Return *the number of minutes needed for the entire tree to be infected.*
 - Minute 3: Node 4
 - Minute 4: Nodes 9 and 2
 It takes 4 minutes for the whole tree to be infected so we return 4.
+
 #### Example 2
 
 ![](images/image-20220625231812-2.png)

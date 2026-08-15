@@ -32,14 +32,14 @@ Return a length-$n$ list `answer` where `answer[i]` is the minimum total cost re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `cost = [5,3,4,1,3,2]`
-- Output: `[5,3,3,1,1,1]`
-- Explanation: Paying person $1$ reaches position $1$ and makes position $2$ reachable for free. Paying person $3$ similarly makes positions $3$, $4$, and $5$ reachable for cost $1$.
+- **Input:** `cost = [5,3,4,1,3,2]`
+- **Output:** `[5,3,3,1,1,1]`
+- **Explanation:** Paying person $1$ reaches position $1$ and makes position $2$ reachable for free. Paying person $3$ similarly makes positions $3$, $4$, and $5$ reachable for cost $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `cost = [1,2,4,6,7]`
-- Output: `[1,1,1,1,1]`
-- Explanation: After paying person $0$, every later position is behind you and can be reached through a free swap.
+- **Input:** `cost = [1,2,4,6,7]`
+- **Output:** `[1,1,1,1,1]`
+- **Explanation:** After paying person $0$, every later position is behind you and can be reached through a free swap.

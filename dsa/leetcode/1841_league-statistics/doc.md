@@ -39,7 +39,7 @@ Build the standings from every played match. For each participating team, report
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Teams`
 
@@ -58,7 +58,7 @@ Build the standings from every played match. For each participating team, report
 | 4 | 1 | 5 | 2 |
 | 6 | 1 | 0 | 0 |
 
-Output:
+- **Output:** 
 
 | team_name | matches_played | points | goal_for | goal_against | goal_diff |
 |---|---:|---:|---:|---:|---:|
@@ -68,10 +68,10 @@ Output:
 
 Dortmund's two wins produce six points. Arsenal and Ajax both have two points, so Arsenal's higher goal difference places it first.
 
-**Example 2**
+#### Example 2
 
 If Alpha defeats Beta `2-0`, Alpha has one match, three points, and goal difference $2$; Beta has one match, no points, and goal difference $-2$.
 
-**Example 3**
+#### Example 3
 
 When two teams draw `0-0`, each receives one point and has goal difference $0$. Their names break the remaining standings tie.

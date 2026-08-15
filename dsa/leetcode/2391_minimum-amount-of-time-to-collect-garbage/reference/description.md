@@ -12,8 +12,14 @@ Return* the **minimum** number of minutes needed to pick up all the garbage.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `garbage`: Input parameter (`List[str]`).
+- `travel`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,8 +27,7 @@ Return* the **minimum** number of minutes needed to pick up all the garbage.*
 
 - **Input:** $garbage = ["G","P","GP","GG"], travel = [2,4,3]$
 - **Output:** `21`
-- **Explanation:**
-The paper garbage truck:
+- **Explanation:** The paper garbage truck:
 1. Travels from house 0 to house 1
 2. Collects the paper garbage at house 1
 3. Travels from house 1 to house 2
@@ -38,12 +43,12 @@ The glass garbage truck:
 Altogether, it takes 13 minutes to pick up all the glass garbage.
 Since there is no metal garbage, we do not need to consider the metal garbage truck.
 Therefore, it takes a total of 8 + 13 = 21 minutes to collect all the garbage.
+
 #### Example 2
 
 - **Input:** $garbage = ["MMM","PGM","GP"], travel = [3,10]$
 - **Output:** `37`
-- **Explanation:**
-The metal garbage truck takes 7 minutes to pick up all the metal garbage.
+- **Explanation:** The metal garbage truck takes 7 minutes to pick up all the metal garbage.
 The paper garbage truck takes 15 minutes to pick up all the paper garbage.
 The glass garbage truck takes 15 minutes to pick up all the glass garbage.
 It takes a total of 7 + 15 + 15 = 37 minutes to collect all the garbage.

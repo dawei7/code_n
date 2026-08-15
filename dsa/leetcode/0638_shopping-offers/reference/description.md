@@ -10,8 +10,15 @@ Return *the lowest price you have to pay for exactly certain items as given, whe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `price`: Input parameter (`List[int]`).
+- `special`: Input parameter (`List[List[int]]`).
+- `needs`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +30,7 @@ Return *the lowest price you have to pay for exactly certain items as given, whe
 In special offer 1, you can pay $5 for 3A and 0B
 In special offer 2, you can pay $10 for 1A and 2B.
 You need to buy 3A and 2B, so you may pay $10 for 1A and 2B (special offer #2), and$4 for 2A.
+
 #### Example 2
 
 - **Input:** $price = [2,3,4], special = [[1,1,0,4],[2,2,1,9]], needs = [1,2,1]$

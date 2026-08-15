@@ -14,8 +14,14 @@ Return *the **final** value of *`original`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `original`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,16 +29,17 @@ Return *the **final** value of *`original`.
 
 - **Input:** `nums = [5,3,6,1,12], original = 3`
 - **Output:** `24`
-- **Explanation:**
+- **Explanation:** 
 - 3 is found in nums. 3 is multiplied by 2 to obtain 6.
 - 6 is found in nums. 6 is multiplied by 2 to obtain 12.
 - 12 is found in nums. 12 is multiplied by 2 to obtain 24.
 - 24 is not found in nums. Thus, 24 is returned.
+
 #### Example 2
 
 - **Input:** `nums = [2,7,9], original = 4`
 - **Output:** `4`
-- **Explanation:**
+- **Explanation:** 
 - 4 is not found in nums. Thus, 4 is returned.
 
 ### 4. Constraints

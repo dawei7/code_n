@@ -33,19 +33,19 @@ Return a list of $q$ integers whose $i$th entry is the maximum XOR score of any 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 8, 4, 32, 16, 1], queries = [[0, 2], [1, 4], [0, 5]]`
-- Output: `[12, 60, 60]`
-- Explanation: The best scores in the three ranges are produced by `[8, 4]`, `[8, 4, 32, 16]`, and that same four-element subarray, respectively.
+- **Input:** `nums = [2, 8, 4, 32, 16, 1], queries = [[0, 2], [1, 4], [0, 5]]`
+- **Output:** `[12, 60, 60]`
+- **Explanation:** The best scores in the three ranges are produced by `[8, 4]`, `[8, 4, 32, 16]`, and that same four-element subarray, respectively.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 7, 3, 2, 8, 5, 1], queries = [[0, 3], [1, 5], [2, 4], [2, 6], [5, 6]]`
-- Output: `[7, 14, 11, 14, 5]`
+- **Input:** `nums = [0, 7, 3, 2, 8, 5, 1], queries = [[0, 3], [1, 5], [2, 4], [2, 6], [5, 6]]`
+- **Output:** `[7, 14, 11, 14, 5]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 3], queries = [[0, 0], [1, 1], [0, 1]]`
-- Output: `[5, 3, 6]`
-- Explanation: The two-element array reduces once to `5 XOR 3 = 6`.
+- **Input:** `nums = [5, 3], queries = [[0, 0], [1, 1], [0, 1]]`
+- **Output:** `[5, 3, 6]`
+- **Explanation:** The two-element array reduces once to `5 XOR 3 = 6`.

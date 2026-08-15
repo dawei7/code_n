@@ -42,21 +42,21 @@ $-10^9\le\texttt{nums[i]}\le10^9$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 3, 5, 6]`
-- Output: `14`
-- Explanation: Indices 0, 2, and 3 give `[3, 5, 6]`; both consecutive
+- **Input:** `nums = [3, 3, 5, 6]`
+- **Output:** `14`
+- **Explanation:** Indices 0, 2, and 3 give `[3, 5, 6]`; both consecutive
   differences satisfy the balance inequality.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, -1, -3, 8]`
-- Output: `13`
-- Explanation: Selecting indices 0 and 3 gives `[5, 8]`, and $8-5\ge3-0$.
+- **Input:** `nums = [5, -1, -3, 8]`
+- **Output:** `13`
+- **Explanation:** Selecting indices 0 and 3 gives `[5, 8]`, and $8-5\ge3-0$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-2, -1]`
-- Output: `-1`
-- Explanation: The singleton subsequence containing `-1` is optimal.
+- **Input:** `nums = [-2, -1]`
+- **Output:** `-1`
+- **Explanation:** The singleton subsequence containing `-1` is optimal.

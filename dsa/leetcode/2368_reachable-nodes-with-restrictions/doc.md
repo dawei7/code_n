@@ -40,12 +40,12 @@ Return the size of the unrestricted connected component containing node 0.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 7, edges = [[0,1],[1,2],[3,1],[4,0],[0,5],[5,6]], restricted = [4,5]`
-- Output: `4`
+- **Input:** `n = 7, edges = [[0,1],[1,2],[3,1],[4,0],[0,5],[5,6]], restricted = [4,5]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, edges = [[0,1],[0,2],[0,5],[0,4],[3,2],[6,5]], restricted = [4,2,1]`
-- Output: `3`
+- **Input:** `n = 7, edges = [[0,1],[0,2],[0,5],[0,4],[3,2],[6,5]], restricted = [4,2,1]`
+- **Output:** `3`

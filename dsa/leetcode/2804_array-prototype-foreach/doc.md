@@ -34,20 +34,20 @@ The prototype method returns `undefined`. Its observable result is any callback 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1, 2, 3]`, callback doubles each current value, `context = {"context": true}`
-- Output: `[2, 4, 6]`
-- Explanation: The callback replaces each element with twice its previous value.
+- **Input:** `arr = [1, 2, 3]`, callback doubles each current value, `context = {"context": true}`
+- **Output:** `[2, 4, 6]`
+- **Explanation:** The callback replaces each element with twice its previous value.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [true, true, false, false]`, callback stores `this`, `context = {"context": false}`
-- Output: `[{"context": false}, {"context": false}, {"context": false}, {"context": false}]`
-- Explanation: Every invocation receives the supplied object as its function context.
+- **Input:** `arr = [true, true, false, false]`, callback stores `this`, `context = {"context": false}`
+- **Output:** `[{"context": false}, {"context": false}, {"context": false}, {"context": false}]`
+- **Explanation:** Every invocation receives the supplied object as its function context.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [true, true, false, false]`, callback negates each value, `context = {"context": 5}`
-- Output: `[false, false, true, true]`
-- Explanation: The callback visits and negates each Boolean element.
+- **Input:** `arr = [true, true, false, false]`, callback negates each value, `context = {"context": 5}`
+- **Output:** `[false, false, true, true]`
+- **Explanation:** The callback visits and negates each Boolean element.

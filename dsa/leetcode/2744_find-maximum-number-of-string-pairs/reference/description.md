@@ -14,8 +14,13 @@ Note that each string can belong in **at most one** pair.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Note that each string can belong in **at most one** pair.
 - We pair the 0^th string with the 2^nd string, as the reversed string of word[0] is "dc" and is equal to words[2].
 - We pair the 1^st string with the 3^rd string, as the reversed string of word[1] is "ca" and is equal to words[3].
 It can be proven that 2 is the maximum number of pairs that can be formed.
+
 #### Example 2
 
 - **Input:** $words = ["ab","ba","cc"]$
@@ -34,6 +40,7 @@ It can be proven that 2 is the maximum number of pairs that can be formed.
 - **Explanation:** In this example, we can form 1 pair of strings in the following way:
 - We pair the 0^th string with the 1^st string, as the reversed string of words[1] is "ab" and is equal to words[0].
 It can be proven that 1 is the maximum number of pairs that can be formed.
+
 #### Example 3
 
 - **Input:** $words = ["aa","ab"]$

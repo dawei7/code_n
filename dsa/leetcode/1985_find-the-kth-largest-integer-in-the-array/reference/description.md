@@ -6,8 +6,14 @@ Return *the string that represents the *$$k^{\text{th}}$$*** largest integer** i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[str]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Note
 
@@ -19,22 +25,21 @@ Return *the string that represents the *$$k^{\text{th}}$$*** largest integer** i
 
 - **Input:** `nums = ["3","6","7","10"], k = 4`
 - **Output:** `"3"`
-- **Explanation:**
-The numbers in nums sorted in non-decreasing order are ["3","6","7","10"].
+- **Explanation:** The numbers in nums sorted in non-decreasing order are ["3","6","7","10"].
 The 4^th largest integer in nums is "3".
+
 #### Example 2
 
 - **Input:** `nums = ["2","21","12","1"], k = 3`
 - **Output:** `"2"`
-- **Explanation:**
-The numbers in nums sorted in non-decreasing order are ["1","2","12","21"].
+- **Explanation:** The numbers in nums sorted in non-decreasing order are ["1","2","12","21"].
 The 3^rd largest integer in nums is "2".
+
 #### Example 3
 
 - **Input:** `nums = ["0","0"], k = 2`
 - **Output:** `"0"`
-- **Explanation:**
-The numbers in nums sorted in non-decreasing order are ["0","0"].
+- **Explanation:** The numbers in nums sorted in non-decreasing order are ["0","0"].
 The 2^nd largest integer in nums is "0".
 
 ### 5. Constraints

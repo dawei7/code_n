@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Data table:
 +-----------+------------+
 | first_col | second_col |
@@ -39,7 +39,7 @@ Data table:
 | 3         | 1          |
 | 1         | 4          |
 +-----------+------------+
-**Output:**
+- **Output:** 
 +-----------+------------+
 | first_col | second_col |
 +-----------+------------+

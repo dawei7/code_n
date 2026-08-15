@@ -6,8 +6,15 @@ Return *a list of all k-distant indices sorted in **increasing order***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `key`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -24,6 +31,7 @@ Return *a list of all k-distant indices sorted in **increasing order***.
 - For index 5, |5 - 5| <= k and nums[5] == key, so 5 is a k-distant index.
 - For index 6, |6 - 5| <= k and nums[5] == key, so 6 is a k-distant index.
 Thus, we return [1,2,3,4,5,6] which is sorted in increasing order.
+
 #### Example 2
 
 - **Input:** `nums = [2,2,2,2,2], key = 2, k = 2`

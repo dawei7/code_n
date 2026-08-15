@@ -22,6 +22,7 @@ Return `None`; reorder `nums` in place so all `0` values come first, followed by
 
 - **Input:** `nums = [2,0,2,1,1,0]`
 - **Output:** `[0,0,1,1,2,2]`
+
 #### Example 2
 
 - **Input:** `nums = [2,0,1]`

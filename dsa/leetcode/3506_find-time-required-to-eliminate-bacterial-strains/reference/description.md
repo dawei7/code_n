@@ -30,14 +30,11 @@ that the bacterial strains can be eliminated in any order.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** timeReq = [10,4,5], splitTime = 2
+- **Input:** timeReq = [10,4,5], splitTime = 2
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The elimination process goes as follows:
+- **Explanation:** The elimination process goes as follows:
 
 - Initially, there is a single WBC. The WBC splits into 2 WBCs after 2 units of time.
 
@@ -45,23 +42,17 @@ The elimination process goes as follows:
 
 - The 2 new WBCs eliminate the bacteria at times $t = 2 + 2 + 4$ and $t = 2 + 2 + 5$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** timeReq = [10,4], splitTime = 5
+- **Input:** timeReq = [10,4], splitTime = 5
 
-**Output:**15
+- **Output:** 15
 
-**Explanation:**
-
-The elimination process goes as follows:
+- **Explanation:** The elimination process goes as follows:
 
 - Initially, there is a single WBC. The WBC splits into 2 WBCs after 5 units of time.
 
 - The 2 new WBCs eliminate the bacteria at times $t = 5 + 10$ and $t = 5 + 4$.
-
-</div>
 
 ### 5. Constraints
 

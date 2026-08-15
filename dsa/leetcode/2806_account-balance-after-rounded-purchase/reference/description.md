@@ -10,8 +10,13 @@ Return an integer denoting your final bank account balance after this purchase.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `purchaseAmount`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,40 +28,27 @@ Return an integer denoting your final bank account balance after this purchase.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** purchaseAmount = 9
+- **Input:** purchaseAmount = 9
 
-**Output:** 90
+- **Output:** 90
 
-**Explanation:**
+- **Explanation:** The nearest multiple of 10 to 9 is 10. So your account balance becomes 100 - 10 = 90.
 
-The nearest multiple of 10 to 9 is 10. So your account balance becomes 100 - 10 = 90.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** purchaseAmount = 15
+- **Input:** purchaseAmount = 15
 
-**Output:** 80
+- **Output:** 80
 
-**Explanation:**
+- **Explanation:** The nearest multiple of 10 to 15 is 20. So your account balance becomes 100 - 20 = 80.
 
-The nearest multiple of 10 to 15 is 20. So your account balance becomes 100 - 20 = 80.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** purchaseAmount = 10
+- **Input:** purchaseAmount = 10
 
-**Output:** 90
+- **Output:** 90
 
-**Explanation:**
-
-10 is a multiple of 10 itself. So your account balance becomes 100 - 10 = 90.
-
-</div>
+- **Explanation:** 10 is a multiple of 10 itself. So your account balance becomes 100 - 10 = 90.
 
 ### 5. Constraints
 

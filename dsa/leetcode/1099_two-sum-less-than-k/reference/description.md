@@ -22,6 +22,7 @@ Return the maximum $\text{nums}[i] + \text{nums}[j]$ that is strictly less than 
 - **Input:** `nums = [34,23,1,24,75,33,54,8], k = 60`
 - **Output:** `58`
 - **Explanation:** We can use 34 and 24 to sum 58 which is less than 60.
+
 #### Example 2
 
 - **Input:** `nums = [10,20,30], k = 15`

@@ -75,7 +75,7 @@ Return a table with columns $\text{member}_{A}$, $\text{member}_{B}$, and $\text
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 SchoolA table:
 +------------+--------------+
 | student_id | student_name |
@@ -97,15 +97,14 @@ SchoolC table:
 | 2          | Jerry        |
 | 10         | Alice        |
 +------------+--------------+
-**Output:**
+- **Output:** 
 +----------+----------+----------+
 | member_A | member_B | member_C |
 +----------+----------+----------+
 | Alice    | Tom      | Jerry    |
 | Bob      | Tom      | Alice    |
 +----------+----------+----------+
-**Explanation:**
-Let us see all the possible triplets.
+- **Explanation:** Let us see all the possible triplets.
 - (Alice, Tom, Tom) --> Rejected because member_B and member_C have the same name and the same ID.
 - (Alice, Tom, Jerry) --> Valid triplet.
 - (Alice, Tom, Alice) --> Rejected because member_A and member_C have the same name.

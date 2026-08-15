@@ -29,6 +29,7 @@ Return the number of island equivalence classes when absolute position, the perm
 - **Input:** `grid = [[1,1,0,0,0],[1,0,0,0,0],[0,0,0,0,1],[0,0,0,1,1]]`
 - **Output:** `1`
 - **Explanation:** The two islands are considered the same because if we make a 180 degrees clockwise rotation on the first island, then two islands will have the same shapes.
+
 #### Example 2
 
 ![](images/distinctisland1-1-grid.jpg)

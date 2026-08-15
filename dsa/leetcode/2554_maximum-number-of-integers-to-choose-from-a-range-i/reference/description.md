@@ -14,8 +14,15 @@ Return *the **maximum** number of integers you can choose following the mentione
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `banned`: Input parameter (`List[int]`).
+- `n`: Input parameter (`int`).
+- `maxSum`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +32,13 @@ Return *the **maximum** number of integers you can choose following the mentione
 - **Output:** `2`
 - **Explanation:** You can choose the integers 2 and 4.
 2 and 4 are from the range [1, 5], both did not appear in banned, and their sum is 6, which did not exceed maxSum.
+
 #### Example 2
 
 - **Input:** $banned = [1,2,3,4,5,6,7], n = 8, maxSum = 1$
 - **Output:** `0`
 - **Explanation:** You cannot choose any integer while following the mentioned conditions.
+
 #### Example 3
 
 - **Input:** $banned = [11], n = 7, maxSum = 50$

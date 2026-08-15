@@ -41,23 +41,23 @@ Return the sum of the five-, two-, and zero-point grades.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "7+3*1*2", answers = [20, 13, 42]`
-- Output: `7`
-- Explanation: `13` is correct for five points, while `20` is produced by
+- **Input:** `s = "7+3*1*2", answers = [20, 13, 42]`
+- **Output:** `7`
+- **Explanation:** `13` is correct for five points, while `20` is produced by
   `((7+3)*1)*2` for two.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "3+5*2", answers = [13, 0, 10, 13, 13, 16, 16]`
-- Output: `19`
-- Explanation: Three correct answers earn fifteen points and two
+- **Input:** `s = "3+5*2", answers = [13, 0, 10, 13, 13, 16, 16]`
+- **Output:** `19`
+- **Explanation:** Three correct answers earn fifteen points and two
   parenthesized values of `16` earn four.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "6+0*1", answers = [12, 9, 6, 4, 8, 6]`
-- Output: `10`
-- Explanation: Both occurrences of the correct value `6` earn five points,
+- **Input:** `s = "6+0*1", answers = [12, 9, 6, 4, 8, 6]`
+- **Output:** `10`
+- **Explanation:** Both occurrences of the correct value `6` earn five points,
   even though `(6+0)*1` also produces `6`.

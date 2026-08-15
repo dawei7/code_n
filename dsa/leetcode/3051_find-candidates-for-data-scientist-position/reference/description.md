@@ -28,7 +28,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Candidates table:
 +---------------+--------------+
 | candidate_id  | skill        |
@@ -46,14 +46,14 @@ Candidates table:
 | 256           | Tableau      |
 | 102           | DataAnalysis |
 +---------------+--------------+
-**Output:**
+- **Output:** 
 +--------------+
 | candidate_id |
 +--------------+
 | 123          |
 | 147          |
 +--------------+
-**Explanation:**
+- **Explanation:** 
 - Candidates 123 and 147 possess the necessary skills in Python, Tableau, and PostgreSQL for the data scientist position.
 - Candidates 234 and 102 do not possess any of the required skills for this position.
 - Candidate 256 has proficiency in Tableau but is missing skills in Python and PostgreSQL.

@@ -23,6 +23,7 @@ Return the number of maximal groups of nodes connected by paths.
 
 - **Input:** $n = 5, edges = [[0,1],[1,2],[3,4]]$
 - **Output:** `2`
+
 #### Example 2
 
 ![](images/conn2-graph.jpg)

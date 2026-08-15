@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/decompress-run-length-encoded-list/) |
 
 ## Problem Description
+
 ### Goal
+
 An even-length integer array `nums` stores a run-length encoding as adjacent pairs. For pair index $i$, `nums[2 * i]` is a frequency and `nums[2 * i + 1]` is the associated value.
 
 Expand each pair into a sublist containing exactly `freq` copies of `val`. Concatenate those sublists from left to right, preserving the order of the encoded pairs, and return the complete decompressed list.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: an even-length integer array with $2\le\lvert\texttt{nums}\rvert\le100$.
@@ -34,17 +37,18 @@ be the decompressed output length, and let $n=\lvert\texttt{nums}\rvert$.
 An array of length $S$ formed by concatenating `nums[2 * i]` copies of `nums[2 * i + 1]` for every pair in order.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,2,3,4]`
-- Output: `[2,4,4,4]`
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `[2,4,4,4]`
 
-- Input: `nums = [1,1,2,3]`
-- Output: `[1,3,3]`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1,1,2,3]`
+- **Output:** `[1,3,3]`
 
-- Input: `nums = [2,5,1,9]`
-- Output: `[5,5,9]`
+#### Example 3
+
+- **Input:** `nums = [2,5,1,9]`
+- **Output:** `[5,5,9]`

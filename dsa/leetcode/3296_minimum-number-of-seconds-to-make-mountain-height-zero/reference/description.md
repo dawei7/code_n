@@ -20,21 +20,24 @@ Return an integer representing the **minimum** number of seconds required for th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mountainHeight`: Input parameter (`int`).
+- `workerTimes`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** mountainHeight = 4, workerTimes = [2,1,1]
+- **Input:** mountainHeight = 4, workerTimes = [2,1,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One way the height of the mountain can be reduced to 0 is:
+- **Explanation:** One way the height of the mountain can be reduced to 0 is:
 
 - Worker 0 reduces the height by 1, taking $\text{workerTimes}[0] = 2$ seconds.
 
@@ -44,15 +47,13 @@ One way the height of the mountain can be reduced to 0 is:
 
 Since they work simultaneously, the minimum time needed is $max(2, 3, 1) = 3$ seconds.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** mountainHeight = 10, workerTimes = [3,2,2,4]
+- **Input:** mountainHeight = 10, workerTimes = [3,2,2,4]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - Worker 0 reduces the height by 2, taking $\text{workerTimes}[0] + \text{workerTimes}[0] * 2 = 9$ seconds.
 
@@ -64,19 +65,13 @@ Since they work simultaneously, the minimum time needed is $max(2, 3, 1) = 3$ se
 
 The number of seconds needed is $max(9, 12, 12, 12) = 12$ seconds.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** mountainHeight = 5, workerTimes = [1]
+- **Input:** mountainHeight = 5, workerTimes = [1]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-There is only one worker in this example, so the answer is $\text{workerTimes}[0] + \text{workerTimes}[0] * 2 + \text{workerTimes}[0] * 3 + \text{workerTimes}[0] * 4 + \text{workerTimes}[0] * 5 = 15$.
-
-</div>
+- **Explanation:** There is only one worker in this example, so the answer is $\text{workerTimes}[0] + \text{workerTimes}[0] * 2 + \text{workerTimes}[0] * 3 + \text{workerTimes}[0] * 4 + \text{workerTimes}[0] * 5 = 15$.
 
 ### 4. Constraints
 

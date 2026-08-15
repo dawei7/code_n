@@ -35,7 +35,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 user_content table:
@@ -68,25 +67,18 @@ user_content table:
 
 - For content_id = 1:
 
-		<li>Each word's first letter is capitalized: Hello World Of Sql
+		- Each word's first letter is capitalized: Hello World Of Sql
 
-	</li>
 - For content_id = 2:
 
-		<li>Original mixed-case text is transformed to title case: The Quick Brown Fox
+		- Original mixed-case text is transformed to title case: The Quick Brown Fox
 
-	</li>
 - For content_id = 3:
 
-		<li>The word AND is converted to "And": "Data Science And Machine Learning"
+		- The word AND is converted to "And": "Data Science And Machine Learning"
 
-	</li>
 - For content_id = 4:
 
-		<li>Handles word TOP rated correctly: Top Rated
+		- Handles word TOP rated correctly: Top Rated
 
 - Converts BOOKS from all caps to title case: Books
-
-	</li>
-
-</div>

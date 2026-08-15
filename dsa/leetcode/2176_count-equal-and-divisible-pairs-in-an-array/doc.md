@@ -41,18 +41,18 @@ index product divisible by `k`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,1,2,2,2,1,3]`, `k = 2`
-- Output: `4`
+- **Input:** `nums = [3,1,2,2,2,1,3]`, `k = 2`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`, `k = 1`
-- Output: `0`
+- **Input:** `nums = [1,2,3,4]`, `k = 1`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5,5,5]`, `k = 3`
-- Output: `2`, because index `0` forms a qualifying pair with every later
+- **Input:** `nums = [5,5,5]`, `k = 3`
+- **Output:** `2`, because index `0` forms a qualifying pair with every later
   equal value while `(1,2)` does not.

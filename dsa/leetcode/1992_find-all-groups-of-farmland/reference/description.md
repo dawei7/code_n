@@ -10,8 +10,13 @@ Return *a 2D array containing the 4-length arrays described above for each **gro
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `land`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -21,25 +26,24 @@ Return *a 2D array containing the 4-length arrays described above for each **gro
 
 - **Input:** $land = [[1,0,0],[0,1,1],[0,1,1]]$
 - **Output:** `[[0,0,0,0],[1,1,2,2]]`
-- **Explanation:**
-The first group has a top left corner at land[0][0] and a bottom right corner at land[0][0].
+- **Explanation:** The first group has a top left corner at land[0][0] and a bottom right corner at land[0][0].
 The second group has a top left corner at land[1][1] and a bottom right corner at land[2][2].
+
 #### Example 2
 
 ![](images/screenshot-2021-07-27-at-12-30-26-copy-of-diagram-drawio-diagrams-net.png)
 
 - **Input:** $land = [[1,1],[1,1]]$
 - **Output:** `[[0,0,1,1]]`
-- **Explanation:**
-The first group has a top left corner at land[0][0] and a bottom right corner at land[1][1].
+- **Explanation:** The first group has a top left corner at land[0][0] and a bottom right corner at land[1][1].
+
 #### Example 3
 
 ![](images/screenshot-2021-07-27-at-12-32-24-copy-of-diagram-drawio-diagrams-net.png)
 
 - **Input:** $land = [[0]]$
 - **Output:** `[]`
-- **Explanation:**
-There are no groups of farmland.
+- **Explanation:** There are no groups of farmland.
 
 ### 4. Constraints
 

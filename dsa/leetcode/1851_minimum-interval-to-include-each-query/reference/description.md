@@ -8,8 +8,14 @@ Return *an array containing the answers to the queries*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `intervals`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *an array containing the answers to the queries*.
 - Query = 3: The interval [2,4] is the smallest interval containing 3. The answer is 4 - 2 + 1 = 3.
 - Query = 4: The interval [4,4] is the smallest interval containing 4. The answer is 4 - 4 + 1 = 1.
 - Query = 5: The interval [3,6] is the smallest interval containing 5. The answer is 6 - 3 + 1 = 4.
+
 #### Example 2
 
 - **Input:** $intervals = [[2,3],[2,5],[1,8],[20,25]], queries = [2,19,5,22]$

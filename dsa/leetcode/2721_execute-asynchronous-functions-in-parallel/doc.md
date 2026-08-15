@@ -32,20 +32,20 @@ Return a promise that fulfills with the input-ordered array of all fulfillment v
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: One function fulfills with `5` after $200$ ms.
-- Output: The returned promise fulfills with `[5]` at approximately $200$ ms.
-- Explanation: The only result occupies index $0$, and settlement waits for that promise.
+- **Input:** One function fulfills with `5` after $200$ ms.
+- **Output:** The returned promise fulfills with `[5]` at approximately $200$ ms.
+- **Explanation:** The only result occupies index $0$, and settlement waits for that promise.
 
-**Example 2**
+#### Example 2
 
-- Input: One function fulfills after $200$ ms while another rejects with `"Error"` after $100$ ms.
-- Output: The returned promise rejects with `"Error"` at approximately $100$ ms.
-- Explanation: A rejection settles the combined promise immediately; the slower operation need not finish first.
+- **Input:** One function fulfills after $200$ ms while another rejects with `"Error"` after $100$ ms.
+- **Output:** The returned promise rejects with `"Error"` at approximately $100$ ms.
+- **Explanation:** A rejection settles the combined promise immediately; the slower operation need not finish first.
 
-**Example 3**
+#### Example 3
 
-- Input: Three functions fulfill with `4`, `10`, and `16` after $50$, $150$, and $100$ ms respectively.
-- Output: The returned promise fulfills with `[4, 10, 16]` at approximately $150$ ms.
-- Explanation: Completion order differs from input order, but the result array preserves the original indices.
+- **Input:** Three functions fulfill with `4`, `10`, and `16` after $50$, $150$, and $100$ ms respectively.
+- **Output:** The returned promise fulfills with `[4, 10, 16]` at approximately $150$ ms.
+- **Explanation:** Completion order differs from input order, but the result array preserves the original indices.

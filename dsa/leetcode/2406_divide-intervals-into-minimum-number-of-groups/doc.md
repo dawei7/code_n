@@ -37,21 +37,21 @@ are pairwise disjoint, including at their endpoints.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `intervals = [[5,10],[6,8],[1,5],[2,3],[1,10]]`
-- Output: `3`
-- Explanation: Three intervals overlap at some points, so at least three
+- **Input:** `intervals = [[5,10],[6,8],[1,5],[2,3],[1,10]]`
+- **Output:** `3`
+- **Explanation:** Three intervals overlap at some points, so at least three
   groups are necessary, and a three-group assignment exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `intervals = [[1,3],[5,6],[8,10],[11,13]]`
-- Output: `1`
-- Explanation: No two intervals intersect.
+- **Input:** `intervals = [[1,3],[5,6],[8,10],[11,13]]`
+- **Output:** `1`
+- **Explanation:** No two intervals intersect.
 
-**Example 3**
+#### Example 3
 
-- Input: `intervals = [[1,5],[5,8]]`
-- Output: `2`
-- Explanation: Inclusive endpoints make the intervals intersect at 5.
+- **Input:** `intervals = [[1,5],[5,8]]`
+- **Output:** `2`
+- **Explanation:** Inclusive endpoints make the intervals intersect at 5.

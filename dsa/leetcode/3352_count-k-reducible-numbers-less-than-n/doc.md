@@ -33,20 +33,20 @@ Let $m=\lvert\texttt{s}\rvert$. The source guarantees $1 \le m \le 800$, every c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "111", k = 1`
-- Output: `3`
-- Explanation: Here $n=7$. The qualifying integers are $1$, $2$, and $4$, each of which is already one or becomes one after a single set-bit count.
+- **Input:** `s = "111", k = 1`
+- **Output:** `3`
+- **Explanation:** Here $n=7$. The qualifying integers are $1$, $2$, and $4$, each of which is already one or becomes one after a single set-bit count.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "1000", k = 2`
-- Output: `6`
-- Explanation: Here $n=8$. The integers $1$ through $6$ are 2-reducible, while $7$ needs more than two operations.
+- **Input:** `s = "1000", k = 2`
+- **Output:** `6`
+- **Explanation:** Here $n=8$. The integers $1$ through $6$ are 2-reducible, while $7$ needs more than two operations.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1", k = 3`
-- Output: `0`
-- Explanation: The represented bound is $1$, so there is no positive integer strictly below it.
+- **Input:** `s = "1", k = 3`
+- **Output:** `0`
+- **Explanation:** The represented bound is $1$, so there is no positive integer strictly below it.

@@ -34,16 +34,16 @@ Return the minimum total cutting cost as an integer. A cut into lengths $a$ and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, m = 5, k = 5`
-- Output: `5`
-- Explanation: Split the length-6 log into pieces of lengths `1` and `5`. Together with the other length-5 log, the three pieces fit in the three trucks, and the cut costs `1 * 5 = 5`.
+- **Input:** `n = 6, m = 5, k = 5`
+- **Output:** `5`
+- **Explanation:** Split the length-6 log into pieces of lengths `1` and `5`. Together with the other length-5 log, the three pieces fit in the three trucks, and the cut costs `1 * 5 = 5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, m = 4, k = 6`
-- Output: `0`
-- Explanation: Both logs already satisfy the truck limit, so no cut is required.
+- **Input:** `n = 4, m = 4, k = 6`
+- **Output:** `0`
+- **Explanation:** Both logs already satisfy the truck limit, so no cut is required.
 
 ---

@@ -8,35 +8,31 @@ For example, 1 day is 24 hours, 2 days is 48 hours, 3 days is 72 hours, and so o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `hours`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** hours = [12,12,30,24,24]
+- **Input:** hours = [12,12,30,24,24]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The pairs of indices that form a complete day are `(0, 1)` and `(3, 4)`.
 
-The pairs of indices that form a complete day are `(0, 1)` and `(3, 4)`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** hours = [72,48,24,3]
+- **Input:** hours = [72,48,24,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The pairs of indices that form a complete day are `(0, 1)`, `(0, 2)`, and `(1, 2)`.
-
-</div>
+- **Explanation:** The pairs of indices that form a complete day are `(0, 1)`, `(0, 2)`, and `(1, 2)`.
 
 ### 4. Constraints
 

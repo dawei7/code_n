@@ -33,14 +33,14 @@ The constraints are $1\le k\le\lvert\texttt{nums}\rvert\le10^5$ and $1\le\texttt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 5, 4, 2, 9, 9, 9], k = 3`
-- Output: `15`
-- Explanation: The valid windows have sums `10`, `11`, and `15`; later windows repeat `9`.
+- **Input:** `nums = [1, 5, 4, 2, 9, 9, 9], k = 3`
+- **Output:** `15`
+- **Explanation:** The valid windows have sums `10`, `11`, and `15`; later windows repeat `9`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 4, 4], k = 3`
-- Output: `0`
-- Explanation: The only length-three subarray repeats the value `4`.
+- **Input:** `nums = [4, 4, 4], k = 3`
+- **Output:** `0`
+- **Explanation:** The only length-three subarray repeats the value `4`.

@@ -39,23 +39,23 @@ Let $E=\lvert\texttt{edges}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, edges = [[1,2,3],[1,3,3],[2,3,1],[1,4,2],[5,2,2],[3,5,1],[5,4,10]]`
-- Output: `3`
+- **Input:** `n = 5, edges = [[1,2,3],[1,3,3],[2,3,1],[1,4,2],[5,2,2],[3,5,1],[5,4,10]]`
+- **Output:** `3`
 
 The restricted paths are `1 → 2 → 5`, `1 → 2 → 3 → 5`, and `1 → 3 → 5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, edges = [[1,3,1],[4,1,2],[7,3,4],[2,5,3],[5,6,1],[6,7,2],[7,5,3],[2,6,4]]`
-- Output: `1`
+- **Input:** `n = 7, edges = [[1,3,1],[4,1,2],[7,3,4],[2,5,3],[5,6,1],[6,7,2],[7,5,3],[2,6,4]]`
+- **Output:** `1`
 
 Only `1 → 3 → 7` strictly descends the shortest-distance values.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, edges = [[1,2,5],[2,3,5],[1,3,20]]`
-- Output: `2`
+- **Input:** `n = 3, edges = [[1,2,5],[2,3,5],[1,3,20]]`
+- **Output:** `2`
 
 Both `1 → 2 → 3` and the heavier direct path `1 → 3` are restricted. A restricted path need not itself be a shortest path.

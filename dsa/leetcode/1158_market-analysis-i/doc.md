@@ -37,7 +37,7 @@ A relation with these columns:
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Users`
 
@@ -59,7 +59,7 @@ A relation with these columns:
 | 5 | 2018-08-04 | 1 | 3 | 4 |
 | 6 | 2019-08-05 | 2 | 2 | 4 |
 
-Output:
+- **Output:** 
 
 | buyer_id | join_date | orders_in_2019 |
 |---:|---|---:|

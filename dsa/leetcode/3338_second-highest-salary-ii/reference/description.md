@@ -22,7 +22,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 employees table:
@@ -61,40 +60,33 @@ employees table:
 
 - **Sales Department**:
 
-		<li>Highest salary is 90000 (emp_id: 4)
+		- Highest salary is 90000 (emp_id: 4)
 
 - Second-highest salary is 80000 (emp_id: 2, 3)
 
 - Both employees with salary 80000 are included
 
-	</li>
 - **IT Department**:
 
-		<li>Highest salary is 65000 (emp_id: 6, 7)
+		- Highest salary is 65000 (emp_id: 6, 7)
 
 - Second-highest salary is 55000 (emp_id: 5)
 
 - Only emp_id 5 is included as they have the second-highest salary
 
-	</li>
 - **Marketing Department**:
 
-		<li>Highest salary is 55000 (emp_id: 9)
+		- Highest salary is 55000 (emp_id: 9)
 
 - Second-highest salary is 50000 (emp_id: 8)
 
 - Employee 8 is included
 
-	</li>
 - **HR Department**:
 
-		<li>Only has one employee
+		- Only has one employee
 
 - Not included in the result as it has fewer than 2 employees
-
-	</li>
-
-</div>
 
 ### 2. Function Contract
 

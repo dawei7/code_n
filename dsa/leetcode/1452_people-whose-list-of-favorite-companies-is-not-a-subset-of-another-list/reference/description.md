@@ -6,8 +6,13 @@ Given the array `favoriteCompanies` where $\text{favoriteCompanies}[i]$ is the l
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `favoriteCompanies`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,15 +20,16 @@ Given the array `favoriteCompanies` where $\text{favoriteCompanies}[i]$ is the l
 
 - **Input:** $favoriteCompanies = [["leetcode","google","facebook"],["google","microsoft"],["google","facebook"],["google"],["amazon"]]$
 - **Output:** `[0,1,4]`
-- **Explanation:**
-Person with index=2 has favoriteCompanies[2]=["google","facebook"] which is a subset of favoriteCompanies[0]=["leetcode","google","facebook"] corresponding to the person with index 0.
+- **Explanation:** Person with index=2 has favoriteCompanies[2]=["google","facebook"] which is a subset of favoriteCompanies[0]=["leetcode","google","facebook"] corresponding to the person with index 0.
 Person with index=3 has favoriteCompanies[3]=["google"] which is a subset of favoriteCompanies[0]=["leetcode","google","facebook"] and favoriteCompanies[1]=["google","microsoft"].
 Other lists of favorite companies are not a subset of another list, therefore, the answer is [0,1,4].
+
 #### Example 2
 
 - **Input:** $favoriteCompanies = [["leetcode","google","facebook"],["leetcode","amazon"],["facebook","google"]]$
 - **Output:** `[0,1]`
 - **Explanation:** In this case favoriteCompanies[2]=["facebook","google"] is a subset of favoriteCompanies[0]=["leetcode","google","facebook"], therefore, the answer is [0,1].
+
 #### Example 3
 
 - **Input:** $favoriteCompanies = [["leetcode"],["google"],["facebook"],["amazon"]]$

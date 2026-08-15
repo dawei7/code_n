@@ -8,8 +8,10 @@ After doing so, return the head of the final linked list.  You may return any su
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `removeZeroSumSublists(head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -21,10 +23,12 @@ After doing so, return the head of the final linked list.  You may return any su
 ### 4. Note
 
 The answer [1,2,1] would also be accepted.
+
 #### Example 2
 
 - **Input:** $head = [1,2,3,-3,4]$
 - **Output:** `[1,2,4]`
+
 #### Example 3
 
 - **Input:** $head = [1,2,3,-3,-2]$

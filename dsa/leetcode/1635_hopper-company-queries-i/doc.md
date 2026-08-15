@@ -11,12 +11,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/hopper-company-queries-i/) |
 
 ## Problem Description
+
 ### Goal
+
 `Drivers` records when each driver joined Hopper. `Rides` records every requested ride and its request date, including requests that were never accepted. `AcceptedRides` identifies the accepted subset and associates each accepted ride with a driver plus distance and duration data.
 
 For each of the twelve months of 2020, report how many drivers had joined the company by the end of that month and how many rides requested during that month were accepted. Include months with zero activity. Return `month`, `active_drivers`, and `accepted_rides` in ascending month order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Drivers(driver_id, join_date)`: one row per driver, keyed by `driver_id`.
@@ -29,18 +32,19 @@ For each of the twelve months of 2020, report how many drivers had joined the co
 Return exactly twelve rows with `month` from 1 through 12. `active_drivers` counts drivers whose `join_date` is no later than the final day of that month. `accepted_rides` counts accepted rides by the associated `Rides.requested_at` month in 2020. Sort by `month` ascending.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 For the official fixture, the monthly rows are:
 
-- Output: `[[1,2,0],[2,3,0],[3,4,1],[4,4,0],[5,5,0],[6,5,1],[7,5,1],[8,5,1],[9,5,0],[10,6,0],[11,6,2],[12,6,1]]`
+- **Output:** `[[1,2,0],[2,3,0],[3,4,1],[4,4,0],[5,5,0],[6,5,1],[7,5,1],[8,5,1],[9,5,0],[10,6,0],[11,6,2],[12,6,1]]`
 
-**Example 2**
+#### Example 2
 
 If one driver joined before 2020 and one January ride was accepted:
 
 - Output begins with `[1,1,1]` and months 2 through 12 contain one active driver and zero accepted rides.
 
-**Example 3**
+#### Example 3
 
 If drivers join on January 31, February 1, and December 31, their active totals are 1 in January, 2 from February through November, and 3 in December.

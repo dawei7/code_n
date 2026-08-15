@@ -33,14 +33,14 @@ Return all rows of `score` ordered by their value at column `k` in strictly desc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `score = [[10,6,9,1],[7,5,11,2],[4,8,3,15]], k = 2`
-- Output: `[[7,5,11,2],[10,6,9,1],[4,8,3,15]]`
-- Explanation: The selected exam scores are 11, 9, and 3 in descending order.
+- **Input:** `score = [[10,6,9,1],[7,5,11,2],[4,8,3,15]], k = 2`
+- **Output:** `[[7,5,11,2],[10,6,9,1],[4,8,3,15]]`
+- **Explanation:** The selected exam scores are 11, 9, and 3 in descending order.
 
-**Example 2**
+#### Example 2
 
-- Input: `score = [[3,4],[5,6]], k = 0`
-- Output: `[[5,6],[3,4]]`
-- Explanation: Student 1 scored 5 on exam 0, ahead of student 0's score of 3.
+- **Input:** `score = [[3,4],[5,6]], k = 0`
+- **Output:** `[[5,6],[3,4]]`
+- **Explanation:** Student 1 scored 5 on exam 0, ahead of student 0's score of 3.

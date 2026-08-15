@@ -8,8 +8,13 @@ You need to implement the function `pickIndex()`, which **randomly** picks an in
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `w`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `the result`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ You need to implement the function `pickIndex()`, which **randomly** picks an in
 Solution solution = new Solution([1]);
 solution.pickIndex(); // return 0. The only option is to return 0 since there is only one element in w.
 ```
+
 #### Example 2
 
 ```

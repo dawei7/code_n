@@ -21,11 +21,13 @@ Let $N = \lvert\texttt{arr}\rvert$. Indices are zero-based, so the positions ran
 - **Input:** `arr = [-10,-5,0,3,7]`
 - **Output:** `3`
 - **Explanation:** For the given array, arr[0] = -10, arr[1] = -5, arr[2] = 0, arr[3] = 3, thus the output is 3.
+
 #### Example 2
 
 - **Input:** `arr = [0,2,5,8,17]`
 - **Output:** `0`
 - **Explanation:** arr[0] = 0, thus the output is 0.
+
 #### Example 3
 
 - **Input:** `arr = [-10,-5,3,4,7,9]`

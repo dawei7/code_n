@@ -38,28 +38,21 @@ Return `true` exactly when the complete string conforms to one of the accepted i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "0"
+- **Input:** s = "0"
 
-**Output:** true
+- **Output:** true
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "e"
+- **Input:** s = "e"
 
-**Output:** false
+- **Output:** false
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "."
+- **Input:** s = "."
 
-**Output:** false
-
-</div>
+- **Output:** false
 
 ### 4. Constraints
 

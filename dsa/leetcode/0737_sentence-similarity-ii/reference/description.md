@@ -37,12 +37,14 @@ Return `True` exactly when the sentences have the same length and every pair of 
 - **Input:** $sentence1 = ["great","acting","skills"], sentence2 = ["fine","drama","talent"], similarPairs = [["great","good"],["fine","good"],["drama","acting"],["skills","talent"]]$
 - **Output:** `true`
 - **Explanation:** The two sentences have the same length and each word i of sentence1 is also similar to the corresponding word in sentence2.
+
 #### Example 2
 
 - **Input:** $sentence1 = ["I","love","leetcode"], sentence2 = ["I","love","onepiece"], similarPairs = [["manga","onepiece"],["platform","anime"],["leetcode","platform"],["anime","manga"]]$
 - **Output:** `true`
 - **Explanation:** "leetcode" --> "platform" --> "anime" --> "manga" --> "onepiece".
 Since "leetcode is similar to "onepiece" and the first two words are the same, the two sentences are similar.
+
 #### Example 3
 
 - **Input:** $sentence1 = ["I","love","leetcode"], sentence2 = ["I","love","onepiece"], similarPairs = [["manga","hunterXhunter"],["platform","anime"],["leetcode","platform"],["anime","manga"]]$

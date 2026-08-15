@@ -31,23 +31,23 @@ For example, if the current array is `[5,1,3]`, the first operation changes `5` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5,1,3]`
-- Output: `3`
+- **Input:** `nums = [5,1,3]`
+- **Output:** `3`
 
 The reductions are `[5,1,3]` to `[3,1,3]`, then `[1,1,3]`, then `[1,1,1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,1]`
-- Output: `0`
+- **Input:** `nums = [1,1,1]`
+- **Output:** `0`
 
 The values are already equal.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,1,2,2,3]`
-- Output: `4`
+- **Input:** `nums = [1,1,2,2,3]`
+- **Output:** `4`
 
 The `3` crosses two distinct lower levels, while each `2` crosses one.

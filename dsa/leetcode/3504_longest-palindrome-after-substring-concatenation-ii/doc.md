@@ -33,26 +33,26 @@ Return the greatest length of any palindrome representable as `s[i:j] + t[k:l]`,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "a", t = "a"`
-- Output: `2`
-- Explanation: The two one-character selections form `"aa"`.
+- **Input:** `s = "a", t = "a"`
+- **Output:** `2`
+- **Explanation:** The two one-character selections form `"aa"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abc", t = "def"`
-- Output: `1`
-- Explanation: No cross-string pair matches, but every individual character is palindromic.
+- **Input:** `s = "abc", t = "def"`
+- **Output:** `1`
+- **Explanation:** No cross-string pair matches, but every individual character is palindromic.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "b", t = "aaaa"`
-- Output: `4`
-- Explanation: Select an empty substring from `s` and all of `t`.
+- **Input:** `s = "b", t = "aaaa"`
+- **Output:** `4`
+- **Explanation:** Select an empty substring from `s` and all of `t`.
 
-**Example 4**
+#### Example 4
 
-- Input: `s = "abcde", t = "ecdba"`
-- Output: `5`
-- Explanation: Choosing `"abc"` and `"ba"` produces `"abcba"`.
+- **Input:** `s = "abcde", t = "ecdba"`
+- **Output:** `5`
+- **Explanation:** Choosing `"abc"` and `"ba"` produces `"abcba"`.

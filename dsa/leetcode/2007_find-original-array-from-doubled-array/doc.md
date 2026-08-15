@@ -36,21 +36,21 @@ multiset in `changed`, or `[]` when no such array exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `changed = [1, 3, 4, 2, 6, 8]`
-- Output: `[1, 3, 4]`
-- Explanation: The remaining values are respectively `2`, `6`, and `8`, the
+- **Input:** `changed = [1, 3, 4, 2, 6, 8]`
+- **Output:** `[1, 3, 4]`
+- **Explanation:** The remaining values are respectively `2`, `6`, and `8`, the
   doubles of the returned values.
 
-**Example 2**
+#### Example 2
 
-- Input: `changed = [6, 3, 0, 1]`
-- Output: `[]`
-- Explanation: The values cannot be divided into original-and-double pairs.
+- **Input:** `changed = [6, 3, 0, 1]`
+- **Output:** `[]`
+- **Explanation:** The values cannot be divided into original-and-double pairs.
 
-**Example 3**
+#### Example 3
 
-- Input: `changed = [1]`
-- Output: `[]`
-- Explanation: A doubled array must contain an even number of elements.
+- **Input:** `changed = [1]`
+- **Output:** `[]`
+- **Explanation:** A doubled array must contain an even number of elements.

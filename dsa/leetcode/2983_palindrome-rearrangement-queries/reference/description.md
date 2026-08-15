@@ -22,8 +22,14 @@ Return *a **0-indexed** array *`answer`*, where *$\text{answer}[i] = true$* if i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -42,6 +48,7 @@ In the second query:
 - So, you are allowed to rearrange s[0:2] => <u>abc</u>abc and s[5:5] => abcab<u>c</u>.
 - To make s a palindrome, s[0:2] can be rearranged to become => <u>cba</u>abc.
 - Now, s is a palindrome. So, answer[1] = true.
+
 #### Example 2
 
 - **Input:** `s = "abbcdecbba", queries = [[0,2,7,9]]`
@@ -51,6 +58,7 @@ a_0 = 0, b_0 = 2, c_0 = 7, d_0 = 9.
 So, you are allowed to rearrange s[0:2] => <u>abb</u>cdecbba and s[7:9] => abbcdec<u>bba</u>.
 It is not possible to make s a palindrome by rearranging these substrings because s[3:6] is not a palindrome.
 So, answer[0] = false.
+
 #### Example 3
 
 - **Input:** `s = "acbcab", queries = [[1,2,4,5]]`

@@ -30,17 +30,17 @@ Return `expression` with one legal pair of parentheses added so that its mathema
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `expression = "247+38"`
-- Output: `"2(47+38)"`
+- **Input:** `expression = "247+38"`
+- **Output:** `"2(47+38)"`
 
-**Example 2**
+#### Example 2
 
-- Input: `expression = "12+34"`
-- Output: `"1(2+3)4"`
+- **Input:** `expression = "12+34"`
+- **Output:** `"1(2+3)4"`
 
-**Example 3**
+#### Example 3
 
-- Input: `expression = "999+999"`
-- Output: `"(999+999)"`
+- **Input:** `expression = "999+999"`
+- **Output:** `"(999+999)"`

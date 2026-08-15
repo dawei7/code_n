@@ -54,7 +54,7 @@ For a date, form the distinct set of $\text{post}_{id}$ values whose rows satisf
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Actions table:
 +---------+---------+-------------+--------+--------+
 | user_id | post_id | action_date | action | extra  |
@@ -80,14 +80,13 @@ Removals table:
 | 2       | 2019-07-20  |
 | 3       | 2019-07-18  |
 +---------+-------------+
-**Output:**
+- **Output:** 
 +-----------------------+
 | average_daily_percent |
 +-----------------------+
 | 75.00                 |
 +-----------------------+
-**Explanation:**
-The percentage for 2019-07-04 is 50% because only one post of two spam reported posts were removed.
+- **Explanation:** The percentage for 2019-07-04 is 50% because only one post of two spam reported posts were removed.
 The percentage for 2019-07-02 is 100% because one post was reported as spam and it was removed.
 The other days had no spam reports so the average is (50 + 100) / 2 = 75%
 Note that the output is only one number and that we do not care about the remove dates.

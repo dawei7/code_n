@@ -14,8 +14,13 @@ Return *the **minimum** cost of a path for the frog*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stones`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,14 +33,14 @@ Return *the **minimum** cost of a path for the frog*.
 - **Explanation:** The above figure represents one of the optimal paths the frog can take.
 The cost of this path is 5, which is the maximum length of a jump.
 Since it is not possible to achieve a cost of less than 5, we return it.
+
 #### Example 2
 
 ![](images/2498_ex1.png)
 
 - **Input:** $stones = [0,3,9]$
 - **Output:** `9`
-- **Explanation:**
-The frog can jump directly to the last stone and come back to the first stone.
+- **Explanation:** The frog can jump directly to the last stone and come back to the first stone.
 In this case, the length of each jump will be 9. The cost for the path will be max(9, 9) = 9.
 It can be shown that this is the minimum achievable cost.
 

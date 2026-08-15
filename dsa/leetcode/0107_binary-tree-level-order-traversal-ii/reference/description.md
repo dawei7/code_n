@@ -20,10 +20,12 @@ Return a list containing one left-to-right value list for each depth, ordered fr
 
 - **Input:** `root = [3,9,20,null,null,15,7]`
 - **Output:** `[[15,7],[9,20],[3]]`
+
 #### Example 2
 
 - **Input:** `root = [1]`
 - **Output:** `[[1]]`
+
 #### Example 3
 
 - **Input:** `root = []`

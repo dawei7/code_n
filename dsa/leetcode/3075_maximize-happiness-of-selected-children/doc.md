@@ -35,20 +35,20 @@ The length satisfies $1 \le n \le 2 \cdot 10^5$, and every initial happiness val
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `happiness = [1, 2, 3]`, `k = 2`
-- Output: `4`
-- Explanation: Select the child worth `3`; the remaining values become `[0, 1]`. Selecting the child now worth `1` gives `3 + 1 = 4`.
+- **Input:** `happiness = [1, 2, 3]`, `k = 2`
+- **Output:** `4`
+- **Explanation:** Select the child worth `3`; the remaining values become `[0, 1]`. Selecting the child now worth `1` gives `3 + 1 = 4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `happiness = [1, 1, 1, 1]`, `k = 2`
-- Output: `1`
-- Explanation: The first selection contributes `1`, after which every unselected child has happiness zero, so the second contributes `0`.
+- **Input:** `happiness = [1, 1, 1, 1]`, `k = 2`
+- **Output:** `1`
+- **Explanation:** The first selection contributes `1`, after which every unselected child has happiness zero, so the second contributes `0`.
 
-**Example 3**
+#### Example 3
 
-- Input: `happiness = [2, 3, 4, 5]`, `k = 1`
-- Output: `5`
-- Explanation: With one turn, selecting the child with the largest initial happiness is optimal.
+- **Input:** `happiness = [2, 3, 4, 5]`, `k = 1`
+- **Output:** `5`
+- **Explanation:** With one turn, selecting the child with the largest initial happiness is optimal.

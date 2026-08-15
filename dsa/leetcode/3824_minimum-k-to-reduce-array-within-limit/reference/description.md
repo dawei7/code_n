@@ -24,14 +24,11 @@ Return the minimum positive `k` whose minimum required operation count is at mos
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,7,5]
+- **Input:** nums = [3,7,5]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-When $k = 3$, $nonPositive(nums, k) = 6 \le k^{2}$.
+- **Explanation:** When $k = 3$, $nonPositive(nums, k) = 6 \le k^{2}$.
 
 - Reduce $\text{nums}[0] = 3$ one time. $\text{nums}[0]$ becomes $3 - 3 = 0$.
 
@@ -39,21 +36,15 @@ When $k = 3$, $nonPositive(nums, k) = 6 \le k^{2}$.
 
 - Reduce $\text{nums}[2] = 5$ two times. $\text{nums}[2]$ becomes $5 - 3 - 3 = -1$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-When $k = 1$, $nonPositive(nums, k) = 1 \le k^{2}$.
+- **Explanation:** When $k = 1$, $nonPositive(nums, k) = 1 \le k^{2}$.
 
 - Reduce $\text{nums}[0] = 1$ one time. $\text{nums}[0]$ becomes $1 - 1 = 0$.
-
-</div>
 
 ### 4. Constraints
 

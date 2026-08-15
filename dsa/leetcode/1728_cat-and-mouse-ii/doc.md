@@ -34,20 +34,20 @@ Let $V$ be the number of non-wall cells and let $D$ be the maximum number of leg
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = ["####F","#C...","M...."], catJump = 1, mouseJump = 2`
-- Output: `True`
-- Explanation: Mouse can force a route to the food before Cat can catch it or reach the food.
+- **Input:** `grid = ["####F","#C...","M...."], catJump = 1, mouseJump = 2`
+- **Output:** `True`
+- **Explanation:** Mouse can force a route to the food before Cat can catch it or reach the food.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = ["M.C...F"], catJump = 1, mouseJump = 4`
-- Output: `True`
-- Explanation: Mouse can jump beyond Cat and land on the food on its first turn.
+- **Input:** `grid = ["M.C...F"], catJump = 1, mouseJump = 4`
+- **Output:** `True`
+- **Explanation:** Mouse can jump beyond Cat and land on the food on its first turn.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = ["M.C...F"], catJump = 1, mouseJump = 3`
-- Output: `False`
-- Explanation: Mouse cannot reach the food immediately, and Cat can prevent a forced win.
+- **Input:** `grid = ["M.C...F"], catJump = 1, mouseJump = 3`
+- **Output:** `False`
+- **Explanation:** Mouse cannot reach the food immediately, and Cat can prevent a forced win.

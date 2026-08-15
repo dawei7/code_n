@@ -32,23 +32,23 @@ Return the number of combinations modulo $10^9 + 7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `4`
+- **Input:** `n = 4`
+- **Output:** `4`
 
 The combinations are `[1, 1, 1, 1]`, `[1, 1, 2]`, `[2, 2]`, and `[4]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 12`
-- Output: `22`
+- **Input:** `n = 12`
+- **Output:** `22`
 
 A selection such as `[4, 4, 4]` is invalid because only two value-4 coins are available.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5`
-- Output: `4`
+- **Input:** `n = 5`
+- **Output:** `4`
 
 The combinations are `[1, 1, 1, 1, 1]`, `[1, 1, 1, 2]`, `[1, 2, 2]`, and `[1, 4]`.

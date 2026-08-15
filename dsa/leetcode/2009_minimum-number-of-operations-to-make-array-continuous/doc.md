@@ -34,21 +34,21 @@ Return the smallest number of array positions whose values must be replaced.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4, 2, 5, 3]`
-- Output: `0`
-- Explanation: The four unique values already span from $2$ through $5$.
+- **Input:** `nums = [4, 2, 5, 3]`
+- **Output:** `0`
+- **Explanation:** The four unique values already span from $2$ through $5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 5, 6]`
-- Output: `1`
-- Explanation: Replacing `6` with `4` produces one continuous interval.
+- **Input:** `nums = [1, 2, 3, 5, 6]`
+- **Output:** `1`
+- **Explanation:** Replacing `6` with `4` produces one continuous interval.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 10, 100, 1000]`
-- Output: `3`
-- Explanation: Keep `1` and replace the other positions with `2`, `3`, and
+- **Input:** `nums = [1, 10, 100, 1000]`
+- **Output:** `3`
+- **Explanation:** Keep `1` and replace the other positions with `2`, `3`, and
   `4`.

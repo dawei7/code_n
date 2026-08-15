@@ -34,12 +34,12 @@ In JSON cases, `node` is encoded as `{"values": [...], "node_index": k}`: `value
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: list `[1,2,3,4,5]`, supplied node value `5`
-- Output: `[1,2,3,4,5]`
+- **Input:** list `[1,2,3,4,5]`, supplied node value `5`
+- **Output:** `[1,2,3,4,5]`
 
-**Example 2**
+#### Example 2
 
-- Input: list `[4,5,6,7,8]`, supplied node value `8`
-- Output: `[4,5,6,7,8]`
+- **Input:** list `[4,5,6,7,8]`, supplied node value `8`
+- **Output:** `[4,5,6,7,8]`

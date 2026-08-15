@@ -16,11 +16,9 @@ Implement the `ValidWordAbbr` class:
 
 - `boolean isUnique(string word)` Returns `true` if **either** of the following conditions are met (otherwise returns `false`):
 
-		<li>There is no word in `dictionary` whose **abbreviation** is equal to `word`'s **abbreviation**.
+		- There is no word in `dictionary` whose **abbreviation** is equal to `word`'s **abbreviation**.
 
 - For any word in `dictionary` whose **abbreviation** is equal to `word`'s **abbreviation**, that word and `word` are **the same**.
-
-	</li>
 
 ### 2. Function Contract
 

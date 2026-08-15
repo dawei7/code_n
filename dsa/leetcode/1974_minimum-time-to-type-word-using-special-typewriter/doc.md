@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/) |
 
 ## Problem Description
+
 ### Goal
+
 A special typewriter arranges the 26 lowercase English letters in a circle.
 Its pointer starts at `a`. During one second, you may either move the pointer
 one position clockwise, move it one position counterclockwise, or type the
@@ -20,6 +22,7 @@ right in their supplied order. Return the minimum total number of seconds
 needed for all pointer movements and typing operations.
 
 ### Function Contract
+
 **Inputs**
 
 - `word`: a lowercase English string of length $N$, where
@@ -31,17 +34,18 @@ needed for all pointer movements and typing operations.
   produce `word`, starting with the pointer at `a`.
 
 ### Examples
-**Example 1**
 
-- Input: `word = "abc"`
-- Output: `5`
+#### Example 1
 
-**Example 2**
+- **Input:** `word = "abc"`
+- **Output:** `5`
 
-- Input: `word = "bza"`
-- Output: `7`
+#### Example 2
 
-**Example 3**
+- **Input:** `word = "bza"`
+- **Output:** `7`
 
-- Input: `word = "zjpc"`
-- Output: `34`
+#### Example 3
+
+- **Input:** `word = "zjpc"`
+- **Output:** `34`

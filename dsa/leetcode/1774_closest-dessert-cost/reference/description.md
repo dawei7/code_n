@@ -22,8 +22,15 @@ Return *the closest possible cost of the dessert to *`target`. If there are mult
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `baseCosts`: Input parameter (`List[int]`).
+- `toppingCosts`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -36,6 +43,7 @@ Return *the closest possible cost of the dessert to *`target`. If there are mult
 - Take 1 of topping 0: cost 1 x 3 = 3
 - Take 0 of topping 1: cost 0 x 4 = 0
 Total: 7 + 3 + 0 = 10.
+
 #### Example 2
 
 - **Input:** $baseCosts = [2,3], toppingCosts = [4,5,100], target = 18$
@@ -46,6 +54,7 @@ Total: 7 + 3 + 0 = 10.
 - Take 2 of topping 1: cost 2 x 5 = 10
 - Take 0 of topping 2: cost 0 x 100 = 0
 Total: 3 + 4 + 10 + 0 = 17. You cannot make a dessert with a total cost of 18.
+
 #### Example 3
 
 - **Input:** $baseCosts = [3,10], toppingCosts = [2,5], target = 9$

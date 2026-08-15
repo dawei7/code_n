@@ -8,8 +8,13 @@ The **frequency** of a character in a string is the number of times it appears i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,12 +23,14 @@ The **frequency** of a character in a string is the number of times it appears i
 - **Input:** `s = "aab"`
 - **Output:** `0`
 - **Explanation:** s is already good.
+
 #### Example 2
 
 - **Input:** `s = "aaabbbcc"`
 - **Output:** `2`
 - **Explanation:** You can delete two 'b's resulting in the good string "aaabcc".
 Another way it to delete one 'b' and one 'c' resulting in the good string "aaabbc".
+
 #### Example 3
 
 - **Input:** `s = "ceabaacb"`

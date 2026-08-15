@@ -12,8 +12,14 @@ Return *a string representing the **maximum** value of *`n`*​​​​​​ a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`str`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *a string representing the **maximum** value of *`n`*​​​​​​ a
 - **Input:** $n = "99", x = 9$
 - **Output:** `"999"`
 - **Explanation:** The result is the same regardless of where you insert 9.
+
 #### Example 2
 
 - **Input:** $n = "-13", x = 2$

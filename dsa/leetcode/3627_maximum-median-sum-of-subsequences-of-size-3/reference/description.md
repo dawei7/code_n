@@ -10,19 +10,23 @@ Return the **maximum** possible sum of the medians computed from the selected el
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,3,2,1,3]
+- **Input:** nums = [2,1,3,2,1,3]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - In the first step, select elements at indices 2, 4, and 5, which have a median 3. After removing these elements, `nums` becomes `[2, 1, 2]`.
 
@@ -30,23 +34,19 @@ Return the **maximum** possible sum of the medians computed from the selected el
 
 Hence, the sum of the medians is $3 + 2 = 5$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,10,10,10,10]
+- **Input:** nums = [1,1,10,10,10,10]
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
+- **Explanation:** 
 
 - In the first step, select elements at indices 0, 2, and 3, which have a median 10. After removing these elements, `nums` becomes `[1, 10, 10]`.
 
 - In the second step, select elements at indices 0, 1, and 2, which have a median 10. After removing these elements, `nums` becomes empty.
 
 Hence, the sum of the medians is $10 + 10 = 20$.
-
-</div>
 
 ### 4. Constraints
 

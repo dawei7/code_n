@@ -30,16 +30,16 @@ Count `k` friends clockwise, including the friend where the count starts; wrappi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, k = 2`
-- Output: `3`
+- **Input:** `n = 5, k = 2`
+- **Output:** `3`
 
 Friends leave in the order 2, 4, 1, and 5, leaving friend 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, k = 5`
-- Output: `1`
+- **Input:** `n = 6, k = 5`
+- **Output:** `1`
 
 The elimination order is 5, 4, 6, 2, and 3.

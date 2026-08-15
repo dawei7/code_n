@@ -41,12 +41,11 @@ Return the minimum sum of application costs that transforms `source` into `targe
 
 #### Example 1
 
-<div class="example-block">
-**Input:** source = "hello", target = "world", rules = [["he","wo"],["llo","rld"]], costs = [3,4]
+- **Input:** source = "hello", target = "world", rules = [["he","wo"],["llo","rld"]], costs = [3,4]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** 
 
 - Apply $\text{rules}[0]$ to replace `"he"` with `"wo"` at cost 3, so the string becomes `"wollo"`.
 
@@ -54,47 +53,37 @@ Return the minimum sum of application costs that transforms `source` into `targe
 
 - The total cost is $3 + 4 = 7$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** source = "cat", target = "dog", rules = [["c*t","dog"]], costs = [2]
+- **Input:** source = "cat", target = "dog", rules = [["c*t","dog"]], costs = [2]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Apply $\text{rules}[0]$ to replace `"cat"` with `"dog"`. The wildcard `'*'` matches `'a'`, adding 1 to the base cost 2.
 
 - The total cost is $2 + 1 = 3$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** source = "test", target = "next", rules = [["*e*t","next"]], costs = [4]
+- **Input:** source = "test", target = "next", rules = [["*e*t","next"]], costs = [4]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Apply $\text{rules}[0]$ to replace `"test"` with `"next"`. The first wildcard matches `'t'` and the second wildcard matches `'s'`, adding 2 to the base cost 4.
 
 - The total cost is $4 + 2 = 6$.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** source = "ab", target = "bc", rules = [["a*","bd"]], costs = [9]
+- **Input:** source = "ab", target = "bc", rules = [["a*","bd"]], costs = [9]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-No sequence of rule applications can transform `source` into `target`, so the answer is -1.
-
-</div>
+- **Explanation:** No sequence of rule applications can transform `source` into `target`, so the answer is -1.
 
 ### 4. Constraints
 

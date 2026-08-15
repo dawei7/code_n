@@ -32,14 +32,14 @@ Return the total number of blue cells after minute `n`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `1`
-- Explanation: Only the initially chosen cell is blue.
+- **Input:** `n = 1`
+- **Output:** `1`
+- **Explanation:** Only the initially chosen cell is blue.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `5`
-- Explanation: The center cell and its four side-adjacent neighbors are blue.
+- **Input:** `n = 2`
+- **Output:** `5`
+- **Explanation:** The center cell and its four side-adjacent neighbors are blue.

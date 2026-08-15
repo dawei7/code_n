@@ -43,12 +43,12 @@ for every bus, including buses boarded by zero passengers. Sort rows by
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input:
+- **Input:** 
   - `Buses = [(1,2),(2,4),(3,7)]`
   - `Passengers = [(11,1),(12,5),(13,6),(14,7)]`
-- Output: `[(1,1),(2,0),(3,3)]`
-- Explanation: Passenger `11` takes the bus at time `2`. No waiting passenger
+- **Output:** `[(1,1),(2,0),(3,3)]`
+- **Explanation:** Passenger `11` takes the bus at time `2`. No waiting passenger
   exists at time `4`. The remaining three passengers, including the one
   arriving exactly at time `7`, take the final bus.

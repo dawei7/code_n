@@ -35,26 +35,26 @@ Both values are integers in $[1,100]$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `red = 2, blue = 4`
-- Output: `3`
-- Explanation: Red rows of sizes $1$ and $3$ would need four balls, so the valid height-three arrangement instead starts with blue and uses row colors blue, red, blue.
+- **Input:** `red = 2, blue = 4`
+- **Output:** `3`
+- **Explanation:** Red rows of sizes $1$ and $3$ would need four balls, so the valid height-three arrangement instead starts with blue and uses row colors blue, red, blue.
 
-**Example 2**
+#### Example 2
 
-- Input: `red = 2, blue = 1`
-- Output: `2`
-- Explanation: A one-ball blue row followed by a two-ball red row uses both piles exactly.
+- **Input:** `red = 2, blue = 1`
+- **Output:** `2`
+- **Explanation:** A one-ball blue row followed by a two-ball red row uses both piles exactly.
 
-**Example 3**
+#### Example 3
 
-- Input: `red = 1, blue = 1`
-- Output: `1`
-- Explanation: Either color can fill the first row, but neither pile can fill a second row of two balls.
+- **Input:** `red = 1, blue = 1`
+- **Output:** `1`
+- **Explanation:** Either color can fill the first row, but neither pile can fill a second row of two balls.
 
-**Example 4**
+#### Example 4
 
-- Input: `red = 10, blue = 1`
-- Output: `2`
-- Explanation: Starting with blue permits rows of sizes one and two; the next blue row would require three balls.
+- **Input:** `red = 10, blue = 1`
+- **Output:** `2`
+- **Explanation:** Starting with blue permits rows of sizes one and two; the next blue row would require three balls.

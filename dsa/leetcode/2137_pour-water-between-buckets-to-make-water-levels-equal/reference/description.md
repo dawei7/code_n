@@ -19,6 +19,7 @@ Return *the **maximum** amount of water in each bucket after making the amount o
 - **Explanation:** Pour 5 gallons of water from buckets[2] to buckets[0].
 5 * 80% = 4 gallons are spilled and buckets[0] only receives 5 - 4 = 1 gallon of water.
 All buckets have 2 gallons of water in them so return 2.
+
 #### Example 2
 
 - **Input:** $buckets = [2,4,6], loss = 50$
@@ -29,6 +30,7 @@ Now, buckets = [2.25, 3.5, 6].
 Pour 2.5 gallons of water from buckets[2] to buckets[0].
 2.5 * 50% = 1.25 gallons are spilled and buckets[0] only receives 2.5 - 1.25 = 1.25 gallons of water.
 All buckets have 3.5 gallons of water in them so return 3.5.
+
 #### Example 3
 
 - **Input:** $buckets = [3,3,3,3], loss = 40$

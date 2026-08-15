@@ -10,8 +10,13 @@ Return `true` if any cycle of the same value exists in `grid`, otherwise, return
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Return `true` if any cycle of the same value exists in `grid`, otherwise, return
 - **Output:** `true`
 - **Explanation:** There are two valid cycles shown in different colors in the image below:
 ![](images/11.png)
+
 #### Example 2
 
 **
@@ -39,6 +45,7 @@ Return `true` if any cycle of the same value exists in `grid`, otherwise, return
 - **Output:** `true`
 - **Explanation:** There is only one valid cycle highlighted in the image below:
 ![](images/2.png)
+
 #### Example 3
 
 **

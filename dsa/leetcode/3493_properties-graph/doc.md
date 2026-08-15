@@ -33,20 +33,20 @@ Return the number of connected components in the graph defined by the qualifying
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `properties = [[1,2],[1,1],[3,4],[4,5],[5,6],[7,7]], k = 1`
-- Output: `3`
-- Explanation: The first two rows form one component, rows two through four by index form another through values `4` and `5`, and the final row is isolated.
+- **Input:** `properties = [[1,2],[1,1],[3,4],[4,5],[5,6],[7,7]], k = 1`
+- **Output:** `3`
+- **Explanation:** The first two rows form one component, rows two through four by index form another through values `4` and `5`, and the final row is isolated.
 
-**Example 2**
+#### Example 2
 
-- Input: `properties = [[1,2,3],[2,3,4],[4,3,5]], k = 2`
-- Output: `1`
-- Explanation: The first two rows share `2` and `3`, while the last two share `3` and `4`, so all three nodes are connected transitively.
+- **Input:** `properties = [[1,2,3],[2,3,4],[4,3,5]], k = 2`
+- **Output:** `1`
+- **Explanation:** The first two rows share `2` and `3`, while the last two share `3` and `4`, so all three nodes are connected transitively.
 
-**Example 3**
+#### Example 3
 
-- Input: `properties = [[1,1],[1,1]], k = 2`
-- Output: `2`
-- Explanation: The only distinct common value is `1`, so the threshold is not met.
+- **Input:** `properties = [[1,1],[1,1]], k = 2`
+- **Output:** `2`
+- **Explanation:** The only distinct common value is `1`, so the threshold is not met.

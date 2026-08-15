@@ -10,8 +10,14 @@ Return *the maximum number of achievable requests*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `requests`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +35,7 @@ From building 3 we have employee c and they want to move to building 4.
 From building 4 we don't have any requests.
 We can achieve the requests of users x and b by swapping their places.
 We can achieve the requests of users y, a and z by swapping the places in the 3 buildings.
+
 #### Example 2
 
 ![](images/move2.jpg)
@@ -40,6 +47,7 @@ From building 0 we have employee x and they want to stay in the same building 0.
 From building 1 we have employee y and they want to move to building 2.
 From building 2 we have employee z and they want to move to building 1.
 We can achieve all the requests.
+
 #### Example 3
 
 - **Input:** $n = 4, requests = [[0,3],[3,1],[1,2],[2,0]]$

@@ -41,14 +41,13 @@ The order of returned `orderId`s does not matter.
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["OrderManagementSystem", "addOrder", "addOrder", "addOrder", "getOrdersAtPrice", "modifyOrder", "modifyOrder", "getOrdersAtPrice", "cancelOrder", "cancelOrder", "getOrdersAtPrice"]
 
 [[], [1, "buy", 1], [2, "buy", 1], [3, "sell", 2], ["buy", 1], [1, 3], [2, 1], ["buy", 1], [3], [2], ["buy", 1]]
 
-**Output:**
+- **Output:** 
 
 [null, null, null, null, [2, 1], null, null, [2], null, null, []]
 
@@ -74,7 +73,7 @@ orderManagementSystem.cancelOrder(3); // The sell order with ID 3 is canceled an
 
 orderManagementSystem.cancelOrder(2); // The buy order with ID 2 is canceled and removed from active orders.
 
-orderManagementSystem.getOrdersAtPrice("buy", 1); // There are no active buy orders left at price 1, so the result is `[]`.</div>
+orderManagementSystem.getOrdersAtPrice("buy", 1); // There are no active buy orders left at price 1, so the result is `[]`.
 
 ### 5. Constraints
 

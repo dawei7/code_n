@@ -30,6 +30,7 @@ Return an integer representing the number of `k`-big indices in `nums`.
 - **Explanation:** There are only two 2-big indices in nums:
 - i = 2 --> There are two valid idx1: 0 and 1. There are three valid idx2: 2, 3, and 4.
 - i = 3 --> There are two valid idx1: 0 and 1. There are two valid idx2: 3 and 4.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1], k = 3`

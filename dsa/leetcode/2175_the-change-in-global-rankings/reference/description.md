@@ -51,7 +51,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 TeamPoints table:
 +---------+-------------+--------+
 | team_id | name        | points |
@@ -70,7 +70,7 @@ PointsChange table:
 | 4       | 13            |
 | 1       | -22           |
 +---------+---------------+
-**Output:**
+- **Output:** 
 +---------+-------------+-----------+
 | team_id | name        | rank_diff |
 +---------+-------------+-----------+
@@ -79,8 +79,7 @@ PointsChange table:
 | 3       | Algeria     | 1         |
 | 2       | New Zealand | 0         |
 +---------+-------------+-----------+
-**Explanation:**
-The global rankings were as follows:
+- **Explanation:** The global rankings were as follows:
 +---------+-------------+--------+------+
 | team_id | name        | points | rank |
 +---------+-------------+--------+------+

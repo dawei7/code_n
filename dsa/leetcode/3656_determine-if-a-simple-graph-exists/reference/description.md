@@ -16,14 +16,11 @@ Return `true` if such a graph exists, otherwise return `false`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** degrees = [3,1,2,2]
+- **Input:** degrees = [3,1,2,2]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-![](images/screenshot-2025-08-13-at-24347-am.png)
+- **Explanation:** ![](images/screenshot-2025-08-13-at-24347-am.png)
 
 ​​​​​​​
 
@@ -33,23 +30,19 @@ One possible undirected simple graph is:
 
 - Degrees: $deg(0) = 3$, $deg(1) = 1$, $deg(2) = 2$, $deg(3) = 2$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** degrees = [1,3,3,1]
+- **Input:** degrees = [1,3,3,1]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - $\text{degrees}[1] = 3$ and $\text{degrees}[2] = 3$ means they must be connected to all other vertices.
 
 - This requires $\text{degrees}[0]$ and $\text{degrees}[3]$ to be at least 2, but both are equal to 1, which contradicts the requirement.
 
 - Thus, the answer is `false`.
-
-</div>
 
 ### 4. Constraints
 

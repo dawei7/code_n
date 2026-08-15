@@ -32,23 +32,23 @@ Return the minimum number of operations after which the remaining suffix has no 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 2, 3, 3, 5, 7]`
-- Output: `2`
+- **Input:** `nums = [1, 2, 3, 4, 2, 3, 3, 5, 7]`
+- **Output:** `2`
 
 The first operation leaves `[4, 2, 3, 3, 5, 7]`; the second leaves the distinct suffix `[3, 5, 7]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 5, 6, 4, 4]`
-- Output: `2`
+- **Input:** `nums = [4, 5, 6, 4, 4]`
+- **Output:** `2`
 
 After removing the first three values, `[4, 4]` is still not distinct. The next operation removes both remaining values, and the empty array is valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [6, 7, 8, 9]`
-- Output: `0`
+- **Input:** `nums = [6, 7, 8, 9]`
+- **Output:** `0`
 
 The original array is already distinct.

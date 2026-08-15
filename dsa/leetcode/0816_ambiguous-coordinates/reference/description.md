@@ -12,8 +12,13 @@ The final answer list can be returned in any order. All coordinates in the final
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -21,11 +26,13 @@ The final answer list can be returned in any order. All coordinates in the final
 
 - **Input:** `s = "(123)"`
 - **Output:** `["(1, 2.3)","(1, 23)","(1.2, 3)","(12, 3)"]`
+
 #### Example 2
 
 - **Input:** `s = "(0123)"`
 - **Output:** `["(0, 1.23)","(0, 12.3)","(0, 123)","(0.1, 2.3)","(0.1, 23)","(0.12, 3)"]`
 - **Explanation:** 0.0, 00, 0001 or 00.01 are not allowed.
+
 #### Example 3
 
 - **Input:** `s = "(00011)"`

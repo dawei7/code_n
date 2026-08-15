@@ -32,14 +32,14 @@ Count all fixed-bound subarrays and return the total. Subarrays with different s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 5, 2, 7, 5], minK = 1, maxK = 5`
-- Output: `2`
-- Explanation: The valid subarrays are `[1, 3, 5]` and `[1, 3, 5, 2]`.
+- **Input:** `nums = [1, 3, 5, 2, 7, 5], minK = 1, maxK = 5`
+- **Output:** `2`
+- **Explanation:** The valid subarrays are `[1, 3, 5]` and `[1, 3, 5, 2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1, 1], minK = 1, maxK = 1`
-- Output: `10`
-- Explanation: Every nonempty subarray has both required bounds.
+- **Input:** `nums = [1, 1, 1, 1], minK = 1, maxK = 1`
+- **Output:** `10`
+- **Explanation:** Every nonempty subarray has both required bounds.

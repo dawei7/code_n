@@ -14,16 +14,15 @@ Return the **maximum** possible value of `n` such that the **sum** of all elemen
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = 10
+- **Input:** s = 10
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Elements of the array `A` for $n = 2$**:**
 
-		<li>$A[0][0][0] = 0 * (0 OR 0) = 0$
+		- $A[0][0][0] = 0 * (0 OR 0) = 0$
 
 - $A[0][0][1] = 0 * (0 OR 1) = 0$
 
@@ -39,27 +38,21 @@ Return the **maximum** possible value of `n` such that the **sum** of all elemen
 
 - $A[1][1][1] = 1 * (1 OR 1) = 1$
 
-	</li>
 - The total sum of the elements in array `A` is 3, which does not exceed 10, so the maximum possible value of `n` is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = 0
+- **Input:** s = 0
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Elements of the array `A` for $n = 1$:
 
-		<li>$A[0][0][0] = 0 * (0 OR 0) = 0$
+		- $A[0][0][0] = 0 * (0 OR 0) = 0$
 
-	</li>
 - The total sum of the elements in array `A` is 0, which does not exceed 0, so the maximum possible value of `n` is 1.
-
-</div>
 
 ### 4. Constraints
 

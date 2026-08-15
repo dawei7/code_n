@@ -37,17 +37,17 @@ divides `num` without a remainder.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 240, k = 2`
-- Output: `2`
+- **Input:** `num = 240, k = 2`
+- **Output:** `2`
 
 Both `"24"` and `"40"` divide $240$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 430043, k = 2`
-- Output: `2`
+- **Input:** `num = 430043, k = 2`
+- **Output:** `2`
 
 The two occurrences of `"43"` qualify. `"30"` and `"04"` do not divide the
 number, while `"00"` represents zero and is excluded.

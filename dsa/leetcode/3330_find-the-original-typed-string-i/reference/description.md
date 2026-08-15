@@ -10,43 +10,37 @@ Return the total number of *possible* original strings that Alice *might* have i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** word = "abbcccc"
+- **Input:** word = "abbcccc"
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The possible strings are: `"abbcccc"`, `"abbccc"`, `"abbcc"`, `"abbc"`, and `"abcccc"`.
 
-The possible strings are: `"abbcccc"`, `"abbccc"`, `"abbcc"`, `"abbc"`, and `"abcccc"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** word = "abcd"
+- **Input:** word = "abcd"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only possible string is `"abcd"`.
 
-The only possible string is `"abcd"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** word = "aaaa"
+- **Input:** word = "aaaa"
 
-**Output:** 4
-
-</div>
+- **Output:** 4
 
 ### 4. Constraints
 

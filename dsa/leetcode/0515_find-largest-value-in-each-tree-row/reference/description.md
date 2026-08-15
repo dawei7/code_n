@@ -4,8 +4,10 @@ Given the `root` of a binary tree, return *an array of the largest value in each
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `largestValues(root: Optional[TreeNode]) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -15,6 +17,7 @@ Given the `root` of a binary tree, return *an array of the largest value in each
 
 - **Input:** `root = [1,3,2,5,3,null,9]`
 - **Output:** `[1,3,9]`
+
 #### Example 2
 
 - **Input:** `root = [1,2,3]`

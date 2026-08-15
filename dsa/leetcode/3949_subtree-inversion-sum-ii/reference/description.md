@@ -8,18 +8,13 @@ You may perform **inversion operations** on a subset of nodes subject to the fol
 
 - **Subtree Inversion Operation:**
 
-		<li data-end="887" data-start="802">
-		When you invert a node, every value in the subtree rooted at that node is multiplied by -1.
+		- When you invert a node, every value in the subtree rooted at that node is multiplied by -1.
 
-	</li>
 - **Distance Constraint on Inversions:**
 
-		<li data-end="1020" data-start="934">
-		You may only invert a node if it is “sufficiently far” from any other inverted node.
+		- You may only invert a node if it is “sufficiently far” from any other inverted node.
 
 - If you invert two nodes `a` and `b`, the **distance** (the number of edges on the unique path between them) must be **at least** `k`.
-
-	</li>
 
 Return the **maximum** possible **sum** of the tree’s node values after applying **inversion operations**.
 
@@ -41,26 +36,21 @@ Return the maximum total of the final node values over every inversion-node subs
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1],[0,2],[0,3],[1,4],[1,5]], nums = [1,0,-10,3,4,5], k = 2
+- **Input:** edges = [[0,1],[0,2],[0,3],[1,4],[1,5]], nums = [1,0,-10,3,4,5], k = 2
 
-**Output:** 23
+- **Output:** 23
 
-**Explanation:**
-
-![](images/4183example1drawio.png)
+- **Explanation:** ![](images/4183example1drawio.png)
 
 After inverting the subtree rooted at node 2, the maximum sum becomes $1 + 0 + 10 + 3 + 4 + 5 = 23$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[0,1],[1,2]], nums = [5,-10,-10], k = 1
+- **Input:** edges = [[0,1],[1,2]], nums = [5,-10,-10], k = 1
 
-**Output:** 25
+- **Output:** 25
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -70,17 +60,13 @@ After inverting the subtree rooted at node 2, the maximum sum becomes $1 + 0 + 1
 
 After inverting the subtree rooted at node 1, the maximum sum becomes $5 + 10 + 10 = 25$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 2
+- **Input:** edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 2
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-![](images/4183example3drawio.png)
+- **Explanation:** ![](images/4183example3drawio.png)
 
 - After inverting the subtrees rooted at nodes 1 and 2, `nums = [1, 5, 6]`.
 
@@ -88,25 +74,19 @@ After inverting the subtree rooted at node 1, the maximum sum becomes $5 + 10 + 
 
 - The maximum sum is $1 + 5 + 6 = 12$.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 3
+- **Input:** edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 3
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-![](images/4183example4drawio.png)
+- **Explanation:** ![](images/4183example4drawio.png)
 
 - After inverting the subtree rooted at nodes 0, `nums = [-1, 5, 6]`.
 
 - The maximum sum is $(-1) + 5 + 6 = 10$.
 
 - Note that we cannot invert nodes 1 and 2 because their distance is $2 < k = 3$.
-
-</div>
 
 ### 4. Constraints
 

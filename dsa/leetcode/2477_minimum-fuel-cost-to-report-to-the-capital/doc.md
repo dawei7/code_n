@@ -33,20 +33,20 @@ Return an integer: the minimum number of liters consumed while bringing all repr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `roads = [[0,1],[0,2],[0,3]], seats = 5`
-- Output: `3`
-- Explanation: Each non-capital representative crosses its direct road once, using three liters total.
+- **Input:** `roads = [[0,1],[0,2],[0,3]], seats = 5`
+- **Output:** `3`
+- **Explanation:** Each non-capital representative crosses its direct road once, using three liters total.
 
-**Example 2**
+#### Example 2
 
-- Input: `roads = [[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], seats = 2`
-- Output: `7`
-- Explanation: Representatives combine cars while moving toward the capital, minimizing the cars crossing each edge.
+- **Input:** `roads = [[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], seats = 2`
+- **Output:** `7`
+- **Explanation:** Representatives combine cars while moving toward the capital, minimizing the cars crossing each edge.
 
-**Example 3**
+#### Example 3
 
-- Input: `roads = [], seats = 1`
-- Output: `0`
-- Explanation: The only representative already starts in the capital.
+- **Input:** `roads = [], seats = 1`
+- **Output:** `0`
+- **Explanation:** The only representative already starts in the capital.

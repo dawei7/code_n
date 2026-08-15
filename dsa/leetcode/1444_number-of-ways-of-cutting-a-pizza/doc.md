@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/) |
 
 ## Problem Description
+
 ### Goal
 
 A rectangular pizza is represented by an $m \times n$ grid of characters.
@@ -24,6 +25,7 @@ person. Count the cutting sequences in which every delivered piece contains
 at least one apple, and return the count modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
 - `pizza`: a list of $m$ equal-length strings, each of length $n$, containing
@@ -36,19 +38,20 @@ Return the number of valid ordered cutting sequences modulo $10^9+7$. A
 sequence is valid only when all $k$ pieces contain at least one apple.
 
 ### Examples
-**Example 1**
 
-- Input: `pizza = ["A..", "AAA", "..."], k = 3`
-- Output: `3`
+#### Example 1
 
-**Example 2**
+- **Input:** `pizza = ["A..", "AAA", "..."], k = 3`
+- **Output:** `3`
 
-- Input: `pizza = ["A..", "AA.", "..."], k = 3`
-- Output: `1`
+#### Example 2
 
-**Example 3**
+- **Input:** `pizza = ["A..", "AA.", "..."], k = 3`
+- **Output:** `1`
 
-- Input: `pizza = ["A..", "A..", "..."], k = 1`
-- Output: `1`
-- Explanation: No cut is required, and the one delivered piece contains
+#### Example 3
+
+- **Input:** `pizza = ["A..", "A..", "..."], k = 1`
+- **Output:** `1`
+- **Explanation:** No cut is required, and the one delivered piece contains
   apples.

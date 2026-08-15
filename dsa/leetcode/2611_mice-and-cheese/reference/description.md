@@ -14,8 +14,15 @@ Return ***the maximum** points the mice can achieve if the first mouse eats exac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `reward1`: Input parameter (`List[int]`).
+- `reward2`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +33,7 @@ Return ***the maximum** points the mice can achieve if the first mouse eats exac
 - **Explanation:** In this example, the first mouse eats the 2^nd (0-indexed) and the 3^rd types of cheese, and the second mouse eats the 0^th and the 1^st types of cheese.
 The total points are 4 + 4 + 3 + 4 = 15.
 It can be proven that 15 is the maximum total points that the mice can achieve.
+
 #### Example 2
 
 - **Input:** $reward1 = [1,1], reward2 = [1,1], k = 2$

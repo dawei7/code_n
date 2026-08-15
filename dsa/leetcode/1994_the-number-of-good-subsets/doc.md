@@ -29,20 +29,20 @@ Return the number of index-distinct good subsets modulo $1{,}000{,}000{,}007$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `6`
-- Explanation: The valid index choices produce `[2]`, `[3]`, `[2, 3]`, and the same three products with the single `1` included. The value `4` repeats prime factor $2$ and cannot appear.
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `6`
+- **Explanation:** The valid index choices produce `[2]`, `[3]`, `[2, 3]`, and the same three products with the single `1` included. The value `4` repeats prime factor $2$ and cannot appear.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 2, 3, 15]`
-- Output: `5`
-- Explanation: The good subsets are `[2]`, `[3]`, `[15]`, `[2, 3]`, and `[2, 15]`.
+- **Input:** `nums = [4, 2, 3, 15]`
+- **Output:** `5`
+- **Explanation:** The good subsets are `[2]`, `[3]`, `[15]`, `[2, 3]`, and `[2, 15]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 2]`
-- Output: `4`
-- Explanation: The index containing `2` is required, and either, both, or neither of the two indices containing `1` may accompany it.
+- **Input:** `nums = [1, 1, 2]`
+- **Output:** `4`
+- **Explanation:** The index containing `2` is required, and either, both, or neither of the two indices containing `1` may accompany it.

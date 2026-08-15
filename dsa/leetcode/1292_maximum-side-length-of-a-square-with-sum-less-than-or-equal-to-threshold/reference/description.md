@@ -4,8 +4,14 @@ Given a `m x n` matrix `mat` and an integer `threshold`, return *the maximum sid
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+- `threshold`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Given a `m x n` matrix `mat` and an integer `threshold`, return *the maximum sid
 - **Input:** $mat = [[1,1,3,2,4,3,2],[1,1,3,2,4,3,2],[1,1,3,2,4,3,2]], threshold = 4$
 - **Output:** `2`
 - **Explanation:** The maximum side length of square with sum less than or equal to 4 is 2 as shown.
+
 #### Example 2
 
 - **Input:** $mat = [[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2]], threshold = 1$

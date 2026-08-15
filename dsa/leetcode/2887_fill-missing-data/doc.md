@@ -34,17 +34,17 @@ Return the product DataFrame after replacing each missing value in `quantity` wi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `products = [{"name": "Wristwatch", "quantity": null, "price": 135}, {"name": "WirelessEarbuds", "quantity": null, "price": 821}, {"name": "GolfClubs", "quantity": 779, "price": 9319}, {"name": "Printer", "quantity": 849, "price": 3051}]`
-- Output: `[{"name": "Wristwatch", "quantity": 0, "price": 135}, {"name": "WirelessEarbuds", "quantity": 0, "price": 821}, {"name": "GolfClubs", "quantity": 779, "price": 9319}, {"name": "Printer", "quantity": 849, "price": 3051}]`
+- **Input:** `products = [{"name": "Wristwatch", "quantity": null, "price": 135}, {"name": "WirelessEarbuds", "quantity": null, "price": 821}, {"name": "GolfClubs", "quantity": 779, "price": 9319}, {"name": "Printer", "quantity": 849, "price": 3051}]`
+- **Output:** `[{"name": "Wristwatch", "quantity": 0, "price": 135}, {"name": "WirelessEarbuds", "quantity": 0, "price": 821}, {"name": "GolfClubs", "quantity": 779, "price": 9319}, {"name": "Printer", "quantity": 849, "price": 3051}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `products = [{"name": "Cable", "quantity": null, "price": 12}, {"name": "Adapter", "quantity": null, "price": 19}]`
-- Output: `[{"name": "Cable", "quantity": 0, "price": 12}, {"name": "Adapter", "quantity": 0, "price": 19}]`
+- **Input:** `products = [{"name": "Cable", "quantity": null, "price": 12}, {"name": "Adapter", "quantity": null, "price": 19}]`
+- **Output:** `[{"name": "Cable", "quantity": 0, "price": 12}, {"name": "Adapter", "quantity": 0, "price": 19}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `products = [{"name": "Notebook", "quantity": 4, "price": 7}, {"name": "Pen", "quantity": 25, "price": 2}]`
-- Output: `[{"name": "Notebook", "quantity": 4, "price": 7}, {"name": "Pen", "quantity": 25, "price": 2}]`
+- **Input:** `products = [{"name": "Notebook", "quantity": 4, "price": 7}, {"name": "Pen", "quantity": 25, "price": 2}]`
+- **Output:** `[{"name": "Notebook", "quantity": 4, "price": 7}, {"name": "Pen", "quantity": 25, "price": 2}]`

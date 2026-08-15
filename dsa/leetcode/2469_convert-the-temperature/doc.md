@@ -44,14 +44,14 @@ The constraint is $0\le\texttt{celsius}\le1000$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `celsius = 36.50`
-- Output: `[309.65000, 97.70000]`
-- Explanation: Adding $273.15$ gives $309.65$ Kelvin, while applying the Fahrenheit formula gives $97.70$.
+- **Input:** `celsius = 36.50`
+- **Output:** `[309.65000, 97.70000]`
+- **Explanation:** Adding $273.15$ gives $309.65$ Kelvin, while applying the Fahrenheit formula gives $97.70$.
 
-**Example 2**
+#### Example 2
 
-- Input: `celsius = 122.11`
-- Output: `[395.26000, 251.79800]`
-- Explanation: The same two direct conversions give $395.26$ Kelvin and $251.798$ Fahrenheit.
+- **Input:** `celsius = 122.11`
+- **Output:** `[395.26000, 251.79800]`
+- **Explanation:** The same two direct conversions give $395.26$ Kelvin and $251.798$ Fahrenheit.

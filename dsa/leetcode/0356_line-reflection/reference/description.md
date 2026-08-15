@@ -27,6 +27,7 @@ that there can be repeated points.
 - **Input:** $points = [[1,1],[-1,1]]$
 - **Output:** `true`
 - **Explanation:** We can choose the line x = 0.
+
 #### Example 2
 
 ![](images/356_example_2.PNG)

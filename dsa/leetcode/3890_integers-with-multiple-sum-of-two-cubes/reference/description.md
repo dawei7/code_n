@@ -30,14 +30,11 @@ Return all integers at most `n` that have at least two distinct canonical cube-s
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4104
+- **Input:** n = 4104
 
-**Output:** [1729,4104]
+- **Output:** [1729,4104]
 
-**Explanation:**
-
-Among integers less than or equal to 4104, the good integers are:
+- **Explanation:** Among integers less than or equal to 4104, the good integers are:
 
 - 1729: $1^{3} + 12^{3} = 1729$ and $9^{3} + 10^{3} = 1729$.
 
@@ -45,19 +42,13 @@ Among integers less than or equal to 4104, the good integers are:
 
 Thus, the answer is `[1729, 4104]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 578
+- **Input:** n = 578
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-There are no good integers less than or equal to 578, so the answer is an empty array.
-
-</div>
+- **Explanation:** There are no good integers less than or equal to 578, so the answer is an empty array.
 
 ### 4. Constraints
 

@@ -45,7 +45,7 @@ export const ALGORITHM_SETS: AlgorithmSetOption[] = [
     label: 'Elo by Category',
     shortLabel: 'Elo by Category',
     category: 'LeetCode',
-    description: 'Rated LeetCode problems grouped by topic and ordered from lowest to highest Elo.',
+    description: 'LeetCode problems grouped by topic and ordered from lowest to highest Elo (contest and estimated).',
     hasCareerPath: false,
   },
   {
@@ -53,7 +53,7 @@ export const ALGORITHM_SETS: AlgorithmSetOption[] = [
     label: 'Elo Buckets',
     shortLabel: 'Elo Buckets',
     category: 'LeetCode',
-    description: 'Rated LeetCode problems grouped only into the canonical Elo bands and strictly ordered by Elo.',
+    description: 'LeetCode problems grouped into canonical Elo bands and strictly ordered by Elo (contest and estimated).',
     hasCareerPath: false,
   },
   {
@@ -148,7 +148,7 @@ export function challengeIsInAlgorithmSet(
   switch (normalizeAlgorithmSet(value)) {
     case 'elo':
     case 'elo_buckets':
-      return challenge.elo_rating !== null;
+      return challenge.elo_rating !== null || challenge.estimated_elo_rating !== null;
     case 'frequency':
     case 'frequency_buckets':
       return challenge.frequency !== null;

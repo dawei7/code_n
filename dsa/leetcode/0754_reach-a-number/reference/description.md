@@ -12,8 +12,13 @@ Given the integer `target`, return *the **minimum** number of moves required (i.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,16 +26,15 @@ Given the integer `target`, return *the **minimum** number of moves required (i.
 
 - **Input:** $target = 2$
 - **Output:** `3`
-- **Explanation:**
-On the 1^st move, we step from 0 to 1 (1 step).
+- **Explanation:** On the 1^st move, we step from 0 to 1 (1 step).
 On the 2^nd move, we step from 1 to -1 (2 steps).
 On the 3^rd move, we step from -1 to 2 (3 steps).
+
 #### Example 2
 
 - **Input:** $target = 3$
 - **Output:** `2`
-- **Explanation:**
-On the 1^st move, we step from 0 to 1 (1 step).
+- **Explanation:** On the 1^st move, we step from 0 to 1 (1 step).
 On the 2^nd move, we step from 1 to 3 (2 steps).
 
 ### 4. Constraints

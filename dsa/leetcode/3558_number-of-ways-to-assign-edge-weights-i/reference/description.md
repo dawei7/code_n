@@ -12,8 +12,13 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,36 +30,31 @@ Ignore all edges **not** in the path from node 1 to `x`.
 
 ![](images/screenshot-2025-03-24-at-060006.png)
 
-<div class="example-block">
-**Input:** edges = [[1,2]]
+- **Input:** edges = [[1,2]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The path from Node 1 to Node 2 consists of one edge (`1 → 2`).
 
 - Assigning weight 1 makes the cost odd, while 2 makes it even. Thus, the number of valid assignments is 1.
 
-</div>
 #### Example 2
 
 ![](images/screenshot-2025-03-24-at-055820.png)
 
-<div class="example-block">
-**Input:** edges = [[1,2],[1,3],[3,4],[3,5]]
+- **Input:** edges = [[1,2],[1,3],[3,4],[3,5]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The maximum depth is 2, with nodes 4 and 5 at the same depth. Either node can be selected for processing.
 
 - For example, the path from Node 1 to Node 4 consists of two edges (`1 → 3` and `3 → 4`).
 
 - Assigning weights (1,2) or (2,1) results in an odd cost. Thus, the number of valid assignments is 2.
-
-</div>
 
 ### 5. Constraints
 

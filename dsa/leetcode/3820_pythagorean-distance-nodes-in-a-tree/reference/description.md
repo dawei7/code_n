@@ -42,14 +42,11 @@ Return the number of nodes whose three target distances satisfy the Pythagorean 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[0,2],[0,3]], x = 1, y = 2, z = 3
+- **Input:** n = 4, edges = [[0,1],[0,2],[0,3]], x = 1, y = 2, z = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-For each node, we compute its distances to nodes $x = 1$, $y = 2$, and $z = 3$.
+- **Explanation:** For each node, we compute its distances to nodes $x = 1$, $y = 2$, and $z = 3$.
 
 - Node 0 has distances 1, 1, and 1. After sorting, the distances are 1, 1, and 1, which do not satisfy the Pythagorean condition.
 
@@ -61,17 +58,13 @@ For each node, we compute its distances to nodes $x = 1$, $y = 2$, and $z = 3$.
 
 Therefore, nodes 1, 2, and 3 are special, and the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[1,2],[2,3]], x = 0, y = 3, z = 2
+- **Input:** n = 4, edges = [[0,1],[1,2],[2,3]], x = 0, y = 3, z = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-For each node, we compute its distances to nodes $x = 0$, $y = 3$, and $z = 2$.
+- **Explanation:** For each node, we compute its distances to nodes $x = 0$, $y = 3$, and $z = 2$.
 
 - Node 0 has distances 0, 3, and 2. After sorting, the distances are 0, 2, and 3, which do not satisfy the Pythagorean condition.
 
@@ -83,17 +76,13 @@ For each node, we compute its distances to nodes $x = 0$, $y = 3$, and $z = 2$.
 
 No node satisfies the Pythagorean condition. Therefore, the answer is 0.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[1,2],[1,3]], x = 1, y = 3, z = 0
+- **Input:** n = 4, edges = [[0,1],[1,2],[1,3]], x = 1, y = 3, z = 0
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-For each node, we compute its distances to nodes $x = 1$, $y = 3$, and $z = 0$.
+- **Explanation:** For each node, we compute its distances to nodes $x = 1$, $y = 3$, and $z = 0$.
 
 - Node 0 has distances 1, 2, and 0. After sorting, the distances are 0, 1, and 2, which do not satisfy the Pythagorean condition.
 
@@ -104,8 +93,6 @@ For each node, we compute its distances to nodes $x = 1$, $y = 3$, and $z = 0$.
 - Node 3 has distances 1, 0, and 2. After sorting, the distances are 0, 1, and 2, which do not satisfy the Pythagorean condition.
 
 Therefore, the answer is 1.
-
-</div>
 
 ### 4. Constraints
 

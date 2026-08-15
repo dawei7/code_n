@@ -6,47 +6,39 @@ As the town detective, your task is to find these two sneaky numbers. Return an 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,1,1,0]
+- **Input:** nums = [0,1,1,0]
 
-**Output:** [0,1]
+- **Output:** [0,1]
 
-**Explanation:**
+- **Explanation:** The numbers 0 and 1 each appear twice in the array.
 
-The numbers 0 and 1 each appear twice in the array.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,3,2,1,3,2]
+- **Input:** nums = [0,3,2,1,3,2]
 
-**Output:** [2,3]
+- **Output:** [2,3]
 
-**Explanation: **
+- **Explanation:** The numbers 2 and 3 each appear twice in the array.
 
-The numbers 2 and 3 each appear twice in the array.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7,1,5,4,3,4,6,0,9,5,8,2]
+- **Input:** nums = [7,1,5,4,3,4,6,0,9,5,8,2]
 
-**Output:** [4,5]
+- **Output:** [4,5]
 
-**Explanation: **
-
-The numbers 4 and 5 each appear twice in the array.
-
-</div>
+- **Explanation:** The numbers 4 and 5 each appear twice in the array.
 
 ### 4. Constraints
 

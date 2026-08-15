@@ -8,35 +8,33 @@ Your task is to solve it in `O(log(n))` time complexity.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** arr = [0,1,0]
+- **Input:** arr = [0,1,0]
 
-**Output:** 1
+- **Output:** 1
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** arr = [0,2,1,0]
+- **Input:** arr = [0,2,1,0]
 
-**Output:** 1
+- **Output:** 1
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** arr = [0,10,5,2]
+- **Input:** arr = [0,10,5,2]
 
-**Output:** 1
-
-</div>
+- **Output:** 1
 
 ### 4. Constraints
 

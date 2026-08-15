@@ -8,8 +8,16 @@ Given a string `s`, return the maximum number of occurrences of **any** substrin
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `maxLetters`: Input parameter (`int`).
+- `minSize`: Input parameter (`int`).
+- `maxSize`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +27,7 @@ Given a string `s`, return the maximum number of occurrences of **any** substrin
 - **Output:** `2`
 - **Explanation:** Substring "aab" has 2 occurrences in the original string.
 It satisfies the conditions, 2 unique letters and size 3 (between minSize and maxSize).
+
 #### Example 2
 
 - **Input:** `s = "aaaa", maxLetters = 1, minSize = 3, maxSize = 3`

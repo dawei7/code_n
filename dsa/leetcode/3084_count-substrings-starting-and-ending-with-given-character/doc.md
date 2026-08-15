@@ -31,14 +31,14 @@ Count every substring whose first character and last character are both equal to
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abada", c = "a"`
-- Output: `6`
-- Explanation: The three occurrences of `a` form three one-character substrings and three substrings whose endpoints are different occurrences.
+- **Input:** `s = "abada", c = "a"`
+- **Output:** `6`
+- **Explanation:** The three occurrences of `a` form three one-character substrings and three substrings whose endpoints are different occurrences.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "zzz", c = "z"`
-- Output: `6`
-- Explanation: Every nonempty substring qualifies, giving three length-one, two length-two, and one length-three substring.
+- **Input:** `s = "zzz", c = "z"`
+- **Output:** `6`
+- **Explanation:** Every nonempty substring qualifies, giving three length-one, two length-two, and one length-three substring.

@@ -44,7 +44,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Sales table:
 +---------+------------+---------+----------+
 | sale_id | product_id | user_id | quantity |
@@ -63,7 +63,7 @@ Product table:
 | 2          | 25    |
 | 3          | 15    |
 +------------+-------+
-**Output:**
+- **Output:** 
 +---------+----------+
 | user_id | spending |
 +---------+----------+
@@ -71,8 +71,7 @@ Product table:
 | 102     | 75       |
 | 103     | 75       |
 +---------+----------+
-**Explanation:**
-User 101 spent 10 * 10 + 1 * 25 = 125.
+- **Explanation:** User 101 spent 10 * 10 + 1 * 25 = 125.
 User 102 spent 3 * 15 + 2 * 15 = 75.
 User 103 spent 3 * 25 = 75.
 Users 102 and 103 spent the same amount and we break the tie by their ID while user 101 is on the top.

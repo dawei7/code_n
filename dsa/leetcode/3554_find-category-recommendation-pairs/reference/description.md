@@ -42,7 +42,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 ProductPurchases table:
@@ -107,7 +106,7 @@ ProductInfo table:
 
 - **Books-Clothing**:
 
-		<li>User 1 purchased products from Books (102) and Clothing (201)
+		- User 1 purchased products from Books (102) and Clothing (201)
 
 - User 2 purchased products from Books (102, 103) and Clothing (201)
 
@@ -115,10 +114,9 @@ ProductInfo table:
 
 - Total: 3 customers purchased from both categories
 
-	</li>
 - **Books-Electronics**:
 
-		<li>User 1 purchased products from Books (102) and Electronics (101)
+		- User 1 purchased products from Books (102) and Electronics (101)
 
 - User 2 purchased products from Books (102, 103) and Electronics (101)
 
@@ -126,10 +124,9 @@ ProductInfo table:
 
 - Total: 3 customers purchased from both categories
 
-	</li>
 - **Clothing-Electronics**:
 
-		<li>User 1 purchased products from Clothing (201) and Electronics (101)
+		- User 1 purchased products from Clothing (201) and Electronics (101)
 
 - User 2 purchased products from Clothing (201) and Electronics (101)
 
@@ -137,10 +134,9 @@ ProductInfo table:
 
 - Total: 3 customers purchased from both categories
 
-	</li>
 - **Electronics-Sports**:
 
-		<li>User 1 purchased products from Electronics (101) and Sports (301)
+		- User 1 purchased products from Electronics (101) and Sports (301)
 
 - User 3 purchased products from Electronics (101) and Sports (301)
 
@@ -148,12 +144,9 @@ ProductInfo table:
 
 - Total: 3 customers purchased from both categories
 
-	</li>
 - Other category pairs like Clothing-Sports (only 2 customers: Users 1 and 4) and Books-Kitchen (only 1 customer: User 3) have fewer than 3 shared customers and are not included in the result.
 
 The result is ordered by customer_count in descending order. Since all pairs have the same customer_count of 3, they are ordered by category1 (then category2) in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

@@ -21,6 +21,7 @@ Both Alice and Bob play **optimally**.
 - **Explanation:** There is only one possible scenario:
 - On the first turn, Alice removes one stone from the first pile. piles = [0].
 - On the second turn, there are no stones left for Bob to remove. Alice wins.
+
 #### Example 2
 
 - **Input:** $piles = [1,1]$
@@ -29,6 +30,7 @@ Both Alice and Bob play **optimally**.
 - On the first turn, Alice removes one stone from the first pile. piles = [0,1].
 - On the second turn, Bob removes one stone from the second pile. piles = [0,0].
 - On the third turn, there are no stones left for Alice to remove. Bob wins.
+
 #### Example 3
 
 - **Input:** $piles = [1,2,3]$

@@ -32,14 +32,14 @@ Let $n$ be the length of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,2,9,5,3]`
-- Output: `3`
-- Explanation: Prime values occur at indices $1$, $3$, and $4$, so the largest distance is $lvert 4-1 \rvert=3$.
+- **Input:** `nums = [4,2,9,5,3]`
+- **Output:** `3`
+- **Explanation:** Prime values occur at indices $1$, $3$, and $4$, so the largest distance is $lvert 4-1 \rvert=3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,8,2,8]`
-- Output: `0`
-- Explanation: Index $2$ is the only prime-valued position and may be paired with itself.
+- **Input:** `nums = [4,8,2,8]`
+- **Output:** `0`
+- **Explanation:** Index $2$ is the only prime-valued position and may be paired with itself.

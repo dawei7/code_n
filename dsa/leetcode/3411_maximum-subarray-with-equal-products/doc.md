@@ -38,21 +38,21 @@ The constraints are $2\le\lvert\texttt{nums}\rvert\le100$ and $1\le\texttt{nums[
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1, 2, 1, 1, 1]`
-- Output: `5`
+- **Input:** `nums = [1, 2, 1, 2, 1, 1, 1]`
+- **Output:** `5`
 
 The subarray `[1, 2, 1, 1, 1]` has product 2, GCD 1, and LCM 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 4, 5, 6]`
-- Output: `3`
+- **Input:** `nums = [2, 3, 4, 5, 6]`
+- **Output:** `3`
 
 The subarray `[3, 4, 5]` is product equivalent.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 1, 4, 5, 1]`
-- Output: `5`
+- **Input:** `nums = [1, 2, 3, 1, 4, 5, 1]`
+- **Output:** `5`

@@ -12,8 +12,15 @@ Return *the **minimum** cost needed to make the strings *`s1`* and *`s2`* equal,
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -30,6 +37,7 @@ that flipping a character means changing it from `0` to `1` or vice-versa.
 - Choose i = 4 and apply the second operation. The resulting string is s1 = "1101**<u>00</u>**1000".
 - Choose i = 0 and j = 8 and apply the first operation. The resulting string is s1 = "<u>**0**</u>1010010<u>**1**</u>0" = s2.
 The total cost is 1 + 1 + 2 = 4. It can be shown that it is the minimum cost possible.
+
 #### Example 2
 
 - **Input:** $s1 = "10110", s2 = "00011", x = 4$

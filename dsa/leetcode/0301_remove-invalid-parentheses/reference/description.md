@@ -20,10 +20,12 @@ Return all distinct valid strings that use the minimum possible number of parent
 
 - **Input:** `s = "()())()"`
 - **Output:** `["(())()","()()()"]`
+
 #### Example 2
 
 - **Input:** `s = "(a)())()"`
 - **Output:** `["(a())()","(a)()()"]`
+
 #### Example 3
 
 - **Input:** `s = ")("`

@@ -6,8 +6,13 @@ Return the **maximum** possible number whose *binary representation* can be form
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -17,28 +22,19 @@ that the binary representation of any number *does not* contain leading zeros.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 30
+- **Output:** 30
 
-**Explanation:**
+- **Explanation:** Concatenate the numbers in the order `[3, 1, 2]` to get the result `"11110"`, which is the binary representation of 30.
 
-Concatenate the numbers in the order `[3, 1, 2]` to get the result `"11110"`, which is the binary representation of 30.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,8,16]
+- **Input:** nums = [2,8,16]
 
-**Output:** 1296
+- **Output:** 1296
 
-**Explanation:**
-
-Concatenate the numbers in the order `[2, 8, 16]` to get the result `"10100010000"`, which is the binary representation of 1296.
-
-</div>
+- **Explanation:** Concatenate the numbers in the order `[2, 8, 16]` to get the result `"10100010000"`, which is the binary representation of 1296.
 
 ### 5. Constraints
 

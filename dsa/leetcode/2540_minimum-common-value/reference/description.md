@@ -6,8 +6,14 @@ Note that an integer is said to be **common** to `nums1` and `nums2` if both arr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Note that an integer is said to be **common** to `nums1` and `nums2` if both arr
 - **Input:** $nums1 = [1,2,3], nums2 = [2,4]$
 - **Output:** `2`
 - **Explanation:** The smallest element common to both arrays is 2, so we return 2.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,2,3,6], nums2 = [2,3,4,5]$

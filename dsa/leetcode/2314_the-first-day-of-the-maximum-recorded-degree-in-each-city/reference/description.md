@@ -30,7 +30,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Weather table:
 +---------+------------+--------+
 | city_id | day        | degree |
@@ -43,7 +43,7 @@ Weather table:
 | 3       | 2022-02-07 | -7     |
 | 3       | 2022-12-07 | -6     |
 +---------+------------+--------+
-**Output:**
+- **Output:** 
 +---------+------------+--------+
 | city_id | day        | degree |
 +---------+------------+--------+
@@ -51,8 +51,7 @@ Weather table:
 | 2       | 2022-08-07 | 37     |
 | 3       | 2022-12-07 | -6     |
 +---------+------------+--------+
-**Explanation:**
-For city 1, the maximum degree was recorded on 2022-07-07 with 24 degrees.
+- **Explanation:** For city 1, the maximum degree was recorded on 2022-07-07 with 24 degrees.
 For city 2, the maximum degree was recorded on 2022-08-07 and 2022-08-17 with 37 degrees. We choose the earlier date (2022-08-07).
 For city 3, the maximum degree was recorded on 2022-12-07 with -6 degrees.
 ```

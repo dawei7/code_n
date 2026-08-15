@@ -8,47 +8,39 @@ Return a 2D array of integers `freqs` that represent all the SCSs. Each $\text{f
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["ab","ba"]
+- **Input:** words = ["ab","ba"]
 
-**Output: **[[1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+- **Output:** [[1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
-**Explanation:**
+- **Explanation:** The two SCSs are `"aba"` and `"bab"`. The output is the letter frequencies for each one.
 
-The two SCSs are `"aba"` and `"bab"`. The output is the letter frequencies for each one.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["aa","ac"]
+- **Input:** words = ["aa","ac"]
 
-**Output: **[[2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+- **Output:** [[2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
-**Explanation:**
+- **Explanation:** The two SCSs are `"aac"` and `"aca"`. Since they are permutations of each other, keep only `"aac"`.
 
-The two SCSs are `"aac"` and `"aca"`. Since they are permutations of each other, keep only `"aac"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words = ["aa","bb","cc"]
+- **Input:** words = ["aa","bb","cc"]
 
-**Output: **[[2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+- **Output:** [[2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
-**Explanation:**
-
-`"aabbcc"` and all its permutations are SCSs.
-
-</div>
+- **Explanation:** `"aabbcc"` and all its permutations are SCSs.
 
 ### 4. Constraints
 

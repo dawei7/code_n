@@ -6,8 +6,14 @@ Given two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and `s2
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Given two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and `s2
 - **Input:** $s1 = "ab", s2 = "ba"$
 - **Output:** `1`
 - **Explanation:** The two string are 1-similar because we can use one swap to change s1 to s2: "ab" --> "ba".
+
 #### Example 2
 
 - **Input:** $s1 = "abc", s2 = "bca"$

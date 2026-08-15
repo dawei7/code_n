@@ -10,37 +10,35 @@ Two rooms are **adjacent** if they share a common wall, either *horizontally* or
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `moveTime`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** moveTime = [[0,4],[4,4]]
+- **Input:** moveTime = [[0,4],[4,4]]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-The minimum time required is 7 seconds.
+- **Explanation:** The minimum time required is 7 seconds.
 
 - At time $t = 4$, move from room `(0, 0)` to room `(1, 0)` in one second.
 
 - At time $t = 5$, move from room `(1, 0)` to room `(1, 1)` in two seconds.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** moveTime = [[0,0,0,0],[0,0,0,0]]
+- **Input:** moveTime = [[0,0,0,0],[0,0,0,0]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-The minimum time required is 6 seconds.
+- **Explanation:** The minimum time required is 6 seconds.
 
 - At time $t = 0$, move from room `(0, 0)` to room `(1, 0)` in one second.
 
@@ -50,15 +48,11 @@ The minimum time required is 6 seconds.
 
 - At time $t = 4$, move from room `(1, 2)` to room `(1, 3)` in two seconds.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** moveTime = [[0,1],[1,2]]
+- **Input:** moveTime = [[0,1],[1,2]]
 
-**Output:** 4
-
-</div>
+- **Output:** 4
 
 ### 4. Constraints
 

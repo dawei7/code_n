@@ -30,20 +30,20 @@ Occurrences beyond the first do not change whether a substring qualifies, but su
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcabc"`
-- Output: `10`
-- Explanation: qualifying substrings occur at several lengths and positions; all ten are counted.
+- **Input:** `s = "abcabc"`
+- **Output:** `10`
+- **Explanation:** qualifying substrings occur at several lengths and positions; all ten are counted.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aaacb"`
-- Output: `3`
-- Explanation: a valid substring must end at the final `b`, and it may begin at any of the first three positions.
+- **Input:** `s = "aaacb"`
+- **Output:** `3`
+- **Explanation:** a valid substring must end at the final `b`, and it may begin at any of the first three positions.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abc"`
-- Output: `1`
-- Explanation: only the complete string contains all three characters.
+- **Input:** `s = "abc"`
+- **Output:** `1`
+- **Explanation:** only the complete string contains all three characters.

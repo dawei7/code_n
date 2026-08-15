@@ -12,8 +12,15 @@ Return *the **minimum** number of white tiles still visible.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `floor`: Input parameter (`str`).
+- `numCarpets`: Input parameter (`int`).
+- `carpetLen`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,17 +30,16 @@ Return *the **minimum** number of white tiles still visible.*
 
 - **Input:** $floor = "10110101", numCarpets = 2, carpetLen = 2$
 - **Output:** `2`
-- **Explanation:**
-The figure above shows one way of covering the tiles with the carpets such that only 2 white tiles are visible.
+- **Explanation:** The figure above shows one way of covering the tiles with the carpets such that only 2 white tiles are visible.
 No other way of covering the tiles with the carpets can leave less than 2 white tiles visible.
+
 #### Example 2
 
 ![](images/ex2.png)
 
 - **Input:** $floor = "11111", numCarpets = 2, carpetLen = 3$
 - **Output:** `0`
-- **Explanation:**
-The figure above shows one way of covering the tiles with the carpets such that no white tiles are visible.
+- **Explanation:** The figure above shows one way of covering the tiles with the carpets such that no white tiles are visible.
 Note that the carpets are able to overlap one another.
 
 ### 4. Constraints

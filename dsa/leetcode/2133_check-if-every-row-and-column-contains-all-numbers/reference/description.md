@@ -6,8 +6,13 @@ Given an `n x n` integer matrix `matrix`, return `true` *if the matrix is **vali
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Given an `n x n` integer matrix `matrix`, return `true` *if the matrix is **vali
 - **Output:** `true`
 - **Explanation:** In this case, n = 3, and every row and column contains the numbers 1, 2, and 3.
 Hence, we return true.
+
 #### Example 2
 
 ![](images/example2drawio.png)

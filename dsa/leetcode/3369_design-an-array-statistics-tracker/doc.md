@@ -33,20 +33,20 @@ Let $q$ be the total number of operations after construction and $m$ the current
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Operations: `["StatisticsTracker", "addNumber", "addNumber", "addNumber", "addNumber", "getMean", "getMedian", "getMode", "removeFirstAddedNumber", "getMode"]`
 - Arguments: `[[], [4], [4], [2], [3], [], [], [], [], []]`
-- Output: `[null, null, null, null, null, 3, 4, 4, null, 2]`
+- **Output:** `[null, null, null, null, null, 3, 4, 4, null, 2]`
 
-**Example 2**
+#### Example 2
 
 - Operations: `["StatisticsTracker", "addNumber", "addNumber", "getMean", "removeFirstAddedNumber", "addNumber", "addNumber", "removeFirstAddedNumber", "getMedian", "addNumber", "getMode"]`
 - Arguments: `[[], [9], [5], [], [], [5], [6], [], [], [8], []]`
-- Output: `[null, null, null, 7, null, null, null, null, 6, null, 5]`
+- **Output:** `[null, null, null, 7, null, null, null, null, 6, null, 5]`
 
-**Example 3**
+#### Example 3
 
 - Operations: `["StatisticsTracker", "addNumber", "addNumber", "getMedian", "getMode", "removeFirstAddedNumber", "getMean"]`
 - Arguments: `[[], [1], [10], [], [], [], []]`
-- Output: `[null, null, null, 10, 1, null, 10]`
+- **Output:** `[null, null, null, 10, 1, null, 10]`

@@ -38,15 +38,15 @@ The stable three-way partition of `nums` around `pivot`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [9, 12, 5, 10, 14, 3, 10]`, `pivot = 10`
-- Output: `[9, 5, 3, 10, 10, 12, 14]`
-- Explanation: The smaller subsequence remains `[9, 5, 3]` and the greater
+- **Input:** `nums = [9, 12, 5, 10, 14, 3, 10]`, `pivot = 10`
+- **Output:** `[9, 5, 3, 10, 10, 12, 14]`
+- **Explanation:** The smaller subsequence remains `[9, 5, 3]` and the greater
   subsequence remains `[12, 14]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-3, 4, 3, 2]`, `pivot = 2`
-- Output: `[-3, 2, 4, 3]`
-- Explanation: The greater values retain their original order `[4, 3]`.
+- **Input:** `nums = [-3, 4, 3, 2]`, `pivot = 2`
+- **Output:** `[-3, 2, 4, 3]`
+- **Explanation:** The greater values retain their original order `[4, 3]`.

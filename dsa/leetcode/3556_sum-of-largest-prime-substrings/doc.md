@@ -32,16 +32,16 @@ Return the sum of the largest three unique prime values represented by substring
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "12234"`
-- Output: `1469`
-- Explanation: The distinct primes are `2`, `3`, `23`, `223`, and `1223`; the largest three sum to `1223 + 223 + 23 = 1469`.
+- **Input:** `s = "12234"`
+- **Output:** `1469`
+- **Explanation:** The distinct primes are `2`, `3`, `23`, `223`, and `1223`; the largest three sum to `1223 + 223 + 23 = 1469`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "111"`
-- Output: `11`
-- Explanation: The only prime value formed by a substring is `11`.
+- **Input:** `s = "111"`
+- **Output:** `11`
+- **Explanation:** The only prime value formed by a substring is `11`.
 
 ---

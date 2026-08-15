@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/delete-duplicate-folders-in-system/) |
 
 ## Problem Description
+
 ### Goal
+
 Each entry in `paths` names an absolute folder path as a sequence of
 lowercase folder names. All parent folders are included, so the entries
 together describe one file-system tree rooted above the first path component.
@@ -25,6 +27,7 @@ paths that remain. Marking happens only once: folders that become identical
 because of this deletion are not deleted in a second pass.
 
 ### Function Contract
+
 **Inputs**
 
 - `paths`: between 1 and $2\cdot10^4$ distinct folder paths. Each path contains
@@ -40,19 +43,20 @@ Let $F$ be the number of distinct folders represented by the trie.
   deletion. The paths may be returned in any order.
 
 ### Examples
-**Example 1**
 
-- Input:
+#### Example 1
+
+- **Input:** 
   `paths = [["a"], ["c"], ["d"], ["a", "b"], ["c", "b"], ["d", "a"]]`
-- Output: `[["d"], ["d", "a"]]`
+- **Output:** `[["d"], ["d", "a"]]`
 
-**Example 2**
+#### Example 2
 
-- Input:
+- **Input:** 
   `paths = [["a"], ["c"], ["a", "b"], ["c", "b"], ["a", "b", "x"], ["a", "b", "x", "y"], ["w"], ["w", "y"]]`
-- Output: `[["a"], ["a", "b"], ["c"], ["c", "b"]]`
+- **Output:** `[["a"], ["a", "b"], ["c"], ["c", "b"]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `paths = [["a", "b"], ["c", "d"], ["c"], ["a"]]`
-- Output: `[["a"], ["a", "b"], ["c"], ["c", "d"]]`
+- **Input:** `paths = [["a", "b"], ["c", "d"], ["c"], ["a"]]`
+- **Output:** `[["a"], ["a", "b"], ["c"], ["c", "d"]]`

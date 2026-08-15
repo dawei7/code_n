@@ -12,12 +12,11 @@ Return the fully substituted `text` string which **does not** contain any **plac
 
 #### Example 1
 
-<div class="example-block">
-**Input:** replacements = [["A","abc"],["B","def"]], text = "%A%_%B%"
+- **Input:** replacements = [["A","abc"],["B","def"]], text = "%A%_%B%"
 
-**Output:** "abc_def"
+- **Output:** "abc_def"
 
-**Explanation:**
+- **Explanation:** 
 
 - The mapping associates `"A"` with `"abc"` and `"B"` with `"def"`.
 
@@ -25,15 +24,13 @@ Return the fully substituted `text` string which **does not** contain any **plac
 
 - The final text becomes $"\text{abc}_{def}"$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** replacements = [["A","bce"],["B","ace"],["C","abc%B%"]], text = "%A%_%B%_%C%"
+- **Input:** replacements = [["A","bce"],["B","ace"],["C","abc%B%"]], text = "%A%_%B%_%C%"
 
-**Output:** "bce_ace_abcace"
+- **Output:** "bce_ace_abcace"
 
-**Explanation:**
+- **Explanation:** 
 
 - The mapping associates `"A"` with `"bce"`, `"B"` with `"ace"`, and `"C"` with `"abc%B%"`.
 
@@ -43,19 +40,16 @@ Return the fully substituted `text` string which **does not** contain any **plac
 
 - The final text becomes `"bce_ace_abcace"`.
 
-</div>
-
 ### 4. Constraints
 
 - $1 \le \text{replacements.length} \le 10$
 
 - Each element of `replacements` is a two-element list `[key, value]`, where:
 
-		<li data-end="1558" data-start="1513">`key` is a single uppercase English letter.
+		- `key` is a single uppercase English letter.
 
 - `value` is a non-empty string of at most 8 characters that may contain zero or more placeholders formatted as `%<key>%`.
 
-	</li>
 - All replacement keys are unique.
 
 - The `text` string is formed by concatenating all key placeholders (formatted as `%<key>%`) randomly from the replacements mapping, separated by underscores.

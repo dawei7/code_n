@@ -24,6 +24,7 @@ Return the first valid `"HH:MM"` display reached by moving forward in time whose
 - **Output:** `"19:39"`
 - **Explanation:** The next closest time choosing from digits **1**, **9**, **3**, **4**, is **19:39**, which occurs 5 minutes later.
 It is not **19:33**, because this occurs 23 hours and 59 minutes later.
+
 #### Example 2
 
 - **Input:** $time = "23:59"$

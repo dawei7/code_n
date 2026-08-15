@@ -10,8 +10,14 @@ Return `true` *if it is possible to obtain the string* `target`* by moving the p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `start`: Input parameter (`str`).
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -24,12 +30,14 @@ Return `true` *if it is possible to obtain the string* `target`* by moving the p
 - Move the last piece one step to the right, start becomes equal to "L___R___**R**".
 - Move the second piece three steps to the right, start becomes equal to "L______**R**R".
 Since it is possible to get the string target from start, we return true.
+
 #### Example 2
 
 - **Input:** $start = "R_L_", target = "__LR"$
 - **Output:** `false`
 - **Explanation:** The 'R' piece in the string start can move one step to the right to obtain "_**R**L_".
 After that, no pieces can move anymore, so it is impossible to obtain the string target from start.
+
 #### Example 3
 
 - **Input:** $start = "_R", target = "R_"$

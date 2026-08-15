@@ -35,12 +35,11 @@ Return `-1` when no index satisfies the inequality.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,0,1,4], k = 3
+- **Input:** nums = [5,0,1,4], k = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - At index 0: The maximum in `[5]` is 5, and the minimum in `[5, 0, 1, 4]` is 0, so the instability score is $5 - 0 = 5$.
 
@@ -52,15 +51,13 @@ Return `-1` when no index satisfies the inequality.
 
 - This is the first index with an instability score less than or equal to $k = 3$. Thus, the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,2,1], k = 1
+- **Input:** nums = [3,2,1], k = 1
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - At index 0, the instability score is $3 - 1 = 2$.
 
@@ -70,19 +67,13 @@ Return `-1` when no index satisfies the inequality.
 
 - None of these values is less than or equal to $k = 1$, so the answer is -1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [0], k = 0
+- **Input:** nums = [0], k = 0
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-At index 0, the instability score is $0 - 0 = 0$, which is less than or equal to $k = 0$. Therefore, the answer is 0.
-
-</div>
+- **Explanation:** At index 0, the instability score is $0 - 0 = 0$, which is less than or equal to $k = 0$. Therefore, the answer is 0.
 
 ### 4. Constraints
 

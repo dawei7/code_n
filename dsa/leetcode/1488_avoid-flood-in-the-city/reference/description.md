@@ -22,8 +22,13 @@ Notice that if you chose to dry a full lake, it becomes empty, but if you chose 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rains`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -36,6 +41,7 @@ After the second day full lakes are [1,2]
 After the third day full lakes are [1,2,3]
 After the fourth day full lakes are [1,2,3,4]
 There's no day to dry any lake and there is no flood in any lake.
+
 #### Example 2
 
 - **Input:** $rains = [1,2,0,0,2,1]$
@@ -47,6 +53,7 @@ After the fourth day, we dry lake 1. There is no full lakes.
 After the fifth day, full lakes are [2].
 After the sixth day, full lakes are [1,2].
 It is easy that this scenario is flood-free. [-1,-1,1,2,-1,-1] is another acceptable scenario.
+
 #### Example 3
 
 - **Input:** $rains = [1,2,0,1,2]$

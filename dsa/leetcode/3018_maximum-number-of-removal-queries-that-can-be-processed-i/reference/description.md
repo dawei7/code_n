@@ -32,6 +32,7 @@ Return *the **maximum** number of queries that can be processed by doing the ope
 5- We can not choose any elements from nums since they are not greater than or equal to 5.
 Hence, the answer is 4.
 It can be shown that we can't process more than 4 queries.
+
 #### Example 2
 
 - **Input:** `nums = [2,3,2], queries = [2,2,3]`
@@ -42,6 +43,7 @@ It can be shown that we can't process more than 4 queries.
 3- We choose and remove nums[0] since 3 <= 3, then nums becomes [].
 Hence, the answer is 3.
 It can be shown that we can't process more than 3 queries.
+
 #### Example 3
 
 - **Input:** `nums = [3,4,3], queries = [4,3,2]`

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/employees-whose-manager-left-the-company/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Employees` table stores each current employee's ID, name, manager ID, and
 salary. Employees without a manager have `NULL` as `manager_id`. When a
 manager leaves the company, that manager's row is deleted, but current reports
@@ -20,6 +22,7 @@ non-null manager ID no longer identifies any current employee. Return their
 IDs in ascending order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Employees(employee_id, name, manager_id, salary)`: $R$ current employee
@@ -36,7 +39,8 @@ IDs in ascending order.
 - Order rows by `employee_id` ascending.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 In the public sample, employee 1 earns below the threshold but manager 11
 still exists. Employee 11 earns below the threshold and references absent
@@ -44,14 +48,14 @@ manager 6.
 
 - Output row: `(11)`.
 
-**Example 2**
+#### Example 2
 
 An employee earns `29999` and references manager ID 9, which is absent.
 
-- Output: that employee's ID.
+- **Output:** that employee's ID.
 
-**Example 3**
+#### Example 3
 
 An employee earns exactly `30000` and references an absent manager.
 
-- Output: no rows because the salary condition is strict.
+- **Output:** no rows because the salary condition is strict.

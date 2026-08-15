@@ -33,20 +33,20 @@ Return the largest number of potholes repairable without spending more than `bud
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `road = "..", budget = 5`
-- Output: `0`
-- Explanation: The road contains no potholes.
+- **Input:** `road = "..", budget = 5`
+- **Output:** `0`
+- **Explanation:** The road contains no potholes.
 
-**Example 2**
+#### Example 2
 
-- Input: `road = "..xxxxx", budget = 4`
-- Output: `3`
-- Explanation: Repairing three consecutive potholes costs `3 + 1 = 4`.
+- **Input:** `road = "..xxxxx", budget = 4`
+- **Output:** `3`
+- **Explanation:** Repairing three consecutive potholes costs `3 + 1 = 4`.
 
-**Example 3**
+#### Example 3
 
-- Input: `road = "x.x.xxx...x", budget = 14`
-- Output: `6`
-- Explanation: Repairing all four pothole blocks costs `(1 + 1) + (1 + 1) + (3 + 1) + (1 + 1) = 10`, which is within budget.
+- **Input:** `road = "x.x.xxx...x", budget = 14`
+- **Output:** `6`
+- **Explanation:** Repairing all four pothole blocks costs `(1 + 1) + (1 + 1) + (3 + 1) + (1 + 1) = 10`, which is within budget.

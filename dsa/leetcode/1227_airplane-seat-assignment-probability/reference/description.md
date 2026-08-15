@@ -10,8 +10,13 @@ Return *the probability that the *$$n^{\text{th}}$$* person gets his own seat*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the probability that the *$$n^{\text{th}}$$* person gets his own seat*.
 - **Input:** $n = 1$
 - **Output:** `1.00000`
 - **Explanation:** The first person can only get the first seat.
+
 #### Example 2
 
 - **Input:** $n = 2$

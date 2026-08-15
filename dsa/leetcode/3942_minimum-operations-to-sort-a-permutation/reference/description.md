@@ -26,12 +26,11 @@ The function observes `nums` without modifying it.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,2,1]
+- **Input:** nums = [0,2,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Rotate Left by one: `[2, 1, 0]`
 
@@ -39,15 +38,13 @@ The function observes `nums` without modifying it.
 
 The array becomes sorted in 2 operations, which is minimal
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,0,2]
+- **Input:** nums = [1,0,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Reverse the array: `[2, 0, 1]`
 
@@ -55,19 +52,13 @@ The array becomes sorted in 2 operations, which is minimal
 
 The array becomes sorted in 2 operations, which is minimal.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2,0,1,3]
+- **Input:** nums = [2,0,1,3]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It is impossible to reach `[2, 0, 1, 3]`. Thus, the answer is -1.
-
-</div>
+- **Explanation:** It is impossible to reach `[2, 0, 1, 3]`. Thus, the answer is -1.
 
 ### 4. Constraints
 

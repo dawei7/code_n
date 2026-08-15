@@ -27,7 +27,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Tweets table:
@@ -60,7 +59,7 @@ Tweets table:
 
 - tweet_id 4 contains 4 hashtags.
 
-Output table is ordered by tweet_id in ascending order.</div>
+Output table is ordered by tweet_id in ascending order.
 
 ### 2. Function Contract
 

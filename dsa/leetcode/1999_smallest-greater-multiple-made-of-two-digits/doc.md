@@ -30,20 +30,20 @@ Return the smallest signed 32-bit integer greater than `k` that is a multiple of
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 2, digit1 = 0, digit2 = 2`
-- Output: `20`
-- Explanation: `20` is the first allowed-digit value above $2$ that is divisible by $2$.
+- **Input:** `k = 2, digit1 = 0, digit2 = 2`
+- **Output:** `20`
+- **Explanation:** `20` is the first allowed-digit value above $2$ that is divisible by $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 3, digit1 = 4, digit2 = 2`
-- Output: `24`
-- Explanation: Sorting the available digits during generation reveals `24` before any larger qualifying value.
+- **Input:** `k = 3, digit1 = 4, digit2 = 2`
+- **Output:** `24`
+- **Explanation:** Sorting the available digits during generation reveals `24` before any larger qualifying value.
 
-**Example 3**
+#### Example 3
 
-- Input: `k = 2, digit1 = 0, digit2 = 0`
-- Output: `-1`
-- Explanation: Zero cannot begin a positive decimal representation, so there is no candidate.
+- **Input:** `k = 2, digit1 = 0, digit2 = 0`
+- **Output:** `-1`
+- **Explanation:** Zero cannot begin a positive decimal representation, so there is no candidate.

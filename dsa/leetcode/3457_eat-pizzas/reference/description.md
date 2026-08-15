@@ -10,8 +10,13 @@ Find the **maximum** total weight you can gain by eating **all** pizzas optimall
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `pizzas`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,12 +26,11 @@ Find the **maximum** total weight you can gain by eating **all** pizzas optimall
 
 #### Example 1
 
-<div class="example-block">
-**Input:** pizzas = [1,2,3,4,5,6,7,8]
+- **Input:** pizzas = [1,2,3,4,5,6,7,8]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - On day 1, you eat pizzas at indices `[1, 2, 4, 7] = [2, 3, 5, 8]`. You gain a weight of 8.
 
@@ -34,23 +38,19 @@ Find the **maximum** total weight you can gain by eating **all** pizzas optimall
 
 The total weight gained after eating all the pizzas is $8 + 6 = 14$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** pizzas = [2,1,1,1,1,1,1,1]
+- **Input:** pizzas = [2,1,1,1,1,1,1,1]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - On day 1, you eat pizzas at indices `[4, 5, 6, 0] = [1, 1, 1, 2]`. You gain a weight of 2.
 
 - On day 2, you eat pizzas at indices `[1, 2, 3, 7] = [1, 1, 1, 1]`. You gain a weight of 1.
 
 The total weight gained after eating all the pizzas is $2 + 1 = 3.$
-
-</div>
 
 ### 5. Constraints
 

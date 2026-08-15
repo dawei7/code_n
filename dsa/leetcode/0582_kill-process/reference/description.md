@@ -31,6 +31,7 @@ Return a list containing `kill` and every direct or indirect descendant of that 
 - **Input:** $pid = [1,3,10,5], ppid = [3,0,5,3], kill = 5$
 - **Output:** `[5,10]`
 - **Explanation:** The processes colored in red are the processes that should be killed.
+
 #### Example 2
 
 - **Input:** $pid = [1], ppid = [0], kill = 1$

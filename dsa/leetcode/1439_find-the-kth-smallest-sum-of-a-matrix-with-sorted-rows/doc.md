@@ -34,17 +34,17 @@ Every construction uses one position from every row: no row may be skipped, and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mat = [[1,3,11],[2,4,6]], k = 5`
-- Output: `7`
+- **Input:** `mat = [[1,3,11],[2,4,6]], k = 5`
+- **Output:** `7`
 
-**Example 2**
+#### Example 2
 
-- Input: `mat = [[1,3,11],[2,4,6]], k = 9`
-- Output: `17`
+- **Input:** `mat = [[1,3,11],[2,4,6]], k = 9`
+- **Output:** `17`
 
-**Example 3**
+#### Example 3
 
-- Input: `mat = [[1,10,10],[1,4,5],[2,3,6]], k = 7`
-- Output: `9`
+- **Input:** `mat = [[1,10,10],[1,4,5],[2,3,6]], k = 7`
+- **Output:** `9`

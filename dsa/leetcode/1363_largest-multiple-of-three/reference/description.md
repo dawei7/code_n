@@ -6,8 +6,13 @@ Since the answer may not fit in an integer data type, return the answer as a str
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `digits`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -15,10 +20,12 @@ Since the answer may not fit in an integer data type, return the answer as a str
 
 - **Input:** $digits = [8,1,9]$
 - **Output:** `"981"`
+
 #### Example 2
 
 - **Input:** $digits = [8,6,7,1,0]$
 - **Output:** `"8760"`
+
 #### Example 3
 
 - **Input:** $digits = [1]$

@@ -31,20 +31,20 @@ Count the connected components in that induced structure. Equivalently, count th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [0,1,2,3], nums = [0,1,3]`
-- Output: `2`
-- Explanation: Nodes `0` and `1` form one run, while node `3` forms another.
+- **Input:** `head = [0,1,2,3], nums = [0,1,3]`
+- **Output:** `2`
+- **Explanation:** Nodes `0` and `1` form one run, while node `3` forms another.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [0,1,2,3,4], nums = [0,3,1,4]`
-- Output: `2`
-- Explanation: The selected runs are `0 -> 1` and `3 -> 4`; the order of `nums` is irrelevant.
+- **Input:** `head = [0,1,2,3,4], nums = [0,3,1,4]`
+- **Output:** `2`
+- **Explanation:** The selected runs are `0 -> 1` and `3 -> 4`; the order of `nums` is irrelevant.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [0], nums = [0]`
-- Output: `1`
-- Explanation: The selected singleton node is one component.
+- **Input:** `head = [0], nums = [0]`
+- **Output:** `1`
+- **Explanation:** The selected singleton node is one component.

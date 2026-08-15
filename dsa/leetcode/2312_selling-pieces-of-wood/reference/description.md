@@ -10,8 +10,15 @@ Note that you can cut the piece of wood as many times as you want.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `prices`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +34,7 @@ Note that you can cut the piece of wood as many times as you want.
 - 1 piece of wood shaped 1 x 4, selling for a price of 1 * 2 = 2.
 This obtains a total of 14 + 3 + 2 = 19 money earned.
 It can be shown that 19 is the maximum amount of money that can be earned.
+
 #### Example 2
 
 ![](images/ex2new.png)

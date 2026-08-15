@@ -14,8 +14,13 @@ Return *the number of **distinct** valid names for the company*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `ideas`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +40,7 @@ The following are some examples of invalid selections:
 - ("coffee", "time"): The name "toffee" formed after swapping already exists in the original array.
 - ("time", "toffee"): Both names are still the same after swapping and exist in the original array.
 - ("coffee", "toffee"): Both names formed after swapping already exist in the original array.
+
 #### Example 2
 
 - **Input:** $ideas = ["lack","back"]$

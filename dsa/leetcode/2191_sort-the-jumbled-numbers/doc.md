@@ -39,17 +39,17 @@ mapped value.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mapping = [8,9,4,0,2,1,3,5,7,6]`, `nums = [991,338,38]`
-- Output: `[338,38,991]`
+- **Input:** `mapping = [8,9,4,0,2,1,3,5,7,6]`, `nums = [991,338,38]`
+- **Output:** `[338,38,991]`
 
-**Example 2**
+#### Example 2
 
-- Input: `mapping = [0,1,2,3,4,5,6,7,8,9]`, `nums = [789,456,123]`
-- Output: `[123,456,789]`
+- **Input:** `mapping = [0,1,2,3,4,5,6,7,8,9]`, `nums = [789,456,123]`
+- **Output:** `[123,456,789]`
 
-**Example 3**
+#### Example 3
 
-- Input: `mapping = [5,1,2,3,4,0,6,7,8,9]`, `nums = [0,10,5]`
-- Output: `[5,0,10]`
+- **Input:** `mapping = [5,1,2,3,4,0,6,7,8,9]`, `nums = [0,10,5]`
+- **Output:** `[5,0,10]`

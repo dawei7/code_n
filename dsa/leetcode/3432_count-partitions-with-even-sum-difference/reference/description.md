@@ -12,21 +12,23 @@ Return the number of **partitions** where the **difference** between the **sum**
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [10,10,3,7,6]
+- **Input:** nums = [10,10,3,7,6]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The 4 partitions are:
+- **Explanation:** The 4 partitions are:
 
 - `[10]`, `[10, 3, 7, 6]` with a sum difference of $10 - 26 = -16$, which is even.
 
@@ -36,31 +38,21 @@ The 4 partitions are:
 
 - `[10, 10, 3, 7]`, `[6]` with a sum difference of $30 - 6 = 24$, which is even.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,2]
+- **Input:** nums = [1,2,2]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** No partition results in an even sum difference.
 
-No partition results in an even sum difference.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2,4,6,8]
+- **Input:** nums = [2,4,6,8]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-All partitions result in an even sum difference.
-
-</div>
+- **Explanation:** All partitions result in an even sum difference.
 
 ### 4. Constraints
 

@@ -40,20 +40,20 @@ Return the maximum product at most `limit` among non-empty subsequences with alt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3], k = 2, limit = 10`
-- Output: `6`
-- Explanation: `[1,2,3]` has alternating sum `1 - 2 + 3 = 2` and product `6`, which beats the product of the single-element subsequence `[2]`.
+- **Input:** `nums = [1,2,3], k = 2, limit = 10`
+- **Output:** `6`
+- **Explanation:** `[1,2,3]` has alternating sum `1 - 2 + 3 = 2` and product `6`, which beats the product of the single-element subsequence `[2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,2,3], k = -5, limit = 12`
-- Output: `-1`
-- Explanation: No non-empty subsequence has alternating sum `-5`.
+- **Input:** `nums = [0,2,3], k = -5, limit = 12`
+- **Output:** `-1`
+- **Explanation:** No non-empty subsequence has alternating sum `-5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,2,3,3], k = 0, limit = 9`
-- Output: `9`
-- Explanation: `[3,3]` has alternating sum zero and product `9`. The four-element choice has product `36`, which exceeds the limit.
+- **Input:** `nums = [2,2,3,3], k = 0, limit = 9`
+- **Output:** `9`
+- **Explanation:** `[3,3]` has alternating sum zero and product `9`. The four-element choice has product `36`, which exceeds the limit.

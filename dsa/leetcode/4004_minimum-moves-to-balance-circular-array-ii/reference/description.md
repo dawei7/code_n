@@ -22,14 +22,11 @@ Return the minimum number of unit transfers needed to make every entry non-negat
 
 #### Example 1
 
-<div class="example-block">
-**Input:** balance = [-1,2,-1]
+- **Input:** balance = [-1,2,-1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One optimal sequence of moves is:
+- **Explanation:** One optimal sequence of moves is:
 
 - Move 1 unit from $i = 1$ to $i = 0$, resulting in $balance = [0, 1, -1]$
 
@@ -37,17 +34,13 @@ One optimal sequence of moves is:
 
 Thus, the minimum number of moves required is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** balance = [4,-1,-2]
+- **Input:** balance = [4,-1,-2]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One optimal sequence of moves is:
+- **Explanation:** One optimal sequence of moves is:
 
 - Move 1 unit from $i = 0$ to $i = 1$, resulting in $balance = [3, 0, -2]$
 
@@ -57,19 +50,13 @@ One optimal sequence of moves is:
 
 Thus, the minimum number of moves required is 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** balance = [-3,-3,5]
+- **Input:** balance = [-3,-3,5]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It is impossible to make all balances non-negative for $balance = [-3, -3, 5]$, so the answer is -1.
-
-</div>
+- **Explanation:** It is impossible to make all balances non-negative for $balance = [-3, -3, 5]$, so the answer is -1.
 
 ### 4. Constraints
 

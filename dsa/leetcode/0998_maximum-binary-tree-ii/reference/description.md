@@ -24,8 +24,10 @@ Return `Construct(b)`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `insertIntoMaxTree(root: Optional[TreeNode], val: int) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -36,6 +38,7 @@ Return `Construct(b)`.
 - **Input:** `root = [4,1,3,null,null,2], val = 5`
 - **Output:** `[5,4,null,1,3,null,null,2]`
 - **Explanation:** a = [1,4,2,3], b = [1,4,2,3,5]
+
 #### Example 2
 
 ![](images/maxtree21.JPG)
@@ -43,6 +46,7 @@ Return `Construct(b)`.
 - **Input:** `root = [5,2,4,null,1], val = 3`
 - **Output:** `[5,2,4,null,1,null,3]`
 - **Explanation:** a = [2,1,5,4], b = [2,1,5,4,3]
+
 #### Example 3
 
 ![](images/maxtree3.JPG)

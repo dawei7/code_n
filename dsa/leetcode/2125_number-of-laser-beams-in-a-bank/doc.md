@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-laser-beams-in-a-bank/) |
 
 ## Problem Description
+
 ### Goal
 
 The binary strings in `bank` form an $m \times n$ floor plan. A `1` marks a
@@ -25,6 +26,7 @@ Beams are independent: sharing a device does not merge or remove them.
 Return the total number of qualifying device pairs across the entire bank.
 
 ### Function Contract
+
 **Inputs**
 
 - `bank`: A nonempty list of equal-length binary strings.
@@ -38,18 +40,19 @@ Return the total number of laser beams between devices satisfying the
 no-nonempty-intermediate-row condition.
 
 ### Examples
-**Example 1**
 
-- Input: `bank = ["011001", "000000", "010100", "001000"]`
-- Output: `8`
+#### Example 1
+
+- **Input:** `bank = ["011001", "000000", "010100", "001000"]`
+- **Output:** `8`
 
 The three devices in row zero connect to both devices in row two, contributing
 six beams. Those two devices connect to the one device in row three,
 contributing two more.
 
-**Example 2**
+#### Example 2
 
-- Input: `bank = ["000", "111", "000"]`
-- Output: `0`
+- **Input:** `bank = ["000", "111", "000"]`
+- **Output:** `0`
 
 Only one row contains devices, so no pair can use distinct rows.

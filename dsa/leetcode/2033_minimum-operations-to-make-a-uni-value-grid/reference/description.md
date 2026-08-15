@@ -8,8 +8,14 @@ Return *the **minimum** number of operations to make the grid **uni-value***. If
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ Return *the **minimum** number of operations to make the grid **uni-value***. If
 - Subtract x from 6 once.
 - Subtract x from 8 twice.
 A total of 4 operations were used.
+
 #### Example 2
 
 ![](images/gridtxt-1.png)
@@ -31,6 +38,7 @@ A total of 4 operations were used.
 - **Input:** `grid = [[1,5],[2,3]], x = 1`
 - **Output:** `5`
 - **Explanation:** We can make every element equal to 3.
+
 #### Example 3
 
 ![](images/gridtxt-2.png)

@@ -6,7 +6,7 @@ The safe has a peculiar way of checking the password. When you enter in a sequen
 
 - For example, the correct password is `"345"` and you enter in `"012345"`:
 
-		<li>After typing `0`, the most recent `3` digits is `"0"`, which is incorrect.
+		- After typing `0`, the most recent `3` digits is `"0"`, which is incorrect.
 
 - After typing `1`, the most recent `3` digits is `"01"`, which is incorrect.
 
@@ -18,14 +18,18 @@ The safe has a peculiar way of checking the password. When you enter in a sequen
 
 - After typing `5`, the most recent `3` digits is `"345"`, which is correct and the safe unlocks.
 
-	</li>
-
 Return *any string of **minimum length** that will unlock the safe **at some point** of entering it*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -34,6 +38,7 @@ Return *any string of **minimum length** that will unlock the safe **at some poi
 - **Input:** $n = 1, k = 2$
 - **Output:** `"10"`
 - **Explanation:** The password is a single digit, so enter each digit. "01" would also unlock the safe.
+
 #### Example 2
 
 - **Input:** $n = 2, k = 2$

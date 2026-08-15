@@ -14,8 +14,14 @@ At the stage of rotating the ring to spell the key character $\text{key}[i]$:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `ring`: Input parameter (`str`).
+- `key`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +31,11 @@ At the stage of rotating the ring to spell the key character $\text{key}[i]$:
 
 - **Input:** $ring = "godding", key = "gd"$
 - **Output:** `4`
-- **Explanation:**
-For the first key character 'g', since it is already in place, we just need 1 step to spell this character.
+- **Explanation:** For the first key character 'g', since it is already in place, we just need 1 step to spell this character.
 For the second key character 'd', we need to rotate the ring "godding" anticlockwise by two steps to make it become "ddinggo".
 Also, we need 1 more step for spelling.
 So the final output is 4.
+
 #### Example 2
 
 - **Input:** $ring = "godding", key = "godding"$

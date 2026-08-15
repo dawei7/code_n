@@ -8,8 +8,13 @@ Given the `encoded` array, return *the original array* `perm`. It is guaranteed 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `encoded`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Given the `encoded` array, return *the original array* `perm`. It is guaranteed 
 - **Input:** $encoded = [3,1]$
 - **Output:** `[1,2,3]`
 - **Explanation:** If perm = [1,2,3], then encoded = [1 XOR 2,2 XOR 3] = [3,1]
+
 #### Example 2
 
 - **Input:** $encoded = [6,5,4,6]$

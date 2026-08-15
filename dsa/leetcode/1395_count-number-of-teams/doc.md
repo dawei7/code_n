@@ -30,17 +30,17 @@ The team is valid when its ratings are strictly increasing, with $\texttt{rating
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `rating = [2,5,3,4,1]`
-- Output: `3`
+- **Input:** `rating = [2,5,3,4,1]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `rating = [2,1,3]`
-- Output: `0`
+- **Input:** `rating = [2,1,3]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `rating = [1,2,3,4]`
-- Output: `4`
+- **Input:** `rating = [1,2,3,4]`
+- **Output:** `4`

@@ -4,8 +4,13 @@ Given an array of string `words`, return all strings in* *`words`* *that are a s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -15,11 +20,13 @@ Given an array of string `words`, return all strings in* *`words`* *that are a s
 - **Output:** `["as","hero"]`
 - **Explanation:** "as" is substring of "mass" and "hero" is substring of "superhero".
 ["hero","as"] is also a valid answer.
+
 #### Example 2
 
 - **Input:** $words = ["leetcode","et","code"]$
 - **Output:** `["et","code"]`
 - **Explanation:** "et", "code" are substring of "leetcode".
+
 #### Example 3
 
 - **Input:** $words = ["blue","green","bu"]$

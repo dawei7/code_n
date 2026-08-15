@@ -41,20 +41,20 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 1, 1, 2]`
-- Output: `[5, 0, 3, 4, 0]`
-- Explanation: Value $1$ appears at indices $0,2,3$. Their respective distance sums are $5,3,4$; the other values occur once.
+- **Input:** `nums = [1, 3, 1, 1, 2]`
+- **Output:** `[5, 0, 3, 4, 0]`
+- **Explanation:** Value $1$ appears at indices $0,2,3$. Their respective distance sums are $5,3,4$; the other values occur once.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 5, 3]`
-- Output: `[0, 0, 0]`
-- Explanation: Every value is unique, so every distance sum is zero.
+- **Input:** `nums = [0, 5, 3]`
+- **Output:** `[0, 0, 0]`
+- **Explanation:** Every value is unique, so every distance sum is zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1]`
-- Output: `[3, 2, 3]`
-- Explanation: Each position sums its distances to the other two indices.
+- **Input:** `nums = [1, 1, 1]`
+- **Output:** `[3, 2, 3]`
+- **Explanation:** Each position sums its distances to the other two indices.

@@ -39,18 +39,18 @@ the 26 letters to the nine buttons.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "apple"`
-- Output: `5`
+- **Input:** `s = "apple"`
+- **Output:** `5`
 
 The four used letters can all occupy one-press positions, so each of the five
 characters costs one press.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcdefghijkl"`
-- Output: `15`
+- **Input:** `s = "abcdefghijkl"`
+- **Output:** `15`
 
 Nine letters use one-press positions and the remaining three use two-press
 positions, for $9+3\cdot2=15$ presses.

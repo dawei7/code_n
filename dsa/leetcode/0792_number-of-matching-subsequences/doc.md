@@ -31,20 +31,20 @@ Return the number of matching entries in `words`. Each array position is counted
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcde", words = ["a","bb","acd","ace"]`
-- Output: `3`
-- Explanation: `a`, `acd`, and `ace` are subsequences; `bb` is not.
+- **Input:** `s = "abcde", words = ["a","bb","acd","ace"]`
+- **Output:** `3`
+- **Explanation:** `a`, `acd`, and `ace` are subsequences; `bb` is not.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "dsahjpjauf", words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"]`
-- Output: `2`
-- Explanation: The first two words can be matched in order.
+- **Input:** `s = "dsahjpjauf", words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"]`
+- **Output:** `2`
+- **Explanation:** The first two words can be matched in order.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaa", words = ["a","aa","aaa","aaaa","aaaaa"]`
-- Output: `4`
-- Explanation: Every candidate except the length-five word fits.
+- **Input:** `s = "aaaa", words = ["a","aa","aaa","aaaa","aaaaa"]`
+- **Output:** `4`
+- **Explanation:** Every candidate except the length-five word fits.

@@ -11,12 +11,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/split-two-strings-to-make-palindrome/) |
 
 ## Problem Description
+
 ### Goal
+
 Two lowercase strings `a` and `b` have the same length. Choose one split index and divide both strings at that same position into a prefix and a suffix. The split may occur before the first character or after the last, so either piece is allowed to be empty.
 
 Determine whether some shared split makes either `a_prefix + b_suffix` or `b_prefix + a_suffix` a palindrome. The prefix and suffix used in one candidate must come from different input strings, and their boundary must be the same index in both strings. Return whether at least one of the two possible source directions can succeed.
 
 ### Function Contract
+
 **Inputs**
 
 - `a`: a lowercase English string of length $n$.
@@ -27,17 +30,18 @@ Determine whether some shared split makes either `a_prefix + b_suffix` or `b_pre
 Return `true` if a common split index forms a palindrome in either cross-string direction; otherwise return `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `a = "x", b = "y"`
-- Output: `true`
+#### Example 1
 
-**Example 2**
+- **Input:** `a = "x", b = "y"`
+- **Output:** `true`
 
-- Input: `a = "xbdef", b = "xecab"`
-- Output: `false`
+#### Example 2
 
-**Example 3**
+- **Input:** `a = "xbdef", b = "xecab"`
+- **Output:** `false`
 
-- Input: `a = "ulacfd", b = "jizalu"`
-- Output: `true`
+#### Example 3
+
+- **Input:** `a = "ulacfd", b = "jizalu"`
+- **Output:** `true`

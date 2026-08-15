@@ -33,23 +33,23 @@ Define $h=\min(n,m)$ and $w=\max(n,m)$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`, `m = 3`
-- Output: `3`
+- **Input:** `n = 2`, `m = 3`
+- **Output:** `3`
 
 One $2$ by $2$ square and two $1$ by $1$ squares tile the rectangle.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5`, `m = 8`
-- Output: `5`
+- **Input:** `n = 5`, `m = 8`
+- **Output:** `5`
 
 No tiling with four squares exists, while five appropriately sized squares suffice.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 11`, `m = 13`
-- Output: `6`
+- **Input:** `n = 11`, `m = 13`
+- **Output:** `6`
 
 This rectangle has a six-square tiling, which is optimal.

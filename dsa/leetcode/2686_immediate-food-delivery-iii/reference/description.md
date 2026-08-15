@@ -32,7 +32,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Delivery table:
 +-------------+-------------+------------+-----------------------------+
 | delivery_id | customer_id | order_date | customer_pref_delivery_date |
@@ -48,7 +48,7 @@ Delivery table:
 | 9           | 5           | 2019-08-04 | 2019-08-08                  |
 | 10          | 2           | 2019-08-04 | 2019-08-18                  |
 +-------------+-------------+------------+-----------------------------+
-**Output:**
+- **Output:** 
 +------------+----------------------+
 | order_date | immediate_percentage |
 +------------+----------------------+
@@ -57,7 +57,7 @@ Delivery table:
 | 2019-08-03 | 100.00               |
 | 2019-08-04 | 0.00                 |
 +------------+----------------------+
-**Explanation:**
+- **Explanation:** 
 - On 2019-08-01 there were three orders, out of those, two were immediate and one was scheduled. So, immediate percentage for that date was 66.67.
 - On 2019-08-02 there were three orders, out of those, two were immediate and one was scheduled. So, immediate percentage for that date was 66.67.
 - On 2019-08-03 there were two orders, both were immediate. So, the immediate percentage for that date was 100.00.

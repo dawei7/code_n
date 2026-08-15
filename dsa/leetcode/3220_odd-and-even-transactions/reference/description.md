@@ -22,7 +22,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `transactions` table:
@@ -56,29 +55,24 @@ The result format is in the following example.
 
 - For transaction dates:
 
-		<li>2024-07-01:
-
-			<li>Sum of amounts for odd transactions: 75
+		- 2024-07-01:
+- Sum of amounts for odd transactions: 75
 
 - Sum of amounts for even transactions: 150 + 200 = 350
 
-		</li>
 - 2024-07-02:
 
-			<li>Sum of amounts for odd transactions: 0
+			- Sum of amounts for odd transactions: 0
 
 - Sum of amounts for even transactions: 300 + 50 = 350
 
-		</li>
 - 2024-07-03:
 
-			<li>Sum of amounts for odd transactions: 0
+			- Sum of amounts for odd transactions: 0
 
 - Sum of amounts for even transactions: 120
 
-		</li>
-
-	</li>
+	
 
 ### 2. Function Contract
 
@@ -88,5 +82,3 @@ The result format is in the following example.
 ### 3. Note
 
 The output table is ordered by $\text{transaction}_{date}$ in ascending order.
-
-</div>

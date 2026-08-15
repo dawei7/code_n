@@ -33,20 +33,20 @@ Let $Q=\max(\texttt{quantities})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, quantities = [11,6]`
-- Output: `3`
-- Explanation: Split the first type among four stores as `2,3,3,3` and the second among two stores as `3,3`.
+- **Input:** `n = 6, quantities = [11,6]`
+- **Output:** `3`
+- **Explanation:** Split the first type among four stores as `2,3,3,3` and the second among two stores as `3,3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 7, quantities = [15,10,10]`
-- Output: `5`
-- Explanation: The three types can use three, two, and two stores, each holding five products.
+- **Input:** `n = 7, quantities = [15,10,10]`
+- **Output:** `5`
+- **Explanation:** The three types can use three, two, and two stores, each holding five products.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1, quantities = [100000]`
-- Output: `100000`
-- Explanation: The only store must receive the complete quantity.
+- **Input:** `n = 1, quantities = [100000]`
+- **Output:** `100000`
+- **Explanation:** The only store must receive the complete quantity.

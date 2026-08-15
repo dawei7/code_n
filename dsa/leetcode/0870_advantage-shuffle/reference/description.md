@@ -6,8 +6,14 @@ Return *any permutation of *`nums1`* that maximizes its **advantage** with respe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +21,7 @@ Return *any permutation of *`nums1`* that maximizes its **advantage** with respe
 
 - **Input:** $nums1 = [2,7,11,15], nums2 = [1,10,4,11]$
 - **Output:** `[2,11,7,15]`
+
 #### Example 2
 
 - **Input:** $nums1 = [12,24,8,32], nums2 = [13,25,32,11]$

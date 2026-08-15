@@ -12,21 +12,25 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** p
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, edges = [[1,2,7]], queries = [[2,2],[1,1,2,4],[2,2]]
+- **Input:** n = 2, edges = [[1,2,7]], queries = [[2,2],[1,1,2,4],[2,2]]
 
-**Output:** [7,4]
+- **Output:** [7,4]
 
-**Explanation:**
-
-![](images/screenshot-2025-03-13-at-133524.png)
+- **Explanation:** ![](images/screenshot-2025-03-13-at-133524.png)
 
 - Query `[2,2]`: The shortest path from root node 1 to node 2 is 7.
 
@@ -34,17 +38,13 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** p
 
 - Query `[2,2]`: The shortest path from root node 1 to node 2 is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[1,2,2],[1,3,4]], queries = [[2,1],[2,3],[1,1,3,7],[2,2],[2,3]]
+- **Input:** n = 3, edges = [[1,2,2],[1,3,4]], queries = [[2,1],[2,3],[1,1,3,7],[2,2],[2,3]]
 
-**Output:** [0,4,2,7]
+- **Output:** [0,4,2,7]
 
-**Explanation:**
-
-![](images/screenshot-2025-03-13-at-132247.png)
+- **Explanation:** ![](images/screenshot-2025-03-13-at-132247.png)
 
 - Query `[2,1]`: The shortest path from root node 1 to node 1 is 0.
 
@@ -56,17 +56,13 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** p
 
 - Query `[2,3]`: The shortest path from root node 1 to node 3 is 7.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, edges = [[1,2,2],[2,3,1],[3,4,5]], queries = [[2,4],[2,3],[1,2,3,3],[2,2],[2,3]]
+- **Input:** n = 4, edges = [[1,2,2],[2,3,1],[3,4,5]], queries = [[2,4],[2,3],[1,2,3,3],[2,2],[2,3]]
 
-**Output:** [8,3,2,5]
+- **Output:** [8,3,2,5]
 
-**Explanation:**
-
-![](images/screenshot-2025-03-13-at-133306.png)
+- **Explanation:** ![](images/screenshot-2025-03-13-at-133306.png)
 
 - Query `[2,4]`: The shortest path from root node 1 to node 4 consists of edges `(1,2)`, `(2,3)`, and `(3,4)` with weights $2 + 1 + 5 = 8$.
 
@@ -77,8 +73,6 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** p
 - Query `[2,2]`: The shortest path from root node 1 to node 2 is 2.
 
 - Query `[2,3]`: The shortest path from root node 1 to node 3 consists of edges `(1,2)` and `(2,3)` with updated weights $2 + 3 = 5$.
-
-</div>
 
 ### 4. Constraints
 
@@ -98,7 +92,7 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** p
 
 - $\text{queries}[i].length = 2$ or `4`
 
-		<li>$\text{queries}[i] = [1, u, v, w']$ or,
+		- $\text{queries}[i] = [1, u, v, w']$ or,
 
 - $\text{queries}[i] = [2, x]$
 
@@ -107,5 +101,3 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** p
 - `(u, v)` is always an edge from `edges`.
 
 - $1 \le w' \le 10^{4}$
-
-	</li>

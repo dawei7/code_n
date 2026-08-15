@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/partition-array-into-k-distinct-groups/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `nums` and an integer `k`, decide whether every array element can be assigned to a collection of one or more groups. Every occurrence must be used exactly once, including repeated occurrences of the same value.
@@ -32,20 +33,20 @@ Return a Boolean indicating whether all occurrences can be partitioned into size
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4]`, `k = 2`
-- Output: `true`
+- **Input:** `nums = [1, 2, 3, 4]`, `k = 2`
+- **Output:** `true`
 - One partition is `[1, 2]` and `[3, 4]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 5, 2, 2]`, `k = 2`
-- Output: `true`
+- **Input:** `nums = [3, 5, 2, 2]`, `k = 2`
+- **Output:** `true`
 - The two copies of `2` can be separated into `[2, 3]` and `[2, 5]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 5, 2, 3]`, `k = 3`
-- Output: `false`
+- **Input:** `nums = [1, 5, 2, 3]`, `k = 3`
+- **Output:** `false`
 - Four elements cannot be divided into groups containing exactly three elements each.

@@ -32,17 +32,17 @@ Return a DataFrame containing exactly the rows whose `name` value is present, wi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `students = [{"student_id": 32, "name": "Piper", "age": 5}, {"student_id": 217, "name": null, "age": 19}, {"student_id": 779, "name": "Georgia", "age": 20}, {"student_id": 849, "name": "Willow", "age": 14}]`
-- Output: `[{"student_id": 32, "name": "Piper", "age": 5}, {"student_id": 779, "name": "Georgia", "age": 20}, {"student_id": 849, "name": "Willow", "age": 14}]`
+- **Input:** `students = [{"student_id": 32, "name": "Piper", "age": 5}, {"student_id": 217, "name": null, "age": 19}, {"student_id": 779, "name": "Georgia", "age": 20}, {"student_id": 849, "name": "Willow", "age": 14}]`
+- **Output:** `[{"student_id": 32, "name": "Piper", "age": 5}, {"student_id": 779, "name": "Georgia", "age": 20}, {"student_id": 849, "name": "Willow", "age": 14}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `students = [{"student_id": 1, "name": "Ada", "age": 18}, {"student_id": 2, "name": "Bo", "age": 20}]`
-- Output: `[{"student_id": 1, "name": "Ada", "age": 18}, {"student_id": 2, "name": "Bo", "age": 20}]`
+- **Input:** `students = [{"student_id": 1, "name": "Ada", "age": 18}, {"student_id": 2, "name": "Bo", "age": 20}]`
+- **Output:** `[{"student_id": 1, "name": "Ada", "age": 18}, {"student_id": 2, "name": "Bo", "age": 20}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `students = [{"student_id": 3, "name": null, "age": 16}, {"student_id": 4, "name": null, "age": 18}, {"student_id": 5, "name": null, "age": 21}]`
-- Output: `[]`
+- **Input:** `students = [{"student_id": 3, "name": null, "age": 16}, {"student_id": 4, "name": null, "age": 18}, {"student_id": 5, "name": null, "age": 21}]`
+- **Output:** `[]`

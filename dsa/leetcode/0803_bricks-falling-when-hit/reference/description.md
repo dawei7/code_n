@@ -12,8 +12,14 @@ Return *an array *`result`*, where each *$\text{result}[i]$* is the number of br
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `hits`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -35,6 +41,7 @@ The two underlined bricks are no longer stable as they are no longer connected t
 [[1,0,0,0],
 [0,0,0,0]]
 Hence the result is [2].
+
 #### Example 2
 
 - **Input:** `grid = [[1,0,0,0],[1,1,0,0]], hits = [[1,1],[1,0]]`

@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/subsequence-sum-after-capping-elements/) |
 
 ## Problem Description
+
 ### Goal
 
 For every integer cap $x$ from $1$ through the length of `nums`, form a temporary array by replacing each value greater than $x$ with $x$ and leaving every other value unchanged. Determine whether that temporary array contains a subsequence whose elements sum to exactly `k`.
@@ -30,17 +31,17 @@ Return a list of $n$ Booleans. Its entry at index $x-1$ is `true` exactly when s
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4, 3, 2, 4], k = 5`
-- Output: `[false, false, true, true]`
+- **Input:** `nums = [4, 3, 2, 4], k = 5`
+- **Output:** `[false, false, true, true]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4, 5], k = 3`
-- Output: `[true, true, true, true, true]`
+- **Input:** `nums = [1, 2, 3, 4, 5], k = 3`
+- **Output:** `[true, true, true, true, true]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 2], k = 1`
-- Output: `[true, false]`
+- **Input:** `nums = [2, 2], k = 1`
+- **Output:** `[true, false]`

@@ -32,18 +32,18 @@ Return any ordering of all input pairs in which each pair's end equals the next 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `pairs = [[5,1],[4,5],[11,9],[9,4]]`
-- Output: `[[11,9],[9,4],[4,5],[5,1]]`
+- **Input:** `pairs = [[5,1],[4,5],[11,9],[9,4]]`
+- **Output:** `[[11,9],[9,4],[4,5],[5,1]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `pairs = [[1,3],[3,2],[2,1]]`
-- Output: `[[1,3],[3,2],[2,1]]`
-- Explanation: This arrangement closes a directed cycle. Rotating that cycle would also be valid.
+- **Input:** `pairs = [[1,3],[3,2],[2,1]]`
+- **Output:** `[[1,3],[3,2],[2,1]]`
+- **Explanation:** This arrangement closes a directed cycle. Rotating that cycle would also be valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `pairs = [[1,2],[1,3],[2,1]]`
-- Output: `[[1,2],[2,1],[1,3]]`
+- **Input:** `pairs = [[1,2],[1,3],[2,1]]`
+- **Output:** `[[1,2],[2,1],[1,3]]`

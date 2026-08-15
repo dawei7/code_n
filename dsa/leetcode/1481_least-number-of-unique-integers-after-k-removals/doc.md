@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `arr` and an integer `k`, remove exactly `k` array elements. Each removal chooses one occurrence, so deleting some—but not all—copies of a value does not remove that value from the set of integers still present.
@@ -16,6 +17,7 @@ Given an integer array `arr` and an integer `k`, remove exactly `k` array elemen
 After all removals, minimize the number of unique integers represented by the remaining elements. Return that minimum count. The array may become empty when `k` equals its length.
 
 ### Function Contract
+
 **Inputs**
 
 Let $N$ be the length of `arr`, and let $U$ be the number of distinct values in it.
@@ -29,14 +31,15 @@ Let $N$ be the length of `arr`, and let $U$ be the number of distinct values in 
 Return the least possible number of distinct integers remaining after exactly `k` occurrence removals.
 
 ### Examples
-**Example 1**
 
-- Input: `arr = [5,5,4], k = 1`
-- Output: `1`
-- Explanation: Removing the only `4` eliminates that value completely, leaving only `5`.
+#### Example 1
 
-**Example 2**
+- **Input:** `arr = [5,5,4], k = 1`
+- **Output:** `1`
+- **Explanation:** Removing the only `4` eliminates that value completely, leaving only `5`.
 
-- Input: `arr = [4,3,1,1,3,3,2], k = 3`
-- Output: `2`
-- Explanation: Remove the singleton values `4` and `2`, then remove one occurrence of either remaining value. Both `1` and `3` are still represented.
+#### Example 2
+
+- **Input:** `arr = [4,3,1,1,3,3,2], k = 3`
+- **Output:** `2`
+- **Explanation:** Remove the singleton values `4` and `2`, then remove one occurrence of either remaining value. Both `1` and `3` are still represented.

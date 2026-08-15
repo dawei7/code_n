@@ -17,12 +17,12 @@ A **multi-dimensional array** is a recursive data structure that contains both i
 
 - **Input:** `arr = [[[6]],[1,3],[]]`
 - **Output:** `[6,1,3]`
-- **Explanation:**
-const generator = inorderTraversal(arr);
+- **Explanation:** const generator = inorderTraversal(arr);
 generator.next().value; // 6
 generator.next().value; // 1
 generator.next().value; // 3
 generator.next().done; // true
+
 #### Example 2
 
 - **Input:** `arr = []`

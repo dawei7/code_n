@@ -22,10 +22,12 @@ Return every valid four-component IP address that preserves all digits of `s` in
 
 - **Input:** `s = "25525511135"`
 - **Output:** `["255.255.11.135","255.255.111.35"]`
+
 #### Example 2
 
 - **Input:** `s = "0000"`
 - **Output:** `["0.0.0.0"]`
+
 #### Example 3
 
 - **Input:** `s = "101023"`

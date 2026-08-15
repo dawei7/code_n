@@ -28,14 +28,14 @@ Return the minimum sum of any valid falling path from the first row through the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[2,1,3],[6,5,4],[7,8,9]]`
-- Output: `13`
-- Explanation: A minimum path can take values $1$, $5$, and $7$, or $1$, $4$, and $8$.
+- **Input:** `matrix = [[2,1,3],[6,5,4],[7,8,9]]`
+- **Output:** `13`
+- **Explanation:** A minimum path can take values $1$, $5$, and $7$, or $1$, $4$, and $8$.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[-19,57],[-40,-5]]`
-- Output: `-59`
-- Explanation: The path using $-19$ followed by $-40$ has the minimum sum.
+- **Input:** `matrix = [[-19,57],[-40,-5]]`
+- **Output:** `-59`
+- **Explanation:** The path using $-19$ followed by $-40$ has the minimum sum.

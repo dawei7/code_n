@@ -4,13 +4,12 @@ We have an integer array `nums`, where all the integers in `nums` are **0** or *
 
 - `int query(int a, int b, int c, int d)`: where $0 \le a < b < c < d < \text{ArrayReader.length}()$. The function returns the distribution of the value of the 4 elements and returns:
 
-		<li>**4 **: if the values of the 4 elements are the same (0 or 1).
+		- **4 **: if the values of the 4 elements are the same (0 or 1).
 
 - **2** : if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.
 
 - **0 **: if two element have a value equal to 0 and two elements have a value equal to 1.
 
-	</li>
 - `int length()`: Returns the size of the array.
 
 You are allowed to call `query()` **2 * n times** at most where n is equal to `ArrayReader.length()`.
@@ -42,10 +41,12 @@ reader.query(0,1,2,3) // returns 2 this is a query that compares the elements nu
 reader.query(4,5,6,7) // returns 4 because nums[4], nums[5], nums[6], nums[7] have the same value.
 we can infer that the most frequent value is found in the last 4 elements.
 Index 2, 4, 6, 7 is also a correct answer.
+
 #### Example 2
 
 - **Input:** `nums = [0,0,1,1,0]`
 - **Output:** `0`
+
 #### Example 3
 
 - **Input:** `nums = [1,0,1,0,1,0,1,0]`

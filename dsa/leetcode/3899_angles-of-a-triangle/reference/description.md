@@ -24,28 +24,19 @@ Return the three internal angles in degrees, sorted in non-decreasing order, whe
 
 #### Example 1
 
-<div class="example-block">
-**Input:** sides = [3,4,5]
+- **Input:** sides = [3,4,5]
 
-**Output:** [36.86990,53.13010,90.00000]
+- **Output:** [36.86990,53.13010,90.00000]
 
-**Explanation:**
+- **Explanation:** You can form a right-angled triangle with side lengths 3, 4, and 5. The internal angles of this triangle are approximately 36.869897646, 53.130102354, and 90 degrees respectively.
 
-You can form a right-angled triangle with side lengths 3, 4, and 5. The internal angles of this triangle are approximately 36.869897646, 53.130102354, and 90 degrees respectively.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** sides = [2,4,2]
+- **Input:** sides = [2,4,2]
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-You cannot form a triangle with positive area using side lengths 2, 4, and 2.
-
-</div>
+- **Explanation:** You cannot form a triangle with positive area using side lengths 2, 4, and 2.
 
 ### 4. Constraints
 

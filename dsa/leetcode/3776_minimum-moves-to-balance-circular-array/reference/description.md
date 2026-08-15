@@ -26,14 +26,11 @@ Return the least number of adjacent one-unit transfers that leaves every entry a
 
 #### Example 1
 
-<div class="example-block">
-**Input:** balance = [5,1,-4]
+- **Input:** balance = [5,1,-4]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-One optimal sequence of moves is:
+- **Explanation:** One optimal sequence of moves is:
 
 - Move 1 unit from $i = 1$ to $i = 2$, resulting in $balance = [5, 0, -3]$
 
@@ -45,17 +42,13 @@ One optimal sequence of moves is:
 
 Thus, the minimum number of moves required is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** balance = [1,2,-5,2]
+- **Input:** balance = [1,2,-5,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-One optimal sequence of moves is:
+- **Explanation:** One optimal sequence of moves is:
 
 - Move 1 unit from $i = 1$ to $i = 2$, resulting in $balance = [1, 1, -4, 2]$
 
@@ -71,19 +64,15 @@ One optimal sequence of moves is:
 
 Thus, the minimum number of moves required is 6.​​​
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** balance = [-3,2]
+- **Input:** balance = [-3,2]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 **​​​​​​​**It is impossible to make all balances non-negative for $balance = [-3, 2]$, so the answer is -1.
-
-</div>
 
 ### 5. Constraints
 

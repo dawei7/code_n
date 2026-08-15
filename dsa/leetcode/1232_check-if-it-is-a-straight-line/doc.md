@@ -30,23 +30,23 @@ Check whether every supplied point lies on one straight line; the order in which
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coordinates = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]]`
-- Output: `true`
+- **Input:** `coordinates = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]]`
+- **Output:** `true`
 
 Every step increases both coordinates by one, so all points lie on the same diagonal.
 
-**Example 2**
+#### Example 2
 
-- Input: `coordinates = [[1,1],[2,2],[3,4],[4,5],[5,6],[7,7]]`
-- Output: `false`
+- **Input:** `coordinates = [[1,1],[2,2],[3,4],[4,5],[5,6],[7,7]]`
+- **Output:** `false`
 
 The point `[3,4]` does not lie on the diagonal through `[1,1]` and `[2,2]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `coordinates = [[0,0],[0,5],[0,-2]]`
-- Output: `true`
+- **Input:** `coordinates = [[0,0],[0,5],[0,-2]]`
+- **Output:** `true`
 
 All three points have the same $x$-coordinate and form a vertical line.

@@ -26,6 +26,7 @@ Return the successor `TreeNode`, or `None` when `p` has no successor. The runner
 - **Input:** `root = [2,1,3], p = 1`
 - **Output:** `2`
 - **Explanation:** 1's in-order successor node is 2. Note that both p and the return value is of TreeNode type.
+
 #### Example 2
 
 ![](images/285_example_2.PNG)

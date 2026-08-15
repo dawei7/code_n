@@ -46,7 +46,7 @@ and let $W$ be the number of winning sellers.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For the supplied market, seller 2 sells mismatched item 4 twice and favorite-
 brand item 1 once; the distinct qualifying count is therefore one. Seller 3
@@ -58,13 +58,13 @@ result is:
 | 2 | 1 |
 | 3 | 1 |
 
-**Example 2**
+#### Example 2
 
 If seller 1, whose favorite brand is `A`, repeatedly sells item 1 of brand
 `C` and also sells item 2 of brand `B`, those orders represent two distinct
 qualifying items regardless of repetition.
 
-**Example 3**
+#### Example 3
 
 If every seller sells only items matching their own favorite brand, no order
 passes the brand filter and the result is empty.

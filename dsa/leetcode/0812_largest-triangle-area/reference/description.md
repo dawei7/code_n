@@ -4,8 +4,13 @@ Given an array of points on the **X-Y** plane `points` where $\text{points}[i] =
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given an array of points on the **X-Y** plane `points` where $\text{points}[i] =
 - **Input:** $points = [[0,0],[0,1],[1,0],[0,2],[2,0]]$
 - **Output:** `2.00000`
 - **Explanation:** The five points are shown in the above figure. The red triangle is the largest.
+
 #### Example 2
 
 - **Input:** $points = [[1,0],[0,0],[0,1]]$

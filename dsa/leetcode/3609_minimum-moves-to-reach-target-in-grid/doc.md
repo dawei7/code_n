@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-moves-to-reach-target-in-grid/) |
 
 ## Problem Description
+
 ### Goal
 
 Two points `(sx, sy)` and `(tx, ty)` lie on an infinitely large two-dimensional grid. Start at `(sx, sy)`. At a current point $(x,y)$, let $m = \max(x,y)$. One move may add $m$ to exactly one coordinate, changing the point to either $(x+m,y)$ or $(x,y+m)$.
@@ -34,20 +35,20 @@ Return the minimum number of legal moves from the start to the target, or `-1` i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sx = 1, sy = 2, tx = 5, ty = 4`
-- Output: `2`
-- Explanation: Move from `(1, 2)` to `(1, 4)`, then to `(5, 4)`.
+- **Input:** `sx = 1, sy = 2, tx = 5, ty = 4`
+- **Output:** `2`
+- **Explanation:** Move from `(1, 2)` to `(1, 4)`, then to `(5, 4)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `sx = 0, sy = 1, tx = 2, ty = 3`
-- Output: `3`
-- Explanation: A shortest route is `(0, 1)`, `(1, 1)`, `(2, 1)`, `(2, 3)`.
+- **Input:** `sx = 0, sy = 1, tx = 2, ty = 3`
+- **Output:** `3`
+- **Explanation:** A shortest route is `(0, 1)`, `(1, 1)`, `(2, 1)`, `(2, 3)`.
 
-**Example 3**
+#### Example 3
 
-- Input: `sx = 1, sy = 1, tx = 2, ty = 2`
-- Output: `-1`
-- Explanation: Neither legal first move can lead to `(2, 2)`.
+- **Input:** `sx = 1, sy = 1, tx = 2, ty = 2`
+- **Output:** `-1`
+- **Explanation:** Neither legal first move can lead to `(2, 2)`.

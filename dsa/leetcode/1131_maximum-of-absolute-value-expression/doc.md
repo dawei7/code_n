@@ -39,12 +39,12 @@ The maximum value of the stated absolute-difference expression over all valid in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr1 = [1,2,3,4]`, `arr2 = [-1,4,5,6]`
-- Output: `13`
+- **Input:** `arr1 = [1,2,3,4]`, `arr2 = [-1,4,5,6]`
+- **Output:** `13`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr1 = [1,-2,-5,0,10]`, `arr2 = [0,-2,-1,-7,-4]`
-- Output: `20`
+- **Input:** `arr1 = [1,-2,-5,0,10]`, `arr2 = [0,-2,-1,-7,-4]`
+- **Output:** `20`

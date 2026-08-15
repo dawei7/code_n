@@ -31,12 +31,12 @@ Return the minimum total cost of a valid coloring.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, cost = [[3,5,7],[6,2,9],[4,8,1],[7,3,5]]`
-- Output: `9`
+- **Input:** `n = 4, cost = [[3,5,7],[6,2,9],[4,8,1],[7,3,5]]`
+- **Output:** `9`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, cost = [[2,4,6],[5,3,8],[7,1,9],[4,6,2],[3,5,7],[8,2,4]]`
-- Output: `18`
+- **Input:** `n = 6, cost = [[2,4,6],[5,3,8],[7,1,9],[4,6,2],[3,5,7],[8,2,4]]`
+- **Output:** `18`

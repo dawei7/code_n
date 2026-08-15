@@ -14,8 +14,15 @@ Return *an array *`answer`*, where *$\text{answer.length} = \text{queries.length
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `threshold`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -37,6 +44,7 @@ only ones directly connected. The result of each query:
 [1,4]   1 is not connected to 4
 [2,5]   2 is not connected to 5
 [3,6]   3 is connected to 6 through path 3--6
+
 #### Example 2
 
 ![](images/tmp.jpg)
@@ -45,6 +53,7 @@ only ones directly connected. The result of each query:
 - **Output:** `[true,true,true,true,true]`
 - **Explanation:** The divisors for each number are the same as the previous example. However, since the threshold is 0,
 all divisors can be used. Since all numbers share 1 as a divisor, all cities are connected.
+
 #### Example 3
 
 ![](images/ex3.jpg)

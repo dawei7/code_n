@@ -33,17 +33,17 @@ Return the largest possible number of one-to-one matches satisfying ability $\le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `players = [4,7,9]`, `trainers = [8,2,5,8]`
-- Output: `2`
+- **Input:** `players = [4,7,9]`, `trainers = [8,2,5,8]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `players = [1,1,1]`, `trainers = [10]`
-- Output: `1`
+- **Input:** `players = [1,1,1]`, `trainers = [10]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `players = [2,2,3]`, `trainers = [1,1,1]`
-- Output: `0`
+- **Input:** `players = [2,2,3]`, `trainers = [1,1,1]`
+- **Output:** `0`

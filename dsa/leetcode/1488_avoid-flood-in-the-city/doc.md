@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/avoid-flood-in-the-city/) |
 
 ## Problem Description
+
 ### Goal
 
 Initially every lake is empty. On day `i`, a positive value `rains[i] = lake` means rain fills that lake. If rain reaches a lake that is already full, a flood occurs. A zero means no rain falls; on that day, exactly one lake must be selected for drying. Drying a full lake empties it, while drying an empty lake has no effect.
@@ -16,6 +17,7 @@ Initially every lake is empty. On day `i`, a positive value `rains[i] = lake` me
 Produce one action for each day that prevents every flood. Rainy days must contain `-1`; zero days must contain a positive lake identifier to dry. Any flood-free schedule is acceptable. If no schedule can avoid flooding, return an empty array.
 
 ### Function Contract
+
 **Inputs**
 
 Let $N$ be the length of `rains`.
@@ -36,20 +38,21 @@ Return an integer array `ans` of length $N$ when a valid schedule exists:
 Return `[]` if no valid schedule exists.
 
 ### Examples
-**Example 1**
 
-- Input: `rains = [1,2,3,4]`
-- Output: `[-1,-1,-1,-1]`
-- Explanation: Each lake receives rain only once, so no drying is needed.
+#### Example 1
 
-**Example 2**
+- **Input:** `rains = [1,2,3,4]`
+- **Output:** `[-1,-1,-1,-1]`
+- **Explanation:** Each lake receives rain only once, so no drying is needed.
 
-- Input: `rains = [1,2,0,0,2,1]`
+#### Example 2
+
+- **Input:** `rains = [1,2,0,0,2,1]`
 - One valid output: `[-1,-1,2,1,-1,-1]`
-- Explanation: Dry lake `2` before its second rain, then dry lake `1` before its second rain. Reversing those two dry choices is also valid.
+- **Explanation:** Dry lake `2` before its second rain, then dry lake `1` before its second rain. Reversing those two dry choices is also valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `rains = [1,2,0,1,2]`
-- Output: `[]`
-- Explanation: Both full lakes will receive rain again, but only one intervening dry day is available.
+- **Input:** `rains = [1,2,0,1,2]`
+- **Output:** `[]`
+- **Explanation:** Both full lakes will receive rain again, but only one intervening dry day is available.

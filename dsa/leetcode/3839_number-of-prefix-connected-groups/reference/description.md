@@ -38,14 +38,11 @@ Return the number of distinct valid length-$K$ prefixes that occur at two or mor
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["apple","apply","banana","bandit"], k = 2
+- **Input:** words = ["apple","apply","banana","bandit"], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Words sharing the same first $k = 2$ letters are grouped together:
+- **Explanation:** Words sharing the same first $k = 2$ letters are grouped together:
 
 - $\text{words}[0] = "apple"$ and $\text{words}[1] = "apply"$ share prefix `"ap"`.
 
@@ -53,17 +50,13 @@ Words sharing the same first $k = 2$ letters are grouped together:
 
 Thus, there are 2 connected groups, each containing at least two words.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["car","cat","cartoon"], k = 3
+- **Input:** words = ["car","cat","cartoon"], k = 3
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Words are evaluated for a prefix of length $k = 3$:
+- **Explanation:** Words are evaluated for a prefix of length $k = 3$:
 
 - $\text{words}[0] = "car"$ and $\text{words}[2] = "cartoon"$ share prefix `"car"`.
 
@@ -71,25 +64,19 @@ Words are evaluated for a prefix of length $k = 3$:
 
 Thus, there is 1 connected group.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words = ["bat","dog","dog","doggy","bat"], k = 3
+- **Input:** words = ["bat","dog","dog","doggy","bat"], k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Words are evaluated for a prefix of length $k = 3$:
+- **Explanation:** Words are evaluated for a prefix of length $k = 3$:
 
 - $\text{words}[0] = "bat"$ and $\text{words}[4] = "bat"$ form a group.
 
 - $\text{words}[1] = "dog"$, $\text{words}[2] = "dog"$ and $\text{words}[3] = "doggy"$ share prefix `"dog"`.
 
 Thus, there are 2 connected groups, each containing at least two words.
-
-</div>
 
 ### 5. Constraints
 

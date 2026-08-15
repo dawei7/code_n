@@ -8,8 +8,14 @@ An **anagram** of a string is a string that contains the same characters with a 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,12 +23,13 @@ An **anagram** of a string is a string that contains the same characters with a 
 
 - **Input:** `s = "**<u>lee</u>**tco<u>**de**</u>", t = "co<u>**a**</u>t<u>**s**</u>"`
 - **Output:** `7`
-- **Explanation:**
+- **Explanation:** 
 - In 2 steps, we can append the letters in "as" onto s = "leetcode", forming s = "leetcode**<u>as</u>**".
 - In 5 steps, we can append the letters in "leede" onto t = "coats", forming t = "coats<u>**leede**</u>".
 "leetcodeas" and "coatsleede" are now anagrams of each other.
 We used a total of 2 + 5 = 7 steps.
 It can be shown that there is no way to make them anagrams of each other with less than 7 steps.
+
 #### Example 2
 
 - **Input:** `s = "night", t = "thing"`

@@ -31,20 +31,20 @@ The length-$n$ integer array `gain` describes the route: `gain[i]` is the net al
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `gain = [-5,1,5,0,-7]`
-- Output: `1`
-- Explanation: The point altitudes are `0,-5,-4,1,1,-6`, whose maximum is $1$.
+- **Input:** `gain = [-5,1,5,0,-7]`
+- **Output:** `1`
+- **Explanation:** The point altitudes are `0,-5,-4,1,1,-6`, whose maximum is $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `gain = [-4,-3,-2,-1,4,3,2]`
-- Output: `0`
-- Explanation: Every later altitude is below the initial altitude.
+- **Input:** `gain = [-4,-3,-2,-1,4,3,2]`
+- **Output:** `0`
+- **Explanation:** Every later altitude is below the initial altitude.
 
-**Example 3**
+#### Example 3
 
-- Input: `gain = [3,-1,2,-2]`
-- Output: `4`
-- Explanation: The altitudes are `0,3,2,4,2`, so the peak occurs before the trip ends.
+- **Input:** `gain = [3,-1,2,-2]`
+- **Output:** `4`
+- **Explanation:** The altitudes are `0,3,2,4,2`, so the peak occurs before the trip ends.

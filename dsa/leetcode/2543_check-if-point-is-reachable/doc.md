@@ -33,14 +33,14 @@ Return `true` if some finite sequence of allowed moves reaches `(targetX, target
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `targetX = 6, targetY = 9`
-- Output: `false`
-- Explanation: Their greatest common divisor is 3, which contains an odd prime factor.
+- **Input:** `targetX = 6, targetY = 9`
+- **Output:** `false`
+- **Explanation:** Their greatest common divisor is 3, which contains an odd prime factor.
 
-**Example 2**
+#### Example 2
 
-- Input: `targetX = 4, targetY = 7`
-- Output: `true`
-- Explanation: One valid route is `(1,1) -> (1,2) -> (1,4) -> (1,8) -> (1,7) -> (2,7) -> (4,7)`.
+- **Input:** `targetX = 4, targetY = 7`
+- **Output:** `true`
+- **Explanation:** One valid route is `(1,1) -> (1,2) -> (1,4) -> (1,8) -> (1,7) -> (2,7) -> (4,7)`.

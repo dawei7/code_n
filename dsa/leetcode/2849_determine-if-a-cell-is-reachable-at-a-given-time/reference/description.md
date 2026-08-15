@@ -10,8 +10,17 @@ A cell's **adjacent cells** are the 8 cells around it that share at least one co
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sx`: Input parameter (`int`).
+- `sy`: Input parameter (`int`).
+- `fx`: Input parameter (`int`).
+- `fy`: Input parameter (`int`).
+- `t`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -22,6 +31,7 @@ A cell's **adjacent cells** are the 8 cells around it that share at least one co
 - **Input:** $sx = 2, sy = 4, fx = 7, fy = 7, t = 6$
 - **Output:** `true`
 - **Explanation:** Starting at cell (2, 4), we can reach cell (7, 7) in exactly 6 seconds by going through the cells depicted in the picture above.
+
 #### Example 2
 
 ![](images/example1.svg)

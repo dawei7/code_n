@@ -14,8 +14,10 @@ Implement the `MyCalendar` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MyCalendar()`: Initializes the data structure.
+- `book(startTime: int, endTime: int) -> `bool``: Executes operation.
 
 ### 3. Examples
 

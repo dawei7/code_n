@@ -8,8 +8,13 @@ Note: while a magic square can only contain numbers from 1 to 9, `grid` may cont
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +24,12 @@ Note: while a magic square can only contain numbers from 1 to 9, `grid` may cont
 
 - **Input:** `grid = [[4,3,8,4],[9,5,1,9],[2,7,6,2]]`
 - **Output:** `1`
-- **Explanation:**
-The following subgrid is a 3 x 3 magic square:
+- **Explanation:** The following subgrid is a 3 x 3 magic square:
 ![](images/magic_valid.jpg)
 while this one is not:
 ![](images/magic_invalid.jpg)
 In total, there is only one magic square inside the given grid.
+
 #### Example 2
 
 - **Input:** `grid = [[8]]`

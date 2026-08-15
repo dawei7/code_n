@@ -22,7 +22,6 @@ The query result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `EmployeeShifts` table:
@@ -60,40 +59,41 @@ The query result format is in the following example.
 
 - Employee 1 has 3 shifts:
 
-		<li>08:00:00 to 12:00:00
+		- 08:00:00 to 12:00:00
 
 - 11:00:00 to 15:00:00
 
 - 14:00:00 to 18:00:00
 
-	The first shift overlaps with the second, and the second overlaps with the third, resulting in 2 overlapping shifts.</li>
+	The first shift overlaps with the second, and the second overlaps with the third, resulting in 2 overlapping shifts.
+
 - Employee 2 has 2 shifts:
 
-		<li>09:00:00 to 17:00:00
+		- 09:00:00 to 17:00:00
 
 - 16:00:00 to 20:00:00
 
-	These shifts overlap with each other, resulting in 1 overlapping shift.</li>
+	These shifts overlap with each other, resulting in 1 overlapping shift.
+
 - Employee 3 has 3 shifts:
 
-		<li>10:00:00 to 12:00:00
+		- 10:00:00 to 12:00:00
 
 - 13:00:00 to 15:00:00
 
 - 16:00:00 to 18:00:00
 
-	None of these shifts overlap, so Employee 3 is not included in the output.</li>
+	None of these shifts overlap, so Employee 3 is not included in the output.
+
 - Employee 4 has 2 shifts:
 
-		<li>08:00:00 to 10:00:00
+		- 08:00:00 to 10:00:00
 
 - 09:00:00 to 11:00:00
 
-	These shifts overlap with each other, resulting in 1 overlapping shift.</li>
+	These shifts overlap with each other, resulting in 1 overlapping shift.
 
 The output shows the employee_id and the count of overlapping shifts for each employee who has at least one overlapping shift, ordered by employee_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

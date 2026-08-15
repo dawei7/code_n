@@ -20,8 +20,13 @@ You can assume that `moves` is valid (i.e., it follows the rules of **Tic-Tac-To
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `moves`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ You can assume that `moves` is valid (i.e., it follows the rules of **Tic-Tac-To
 - **Input:** $moves = [[0,0],[2,0],[1,1],[2,1],[2,2]]$
 - **Output:** `"A"`
 - **Explanation:** A wins, they always play first.
+
 #### Example 2
 
 ![](images/xo2-grid.jpg)
@@ -39,6 +45,7 @@ You can assume that `moves` is valid (i.e., it follows the rules of **Tic-Tac-To
 - **Input:** $moves = [[0,0],[1,1],[0,1],[0,2],[1,0],[2,0]]$
 - **Output:** `"B"`
 - **Explanation:** B wins.
+
 #### Example 3
 
 ![](images/xo3-grid.jpg)

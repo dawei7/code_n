@@ -16,8 +16,14 @@ Return *the **maximum score** of a valid node sequence with a length of *`4`*. *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `scores`: Input parameter (`List[int]`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +38,7 @@ The score of the node sequence is 5 + 2 + 9 + 8 = 24.
 It can be shown that no other node sequence has a score of more than 24.
 Note that the sequences [3,1,2,0] and [1,0,2,3] are also valid and have a score of 24.
 The sequence [0,3,2,4] is not valid since no edge connects nodes 0 and 3.
+
 #### Example 2
 
 ![](images/ex2.png)

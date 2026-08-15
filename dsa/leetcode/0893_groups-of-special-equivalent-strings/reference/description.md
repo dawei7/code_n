@@ -18,8 +18,13 @@ Return *the number of **groups of special-equivalent strings** from *`words`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,10 +32,10 @@ Return *the number of **groups of special-equivalent strings** from *`words`.
 
 - **Input:** $words = ["abcd","cdab","cbad","xyzz","zzxy","zzyx"]$
 - **Output:** `3`
-- **Explanation:**
-One group is ["abcd", "cdab", "cbad"], since they are all pairwise special equivalent, and none of the other strings is all pairwise special equivalent to these.
+- **Explanation:** One group is ["abcd", "cdab", "cbad"], since they are all pairwise special equivalent, and none of the other strings is all pairwise special equivalent to these.
 The other two groups are ["xyzz", "zzxy"] and ["zzyx"].
 Note that in particular, "zzxy" is not special equivalent to "zzyx".
+
 #### Example 2
 
 - **Input:** $words = ["abc","acb","bac","bca","cab","cba"]$

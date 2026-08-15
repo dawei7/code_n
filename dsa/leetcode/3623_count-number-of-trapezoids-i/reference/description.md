@@ -10,21 +10,23 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** points = [[1,0],[2,0],[3,0],[2,2],[3,2]]
+- **Input:** points = [[1,0],[2,0],[3,0],[2,2],[3,2]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/desmos-graph-6.png)
+- **Explanation:** ![](images/desmos-graph-6.png)
 
 ![](images/desmos-graph-7.png)
 
@@ -38,21 +40,15 @@ There are three distinct ways to pick four points that form a horizontal trapezo
 
 - Using points `[1,0]`, `[3,0]`, `[3,2]`, and `[2,2]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** points = [[0,0],[1,0],[0,1],[2,1]]
+- **Input:** points = [[0,0],[1,0],[0,1],[2,1]]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/desmos-graph-5.png)
+- **Explanation:** ![](images/desmos-graph-5.png)
 
 There is only one horizontal trapezoid that can be formed.
-
-</div>
 
 ### 4. Constraints
 

@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Votes table:
 +----------+-----------+
 | voter    | candidate |
@@ -46,14 +46,14 @@ Votes table:
 | Evelyn   | Kathy     |
 | Arthur   | Christine |
 +----------+-----------+
-**Output:**
+- **Output:** 
 +-----------+
 | candidate |
 +-----------+
 | Christine |
 | Ryan      |
 +-----------+
-**Explanation:**
+- **Explanation:** 
 - Kathy and Terry opted not to participate in voting, resulting in their votes being recorded as 0. Charles distributed his vote among three candidates, equating to 0.33 for each candidate. On the other hand, Benjamin, Arthur, Anthony, Edward, and Evelyn each cast their votes for a single candidate.
 - Collectively, Candidate Ryan and Christine amassed a total of 2.33 votes, while Kathy received a combined total of 1.33 votes.
 Since Ryan and Christine received an equal number of votes, we will display their names in ascending order.

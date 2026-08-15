@@ -10,8 +10,13 @@ A **subarray** is a **contiguous** part of an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -28,6 +33,7 @@ that subarrays of length `1` are always considered nice.
 - 3 AND 48 = 0.
 - 8 AND 48 = 0.
 It can be proven that no longer nice subarray can be obtained, so we return 3.
+
 #### Example 2
 
 - **Input:** `nums = [3,1,5,11,13]`

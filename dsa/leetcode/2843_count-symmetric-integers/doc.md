@@ -33,14 +33,14 @@ The constraints are $1\le\texttt{low}\le\texttt{high}\le10^4$. Let $R=\texttt{hi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `low = 1, high = 100`
-- Output: `9`
-- Explanation: The symmetric values are `11`, `22`, `33`, `44`, `55`, `66`, `77`, `88`, and `99`.
+- **Input:** `low = 1, high = 100`
+- **Output:** `9`
+- **Explanation:** The symmetric values are `11`, `22`, `33`, `44`, `55`, `66`, `77`, `88`, and `99`.
 
-**Example 2**
+#### Example 2
 
-- Input: `low = 1200, high = 1230`
-- Output: `4`
-- Explanation: The qualifying values are `1203`, `1212`, `1221`, and `1230`; each has equal digit sums in its two halves.
+- **Input:** `low = 1200, high = 1230`
+- **Output:** `4`
+- **Explanation:** The qualifying values are `1203`, `1212`, `1221`, and `1230`; each has equal digit sums in its two halves.

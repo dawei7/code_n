@@ -12,8 +12,14 @@ Return *the number of **distinct** ideal arrays of length *`n`. Since the answer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `maxValue`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Return *the number of **distinct** ideal arrays of length *`n`. Since the answer
 - Arrays starting with the value 4 (1 array): [4,4]
 - Arrays starting with the value 5 (1 array): [5,5]
 There are a total of 5 + 2 + 1 + 1 + 1 = 10 distinct ideal arrays.
+
 #### Example 2
 
 - **Input:** $n = 5, maxValue = 3$

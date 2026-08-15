@@ -16,8 +16,13 @@ Return `true`* if and only if it is **bipartite***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `graph`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Return `true`* if and only if it is **bipartite***.
 - **Input:** $graph = [[1,2,3],[0,2],[0,1,3],[0,2]]$
 - **Output:** `false`
 - **Explanation:** There is no way to partition the nodes into two independent sets such that every edge connects a node in one and a node in the other.
+
 #### Example 2
 
 ![](images/bi1.jpg)

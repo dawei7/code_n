@@ -38,16 +38,16 @@ Return all indices that are within distance `k` of at least one occurrence of `k
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,4,9,1,3,9,5]`, `key = 9`, `k = 1`
-- Output: `[1,2,3,4,5,6]`
+- **Input:** `nums = [3,4,9,1,3,9,5]`, `key = 9`, `k = 1`
+- **Output:** `[1,2,3,4,5,6]`
 
 The key positions `2` and `5` cover the intervals `[1,3]` and `[4,6]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,2,2,2,2]`, `key = 2`, `k = 2`
-- Output: `[0,1,2,3,4]`
+- **Input:** `nums = [2,2,2,2,2]`, `key = 2`, `k = 2`
+- **Output:** `[0,1,2,3,4]`
 
 Every index is itself a key position and therefore qualifies.

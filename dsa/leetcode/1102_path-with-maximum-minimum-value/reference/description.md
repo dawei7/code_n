@@ -29,12 +29,14 @@ Return the largest possible minimum cell value over every valid corner-to-corner
 - **Input:** `grid = [[5,4,5],[1,2,6],[7,4,6]]`
 - **Output:** `4`
 - **Explanation:** The path with the maximum score is highlighted in yellow.
+
 #### Example 2
 
 ![](images/maxgrid2.jpg)
 
 - **Input:** `grid = [[2,2,1,2,2,2],[1,2,2,2,1,2]]`
 - **Output:** `2`
+
 #### Example 3
 
 ![](images/maxgrid3.jpg)

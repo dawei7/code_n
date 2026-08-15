@@ -8,8 +8,16 @@ Return* the number of unoccupied cells that are **not** **guarded**.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `guards`: Input parameter (`List[List[int]]`).
+- `walls`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +29,7 @@ Return* the number of unoccupied cells that are **not** **guarded**.*
 - **Output:** `7`
 - **Explanation:** The guarded and unguarded cells are shown in red and green respectively in the above diagram.
 There are a total of 7 unguarded cells, so we return 7.
+
 #### Example 2
 
 ![](images/example2drawio.png)

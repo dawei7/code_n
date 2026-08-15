@@ -28,6 +28,7 @@ Return the area of the tightest axis-aligned rectangle enclosing all black pixel
 
 - **Input:** $image = [["0","0","1","0"],["0","1","1","0"],["0","1","0","0"]], x = 0, y = 2$
 - **Output:** `6`
+
 #### Example 2
 
 - **Input:** $image = [["1"]], x = 0, y = 0$

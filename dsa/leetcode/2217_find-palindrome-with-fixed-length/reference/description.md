@@ -6,8 +6,14 @@ A **palindrome** is a number that reads the same backwards and forwards. Palindr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[int]`).
+- `intLength`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,16 +21,15 @@ A **palindrome** is a number that reads the same backwards and forwards. Palindr
 
 - **Input:** $queries = [1,2,3,4,5,90], intLength = 3$
 - **Output:** `[101,111,121,131,141,999]`
-- **Explanation:**
-The first few palindromes of length 3 are:
+- **Explanation:** The first few palindromes of length 3 are:
 101, 111, 121, 131, 141, 151, 161, 171, 181, 191, 202, ...
 The 90^th palindrome of length 3 is 999.
+
 #### Example 2
 
 - **Input:** $queries = [2,4,6], intLength = 4$
 - **Output:** `[1111,1331,1551]`
-- **Explanation:**
-The first six palindromes of length 4 are:
+- **Explanation:** The first six palindromes of length 4 are:
 1001, 1111, 1221, 1331, 1441, and 1551.
 
 ### 4. Constraints

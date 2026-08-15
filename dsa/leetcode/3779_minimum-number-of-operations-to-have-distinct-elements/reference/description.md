@@ -24,40 +24,27 @@ Return the minimum—and, because the operation is fixed, uniquely determined—
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,8,3,6,5,8]
+- **Input:** nums = [3,8,3,6,5,8]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** In the first operation, we remove the first three elements. The remaining elements `[6, 5, 8]` are all distinct, so we stop. Only one operation is needed.
 
-In the first operation, we remove the first three elements. The remaining elements `[6, 5, 8]` are all distinct, so we stop. Only one operation is needed.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,2]
+- **Input:** nums = [2,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** After one operation, the array becomes empty, which meets the stopping condition.
 
-After one operation, the array becomes empty, which meets the stopping condition.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,3,5,1,2]
+- **Input:** nums = [4,3,5,1,2]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-All elements in the array are distinct, therefore no operations are needed.
-
-</div>
+- **Explanation:** All elements in the array are distinct, therefore no operations are needed.
 
 ### 4. Constraints
 

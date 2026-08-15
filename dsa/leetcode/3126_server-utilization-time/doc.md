@@ -30,8 +30,8 @@ Return one column named `total_uptime_days` containing the floor of the total se
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Servers` contains ten start/stop pairs across server IDs 1, 3, 4, and 5, including three sessions for server 3 and four for server 4.
-- Output: `[[1]]`
-- Explanation: The sessions total approximately 44.46 hours. This contains one complete day, with the remaining hours discarded.
+- **Input:** `Servers` contains ten start/stop pairs across server IDs 1, 3, 4, and 5, including three sessions for server 3 and four for server 4.
+- **Output:** `[[1]]`
+- **Explanation:** The sessions total approximately 44.46 hours. This contains one complete day, with the remaining hours discarded.

@@ -32,20 +32,20 @@ Let $n=\lvert s\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "ca"`
-- Output: `2`
-- Explanation: The endpoint characters differ, so no operation is available.
+- **Input:** `s = "ca"`
+- **Output:** `2`
+- **Explanation:** The endpoint characters differ, so no operation is available.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "cabaabac"`
-- Output: `0`
-- Explanation: Successive matching boundary runs can remove `c`, then `a`, then `b`, and finally the remaining `a` characters.
+- **Input:** `s = "cabaabac"`
+- **Output:** `0`
+- **Explanation:** Successive matching boundary runs can remove `c`, then `a`, then `b`, and finally the remaining `a` characters.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aabccabba"`
-- Output: `3`
-- Explanation: Removing the outer `a` runs and then the outer `b` runs leaves `"cca"`, whose endpoints differ.
+- **Input:** `s = "aabccabba"`
+- **Output:** `3`
+- **Explanation:** Removing the outer `a` runs and then the outer `b` runs leaves `"cca"`, whose endpoints differ.

@@ -38,28 +38,28 @@ Return the maximum sum of `future price - actual buying price` over the selected
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, present = [1,2], future = [4,3], hierarchy = [[1,2]], budget = 3`
-- Output: `5`
-- Explanation: Buying the CEO for `1` discounts employee 2's stock from `2` to `1`. Their profits are `3` and `2`, for total profit `5` at cost `2`.
+- **Input:** `n = 2, present = [1,2], future = [4,3], hierarchy = [[1,2]], budget = 3`
+- **Output:** `5`
+- **Explanation:** Buying the CEO for `1` discounts employee 2's stock from `2` to `1`. Their profits are `3` and `2`, for total profit `5` at cost `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, present = [3,4], future = [5,8], hierarchy = [[1,2]], budget = 4`
-- Output: `4`
-- Explanation: Buying only employee 2 costs `4` and yields profit `4`; the budget cannot fund the better-looking combined purchase.
+- **Input:** `n = 2, present = [3,4], future = [5,8], hierarchy = [[1,2]], budget = 4`
+- **Output:** `4`
+- **Explanation:** Buying only employee 2 costs `4` and yields profit `4`; the budget cannot fund the better-looking combined purchase.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, present = [4,6,8], future = [7,9,11], hierarchy = [[1,2],[1,3]], budget = 10`
-- Output: `10`
-- Explanation: Buy employee 1 for `4` and employee 3 at the discounted price `4`. Their profits are `3` and `7`.
+- **Input:** `n = 3, present = [4,6,8], future = [7,9,11], hierarchy = [[1,2],[1,3]], budget = 10`
+- **Output:** `10`
+- **Explanation:** Buy employee 1 for `4` and employee 3 at the discounted price `4`. Their profits are `3` and `7`.
 
-**Example 4**
+#### Example 4
 
-- Input: `n = 3, present = [5,2,3], future = [8,5,6], hierarchy = [[1,2],[2,3]], budget = 7`
-- Output: `12`
-- Explanation: Buying all three stocks costs `5 + 1 + 1 = 7`; consecutive direct-boss purchases propagate the discounts down the chain.
+- **Input:** `n = 3, present = [5,2,3], future = [8,5,6], hierarchy = [[1,2],[2,3]], budget = 7`
+- **Output:** `12`
+- **Explanation:** Buying all three stocks costs `5 + 1 + 1 = 7`; consecutive direct-boss purchases propagate the discounts down the chain.
 
 ---

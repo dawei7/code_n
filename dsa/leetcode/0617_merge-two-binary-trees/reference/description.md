@@ -8,8 +8,10 @@ Return *the merged tree*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `mergeTrees(root1: Optional[TreeNode], root2: Optional[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Note
 
@@ -23,6 +25,7 @@ The merging process must start from the root nodes of both trees.
 
 - **Input:** $root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]$
 - **Output:** `[3,4,5,5,4,null,7]`
+
 #### Example 2
 
 - **Input:** $root1 = [1], root2 = [1,2]$

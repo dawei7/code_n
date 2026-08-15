@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Courses table:
 +---------+----------+
 | student | class    |
@@ -44,13 +44,13 @@ Courses table:
 | H       | Math     |
 | I       | Math     |
 +---------+----------+
-**Output:**
+- **Output:** 
 +---------+
 | class   |
 +---------+
 | Math    |
 +---------+
-**Explanation:**
+- **Explanation:** 
 - Math has 6 students, so we include it.
 - English has 1 student, so we do not include it.
 - Biology has 1 student, so we do not include it.

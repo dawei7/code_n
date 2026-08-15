@@ -14,8 +14,12 @@ Implement the `CustomStack` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `CustomStack(maxSize: int)`: Initializes the data structure.
+- `push(x: int)`: Executes operation.
+- `pop() -> `int``: Executes operation.
+- `increment(k: int, val: int)`: Executes operation.
 
 ### 3. Examples
 

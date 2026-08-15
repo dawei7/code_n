@@ -18,8 +18,13 @@ Return* an integer array *`answer`*, where *$\text{answer}[i]$* is the second gr
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,19 +32,18 @@ Return* an integer array *`answer`*, where *$\text{answer}[i]$* is the second gr
 
 - **Input:** `nums = [2,4,0,9,6]`
 - **Output:** `[9,6,6,-1,-1]`
-- **Explanation:**
-0th index: 4 is the first integer greater than 2, and 9 is the second integer greater than 2, to the right of 2.
+- **Explanation:** 0th index: 4 is the first integer greater than 2, and 9 is the second integer greater than 2, to the right of 2.
 1st index: 9 is the first, and 6 is the second integer greater than 4, to the right of 4.
 2nd index: 9 is the first, and 6 is the second integer greater than 0, to the right of 0.
 3rd index: There is no integer greater than 9 to its right, so the second greater integer is considered to be -1.
 4th index: There is no integer greater than 6 to its right, so the second greater integer is considered to be -1.
 Thus, we return [9,6,6,-1,-1].
+
 #### Example 2
 
 - **Input:** `nums = [3,3]`
 - **Output:** `[-1,-1]`
-- **Explanation:**
-We return [-1,-1] since neither integer has any integer greater than it.
+- **Explanation:** We return [-1,-1] since neither integer has any integer greater than it.
 
 ### 4. Constraints
 

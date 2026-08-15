@@ -34,17 +34,17 @@ Return the greatest possible sum of complete-garden beauty and, when applicable,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `flowers = [1, 3, 1, 1], newFlowers = 7, target = 6, full = 12, partial = 1`
-- Output: `14`
+- **Input:** `flowers = [1, 3, 1, 1], newFlowers = 7, target = 6, full = 12, partial = 1`
+- **Output:** `14`
 
-**Example 2**
+#### Example 2
 
-- Input: `flowers = [2, 4, 5, 3], newFlowers = 10, target = 5, full = 2, partial = 6`
-- Output: `30`
+- **Input:** `flowers = [2, 4, 5, 3], newFlowers = 10, target = 5, full = 2, partial = 6`
+- **Output:** `30`
 
-**Example 3**
+#### Example 3
 
-- Input: `flowers = [5, 5], newFlowers = 1, target = 5, full = 10, partial = 1`
-- Output: `20`
+- **Input:** `flowers = [5, 5], newFlowers = 1, target = 5, full = 10, partial = 1`
+- **Output:** `20`

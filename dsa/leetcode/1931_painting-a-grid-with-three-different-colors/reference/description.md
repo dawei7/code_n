@@ -6,8 +6,14 @@ Return* the number of ways to color the grid with **no two adjacent cells having
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return* the number of ways to color the grid with **no two adjacent cells having
 - **Input:** $m = 1, n = 1$
 - **Output:** `3`
 - **Explanation:** The three possible colorings are shown in the image above.
+
 #### Example 2
 
 ![](images/copy-of-colorthegrid.png)
@@ -25,6 +32,7 @@ Return* the number of ways to color the grid with **no two adjacent cells having
 - **Input:** $m = 1, n = 2$
 - **Output:** `6`
 - **Explanation:** The six possible colorings are shown in the image above.
+
 #### Example 3
 
 - **Input:** $m = 5, n = 5$

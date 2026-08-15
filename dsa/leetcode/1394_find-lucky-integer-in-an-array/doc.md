@@ -32,17 +32,17 @@ Let $u$ be the number of distinct values in `arr`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [2,2,3,4]`
-- Output: `2`
+- **Input:** `arr = [2,2,3,4]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,2,2,3,3,3]`
-- Output: `3`
+- **Input:** `arr = [1,2,2,3,3,3]`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [2,2,2,3,3]`
-- Output: `-1`
+- **Input:** `arr = [2,2,2,3,3]`
+- **Output:** `-1`

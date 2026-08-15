@@ -12,53 +12,47 @@ The Manhattan Distance between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j})$ i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `side`: Input parameter (`int`).
+- `points`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** side = 2, points = [[0,2],[2,0],[2,2],[0,0]], k = 4
+- **Input:** side = 2, points = [[0,2],[2,0],[2,2],[0,0]], k = 4
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/4080_example0_revised.png)
+- **Explanation:** ![](images/4080_example0_revised.png)
 
 Select all four points.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** side = 2, points = [[0,0],[1,2],[2,0],[2,2],[2,1]], k = 4
+- **Input:** side = 2, points = [[0,0],[1,2],[2,0],[2,2],[2,1]], k = 4
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/4080_example1_revised.png)
+- **Explanation:** ![](images/4080_example1_revised.png)
 
 Select the points `(0, 0)`, `(2, 0)`, `(2, 2)`, and `(2, 1)`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** side = 2, points = [[0,0],[0,1],[0,2],[1,2],[2,0],[2,2],[2,1]], k = 5
+- **Input:** side = 2, points = [[0,0],[0,1],[0,2],[1,2],[2,0],[2,2],[2,1]], k = 5
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/4080_example2_revised.png)
+- **Explanation:** ![](images/4080_example2_revised.png)
 
 Select the points `(0, 0)`, `(0, 1)`, `(0, 2)`, `(1, 2)`, and `(2, 2)`.
-
-</div>
 
 ### 4. Constraints
 
@@ -70,9 +64,8 @@ Select the points `(0, 0)`, `(0, 1)`, `(0, 2)`, `(1, 2)`, and `(2, 2)`.
 
 - The input is generated such that:
 
-		<li>$\text{points}[i]$ lies on the boundary of the square.
+		- $\text{points}[i]$ lies on the boundary of the square.
 
 - All $\text{points}[i]$ are **unique**.
 
-	</li>
 - $4 \le k \le min(25, \text{points.length})$

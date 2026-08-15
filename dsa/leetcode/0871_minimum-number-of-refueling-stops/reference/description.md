@@ -12,8 +12,15 @@ Note that if the car reaches a gas station with `0` fuel left, the car can still
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`int`).
+- `startFuel`: Input parameter (`int`).
+- `stations`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +29,13 @@ Note that if the car reaches a gas station with `0` fuel left, the car can still
 - **Input:** $target = 1, startFuel = 1, stations = []$
 - **Output:** `0`
 - **Explanation:** We can reach the target without refueling.
+
 #### Example 2
 
 - **Input:** $target = 100, startFuel = 1, stations = [[10,100]]$
 - **Output:** `-1`
 - **Explanation:** We can not reach the target (or even the first gas station).
+
 #### Example 3
 
 - **Input:** $target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]$

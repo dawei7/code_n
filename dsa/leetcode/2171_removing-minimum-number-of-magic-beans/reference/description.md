@@ -8,8 +8,13 @@ Return *the **minimum** number of magic beans that you have to remove*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `beans`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,7 +22,7 @@ Return *the **minimum** number of magic beans that you have to remove*.
 
 - **Input:** $beans = [4,1,6,5]$
 - **Output:** `4`
-- **Explanation:**
+- **Explanation:** 
 - We remove 1 bean from the bag with only 1 bean.
 This results in the remaining bags: [4,**<u>0</u>**,6,5]
 - Then we remove 2 beans from the bag with 6 beans.
@@ -26,11 +31,12 @@ This results in the remaining bags: [4,0,**<u>4</u>**,5]
 This results in the remaining bags: [4,0,4,**<u>4</u>**]
 We removed a total of 1 + 2 + 1 = 4 beans to make the remaining non-empty bags have an equal number of beans.
 There are no other solutions that remove 4 beans or fewer.
+
 #### Example 2
 
 - **Input:** $beans = [2,10,3,2]$
 - **Output:** `7`
-- **Explanation:**
+- **Explanation:** 
 - We remove 2 beans from one of the bags with 2 beans.
 This results in the remaining bags: [<u>**0**</u>,10,3,2]
 - Then we remove 2 beans from the other bag with 2 beans.

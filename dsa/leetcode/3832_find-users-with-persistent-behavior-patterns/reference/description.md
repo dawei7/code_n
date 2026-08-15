@@ -18,11 +18,10 @@ Write a solution to identify **behaviorally stable users** based on the followin
 
 - A user is considered **behaviorally stable** if there exists a sequence of **at least **`5`** consecutive days** such that:
 
-		<li>The user performed **exactly one action per day** during that period.
+		- The user performed **exactly one action per day** during that period.
 
 - The **action is the same** on all those consecutive days.
 
-	</li>
 - If a user has multiple qualifying sequences, only consider the sequence with the **maximum length**.
 
 Return *the result table ordered by* $\text{streak}_{length}$ *in **descending** order*,* then by *$\text{user}_{id}$ *in **ascending** order*.
@@ -31,7 +30,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 activity table:
@@ -75,7 +73,7 @@ activity table:
 
 - **User 1**:
 
-		<li>Performed `login` from 2024-01-01 to 2024-01-05 on consecutive days
+		- Performed `login` from 2024-01-01 to 2024-01-05 on consecutive days
 
 - Each day has exactly one action, and the action is the same
 
@@ -83,29 +81,23 @@ activity table:
 
 - The action changes on 2024-01-06, ending the streak
 
-	</li>
 - **User 2**:
 
-		<li>Performed `click` for only 4 consecutive days
+		- Performed `click` for only 4 consecutive days
 
 - Does not meet the minimum streak length of 5
 
 - Excluded from the result
 
-	</li>
 - **User 3**:
 
-		<li>Performed `view` for 7 consecutive days
+		- Performed `view` for 7 consecutive days
 
 - This is the longest valid sequence for this user
 
 - Included in the result
 
-	</li>
-
 The Results table is ordered by streak_length in descending order, then by user_id in ascending order
-
-</div>
 
 ### 2. Function Contract
 

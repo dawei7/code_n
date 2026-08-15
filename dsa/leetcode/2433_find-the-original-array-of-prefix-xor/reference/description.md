@@ -10,8 +10,13 @@ It can be proven that the answer is **unique**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `pref`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ It can be proven that the answer is **unique**.
 - pref[2] = 5 ^ 7 ^ 2 = 0.
 - pref[3] = 5 ^ 7 ^ 2 ^ 3 = 3.
 - pref[4] = 5 ^ 7 ^ 2 ^ 3 ^ 2 = 1.
+
 #### Example 2
 
 - **Input:** $pref = [13]$

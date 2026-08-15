@@ -30,20 +30,20 @@ Return `true` if some distinct element has a prime frequency, and `false` otherw
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5, 4]`
-- Output: `true`
-- Explanation: The value `4` occurs twice, and $2$ is prime.
+- **Input:** `nums = [1, 2, 3, 4, 5, 4]`
+- **Output:** `true`
+- **Explanation:** The value `4` occurs twice, and $2$ is prime.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4, 5]`
-- Output: `false`
-- Explanation: Every value occurs once, and $1$ is not prime.
+- **Input:** `nums = [1, 2, 3, 4, 5]`
+- **Output:** `false`
+- **Explanation:** Every value occurs once, and $1$ is not prime.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 2, 2, 4, 4]`
-- Output: `true`
-- Explanation: The frequencies are $3$ and $2$, both of which are prime.
+- **Input:** `nums = [2, 2, 2, 4, 4]`
+- **Output:** `true`
+- **Explanation:** The frequencies are $3$ and $2$, both of which are prime.

@@ -31,20 +31,20 @@ The encoded text is obtained afterward by reading the entire matrix row by row. 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `encodedText = "ch   ie   pr", rows = 3`
-- Output: `"cipher"`
-- Explanation: Reading diagonally from successive top-row columns produces the letters of `cipher`.
+- **Input:** `encodedText = "ch   ie   pr", rows = 3`
+- **Output:** `"cipher"`
+- **Explanation:** Reading diagonally from successive top-row columns produces the letters of `cipher`.
 
-**Example 2**
+#### Example 2
 
-- Input: `encodedText = "iveo    eed   l te   olc", rows = 4`
-- Output: `"i love leetcode"`
-- Explanation: Diagonal traversal restores both the letters and the meaningful spaces inside the original text.
+- **Input:** `encodedText = "iveo    eed   l te   olc", rows = 4`
+- **Output:** `"i love leetcode"`
+- **Explanation:** Diagonal traversal restores both the letters and the meaningful spaces inside the original text.
 
-**Example 3**
+#### Example 3
 
-- Input: `encodedText = "coding", rows = 1`
-- Output: `"coding"`
-- Explanation: A one-row matrix has the same row-major and diagonal reading orders.
+- **Input:** `encodedText = "coding", rows = 1`
+- **Output:** `"coding"`
+- **Explanation:** A one-row matrix has the same row-major and diagonal reading orders.

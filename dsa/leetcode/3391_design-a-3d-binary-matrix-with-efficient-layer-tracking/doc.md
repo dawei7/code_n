@@ -33,16 +33,16 @@ The dimension satisfies $1\le n\le100$, and each coordinate satisfies $0\le x,y,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Matrix3D", "setCell", "largestMatrix", "setCell", "largestMatrix", "setCell", "largestMatrix"]`, `arguments = [[3], [0, 0, 0], [], [1, 1, 2], [], [0, 0, 1], []]`
-- Output: `[null, null, 0, null, 1, null, 0]`
+- **Input:** `operations = ["Matrix3D", "setCell", "largestMatrix", "setCell", "largestMatrix", "setCell", "largestMatrix"]`, `arguments = [[3], [0, 0, 0], [], [1, 1, 2], [], [0, 0, 1], []]`
+- **Output:** `[null, null, 0, null, 1, null, 0]`
 
 Layer zero first leads alone, then layer one wins their one-cell tie because its index is larger. The final update gives layer zero two ones.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["Matrix3D", "setCell", "largestMatrix", "unsetCell", "largestMatrix"]`, `arguments = [[4], [2, 1, 1], [], [2, 1, 1], []]`
-- Output: `[null, null, 2, null, 3]`
+- **Input:** `operations = ["Matrix3D", "setCell", "largestMatrix", "unsetCell", "largestMatrix"]`, `arguments = [[4], [2, 1, 1], [], [2, 1, 1], []]`
+- **Output:** `[null, null, 2, null, 3]`
 
 After the only one is removed, all four layers tie at zero, so the largest index is 3.

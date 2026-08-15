@@ -31,8 +31,7 @@ Return a minimum-length list of strings in `"base-address/prefix-length"` form w
 
 - **Input:** $ip = "255.0.0.7", n = 10$
 - **Output:** `["255.0.0.7/32","255.0.0.8/29","255.0.0.16/32"]`
-- **Explanation:**
-The IP addresses that need to be covered are:
+- **Explanation:** The IP addresses that need to be covered are:
 - 255.0.0.7  -> 11111111 00000000 00000000 00000111
 - 255.0.0.8  -> 11111111 00000000 00000000 00001000
 - 255.0.0.9  -> 11111111 00000000 00000000 00001001
@@ -47,6 +46,7 @@ The CIDR block "255.0.0.7/32" covers the first address.
 The CIDR block "255.0.0.8/29" covers the middle 8 addresses (binary format of 11111111 00000000 00000000 00001xxx).
 The CIDR block "255.0.0.16/32" covers the last address.
 Note that while the CIDR block "255.0.0.0/28" does cover all the addresses, it also includes addresses outside of the range, so we cannot use it.
+
 #### Example 2
 
 - **Input:** $ip = "117.145.102.62", n = 8$

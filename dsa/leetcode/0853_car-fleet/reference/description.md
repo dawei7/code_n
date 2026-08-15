@@ -14,19 +14,25 @@ Return the number of car fleets that will arrive at the destination.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`int`).
+- `position`: Input parameter (`List[int]`).
+- `speed`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]
+- **Input:** target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The cars starting at 10 (speed 2) and 8 (speed 4) become a fleet, meeting each other at 12. The fleet forms at `target`.
 
@@ -34,31 +40,25 @@ Return the number of car fleets that will arrive at the destination.
 
 - The cars starting at 5 (speed 1) and 3 (speed 3) become a fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches `target`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** target = 10, position = [3], speed = [3]
+- **Input:** target = 10, position = [3], speed = [3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** There is only one car, hence there is only one fleet.
 
-There is only one car, hence there is only one fleet.</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** target = 100, position = [0,2,4], speed = [4,2,1]
+- **Input:** target = 100, position = [0,2,4], speed = [4,2,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The cars starting at 0 (speed 4) and 2 (speed 2) become a fleet, meeting each other at 4. The car starting at 4 (speed 1) travels to 5.
 
 - Then, the fleet at 4 (speed 2) and the car at position 5 (speed 1) become one fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches `target`.
-
-</div>
 
 ### 4. Constraints
 

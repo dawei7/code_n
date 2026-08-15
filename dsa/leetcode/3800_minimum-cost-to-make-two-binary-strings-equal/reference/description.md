@@ -32,14 +32,11 @@ Return an integer equal to the smallest possible sum of operation costs that lea
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "01000", t = "10111", flipCost = 10, swapCost = 2, crossCost = 2
+- **Input:** s = "01000", t = "10111", flipCost = 10, swapCost = 2, crossCost = 2
 
-**Output:** 16
+- **Output:** 16
 
-**Explanation:**
-
-We can perform the following operations:
+- **Explanation:** We can perform the following operations:
 
 - Swap $s[0]$ and $s[1]$ ($swapCost = 2$). After this operation, `s = "10000"` and $t = "10111"$.
 
@@ -51,31 +48,21 @@ We can perform the following operations:
 
 The total cost is $2 + 2 + 2 + 10 = 16$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "001", t = "110", flipCost = 2, swapCost = 100, crossCost = 100
+- **Input:** s = "001", t = "110", flipCost = 2, swapCost = 100, crossCost = 100
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** Flipping all the bits of `s` makes the strings equal, and the total cost is $3 * flipCost = 3 * 2 = 6$.
 
-Flipping all the bits of `s` makes the strings equal, and the total cost is $3 * flipCost = 3 * 2 = 6$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1010", t = "1010", flipCost = 5, swapCost = 5, crossCost = 5
+- **Input:** s = "1010", t = "1010", flipCost = 5, swapCost = 5, crossCost = 5
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The strings are already equal, so no operations are required.
-
-</div>
+- **Explanation:** The strings are already equal, so no operations are required.
 
 ### 4. Constraints
 

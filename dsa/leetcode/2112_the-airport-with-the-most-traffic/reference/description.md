@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Flights table:
 +-------------------+-----------------+---------------+
 | departure_airport | arrival_airport | flights_count |
@@ -38,22 +38,22 @@ Flights table:
 | 2                 | 1               | 5             |
 | 2                 | 4               | 5             |
 +-------------------+-----------------+---------------+
-**Output:**
+- **Output:** 
 +------------+
 | airport_id |
 +------------+
 | 2          |
 +------------+
-**Explanation:**
-Airport 1 was engaged with 9 flights (4 departures, 5 arrivals).
+- **Explanation:** Airport 1 was engaged with 9 flights (4 departures, 5 arrivals).
 Airport 2 was engaged with 14 flights (10 departures, 4 arrivals).
 Airport 4 was engaged with 5 flights (5 arrivals).
 The airport with the most traffic is airport 2.
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 Flights table:
 +-------------------+-----------------+---------------+
 | departure_airport | arrival_airport | flights_count |
@@ -64,7 +64,7 @@ Flights table:
 | 4                 | 3               | 4             |
 | 5                 | 6               | 7             |
 +-------------------+-----------------+---------------+
-**Output:**
+- **Output:** 
 +------------+
 | airport_id |
 +------------+
@@ -73,8 +73,7 @@ Flights table:
 | 3          |
 | 4          |
 +------------+
-**Explanation:**
-Airport 1 was engaged with 9 flights (4 departures, 5 arrivals).
+- **Explanation:** Airport 1 was engaged with 9 flights (4 departures, 5 arrivals).
 Airport 2 was engaged with 9 flights (5 departures, 4 arrivals).
 Airport 3 was engaged with 9 flights (5 departures, 4 arrivals).
 Airport 4 was engaged with 9 flights (4 departures, 5 arrivals).

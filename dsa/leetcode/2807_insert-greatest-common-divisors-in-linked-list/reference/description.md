@@ -10,8 +10,10 @@ The **greatest common divisor** of two numbers is the largest positive integer t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `insertGreatestCommonDivisors(head: Optional[ListNode]) -> `Optional[ListNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -26,6 +28,7 @@ The **greatest common divisor** of two numbers is the largest positive integer t
 - We insert the greatest common divisor of 6 and 10 = 2 between the 2^nd and the 3^rd nodes.
 - We insert the greatest common divisor of 10 and 3 = 1 between the 3^rd and the 4^th nodes.
 There are no more adjacent nodes, so we return the linked list.
+
 #### Example 2
 
 ![](images/ex2_copy1.png)

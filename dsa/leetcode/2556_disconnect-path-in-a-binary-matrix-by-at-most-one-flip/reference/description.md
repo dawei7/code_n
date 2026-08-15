@@ -8,8 +8,13 @@ Return `true` *if it is possible to make the matrix disconnect or *`false`* othe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -24,6 +29,7 @@ that flipping a cell changes its value from `0` to `1` or from `1` to `0`.
 - **Input:** `grid = [[1,1,1],[1,0,0],[1,1,1]]`
 - **Output:** `true`
 - **Explanation:** We can change the cell shown in the diagram above. There is no path from (0, 0) to (2, 2) in the resulting grid.
+
 #### Example 2
 
 ![](images/yetgrid3drawio.png)

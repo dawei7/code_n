@@ -12,8 +12,13 @@ Two values `val1` and `val2` are coprime if $gcd(val1, val2) = 1$ where `gcd(val
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Two values `val1` and `val2` are coprime if $gcd(val1, val2) = 1$ where `gcd(val
 - **Output:** `2`
 - **Explanation:** The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.
 The only valid split is at index 2.
+
 #### Example 2
 
 ![](images/capture.PNG)

@@ -37,19 +37,19 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["cat","bt","hat","tree"]`, `chars = "atach"`
-- Output: `6`
+- **Input:** `words = ["cat","bt","hat","tree"]`, `chars = "atach"`
+- **Output:** `6`
 
 The good strings are `"cat"` and `"hat"`, contributing $3 + 3 = 6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["hello","world","leetcode"]`, `chars = "welldonehoneyr"`
-- Output: `10`
+- **Input:** `words = ["hello","world","leetcode"]`, `chars = "welldonehoneyr"`
+- **Output:** `10`
 
-**Example 3**
+#### Example 3
 
-- Input: `words = ["a","aa","aaa"]`, `chars = "aa"`
-- Output: `3`
+- **Input:** `words = ["a","aa","aaa"]`, `chars = "aa"`
+- **Output:** `3`

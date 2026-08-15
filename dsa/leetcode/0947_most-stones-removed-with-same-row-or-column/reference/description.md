@@ -8,8 +8,13 @@ Given an array `stones` of length `n` where $\text{stones}[i] = [x_{i}, y_{i}]$ 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stones`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Given an array `stones` of length `n` where $\text{stones}[i] = [x_{i}, y_{i}]$ 
 4. Remove stone [1,0] because it shares the same column as [0,0].
 5. Remove stone [0,1] because it shares the same row as [0,0].
 Stone [0,0] cannot be removed since it does not share a row/column with another stone still on the plane.
+
 #### Example 2
 
 - **Input:** $stones = [[0,0],[0,2],[1,1],[2,0],[2,2]]$
@@ -33,6 +39,7 @@ Stone [0,0] cannot be removed since it does not share a row/column with another 
 2. Remove stone [2,0] because it shares the same column as [0,0].
 3. Remove stone [0,2] because it shares the same row as [0,0].
 Stones [0,0] and [1,1] cannot be removed since they do not share a row/column with another stone still on the plane.
+
 #### Example 3
 
 - **Input:** $stones = [[0,0]]$

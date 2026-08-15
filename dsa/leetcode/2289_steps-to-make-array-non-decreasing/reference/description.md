@@ -6,8 +6,13 @@ Return *the number of steps performed until *`nums`* becomes a **non-decreasing*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the number of steps performed until *`nums`* becomes a **non-decreasing*
 - Step 2: [5,<u>**4**</u>,4,7,<u>**6**</u>,11,11] becomes [5,4,7,11,11]
 - Step 3: [5,<u>**4**</u>,7,11,11] becomes [5,7,11,11]
 [5,7,11,11] is a non-decreasing array. Therefore, we return 3.
+
 #### Example 2
 
 - **Input:** `nums = [4,5,7,7,13]`

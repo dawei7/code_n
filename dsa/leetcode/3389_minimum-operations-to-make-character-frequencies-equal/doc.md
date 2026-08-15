@@ -34,20 +34,20 @@ Return the minimum number of allowed operations required to make the string good
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "acab"`
-- Output: `1`
-- Explanation: Deleting one `'a'` leaves every remaining character with frequency 1.
+- **Input:** `s = "acab"`
+- **Output:** `1`
+- **Explanation:** Deleting one `'a'` leaves every remaining character with frequency 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "wddw"`
-- Output: `0`
-- Explanation: Both present characters already occur twice.
+- **Input:** `s = "wddw"`
+- **Output:** `0`
+- **Explanation:** Both present characters already occur twice.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaabc"`
-- Output: `2`
-- Explanation: Change one `'a'` to `'b'`, then insert one `'c'`; all three frequencies become 2.
+- **Input:** `s = "aaabc"`
+- **Output:** `2`
+- **Explanation:** Change one `'a'` to `'b'`, then insert one `'c'`; all three frequencies become 2.

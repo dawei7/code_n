@@ -32,14 +32,14 @@ Return an integer equal to the sum of the squares of all qualifying values $i$ i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 10`
-- Output: `182`
-- Explanation: The qualifying values are $1$, $9$, and $10$. Their squares are `1`, `81`, and `100`; partitions `8 + 1` and `10 + 0` establish the latter two.
+- **Input:** `n = 10`
+- **Output:** `182`
+- **Explanation:** The qualifying values are $1$, $9$, and $10$. Their squares are `1`, `81`, and `100`; partitions `8 + 1` and `10 + 0` establish the latter two.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 37`
-- Output: `1478`
-- Explanation: In addition to $1$, $9$, and $10$, the value $36$ qualifies because `1296` can be split as `1 + 29 + 6`. The four squares sum to $1478$.
+- **Input:** `n = 37`
+- **Output:** `1478`
+- **Explanation:** In addition to $1$, $9$, and $10$, the value $36$ qualifies because `1296` can be split as `1 + 29 + 6`. The four squares sum to $1478$.

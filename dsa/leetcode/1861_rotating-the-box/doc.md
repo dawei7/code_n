@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/rotating-the-box/) |
 
 ## Problem Description
+
 ### Goal
+
 An $m \times n$ character matrix `boxGrid` shows a box from the side. A `#`
 cell contains a stone, a `*` cell contains a stationary obstacle, and a `.`
 cell is empty. Initially, every stone is supported by an obstacle, another
@@ -23,6 +25,7 @@ Obstacles remain fixed relative to the rotating box, and rotational inertia
 does not move stones sideways. Return the resulting $n \times m$ matrix.
 
 ### Function Contract
+
 **Inputs**
 
 - `boxGrid`: a rectangular matrix with $1 \le m,n \le 500`; every cell is
@@ -36,17 +39,18 @@ An $n \times m$ character matrix representing the clockwise-rotated box after
 all stones have fallen.
 
 ### Examples
-**Example 1**
 
-- Input: `boxGrid = [["#",".","#"]]`
-- Output: `[["."],["#"],["#"]]`
+#### Example 1
 
-**Example 2**
+- **Input:** `boxGrid = [["#",".","#"]]`
+- **Output:** `[["."],["#"],["#"]]`
 
-- Input: `boxGrid = [["#",".","*","."],["#","#","*","."]]`
-- Output: `[["#","."],["#","#"],["*","*"],[".","."]]`
+#### Example 2
 
-**Example 3**
+- **Input:** `boxGrid = [["#",".","*","."],["#","#","*","."]]`
+- **Output:** `[["#","."],["#","#"],["*","*"],[".","."]]`
 
-- Input: `boxGrid = [["#","#","*",".","*","."],["#","#","#","*",".","."],["#","#","#",".","#","."]]`
-- Output: `[[".","#","#"],[".","#","#"],["#","#","*"],["#","*","."],["#",".","*"],["#",".","."]]`
+#### Example 3
+
+- **Input:** `boxGrid = [["#","#","*",".","*","."],["#","#","#","*",".","."],["#","#","#",".","#","."]]`
+- **Output:** `[[".","#","#"],[".","#","#"],["#","#","*"],["#","*","."],["#",".","*"],["#",".","."]]`

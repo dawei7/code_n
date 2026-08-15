@@ -22,6 +22,7 @@ Return the number of length-`k` substrings with no repeated character. Return ze
 - **Input:** `s = "havefunonleetcode", k = 5`
 - **Output:** `6`
 - **Explanation:** There are 6 substrings they are: 'havef','avefu','vefun','efuno','etcod','tcode'.
+
 #### Example 2
 
 - **Input:** `s = "home", k = 5`

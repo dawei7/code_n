@@ -38,13 +38,13 @@ Return all `n`-digit integers whose adjacent digits differ by exactly `k`; resul
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, k = 7`
-- Output: `[181,292,707,818,929]`
-- Explanation: A leading-zero form such as `070` is not a three-digit integer and is excluded.
+- **Input:** `n = 3, k = 7`
+- **Output:** `[181,292,707,818,929]`
+- **Explanation:** A leading-zero form such as `070` is not a three-digit integer and is excluded.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, k = 1`
-- Output: `[10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]`
+- **Input:** `n = 2, k = 1`
+- **Output:** `[10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]`

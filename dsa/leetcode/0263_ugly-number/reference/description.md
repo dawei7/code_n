@@ -21,11 +21,13 @@ Return `true` exactly when `n` is positive and has no prime factor other than `2
 - **Input:** $n = 6$
 - **Output:** `true`
 - **Explanation:** 6 = 2 × 3
+
 #### Example 2
 
 - **Input:** $n = 1$
 - **Output:** `true`
 - **Explanation:** 1 has no prime factors.
+
 #### Example 3
 
 - **Input:** $n = 14$

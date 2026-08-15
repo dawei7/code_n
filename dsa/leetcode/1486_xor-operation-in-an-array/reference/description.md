@@ -8,8 +8,14 @@ Return *the bitwise XOR of all elements of* `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `start`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Return *the bitwise XOR of all elements of* `nums`.
 - **Output:** `8`
 - **Explanation:** Array nums is equal to [0, 2, 4, 6, 8] where (0 ^ 2 ^ 4 ^ 6 ^ 8) = 8.
 Where "^" corresponds to bitwise XOR operator.
+
 #### Example 2
 
 - **Input:** $n = 4, start = 3$

@@ -8,35 +8,31 @@ Return *the number of alternating subarrays in *`nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,1,1,1]
+- **Input:** nums = [0,1,1,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The following subarrays are alternating: `[0]`, `[1]`, `[1]`, `[1]`, and `[0,1]`.
 
-The following subarrays are alternating: `[0]`, `[1]`, `[1]`, `[1]`, and `[0,1]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,0,1,0]
+- **Input:** nums = [1,0,1,0]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-Every subarray of the array is alternating. There are 10 possible subarrays that we can choose.
-
-</div>
+- **Explanation:** Every subarray of the array is alternating. There are 10 possible subarrays that we can choose.
 
 ### 4. Constraints
 

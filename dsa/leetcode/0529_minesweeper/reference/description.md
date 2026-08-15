@@ -28,8 +28,14 @@ Return *the board after revealing this position according to the following rules
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[str]]`).
+- `click`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[List[str]]`.
 
 ### 3. Examples
 
@@ -39,6 +45,7 @@ Return *the board after revealing this position according to the following rules
 
 - **Input:** $board = [["E","E","E","E","E"],["E","E","M","E","E"],["E","E","E","E","E"],["E","E","E","E","E"]], click = [3,0]$
 - **Output:** `[["B","1","E","1","B"],["B","1","M","1","B"],["B","1","1","1","B"],["B","B","B","B","B"]]`
+
 #### Example 2
 
 ![](images/untitled-2.jpeg)

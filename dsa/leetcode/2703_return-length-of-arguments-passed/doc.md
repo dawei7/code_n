@@ -30,20 +30,20 @@ Return the integer number of arguments passed to the function.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `argumentsLength(5)`
-- Output: `1`
-- Explanation: One number was passed.
+- **Input:** `argumentsLength(5)`
+- **Output:** `1`
+- **Explanation:** One number was passed.
 
-**Example 2**
+#### Example 2
 
-- Input: `argumentsLength({}, null, "3")`
-- Output: `3`
-- Explanation: The object, `null`, and string are three distinct arguments.
+- **Input:** `argumentsLength({}, null, "3")`
+- **Output:** `3`
+- **Explanation:** The object, `null`, and string are three distinct arguments.
 
-**Example 3**
+#### Example 3
 
-- Input: `argumentsLength()`
-- Output: `0`
-- Explanation: The call contains no arguments.
+- **Input:** `argumentsLength()`
+- **Output:** `0`
+- **Explanation:** The call contains no arguments.

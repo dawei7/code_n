@@ -8,8 +8,16 @@ Return an integer denoting the **maximum area** of a *square-shaped* hole in the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+- `hBars`: Input parameter (`List[int]`).
+- `vBars`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,46 +25,33 @@ Return an integer denoting the **maximum area** of a *square-shaped* hole in the
 
 ![](images/screenshot-from-2023-11-05-22-40-25.png)
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **n = 2, m = 1, hBars = [2,3], vBars = [2]
+- **Input:** n = 2, m = 1, hBars = [2,3], vBars = [2]
 
-**Output: **4
+- **Output:** 4
 
-**Explanation:**
-
-The left image shows the initial grid formed by the bars. The horizontal bars are `[1,2,3,4]`, and the vertical bars are `[1,2,3]`.
+- **Explanation:** The left image shows the initial grid formed by the bars. The horizontal bars are `[1,2,3,4]`, and the vertical bars are `[1,2,3]`.
 
 One way to get the maximum square-shaped hole is by removing horizontal bar 2 and vertical bar 2.
 
-</div>
 #### Example 2
 
 ![](images/screenshot-from-2023-11-04-17-01-02.png)
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **n = 1, m = 1, hBars = [2], vBars = [2]
+- **Input:** n = 1, m = 1, hBars = [2], vBars = [2]
 
-**Output: **4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** To get the maximum square-shaped hole, we remove horizontal bar 2 and vertical bar 2.
 
-To get the maximum square-shaped hole, we remove horizontal bar 2 and vertical bar 2.
-
-</div>
 #### Example 3
 
 ![](images/unsaved-image-2.png)
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **n = 2, m = 3, hBars = [2,3], vBars = [2,4]
+- **Input:** n = 2, m = 3, hBars = [2,3], vBars = [2,4]
 
-**Output: **4
+- **Output:** 4
 
-**Explanation:**
-
-One way to get the maximum square-shaped hole is by removing horizontal bar 3, and vertical bar 4.
-
-</div>
+- **Explanation:** One way to get the maximum square-shaped hole is by removing horizontal bar 3, and vertical bar 4.
 
 ### 4. Constraints
 

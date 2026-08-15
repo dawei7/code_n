@@ -14,8 +14,13 @@ Return *the total number of laser beams in the bank*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `bank`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -36,6 +41,7 @@ Return *the total number of laser beams in the bank*.
 * bank[2][3] -- bank[3][2]
 Note that there is no beam between any device on the 0^th row with any on the 3^rd row.
 This is because the 2^nd row contains security devices, which breaks the second condition.
+
 #### Example 2
 
 ![](images/laser2.jpg)

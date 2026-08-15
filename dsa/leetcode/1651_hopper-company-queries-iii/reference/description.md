@@ -69,7 +69,7 @@ Return a table with columns `month` (int from 1 to 10), `average_ride_distance` 
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Drivers table:
 +-----------+------------+
 | driver_id | join_date  |
@@ -118,7 +118,7 @@ AcceptedRides table:
 | 12      | 8         | 38            | 34            |
 | 14      | 1         | 90            | 74            |
 +---------+-----------+---------------+---------------+
-**Output:**
+- **Output:** 
 +-------+-----------------------+-----------------------+
 | month | average_ride_distance | average_ride_duration |
 +-------+-----------------------+-----------------------+
@@ -133,8 +133,7 @@ AcceptedRides table:
 | 9     | 54.33                 | 64.33                 |
 | 10    | 56.33                 | 77.00                 |
 +-------+-----------------------+-----------------------+
-**Explanation:**
-By the end of January --> average_ride_distance = (0+0+63)/3=21, average_ride_duration = (0+0+38)/3=12.67
+- **Explanation:** By the end of January --> average_ride_distance = (0+0+63)/3=21, average_ride_duration = (0+0+38)/3=12.67
 By the end of February --> average_ride_distance = (0+63+0)/3=21, average_ride_duration = (0+38+0)/3=12.67
 By the end of March --> average_ride_distance = (63+0+0)/3=21, average_ride_duration = (38+0+0)/3=12.67
 By the end of April --> average_ride_distance = (0+0+73)/3=24.33, average_ride_duration = (0+0+96)/3=32.00

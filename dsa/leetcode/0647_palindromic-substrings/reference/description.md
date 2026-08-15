@@ -8,8 +8,13 @@ A **substring** is a contiguous sequence of characters within the string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ A **substring** is a contiguous sequence of characters within the string.
 - **Input:** `s = "abc"`
 - **Output:** `3`
 - **Explanation:** Three palindromic strings: "a", "b", "c".
+
 #### Example 2
 
 - **Input:** `s = "aaa"`

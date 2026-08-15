@@ -8,47 +8,40 @@ Return `true` if `p` can be made a substring of `s`, and `false` otherwise.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `p`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "leetcode", p = "ee*e"
+- **Input:** s = "leetcode", p = "ee*e"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** By replacing the `'*'` with `"tcod"`, the substring `"eetcode"` matches the pattern.
 
-By replacing the `'*'` with `"tcod"`, the substring `"eetcode"` matches the pattern.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "car", p = "c*v"
+- **Input:** s = "car", p = "c*v"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** There is no substring matching the pattern.
 
-There is no substring matching the pattern.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "luck", p = "u*"
+- **Input:** s = "luck", p = "u*"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-The substrings `"u"`, `"uc"`, and `"uck"` match the pattern.
-
-</div>
+- **Explanation:** The substrings `"u"`, `"uc"`, and `"uck"` match the pattern.
 
 ### 4. Constraints
 

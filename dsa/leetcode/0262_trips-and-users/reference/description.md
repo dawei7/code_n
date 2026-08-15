@@ -59,7 +59,7 @@ Return columns `Day` and `Cancellation Rate` for every qualifying date, with the
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Trips table:
 +----+-----------+-----------+---------+---------------------+------------+
 | id | client_id | driver_id | city_id | status              | request_at |
@@ -88,7 +88,7 @@ Users table:
 | 12       | No     | driver |
 | 13       | No     | driver |
 +----------+--------+--------+
-**Output:**
+- **Output:** 
 +------------+-------------------+
 | Day        | Cancellation Rate |
 +------------+-------------------+
@@ -96,8 +96,7 @@ Users table:
 | 2013-10-02 | 0.00              |
 | 2013-10-03 | 0.50              |
 +------------+-------------------+
-**Explanation:**
-On 2013-10-01:
+- **Explanation:** On 2013-10-01:
   - There were 4 requests in total, 2 of which were canceled.
   - However, the request with Id=2 was made by a banned client (User_Id=2), so it is ignored in the calculation.
   - Hence there are 3 unbanned requests in total, 1 of which was canceled.

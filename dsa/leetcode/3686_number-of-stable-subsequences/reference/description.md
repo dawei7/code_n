@@ -10,39 +10,39 @@ Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,5]
+- **Input:** nums = [1,3,5]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Stable subsequences are `[1]`, `[3]`, `[5]`, `[1, 3]`, `[1, 5]`, and `[3, 5]`.
 
 - Subsequence `[1, 3, 5]` is not stable because it contains three consecutive odd numbers. Thus, the answer is 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,4,2]
+- **Input:** nums = [2,3,4,2]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - The only subsequence that is not stable is `[2, 4, 2]`, which contains three consecutive even numbers.
 
 - All other subsequences are stable. Thus, the answer is 14.
-
-</div>
 
 ### 4. Constraints
 

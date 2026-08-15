@@ -10,8 +10,13 @@ Return *the team that will be the champion of the tournament.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the team that will be the champion of the tournament.*
 - **Output:** `0`
 - **Explanation:** There are two teams in this tournament.
 grid[0][1] == 1 means that team 0 is stronger than team 1. So team 0 will be the champion.
+
 #### Example 2
 
 - **Input:** `grid = [[0,0,1],[1,0,1],[0,0,0]]`

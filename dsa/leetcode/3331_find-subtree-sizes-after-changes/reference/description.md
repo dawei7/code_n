@@ -16,43 +16,40 @@ Return an array `answer` of size `n` where $\text{answer}[i]$ is the **size** of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `parent`: Input parameter (`List[int]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** parent = [-1,0,0,1,1,1], s = "abaabc"
+- **Input:** parent = [-1,0,0,1,1,1], s = "abaabc"
 
-**Output:** [6,3,1,1,1,1]
+- **Output:** [6,3,1,1,1,1]
 
-**Explanation:**
-
-![](images/graphex1drawio.png)
+- **Explanation:** ![](images/graphex1drawio.png)
 
 The parent of node 3 will change from node 1 to node 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** parent = [-1,0,4,0,1], s = "abbba"
+- **Input:** parent = [-1,0,4,0,1], s = "abbba"
 
-**Output:** [5,2,1,1,1]
+- **Output:** [5,2,1,1,1]
 
-**Explanation:**
-
-![](images/exgraph2drawio.png)
+- **Explanation:** ![](images/exgraph2drawio.png)
 
 The following changes will happen at the same time:
 
 - The parent of node 4 will change from node 1 to node 0.
 
 - The parent of node 2 will change from node 4 to node 1.
-
-</div>
 
 ### 4. Constraints
 

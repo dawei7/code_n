@@ -25,11 +25,13 @@ Let $k$ be the number of `1` values in `data`. One swap exchanges the values sto
 [0,1,1,1,0] using 2 swaps.
 [0,0,1,1,1] using 1 swap.
 The minimum is 1.
+
 #### Example 2
 
 - **Input:** $data = [0,0,0,1,0]$
 - **Output:** `0`
 - **Explanation:** Since there is only one 1 in the array, no swaps are needed.
+
 #### Example 3
 
 - **Input:** $data = [1,0,1,0,1,0,0,1,1,0,1]$

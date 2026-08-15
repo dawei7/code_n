@@ -32,17 +32,17 @@ Return the same tree root with the values on levels 1, 3, 5, and so on reversed 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [2,3,5,8,13,21,34]`
-- Output: `[2,5,3,8,13,21,34]`
+- **Input:** `root = [2,3,5,8,13,21,34]`
+- **Output:** `[2,5,3,8,13,21,34]`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [7,13,11]`
-- Output: `[7,11,13]`
+- **Input:** `root = [7,13,11]`
+- **Output:** `[7,11,13]`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [0,1,2,0,0,0,0,1,1,1,1,2,2,2,2]`
-- Output: `[0,2,1,0,0,0,0,2,2,2,2,1,1,1,1]`
+- **Input:** `root = [0,1,2,0,0,0,0,1,1,1,1,2,2,2,2]`
+- **Output:** `[0,2,1,0,0,0,0,2,2,2,2,1,1,1,1]`

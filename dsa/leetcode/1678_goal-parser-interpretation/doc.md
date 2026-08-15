@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/goal-parser-interpretation/) |
 
 ## Problem Description
+
 ### Goal
 
 A Goal Parser receives a command formed by concatenating tokens from the fixed alphabet `"G"`, `"()"`, and `"(al)"`. The input is guaranteed to be a valid sequence of those complete tokens, so parentheses never appear in any other form and no validation or error recovery is required.
@@ -18,6 +19,7 @@ A Goal Parser receives a command formed by concatenating tokens from the fixed a
 Interpret each `"G"` as `"G"`, each `"()"` as `"o"`, and each `"(al)"` as `"al"`. Concatenate the decoded pieces in the same order in which their tokens occur and return the resulting string. Token boundaries matter only while reading the command; they do not appear in the output.
 
 ### Function Contract
+
 **Inputs**
 
 - `command`: a string of length $n$ formed by concatenating one or more valid tokens from `"G"`, `"()"`, and `"(al)"`
@@ -27,17 +29,18 @@ Interpret each `"G"` as `"G"`, each `"()"` as `"o"`, and each `"(al)"` as `"al"`
 The string obtained by decoding every token in order.
 
 ### Examples
-**Example 1**
 
-- Input: `command = "G()(al)"`
-- Output: `"Goal"`
+#### Example 1
 
-**Example 2**
+- **Input:** `command = "G()(al)"`
+- **Output:** `"Goal"`
 
-- Input: `command = "G()()()()(al)"`
-- Output: `"Gooooal"`
+#### Example 2
 
-**Example 3**
+- **Input:** `command = "G()()()()(al)"`
+- **Output:** `"Gooooal"`
 
-- Input: `command = "(al)G(al)()()G"`
-- Output: `"alGalooG"`
+#### Example 3
+
+- **Input:** `command = "(al)G(al)()()G"`
+- **Output:** `"alGalooG"`

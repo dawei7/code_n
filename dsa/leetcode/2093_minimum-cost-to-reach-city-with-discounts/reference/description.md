@@ -18,29 +18,28 @@ Return *the **minimum total cost** to go from city *`0`* to city *$n - 1$*, or *
 
 - **Input:** $n = 5, highways = [[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]], discounts = 1$
 - **Output:** `9`
-- **Explanation:**
-Go from 0 to 1 for a cost of 4.
+- **Explanation:** Go from 0 to 1 for a cost of 4.
 Go from 1 to 4 and use a discount for a cost of 11 / 2 = 5.
 The minimum cost to go from 0 to 4 is 4 + 5 = 9.
+
 #### Example 2
 
 ![](images/image-20211129222650-4.png)
 
 - **Input:** $n = 4, highways = [[1,3,17],[1,2,7],[3,2,5],[0,1,6],[3,0,20]], discounts = 20$
 - **Output:** `8`
-- **Explanation:**
-Go from 0 to 1 and use a discount for a cost of 6 / 2 = 3.
+- **Explanation:** Go from 0 to 1 and use a discount for a cost of 6 / 2 = 3.
 Go from 1 to 2 and use a discount for a cost of 7 / 2 = 3.
 Go from 2 to 3 and use a discount for a cost of 5 / 2 = 2.
 The minimum cost to go from 0 to 3 is 3 + 3 + 2 = 8.
+
 #### Example 3
 
 ![](images/image-20211129222531-3.png)
 
 - **Input:** $n = 4, highways = [[0,1,3],[2,3,2]], discounts = 0$
 - **Output:** `-1`
-- **Explanation:**
-It is impossible to go from 0 to 3 so return -1.
+- **Explanation:** It is impossible to go from 0 to 3 so return -1.
 
 ### 4. Constraints
 

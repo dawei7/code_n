@@ -22,40 +22,27 @@ Return the minimum positive length $L$ for which the $L$-digit repunit is divisi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** k = 3
+- **Input:** k = 3
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** $n = 111$ because 111 is divisible by 3, but 1 and 11 are not. The length of $n = 111$ is 3.
 
-$n = 111$ because 111 is divisible by 3, but 1 and 11 are not. The length of $n = 111$ is 3.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** k = 7
+- **Input:** k = 7
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** $n = 111111$. The length of $n = 111111$ is 6.
 
-$n = 111111$. The length of $n = 111111$ is 6.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** k = 2
+- **Input:** k = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-There does not exist a valid `n` that is a multiple of 2.
-
-</div>
+- **Explanation:** There does not exist a valid `n` that is a multiple of 2.
 
 ### 4. Constraints
 

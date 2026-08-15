@@ -6,8 +6,13 @@ Return *the **minimum** rounds required to complete all the tasks, or *`-1`* if 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tasks`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *the **minimum** rounds required to complete all the tasks, or *`-1`* if 
 - In the third round, you complete 3 tasks of difficulty level 4.
 - In the fourth round, you complete 2 tasks of difficulty level 4.
 It can be shown that all the tasks cannot be completed in fewer than 4 rounds, so the answer is 4.
+
 #### Example 2
 
 - **Input:** $tasks = [2,3,3]$

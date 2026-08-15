@@ -42,7 +42,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +---------+---------+
 | user_id | name    |
@@ -65,7 +65,7 @@ Rides table:
 | 56      | 2       | 196      |
 | 10      | 14      | 25       |
 +---------+---------+----------+
-**Output:**
+- **Output:** 
 +---------+---------+-------------------+
 | user_id | name    | traveled distance |
 +---------+---------+-------------------+
@@ -75,7 +75,7 @@ Rides table:
 | 14      | Ethan   | 186               |
 | 17      | Addison | 160               |
 +---------+---------+-------------------+
-**Explanation:**
+- **Explanation:** 
 -  User id 2 completed two journeys of 197 and 196, resulting in a combined travel distance of 393.
 -  User id 4 completed two journeys of 59 and 357, resulting in a combined travel distance of 416.
 -  User id 14 completed two journeys of 161 and 25, resulting in a combined travel distance of 186.

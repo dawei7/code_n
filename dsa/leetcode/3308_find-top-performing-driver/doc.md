@@ -34,9 +34,9 @@ Return columns `fuel_type`, `driver_id`, `rating`, and `distance`. `rating` is t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Alice and Charlie drive gasoline vehicles with average ratings 4.5 and 5.0; Bob drives an electric vehicle with average rating 4.5. Their total distances are 80, 100, and 180 respectively.
-- Output: `[("Electric", 2, 4.50, 180), ("Gasoline", 3, 5.00, 100)]`
+- **Input:** Alice and Charlie drive gasoline vehicles with average ratings 4.5 and 5.0; Bob drives an electric vehicle with average rating 4.5. Their total distances are 80, 100, and 180 respectively.
+- **Output:** `[("Electric", 2, 4.50, 180), ("Gasoline", 3, 5.00, 100)]`
 
 Charlie wins the gasoline partition by rating, while Bob is the only electric driver with completed trips.

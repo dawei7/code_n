@@ -6,8 +6,14 @@ Return *the* $$k^{\text{th}}$$ ***positive** integer that is **missing** from th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Return *the* $$k^{\text{th}}$$ ***positive** integer that is **missing** from th
 - **Input:** `arr = [2,3,4,7,11], k = 5`
 - **Output:** `9`
 - **Explanation:** The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5^th missing positive integer is 9.
+
 #### Example 2
 
 - **Input:** `arr = [1,2,3,4], k = 2`

@@ -33,20 +33,20 @@ Given the resulting string `traversal`, recover the original binary tree and ret
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `traversal = "1-2--3--4-5--6--7"`
-- Output: `[1,2,5,3,4,6,7]`
-- Explanation: The depth markers reconstruct a full three-level tree.
+- **Input:** `traversal = "1-2--3--4-5--6--7"`
+- **Output:** `[1,2,5,3,4,6,7]`
+- **Explanation:** The depth markers reconstruct a full three-level tree.
 
-**Example 2**
+#### Example 2
 
-- Input: `traversal = "1-2--3---4-5--6---7"`
-- Output: `[1,2,5,3,null,6,null,4,null,7]`
-- Explanation: The three-dash nodes are children of the preceding depth-two nodes.
+- **Input:** `traversal = "1-2--3---4-5--6---7"`
+- **Output:** `[1,2,5,3,null,6,null,4,null,7]`
+- **Explanation:** The three-dash nodes are children of the preceding depth-two nodes.
 
-**Example 3**
+#### Example 3
 
-- Input: `traversal = "1-401--349---90--88"`
-- Output: `[1,401,null,349,88,90]`
-- Explanation: Multi-digit values continue until the next dash or the end of the string.
+- **Input:** `traversal = "1-401--349---90--88"`
+- **Output:** `[1,401,null,349,88,90]`
+- **Explanation:** Multi-digit values continue until the next dash or the end of the string.

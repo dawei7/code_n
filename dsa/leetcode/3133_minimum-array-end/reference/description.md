@@ -6,35 +6,32 @@ Return the **minimum** possible value of $nums[n - 1]$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, x = 4
+- **Input:** n = 3, x = 4
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** `nums` can be `[4,5,6]` and its last element is 6.
 
-`nums` can be `[4,5,6]` and its last element is 6.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2, x = 7
+- **Input:** n = 2, x = 7
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-`nums` can be `[7,15]` and its last element is 15.
-
-</div>
+- **Explanation:** `nums` can be `[7,15]` and its last element is 15.
 
 ### 4. Constraints
 

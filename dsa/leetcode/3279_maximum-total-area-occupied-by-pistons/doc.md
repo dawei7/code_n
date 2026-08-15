@@ -36,20 +36,20 @@ Return the maximum possible sum of all piston positions at one integer time.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `height = 5, positions = [2, 5], directions = "UD"`
-- Output: `7`
-- Explanation: The initial total is already the maximum.
+- **Input:** `height = 5, positions = [2, 5], directions = "UD"`
+- **Output:** `7`
+- **Explanation:** The initial total is already the maximum.
 
-**Example 2**
+#### Example 2
 
-- Input: `height = 6, positions = [0, 0, 6, 3], directions = "UUDU"`
-- Output: `15`
-- Explanation: After three seconds the positions are `[3, 3, 3, 6]`.
+- **Input:** `height = 6, positions = [0, 0, 6, 3], directions = "UUDU"`
+- **Output:** `15`
+- **Explanation:** After three seconds the positions are `[3, 3, 3, 6]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `height = 4, positions = [0], directions = "D"`
-- Output: `4`
-- Explanation: Reflection at the bottom sends the piston upward, and it eventually reaches the top.
+- **Input:** `height = 4, positions = [0], directions = "D"`
+- **Output:** `4`
+- **Explanation:** Reflection at the bottom sends the piston upward, and it eventually reaches the top.

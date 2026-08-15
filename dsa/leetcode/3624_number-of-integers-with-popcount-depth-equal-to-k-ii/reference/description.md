@@ -24,21 +24,24 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the number of indi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,4], queries = [[1,0,1,1],[2,1,1],[1,0,1,0]]
+- **Input:** nums = [2,4], queries = [[1,0,1,1],[2,1,1],[1,0,1,0]]
 
-**Output:** [2,1]
+- **Output:** [2,1]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -101,17 +104,13 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the number of indi
 
 Thus, the final `answer` is `[2, 1]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,5,6], queries = [[1,0,2,2],[2,1,4],[1,1,2,1],[1,0,1,0]]
+- **Input:** nums = [3,5,6], queries = [[1,0,2,2],[2,1,4],[1,1,2,1],[1,0,1,0]]
 
-**Output:** [3,1,0]
+- **Output:** [3,1,0]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -186,17 +185,13 @@ Thus, the final `answer` is `[2, 1]`.
 
 Thus, the final `answer` is `[3, 1, 0]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2], queries = [[1,0,1,1],[2,0,3],[1,0,0,1],[1,0,0,2]]
+- **Input:** nums = [1,2], queries = [[1,0,1,1],[2,0,3],[1,0,0,1],[1,0,0,2]]
 
-**Output:** [1,0,1]
+- **Output:** [1,0,1]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -271,8 +266,6 @@ Thus, the final `answer` is `[3, 1, 0]`.
 
 Thus, the final `answer` is `[1, 0, 1]`.
 
-</div>
-
 ### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
@@ -283,7 +276,7 @@ Thus, the final `answer` is `[1, 0, 1]`.
 
 - $\text{queries}[i].length = 3$ or `4`
 
-		<li>$\text{queries}[i] = [1, l, r, k]$ or,
+		- $\text{queries}[i] = [1, l, r, k]$ or,
 
 - $\text{queries}[i] = [2, idx, val]$
 
@@ -294,5 +287,3 @@ Thus, the final `answer` is `[1, 0, 1]`.
 - $0 \le idx \le n - 1$
 
 - $1 \le val \le 10^{15}$
-
-	</li>

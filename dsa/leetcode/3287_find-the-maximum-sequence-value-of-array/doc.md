@@ -33,16 +33,16 @@ Return the maximum of `(OR of first k selected values) XOR (OR of last k selecte
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,6,7], k = 1`
-- Output: `5`
+- **Input:** `nums = [2,6,7], k = 1`
+- **Output:** `5`
 
 Selecting `[2,7]` gives `2 XOR 7 = 5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4,2,5,6,7], k = 2`
-- Output: `2`
+- **Input:** `nums = [4,2,5,6,7], k = 2`
+- **Output:** `2`
 
 Selecting `[4,5,6,7]` gives `(4 OR 5) XOR (6 OR 7) = 2`.

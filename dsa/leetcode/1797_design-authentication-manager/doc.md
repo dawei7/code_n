@@ -37,24 +37,24 @@ Expiration happens before any action at the same timestamp. Thus a token with ex
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["AuthenticationManager","renew","generate","countUnexpiredTokens","generate","renew","renew","countUnexpiredTokens"]`
+- **Input:** `operations = ["AuthenticationManager","renew","generate","countUnexpiredTokens","generate","renew","renew","countUnexpiredTokens"]`
 - Arguments: `[[5],["aaa",1],["aaa",2],[6],["bbb",7],["aaa",8],["bbb",10],[15]]`
-- Output: `[null,null,null,1,null,null,null,0]`
+- **Output:** `[null,null,null,1,null,null,null,0]`
 
 The missing first renewal is ignored; `"aaa"` later expires, while `"bbb"` is renewed to expire exactly at time `15`.
 
-**Example 2**
+#### Example 2
 
-- Input: generate `"abc"` at time `1` with TTL `5`, then count at time `6`
-- Output: `0`
+- **Input:** generate `"abc"` at time `1` with TTL `5`, then count at time `6`
+- **Output:** `0`
 
 Expiration at time `6` occurs before the count at that same time.
 
-**Example 3**
+#### Example 3
 
-- Input: generate at time `1`, renew at time `5`, and count at times `9` and `10` with TTL `5`
-- Output: `1` at time `9`, then `0` at time `10`
+- **Input:** generate at time `1`, renew at time `5`, and count at times `9` and `10` with TTL `5`
+- **Output:** `1` at time `9`, then `0` at time `10`
 
 The renewal replaces the old expiration with time `10`.

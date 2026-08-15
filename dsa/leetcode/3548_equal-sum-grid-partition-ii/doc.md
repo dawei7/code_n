@@ -34,28 +34,28 @@ Return a boolean indicating whether one full horizontal or vertical cut can bala
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,4],[2,3]]`
-- Output: `true`
-- Explanation: A horizontal cut gives sums $5$ and $5$, so no discount is needed.
+- **Input:** `grid = [[1,4],[2,3]]`
+- **Output:** `true`
+- **Explanation:** A horizontal cut gives sums $5$ and $5$, so no discount is needed.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,2],[3,4]]`
-- Output: `true`
-- Explanation: A vertical cut gives sums $4$ and $6$. Discounting the cell valued `2` from the right section balances the sums, and the remaining cell stays connected.
+- **Input:** `grid = [[1,2],[3,4]]`
+- **Output:** `true`
+- **Explanation:** A vertical cut gives sums $4$ and $6$. Discounting the cell valued `2` from the right section balances the sums, and the remaining cell stays connected.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,2,4],[2,3,5]]`
-- Output: `false`
-- Explanation: The horizontal sums are $7$ and $10$, but discounting the middle value `3` would split the bottom row into disconnected pieces. No other cut works.
+- **Input:** `grid = [[1,2,4],[2,3,5]]`
+- **Output:** `false`
+- **Explanation:** The horizontal sums are $7$ and $10$, but discounting the middle value `3` would split the bottom row into disconnected pieces. No other cut works.
 
-**Example 4**
+#### Example 4
 
-- Input: `grid = [[4,1,8],[3,2,6]]`
-- Output: `false`
-- Explanation: No horizontal or vertical cut can be balanced by a legal discount.
+- **Input:** `grid = [[4,1,8],[3,2,6]]`
+- **Output:** `false`
+- **Explanation:** No horizontal or vertical cut can be balanced by a legal discount.
 
 ---

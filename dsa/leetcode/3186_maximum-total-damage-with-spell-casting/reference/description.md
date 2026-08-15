@@ -12,35 +12,31 @@ Return the **maximum** possible *total damage* that a magician can cast.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `power`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** power = [1,1,3,4]
+- **Input:** power = [1,1,3,4]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** The maximum possible damage of 6 is produced by casting spells 0, 1, 3 with damage 1, 1, 4.
 
-The maximum possible damage of 6 is produced by casting spells 0, 1, 3 with damage 1, 1, 4.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** power = [7,1,6,6]
+- **Input:** power = [7,1,6,6]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-The maximum possible damage of 13 is produced by casting spells 1, 2, 3 with damage 1, 6, 6.
-
-</div>
+- **Explanation:** The maximum possible damage of 13 is produced by casting spells 1, 2, 3 with damage 1, 6, 6.
 
 ### 4. Constraints
 

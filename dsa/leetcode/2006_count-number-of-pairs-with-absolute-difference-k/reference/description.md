@@ -10,8 +10,14 @@ The value of `|x|` is defined as:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,11 +30,13 @@ The value of `|x|` is defined as:
 - [**<u>1</u>**,2,**<u>2</u>**,1]
 - [1,**<u>2</u>**,2,**<u>1</u>**]
 - [1,2,**<u>2</u>**,**<u>1</u>**]
+
 #### Example 2
 
 - **Input:** `nums = [1,3], k = 3`
 - **Output:** `0`
 - **Explanation:** There are no pairs with an absolute difference of 3.
+
 #### Example 3
 
 - **Input:** `nums = [3,2,1,5,4], k = 2`

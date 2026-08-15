@@ -12,8 +12,13 @@ A **subsequence** of an array is a sequence that can be derived from the array b
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ A **subsequence** of an array is a sequence that can be derived from the array b
 - **Input:** `nums = [0,1,2,2]`
 - **Output:** `3`
 - **Explanation:** The special subsequences are bolded [**<u>0</u>**,**<u>1</u>**,**<u>2</u>**,2], [**<u>0</u>**,**<u>1</u>**,2,**<u>2</u>**], and [**<u>0</u>**,**<u>1</u>**,**<u>2</u>**,**<u>2</u>**].
+
 #### Example 2
 
 - **Input:** `nums = [2,2,0,0]`
 - **Output:** `0`
 - **Explanation:** There are no special subsequences in [2,2,0,0].
+
 #### Example 3
 
 - **Input:** `nums = [0,1,2,0,1,2]`

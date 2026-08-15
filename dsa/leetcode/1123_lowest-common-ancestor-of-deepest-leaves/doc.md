@@ -32,20 +32,20 @@ The `TreeNode` that is the lowest common ancestor of every deepest leaf. cOde(n)
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [3,5,1,6,2,0,8,null,null,7,4]`
-- Output: `[2,7,4]`
-- Explanation: Leaves `7` and `4` are at depth $3$, deeper than leaves `6`, `0`, and `8`; their lowest common ancestor is node `2`.
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4]`
+- **Output:** `[2,7,4]`
+- **Explanation:** Leaves `7` and `4` are at depth $3$, deeper than leaves `6`, `0`, and `8`; their lowest common ancestor is node `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1]`
-- Output: `[1]`
-- Explanation: The root is the only and therefore deepest leaf, so it is its own lowest common ancestor.
+- **Input:** `root = [1]`
+- **Output:** `[1]`
+- **Explanation:** The root is the only and therefore deepest leaf, so it is its own lowest common ancestor.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [0,1,3,null,2]`
-- Output: `[2]`
-- Explanation: Node `2` is the unique deepest leaf.
+- **Input:** `root = [0,1,3,null,2]`
+- **Output:** `[2]`
+- **Explanation:** Node `2` is the unique deepest leaf.

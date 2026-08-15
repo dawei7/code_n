@@ -16,8 +16,14 @@ A **subsequence** is an array that can be derived from another array by deleting
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ A **subsequence** is an array that can be derived from another array by deleting
 - **Explanation:** In the first operation, we choose element nums[2]. The array becomes equal to nums = [1,2,4,4].
 At this stage, nums contains the subsequence [1,2,4] which sums up to 7.
 It can be shown that there is no shorter sequence of operations that results in a subsequnce that sums up to 7.
+
 #### Example 2
 
 - **Input:** `nums = [1,32,1,2], target = 12`
@@ -36,6 +43,7 @@ It can be shown that there is no shorter sequence of operations that results in 
 In the second operation, we choose element nums[3]. The array becomes equal to nums = [1,1,2,16,8,8]
 At this stage, nums contains the subsequence [1,1,2,8] which sums up to 12.
 It can be shown that there is no shorter sequence of operations that results in a subsequence that sums up to 12.
+
 #### Example 3
 
 - **Input:** `nums = [1,32,1], target = 35`

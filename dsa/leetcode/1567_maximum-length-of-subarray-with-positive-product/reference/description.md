@@ -8,8 +8,13 @@ Return *the maximum length of a subarray with positive product*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,12 +23,14 @@ Return *the maximum length of a subarray with positive product*.
 - **Input:** `nums = [1,-2,-3,4]`
 - **Output:** `4`
 - **Explanation:** The array nums already has a positive product of 24.
+
 #### Example 2
 
 - **Input:** `nums = [0,1,-2,-3,-4]`
 - **Output:** `3`
 - **Explanation:** The longest subarray with positive product is [1,-2,-3] which has a product of 6.
 Notice that we cannot include 0 in the subarray since that'll make the product 0 which is not positive.
+
 #### Example 3
 
 - **Input:** `nums = [-1,-2,-3,0,1]`

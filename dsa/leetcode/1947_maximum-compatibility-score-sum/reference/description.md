@@ -14,8 +14,14 @@ Given `students` and `mentors`, return *the **maximum compatibility score sum** 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `students`: Input parameter (`List[List[int]]`).
+- `mentors`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Given `students` and `mentors`, return *the **maximum compatibility score sum** 
 - student 1 to mentor 0 with a compatibility score of 2.
 - student 2 to mentor 1 with a compatibility score of 3.
 The compatibility score sum is 3 + 2 + 3 = 8.
+
 #### Example 2
 
 - **Input:** $students = [[0,0],[0,0],[0,0]], mentors = [[1,1],[1,1],[1,1]]$

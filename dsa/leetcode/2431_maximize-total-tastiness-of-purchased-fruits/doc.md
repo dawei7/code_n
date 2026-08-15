@@ -35,23 +35,23 @@ The arrays have the same length $n$, where $1 \le n \le 100$. Each array value a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `price = [10, 20, 20], tastiness = [5, 8, 8], maxAmount = 20, maxCoupons = 1`
-- Output: `13`
+- **Input:** `price = [10, 20, 20], tastiness = [5, 8, 8], maxAmount = 20, maxCoupons = 1`
+- **Output:** `13`
 
 Buy the first fruit for 10 and one of the other fruits with a coupon for 10.
 
-**Example 2**
+#### Example 2
 
-- Input: `price = [10, 15, 7], tastiness = [5, 8, 20], maxAmount = 10, maxCoupons = 2`
-- Output: `28`
+- **Input:** `price = [10, 15, 7], tastiness = [5, 8, 20], maxAmount = 10, maxCoupons = 2`
+- **Output:** `28`
 
 Coupons reduce the second and third prices to 7 and 3, so both fit exactly.
 
-**Example 3**
+#### Example 3
 
-- Input: `price = [0, 5], tastiness = [4, 9], maxAmount = 0, maxCoupons = 1`
-- Output: `4`
+- **Input:** `price = [0, 5], tastiness = [4, 9], maxAmount = 0, maxCoupons = 1`
+- **Output:** `4`
 
 The zero-price fruit can be purchased without spending the coupon, but the other fruit still costs 2 after discounting.

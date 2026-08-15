@@ -31,17 +31,17 @@ When the player stands next to the box, the player may push it into the adjacent
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [["#","#","#","#","#","#"],["#","T","#","#","#","#"],["#",".",".","B",".","#"],["#",".","#","#",".","#"],["#",".",".",".","S","#"],["#","#","#","#","#","#"]]`
-- Output: `3`
+- **Input:** `grid = [["#","#","#","#","#","#"],["#","T","#","#","#","#"],["#",".",".","B",".","#"],["#",".","#","#",".","#"],["#",".",".",".","S","#"],["#","#","#","#","#","#"]]`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: the same layout with row three replaced by all walls except its final open corridor cell.
-- Output: `-1`
+- **Input:** the same layout with row three replaced by all walls except its final open corridor cell.
+- **Output:** `-1`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [["#","#","#","#","#","#"],["#","T",".",".","#","#"],["#",".","#","B",".","#"],["#",".",".",".",".","#"],["#",".",".",".","S","#"],["#","#","#","#","#","#"]]`
-- Output: `5`
+- **Input:** `grid = [["#","#","#","#","#","#"],["#","T",".",".","#","#"],["#",".","#","B",".","#"],["#",".",".",".",".","#"],["#",".",".",".","S","#"],["#","#","#","#","#","#"]]`
+- **Output:** `5`

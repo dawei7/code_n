@@ -24,14 +24,11 @@ Return the **sum** of the weights of all **subarrays** of length `k`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,2,3], k = 3
+- **Input:** nums = [1,2,2,3], k = 3
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-Subarrays of length $k = 3$ are:
+- **Explanation:** Subarrays of length $k = 3$ are:
 
 <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border: 1px solid black;">
 	<thead>
@@ -65,17 +62,13 @@ Subarrays of length $k = 3$ are:
 
 Thus, the sum of weights is $4 + 4 = 8$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,1,2], k = 2
+- **Input:** nums = [1,2,1,2], k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Subarrays of length $k = 2$ are:
+- **Explanation:** Subarrays of length $k = 2$ are:
 
 <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border: 1px solid black;">
 	<thead>
@@ -116,17 +109,13 @@ Subarrays of length $k = 2$ are:
 
 Thus, the sum of weights is $1 + 1 + 1 = 3$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,3,4,3], k = 3
+- **Input:** nums = [4,3,4,3], k = 3
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
-
-Subarrays of length $k = 3$ are:
+- **Explanation:** Subarrays of length $k = 3$ are:
 
 <table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" style="border: 1px solid black;">
 	<thead>
@@ -159,8 +148,6 @@ Subarrays of length $k = 3$ are:
 </table>
 
 Thus, the sum of weights is $8 + 6 = 14$.
-
-</div>
 
 ### 5. Constraints
 

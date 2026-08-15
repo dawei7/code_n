@@ -30,6 +30,7 @@ Return *the **minimum** number of coins needed to acquire all the fruits*.
 - Take the 3^rd fruit for free.
 Note that even though you were allowed to take the 2^nd fruit for free, you purchased it because it is more optimal.
 It can be proven that 4 is the minimum number of coins needed to acquire all the fruits.
+
 #### Example 2
 
 - **Input:** $prices = [1,10,1,1]$

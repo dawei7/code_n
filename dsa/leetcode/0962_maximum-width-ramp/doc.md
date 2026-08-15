@@ -31,14 +31,14 @@ Return the maximum value of $j-i$ over all ramps `(i, j)`, or `0` when no ramp e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [6,0,8,2,1,5]`
-- Output: `4`
-- Explanation: Indices `(1, 5)` form a ramp because `nums[1] = 0 <= 5 = nums[5]`.
+- **Input:** `nums = [6,0,8,2,1,5]`
+- **Output:** `4`
+- **Explanation:** Indices `(1, 5)` form a ramp because `nums[1] = 0 <= 5 = nums[5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9,8,1,0,1,9,4,0,4,1]`
-- Output: `7`
-- Explanation: The equal endpoint values at indices `(2, 9)` form a width-`7` ramp.
+- **Input:** `nums = [9,8,1,0,1,9,4,0,4,1]`
+- **Output:** `7`
+- **Explanation:** The equal endpoint values at indices `(2, 9)` form a width-`7` ramp.

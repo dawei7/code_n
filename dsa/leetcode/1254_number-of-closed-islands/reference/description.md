@@ -6,8 +6,13 @@ Return the number of *closed islands*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,14 +22,15 @@ Return the number of *closed islands*.
 
 - **Input:** `grid = [[1,1,1,1,1,1,1,0],[1,0,0,0,0,1,1,0],[1,0,1,0,1,1,1,0],[1,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,0]]`
 - **Output:** `2`
-- **Explanation:**
-Islands in gray are closed because they are completely surrounded by water (group of 1s).
+- **Explanation:** Islands in gray are closed because they are completely surrounded by water (group of 1s).
+
 #### Example 2
 
 ![](images/sample_4_1610.png)
 
 - **Input:** `grid = [[0,0,1,0,0],[0,1,0,1,0],[0,1,1,1,0]]`
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** `grid = [[1,1,1,1,1,1,1],`

@@ -38,20 +38,20 @@ Let $B$ denote the number of digits in the returned base-$-2$ string.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2`
-- Output: `"110"`
-- Explanation: $(-2)^2+(-2)^1=2$.
+- **Input:** `n = 2`
+- **Output:** `"110"`
+- **Explanation:** $(-2)^2+(-2)^1=2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`
-- Output: `"111"`
-- Explanation: $(-2)^2+(-2)^1+(-2)^0=3$.
+- **Input:** `n = 3`
+- **Output:** `"111"`
+- **Explanation:** $(-2)^2+(-2)^1+(-2)^0=3$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4`
-- Output: `"100"`
-- Explanation: $(-2)^2=4$.
+- **Input:** `n = 4`
+- **Output:** `"100"`
+- **Explanation:** $(-2)^2=4$.

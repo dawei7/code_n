@@ -29,41 +29,35 @@ Return the minimum number of single-element increments and decrements required o
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,2,8], k = 3
+- **Input:** nums = [1,4,2,8], k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Let's choose $x = 1$ for even indices and $y = 2$ for odd indices.
 
 - Perform the following operations:
 
-		<li>Increment $\text{nums}[1] = 4$ by 1, giving `nums = [1, 5, 2, 8]`.
+		- Increment $\text{nums}[1] = 4$ by 1, giving `nums = [1, 5, 2, 8]`.
 
 - Decrement $\text{nums}[2] = 2$ by 1, giving `nums = [1, 5, 1, 8]`.
 
-	</li>
 - Now, for even indices, $\text{nums}[i] \% k = 1$, and for odd indices, $\text{nums}[i] \% k = 2$.
 
 - Thus, the total number of operations required is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,1], k = 3
+- **Input:** nums = [1,1,1], k = 3
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Incrementing $\text{nums}[1]$ by 1 gives `nums = [1, 2, 1]`, which satisfies the condition with $x = 1$ and $y = 2$.
 
 - Thus, the total number of operations required is 1.
-
-</div>
 
 ### 4. Constraints
 

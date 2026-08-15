@@ -40,7 +40,7 @@ Let $t$ be the number of transaction rows and $g$ the number of distinct product
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For product `123424`, annual spends of `1500.60`, `1000.20`, `1246.44`, and `2145.32` from 2019 through 2022 produce:
 

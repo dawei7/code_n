@@ -33,26 +33,23 @@ Return the maximum possible value of $\sum_{i\in S}\texttt{nums}[i]$ over all va
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,3,5], colors = [1,1,2,2]
+- **Input:** nums = [1,4,3,5], colors = [1,1,2,2]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose houses $i = 1$ with $\text{nums}[1] = 4$ and $i = 3$ with $\text{nums}[3] = 5$ because they are non-adjacent.
 
 - Thus, the total amount robbed is $4 + 5 = 9$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,1,2,4], colors = [2,3,2,2]
+- **Input:** nums = [3,1,2,4], colors = [2,3,2,2]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose houses $i = 0$ with $\text{nums}[0] = 3$, $i = 1$ with $\text{nums}[1] = 1$, and $i = 3$ with $\text{nums}[3] = 4$.
 
@@ -60,23 +57,19 @@ Return the maximum possible value of $\sum_{i\in S}\texttt{nums}[i]$ over all va
 
 - Thus, the total amount robbed is $3 + 1 + 4 = 8$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [10,1,3,9], colors = [1,1,1,2]
+- **Input:** nums = [10,1,3,9], colors = [1,1,1,2]
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose houses $i = 0$ with $\text{nums}[0] = 10$, $i = 2$ with $\text{nums}[2] = 3$, and $i = 3$ with $\text{nums}[3] = 9$.
 
 - This selection is valid because houses $i = 0$ and $i = 2$ are non-adjacent, and houses $i = 2$ and $i = 3$ have different colors.
 
 - Thus, the total amount robbed is $10 + 3 + 9 = 22$.
-
-</div>
 
 ### 4. Constraints
 

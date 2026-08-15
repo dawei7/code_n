@@ -35,20 +35,20 @@ Return the length of the longest contiguous subarray that begins with an even va
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,2,5,4]`, `threshold = 5`
-- Output: `3`
-- Explanation: The subarray `[2,5,4]` starts with an even value, alternates parity, and stays within the threshold.
+- **Input:** `nums = [3,2,5,4]`, `threshold = 5`
+- **Output:** `3`
+- **Explanation:** The subarray `[2,5,4]` starts with an even value, alternates parity, and stays within the threshold.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2]`, `threshold = 2`
-- Output: `1`
-- Explanation: The one-element subarray `[2]` satisfies every condition.
+- **Input:** `nums = [1,2]`, `threshold = 2`
+- **Output:** `1`
+- **Explanation:** The one-element subarray `[2]` satisfies every condition.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,3,4,5]`, `threshold = 4`
-- Output: `3`
-- Explanation: `[2,3,4]` is valid, but including `5` would exceed the threshold.
+- **Input:** `nums = [2,3,4,5]`, `threshold = 4`
+- **Output:** `3`
+- **Explanation:** `[2,3,4]` is valid, but including `5` would exceed the threshold.

@@ -10,14 +10,15 @@ Implement the `FreqStack` class:
 
 - `int pop()` removes and returns the most frequent element in the stack.
 
-		<li>If there is a tie for the most frequent element, the element closest to the stack's top is removed and returned.
-
-	</li>
+		- If there is a tie for the most frequent element, the element closest to the stack's top is removed and returned.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `FreqStack()`: Initializes the data structure.
+- `push(val: int)`: Executes operation.
+- `pop() -> `int``: Executes operation.
 
 ### 3. Examples
 

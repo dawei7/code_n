@@ -10,8 +10,13 @@ Return *the number of nice pairs of indices*. Since that number can be too large
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return *the number of nice pairs of indices*. Since that number can be too large
 - **Explanation:** The two pairs are:
 - (0,3) : 42 + rev(97) = 42 + 79 = 121, 97 + rev(42) = 97 + 24 = 121.
 - (1,2) : 11 + rev(1) = 11 + 1 = 12, 1 + rev(11) = 1 + 11 = 12.
+
 #### Example 2
 
 - **Input:** `nums = [13,10,35,24,76]`

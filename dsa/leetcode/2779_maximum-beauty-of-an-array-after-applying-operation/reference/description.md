@@ -14,8 +14,14 @@ Return *the **maximum** possible beauty of the array *`nums`* after applying the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -34,6 +40,7 @@ A **subsequence** of an array is a new array generated from the original array b
 - Choose index 3, replace it with 4 (from range [0,4]), nums = [4,4,1,4].
 After the applied operations, the beauty of the array nums is 3 (subsequence consisting of indices 0, 1, and 3).
 It can be proven that 3 is the maximum possible length we can achieve.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,1], k = 10`

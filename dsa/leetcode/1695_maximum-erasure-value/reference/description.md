@@ -8,8 +8,13 @@ An array `b` is called to be a subarray of `a` if it forms a contiguous subseque
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ An array `b` is called to be a subarray of `a` if it forms a contiguous subseque
 - **Input:** `nums = [4,2,4,5,6]`
 - **Output:** `17`
 - **Explanation:** The optimal subarray here is [2,4,5,6].
+
 #### Example 2
 
 - **Input:** `nums = [5,2,1,2,5,2,1,2,5]`

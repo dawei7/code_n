@@ -10,17 +10,23 @@ Return the **maximum** possible length of a **palindrome** that can be formed by
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `label`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], label = "aba"
+- **Input:** n = 3, edges = [[0,1],[1,2]], label = "aba"
 
-**Output:** 3
+- **Output:** 3
 
 **Exp****lanation:**
 
@@ -30,39 +36,29 @@ Return the **maximum** possible length of a **palindrome** that can be formed by
 
 - This is a valid palindrome of length 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[0,2]], label = "abc"
+- **Input:** n = 3, edges = [[0,1],[0,2]], label = "abc"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-![](images/screenshot-2025-06-13-at-230017.png)
+- **Explanation:** ![](images/screenshot-2025-06-13-at-230017.png)
 
 - No path with more than one node forms a palindrome.
 
 - The best option is any single node, giving a palindrome of length 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,2],[0,3],[3,1]], label = "bbac"
+- **Input:** n = 4, edges = [[0,2],[0,3],[3,1]], label = "bbac"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/screenshot-2025-06-13-at-230508.png)
+- **Explanation:** ![](images/screenshot-2025-06-13-at-230508.png)
 
 - The longest palindromic path is from node 0 to node 1, following the path `0 → 3 → 1`, forming string `"bcb"`.
 
 - This is a valid palindrome of length 3.
-
-</div>
 
 ### 4. Constraints
 

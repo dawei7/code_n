@@ -36,12 +36,11 @@ The result may be negative when the second player finishes with more points.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Game 0: Since the points are odd, the second player becomes active and gains $\text{nums}[0] = 1$ point.
 
@@ -51,15 +50,13 @@ The result may be negative when the second player finishes with more points.
 
 - The score difference is $3 - 3 = 0$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,4,2,1,2,1]
+- **Input:** nums = [2,4,2,1,2,1]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Games 0 to 2: The first player gains $2 + 4 + 2 = 8$ points.
 
@@ -71,21 +68,17 @@ The result may be negative when the second player finishes with more points.
 
 - The score difference is $8 - 4 = 4$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** 
 
 - Game 0: Since the points are odd, the second player is now active and gains $\text{nums}[0] = 1$ point.
 
 - The score difference is $0 - 1 = -1$.
-
-</div>
 
 ### 4. Constraints
 

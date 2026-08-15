@@ -12,51 +12,49 @@ A **permutation** is a rearrangement of all the characters of a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num = "123"
+- **Input:** num = "123"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The distinct permutations of `num` are `"123"`, `"132"`, `"213"`, `"231"`, `"312"` and `"321"`.
 
 - Among them, `"132"` and `"231"` are balanced. Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num = "112"
+- **Input:** num = "112"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - The distinct permutations of `num` are `"112"`, `"121"`, and `"211"`.
 
 - Only `"121"` is balanced. Thus, the answer is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** num = "12345"
+- **Input:** num = "12345"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - None of the permutations of `num` are balanced, so the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

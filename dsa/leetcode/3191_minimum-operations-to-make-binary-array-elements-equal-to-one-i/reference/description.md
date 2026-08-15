@@ -12,21 +12,23 @@ Return the **minimum** number of operations required to make all elements in `nu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,1,1,1,0,0]
+- **Input:** nums = [0,1,1,1,0,0]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-We can do the following operations:
+- **Explanation:** We can do the following operations:
 
 - Choose the elements at indices 0, 1 and 2. The resulting array is `nums = [<u>**1**</u>,<u>**0**</u>,<u>**0**</u>,1,0,0]`.
 
@@ -34,19 +36,13 @@ We can do the following operations:
 
 - Choose the elements at indices 3, 4 and 5. The resulting array is `nums = [1,1,1,**<u>1</u>**,<u>**1**</u>,<u>**1**</u>]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [0,1,1,1]
+- **Input:** nums = [0,1,1,1]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It is impossible to make all elements equal to 1.
-
-</div>
+- **Explanation:** It is impossible to make all elements equal to 1.
 
 ### 4. Constraints
 

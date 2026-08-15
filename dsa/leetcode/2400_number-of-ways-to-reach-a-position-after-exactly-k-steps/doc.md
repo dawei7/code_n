@@ -41,23 +41,23 @@ the requested displacement cannot be achieved in exactly `k` steps.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `startPos = 1`, `endPos = 2`, `k = 3`
-- Output: `3`
-- Explanation: Each valid sequence contains two right steps and one left step,
+- **Input:** `startPos = 1`, `endPos = 2`, `k = 3`
+- **Output:** `3`
+- **Explanation:** Each valid sequence contains two right steps and one left step,
   and the left step can occupy any of three positions.
 
-**Example 2**
+#### Example 2
 
-- Input: `startPos = 2`, `endPos = 5`, `k = 10`
-- Output: `0`
-- Explanation: The displacement is 3, whose parity differs from 10, so no
+- **Input:** `startPos = 2`, `endPos = 5`, `k = 10`
+- **Output:** `0`
+- **Explanation:** The displacement is 3, whose parity differs from 10, so no
   exact-step sequence exists.
 
-**Example 3**
+#### Example 3
 
-- Input: `startPos = 5`, `endPos = 2`, `k = 5`
-- Output: `5`
-- Explanation: Reaching displacement $-3$ requires four left moves and one
+- **Input:** `startPos = 5`, `endPos = 2`, `k = 5`
+- **Output:** `5`
+- **Explanation:** Reaching displacement $-3$ requires four left moves and one
   right move; the right move has five possible positions.

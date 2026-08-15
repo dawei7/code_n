@@ -28,14 +28,11 @@ Return the parsed value after applying the sign and clamping it to the signed 32
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "42"
+- **Input:** s = "42"
 
-**Output:** 42
+- **Output:** 42
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 The underlined characters are what is read in and the caret is the current reader position.
 Step 1: "42" (no characters read because there is no leading whitespace)
          ^
@@ -45,17 +42,13 @@ Step 3: "<u>42</u>" ("42" is read in)
            ^
 ```
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = " -042"
+- **Input:** s = " -042"
 
-**Output:** -42
+- **Output:** -42
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 Step 1: "<u>   </u>-042" (leading whitespace is read and ignored)
             ^
 Step 2: "   <u>-</u>042" ('-' is read, so the result should be negative)
@@ -64,17 +57,13 @@ Step 3: "   -<u>042</u>" ("042" is read in, leading zeros ignored in the result)
                ^
 ```
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1337c0d3"
+- **Input:** s = "1337c0d3"
 
-**Output:** 1337
+- **Output:** 1337
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 Step 1: "1337c0d3" (no characters read because there is no leading whitespace)
          ^
 Step 2: "1337c0d3" (no characters read because there is neither a '-' nor '+')
@@ -83,17 +72,13 @@ Step 3: "<u>1337</u>c0d3" ("1337" is read in; reading stops because the next cha
              ^
 ```
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "0-1"
+- **Input:** s = "0-1"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-```
+- **Explanation:** ```
 Step 1: "0-1" (no characters read because there is no leading whitespace)
          ^
 Step 2: "0-1" (no characters read because there is neither a '-' nor '+')
@@ -102,19 +87,13 @@ Step 3: "<u>0</u>-1" ("0" is read in; reading stops because the next character i
           ^
 ```
 
-</div>
 #### Example 5
 
-<div class="example-block">
-**Input:** s = "words and 987"
+- **Input:** s = "words and 987"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Reading stops at the first non-digit character 'w'.
-
-</div>
+- **Explanation:** Reading stops at the first non-digit character 'w'.
 
 ### 4. Constraints
 

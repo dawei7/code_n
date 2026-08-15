@@ -10,8 +10,14 @@ Return *the number of restricted paths from node* `1` *to node* `n`. Since that 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *the number of restricted paths from node* `1` *to node* `n`. Since that 
 1) 1 --> 2 --> 5
 2) 1 --> 2 --> 3 --> 5
 3) 1 --> 3 --> 5
+
 #### Example 2
 
 ![](images/restricted_paths_ex22.png)

@@ -40,17 +40,17 @@ over every integer sequence $x$ that is non-decreasing or non-increasing.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,2,4,5,0]`
-- Output: `4`
+- **Input:** `nums = [3,2,4,5,0]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,2,3,4]`
-- Output: `0`
+- **Input:** `nums = [2,2,3,4]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0]`
-- Output: `0`
+- **Input:** `nums = [0]`
+- **Output:** `0`

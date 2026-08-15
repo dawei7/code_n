@@ -34,20 +34,20 @@ For each index $i$, let $H_i$ be its forced odd-jump destination and $L_i$ its f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [10, 13, 12, 14, 15]`
-- Output: `2`
-- Explanation: indices `3` and `4` are the only good starts.
+- **Input:** `arr = [10, 13, 12, 14, 15]`
+- **Output:** `2`
+- **Explanation:** indices `3` and `4` are the only good starts.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [2, 3, 1, 1, 4]`
-- Output: `3`
-- Explanation: indices `1`, `3`, and `4` can reach the end. Equal values at indices `2` and `3` demonstrate the smallest-index tie rule.
+- **Input:** `arr = [2, 3, 1, 1, 4]`
+- **Output:** `3`
+- **Explanation:** indices `1`, `3`, and `4` can reach the end. Equal values at indices `2` and `3` demonstrate the smallest-index tie rule.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [5, 1, 3, 4, 2]`
-- Output: `3`
-- Explanation: the good starting indices are `1`, `2`, and `4`.
+- **Input:** `arr = [5, 1, 3, 4, 2]`
+- **Output:** `3`
+- **Explanation:** the good starting indices are `1`, `2`, and `4`.

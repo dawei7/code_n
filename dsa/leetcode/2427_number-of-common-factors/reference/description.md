@@ -6,8 +6,14 @@ An integer `x` is a **common factor** of `a` and `b` if `x` divides both `a` and
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ An integer `x` is a **common factor** of `a` and `b` if `x` divides both `a` and
 - **Input:** $a = 12, b = 6$
 - **Output:** `4`
 - **Explanation:** The common factors of 12 and 6 are 1, 2, 3, 6.
+
 #### Example 2
 
 - **Input:** $a = 25, b = 30$

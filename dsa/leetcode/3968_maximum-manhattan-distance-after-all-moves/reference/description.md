@@ -34,14 +34,11 @@ Return the greatest possible value of $\lvert x_{\mathrm{final}}\rvert+\lvert y_
 
 #### Example 1
 
-<div class="example-block">
-**Input:** moves = "L_D_"
+- **Input:** moves = "L_D_"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-One optimal choice is:
+- **Explanation:** One optimal choice is:
 
 - `'L'`: `(0, 0) -> (-1, 0)`
 
@@ -53,17 +50,13 @@ One optimal choice is:
 
 The final Manhattan distance from the origin is $|0 - (-2)| + |0 - (-2)| = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** moves = "U_R"
+- **Input:** moves = "U_R"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-One optimal choice is:
+- **Explanation:** One optimal choice is:
 
 - `'U'`: `(0, 0) -> (0, 1)`
 
@@ -72,8 +65,6 @@ One optimal choice is:
 - `'R'`: `(0, 2) -> (1, 2)`
 
 The final Manhattan distance from the origin is $|0 - 1| + |0 - 2| = 3$.
-
-</div>
 
 ### 4. Constraints
 

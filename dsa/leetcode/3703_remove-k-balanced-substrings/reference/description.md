@@ -12,7 +12,6 @@ Return the final string after all possible removals.
 
 ​​​​​​​**Example 1:**
 
-<div class="example-block">
 **Input:** s = "(())", k = 1
 
 **Output:** ""
@@ -48,17 +47,13 @@ k-balanced substring is `"()"`
 
 Thus, the final string is `""`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "(()(", k = 1
+- **Input:** s = "(()(", k = 1
 
-**Output:** "(("
+- **Output:** "(("
 
-**Explanation:**
-
-k-balanced substring is `"()"`
+- **Explanation:** k-balanced substring is `"()"`
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -87,17 +82,13 @@ k-balanced substring is `"()"`
 
 Thus, the final string is `"(("`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "((()))()()()", k = 3
+- **Input:** s = "((()))()()()", k = 3
 
-**Output:** "()()()"
+- **Output:** "()()()"
 
-**Explanation:**
-
-k-balanced substring is `"((()))"`
+- **Explanation:** k-balanced substring is `"((()))"`
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -125,8 +116,6 @@ k-balanced substring is `"((()))"`
 </table>
 
 Thus, the final string is `"()()()"`.
-
-</div>
 
 ### 2. Function Contract
 

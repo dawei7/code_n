@@ -88,7 +88,7 @@ Return one column named `country`. Include exactly the country names whose avera
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Person table:
 +----+----------+--------------+
 | id | name     | phone_number |
@@ -125,14 +125,13 @@ Calls table:
 | 9         | 7         | 1        |
 | 1         | 7         | 7        |
 +-----------+-----------+----------+
-**Output:**
+- **Output:** 
 +----------+
 | country  |
 +----------+
 | Peru     |
 +----------+
-**Explanation:**
-The average call duration for Peru is (102 + 102 + 330 + 330 + 5 + 5) / 6 = 145.666667
+- **Explanation:** The average call duration for Peru is (102 + 102 + 330 + 330 + 5 + 5) / 6 = 145.666667
 The average call duration for Israel is (33 + 4 + 13 + 13 + 3 + 1 + 1 + 7) / 8 = 9.37500
 The average call duration for Morocco is (33 + 4 + 59 + 59 + 3 + 7) / 6 = 27.5000
 Global call duration average = (2 * (33 + 4 + 59 + 102 + 330 + 5 + 13 + 3 + 1 + 7)) / 20 = 55.70000

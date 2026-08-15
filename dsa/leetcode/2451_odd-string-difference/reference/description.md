@@ -12,8 +12,13 @@ Return* the string in *`words`* that has different **difference integer array**.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -21,11 +26,12 @@ Return* the string in *`words`* that has different **difference integer array**.
 
 - **Input:** $words = ["adc","wzy","abc"]$
 - **Output:** `"abc"`
-- **Explanation:**
+- **Explanation:** 
 - The difference integer array of "adc" is [3 - 0, 2 - 3] = [3, -1].
 - The difference integer array of "wzy" is [25 - 22, 24 - 25]= [3, -1].
 - The difference integer array of "abc" is [1 - 0, 2 - 1] = [1, 1].
 The odd array out is [1, 1], so we return the corresponding string, "abc".
+
 #### Example 2
 
 - **Input:** $words = ["aaa","bob","ccc","ddd"]$

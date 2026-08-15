@@ -30,19 +30,19 @@ Construct and return an array `ans` of length $N$. For every index `i`, first re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 2, 1, 5, 3, 4]`
-- Output: `[0, 1, 2, 4, 5, 3]`
+- **Input:** `nums = [0, 2, 1, 5, 3, 4]`
+- **Output:** `[0, 1, 2, 4, 5, 3]`
 
 For example, `ans[3] = nums[nums[3]] = nums[5] = 4`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 0, 1, 2, 3, 4]`
-- Output: `[4, 5, 0, 1, 2, 3]`
+- **Input:** `nums = [5, 0, 1, 2, 3, 4]`
+- **Output:** `[4, 5, 0, 1, 2, 3]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0]`
-- Output: `[0]`
+- **Input:** `nums = [0]`
+- **Output:** `[0]`

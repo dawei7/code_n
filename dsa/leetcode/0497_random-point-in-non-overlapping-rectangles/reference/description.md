@@ -6,8 +6,13 @@ Any integer point inside the space covered by one of the given rectangles should
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rects`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `the result`.
 
 ### 3. Note
 

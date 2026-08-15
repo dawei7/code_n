@@ -8,8 +8,10 @@ Return *the *`root`* of the modified tree*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `replaceValueInTree(root: Optional[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Note
 
@@ -30,6 +32,7 @@ that the depth of a node is the number of edges in the path from the root node t
 - Node with value 1 has a cousin with value 7 so its sum is 7.
 - Node with value 10 has a cousin with value 7 so its sum is 7.
 - Node with value 7 has cousins with values 1 and 10 so its sum is 11.
+
 #### Example 2
 
 ![](images/diagram33.png)

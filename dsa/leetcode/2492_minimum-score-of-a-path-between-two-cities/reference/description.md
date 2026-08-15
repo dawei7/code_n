@@ -8,8 +8,14 @@ Return the **minimum **possible score of a path between cities 1 and `n`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `roads`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -31,6 +37,7 @@ Return the **minimum **possible score of a path between cities 1 and `n`.
 - **Output:** `5`
 - **Explanation:** The path from city 1 to 4 with the minimum score is: 1 -> 2 -> 4. The score of this path is min(9,5) = 5.
 It can be shown that no other path has less score.
+
 #### Example 2
 
 ![](images/graph22.png)

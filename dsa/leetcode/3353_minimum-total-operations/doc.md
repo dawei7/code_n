@@ -32,14 +32,14 @@ Let $n=\lvert\texttt{nums}\rvert$. The source guarantees $1 \le n \le 10^5$ and 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 4, 2]`
-- Output: `2`
-- Explanation: Add $-2$ to the first two elements, producing `[-1, 2, 2]`, and then add $3$ to the first element.
+- **Input:** `nums = [1, 4, 2]`
+- **Output:** `2`
+- **Explanation:** Add $-2$ to the first two elements, producing `[-1, 2, 2]`, and then add $3$ to the first element.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10, 10, 10]`
-- Output: `0`
-- Explanation: The array is already constant, so no operation is needed.
+- **Input:** `nums = [10, 10, 10]`
+- **Output:** `0`
+- **Explanation:** The array is already constant, so no operation is needed.

@@ -10,8 +10,14 @@ It is **guaranteed** that there will be a winner of the game.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Round |       arr       | winner | win_count
 3   | [3,5,4,6,7,1,2] | 5      | 1
 4   | [5,4,6,7,1,2,3] | 5      | 2
 So we can see that 4 rounds will be played and 5 is the winner because it wins 2 consecutive games.
+
 #### Example 2
 
 - **Input:** `arr = [3,2,1], k = 10`

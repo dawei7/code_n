@@ -20,32 +20,23 @@ Return the **minimum** total time taken to visit the houses.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2]
+- **Input:** forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The path followed is $<u>0</u>^(0) → <u>1</u>^(1) →​​​​​​​ <u>2</u>^(5) <u>→</u> 1^(7) <u>→</u>​​​​​​​ <u>0</u>^(8) <u>→</u> <u>2</u>^(12)$.
+- **Explanation:** The path followed is $<u>0</u>^(0) → <u>1</u>^(1) →​​​​​​​ <u>2</u>^(5) <u>→</u> 1^(7) <u>→</u>​​​​​​​ <u>0</u>^(8) <u>→</u> <u>2</u>^(12)$.
 
 ### 4. Note
 
 The notation used is $node^(total time)$, `→` represents forward road, and `<u>→</u>` represents backward road.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]
+- **Input:** forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The path travelled is `<u>0</u> →​​​​​​​ <u>1</u> →​​​​​​​ <u>2</u> →​​​​​​​ <u>3</u> → <u>0</u>`. Each step is in the forward direction and requires 1 second.
-
-</div>
+- **Explanation:** The path travelled is `<u>0</u> →​​​​​​​ <u>1</u> →​​​​​​​ <u>2</u> →​​​​​​​ <u>3</u> → <u>0</u>`. Each step is in the forward direction and requires 1 second.
 
 ### 5. Constraints
 

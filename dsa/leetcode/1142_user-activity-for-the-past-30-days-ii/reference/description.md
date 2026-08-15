@@ -40,7 +40,7 @@ The inclusive 30-day period is `2019-06-28` through `2019-07-27`. Count each qua
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Activity table:
 +---------+------------+---------------+---------------+
 | user_id | session_id | activity_date | activity_type |
@@ -60,11 +60,11 @@ Activity table:
 | 4       | 3          | 2019-06-25    | open_session  |
 | 4       | 3          | 2019-06-25    | end_session   |
 +---------+------------+---------------+---------------+
-**Output:**
+- **Output:** 
 +---------------------------+
 | average_sessions_per_user |
 +---------------------------+
 | 1.33                      |
 +---------------------------+
-**Explanation:** User 1 and 2 each had 1 session in the past 30 days while user 3 had 2 sessions so the average is (1 + 1 + 2) / 3 = 1.33.
+- **Explanation:** User 1 and 2 each had 1 session in the past 30 days while user 3 had 2 sessions so the average is (1 + 1 + 2) / 3 = 1.33.
 ```

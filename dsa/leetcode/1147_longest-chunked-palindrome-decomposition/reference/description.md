@@ -12,8 +12,13 @@ Return the largest possible value of `k`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `text`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ Return the largest possible value of `k`.
 - **Input:** $text = "ghiabcdefhelloadamhelloabcdefghi"$
 - **Output:** `7`
 - **Explanation:** We can split the string on "(ghi)(abcdef)(hello)(adam)(hello)(abcdef)(ghi)".
+
 #### Example 2
 
 - **Input:** $text = "merchant"$
 - **Output:** `1`
 - **Explanation:** We can split the string on "(merchant)".
+
 #### Example 3
 
 - **Input:** $text = "antaprezatepzapreanta"$

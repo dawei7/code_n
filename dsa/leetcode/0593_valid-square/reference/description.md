@@ -8,8 +8,16 @@ A **valid square** has four equal sides with positive length and four equal angl
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `p1`: Input parameter (`List[int]`).
+- `p2`: Input parameter (`List[int]`).
+- `p3`: Input parameter (`List[int]`).
+- `p4`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,10 +25,12 @@ A **valid square** has four equal sides with positive length and four equal angl
 
 - **Input:** $p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,1]$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $p1 = [0,0], p2 = [1,1], p3 = [1,0], p4 = [0,12]$
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** $p1 = [1,0], p2 = [-1,0], p3 = [0,1], p4 = [0,-1]$

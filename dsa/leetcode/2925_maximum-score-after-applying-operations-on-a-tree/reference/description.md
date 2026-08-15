@@ -18,8 +18,14 @@ Return *the **maximum score** you can obtain after performing these operations o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+- `values`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +37,7 @@ Return *the **maximum score** you can obtain after performing these operations o
 - **Output:** `11`
 - **Explanation:** We can choose nodes 1, 2, 3, 4, and 5. The value of the root is non-zero. Hence, the sum of values on the path from the root to any leaf is different than zero. Therefore, the tree is healthy and the score is values[1] + values[2] + values[3] + values[4] + values[5] = 11.
 It can be shown that 11 is the maximum score obtainable after any number of operations on the tree.
+
 #### Example 2
 
 ![](images/graph-14-2.png)

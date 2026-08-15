@@ -33,20 +33,20 @@ Return the minimum possible length of `nums` after any legal sequence of adjacen
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 3, 7, 3, 5], k = 20`
-- Output: `3`
-- Explanation: Merge the first three values into `18` and the final two values into `15`, producing `[18, 7, 15]`.
+- **Input:** `nums = [2, 3, 3, 7, 3, 5], k = 20`
+- **Output:** `3`
+- **Explanation:** Merge the first three values into `18` and the final two values into `15`, producing `[18, 7, 15]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 3, 3, 3], k = 6`
-- Output: `4`
-- Explanation: Every adjacent product is `9`, so no operation is legal.
+- **Input:** `nums = [3, 3, 3, 3], k = 6`
+- **Output:** `4`
+- **Explanation:** Every adjacent product is `9`, so no operation is legal.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1000000000, 2, 0, 1000000000], k = 1`
-- Output: `1`
-- Explanation: Merge the zero with an adjacent value; the product remains zero and can continue absorbing every remaining neighbor.
+- **Input:** `nums = [1000000000, 2, 0, 1000000000], k = 1`
+- **Output:** `1`
+- **Explanation:** Merge the zero with an adjacent value; the product remains zero and can continue absorbing every remaining neighbor.

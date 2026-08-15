@@ -30,20 +30,20 @@ Choose `k` from `0` through $n - 1$ to maximize the total score. Return the smal
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,3,1,4,0]`
-- Output: `3`
-- Explanation: Rotating left three places produces `[4,0,2,3,1]`, where four values are no greater than their indices; no earlier rotation scores as highly.
+- **Input:** `nums = [2,3,1,4,0]`
+- **Output:** `3`
+- **Explanation:** Rotating left three places produces `[4,0,2,3,1]`, where four values are no greater than their indices; no earlier rotation scores as highly.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,3,0,2,4]`
-- Output: `0`
-- Explanation: The original arrangement already achieves the maximum score, so the smallest maximizing rotation is zero.
+- **Input:** `nums = [1,3,0,2,4]`
+- **Output:** `0`
+- **Explanation:** The original arrangement already achieves the maximum score, so the smallest maximizing rotation is zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0,0,0]`
-- Output: `0`
-- Explanation: Every rotation scores all three positions, and the smallest tied rotation is zero.
+- **Input:** `nums = [0,0,0]`
+- **Output:** `0`
+- **Explanation:** Every rotation scores all three positions, and the smallest tied rotation is zero.

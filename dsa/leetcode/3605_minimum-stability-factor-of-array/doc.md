@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-stability-factor-of-array/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given an integer array `nums` and an integer `maxC`. A subarray is **stable** when the highest common factor (HCF), equivalently the greatest common divisor, of all its elements is at least $2$. The array's **stability factor** is the length of its longest stable subarray.
@@ -34,20 +35,20 @@ Return the minimum possible length of the longest stable subarray after at most 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 5, 10], maxC = 1`
-- Output: `1`
-- Explanation: `[5, 10]` initially has HCF $5$. Changing the middle element can eliminate every stable subarray longer than one.
+- **Input:** `nums = [3, 5, 10], maxC = 1`
+- **Output:** `1`
+- **Explanation:** `[5, 10]` initially has HCF $5$. Changing the middle element can eliminate every stable subarray longer than one.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 6, 8], maxC = 2`
-- Output: `1`
-- Explanation: Two changes can break the common factor shared by every multi-element stable subarray, but the unchanged value `2` still forms a stable length-one subarray.
+- **Input:** `nums = [2, 6, 8], maxC = 2`
+- **Output:** `1`
+- **Explanation:** Two changes can break the common factor shared by every multi-element stable subarray, but the unchanged value `2` still forms a stable length-one subarray.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 4, 9, 6], maxC = 1`
-- Output: `2`
-- Explanation: `[2, 4]` and `[9, 6]` are disjoint stable pairs, so one change cannot destroy both.
+- **Input:** `nums = [2, 4, 9, 6], maxC = 1`
+- **Output:** `2`
+- **Explanation:** `[2, 4]` and `[9, 6]` are disjoint stable pairs, so one change cannot destroy both.

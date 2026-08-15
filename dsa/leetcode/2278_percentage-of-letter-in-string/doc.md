@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/percentage-of-letter-in-string/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a nonempty lowercase English string `s` and one lowercase
 English character `letter`. Determine what percentage of the positions in `s`
 contain exactly `letter`.
@@ -28,6 +30,7 @@ Thus any fractional part is discarded rather than rounded to the nearest
 integer.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a lowercase English string with length between 1 and 100
@@ -46,21 +49,22 @@ $$
 $$
 
 ### Examples
-**Example 1**
 
-- Input: `s = "foobar", letter = "o"`
-- Output: `33`
+#### Example 1
+
+- **Input:** `s = "foobar", letter = "o"`
+- **Output:** `33`
 
 Two of six positions match, and $\lfloor 200/6\rfloor=33$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "jjjj", letter = "k"`
-- Output: `0`
+- **Input:** `s = "jjjj", letter = "k"`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abc", letter = "a"`
-- Output: `33`
+- **Input:** `s = "abc", letter = "a"`
+- **Output:** `33`
 
 One third is rounded down from approximately $33.33\%$.

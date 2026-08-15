@@ -14,13 +14,11 @@ For example, consider `s = "abbbdd"` and $k = 2$:
 
 - Some k-subsequences of `s` are:
 
-		<li>`"<u>**ab**</u>bbdd"` -> `"ab"` having a beauty of $f('a') + f('b') = 4$
+		- `"<u>**ab**</u>bbdd"` -> `"ab"` having a beauty of $f('a') + f('b') = 4$
 
 - `"<u>**a**</u>bbb**<u>d</u>**d"` -> `"ad"` having a beauty of $f('a') + f('d') = 3$
 
 - `"a**<u>b</u>**bb<u>**d**</u>d"` -> `"bd"` having a beauty of $f('b') + f('d') = 5$
-
-	</li>
 
 Return *an integer denoting the number of k-subsequences **whose **beauty** is the **maximum** among all **k-subsequences***. Since the answer may be too large, return it modulo $10^{9} + 7$.
 
@@ -28,8 +26,14 @@ A subsequence of a string is a new string formed from the original string by del
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -52,6 +56,7 @@ b**<u>c</u>**c<u>**a**</u>** **having a beauty of f('c') + f('a') = 3
 bc**<u>ca</u>** having a beauty of f('c') + f('a') = 3
 There are 4 k-subsequences that have the maximum beauty, 3.
 Hence, the answer is 4.
+
 #### Example 2
 
 - **Input:** `s = "abbcd", k = 4`

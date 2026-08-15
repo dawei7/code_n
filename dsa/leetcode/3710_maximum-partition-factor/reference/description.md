@@ -26,14 +26,11 @@ Return the maximum, over all valid two-group assignments, of the minimum intra-g
 
 #### Example 1
 
-<div class="example-block">
-**Input:** points = [[0,0],[0,2],[2,0],[2,2]]
+- **Input:** points = [[0,0],[0,2],[2,0],[2,2]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-We split the points into two groups: ${[0, 0], [2, 2]}$ and ${[0, 2], [2, 0]}$.
+- **Explanation:** We split the points into two groups: ${[0, 0], [2, 2]}$ and ${[0, 2], [2, 0]}$.
 
 - In the first group, the only pair has Manhattan distance $|0 - 2| + |0 - 2| = 4$.
 
@@ -41,15 +38,13 @@ We split the points into two groups: ${[0, 0], [2, 2]}$ and ${[0, 2], [2, 0]}$.
 
 The partition factor of this split is $min(4, 4) = 4$, which is maximal.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** points = [[0,0],[0,1],[10,0]]
+- **Input:** points = [[0,0],[0,1],[10,0]]
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:​​​​​​​**
+- **Explanation:** ​​​​​​​**
 
 We split the points into two groups: ${[0, 1], [10, 0]}$ and ${[0, 0]}$.
 
@@ -58,8 +53,6 @@ We split the points into two groups: ${[0, 1], [10, 0]}$ and ${[0, 0]}$.
 - The second group is a singleton, so it contributes no pairs.
 
 The partition factor of this split is `11`, which is maximal.
-
-</div>
 
 ### 4. Constraints
 

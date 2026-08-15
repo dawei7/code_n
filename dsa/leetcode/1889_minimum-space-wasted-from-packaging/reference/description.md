@@ -12,8 +12,14 @@ Return *the **minimum total wasted space** by choosing the box supplier **optima
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `packages`: Input parameter (`List[int]`).
+- `boxes`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,11 +29,13 @@ Return *the **minimum total wasted space** by choosing the box supplier **optima
 - **Output:** `6`
 **Explanation**: It is optimal to choose the first supplier, using two size-4 boxes and one size-8 box.
 The total waste is (4-2) + (4-3) + (8-5) = 6.
+
 #### Example 2
 
 - **Input:** $packages = [2,3,5], boxes = [[1,4],[2,3],[3,4]]$
 - **Output:** `-1`
 - **Explanation:** There is no box that the package of size 5 can fit in.
+
 #### Example 3
 
 - **Input:** $packages = [3,5,8,10,11,12], boxes = [[12],[11,9],[10,5,14]]$

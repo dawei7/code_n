@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/random-pick-with-weight/) |
 
 ## Problem Description
+
 ### Goal
+
 Construct a picker from an array `w` of positive integer weights. Let $w_i$ be the weight at index $i$ and $W=\sum_j w_j$. The required selection probability for index $i$ is $w_i/W$, rather than an equal share among indices.
 
 Each `pickIndex()` call must return a valid zero-based index according to that distribution, making a fresh random selection without modifying the weights. Larger weights must be proportionally more likely, while equal weights have equal probability. The method returns an index rather than its weight, and repeated calls need not avoid indices selected earlier.
 
 ### Function Contract
+
 **Inputs**
 
 - `w`: positive integer weights for the indices
@@ -25,17 +28,18 @@ Each `pickIndex()` call must return a valid zero-based index according to that d
 - For the app adapter, the selected index for every supplied draw, in order
 
 ### Examples
-**Example 1**
 
-- Input: `w = [1], random_values = [0.0, 0.5, 0.999]`
-- Output: `[0, 0, 0]`
+#### Example 1
 
-**Example 2**
+- **Input:** `w = [1], random_values = [0.0, 0.5, 0.999]`
+- **Output:** `[0, 0, 0]`
 
-- Input: `w = [1, 3], random_values = [0.0, 0.249, 0.25, 0.999]`
-- Output: `[0, 0, 1, 1]`
+#### Example 2
 
-**Example 3**
+- **Input:** `w = [1, 3], random_values = [0.0, 0.249, 0.25, 0.999]`
+- **Output:** `[0, 0, 1, 1]`
 
-- Input: `w = [3, 1, 2], random_values = [0.1, 0.49, 0.5, 0.66, 0.67, 0.99]`
-- Output: `[0, 0, 1, 1, 2, 2]`
+#### Example 3
+
+- **Input:** `w = [3, 1, 2], random_values = [0.1, 0.49, 0.5, 0.66, 0.67, 0.99]`
+- **Output:** `[0, 0, 1, 1, 2, 2]`

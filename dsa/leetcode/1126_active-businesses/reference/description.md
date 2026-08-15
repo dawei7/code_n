@@ -42,7 +42,7 @@ $Events(\text{business}_{id}, \text{event}_{type}, occurrences)$ contains $R$ ro
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Events table:
 +-------------+------------+-------------+
 | business_id | event_type | occurrences |
@@ -55,14 +55,13 @@ Events table:
 | 1           | page views | 3           |
 | 2           | page views | 12          |
 +-------------+------------+-------------+
-**Output:**
+- **Output:** 
 +-------------+
 | business_id |
 +-------------+
 | 1           |
 +-------------+
-**Explanation:**
-The average activity for each event can be calculated as follows:
+- **Explanation:** The average activity for each event can be calculated as follows:
 - 'reviews': (7+3)/2 = 5
 - 'ads': (11+7+6)/3 = 8
 - 'page views': (3+12)/2 = 7.5

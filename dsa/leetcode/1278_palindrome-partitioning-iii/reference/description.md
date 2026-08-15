@@ -10,8 +10,14 @@ Return *the minimal number of characters that you need to change to divide the s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Return *the minimal number of characters that you need to change to divide the s
 - **Input:** `s = "abc", k = 2`
 - **Output:** `1`
 - **Explanation:** You can split the string into "ab" and "c", and change 1 character in "ab" to make it palindrome.
+
 #### Example 2
 
 - **Input:** `s = "aabbc", k = 3`
 - **Output:** `0`
 - **Explanation:** You can split the string into "aa", "bb" and "c", all of them are palindrome.
+
 #### Example 3
 
 - **Input:** `s = "leetcode", k = 8`

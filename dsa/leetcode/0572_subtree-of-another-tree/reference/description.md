@@ -6,8 +6,10 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `isSubtree(root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 
 - **Input:** `root = [3,4,5,1,2], subRoot = [4,1,2]`
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/subtree2-tree.jpg)

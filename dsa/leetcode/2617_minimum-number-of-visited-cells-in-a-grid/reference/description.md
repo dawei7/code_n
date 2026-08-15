@@ -12,8 +12,13 @@ Return *the minimum number of cells you need to visit to reach the **bottom-righ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the minimum number of cells you need to visit to reach the **bottom-righ
 - **Input:** `grid = [[3,4,2,1],[4,2,3,1],[2,1,0,0],[2,4,0,0]]`
 - **Output:** `4`
 - **Explanation:** The image above shows one of the paths that visits exactly 4 cells.
+
 #### Example 2
 
 ![](images/ex2.png)
@@ -31,6 +37,7 @@ Return *the minimum number of cells you need to visit to reach the **bottom-righ
 - **Input:** `grid = [[3,4,2,1],[4,2,1,1],[2,1,1,0],[3,4,1,0]]`
 - **Output:** `3`
 - **Explanation:** The image above shows one of the paths that visits exactly 3 cells.
+
 #### Example 3
 
 ![](images/ex3.png)

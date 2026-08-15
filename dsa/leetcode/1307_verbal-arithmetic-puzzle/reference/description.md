@@ -16,8 +16,14 @@ Return `true` *if the equation is solvable, otherwise return* `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `result`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -27,12 +33,14 @@ Return `true` *if the equation is solvable, otherwise return* `false`.
 - **Output:** `true`
 - **Explanation:** Map 'S'-> 9, 'E'->5, 'N'->6, 'D'->7, 'M'->1, 'O'->0, 'R'->8, 'Y'->'2'
 Such that: "SEND" + "MORE" = "MONEY" ,  9567 + 1085 = 10652
+
 #### Example 2
 
 - **Input:** $words = ["SIX","SEVEN","SEVEN"], result = "TWENTY"$
 - **Output:** `true`
 - **Explanation:** Map 'S'-> 6, 'I'->5, 'X'->0, 'E'->8, 'V'->7, 'N'->2, 'T'->1, 'W'->'3', 'Y'->4
 Such that: "SIX" + "SEVEN" + "SEVEN" = "TWENTY" ,  650 + 68782 + 68782 = 138214
+
 #### Example 3
 
 - **Input:** $words = ["LEET","CODE"], result = "POINT"$

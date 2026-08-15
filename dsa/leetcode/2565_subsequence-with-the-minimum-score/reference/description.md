@@ -18,8 +18,14 @@ A **subsequence** of a string is a new string that is formed from the original s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `t`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +36,7 @@ A **subsequence** of a string is a new string that is formed from the original s
 - **Explanation:** In this example, we remove the character "z" at index 1 (0-indexed).
 The string t becomes "baa" which is a subsequence of the string "abacaba" and the score is 1 - 1 + 1 = 1.
 It can be proven that 1 is the minimum score that we can achieve.
+
 #### Example 2
 
 - **Input:** `s = "cde", t = "xyz"`

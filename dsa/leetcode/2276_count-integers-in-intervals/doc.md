@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-integers-in-intervals/) |
 
 ## Problem Description
+
 ### Goal
+
 Design a data structure that starts with no intervals and supports a persistent
 sequence of interval additions and coverage-count queries.
 
@@ -27,6 +29,7 @@ least one interval added so far. Implement `CountIntervals` so all operations
 in the trace share the same state.
 
 ### Function Contract
+
 **Inputs**
 
 - `operations`: a list beginning with `"CountIntervals"`, followed by `"add"`
@@ -47,25 +50,26 @@ Return one result per operation. Construction and `add` return `null`;
 `count` returns the current number of distinct covered integers.
 
 ### Examples
-**Example 1**
 
-- Input: `operations = ["CountIntervals","add","add","count","add","count"]`,
+#### Example 1
+
+- **Input:** `operations = ["CountIntervals","add","add","count","add","count"]`,
   `arguments = [[],[2,3],[7,10],[],[5,8],[]]`
-- Output: `[null,null,null,6,null,8]`
+- **Output:** `[null,null,null,6,null,8]`
 
 After the first two additions, `{2,3,7,8,9,10}` is covered. Adding `[5,8]`
 expands the union to eight integers.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["CountIntervals","add","add","count"]`,
+- **Input:** `operations = ["CountIntervals","add","add","count"]`,
   `arguments = [[],[1,5],[2,4],[]]`
-- Output: `[null,null,null,5]`
+- **Output:** `[null,null,null,5]`
 
 The nested interval adds no new integer.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["CountIntervals","add","add","count"]`,
+- **Input:** `operations = ["CountIntervals","add","add","count"]`,
   `arguments = [[],[1,1],[1000000000,1000000000],[]]`
-- Output: `[null,null,null,2]`
+- **Output:** `[null,null,null,2]`

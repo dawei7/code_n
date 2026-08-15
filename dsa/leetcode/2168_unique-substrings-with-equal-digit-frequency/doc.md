@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/unique-substrings-with-equal-digit-frequency/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a string `s` made only of decimal digits, consider every nonempty
@@ -23,6 +24,7 @@ digit sequence itself rather than its positions in `s`, so multiple
 occurrences of identical text contribute only once.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a string of length $n$, where $1\le n\le 1000$ and every character is a
@@ -36,26 +38,27 @@ Return the number of distinct substring strings in which every present digit
 occurs equally often.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "1212"`
-- Output: `5`
+#### Example 1
+
+- **Input:** `s = "1212"`
+- **Output:** `5`
 
 The qualifying values are `"1"`, `"2"`, `"12"`, `"21"`, and `"1212"`.
 Although `"12"` occurs twice, it is counted once.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "12321"`
-- Output: `9`
+- **Input:** `s = "12321"`
+- **Output:** `9`
 
 The qualifying values are the three one-character strings, `"12"`, `"23"`,
 `"32"`, `"21"`, `"123"`, and `"321"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "000"`
-- Output: `3`
+- **Input:** `s = "000"`
+- **Output:** `3`
 
 The distinct values `"0"`, `"00"`, and `"000"` each contain only one
 present digit, so all three qualify.

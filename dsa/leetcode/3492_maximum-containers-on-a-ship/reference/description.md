@@ -8,35 +8,33 @@ Return the **maximum** number of containers that can be loaded onto the ship.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `w`: Input parameter (`int`).
+- `maxWeight`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, w = 3, maxWeight = 15
+- **Input:** n = 2, w = 3, maxWeight = 15
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation: **
+- **Explanation:** The deck has 4 cells, and each container weighs 3. The total weight of loading all containers is 12, which does not exceed `maxWeight`.
 
-The deck has 4 cells, and each container weighs 3. The total weight of loading all containers is 12, which does not exceed `maxWeight`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, w = 5, maxWeight = 20
+- **Input:** n = 3, w = 5, maxWeight = 20
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation: **
-
-The deck has 9 cells, and each container weighs 5. The maximum number of containers that can be loaded without exceeding `maxWeight` is 4.
-
-</div>
+- **Explanation:** The deck has 9 cells, and each container weighs 5. The maximum number of containers that can be loaded without exceeding `maxWeight` is 4.
 
 ### 4. Constraints
 

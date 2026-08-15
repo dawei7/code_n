@@ -32,22 +32,22 @@ Given uppercase English strings `str1` and `str2`, return the largest string `x`
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `str1 = "ABCABC", str2 = "ABC"`
-- Output: `"ABC"`
+- **Input:** `str1 = "ABCABC", str2 = "ABC"`
+- **Output:** `"ABC"`
 
-**Example 2**
+#### Example 2
 
-- Input: `str1 = "ABABAB", str2 = "ABAB"`
-- Output: `"AB"`
+- **Input:** `str1 = "ABABAB", str2 = "ABAB"`
+- **Output:** `"AB"`
 
-**Example 3**
+#### Example 3
 
-- Input: `str1 = "LEET", str2 = "CODE"`
-- Output: `""`
+- **Input:** `str1 = "LEET", str2 = "CODE"`
+- **Output:** `""`
 
-**Example 4**
+#### Example 4
 
-- Input: `str1 = "AAAAAB", str2 = "AAA"`
-- Output: `""`
+- **Input:** `str1 = "AAAAAB", str2 = "AAA"`
+- **Output:** `""`

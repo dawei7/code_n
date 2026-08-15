@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-operations-to-obtain-zero/) |
 
 ## Problem Description
+
 ### Goal
 
 Start with two non-negative integers `num1` and `num2`. While both are
@@ -25,6 +26,7 @@ zero. If an input is already zero, the process stops without performing an
 operation.
 
 ### Function Contract
+
 **Inputs**
 
 - `num1`: an integer between $0$ and $10^5$, inclusive.
@@ -42,25 +44,26 @@ Return the exact number of prescribed subtraction operations needed to make
 `num1` or `num2` equal zero.
 
 ### Examples
-**Example 1**
 
-- Input: `num1 = 2, num2 = 3`
-- Output: `3`
+#### Example 1
+
+- **Input:** `num1 = 2, num2 = 3`
+- **Output:** `3`
 
 The states are `(2, 3)`, `(2, 1)`, `(1, 1)`, and `(0, 1)`, so three
 operations are performed.
 
-**Example 2**
+#### Example 2
 
-- Input: `num1 = 10, num2 = 10`
-- Output: `1`
+- **Input:** `num1 = 10, num2 = 10`
+- **Output:** `1`
 
 Equality follows the `num1 >= num2` rule, and one subtraction changes the
 first value to zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `num1 = 0, num2 = 7`
-- Output: `0`
+- **Input:** `num1 = 0, num2 = 7`
+- **Output:** `0`
 
 The stopping condition already holds.

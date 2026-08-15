@@ -8,8 +8,15 @@ After completing all the steps, return *the sorted list of **occupied** position
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `moveFrom`: Input parameter (`List[int]`).
+- `moveTo`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -28,6 +35,7 @@ At the i = 0th step, we move the marbles at position 1 to position 2. Then, posi
 At the i = 1st step, we move the marbles at position 7 to position 9. Then, positions 2,6,8,9 are occupied.
 At the i = 2nd step, we move the marbles at position 2 to position 5. Then, positions 5,6,8,9 are occupied.
 At the end, the final positions containing at least one marbles are [5,6,8,9].
+
 #### Example 2
 
 - **Input:** `nums = [1,1,3,3], moveFrom = [1,3], moveTo = [2,2]`

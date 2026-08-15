@@ -41,20 +41,20 @@ $100$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `seats = [3, 1, 5], students = [2, 7, 4]`
-- Output: `4`
-- Explanation: The sorted matches cost `1`, `1`, and `2` moves.
+- **Input:** `seats = [3, 1, 5], students = [2, 7, 4]`
+- **Output:** `4`
+- **Explanation:** The sorted matches cost `1`, `1`, and `2` moves.
 
-**Example 2**
+#### Example 2
 
-- Input: `seats = [4, 1, 5, 9], students = [1, 3, 2, 6]`
-- Output: `7`
+- **Input:** `seats = [4, 1, 5, 9], students = [1, 3, 2, 6]`
+- **Output:** `7`
 
-**Example 3**
+#### Example 3
 
-- Input: `seats = [2, 2, 6, 6], students = [1, 3, 2, 6]`
-- Output: `4`
-- Explanation: Both seats at position `2` and both seats at position `6` are
+- **Input:** `seats = [2, 2, 6, 6], students = [1, 3, 2, 6]`
+- **Output:** `4`
+- **Explanation:** Both seats at position `2` and both seats at position `6` are
   separate assignable occurrences.

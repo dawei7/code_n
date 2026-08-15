@@ -6,8 +6,13 @@ Return* the total number of **bad pairs** in *`nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ The pair (0, 3) is a bad pair since 3 - 0 != 3 - 4, 3 != -1.
 The pair (1, 2) is a bad pair since 2 - 1 != 3 - 1, 1 != 2.
 The pair (2, 3) is a bad pair since 3 - 2 != 3 - 3, 1 != 0.
 There are a total of 5 bad pairs, so we return 5.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5]`

@@ -32,17 +32,17 @@ Return a sequence of those operation names that makes the final stack equal `tar
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = [1,3], n = 3`
-- Output: `["Push","Push","Pop","Push"]`
+- **Input:** `target = [1,3], n = 3`
+- **Output:** `["Push","Push","Pop","Push"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `target = [1,2,3], n = 3`
-- Output: `["Push","Push","Push"]`
+- **Input:** `target = [1,2,3], n = 3`
+- **Output:** `["Push","Push","Push"]`
 
-**Example 3**
+#### Example 3
 
-- Input: `target = [2,3,4], n = 4`
-- Output: `["Push","Pop","Push","Push","Push"]`
+- **Input:** `target = [2,3,4], n = 4`
+- **Output:** `["Push","Pop","Push","Push","Push"]`

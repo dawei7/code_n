@@ -4,8 +4,13 @@ Given a string `s`, return `true` *if the *`s`* can be palindrome after deleting
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -13,11 +18,13 @@ Given a string `s`, return `true` *if the *`s`* can be palindrome after deleting
 
 - **Input:** `s = "aba"`
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** `s = "abca"`
 - **Output:** `true`
 - **Explanation:** You could delete the character 'c'.
+
 #### Example 3
 
 - **Input:** `s = "abc"`

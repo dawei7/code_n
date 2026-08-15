@@ -10,8 +10,15 @@ Given `n`, `goal`, and `k`, return *the number of possible playlists that you ca
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `goal`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +27,13 @@ Given `n`, `goal`, and `k`, return *the number of possible playlists that you ca
 - **Input:** $n = 3, goal = 3, k = 1$
 - **Output:** `6`
 - **Explanation:** There are 6 possible playlists: [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], and [3, 2, 1].
+
 #### Example 2
 
 - **Input:** $n = 2, goal = 3, k = 0$
 - **Output:** `6`
 - **Explanation:** There are 6 possible playlists: [1, 1, 2], [1, 2, 1], [2, 1, 1], [2, 2, 1], [2, 1, 2], and [1, 2, 2].
+
 #### Example 3
 
 - **Input:** $n = 2, goal = 3, k = 1$

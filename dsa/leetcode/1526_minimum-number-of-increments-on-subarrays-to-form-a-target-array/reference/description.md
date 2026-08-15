@@ -10,8 +10,13 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,11 +29,13 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 [1,**<u>1,1,1</u>**,1] increment 1 from index 1 to 3 (inclusive).
 [1,2,**<u>2</u>**,2,1] increment 1 at index 2.
 [1,2,3,2,1] target array is formed.
+
 #### Example 2
 
 - **Input:** $target = [3,1,1,2]$
 - **Output:** `4`
 - **Explanation:** [**<u>0,0,0,0</u>**] -> [1,1,1,**<u>1</u>**] -> [**<u>1</u>**,1,1,2] -> [**<u>2</u>**,1,1,2] -> [3,1,1,2]
+
 #### Example 3
 
 - **Input:** $target = [3,1,5,4,2]$

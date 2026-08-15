@@ -30,14 +30,14 @@ The suffix after the last element is empty and therefore contains zero distinct 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4,5]`
-- Output: `[-3,-1,1,3,5]`
-- Explanation: Every value is unique, so the prefix count grows by one while the suffix count shrinks by one.
+- **Input:** `nums = [1,2,3,4,5]`
+- **Output:** `[-3,-1,1,3,5]`
+- **Explanation:** Every value is unique, so the prefix count grows by one while the suffix count shrinks by one.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,2,3,4,2]`
-- Output: `[-2,-1,0,2,3]`
-- Explanation: Repetitions keep some distinct counts unchanged as the dividing point moves.
+- **Input:** `nums = [3,2,3,4,2]`
+- **Output:** `[-2,-1,0,2,3]`
+- **Explanation:** Repetitions keep some distinct counts unchanged as the dividing point moves.

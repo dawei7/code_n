@@ -34,14 +34,14 @@ Return the distinct occupied positions after all moves, sorted in ascending orde
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,6,7,8]`, `moveFrom = [1,7,2]`, `moveTo = [2,9,5]`
-- Output: `[5,6,8,9]`
-- Explanation: The occupied-position set changes from `{1,6,7,8}` to `{2,6,7,8}`, then `{2,6,8,9}`, and finally `{5,6,8,9}`.
+- **Input:** `nums = [1,6,7,8]`, `moveFrom = [1,7,2]`, `moveTo = [2,9,5]`
+- **Output:** `[5,6,8,9]`
+- **Explanation:** The occupied-position set changes from `{1,6,7,8}` to `{2,6,7,8}`, then `{2,6,8,9}`, and finally `{5,6,8,9}`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,3,3]`, `moveFrom = [1,3]`, `moveTo = [2,2]`
-- Output: `[2]`
-- Explanation: Both groups of marbles move to position `2`, leaving a single occupied position.
+- **Input:** `nums = [1,1,3,3]`, `moveFrom = [1,3]`, `moveTo = [2,2]`
+- **Output:** `[2]`
+- **Explanation:** Both groups of marbles move to position `2`, leaving a single occupied position.

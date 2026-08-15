@@ -8,8 +8,14 @@ Return *the resulting string*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+- `ch`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -19,12 +25,14 @@ Return *the resulting string*.
 - **Output:** `"<u>dcba</u>efd"`
 - **Explanation:** The first occurrence of "d" is at index 3.
 Reverse the part of word from 0 to 3 (inclusive), the resulting string is "dcbaefd".
+
 #### Example 2
 
 - **Input:** $word = "<u>xyxz</u>xe", ch = "z"$
 - **Output:** `"<u>zxyx</u>xe"`
 - **Explanation:** The first and only occurrence of "z" is at index 3.
 Reverse the part of word from 0 to 3 (inclusive), the resulting string is "zxyxxe".
+
 #### Example 3
 
 - **Input:** $word = "abcd", ch = "z"$

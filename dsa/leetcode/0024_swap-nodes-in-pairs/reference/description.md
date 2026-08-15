@@ -16,40 +16,29 @@ Return the head after swapping the first node with the second, the third with th
 
 #### Example 1
 
-<div class="example-block">
-**Input:** head = [1,2,3,4]
+- **Input:** head = [1,2,3,4]
 
-**Output:** [2,1,4,3]
+- **Output:** [2,1,4,3]
 
-**Explanation:**
+- **Explanation:** ![](images/swap_ex1.jpg)
 
-![](images/swap_ex1.jpg)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** head = []
+- **Input:** head = []
 
-**Output:** []
+- **Output:** []
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** head = [1]
+- **Input:** head = [1]
 
-**Output:** [1]
+- **Output:** [1]
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** head = [1,2,3]
+- **Input:** head = [1,2,3]
 
-**Output:** [2,1,3]
-
-</div>
+- **Output:** [2,1,3]
 
 ### 4. Constraints
 

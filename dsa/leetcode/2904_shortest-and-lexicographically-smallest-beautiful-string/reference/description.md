@@ -14,8 +14,14 @@ A string `a` is lexicographically **larger** than a string `b` (of the same leng
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -33,6 +39,7 @@ A string `a` is lexicographically **larger** than a string `b` (of the same leng
 7. The substring "1000<u>11001</u>".
 The length of the shortest beautiful substring is 5.
 The lexicographically smallest beautiful substring with length 5 is the substring "11001".
+
 #### Example 2
 
 - **Input:** `s = "1011", k = 2`
@@ -43,6 +50,7 @@ The lexicographically smallest beautiful substring with length 5 is the substrin
 3. The substring "10<u>11</u>".
 The length of the shortest beautiful substring is 2.
 The lexicographically smallest beautiful substring with length 2 is the substring "11".
+
 #### Example 3
 
 - **Input:** `s = "000", k = 1`

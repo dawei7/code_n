@@ -40,7 +40,7 @@ Let $n$ be the number of input rows and $c$ the number of qualifying candidates.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Candidates 123 and 147 each have all three required skills, so the result is:
 
@@ -49,12 +49,12 @@ Candidates 123 and 147 each have all three required skills, so the result is:
 | 123 |
 | 147 |
 
-**Example 2**
+#### Example 2
 
 A candidate with `Python`, `Tableau`, and `Java` is omitted because
 `PostgreSQL` is missing.
 
-**Example 3**
+#### Example 3
 
 A candidate who has the three required skills plus `R` still qualifies;
 unrelated additional skills do not change the result.

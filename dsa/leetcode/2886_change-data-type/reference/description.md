@@ -28,7 +28,8 @@ The result format is in the following example.
 ### 3. Examples
 
 #### Example 1
-**Input:
+
+- **Input:** 
 **DataFrame students:
 +------------+------+-----+-------+
 | student_id | name | age | grade |
@@ -36,13 +37,12 @@ The result format is in the following example.
 | 1          | Ava  | 6   | 73.0  |
 | 2          | Kate | 15  | 87.0  |
 +------------+------+-----+-------+
-**Output:
+- **Output:** 
 **+------------+------+-----+-------+
 | student_id | name | age | grade |
 +------------+------+-----+-------+
 | 1          | Ava  | 6   | 73    |
 | 2          | Kate | 15  | 87    |
 +------------+------+-----+-------+
-**Explanation:**
-The data types of the column grade is converted to int.
+- **Explanation:** The data types of the column grade is converted to int.
 ```

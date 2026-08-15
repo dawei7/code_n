@@ -18,6 +18,7 @@ Return a string containing every reconstructed digit in ascending order, preserv
 
 - **Input:** `s = "owoztneoer"`
 - **Output:** `"012"`
+
 #### Example 2
 
 - **Input:** `s = "fviefuro"`

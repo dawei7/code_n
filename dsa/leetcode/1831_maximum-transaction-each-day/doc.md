@@ -35,7 +35,7 @@ Report the identifier of every transaction whose amount is the maximum for its c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Transactions`
 
@@ -47,7 +47,7 @@ Report the identifier of every transaction whose amount is the maximum for its c
 | 5 | `2021-04-28 16:39:59` | 40 |
 | 6 | `2021-04-29 23:39:28` | 58 |
 
-Output:
+- **Output:** 
 
 | transaction_id |
 |---:|
@@ -58,10 +58,10 @@ Output:
 
 IDs 1 and 6 tie on April 29, while ID 5 exceeds ID 9 on April 28.
 
-**Example 2**
+#### Example 2
 
 For rows `(4, 2022-01-01 23:59:59, 10)` and `(2, 2022-01-02 00:00:00, 5)`, both IDs are returned because the timestamps fall on different calendar dates.
 
-**Example 3**
+#### Example 3
 
 If a date contains only one transaction, that transaction is necessarily its day's maximum.

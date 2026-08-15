@@ -39,20 +39,20 @@ Return the maximum length of a contiguous substring of `word` that contains no m
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "cbaaaabc"`, `forbidden = ["aaa","cb"]`
-- Output: `4`
-- Explanation: The substring `"aabc"` has length four and contains neither forbidden pattern. Every longer candidate contains either `"aaa"` or `"cb"`.
+- **Input:** `word = "cbaaaabc"`, `forbidden = ["aaa","cb"]`
+- **Output:** `4`
+- **Explanation:** The substring `"aabc"` has length four and contains neither forbidden pattern. Every longer candidate contains either `"aaa"` or `"cb"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "leetcode"`, `forbidden = ["de","le","e"]`
-- Output: `4`
-- Explanation: `"tcod"` is valid and has length four. Extending it in either relevant direction introduces a forbidden occurrence.
+- **Input:** `word = "leetcode"`, `forbidden = ["de","le","e"]`
+- **Output:** `4`
+- **Explanation:** `"tcod"` is valid and has length four. Extending it in either relevant direction introduces a forbidden occurrence.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "abc"`, `forbidden = ["a","b","c"]`
-- Output: `0`
-- Explanation: Every single character is forbidden, so no non-empty substring is valid.
+- **Input:** `word = "abc"`, `forbidden = ["a","b","c"]`
+- **Output:** `0`
+- **Explanation:** Every single character is forbidden, so no non-empty substring is valid.

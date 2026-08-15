@@ -30,6 +30,7 @@ that:
 - **Output:** `3`
 - **Explanation:** The diagram above shows the tree structure and its status after performing the queries. The blue node represents the value 0, and the red node represents the value 1.
 After processing the queries, there are three red nodes (nodes with value 1): 1, 3, and 5.
+
 #### Example 2
 
 ![](images/ex2.jpg)

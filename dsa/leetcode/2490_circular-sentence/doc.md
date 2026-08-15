@@ -32,20 +32,20 @@ Return `true` when every word boundary, including the wraparound boundary, has m
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sentence = "leetcode exercises sound delightful"`
-- Output: `true`
-- Explanation: Each word ends with the letter that begins the next word, and the final `l` also matches the first `l`.
+- **Input:** `sentence = "leetcode exercises sound delightful"`
+- **Output:** `true`
+- **Explanation:** Each word ends with the letter that begins the next word, and the final `l` also matches the first `l`.
 
-**Example 2**
+#### Example 2
 
-- Input: `sentence = "eetcode"`
-- Output: `true`
-- Explanation: The only word starts and ends with `e`, so it closes its own cycle.
+- **Input:** `sentence = "eetcode"`
+- **Output:** `true`
+- **Explanation:** The only word starts and ends with `e`, so it closes its own cycle.
 
-**Example 3**
+#### Example 3
 
-- Input: `sentence = "Leetcode is cool"`
-- Output: `false`
-- Explanation: `Leetcode` ends with `e`, while `is` begins with `i`.
+- **Input:** `sentence = "Leetcode is cool"`
+- **Output:** `false`
+- **Explanation:** `Leetcode` ends with `e`, while `is` begins with `i`.

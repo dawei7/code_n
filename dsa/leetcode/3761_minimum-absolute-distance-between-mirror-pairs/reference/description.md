@@ -28,14 +28,11 @@ Return the minimum value of $\lvert i-j\rvert$ over all mirror pairs `(i,j)` wit
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [12,21,45,33,54]
+- **Input:** nums = [12,21,45,33,54]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The mirror pairs are:
+- **Explanation:** The mirror pairs are:
 
 - (0, 1) since $reverse(\text{nums}[0]) = reverse(12) = 21 = \text{nums}[1]$, giving an absolute distance $abs(0 - 1) = 1$.
 
@@ -43,33 +40,23 @@ The mirror pairs are:
 
 The minimum absolute distance among all pairs is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [120,21]
+- **Input:** nums = [120,21]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-There is only one mirror pair (0, 1) since $reverse(\text{nums}[0]) = reverse(120) = 21 = \text{nums}[1]$.
+- **Explanation:** There is only one mirror pair (0, 1) since $reverse(\text{nums}[0]) = reverse(120) = 21 = \text{nums}[1]$.
 
 The minimum absolute distance is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [21,120]
+- **Input:** nums = [21,120]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-There are no mirror pairs in the array.
-
-</div>
+- **Explanation:** There are no mirror pairs in the array.
 
 ### 4. Constraints
 

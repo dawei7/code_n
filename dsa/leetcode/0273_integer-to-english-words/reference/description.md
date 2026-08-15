@@ -18,10 +18,12 @@ Return the English words that represent `num`.
 
 - **Input:** $num = 123$
 - **Output:** `"One Hundred Twenty Three"`
+
 #### Example 2
 
 - **Input:** $num = 12345$
 - **Output:** `"Twelve Thousand Three Hundred Forty Five"`
+
 #### Example 3
 
 - **Input:** $num = 1234567$

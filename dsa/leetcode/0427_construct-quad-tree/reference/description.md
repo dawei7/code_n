@@ -63,6 +63,7 @@ If the value of `isLeaf` or `val` is True we represent it as **1** in the list `
 - **Explanation:** The explanation of this example is shown below:
 Notice that 0 represents False and 1 represents True in the photo representing the Quad-Tree.
 ![](images/e1tree.png)
+
 #### Example 2
 
 ![](images/e2mat.png)

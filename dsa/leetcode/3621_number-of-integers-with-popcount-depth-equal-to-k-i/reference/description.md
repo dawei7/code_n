@@ -20,21 +20,24 @@ Return the number of such integers.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, k = 1
+- **Input:** n = 4, k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The following integers in the range `[1, 4]` have popcount-depth exactly equal to 1:
+- **Explanation:** The following integers in the range `[1, 4]` have popcount-depth exactly equal to 1:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -60,17 +63,13 @@ The following integers in the range `[1, 4]` have popcount-depth exactly equal t
 
 Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 7, k = 2
+- **Input:** n = 7, k = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The following integers in the range `[1, 7]` have popcount-depth exactly equal to 2:
+- **Explanation:** The following integers in the range `[1, 7]` have popcount-depth exactly equal to 2:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -100,8 +99,6 @@ The following integers in the range `[1, 7]` have popcount-depth exactly equal t
 </table>
 
 Thus, the answer is 3.
-
-</div>
 
 ### 4. Constraints
 

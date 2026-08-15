@@ -10,8 +10,14 @@ A **subarray** is a **contiguous** part of an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,17 +26,18 @@ A **subarray** is a **contiguous** part of an array.
 - **Input:** `nums = [0,1,0], k = 1`
 - **Output:** `2`
 - **Explanation:** Flip nums[0], then flip nums[2].
+
 #### Example 2
 
 - **Input:** `nums = [1,1,0], k = 2`
 - **Output:** `-1`
 - **Explanation:** No matter how we flip subarrays of size 2, we cannot make the array become [1,1,1].
+
 #### Example 3
 
 - **Input:** `nums = [0,0,0,1,0,1,1,0], k = 3`
 - **Output:** `3`
-- **Explanation:**
-Flip nums[0],nums[1],nums[2]: nums becomes [1,1,1,1,0,1,1,0]
+- **Explanation:** Flip nums[0],nums[1],nums[2]: nums becomes [1,1,1,1,0,1,1,0]
 Flip nums[4],nums[5],nums[6]: nums becomes [1,1,1,1,1,0,0,0]
 Flip nums[5],nums[6],nums[7]: nums becomes [1,1,1,1,1,1,1,1]
 

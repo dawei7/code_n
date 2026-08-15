@@ -14,8 +14,13 @@ Return *the minimized **maximum pair sum** after optimally pairing up the elemen
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the minimized **maximum pair sum** after optimally pairing up the elemen
 - **Output:** `7`
 - **Explanation:** The elements can be paired up into pairs (3,3) and (5,2).
 The maximum pair sum is max(3+3, 5+2) = max(6, 7) = 7.
+
 #### Example 2
 
 - **Input:** `nums = [3,5,4,2,4,6]`

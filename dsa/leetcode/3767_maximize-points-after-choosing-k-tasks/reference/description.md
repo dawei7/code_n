@@ -32,46 +32,33 @@ Return the greatest possible sum of the selected point values. More than `k` tas
 
 #### Example 1
 
-<div class="example-block">
-**Input:** technique1 = [5,2,10], technique2 = [10,3,8], k = 2
+- **Input:** technique1 = [5,2,10], technique2 = [10,3,8], k = 2
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
-
-We must complete at least $k = 2$ tasks using `technique1`.
+- **Explanation:** We must complete at least $k = 2$ tasks using `technique1`.
 
 Choosing $\text{technique1}[1]$ and $\text{technique1}[2]$ (completed using technique 1), and $\text{technique2}[0]$ (completed using technique 2), yields the maximum points: $2 + 10 + 10 = 22$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** technique1 = [10,20,30], technique2 = [5,15,25], k = 2
+- **Input:** technique1 = [10,20,30], technique2 = [5,15,25], k = 2
 
-**Output:** 60
+- **Output:** 60
 
-**Explanation:**
-
-We must complete at least $k = 2$ tasks using `technique1`.
+- **Explanation:** We must complete at least $k = 2$ tasks using `technique1`.
 
 Choosing all tasks using technique 1 yields the maximum points: $10 + 20 + 30 = 60$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** technique1 = [1,2,3], technique2 = [4,5,6], k = 0
+- **Input:** technique1 = [1,2,3], technique2 = [4,5,6], k = 0
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
-
-Since $k = 0$, we are not required to choose any task using `technique1`.
+- **Explanation:** Since $k = 0$, we are not required to choose any task using `technique1`.
 
 Choosing all tasks using technique 2 yields the maximum points: $4 + 5 + 6 = 15$.
-
-</div>
 
 ### 4. Constraints
 

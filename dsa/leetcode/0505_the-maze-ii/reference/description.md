@@ -34,6 +34,7 @@ decision points, and reaching `destination` while still rolling is not sufficien
 - **Output:** `12`
 - **Explanation:** One possible way is : left -> down -> left -> down -> right -> down -> right.
 The length of the path is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
+
 #### Example 2
 
 ![](images/maze1-2-grid.jpg)
@@ -41,6 +42,7 @@ The length of the path is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
 - **Input:** $maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [3,2]$
 - **Output:** `-1`
 - **Explanation:** There is no way for the ball to stop at the destination. Notice that you can pass through the destination but you cannot stop there.
+
 #### Example 3
 
 - **Input:** $maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]$

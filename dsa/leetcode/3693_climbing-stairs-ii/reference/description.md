@@ -27,14 +27,11 @@ Return the minimum total cost of any valid route from step $0$ to step $n$.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, costs = [1,2,3,4]
+- **Input:** n = 4, costs = [1,2,3,4]
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-One optimal path is `0 → 1 → 2 → 4`
+- **Explanation:** One optimal path is `0 → 1 → 2 → 4`
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -65,17 +62,13 @@ One optimal path is `0 → 1 → 2 → 4`
 
 Thus, the minimum total cost is $2 + 3 + 8 = 13$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, costs = [5,1,6,2]
+- **Input:** n = 4, costs = [5,1,6,2]
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
-
-One optimal path is `0 → 2 → 4`
+- **Explanation:** One optimal path is `0 → 2 → 4`
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -101,19 +94,13 @@ One optimal path is `0 → 2 → 4`
 
 Thus, the minimum total cost is $5 + 6 = 11$
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, costs = [9,8,3]
+- **Input:** n = 3, costs = [9,8,3]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The optimal path is `0 → 3` with total cost = $\text{costs}[3] + (3 - 0)^2 = 3 + 9 = 12$
-
-</div>
+- **Explanation:** The optimal path is `0 → 3` with total cost = $\text{costs}[3] + (3 - 0)^2 = 3 + 9 = 12$
 
 ### 4. Constraints
 

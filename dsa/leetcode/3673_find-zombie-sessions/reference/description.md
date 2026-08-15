@@ -35,7 +35,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 app_events table:
@@ -89,7 +88,7 @@ app_events table:
 
 - **Session S001 (User 201)**:
 
-		<li>Duration: 10:00:00 to 10:35:00 = 35 minutes (more than 30)
+		- Duration: 10:00:00 to 10:35:00 = 35 minutes (more than 30)
 
 - Scroll events: 6 (at least 5)
 
@@ -101,19 +100,17 @@ app_events table:
 
 - S001 is a zombie session (meets all criteria)
 
-	</li>
 - **Session S002 (User 202)**:
 
-		<li>Duration: 11:00:00 to 11:20:00 = 20 minutes (less than 30)
+		- Duration: 11:00:00 to 11:20:00 = 20 minutes (less than 30)
 
 - Has a purchase event
 
 - S002 is not a zombie session
 
-	</li>
 - **Session S003 (User 203)**:
 
-		<li>Duration: 12:00:00 to 13:00:00 = 60 minutes (more than 30)
+		- Duration: 12:00:00 to 13:00:00 = 60 minutes (more than 30)
 
 - Scroll events: 5 (at least 5)
 
@@ -125,20 +122,15 @@ app_events table:
 
 - S003 is not a zombie session (click-to-scroll ratio equals 0.20, needs to be less)
 
-	</li>
 - **Session S004 (User 204)**:
 
-		<li>Duration: 14:00:00 to 14:12:00 = 12 minutes (less than 30)
+		- Duration: 14:00:00 to 14:12:00 = 12 minutes (less than 30)
 
 - Scroll events: 2 (less than 5)
 
 - S004  is not a zombie session
 
-	</li>
-
 The result table is ordered by scroll_count in descending order, then by session_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

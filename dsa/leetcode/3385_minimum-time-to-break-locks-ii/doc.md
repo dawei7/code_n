@@ -34,12 +34,12 @@ Return the minimum number of whole minutes required to break every lock.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `strength = [3, 4, 1]`
-- Output: `4`
+- **Input:** `strength = [3, 4, 1]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `strength = [2, 5, 4]`
-- Output: `6`
+- **Input:** `strength = [2, 5, 4]`
+- **Output:** `6`

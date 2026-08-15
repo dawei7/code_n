@@ -10,8 +10,13 @@ The **punishment number** of `n` is defined as the sum of the squares of all int
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ The **punishment number** of `n` is defined as the sum of the squares of all int
 - 9 since 9 * 9 = 81 and 81 can be partitioned into 8 and 1 with a sum equal to 8 + 1 == 9.
 - 10 since 10 * 10 = 100 and 100 can be partitioned into 10 and 0 with a sum equal to 10 + 0 == 10.
 Hence, the punishment number of 10 is 1 + 81 + 100 = 182
+
 #### Example 2
 
 - **Input:** $n = 37$

@@ -30,19 +30,19 @@ More formally, for a range `arr[i], ..., arr[j]`, one valid orientation requires
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [9, 4, 2, 10, 7, 8, 8, 1, 9]`
-- Output: `5`
-- Explanation: `[4, 2, 10, 7, 8]` follows $4>2<10>7<8$.
+- **Input:** `arr = [9, 4, 2, 10, 7, 8, 8, 1, 9]`
+- **Output:** `5`
+- **Explanation:** `[4, 2, 10, 7, 8]` follows $4>2<10>7<8$.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [4, 8, 12, 16]`
-- Output: `2`
-- Explanation: consecutive increases cannot both belong to a longer turbulent range.
+- **Input:** `arr = [4, 8, 12, 16]`
+- **Output:** `2`
+- **Explanation:** consecutive increases cannot both belong to a longer turbulent range.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [100]`
-- Output: `1`
+- **Input:** `arr = [100]`
+- **Output:** `1`

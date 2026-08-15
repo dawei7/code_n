@@ -30,23 +30,23 @@ Choose exactly one index and remove the character at that position. Return wheth
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "abcc"`
-- Output: `true`
+- **Input:** `word = "abcc"`
+- **Output:** `true`
 
 Removing one `c` leaves `a`, `b`, and `c` with frequency 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aazz"`
-- Output: `false`
+- **Input:** `word = "aazz"`
+- **Output:** `false`
 
 Deleting either letter type produces positive frequencies 1 and 2.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "abbcc"`
-- Output: `true`
+- **Input:** `word = "abbcc"`
+- **Output:** `true`
 
 Removing the only `a` leaves the two remaining letter types with frequency 2.

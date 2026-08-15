@@ -35,14 +35,14 @@ Return any maximum-length subsequence of `words` whose corresponding adjacent gr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `words = ["e", "a", "b"], groups = [0, 0, 1]`
-- Output: `["e", "b"]`
-- Explanation: The selected group values are $0,1$. Choosing `["a", "b"]` would be another valid longest answer.
+- **Input:** `words = ["e", "a", "b"], groups = [0, 0, 1]`
+- **Output:** `["e", "b"]`
+- **Explanation:** The selected group values are $0,1$. Choosing `["a", "b"]` would be another valid longest answer.
 
-**Example 2**
+#### Example 2
 
-- Input: `words = ["a", "b", "c", "d"], groups = [1, 0, 1, 1]`
-- Output: `["a", "b", "c"]`
-- Explanation: The selected group values are $1,0,1$. The final word belongs to the same last run as `"c"`, so replacing `"c"` by `"d"` gives another longest answer.
+- **Input:** `words = ["a", "b", "c", "d"], groups = [1, 0, 1, 1]`
+- **Output:** `["a", "b", "c"]`
+- **Explanation:** The selected group values are $1,0,1$. The final word belongs to the same last run as `"c"`, so replacing `"c"` by `"d"` gives another longest answer.

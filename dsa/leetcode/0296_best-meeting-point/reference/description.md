@@ -27,6 +27,7 @@ Return the smallest possible sum of Manhattan distances from all `1` cells to on
 - **Explanation:** Given three friends living at (0,0), (0,4), and (2,2).
 The point (0,2) is an ideal meeting point, as the total travel distance of 2 + 2 + 2 = 6 is minimal.
 So return 6.
+
 #### Example 2
 
 - **Input:** `grid = [[1,1]]`

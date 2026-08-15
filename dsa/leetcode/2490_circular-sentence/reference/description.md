@@ -18,8 +18,13 @@ Given a string `sentence`, return `true`* if it is circular*. Otherwise, return 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sentence`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -33,6 +38,7 @@ Given a string `sentence`, return `true`* if it is circular*. Otherwise, return 
 - soun<u>d</u>'s last character is equal to <u>d</u>elightful's first character.
 - delightfu<u>l</u>'s last character is equal to <u>l</u>eetcode's first character.
 The sentence is circular.
+
 #### Example 2
 
 - **Input:** $sentence = "eetcode"$
@@ -40,6 +46,7 @@ The sentence is circular.
 - **Explanation:** The words in sentence are ["eetcode"].
 - eetcod<u>e</u>'s last character is equal to <u>e</u>etcode's first character.
 The sentence is circular.
+
 #### Example 3
 
 - **Input:** $sentence = "Leetcode is cool"$

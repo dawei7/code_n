@@ -41,7 +41,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customer table:
 +-------------+-------------+
 | customer_id | product_key |
@@ -59,13 +59,12 @@ Product table:
 | 5           |
 | 6           |
 +-------------+
-**Output:**
+- **Output:** 
 +-------------+
 | customer_id |
 +-------------+
 | 1           |
 | 3           |
 +-------------+
-**Explanation:**
-The customers who bought all the products (5 and 6) are customers with IDs 1 and 3.
+- **Explanation:** The customers who bought all the products (5 and 6) are customers with IDs 1 and 3.
 ```

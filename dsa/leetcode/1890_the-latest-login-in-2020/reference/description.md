@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Logins table:
 +---------+---------------------+
 | user_id | time_stamp          |
@@ -44,7 +44,7 @@ Logins table:
 | 14      | 2019-07-14 09:00:00 |
 | 14      | 2021-01-06 11:59:59 |
 +---------+---------------------+
-**Output:**
+- **Output:** 
 +---------+---------------------+
 | user_id | last_stamp          |
 +---------+---------------------+
@@ -52,8 +52,7 @@ Logins table:
 | 8       | 2020-12-30 00:46:50 |
 | 2       | 2020-01-16 02:49:50 |
 +---------+---------------------+
-**Explanation:**
-User 6 logged into their account 3 times but only once in 2020, so we include this login in the result table.
+- **Explanation:** User 6 logged into their account 3 times but only once in 2020, so we include this login in the result table.
 User 8 logged into their account 2 times in 2020, once in February and once in December. We include only the latest one (December) in the result table.
 User 2 logged into their account 2 times but only once in 2020, so we include this login in the result table.
 User 14 did not login in 2020, so we do not include them in the result table.

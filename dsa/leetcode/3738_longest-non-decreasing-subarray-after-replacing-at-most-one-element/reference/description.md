@@ -24,30 +24,21 @@ Return the maximum length of a non-decreasing subarray achievable with zero or o
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,1,2]
+- **Input:** nums = [1,2,3,1,2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Replacing $\text{nums}[3] = 1$ with 3 gives the array [1, 2, 3, 3, 2].
+- **Explanation:** Replacing $\text{nums}[3] = 1$ with 3 gives the array [1, 2, 3, 3, 2].
 
 The longest non-decreasing subarray is [1, 2, 3, 3], which has a length of 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,2,2,2,2]
+- **Input:** nums = [2,2,2,2,2]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-All elements in `nums` are equal, so it is already non-decreasing and the entire `nums` forms a subarray of length 5.
-
-</div>
+- **Explanation:** All elements in `nums` are equal, so it is already non-decreasing and the entire `nums` forms a subarray of length 5.
 
 ### 4. Constraints
 

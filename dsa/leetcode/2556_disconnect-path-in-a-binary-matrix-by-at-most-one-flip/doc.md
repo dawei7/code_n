@@ -30,14 +30,14 @@ You may flip at most one cell, possibly none, changing either `0` to `1` or `1` 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1, 1, 1], [1, 0, 0], [1, 1, 1]]`
-- Output: `true`
-- Explanation: The existing monotone path has an interior bottleneck that can be changed to `0`.
+- **Input:** `grid = [[1, 1, 1], [1, 0, 0], [1, 1, 1]]`
+- **Output:** `true`
+- **Explanation:** The existing monotone path has an interior bottleneck that can be changed to `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]`
-- Output: `false`
-- Explanation: Two internally disjoint routes remain, so one non-endpoint flip cannot destroy both.
+- **Input:** `grid = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]`
+- **Output:** `false`
+- **Explanation:** Two internally disjoint routes remain, so one non-endpoint flip cannot destroy both.

@@ -31,14 +31,14 @@ After every update, count adjacent index pairs whose two positions have the same
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`, `queries = [[0,2],[1,2],[3,1],[1,1],[2,1]]`
-- Output: `[0,1,1,0,2]`
-- Explanation: The final update joins positions 1, 2, and 3 into a run of color `1`, which contains two adjacent pairs.
+- **Input:** `n = 4`, `queries = [[0,2],[1,2],[3,1],[1,1],[2,1]]`
+- **Output:** `[0,1,1,0,2]`
+- **Explanation:** The final update joins positions 1, 2, and 3 into a run of color `1`, which contains two adjacent pairs.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`, `queries = [[0,100000]]`
-- Output: `[0]`
-- Explanation: A one-position array has no adjacent pair.
+- **Input:** `n = 1`, `queries = [[0,100000]]`
+- **Output:** `[0]`
+- **Explanation:** A one-position array has no adjacent pair.

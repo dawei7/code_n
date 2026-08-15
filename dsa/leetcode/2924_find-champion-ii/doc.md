@@ -41,15 +41,15 @@ is acyclic, and the strength relation is transitive.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, edges = [[0, 1], [1, 2]]`
-- Output: `0`
-- Explanation: Teams 1 and 2 each have a stronger team, while team 0 does not.
+- **Input:** `n = 3, edges = [[0, 1], [1, 2]]`
+- **Output:** `0`
+- **Explanation:** Teams 1 and 2 each have a stronger team, while team 0 does not.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, edges = [[0, 2], [1, 3], [1, 2]]`
-- Output: `-1`
-- Explanation: Neither team 0 nor team 1 has an incoming strength edge, so
+- **Input:** `n = 4, edges = [[0, 2], [1, 3], [1, 2]]`
+- **Output:** `-1`
+- **Explanation:** Neither team 0 nor team 1 has an incoming strength edge, so
   there is no unique champion.

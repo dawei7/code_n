@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-product-of-two-integers-with-no-common-bits/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a positive integer array `nums`, select elements at two distinct indices. Their binary representations must have no bit position at which both values contain a one.
@@ -33,20 +34,20 @@ Return the largest value of `nums[i] * nums[j]` over distinct indices satisfying
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5, 6, 7]`
-- Output: `12`
+- **Input:** `nums = [1, 2, 3, 4, 5, 6, 7]`
+- **Output:** `12`
 - Values `3` (`011`) and `4` (`100`) are bit-disjoint.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 6, 4]`
-- Output: `0`
+- **Input:** `nums = [5, 6, 4]`
+- **Output:** `0`
 - Every pair shares a set bit.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [64, 8, 32]`
-- Output: `2048`
+- **Input:** `nums = [64, 8, 32]`
+- **Output:** `2048`
 - The two largest values, `64` and `32`, use different bit positions.

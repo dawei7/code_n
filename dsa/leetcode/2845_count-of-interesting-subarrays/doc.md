@@ -34,14 +34,14 @@ The constraints are $1\le\lvert\texttt{nums}\rvert\le10^5$, $1\le\texttt{nums[i]
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 2, 4], modulo = 2, k = 1`
-- Output: `3`
-- Explanation: `[3]`, `[3, 2]`, and `[3, 2, 4]` each contain one element whose remainder modulo `2` is `1`.
+- **Input:** `nums = [3, 2, 4], modulo = 2, k = 1`
+- **Output:** `3`
+- **Explanation:** `[3]`, `[3, 2]`, and `[3, 2, 4]` each contain one element whose remainder modulo `2` is `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 1, 9, 6], modulo = 3, k = 0`
-- Output: `2`
-- Explanation: The complete array has three qualifying values, while `[1]` has zero; both counts are divisible by `3`.
+- **Input:** `nums = [3, 1, 9, 6], modulo = 3, k = 0`
+- **Output:** `2`
+- **Explanation:** The complete array has three qualifying values, while `[1]` has zero; both counts are divisible by `3`.

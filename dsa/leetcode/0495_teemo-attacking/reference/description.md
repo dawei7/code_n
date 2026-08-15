@@ -8,8 +8,14 @@ Return *the **total** number of seconds that Ashe is poisoned*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `timeSeries`: Input parameter (`List[int]`).
+- `duration`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return *the **total** number of seconds that Ashe is poisoned*.
 - At second 1, Teemo attacks, and Ashe is poisoned for seconds 1 and 2.
 - At second 4, Teemo attacks, and Ashe is poisoned for seconds 4 and 5.
 Ashe is poisoned for seconds 1, 2, 4, and 5, which is 4 seconds in total.
+
 #### Example 2
 
 - **Input:** $timeSeries = [1,2], duration = 2$

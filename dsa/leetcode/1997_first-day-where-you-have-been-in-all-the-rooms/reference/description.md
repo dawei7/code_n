@@ -14,8 +14,13 @@ Return *the label of the **first** day where you have been in **all** the rooms*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nextVisit`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,25 +28,25 @@ Return *the label of the **first** day where you have been in **all** the rooms*
 
 - **Input:** $nextVisit = [0,0]$
 - **Output:** `2`
-- **Explanation:**
+- **Explanation:** 
 - On day 0, you visit room 0. The total times you have been in room 0 is 1, which is odd.
 On the next day you will visit room nextVisit[0] = 0
 - On day 1, you visit room 0, The total times you have been in room 0 is 2, which is even.
 On the next day you will visit room (0 + 1) mod 2 = 1
 - On day 2, you visit room 1. This is the first day where you have been in all the rooms.
+
 #### Example 2
 
 - **Input:** $nextVisit = [0,0,2]$
 - **Output:** `6`
-- **Explanation:**
-Your room visiting order for each day is: [0,0,1,0,0,1,2,...].
+- **Explanation:** Your room visiting order for each day is: [0,0,1,0,0,1,2,...].
 Day 6 is the first day where you have been in all the rooms.
+
 #### Example 3
 
 - **Input:** $nextVisit = [0,1,2,0]$
 - **Output:** `6`
-- **Explanation:**
-Your room visiting order for each day is: [0,0,1,1,2,2,3,...].
+- **Explanation:** Your room visiting order for each day is: [0,0,1,1,2,2,3,...].
 Day 6 is the first day where you have been in all the rooms.
 
 ### 4. Constraints

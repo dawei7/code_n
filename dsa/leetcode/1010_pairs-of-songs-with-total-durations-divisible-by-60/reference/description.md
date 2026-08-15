@@ -6,8 +6,13 @@ Return *the number of pairs of songs for which their total duration in seconds i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `time`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return *the number of pairs of songs for which their total duration in seconds i
 (time[0] = 30, time[2] = 150): total duration 180
 (time[1] = 20, time[3] = 100): total duration 120
 (time[1] = 20, time[4] = 40): total duration 60
+
 #### Example 2
 
 - **Input:** $time = [60,60,60]$

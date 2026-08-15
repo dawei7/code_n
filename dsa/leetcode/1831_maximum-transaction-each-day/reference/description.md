@@ -41,7 +41,7 @@ Return a table with the single column $\text{transaction}_{id}$. Include every t
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Transactions table:
 +----------------+--------------------+--------+
 | transaction_id | day                | amount |
@@ -52,7 +52,7 @@ Transactions table:
 | 5              | 2021-4-28 16:39:59 | 40     |
 | 6              | 2021-4-29 23:39:28 | 58     |
 +----------------+--------------------+--------+
-**Output:**
+- **Output:** 
 +----------------+
 | transaction_id |
 +----------------+
@@ -61,8 +61,7 @@ Transactions table:
 | 6              |
 | 8              |
 +----------------+
-**Explanation:**
-"2021-4-3"  --> We have one transaction with ID 8, so we add 8 to the result table.
+- **Explanation:** "2021-4-3"  --> We have one transaction with ID 8, so we add 8 to the result table.
 "2021-4-28" --> We have two transactions with IDs 5 and 9. The transaction with ID 5 has an amount of 40, while the transaction with ID 9 has an amount of 21. We only include the transaction with ID 5 as it has the maximum amount this day.
 "2021-4-29" --> We have two transactions with IDs 1 and 6. Both transactions have the same amount of 58, so we include both in the result table.
 We order the result table by transaction_id after collecting these IDs.

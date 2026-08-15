@@ -18,8 +18,11 @@ Implement the ATM class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ATM()`: Initializes the data structure.
+- `deposit(banknotesCount: List[int])`: Executes operation.
+- `withdraw(amount: int) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 

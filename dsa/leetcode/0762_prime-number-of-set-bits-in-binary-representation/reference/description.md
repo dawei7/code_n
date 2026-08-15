@@ -8,8 +8,14 @@ Recall that the **number of set bits** an integer has is the number of `1`'s pre
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `left`: Input parameter (`int`).
+- `right`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,19 +23,18 @@ Recall that the **number of set bits** an integer has is the number of `1`'s pre
 
 - **Input:** $left = 6, right = 10$
 - **Output:** `4`
-- **Explanation:**
-6  -> 110 (2 set bits, 2 is prime)
+- **Explanation:** 6  -> 110 (2 set bits, 2 is prime)
 7  -> 111 (3 set bits, 3 is prime)
 8  -> 1000 (1 set bit, 1 is not prime)
 9  -> 1001 (2 set bits, 2 is prime)
 10 -> 1010 (2 set bits, 2 is prime)
 4 numbers have a prime number of set bits.
+
 #### Example 2
 
 - **Input:** $left = 10, right = 15$
 - **Output:** `5`
-- **Explanation:**
-10 -> 1010 (2 set bits, 2 is prime)
+- **Explanation:** 10 -> 1010 (2 set bits, 2 is prime)
 11 -> 1011 (3 set bits, 3 is prime)
 12 -> 1100 (2 set bits, 2 is prime)
 13 -> 1101 (3 set bits, 3 is prime)

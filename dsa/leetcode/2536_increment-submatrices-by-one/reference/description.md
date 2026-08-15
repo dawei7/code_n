@@ -10,8 +10,14 @@ Return* the matrix* `mat`* after performing every query.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ Return* the matrix* `mat`* after performing every query.*
 - **Explanation:** The diagram above shows the initial matrix, the matrix after the first query, and the matrix after the second query.
 - In the first query, we add 1 to every element in the submatrix with the top left corner (1, 1) and bottom right corner (2, 2).
 - In the second query, we add 1 to every element in the submatrix with the top left corner (0, 0) and bottom right corner (1, 1).
+
 #### Example 2
 
 ![](images/p2example22.png)

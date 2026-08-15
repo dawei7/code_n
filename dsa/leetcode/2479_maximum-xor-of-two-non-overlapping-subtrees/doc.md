@@ -42,20 +42,20 @@ Return an integer: the maximum XOR of the sums of two non-overlapping subtrees, 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 6, edges = [[0,1],[0,2],[1,3],[1,4],[2,5]], values = [2,8,3,6,2,5]`
-- Output: `24`
-- Explanation: The subtrees rooted at nodes `1` and `2` have sums $16$ and $8$, so their score is $16 \mathbin{\mathrm{XOR}} 8 = 24$.
+- **Input:** `n = 6, edges = [[0,1],[0,2],[1,3],[1,4],[2,5]], values = [2,8,3,6,2,5]`
+- **Output:** `24`
+- **Explanation:** The subtrees rooted at nodes `1` and `2` have sums $16$ and $8$, so their score is $16 \mathbin{\mathrm{XOR}} 8 = 24$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0,1],[1,2]], values = [4,6,1]`
-- Output: `0`
-- Explanation: Every two subtrees in this rooted chain overlap.
+- **Input:** `n = 3, edges = [[0,1],[1,2]], values = [4,6,1]`
+- **Output:** `0`
+- **Explanation:** Every two subtrees in this rooted chain overlap.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, edges = [[0,1],[0,2]], values = [1,2,4]`
-- Output: `6`
-- Explanation: The two leaf subtrees are disjoint and have score $2 \mathbin{\mathrm{XOR}} 4 = 6$.
+- **Input:** `n = 3, edges = [[0,1],[0,2]], values = [1,2,4]`
+- **Output:** `6`
+- **Explanation:** The two leaf subtrees are disjoint and have score $2 \mathbin{\mathrm{XOR}} 4 = 6$.

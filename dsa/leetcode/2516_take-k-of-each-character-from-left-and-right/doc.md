@@ -33,14 +33,14 @@ Return the smallest total number of removals from the two ends that collects at 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aabaaaacaabc", k = 2`
-- Output: `8`
-- Explanation: Removing three characters from the left and five from the right collects at least two copies of every character, and no choice using fewer than eight removals can do so.
+- **Input:** `s = "aabaaaacaabc", k = 2`
+- **Output:** `8`
+- **Explanation:** Removing three characters from the left and five from the right collects at least two copies of every character, and no choice using fewer than eight removals can do so.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "a", k = 1`
-- Output: `-1`
-- Explanation: The string contains no `'b'` or `'c'`, so the required collection cannot be formed.
+- **Input:** `s = "a", k = 1`
+- **Output:** `-1`
+- **Explanation:** The string contains no `'b'` or `'c'`, so the required collection cannot be formed.

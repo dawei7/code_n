@@ -36,20 +36,20 @@ The number of nonempty contiguous subarrays containing only zeros.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,0,0,2,0,0,4]`
-- Output: `6`
-- Explanation: Four one-zero subarrays and two two-zero subarrays occur.
+- **Input:** `nums = [1,3,0,0,2,0,0,4]`
+- **Output:** `6`
+- **Explanation:** Four one-zero subarrays and two two-zero subarrays occur.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,0,0,2,0,0]`
-- Output: `9`
-- Explanation: Runs of lengths 3 and 2 contribute 6 and 3.
+- **Input:** `nums = [0,0,0,2,0,0]`
+- **Output:** `9`
+- **Explanation:** Runs of lengths 3 and 2 contribute 6 and 3.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,10,2019]`
-- Output: `0`
-- Explanation: The array contains no zero.
+- **Input:** `nums = [2,10,2019]`
+- **Output:** `0`
+- **Explanation:** The array contains no zero.

@@ -33,23 +33,23 @@ The first array may be empty, but the second contains at least one element.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [], nums2 = [1,0,1,1]`
-- Output: `5`
+- **Input:** `nums1 = [], nums2 = [1,0,1,1]`
+- **Output:** `5`
 
 One optimal replacement for the second array is `[1,2,3,5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [0,1,0,1], nums2 = [1,0,0,1]`
-- Output: `9`
+- **Input:** `nums1 = [0,1,0,1], nums2 = [1,0,0,1]`
+- **Output:** `9`
 
 For example, `[2,3,8,9]` and `[1,4,6,7]` meet every rule.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [0,1,0,0,1], nums2 = [0,0,0,1]`
-- Output: `13`
+- **Input:** `nums1 = [0,1,0,0,1], nums2 = [0,0,0,1]`
+- **Output:** `13`
 
 One optimum is `[2,3,4,6,7]` together with `[8,10,12,13]`.

@@ -33,23 +33,23 @@ Let $n = \lvert\texttt{nums1}\rvert$ and $m = \lvert\texttt{nums2}\rvert$. The c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [2,1,3], nums2 = [10,2,5,0]`
-- Output: `13`
+- **Input:** `nums1 = [2,1,3], nums2 = [10,2,5,0]`
+- **Output:** `13`
 
 Every first-array value occurs in four pairings and cancels; the XOR of `nums2` remains because `nums1` has odd length.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1,2], nums2 = [3,4]`
-- Output: `0`
+- **Input:** `nums1 = [1,2], nums2 = [3,4]`
+- **Output:** `0`
 
 Both array lengths are even, so every source value occurs an even number of times in the full XOR.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [5], nums2 = [1,2,3]`
-- Output: `5`
+- **Input:** `nums1 = [5], nums2 = [1,2,3]`
+- **Output:** `5`
 
 The source-array contributions reduce to `5 ^ 1 ^ 2 ^ 3`, which equals 5.

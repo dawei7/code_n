@@ -16,6 +16,7 @@ A **subsequence** is a sequence that can be derived from another sequence by rem
 - **Output:** `7`
 - **Explanation:** All possible subsequence sums that we can have are: 0, 1, 2, 3, 4, 5, 6.
 And we have 0 OR 1 OR 2 OR 3 OR 4 OR 5 OR 6 = 7, so we return 7.
+
 #### Example 2
 
 - **Input:** `nums = [0,0,0]`

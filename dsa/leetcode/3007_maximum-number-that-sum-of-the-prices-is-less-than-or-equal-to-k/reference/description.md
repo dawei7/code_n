@@ -49,21 +49,24 @@ Return the **greatest** cheap number.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** k = 9, x = 1
+- **Input:** k = 9, x = 1
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-As shown in the table below, `6` is the greatest cheap number.
+- **Explanation:** As shown in the table below, `6` is the greatest cheap number.
 
 <table border="1">
 	<tbody>
@@ -125,17 +128,14 @@ As shown in the table below, `6` is the greatest cheap number.
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** k = 7, x = 2
+- **Input:** k = 7, x = 2
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-As shown in the table below, `9` is the greatest cheap number.
+- **Explanation:** As shown in the table below, `9` is the greatest cheap number.
 
 <table border="1">
 	<tbody>
@@ -218,7 +218,6 @@ As shown in the table below, `9` is the greatest cheap number.
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

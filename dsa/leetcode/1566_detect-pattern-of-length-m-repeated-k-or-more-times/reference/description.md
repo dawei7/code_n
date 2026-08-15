@@ -8,8 +8,15 @@ Return `true` *if there exists a pattern of length* `m` *that is repeated* `k` *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `m`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,11 +25,13 @@ Return `true` *if there exists a pattern of length* `m` *that is repeated* `k` *
 - **Input:** `arr = [1,2,4,4,4,4], m = 1, k = 3`
 - **Output:** `true`
 - **Explanation:** The pattern **(4)** of length 1 is repeated 4 consecutive times. Notice that pattern can be repeated k or more times but not less.
+
 #### Example 2
 
 - **Input:** `arr = [1,2,1,2,1,1,1,3], m = 2, k = 2`
 - **Output:** `true`
 - **Explanation:** The pattern **(1,2)** of length 2 is repeated 2 consecutive times. Another valid pattern **(2,1) is** also repeated 2 times.
+
 #### Example 3
 
 - **Input:** `arr = [1,2,1,2,1,3], m = 2, k = 3`

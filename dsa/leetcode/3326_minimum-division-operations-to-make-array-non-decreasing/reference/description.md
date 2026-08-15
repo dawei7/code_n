@@ -12,39 +12,35 @@ If it is **not** possible to make the array *non-decreasing* using any number of
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [25,7]
+- **Input:** nums = [25,7]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** Using a single operation, 25 gets divided by 5 and `nums` becomes `[5, 7]`.
 
-Using a single operation, 25 gets divided by 5 and `nums` becomes `[5, 7]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [7,7,6]
+- **Input:** nums = [7,7,6]
 
-**Output:** -1
+- **Output:** -1
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1]
+- **Input:** nums = [1,1,1,1]
 
-**Output:** 0
-
-</div>
+- **Output:** 0
 
 ### 4. Constraints
 

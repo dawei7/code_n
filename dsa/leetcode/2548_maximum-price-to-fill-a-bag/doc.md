@@ -33,14 +33,14 @@ Return the maximum price of an exact-capacity selection as a floating-point numb
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `items = [[50,1],[10,8]], capacity = 5`
-- Output: `55.00000`
-- Explanation: Take the first item and four eighths of the second item.
+- **Input:** `items = [[50,1],[10,8]], capacity = 5`
+- **Output:** `55.00000`
+- **Explanation:** Take the first item and four eighths of the second item.
 
-**Example 2**
+#### Example 2
 
-- Input: `items = [[100,30]], capacity = 50`
-- Output: `-1.00000`
-- Explanation: Only 30 units of weight are available, so the bag cannot be filled.
+- **Input:** `items = [[100,30]], capacity = 50`
+- **Output:** `-1.00000`
+- **Explanation:** Only 30 units of weight are available, so the bag cannot be filled.

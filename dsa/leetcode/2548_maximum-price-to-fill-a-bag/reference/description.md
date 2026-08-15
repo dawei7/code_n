@@ -22,12 +22,12 @@ Return ***the maximum total price** to fill a bag of capacity* `capacity` *with 
 
 - **Input:** $items = [[50,1],[10,8]], capacity = 5$
 - **Output:** `55.00000`
-- **Explanation:**
-We divide the 2^nd item into two parts with part1 = 0.5 and part2 = 0.5.
+- **Explanation:** We divide the 2^nd item into two parts with part1 = 0.5 and part2 = 0.5.
 The price and weight of the 1^st item are 5, 4. And similarly, the price and the weight of the 2^nd item are 5, 4.
 The array items after operation becomes [[50,1],[5,4],[5,4]].
 To fill a bag with capacity 5 we take the 1^st element with a price of 50 and the 2^nd element with a price of 5.
 It can be proved that 55.0 is the maximum total price that we can achieve.
+
 #### Example 2
 
 - **Input:** $items = [[100,30]], capacity = 50$

@@ -4,8 +4,13 @@ You are given an integer array `coordinates`, $\text{coordinates}[i] = [x, y]$, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coordinates`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ You are given an integer array `coordinates`, $\text{coordinates}[i] = [x, y]$, 
 
 - **Input:** $coordinates = [[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]]$
 - **Output:** `true`
+
 #### Example 2
 
 **

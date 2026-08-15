@@ -36,17 +36,17 @@ characters are all different.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `parent = [-1,0,0,1,1,2], s = "abacbe"`
-- Output: `3`
+- **Input:** `parent = [-1,0,0,1,1,2], s = "abacbe"`
+- **Output:** `3`
 
-**Example 2**
+#### Example 2
 
-- Input: `parent = [-1,0,0,0], s = "aabc"`
-- Output: `3`
+- **Input:** `parent = [-1,0,0,0], s = "aabc"`
+- **Output:** `3`
 
-**Example 3**
+#### Example 3
 
-- Input: `parent = [-1], s = "z"`
-- Output: `1`
+- **Input:** `parent = [-1], s = "z"`
+- **Output:** `1`

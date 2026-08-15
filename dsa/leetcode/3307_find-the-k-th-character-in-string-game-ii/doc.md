@@ -33,16 +33,16 @@ Return the single lowercase English character at position `k` in the final word.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 5, operations = [0, 0, 0]`
-- Output: `"a"`
+- **Input:** `k = 5, operations = [0, 0, 0]`
+- **Output:** `"a"`
 
 Every operation copies the word unchanged, producing `"aaaaaaaa"` after three steps.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 10, operations = [0, 1, 0, 1]`
-- Output: `"b"`
+- **Input:** `k = 10, operations = [0, 1, 0, 1]`
+- **Output:** `"b"`
 
 The successive words are `"aa"`, `"aabb"`, `"aabbaabb"`, and `"aabbaabbbbccbbcc"`; its tenth character is `b`.

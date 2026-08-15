@@ -31,14 +31,14 @@ Return any shortest common supersequence. More than one string can have the mini
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `str1 = "abac"`, `str2 = "cab"`
-- Output: `"cabac"`
+- **Input:** `str1 = "abac"`, `str2 = "cab"`
+- **Output:** `"cabac"`
 
 Deleting the first `c` leaves `"abac"`, while deleting the final `"ac"` leaves `"cab"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `str1 = "aaaaaaaa"`, `str2 = "aaaaaaaa"`
-- Output: `"aaaaaaaa"`
+- **Input:** `str1 = "aaaaaaaa"`, `str2 = "aaaaaaaa"`
+- **Output:** `"aaaaaaaa"`

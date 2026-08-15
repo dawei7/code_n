@@ -14,23 +14,25 @@ Implement the `NeighborSum` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `NeighborSum(grid: List[List[int]])`: Initializes the data structure.
+- `adjacentSum(value: int) -> `int``: Executes operation.
+- `diagonalSum(value: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["NeighborSum", "adjacentSum", "adjacentSum", "diagonalSum", "diagonalSum"]
 
 [[[[0, 1, 2], [3, 4, 5], [6, 7, 8]]], [1], [4], [4], [8]]
 
-**Output:** [null, 6, 16, 16, 4]
+- **Output:** [null, 6, 16, 16, 4]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -46,19 +48,17 @@ Implement the `NeighborSum` class:
 
 - The diagonal neighbor of 8 is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["NeighborSum", "adjacentSum", "diagonalSum"]
 
 [[[[1, 2, 0, 3], [4, 7, 15, 6], [8, 9, 10, 11], [12, 13, 14, 5]]], [15], [9]]
 
-**Output:** [null, 23, 45]
+- **Output:** [null, 23, 45]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -69,8 +69,6 @@ Implement the `NeighborSum` class:
 - The adjacent neighbors of 15 are 0, 10, 7, and 6.
 
 - The diagonal neighbors of 9 are 4, 12, 14, and 15.
-
-</div>
 
 ### 4. Constraints
 

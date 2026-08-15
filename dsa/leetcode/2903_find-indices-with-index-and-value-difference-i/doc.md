@@ -46,20 +46,20 @@ Return any qualifying pair `[i, j]`; return `[-1, -1]` only when no qualifying p
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, 1, 4, 1], indexDifference = 2, valueDifference = 4`
-- Output: `[0, 3]`
-- Explanation: The index gap is $3$ and the value gap is $4$.
+- **Input:** `nums = [5, 1, 4, 1], indexDifference = 2, valueDifference = 4`
+- **Output:** `[0, 3]`
+- **Explanation:** The index gap is $3$ and the value gap is $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 1], indexDifference = 0, valueDifference = 0`
-- Output: `[0, 0]`
-- Explanation: Equal indices are permitted, and both required gaps are zero.
+- **Input:** `nums = [2, 1], indexDifference = 0, valueDifference = 0`
+- **Output:** `[0, 0]`
+- **Explanation:** Equal indices are permitted, and both required gaps are zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3], indexDifference = 2, valueDifference = 4`
-- Output: `[-1, -1]`
-- Explanation: The only index pair far enough apart has a value gap of $2$, so no answer exists.
+- **Input:** `nums = [1, 2, 3], indexDifference = 2, valueDifference = 4`
+- **Output:** `[-1, -1]`
+- **Explanation:** The only index pair far enough apart has a value gap of $2$, so no answer exists.

@@ -24,12 +24,11 @@ Return the largest possible number of indices `i` satisfying $\text{nums}[i] = i
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,2,1]
+- **Input:** nums = [0,2,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Delete $\text{nums}[1] = 2$. The array becomes `[0, 1]`.
 
@@ -37,15 +36,13 @@ Return the largest possible number of indices `i` satisfying $\text{nums}[i] = i
 
 - Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,1,2]
+- **Input:** nums = [3,1,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Do not delete any elements. The array remains `[3, 1, 2]`.
 
@@ -53,23 +50,19 @@ Return the largest possible number of indices `i` satisfying $\text{nums}[i] = i
 
 - Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,0,1,2]
+- **Input:** nums = [1,0,1,2]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Delete $\text{nums}[0] = 1$. The array becomes `[0, 1, 2]`.
 
 - Now, $\text{nums}[0] = 0$, $\text{nums}[1] = 1$, and $\text{nums}[2] = 2$, so all indices are fixed points.
 
 - Thus, the answer is 3.
-
-</div>
 
 ### 4. Constraints
 

@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/partition-array-such-that-maximum-difference-is-k/) |
 
 ## Problem Description
+
 ### Goal
+
 Partition every occurrence in the integer array `nums` into one or more
 subsequences. Each original element must appear in exactly one subsequence,
 and the relative order of elements assigned to the same subsequence is
@@ -24,6 +26,7 @@ increasing index order, feasibility depends on how values are grouped rather
 than on their original arrangement.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: A nonempty array of nonnegative integers whose occurrences must all be assigned.
@@ -38,17 +41,18 @@ The minimum number of subsequences needed to cover every occurrence while
 keeping each subsequence's value range at most `k`.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [3, 6, 1, 2, 5]`, `k = 2`
-- Output: `2`
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [3, 6, 1, 2, 5]`, `k = 2`
+- **Output:** `2`
 
-- Input: `nums = [1, 2, 3]`, `k = 1`
-- Output: `2`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1, 2, 3]`, `k = 1`
+- **Output:** `2`
 
-- Input: `nums = [2, 2, 4, 5]`, `k = 0`
-- Output: `3`
+#### Example 3
+
+- **Input:** `nums = [2, 2, 4, 5]`, `k = 0`
+- **Output:** `3`

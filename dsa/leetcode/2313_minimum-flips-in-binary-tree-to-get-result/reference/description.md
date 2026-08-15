@@ -56,15 +56,14 @@ Return an integer representing the minimum number of leaf flips required so that
 
 - **Input:** `root = [3,5,4,2,null,1,1,1,0], result = true`
 - **Output:** `2`
-- **Explanation:**
-It can be shown that a minimum of 2 nodes have to be flipped to make the root of the tree
+- **Explanation:** It can be shown that a minimum of 2 nodes have to be flipped to make the root of the tree
 evaluate to true. One way to achieve this is shown in the diagram above.
+
 #### Example 2
 
 - **Input:** `root = [0], result = false`
 - **Output:** `0`
-- **Explanation:**
-The root of the tree already evaluates to false, so 0 nodes have to be flipped.
+- **Explanation:** The root of the tree already evaluates to false, so 0 nodes have to be flipped.
 
 ### 4. Constraints
 

@@ -31,17 +31,17 @@ Return whether the chosen child would then have the greatest number of candies a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `candies = [2,3,5,1,3], extraCandies = 3`
-- Output: `[true,true,true,false,true]`
+- **Input:** `candies = [2,3,5,1,3], extraCandies = 3`
+- **Output:** `[true,true,true,false,true]`
 
-**Example 2**
+#### Example 2
 
-- Input: `candies = [4,2,1,1,2], extraCandies = 1`
-- Output: `[true,false,false,false,false]`
+- **Input:** `candies = [4,2,1,1,2], extraCandies = 1`
+- **Output:** `[true,false,false,false,false]`
 
-**Example 3**
+#### Example 3
 
-- Input: `candies = [12,1,12], extraCandies = 10`
-- Output: `[true,false,true]`
+- **Input:** `candies = [12,1,12], extraCandies = 10`
+- **Output:** `[true,false,true]`

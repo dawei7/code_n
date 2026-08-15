@@ -30,7 +30,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 SecretSanta table:
@@ -62,22 +61,17 @@ SecretSanta table:
 
 - **Chain 1** involves employees 1, 2, and 3:
 
-		<li>Employee 1 gives a gift to 2, employee 2 gives a gift to 3, and employee 3 gives a gift to 1.
+		- Employee 1 gives a gift to 2, employee 2 gives a gift to 3, and employee 3 gives a gift to 1.
 
 - Total gift value for this chain = 20 + 30 + 40 = 90.
 
-	</li>
 - **Chain 2** involves employees 4 and 5:
 
-		<li>Employee 4 gives a gift to 5, and employee 5 gives a gift to 4.
+		- Employee 4 gives a gift to 5, and employee 5 gives a gift to 4.
 
 - Total gift value for this chain = 25 + 35 = 60.
 
-	</li>
-
 The result table is ordered by the chain length and total gift value of the chain in descending order.
-
-</div>
 
 ### 2. Function Contract
 

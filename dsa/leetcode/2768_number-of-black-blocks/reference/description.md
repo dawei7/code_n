@@ -10,8 +10,15 @@ Return *a **0-indexed** integer array* `arr` *of size* `5` *such that* $\text{ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `coordinates`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -24,6 +31,7 @@ Return *a **0-indexed** integer array* `arr` *of size* `5` *such that* $\text{ar
 There is only 1 block with one black cell, and it is the block starting with cell [0,0].
 The other 3 blocks start with cells [0,1], [1,0] and [1,1]. They all have zero black cells.
 Thus, we return [3,1,0,0,0].
+
 #### Example 2
 
 - **Input:** $m = 3, n = 3, coordinates = [[0,0],[1,1],[0,2]]$

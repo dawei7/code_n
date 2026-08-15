@@ -12,8 +12,13 @@ Return *the number of operations to make all elements in *`nums`* equal*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,11 +30,13 @@ Return *the number of operations to make all elements in *`nums`* equal*.
 1. largest = 5 at index 0. nextLargest = 3. Reduce nums[0] to 3. nums = [<u>3</u>,1,3].
 2. largest = 3 at index 0. nextLargest = 1. Reduce nums[0] to 1. nums = [<u>1</u>,1,3].
 3. largest = 3 at index 2. nextLargest = 1. Reduce nums[2] to 1. nums = [1,1,<u>1</u>].
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1]`
 - **Output:** `0`
 - **Explanation:** All elements in nums are already equal.
+
 #### Example 3
 
 - **Input:** `nums = [1,1,2,2,3]`

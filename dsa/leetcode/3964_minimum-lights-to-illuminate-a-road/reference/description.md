@@ -30,14 +30,11 @@ Return the smallest number of additional radius-one bulbs whose combined coverag
 
 #### Example 1
 
-<div class="example-block">
-**Input:** lights = [0,0,0,0]
+- **Input:** lights = [0,0,0,0]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One optimal placement is:
+- **Explanation:** One optimal placement is:
 
 - Install an additional bulb at position 1, illuminating positions `[0, 1, 2]`.
 
@@ -45,23 +42,19 @@ One optimal placement is:
 
 Therefore, the minimum number of additional bulbs required is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** lights = [0,0,0,2,0]
+- **Input:** lights = [0,0,0,2,0]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Since $\text{lights}[3] = 2$, the working bulb at position 3 illuminates positions `[1, 2, 3, 4]`.
 
 - Installing an additional bulb at position 1 illuminates positions `[0, 1, 2]`, making every position visible.
 
 - Therefore, the minimum number of additional bulbs required is 1.
-
-</div>
 
 ### 4. Constraints
 

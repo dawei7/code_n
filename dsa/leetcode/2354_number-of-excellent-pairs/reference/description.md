@@ -14,8 +14,14 @@ Two pairs `(a, b)` and `(c, d)` are considered distinct if either $a \neq c$ or 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -32,6 +38,7 @@ that a pair `(num1, num2)` such that $num1 = num2$ can also be excellent if you 
 - (2, 3) and (3, 2). (2 AND 3) is equal to (10) in binary, and (2 OR 3) is equal to (11) in binary. The total number of set bits is 1 + 2 = 3.
 - (1, 3) and (3, 1). (1 AND 3) is equal to (01) in binary, and (1 OR 3) is equal to (11) in binary. The total number of set bits is 1 + 2 = 3.
 So the number of excellent pairs is 5.
+
 #### Example 2
 
 - **Input:** `nums = [5,1,1], k = 10`

@@ -6,8 +6,13 @@ Return *the **minimum** possible absolute difference*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +24,14 @@ Return *the **minimum** possible absolute difference*.
 - **Output:** `2`
 - **Explanation:** One optimal partition is: [3,9] and [7,3].
 The absolute difference between the sums of the arrays is abs((3 + 9) - (7 + 3)) = 2.
+
 #### Example 2
 
 - **Input:** `nums = [-36,36]`
 - **Output:** `72`
 - **Explanation:** One optimal partition is: [-36] and [36].
 The absolute difference between the sums of the arrays is abs((-36) - (36)) = 72.
+
 #### Example 3
 
 ![example-3](images/ex3.png)

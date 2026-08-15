@@ -33,23 +33,23 @@ A user is an interview candidate when either of two independent rules holds: the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: contests `190` through `196` with medalists `[[1,5,2],[2,3,5],[5,2,3],[1,3,5],[4,5,2],[4,2,1],[1,5,2]]`
-- Output: users Sarah, Bob, Alice, and Quarz with their mail addresses
+- **Input:** contests `190` through `196` with medalists `[[1,5,2],[2,3,5],[5,2,3],[1,3,5],[4,5,2],[4,2,1],[1,5,2]]`
+- **Output:** users Sarah, Bob, Alice, and Quarz with their mail addresses
 
 Sarah has three gold medals. Bob, Alice, and Quarz each have a run of at least three consecutive contests with some medal.
 
-**Example 2**
+#### Example 2
 
-- Input: user `7` wins gold in contests `10`, `20`, and `30`
-- Output: user `7`'s `name` and `mail`
+- **Input:** user `7` wins gold in contests `10`, `20`, and `30`
+- **Output:** user `7`'s `name` and `mail`
 
 The gold-medal rule does not require consecutive contests.
 
-**Example 3**
+#### Example 3
 
-- Input: user `8` wins medals in contests `1`, `2`, and `4`
-- Output: no row for user `8`
+- **Input:** user `8` wins medals in contests `1`, `2`, and `4`
+- **Output:** no row for user `8`
 
 Three medals alone are insufficient when they are neither all gold nor spread across three consecutive contest IDs.

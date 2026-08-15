@@ -14,8 +14,14 @@ Return *the kth string* of this list or return an **empty string** if there are 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -24,11 +30,13 @@ Return *the kth string* of this list or return an **empty string** if there are 
 - **Input:** $n = 1, k = 3$
 - **Output:** `"c"`
 - **Explanation:** The list ["a", "b", "c"] contains all happy strings of length 1. The third string is "c".
+
 #### Example 2
 
 - **Input:** $n = 1, k = 4$
 - **Output:** `""`
 - **Explanation:** There are only 3 happy strings of length 1.
+
 #### Example 3
 
 - **Input:** $n = 3, k = 9$

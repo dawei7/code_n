@@ -14,21 +14,23 @@ Return the **maximum** sum of any trionic subarray in `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [0,-2,-1,-3,0,2,-1]
+- **Input:** nums = [0,-2,-1,-3,0,2,-1]
 
-**Output:** -4
+- **Output:** -4
 
-**Explanation:**
-
-Pick $l = 1$, $p = 2$, $q = 3$, $r = 5$:
+- **Explanation:** Pick $l = 1$, $p = 2$, $q = 3$, $r = 5$:
 
 - $nums[l...p] = nums[1...2] = [-2, -1]$ is strictly increasing (`-2 < -1`).
 
@@ -38,17 +40,13 @@ Pick $l = 1$, $p = 2$, $q = 3$, $r = 5$:
 
 - Sum = $(-2) + (-1) + (-3) + 0 + 2 = -4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,4,2,7]
+- **Input:** nums = [1,4,2,7]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
-
-Pick $l = 0$, $p = 1$, $q = 2$, $r = 3$:
+- **Explanation:** Pick $l = 0$, $p = 1$, $q = 2$, $r = 3$:
 
 - $nums[l...p] = nums[0...1] = [1, 4]$ is strictly increasing (`1 < 4`).
 
@@ -57,8 +55,6 @@ Pick $l = 0$, $p = 1$, $q = 2$, $r = 3$:
 - $nums[q...r] = nums[2...3] = [2, 7]$ is strictly increasing (`2 < 7`).
 
 - Sum = $1 + 4 + 2 + 7 = 14$.
-
-</div>
 
 ### 4. Constraints
 

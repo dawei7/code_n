@@ -6,31 +6,32 @@ Return *any* *one* split in which the **maximum** difference between any two num
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 100, k = 2
+- **Input:** n = 100, k = 2
 
-**Output:** [10,10]
+- **Output:** [10,10]
 
-**Explanation:**
+- **Explanation:** The split `[10, 10]` yields $10 * 10 = 100$ and a max-min difference of 0, which is minimal.
 
-The split `[10, 10]` yields $10 * 10 = 100$ and a max-min difference of 0, which is minimal.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 44, k = 3
+- **Input:** n = 44, k = 3
 
-**Output:** [2,2,11]
+- **Output:** [2,2,11]
 
-**Explanation:**
+- **Explanation:** 
 
 - Split `[1, 1, 44]` yields a difference of 43
 
@@ -41,8 +42,6 @@ The split `[10, 10]` yields $10 * 10 = 100$ and a max-min difference of 0, which
 - Split `[2, 2, 11]` yields a difference of 9
 
 Therefore, `[2, 2, 11]` is the optimal split with the smallest difference 9.
-
-</div>
 
 ### 4. Constraints
 

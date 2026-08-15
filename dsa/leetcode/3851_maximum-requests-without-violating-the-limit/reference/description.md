@@ -34,12 +34,11 @@ Return the maximum possible total number of retained request records across all 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** requests = [[1,1],[2,1],[1,7],[2,8]], k = 1, window = 4
+- **Input:** requests = [[1,1],[2,1],[1,7],[2,8]], k = 1, window = 4
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - For user 1, the request times are `[1, 7]`. The difference between them is 6, which is greater than $window = 4$.
 
@@ -47,15 +46,13 @@ Return the maximum possible total number of retained request records across all 
 
 - No user makes more than $k = 1$ request within any inclusive interval of length `window`. Therefore, all 4 requests can remain.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** requests = [[1,2],[1,5],[1,2],[1,6]], k = 2, window = 5
+- **Input:** requests = [[1,2],[1,5],[1,2],[1,6]], k = 2, window = 5
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - For user 1, the request times are `[2, 2, 5, 6]`. The inclusive interval `[2, 7]` of length $window = 5$ contains all 4 requests.
 
@@ -65,23 +62,19 @@ Return the maximum possible total number of retained request records across all 
 
 - Therefore, the maximum number of requests that can remain is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** requests = [[1,1],[2,5],[1,2],[3,9]], k = 1, window = 1
+- **Input:** requests = [[1,1],[2,5],[1,2],[3,9]], k = 1, window = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - For user 1, the request times are `[1, 2]`. The difference is 1, which is equal to $window = 1$.
 
 - The inclusive interval `[1, 2]` contains both requests, so the count is 2, which exceeds $k = 1$. One request must be removed.
 
 - Users 2 and 3 each have only one request and do not violate the limit. Therefore, the maximum number of requests that can remain is 3.
-
-</div>
 
 ### 4. Constraints
 

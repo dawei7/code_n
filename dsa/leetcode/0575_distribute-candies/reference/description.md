@@ -8,8 +8,13 @@ Given the integer array `candyType` of length `n`, return *the **maximum** numbe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `candyType`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Given the integer array `candyType` of length `n`, return *the **maximum** numbe
 - **Input:** $candyType = [1,1,2,2,3,3]$
 - **Output:** `3`
 - **Explanation:** Alice can only eat 6 / 2 = 3 candies. Since there are only 3 types, she can eat one of each type.
+
 #### Example 2
 
 - **Input:** $candyType = [1,1,2,3]$
 - **Output:** `2`
 - **Explanation:** Alice can only eat 4 / 2 = 2 candies. Whether she eats types [1,2], [1,3], or [2,3], she still can only eat 2 different types.
+
 #### Example 3
 
 - **Input:** $candyType = [6,6,6,6]$

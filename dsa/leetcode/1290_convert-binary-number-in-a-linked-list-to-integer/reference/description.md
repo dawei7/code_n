@@ -8,8 +8,10 @@ The **most significant bit** is at the head of the linked list.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `getDecimalValue(head: Optional[ListNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -20,6 +22,7 @@ The **most significant bit** is at the head of the linked list.
 - **Input:** $head = [1,0,1]$
 - **Output:** `5`
 - **Explanation:** (101) in base 2 = (5) in base 10
+
 #### Example 2
 
 - **Input:** $head = [0]$

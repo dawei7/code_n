@@ -14,11 +14,9 @@ A **matrix diagonal** is a diagonal line of cells starting from some cell in eit
 
 - For example, in the below diagram the diagonal is highlighted using the cell with indices `(2, 3)` colored gray:
 
-		<li>Red-colored cells are left and above the cell.
+		- Red-colored cells are left and above the cell.
 
 - Blue-colored cells are right and below the cell.
-
-	</li>
 
 ![](images/diagonal.png)
 
@@ -26,21 +24,23 @@ Return the matrix `answer`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,2,3],[3,1,5],[3,2,1]]
+- **Input:** grid = [[1,2,3],[3,1,5],[3,2,1]]
 
-**Output:** Output: [[1,1,0],[1,0,1],[0,1,1]]
+- **Output:** Output: [[1,1,0],[1,0,1],[0,1,1]]
 
-**Explanation:**
-
-To calculate the `answer` cells:
+- **Explanation:** To calculate the `answer` cells:
 
 <table>
 	<thead>
@@ -128,15 +128,12 @@ To calculate the `answer` cells:
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1]]
+- **Input:** grid = [[1]]
 
-**Output:** Output: [[0]]
-
-</div>
+- **Output:** Output: [[0]]
 
 ### 4. Constraints
 

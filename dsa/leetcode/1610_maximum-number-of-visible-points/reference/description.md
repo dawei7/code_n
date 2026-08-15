@@ -14,8 +14,15 @@ Return *the maximum number of points you can see*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+- `angle`: Input parameter (`int`).
+- `location`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,11 +33,13 @@ Return *the maximum number of points you can see*.
 - **Input:** $points = [[2,1],[2,2],[3,3]], angle = 90, location = [1,1]$
 - **Output:** `3`
 - **Explanation:** The shaded region represents your field of view. All points can be made visible in your field of view, including [3,3] even though [2,2] is in front and in the same line of sight.
+
 #### Example 2
 
 - **Input:** $points = [[2,1],[2,2],[3,4],[1,1]], angle = 90, location = [1,1]$
 - **Output:** `4`
 - **Explanation:** All points can be made visible in your field of view, including the one at your location.
+
 #### Example 3
 
 ![](images/5010bfd3-86e6-465f-ac64-e9df941d2e49.png)

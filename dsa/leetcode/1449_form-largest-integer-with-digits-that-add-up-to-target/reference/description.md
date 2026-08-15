@@ -12,8 +12,14 @@ Since the answer may be very large, return it as a string. If there is no way to
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cost`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -32,11 +38,13 @@ Since the answer may be very large, return it as a string. If there is no way to
 7  ->   2
 8  ->   5
 9  ->   5
+
 #### Example 2
 
 - **Input:** $cost = [7,6,5,5,5,6,8,7,8], target = 12$
 - **Output:** `"85"`
 - **Explanation:** The cost to paint the digit '8' is 7, and the digit '5' is 5. Then cost("85") = 7 + 5 = 12.
+
 #### Example 3
 
 - **Input:** $cost = [2,4,6,2,4,6,4,4,4], target = 5$

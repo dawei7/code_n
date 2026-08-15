@@ -30,20 +30,20 @@ Determine the largest value obtainable by one remapping and, independently, the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 11891`
-- Output: `99009`
-- Explanation: Remapping every `1` to `9` produces `99899`, while remapping every `1` to `0` produces the representation `00890`, whose value is $890$.
+- **Input:** `num = 11891`
+- **Output:** `99009`
+- **Explanation:** Remapping every `1` to `9` produces `99899`, while remapping every `1` to `0` produces the representation `00890`, whose value is $890$.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 90`
-- Output: `99`
-- Explanation: Replacing `0` with `9` gives $99$, while replacing `9` with `0` gives $0$.
+- **Input:** `num = 90`
+- **Output:** `99`
+- **Explanation:** Replacing `0` with `9` gives $99$, while replacing `9` with `0` gives $0$.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 999`
-- Output: `999`
-- Explanation: The maximum remains $999$, and remapping `9` to `0` makes the minimum $0$.
+- **Input:** `num = 999`
+- **Output:** `999`
+- **Explanation:** The maximum remains $999$, and remapping `9` to `0` makes the minimum $0$.

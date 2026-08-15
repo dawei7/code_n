@@ -30,20 +30,20 @@ Report orders customer by customer under one priority rule. If a customer has at
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Orders = [[1,1,0],[2,1,0],[11,2,0],[12,2,1],[21,3,1],[22,3,0],[31,4,1],[32,4,1]]`
-- Output: `[[1,1,0],[2,1,0],[11,2,0],[22,3,0],[31,4,1],[32,4,1]]`
-- Explanation: Customers 1, 2, and 3 have type 0 orders, while customer 4 has only type 1 orders.
+- **Input:** `Orders = [[1,1,0],[2,1,0],[11,2,0],[12,2,1],[21,3,1],[22,3,0],[31,4,1],[32,4,1]]`
+- **Output:** `[[1,1,0],[2,1,0],[11,2,0],[22,3,0],[31,4,1],[32,4,1]]`
+- **Explanation:** Customers 1, 2, and 3 have type 0 orders, while customer 4 has only type 1 orders.
 
-**Example 2**
+#### Example 2
 
-- Input: `Orders = [[5,7,1],[6,7,1]]`
-- Output: `[[5,7,1],[6,7,1]]`
-- Explanation: With no type 0 order for customer 7, both type 1 rows remain.
+- **Input:** `Orders = [[5,7,1],[6,7,1]]`
+- **Output:** `[[5,7,1],[6,7,1]]`
+- **Explanation:** With no type 0 order for customer 7, both type 1 rows remain.
 
-**Example 3**
+#### Example 3
 
-- Input: `Orders = [[8,2,1],[9,2,0],[10,2,0]]`
-- Output: `[[9,2,0],[10,2,0]]`
-- Explanation: The presence of either type 0 row suppresses the customer's type 1 row but not the other type 0 rows.
+- **Input:** `Orders = [[8,2,1],[9,2,0],[10,2,0]]`
+- **Output:** `[[9,2,0],[10,2,0]]`
+- **Explanation:** The presence of either type 0 row suppresses the customer's type 1 row but not the other type 0 rows.

@@ -34,20 +34,20 @@ The length satisfies $1 \le n \le 10^5$, and every element satisfies $1 \le \tex
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,5,2,4]`
-- Output: `2`
-- Explanation: Values `2` and `5` can form one valid pair. No second disjoint valid pair exists.
+- **Input:** `nums = [3,5,2,4]`
+- **Output:** `2`
+- **Explanation:** Values `2` and `5` can form one valid pair. No second disjoint valid pair exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [9,2,5,4]`
-- Output: `4`
-- Explanation: Pair `4` with `9` and `2` with `5`, marking every index.
+- **Input:** `nums = [9,2,5,4]`
+- **Output:** `4`
+- **Explanation:** Pair `4` with `9` and `2` with `5`, marking every index.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7,6,8]`
-- Output: `0`
-- Explanation: No two values satisfy the required inequality.
+- **Input:** `nums = [7,6,8]`
+- **Output:** `0`
+- **Explanation:** No two values satisfy the required inequality.

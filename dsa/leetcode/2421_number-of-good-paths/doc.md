@@ -33,23 +33,23 @@ The constraints are $1 \le n \le 3 \cdot 10^4$, $0 \le \texttt{vals[i]} \le 10^5
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `vals = [1,3,2,1,3], edges = [[0,1],[0,2],[2,3],[2,4]]`
-- Output: `6`
+- **Input:** `vals = [1,3,2,1,3], edges = [[0,1],[0,2],[2,3],[2,4]]`
+- **Output:** `6`
 
 The five singleton paths are good. The two value-3 nodes also connect through nodes whose values do not exceed 3, producing one additional path.
 
-**Example 2**
+#### Example 2
 
-- Input: `vals = [1,1,2,2,3], edges = [[0,1],[1,2],[2,3],[2,4]]`
-- Output: `7`
+- **Input:** `vals = [1,1,2,2,3], edges = [[0,1],[1,2],[2,3],[2,4]]`
+- **Output:** `7`
 
 Besides the five singleton paths, the adjacent value-1 nodes form one good path and the adjacent value-2 nodes form another.
 
-**Example 3**
+#### Example 3
 
-- Input: `vals = [1], edges = []`
-- Output: `1`
+- **Input:** `vals = [1], edges = []`
+- **Output:** `1`
 
 The only node contributes its singleton path.

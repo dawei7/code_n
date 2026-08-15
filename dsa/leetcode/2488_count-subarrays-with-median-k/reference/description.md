@@ -6,8 +6,14 @@ Return *the number of non-empty subarrays in *`nums`* that have a **median** equ
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -15,9 +21,8 @@ Return *the number of non-empty subarrays in *`nums`* that have a **median** equ
 
 - The median of an array is the **middle **element after sorting the array in **ascending **order. If the array is of even length, the median is the **left **middle element.
 
-		<li>For example, the median of `[2,3,1,4]` is `2`, and the median of `[8,4,3,5,1]` is `4`.
+		- For example, the median of `[2,3,1,4]` is `2`, and the median of `[8,4,3,5,1]` is `4`.
 
-	</li>
 - A subarray is a contiguous part of an array.
 
 ### 4. Examples
@@ -27,6 +32,7 @@ Return *the number of non-empty subarrays in *`nums`* that have a **median** equ
 - **Input:** `nums = [3,2,1,4,5], k = 4`
 - **Output:** `3`
 - **Explanation:** The subarrays that have a median equal to 4 are: [4], [4,5] and [1,4,5].
+
 #### Example 2
 
 - **Input:** `nums = [2,3,1], k = 3`

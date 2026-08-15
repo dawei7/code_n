@@ -33,20 +33,20 @@ Return the maximum number of elements that can be made equal after applying vali
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,6,1,2]`, `k = 2`
-- Output: `3`
-- Explanation: Keep the first `4`, change `6` to `4`, and change `2` to `4`. Those three equal values form a subsequence, and no four-element common target exists.
+- **Input:** `nums = [4,6,1,2]`, `k = 2`
+- **Output:** `3`
+- **Explanation:** Keep the first `4`, change `6` to `4`, and change `2` to `4`. Those three equal values form a subsequence, and no four-element common target exists.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,1,1]`, `k = 10`
-- Output: `4`
-- Explanation: The entire array is already equal, so using no operations achieves the maximum possible beauty.
+- **Input:** `nums = [1,1,1,1]`, `k = 10`
+- **Output:** `4`
+- **Explanation:** The entire array is already equal, so using no operations achieves the maximum possible beauty.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5,1,5,2,5]`, `k = 0`
-- Output: `3`
-- Explanation: No value can move when `k` is zero, so the three existing copies of `5` form the longest equal subsequence.
+- **Input:** `nums = [5,1,5,2,5]`, `k = 0`
+- **Output:** `3`
+- **Explanation:** No value can move when `k` is zero, so the three existing copies of `5` form the longest equal subsequence.

@@ -30,20 +30,20 @@ Return a boolean indicating whether some contiguous $2\times2$ square can be mad
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [["B","W","B"],["B","W","W"],["B","W","B"]]`
-- Output: `true`
-- Explanation: Changing `grid[0][2]` to white makes the upper-right $2\times2$ square all white.
+- **Input:** `grid = [["B","W","B"],["B","W","W"],["B","W","B"]]`
+- **Output:** `true`
+- **Explanation:** Changing `grid[0][2]` to white makes the upper-right $2\times2$ square all white.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [["B","W","B"],["W","B","W"],["B","W","B"]]`
-- Output: `false`
-- Explanation: Every $2\times2$ square has two cells of each color, so one change cannot make all four match.
+- **Input:** `grid = [["B","W","B"],["W","B","W"],["B","W","B"]]`
+- **Output:** `false`
+- **Explanation:** Every $2\times2$ square has two cells of each color, so one change cannot make all four match.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [["B","W","B"],["B","W","W"],["B","W","W"]]`
-- Output: `true`
-- Explanation: The lower-right $2\times2$ square is already entirely white.
+- **Input:** `grid = [["B","W","B"],["B","W","W"],["B","W","W"]]`
+- **Output:** `true`
+- **Explanation:** The lower-right $2\times2$ square is already entirely white.

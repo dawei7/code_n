@@ -6,8 +6,14 @@ Return the answer **sorted** by **the frequency** from highest to lowest. Sort t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -17,6 +23,7 @@ Return the answer **sorted** by **the frequency** from highest to lowest. Sort t
 - **Output:** `["i","love"]`
 - **Explanation:** "i" and "love" are the two most frequent words.
 Note that "i" comes before "love" due to a lower alphabetical order.
+
 #### Example 2
 
 - **Input:** $words = ["the","day","is","sunny","the","the","the","sunny","is","is"], k = 4$

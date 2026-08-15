@@ -8,8 +8,15 @@ Return *the **minimum** number of semesters needed to take all courses*. The tes
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `relations`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +30,7 @@ Return *the **minimum** number of semesters needed to take all courses*. The tes
 In the first semester, you can take courses 2 and 3.
 In the second semester, you can take course 1.
 In the third semester, you can take course 4.
+
 #### Example 2
 
 ![](images/leetcode_parallel_courses_2.png)

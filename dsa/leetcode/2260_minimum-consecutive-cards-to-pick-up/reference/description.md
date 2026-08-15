@@ -6,8 +6,13 @@ Return* the **minimum** number of **consecutive** cards you have to pick up to h
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cards`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Return* the **minimum** number of **consecutive** cards you have to pick up to h
 - **Input:** $cards = [3,4,2,3,4,7]$
 - **Output:** `4`
 - **Explanation:** We can pick up the cards [3,4,2,3] which contain a matching pair of cards with value 3. Note that picking up the cards [4,2,3,4] is also optimal.
+
 #### Example 2
 
 - **Input:** $cards = [1,0,5,3]$

@@ -6,8 +6,14 @@ Return *the number of ways we can draw *`k`* non-overlapping line segments**.* S
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,11 +25,13 @@ Return *the number of ways we can draw *`k`* non-overlapping line segments**.* S
 - **Output:** `5`
 - **Explanation:** The two line segments are shown in red and blue.
 The image above shows the 5 different ways {(0,2),(2,3)}, {(0,1),(1,3)}, {(0,1),(2,3)}, {(1,2),(2,3)}, {(0,1),(1,2)}.
+
 #### Example 2
 
 - **Input:** $n = 3, k = 1$
 - **Output:** `3`
 - **Explanation:** The 3 ways are {(0,1)}, {(0,2)}, {(1,2)}.
+
 #### Example 3
 
 - **Input:** $n = 30, k = 7$

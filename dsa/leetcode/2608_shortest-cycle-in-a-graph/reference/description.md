@@ -8,8 +8,14 @@ A cycle is a path that starts and ends at the same node, and each edge in the pa
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ A cycle is a path that starts and ends at the same node, and each edge in the pa
 - **Input:** $n = 7, edges = [[0,1],[1,2],[2,0],[3,4],[4,5],[5,6],[6,3]]$
 - **Output:** `3`
 - **Explanation:** The cycle with the smallest length is : 0 -> 1 -> 2 -> 0
+
 #### Example 2
 
 ![](images/croppedagin.png)

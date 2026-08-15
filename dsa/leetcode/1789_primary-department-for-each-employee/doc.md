@@ -35,23 +35,23 @@ Let $R$ be the number of membership rows and $M$ the number of distinct employee
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Employee = [[1,1,"N"],[2,1,"Y"],[2,2,"N"],[3,3,"N"],[4,2,"N"],[4,3,"Y"],[4,4,"N"]]`
-- Output: `[[1,1],[2,1],[3,3],[4,3]]`
+- **Input:** `Employee = [[1,1,"N"],[2,1,"Y"],[2,2,"N"],[3,3,"N"],[4,2,"N"],[4,3,"Y"],[4,4,"N"]]`
+- **Output:** `[[1,1],[2,1],[3,3],[4,3]]`
 
 Employees `1` and `3` use their only departments; employees `2` and `4` use their `'Y'` rows.
 
-**Example 2**
+#### Example 2
 
-- Input: `Employee = [[7,42,"N"]]`
-- Output: `[[7,42]]`
+- **Input:** `Employee = [[7,42,"N"]]`
+- **Output:** `[[7,42]]`
 
 A sole membership is reported despite its `'N'` flag.
 
-**Example 3**
+#### Example 3
 
-- Input: `Employee = [[5,90,"N"],[5,3,"Y"],[5,40,"N"]]`
-- Output: `[[5,3]]`
+- **Input:** `Employee = [[5,90,"N"],[5,3,"Y"],[5,40,"N"]]`
+- **Output:** `[[5,3]]`
 
 The primary department is selected by the flag, not by the smallest or largest identifier.

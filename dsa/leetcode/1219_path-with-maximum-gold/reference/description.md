@@ -16,8 +16,13 @@ Return the maximum amount of gold you can collect under the conditions:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,17 +30,16 @@ Return the maximum amount of gold you can collect under the conditions:
 
 - **Input:** `grid = [[0,6,0],[5,8,7],[0,9,0]]`
 - **Output:** `24`
-- **Explanation:**
-[[0,6,0],
+- **Explanation:** [[0,6,0],
 [5,8,7],
 [0,9,0]]
 Path to get the maximum gold, 9 -> 8 -> 7.
+
 #### Example 2
 
 - **Input:** `grid = [[1,0,7],[2,0,6],[3,4,5],[0,3,0],[9,0,20]]`
 - **Output:** `28`
-- **Explanation:**
-[[1,0,7],
+- **Explanation:** [[1,0,7],
 [2,0,6],
 [3,4,5],
 [0,3,0],

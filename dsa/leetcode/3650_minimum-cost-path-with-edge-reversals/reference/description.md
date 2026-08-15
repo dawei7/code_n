@@ -10,19 +10,24 @@ Return the **minimum** total cost to travel from node 0 to node $n - 1$. If it i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1,3],[3,1,1],[2,3,4],[0,2,2]]
+- **Input:** n = 4, edges = [[0,1,3],[3,1,1],[2,3,4],[0,2,2]]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation: **
+- **Explanation:** 
 
 **
 
@@ -36,21 +41,17 @@ Return the **minimum** total cost to travel from node 0 to node $n - 1$. If it i
 
 - Total cost is $3 + 2 = 5$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,2,1],[2,1,1],[1,3,1],[2,3,3]]
+- **Input:** n = 4, edges = [[0,2,1],[2,1,1],[1,3,1],[2,3,3]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - No reversal is needed. Take the path `0 → 2` (cost 1), then `2 → 1` (cost 1), then `1 → 3` (cost 1).
 
 - Total cost is $1 + 1 + 1 = 3$.
-
-</div>
 
 ### 4. Constraints
 

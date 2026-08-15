@@ -12,8 +12,15 @@ Return *the number of possible sets of closing branches, so that any branch has 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `maxDistance`: Input parameter (`int`).
+- `roads`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -38,6 +45,7 @@ that, multiple roads are allowed.
 - The set [0,2], after closing, the active branch is [1].
 - The set [0,1,2], after closing, there are no active branches.
 It can be proven, that there are only 5 possible sets of closing branches.
+
 #### Example 2
 
 ![](images/example22.png)
@@ -53,6 +61,7 @@ It can be proven, that there are only 5 possible sets of closing branches.
 - The set [0,2], after closing, the active branch is [1].
 - The set [0,1,2], after closing, there are no active branches.
 It can be proven, that there are only 7 possible sets of closing branches.
+
 #### Example 3
 
 - **Input:** $n = 1, maxDistance = 10, roads = []$

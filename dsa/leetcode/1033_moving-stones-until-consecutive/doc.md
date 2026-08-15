@@ -32,20 +32,20 @@ Return `[minimum_moves, maximum_moves]`, where the two values are respectively t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = 1, b = 2, c = 5`
-- Output: `[1,2]`
-- Explanation: Move `5` directly to `3` for the minimum, or move it first to `4` and then to `3` for the maximum.
+- **Input:** `a = 1, b = 2, c = 5`
+- **Output:** `[1,2]`
+- **Explanation:** Move `5` directly to `3` for the minimum, or move it first to `4` and then to `3` for the maximum.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = 4, b = 3, c = 2`
-- Output: `[0,0]`
-- Explanation: The sorted positions are already consecutive.
+- **Input:** `a = 4, b = 3, c = 2`
+- **Output:** `[0,0]`
+- **Explanation:** The sorted positions are already consecutive.
 
-**Example 3**
+#### Example 3
 
-- Input: `a = 3, b = 5, c = 1`
-- Output: `[1,2]`
-- Explanation: Move `1` directly to `4`, or move it through `2` before reaching `4`.
+- **Input:** `a = 3, b = 5, c = 1`
+- **Output:** `[1,2]`
+- **Explanation:** Move `1` directly to `4`, or move it through `2` before reaching `4`.

@@ -8,51 +8,50 @@ Return the **minimum** number of operations required to make the sum of the arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,9,7], k = 5
+- **Input:** nums = [3,9,7], k = 5
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Perform 4 operations on $\text{nums}[1] = 9$. Now, `nums = [3, 5, 7]`.
 
 - The sum is 15, which is divisible by 5.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,1,3], k = 4
+- **Input:** nums = [4,1,3], k = 4
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The sum is 8, which is already divisible by 4. Hence, no operations are needed.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,2], k = 6
+- **Input:** nums = [3,2], k = 6
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - Perform 3 operations on $\text{nums}[0] = 3$ and 2 operations on $\text{nums}[1] = 2$. Now, `nums = [0, 0]`.
 
 - The sum is 0, which is divisible by 6.
-
-</div>
 
 ### 4. Constraints
 

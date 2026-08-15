@@ -10,8 +10,14 @@ You start at index -1, which is outside the array (before the first position at 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[int]`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,14 +29,11 @@ Return the **maximum possible minimum** value in `gameScore` after **at most** `
 
 #### Example 1
 
-<div class="example-block">
-**Input:** points = [2,4], m = 3
+- **Input:** points = [2,4], m = 3
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Initially, index $i = -1$ and $gameScore = [0, 0]$.
+- **Explanation:** Initially, index $i = -1$ and $gameScore = [0, 0]$.
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -61,17 +64,13 @@ Initially, index $i = -1$ and $gameScore = [0, 0]$.
 
 The minimum value in `gameScore` is 4, and this is the maximum possible minimum among all configurations. Hence, 4 is the output.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** points = [1,2,3], m = 5
+- **Input:** points = [1,2,3], m = 5
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Initially, index $i = -1$ and $gameScore = [0, 0, 0]$.
+- **Explanation:** Initially, index $i = -1$ and $gameScore = [0, 0, 0]$.
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -111,8 +110,6 @@ Initially, index $i = -1$ and $gameScore = [0, 0, 0]$.
 </table>
 
 The minimum value in `gameScore` is 2, and this is the maximum possible minimum among all configurations. Hence, 2 is the output.
-
-</div>
 
 ### 5. Constraints
 

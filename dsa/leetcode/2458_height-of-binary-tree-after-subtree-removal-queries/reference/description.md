@@ -10,8 +10,10 @@ Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the heig
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `treeQueries(root: Optional[TreeNode], queries: List[int]) -> `List[int]``: Executes operation.
 
 ### 3. Note
 
@@ -31,6 +33,7 @@ Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the heig
 - **Output:** `[2]`
 - **Explanation:** The diagram above shows the tree after removing the subtree rooted at node with value 4.
 The height of the tree is 2 (The path 1 -> 3 -> 2).
+
 #### Example 2
 
 ![](images/binaryytreeedrawio-2.png)

@@ -33,17 +33,17 @@ Every new road points forward, skips at least one city, and is distinct. The que
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, queries = [[2,4],[0,2],[0,4]]`
-- Output: `[3,2,1]`
+- **Input:** `n = 5, queries = [[2,4],[0,2],[0,4]]`
+- **Output:** `[3,2,1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, queries = [[0,3],[0,2]]`
-- Output: `[1,1]`
+- **Input:** `n = 4, queries = [[0,3],[0,2]]`
+- **Output:** `[1,1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7, queries = [[2,4],[1,5],[0,6]]`
-- Output: `[5,3,1]`
+- **Input:** `n = 7, queries = [[2,4],[1,5],[0,6]]`
+- **Output:** `[5,3,1]`

@@ -34,13 +34,13 @@ Starting with the first player, each turn colors one uncolored neighbor of a nod
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,2,3,4,5,6,7,8,9,10,11], n = 11, x = 3`
-- Output: `true`
-- Explanation: Choosing the node with value `2` lets the second player secure a winning number of nodes.
+- **Input:** `root = [1,2,3,4,5,6,7,8,9,10,11], n = 11, x = 3`
+- **Output:** `true`
+- **Explanation:** Choosing the node with value `2` lets the second player secure a winning number of nodes.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1,2,3], n = 3, x = 1`
-- Output: `false`
+- **Input:** `root = [1,2,3], n = 3, x = 1`
+- **Output:** `false`

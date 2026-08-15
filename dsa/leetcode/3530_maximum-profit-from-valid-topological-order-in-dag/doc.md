@@ -36,14 +36,14 @@ Every endpoint is in $[0,n-1]$, and `score` has length `n`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, edges = [[0, 1]], score = [2, 3]`
-- Output: `8`
-- Explanation: The edge forces the order `[0, 1]`, whose profit is $1 \cdot 2 + 2 \cdot 3 = 8$.
+- **Input:** `n = 2, edges = [[0, 1]], score = [2, 3]`
+- **Output:** `8`
+- **Explanation:** The edge forces the order `[0, 1]`, whose profit is $1 \cdot 2 + 2 \cdot 3 = 8$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0, 1], [0, 2]], score = [1, 6, 3]`
-- Output: `25`
-- Explanation: The order `[0, 2, 1]` is valid and earns $1 \cdot 1 + 2 \cdot 3 + 3 \cdot 6 = 25$.
+- **Input:** `n = 3, edges = [[0, 1], [0, 2]], score = [1, 6, 3]`
+- **Output:** `25`
+- **Explanation:** The order `[0, 2, 1]` is valid and earns $1 \cdot 1 + 2 \cdot 3 + 3 \cdot 6 = 25$.

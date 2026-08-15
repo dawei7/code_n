@@ -31,17 +31,17 @@ A push adds a value only when the stack is not full; otherwise it changes nothin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `max_size = 2, operations = [["push",[1]],["push",[2]],["pop",[]]]`
-- Output: `[null,null,2]`
+- **Input:** `max_size = 2, operations = [["push",[1]],["push",[2]],["pop",[]]]`
+- **Output:** `[null,null,2]`
 
-**Example 2**
+#### Example 2
 
-- Input: `max_size = 3, operations = [["push",[1]],["push",[2]],["increment",[2,5]],["pop",[]]]`
-- Output: `[null,null,null,7]`
+- **Input:** `max_size = 3, operations = [["push",[1]],["push",[2]],["increment",[2,5]],["pop",[]]]`
+- **Output:** `[null,null,null,7]`
 
-**Example 3**
+#### Example 3
 
-- Input: `max_size = 1, operations = [["pop",[]]]`
-- Output: `[-1]`
+- **Input:** `max_size = 1, operations = [["pop",[]]]`
+- **Output:** `[-1]`

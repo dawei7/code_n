@@ -33,14 +33,11 @@ Return one `[timestamp, summedValue]` pair for every distinct timestamp present 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** series1 = [[1,3],[4,1]], series2 = [[2,2],[5,2]]
+- **Input:** series1 = [[1,3],[4,1]], series2 = [[2,2],[5,2]]
 
-**Output:** [[1,5],[2,3],[4,3],[5,2]]
+- **Output:** [[1,5],[2,3],[4,3],[5,2]]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Timestamp</th>
@@ -77,17 +74,13 @@ Return one `[timestamp, summedValue]` pair for every distinct timestamp present 
 
 Thus, the aggregated series is `[[1, 5], [2, 3], [4, 3], [5, 2]]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** series1 = [[1,5],[3,1]], series2 = [[2,2]]
+- **Input:** series1 = [[1,5],[3,1]], series2 = [[2,2]]
 
-**Output:** [[1,7],[2,3],[3,1]]
+- **Output:** [[1,7],[2,3],[3,1]]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Timestamp</th>
@@ -118,19 +111,13 @@ Thus, the aggregated series is `[[1, 5], [2, 3], [4, 3], [5, 2]]`.
 
 Thus, the aggregated series is `[[1, 7], [2, 3], [3, 1]]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** series1 = [[1,5]], series2 = [[1000000000,2]]
+- **Input:** series1 = [[1,5]], series2 = [[1000000000,2]]
 
-**Output:** [[1,7],[1000000000,2]]
+- **Output:** [[1,7],[1000000000,2]]
 
-**Explanation:**
-
-At timestamp 1, the next available value in `series2` is 2 at timestamp 1000000000. At timestamp 1000000000, there is no later timestamp in `series1`, so its value is 0. Only timestamps that appear in at least one of the two series are included.
-
-</div>
+- **Explanation:** At timestamp 1, the next available value in `series2` is 2 at timestamp 1000000000. At timestamp 1000000000, there is no later timestamp in `series1`, so its value is 0. Only timestamps that appear in at least one of the two series are included.
 
 ### 4. Constraints
 

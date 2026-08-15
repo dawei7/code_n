@@ -32,8 +32,8 @@ Return one row with one column named `salary_difference`. Its value is the absol
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Engineering salaries include `50000`, `45000`, `85000`, `102000`, `44000`, and `32000`; Marketing salaries include `30000`, `34000`, `42000`, and `53000`.
-- Output: `salary_difference = 49000`
-- Explanation: The departmental maxima are `102000` and `53000`, whose absolute difference is `49000`.
+- **Input:** Engineering salaries include `50000`, `45000`, `85000`, `102000`, `44000`, and `32000`; Marketing salaries include `30000`, `34000`, `42000`, and `53000`.
+- **Output:** `salary_difference = 49000`
+- **Explanation:** The departmental maxima are `102000` and `53000`, whose absolute difference is `49000`.

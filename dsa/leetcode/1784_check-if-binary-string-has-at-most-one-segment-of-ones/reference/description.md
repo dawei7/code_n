@@ -4,8 +4,13 @@ Given a binary string `s` **​​​​​without leading zeros**, return `true
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -14,6 +19,7 @@ Given a binary string `s` **​​​​​without leading zeros**, return `true
 - **Input:** `s = "1001"`
 - **Output:** `false`
 - **Explanation:** The string has two segments of size 1.
+
 #### Example 2
 
 - **Input:** `s = "110"`

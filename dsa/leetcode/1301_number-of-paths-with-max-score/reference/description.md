@@ -10,8 +10,13 @@ In case there is no path, return `[0, 0]`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,10 +24,12 @@ In case there is no path, return `[0, 0]`.
 
 - **Input:** $board = ["E23","2X2","12S"]$
 - **Output:** `[7,1]`
+
 #### Example 2
 
 - **Input:** $board = ["E12","1X1","21S"]$
 - **Output:** `[4,2]`
+
 #### Example 3
 
 - **Input:** $board = ["E11","XXX","11S"]$

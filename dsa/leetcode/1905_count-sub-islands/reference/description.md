@@ -8,8 +8,14 @@ Return the ***number** of islands in *`grid2` *that are considered **sub-islands
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid1`: Input parameter (`List[List[int]]`).
+- `grid2`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ Return the ***number** of islands in *`grid2` *that are considered **sub-islands
 - **Output:** `3`
 - **Explanation:** In the picture above, the grid on the left is grid1 and the grid on the right is grid2.
 The 1s colored red in grid2 are those considered to be part of a sub-island. There are three sub-islands.
+
 #### Example 2
 
 ![](images/testcasex2.png)

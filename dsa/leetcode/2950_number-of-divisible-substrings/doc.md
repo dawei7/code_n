@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-divisible-substrings/) |
 
 ## Problem Description
+
 ### Goal
+
 Each lowercase English letter has the following mapped value:
 
 | Value | Letters |
@@ -31,6 +33,7 @@ is divisible by the string's length. Given a lowercase English string `word`,
 return the number of its contiguous nonempty substrings that are divisible.
 
 ### Function Contract
+
 **Inputs**
 
 - `word`: the lowercase English string whose substrings are examined
@@ -44,20 +47,21 @@ The number of nonempty substrings for which the mapped-value sum is divisible
 by the substring length.
 
 ### Examples
-**Example 1**
 
-- Input: `word = "asdf"`
-- Output: `6`
-- Explanation: The four single letters, `"as"`, and `"sdf"` have sums divisible by their lengths.
+#### Example 1
 
-**Example 2**
+- **Input:** `word = "asdf"`
+- **Output:** `6`
+- **Explanation:** The four single letters, `"as"`, and `"sdf"` have sums divisible by their lengths.
 
-- Input: `word = "bdh"`
-- Output: `4`
-- Explanation: The three single letters and `"bdh"` are divisible.
+#### Example 2
 
-**Example 3**
+- **Input:** `word = "bdh"`
+- **Output:** `4`
+- **Explanation:** The three single letters and `"bdh"` are divisible.
 
-- Input: `word = "abcd"`
-- Output: `6`
-- Explanation: The four single letters together with `"ab"` and `"cd"` are divisible.
+#### Example 3
+
+- **Input:** `word = "abcd"`
+- **Output:** `6`
+- **Explanation:** The four single letters together with `"ab"` and `"cd"` are divisible.

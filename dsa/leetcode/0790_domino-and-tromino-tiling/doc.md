@@ -30,20 +30,20 @@ Return the number of complete tilings modulo `1,000,000,007`. Tiles may not over
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `1`
-- Explanation: One vertical domino covers the board.
+- **Input:** `n = 1`
+- **Output:** `1`
+- **Explanation:** One vertical domino covers the board.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `2`
-- Explanation: Use two vertical dominoes or two horizontal dominoes.
+- **Input:** `n = 2`
+- **Output:** `2`
+- **Explanation:** Use two vertical dominoes or two horizontal dominoes.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `5`
-- Explanation: Three domino-only arrangements and two arrangements using a pair of trominoes are possible.
+- **Input:** `n = 3`
+- **Output:** `5`
+- **Explanation:** Three domino-only arrangements and two arrangements using a pair of trominoes are possible.

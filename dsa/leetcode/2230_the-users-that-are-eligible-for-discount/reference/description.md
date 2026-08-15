@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Purchases table:
 +---------+---------------------+--------+
 | user_id | time_stamp          | amount |
@@ -42,14 +42,13 @@ Purchases table:
 | 3       | 2022-03-30 09:43:42 | 626    |
 +---------+---------------------+--------+
 startDate = 2022-03-08, endDate = 2022-03-20, minAmount = 1000
-**Output:**
+- **Output:** 
 +---------+
 | user_id |
 +---------+
 | 3       |
 +---------+
-**Explanation:**
-Out of the three users, only User 3 is eligible for a discount.
+- **Explanation:** Out of the three users, only User 3 is eligible for a discount.
  - User 1 had one purchase with at least minAmount amount, but not within the time interval.
  - User 2 had one purchase within the time interval, but with less than minAmount amount.
  - User 3 is the only user who had a purchase that satisfies both conditions.

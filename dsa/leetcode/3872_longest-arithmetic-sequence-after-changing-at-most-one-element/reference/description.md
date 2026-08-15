@@ -26,32 +26,27 @@ Return the maximum attainable length of an arithmetic subarray. The result count
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [9,7,5,10,1]
+- **Input:** nums = [9,7,5,10,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - Replace $\text{nums}[3] = 10$ with 3. The array becomes `[9, 7, 5, 3, 1]`.
 
 - Select the subarray `[<u>**9, 7, 5, 3, 1**</u>]`, which is arithmetic because consecutive elements have a common difference of -2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,6,7]
+- **Input:** nums = [1,2,6,7]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Replace $\text{nums}[0] = 1$ with -2. The array becomes `[-2, 2, 6, 7]`.
 
 - Select the subarray `[<u>**-2, 2, 6**</u>, 7]`, which is arithmetic because consecutive elements have a common difference of 4.
-
-</div>
 
 ### 4. Constraints
 

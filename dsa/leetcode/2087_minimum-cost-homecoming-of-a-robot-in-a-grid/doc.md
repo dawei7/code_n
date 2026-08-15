@@ -41,14 +41,14 @@ Return the minimum total cost needed to reach `homePos`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `startPos = [1, 0]`, `homePos = [2, 3]`, `rowCosts = [5, 4, 3]`, `colCosts = [8, 2, 6, 7]`
-- Output: `18`
-- Explanation: Enter row `2` for cost `3`, then columns `1`, `2`, and `3` for costs `2`, `6`, and `7`.
+- **Input:** `startPos = [1, 0]`, `homePos = [2, 3]`, `rowCosts = [5, 4, 3]`, `colCosts = [8, 2, 6, 7]`
+- **Output:** `18`
+- **Explanation:** Enter row `2` for cost `3`, then columns `1`, `2`, and `3` for costs `2`, `6`, and `7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `startPos = [0, 0]`, `homePos = [0, 0]`, `rowCosts = [5]`, `colCosts = [26]`
-- Output: `0`
-- Explanation: The robot is already home, so it makes no moves.
+- **Input:** `startPos = [0, 0]`, `homePos = [0, 0]`, `rowCosts = [5]`, `colCosts = [26]`
+- **Output:** `0`
+- **Explanation:** The robot is already home, so it makes no moves.

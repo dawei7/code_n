@@ -48,7 +48,7 @@ Return one column named `Customers` containing the names of customers with no ma
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +----+-------+
 | id | name  |
@@ -65,7 +65,7 @@ Orders table:
 | 1  | 3          |
 | 2  | 1          |
 +----+------------+
-**Output:**
+- **Output:** 
 +-----------+
 | Customers |
 +-----------+

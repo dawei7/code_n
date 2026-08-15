@@ -32,20 +32,20 @@ Return the number of times Alice and Bob refill their cans while watering all pl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `plants = [2, 2, 3, 3], capacityA = 5, capacityB = 5`
-- Output: `1`
-- Explanation: Alice can water her first two plants without refilling. Bob has only two units left when he reaches the plant needing three, so he refills once.
+- **Input:** `plants = [2, 2, 3, 3], capacityA = 5, capacityB = 5`
+- **Output:** `1`
+- **Explanation:** Alice can water her first two plants without refilling. Bob has only two units left when he reaches the plant needing three, so he refills once.
 
-**Example 2**
+#### Example 2
 
-- Input: `plants = [2, 2, 3, 3], capacityA = 3, capacityB = 4`
-- Output: `2`
-- Explanation: After the outer plants, neither gardener has enough for the next assigned plant, so each refills once.
+- **Input:** `plants = [2, 2, 3, 3], capacityA = 3, capacityB = 4`
+- **Output:** `2`
+- **Explanation:** After the outer plants, neither gardener has enough for the next assigned plant, so each refills once.
 
-**Example 3**
+#### Example 3
 
-- Input: `plants = [5], capacityA = 10, capacityB = 8`
-- Output: `0`
-- Explanation: Both reach the only plant; Alice has more water and can water it without refilling.
+- **Input:** `plants = [5], capacityA = 10, capacityB = 8`
+- **Output:** `0`
+- **Explanation:** Both reach the only plant; Alice has more water and can water it without refilling.

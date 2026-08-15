@@ -30,14 +30,14 @@ The first result must contain the first $\lceil m / 2 \rceil$ nodes of the origi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `list = [1,5,7]` with its tail linked to the first node
-- Output: `[[1,5],[7]]`
-- Explanation: The first cycle receives $\lceil 3/2 \rceil = 2$ nodes.
+- **Input:** `list = [1,5,7]` with its tail linked to the first node
+- **Output:** `[[1,5],[7]]`
+- **Explanation:** The first cycle receives $\lceil 3/2 \rceil = 2$ nodes.
 
-**Example 2**
+#### Example 2
 
-- Input: `list = [2,6,1,5]` with its tail linked to the first node
-- Output: `[[2,6],[1,5]]`
-- Explanation: An even-length list splits into two equal cycles.
+- **Input:** `list = [2,6,1,5]` with its tail linked to the first node
+- **Output:** `[[2,6],[1,5]]`
+- **Explanation:** An even-length list splits into two equal cycles.

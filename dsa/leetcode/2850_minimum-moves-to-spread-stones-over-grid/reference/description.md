@@ -8,8 +8,13 @@ Return *the **minimum number of moves** required to place one stone in each cell
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the **minimum number of moves** required to place one stone in each cell
 3- Move one stone from cell (1,2) to cell (0,2).
 In total, it takes 3 moves to place one stone in each cell of the grid.
 It can be shown that 3 is the minimum number of moves required to place one stone in each cell.
+
 #### Example 2
 
 ![](images/example2-2.svg)

@@ -33,14 +33,14 @@ Return the smallest possible value of the latest task completion time.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `processorTime = [8, 10], tasks = [2, 2, 3, 1, 8, 7, 4, 5]`
-- Output: `16`
-- Explanation: Give durations $8,7,5,4$ to the processor available at time $8$, and give $3,2,2,1$ to the processor available at time $10$. Their finishing times are $16$ and $13$.
+- **Input:** `processorTime = [8, 10], tasks = [2, 2, 3, 1, 8, 7, 4, 5]`
+- **Output:** `16`
+- **Explanation:** Give durations $8,7,5,4$ to the processor available at time $8$, and give $3,2,2,1$ to the processor available at time $10$. Their finishing times are $16$ and $13$.
 
-**Example 2**
+#### Example 2
 
-- Input: `processorTime = [10, 20], tasks = [2, 3, 1, 2, 5, 8, 4, 3]`
-- Output: `23`
-- Explanation: The first processor can receive durations $8,5,4,3$, while the second receives $3,2,2,1$. The latest completion time is $23$.
+- **Input:** `processorTime = [10, 20], tasks = [2, 3, 1, 2, 5, 8, 4, 3]`
+- **Output:** `23`
+- **Explanation:** The first processor can receive durations $8,5,4,3$, while the second receives $3,2,2,1$. The latest completion time is $23$.

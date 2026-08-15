@@ -29,14 +29,11 @@ Return the lexicographically smallest valid signed permutation, or `[]` if no as
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, target = 0
+- **Input:** n = 3, target = 0
 
-**Output:** [-3,1,2]
+- **Output:** [-3,1,2]
 
-**Explanation:**
-
-The arrays that sum to 0 and whose absolute values form a permutation of size 3 are:
+- **Explanation:** The arrays that sum to 0 and whose absolute values form a permutation of size 3 are:
 
 - `[-3, 1, 2]`
 
@@ -64,19 +61,13 @@ The arrays that sum to 0 and whose absolute values form a permutation of size 3 
 
 The lexicographically smallest one is `[-3, 1, 2]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1, target = 10000000000
+- **Input:** n = 1, target = 10000000000
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-There are no arrays that sum to 10000000000 and whose absolute values form a permutation of size 1. Therefore, the answer is `[]`.
-
-</div>
+- **Explanation:** There are no arrays that sum to 10000000000 and whose absolute values form a permutation of size 1. Therefore, the answer is `[]`.
 
 ### 4. Constraints
 

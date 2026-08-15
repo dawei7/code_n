@@ -30,20 +30,20 @@ Return the maximum number of chunks for which that concatenation equals the resu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [5,4,3,2,1]`
-- Output: `1`
-- Explanation: Every earlier cut would leave a larger value before a smaller value, so the whole array must be one chunk.
+- **Input:** `arr = [5,4,3,2,1]`
+- **Output:** `1`
+- **Explanation:** Every earlier cut would leave a larger value before a smaller value, so the whole array must be one chunk.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [2,1,3,4,4]`
-- Output: `4`
-- Explanation: The chunks `[2,1]`, `[3]`, `[4]`, and `[4]` independently sort to the global order.
+- **Input:** `arr = [2,1,3,4,4]`
+- **Output:** `4`
+- **Explanation:** The chunks `[2,1]`, `[3]`, `[4]`, and `[4]` independently sort to the global order.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [1,1,0,0,1]`
-- Output: `2`
-- Explanation: Cutting before the final `1` is valid, while duplicates and smaller zeros prevent earlier cuts.
+- **Input:** `arr = [1,1,0,0,1]`
+- **Output:** `2`
+- **Explanation:** Cutting before the final `1` is valid, while duplicates and smaller zeros prevent earlier cuts.

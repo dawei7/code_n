@@ -32,9 +32,9 @@ Return the `user_id` and `gender` of every input row. Alternate categories in th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Genders = [(4,"male"),(7,"female"),(2,"other"),(5,"male"),(3,"female"),(8,"male"),(6,"other"),(1,"other"),(9,"female")]`
-- Output: `[(3,"female"),(1,"other"),(4,"male"),(7,"female"),(2,"other"),(5,"male"),(9,"female"),(6,"other"),(8,"male")]`
+- **Input:** `Genders = [(4,"male"),(7,"female"),(2,"other"),(5,"male"),(3,"female"),(8,"male"),(6,"other"),(1,"other"),(9,"female")]`
+- **Output:** `[(3,"female"),(1,"other"),(4,"male"),(7,"female"),(2,"other"),(5,"male"),(9,"female"),(6,"other"),(8,"male")]`
 
 The IDs within each category are ascending, and the three categories repeat in the required order.

@@ -21,6 +21,7 @@ Return the value occupying rank `k` in ascending order.
 
 - **Input:** `root = [3,1,4,null,2], k = 1`
 - **Output:** `1`
+
 #### Example 2
 
 ![](images/kthtree2.jpg)

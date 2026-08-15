@@ -32,17 +32,17 @@ Return columns `category` and `accounts_count`, with exactly one row for each re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Input rows: `(3, 108939)`, `(2, 12747)`, `(8, 87709)`, `(6, 91796)`
 - Output rows: `("Low Salary", 1)`, `("Average Salary", 0)`, `("High Salary", 3)`
 
-**Example 2**
+#### Example 2
 
 - Input rows: `(1, 20000)`, `(2, 50000)`
 - Output rows: `("Low Salary", 0)`, `("Average Salary", 2)`, `("High Salary", 0)`
 
-**Example 3**
+#### Example 3
 
-- Input: an empty `Accounts` table
-- Output: all three categories with count `0`
+- **Input:** an empty `Accounts` table
+- **Output:** all three categories with count `0`

@@ -16,8 +16,15 @@ Notice that for any integer `x` $(lo \le x \le hi)$ it is **guaranteed** that `x
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `lo`: Input parameter (`int`).
+- `hi`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -31,6 +38,7 @@ The power of 14 is 17
 The power of 15 is 17
 The interval sorted by the power value [12,13,14,15]. For k = 2 answer is the second element which is 13.
 Notice that 12 and 13 have the same power value and we sorted them in ascending order. Same for 14 and 15.
+
 #### Example 2
 
 - **Input:** $lo = 7, hi = 11, k = 4$

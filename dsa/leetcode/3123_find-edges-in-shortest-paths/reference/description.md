@@ -8,8 +8,14 @@ Return the array `answer`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Note
 
@@ -21,14 +27,11 @@ that the graph may not be connected.
 
 ![](images/graph35drawio-1.png)
 
-<div class="example-block">
-**Input:** n = 6, edges = [[0,1,4],[0,2,1],[1,3,2],[1,4,3],[1,5,1],[2,3,1],[3,5,3],[4,5,2]]
+- **Input:** n = 6, edges = [[0,1,4],[0,2,1],[1,3,2],[1,4,3],[1,5,1],[2,3,1],[3,5,3],[4,5,2]]
 
-**Output:** [true,true,true,false,true,true,true,false]
+- **Output:** [true,true,true,false,true,true,true,false]
 
-**Explanation:**
-
-The following are **all** the shortest paths between nodes 0 and 5:
+- **Explanation:** The following are **all** the shortest paths between nodes 0 and 5:
 
 - The path `0 -> 1 -> 5`: The sum of weights is $4 + 1 = 5$.
 
@@ -36,21 +39,15 @@ The following are **all** the shortest paths between nodes 0 and 5:
 
 - The path `0 -> 2 -> 3 -> 1 -> 5`: The sum of weights is $1 + 1 + 2 + 1 = 5$.
 
-</div>
 #### Example 2
 
 ![](images/graphhhh.png)
 
-<div class="example-block">
-**Input:** n = 4, edges = [[2,0,1],[0,1,1],[0,3,4],[3,2,2]]
+- **Input:** n = 4, edges = [[2,0,1],[0,1,1],[0,3,4],[3,2,2]]
 
-**Output:** [true,false,false,true]
+- **Output:** [true,false,false,true]
 
-**Explanation:**
-
-There is one shortest path between nodes 0 and 3, which is the path `0 -> 2 -> 3` with the sum of weights $1 + 2 = 3$.
-
-</div>
+- **Explanation:** There is one shortest path between nodes 0 and 3, which is the path `0 -> 2 -> 3` with the sum of weights $1 + 2 = 3$.
 
 ### 5. Constraints
 

@@ -35,12 +35,12 @@ Return the value produced by invoking `fn` once with `context` as `this` and the
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fn = function add(b) { return this.a + b; }`, `args = [{"a": 5}, 7]`
-- Output: `12`
+- **Input:** `fn = function add(b) { return this.a + b; }`, `args = [{"a": 5}, 7]`
+- **Output:** `12`
 
-**Example 2**
+#### Example 2
 
-- Input: `fn = function tax(price, taxRate) { return \`The cost of the ${this.item} is ${price * taxRate}\`; }`, `args = [{"item": "burger"}, 10, 1.1]`
-- Output: `"The cost of the burger is 11"`
+- **Input:** `fn = function tax(price, taxRate) { return \`The cost of the ${this.item} is ${price * taxRate}\`; }`, `args = [{"item": "burger"}, 10, 1.1]`
+- **Output:** `"The cost of the burger is 11"`

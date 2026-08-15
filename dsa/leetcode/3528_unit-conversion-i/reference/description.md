@@ -6,19 +6,23 @@ Return an array `baseUnitConversion` of length `n`, where $\text{baseUnitConvers
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `conversions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** conversions = [[0,1,2],[1,2,3]]
+- **Input:** conversions = [[0,1,2],[1,2,3]]
 
-**Output:** [1,2,6]
+- **Output:** [1,2,6]
 
-**Explanation:**
+- **Explanation:** 
 
 - Convert a single unit of type 0 into 2 units of type 1 using $\text{conversions}[0]$.
 
@@ -26,15 +30,13 @@ Return an array `baseUnitConversion` of length `n`, where $\text{baseUnitConvers
 
 ![](images/example1.png)
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** conversions = [[0,1,2],[0,2,3],[1,3,4],[1,4,5],[2,5,2],[4,6,3],[5,7,4]]
+- **Input:** conversions = [[0,1,2],[0,2,3],[1,3,4],[1,4,5],[2,5,2],[4,6,3],[5,7,4]]
 
-**Output:** [1,2,3,8,10,6,30,24]
+- **Output:** [1,2,3,8,10,6,30,24]
 
-**Explanation:**
+- **Explanation:** 
 
 - Convert a single unit of type 0 into 2 units of type 1 using $\text{conversions}[0]$.
 
@@ -49,8 +51,6 @@ Return an array `baseUnitConversion` of length `n`, where $\text{baseUnitConvers
 - Convert a single unit of type 0 into 30 units of type 6 using $\text{conversions}[0]$, $\text{conversions}[3]$, then $\text{conversions}[5]$.
 
 - Convert a single unit of type 0 into 24 units of type 7 using $\text{conversions}[1]$, $\text{conversions}[4]$, then $\text{conversions}[6]$.
-
-</div>
 
 ### 4. Constraints
 

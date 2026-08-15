@@ -30,19 +30,19 @@ Make the array strictly increasing, meaning every element is smaller than the el
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,1,1]`
-- Output: `3`
+- **Input:** `nums = [1,1,1]`
+- **Output:** `3`
 
 The least possible adjusted array is `[1,2,3]`, requiring zero, one, and two increments.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,5,2,4,1]`
-- Output: `14`
+- **Input:** `nums = [1,5,2,4,1]`
+- **Output:** `14`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [8]`
-- Output: `0`
+- **Input:** `nums = [8]`
+- **Output:** `0`

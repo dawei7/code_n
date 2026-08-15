@@ -18,8 +18,16 @@ Return* the number of good triplets*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `c`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +36,7 @@ Return* the number of good triplets*.
 - **Input:** `arr = [3,0,1,1,9,7], a = 7, b = 2, c = 3`
 - **Output:** `4`
 - **Explanation:** There are 4 good triplets: [(3,0,1), (3,0,1), (3,1,1), (0,1,1)].
+
 #### Example 2
 
 - **Input:** `arr = [1,1,2,2,3], a = 0, b = 0, c = 1`

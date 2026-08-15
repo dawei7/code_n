@@ -16,8 +16,10 @@ Write a solution to select the name and age of the student with $\text{student}_
 The result format is in the following example.
 
 ```
-**Example 1:
-Input:**
+
+#### Example 1
+
+- **Input:** 
 +------------+---------+-----+
 | student_id | name    | age |
 +------------+---------+-----+
@@ -26,13 +28,13 @@ Input:**
 | 128        | Henry   | 6   |
 | 3          | Henry   | 11  |
 +------------+---------+-----+
-**Output:**
+- **Output:** 
 +---------+-----+
 | name    | age |
 +---------+-----+
 | Ulysses | 13  |
 +---------+-----+
-**Explanation:
+- **Explanation:** 
 **Student Ulysses has student_id = 101, we select the name and age.
 ```
 

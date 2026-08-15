@@ -20,8 +20,13 @@ Here are the rules of Tic-Tac-Toe:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -32,6 +37,7 @@ Here are the rules of Tic-Tac-Toe:
 - **Input:** $board = ["O "," "," "]$
 - **Output:** `false`
 - **Explanation:** The first player always plays "X".
+
 #### Example 2
 
 ![](images/tictactoe2-grid.jpg)
@@ -39,6 +45,7 @@ Here are the rules of Tic-Tac-Toe:
 - **Input:** $board = ["XOX"," X "," "]$
 - **Output:** `false`
 - **Explanation:** Players take turns making moves.
+
 #### Example 3
 
 ![](images/tictactoe4-grid.jpg)

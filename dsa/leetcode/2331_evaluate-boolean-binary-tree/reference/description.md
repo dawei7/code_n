@@ -20,8 +20,10 @@ A **leaf node** is a node that has zero children.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `evaluateTree(root: Optional[TreeNode]) -> `bool``: Executes operation.
 
 ### 3. Examples
 
@@ -35,6 +37,7 @@ A **leaf node** is a node that has zero children.
 The AND node evaluates to False AND True = False.
 The OR node evaluates to True OR False = True.
 The root node evaluates to True, so we return true.
+
 #### Example 2
 
 - **Input:** `root = [0]`

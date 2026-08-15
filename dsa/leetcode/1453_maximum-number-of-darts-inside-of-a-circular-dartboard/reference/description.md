@@ -8,8 +8,14 @@ Given the integer `r`, return *the maximum number of darts that can lie on the d
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `darts`: Input parameter (`List[List[int]]`).
+- `r`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Given the integer `r`, return *the maximum number of darts that can lie on the d
 - **Input:** $darts = [[-2,0],[2,0],[0,2],[0,-2]], r = 2$
 - **Output:** `4`
 - **Explanation:** Circle dartboard with center in (0,0) and radius = 2 contain all points.
+
 #### Example 2
 
 ![](images/sample_2_1806.png)

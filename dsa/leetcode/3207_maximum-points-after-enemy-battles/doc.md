@@ -35,14 +35,14 @@ Let $n=\lvert\texttt{enemyEnergies}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `enemyEnergies = [3,2,2], currentEnergy = 2`
-- Output: `3`
-- Explanation: Score once against a value-`2` enemy, mark the value-`3` enemy for energy, score again, mark the other value-`2` enemy, and score a third time using the still-unmarked minimum enemy.
+- **Input:** `enemyEnergies = [3,2,2], currentEnergy = 2`
+- **Output:** `3`
+- **Explanation:** Score once against a value-`2` enemy, mark the value-`3` enemy for energy, score again, mark the other value-`2` enemy, and score a third time using the still-unmarked minimum enemy.
 
-**Example 2**
+#### Example 2
 
-- Input: `enemyEnergies = [2], currentEnergy = 10`
-- Output: `5`
-- Explanation: The only enemy can remain unmarked while its energy cost is paid five times.
+- **Input:** `enemyEnergies = [2], currentEnergy = 10`
+- **Output:** `5`
+- **Explanation:** The only enemy can remain unmarked while its energy cost is paid five times.

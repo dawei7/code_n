@@ -34,22 +34,22 @@ Return the maximum achievable length of a continuous free-time interval after mo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `eventTime = 5, startTime = [1,3], endTime = [2,5]`
-- Output: `2`
+- **Input:** `eventTime = 5, startTime = [1,3], endTime = [2,5]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `eventTime = 10, startTime = [0,7,9], endTime = [1,8,10]`
-- Output: `7`
+- **Input:** `eventTime = 10, startTime = [0,7,9], endTime = [1,8,10]`
+- **Output:** `7`
 
-**Example 3**
+#### Example 3
 
-- Input: `eventTime = 10, startTime = [0,3,7,9], endTime = [1,4,8,10]`
-- Output: `6`
+- **Input:** `eventTime = 10, startTime = [0,3,7,9], endTime = [1,4,8,10]`
+- **Output:** `6`
 
-**Example 4**
+#### Example 4
 
-- Input: `eventTime = 5, startTime = [0,1,2,3,4], endTime = [1,2,3,4,5]`
-- Output: `0`
+- **Input:** `eventTime = 5, startTime = [0,1,2,3,4], endTime = [1,2,3,4,5]`
+- **Output:** `0`

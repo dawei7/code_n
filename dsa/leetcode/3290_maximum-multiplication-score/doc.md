@@ -33,14 +33,14 @@ The constraints guarantee $4 \le n \le 10^5$ and $-10^5 \le a[i], b[i] \le 10^5$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = [3,2,5,6]`, `b = [2,-6,4,-5,-3,2,-7]`
-- Output: `26`
-- Explanation: Choosing indices 0, 1, 2, and 5 gives `3 * 2 + 2 * (-6) + 5 * 4 + 6 * 2 = 26`.
+- **Input:** `a = [3,2,5,6]`, `b = [2,-6,4,-5,-3,2,-7]`
+- **Output:** `26`
+- **Explanation:** Choosing indices 0, 1, 2, and 5 gives `3 * 2 + 2 * (-6) + 5 * 4 + 6 * 2 = 26`.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = [-1,4,5,-2]`, `b = [-5,-1,-3,-2,-4]`
-- Output: `-1`
-- Explanation: Choosing indices 0, 1, 3, and 4 gives the maximum score, `-1`.
+- **Input:** `a = [-1,4,5,-2]`, `b = [-5,-1,-3,-2,-4]`
+- **Output:** `-1`
+- **Explanation:** Choosing indices 0, 1, 3, and 4 gives the maximum score, `-1`.

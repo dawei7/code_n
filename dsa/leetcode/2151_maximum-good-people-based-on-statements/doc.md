@@ -40,16 +40,16 @@ without contradicting any statement made by a good person.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `statements = [[2, 1, 2], [1, 2, 2], [2, 0, 2]]`
-- Output: `2`
-- Explanation: People `0` and `1` can be good together while person `2` is
+- **Input:** `statements = [[2, 1, 2], [1, 2, 2], [2, 0, 2]]`
+- **Output:** `2`
+- **Explanation:** People `0` and `1` can be good together while person `2` is
   bad. Marking person `2` good instead permits only one good person.
 
-**Example 2**
+#### Example 2
 
-- Input: `statements = [[2, 0], [0, 2]]`
-- Output: `1`
-- Explanation: Either person can be the sole good person, but they cannot both
+- **Input:** `statements = [[2, 0], [0, 2]]`
+- **Output:** `1`
+- **Explanation:** Either person can be the sole good person, but they cannot both
   be good because each calls the other bad.

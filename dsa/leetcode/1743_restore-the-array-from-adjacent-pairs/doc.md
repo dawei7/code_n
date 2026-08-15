@@ -31,20 +31,20 @@ Reconstruct and return an array whose consecutive values produce exactly the sup
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `adjacentPairs = [[2,1],[3,4],[3,2]]`
-- Output: `[1,2,3,4]`
-- Explanation: Its consecutive unordered pairs are `{1,2}`, `{2,3}`, and `{3,4}`.
+- **Input:** `adjacentPairs = [[2,1],[3,4],[3,2]]`
+- **Output:** `[1,2,3,4]`
+- **Explanation:** Its consecutive unordered pairs are `{1,2}`, `{2,3}`, and `{3,4}`.
 
-**Example 2**
+#### Example 2
 
-- Input: `adjacentPairs = [[4,-2],[1,4],[-3,1]]`
-- Output: `[-2,4,1,-3]`
-- Explanation: The reverse array `[-3,1,4,-2]` is equally valid.
+- **Input:** `adjacentPairs = [[4,-2],[1,4],[-3,1]]`
+- **Output:** `[-2,4,1,-3]`
+- **Explanation:** The reverse array `[-3,1,4,-2]` is equally valid.
 
-**Example 3**
+#### Example 3
 
-- Input: `adjacentPairs = [[100000,-100000]]`
-- Output: `[100000,-100000]`
-- Explanation: With two values, the sole pair determines adjacency but not orientation.
+- **Input:** `adjacentPairs = [[100000,-100000]]`
+- **Output:** `[100000,-100000]`
+- **Explanation:** With two values, the sole pair determines adjacency but not orientation.

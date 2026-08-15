@@ -86,7 +86,7 @@ Return a table with the single column $\text{seller}_{name}$. Include sellers fo
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customer table:
 +--------------+---------------+
 | customer_id  | customer_name |
@@ -113,14 +113,13 @@ Seller table:
 | 2           | Elizabeth   |
 | 3           | Frank       |
 +-------------+-------------+
-**Output:**
+- **Output:** 
 +-------------+
 | seller_name |
 +-------------+
 | Frank       |
 +-------------+
-**Explanation:**
-Daniel made 1 sale in March 2020.
+- **Explanation:** Daniel made 1 sale in March 2020.
 Elizabeth made 2 sales in 2020 and 1 sale in 2019.
 Frank made 1 sale in 2019 but no sales in 2020.
 ```

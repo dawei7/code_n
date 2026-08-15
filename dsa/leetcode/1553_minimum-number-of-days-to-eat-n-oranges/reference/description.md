@@ -14,8 +14,13 @@ Given the integer `n`, return *the minimum number of days to eat* `n` *oranges*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,6 +34,7 @@ Day 2: Eat 6 oranges, 9 - 2*(9/3) = 9 - 6 = 3. (Since 9 is divisible by 3)
 Day 3: Eat 2 oranges, 3 - 2*(3/3) = 3 - 2 = 1.
 Day 4: Eat the last orange  1 - 1  = 0.
 You need at least 4 days to eat the 10 oranges.
+
 #### Example 2
 
 - **Input:** $n = 6$

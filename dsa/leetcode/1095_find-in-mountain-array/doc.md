@@ -31,14 +31,14 @@ The smallest index containing `target`, or `-1` if no such index exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `target = 3, mountainArr = [1, 2, 3, 4, 5, 3, 1]`
-- Output: `2`
+- **Input:** `target = 3, mountainArr = [1, 2, 3, 4, 5, 3, 1]`
+- **Output:** `2`
 
 The target occurs on both slopes at indices 2 and 5, so the smaller index is required.
 
-**Example 2**
+#### Example 2
 
-- Input: `target = 3, mountainArr = [0, 1, 2, 4, 2, 1]`
-- Output: `-1`
+- **Input:** `target = 3, mountainArr = [0, 1, 2, 4, 2, 1]`
+- **Output:** `-1`

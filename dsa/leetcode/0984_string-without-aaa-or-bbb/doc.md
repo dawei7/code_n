@@ -33,13 +33,13 @@ Let $L=A+B$ be the required output length.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = 1, b = 2`
-- Output: `"abb"`
-- Explanation: `"bab"` and `"bba"` are also valid.
+- **Input:** `a = 1, b = 2`
+- **Output:** `"abb"`
+- **Explanation:** `"bab"` and `"bba"` are also valid.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = 4, b = 1`
-- Output: `"aabaa"`
+- **Input:** `a = 4, b = 1`
+- **Output:** `"aabaa"`

@@ -10,8 +10,15 @@ Return `true`* if and only if it is possible to reach the *`target`* square from
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `blocked`: Input parameter (`List[List[int]]`).
+- `source`: Input parameter (`List[int]`).
+- `target`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -22,6 +29,7 @@ Return `true`* if and only if it is possible to reach the *`target`* square from
 - **Explanation:** The target square is inaccessible starting from the source square because we cannot move.
 We cannot move north or east because those squares are blocked.
 We cannot move south or west because we cannot go outside of the grid.
+
 #### Example 2
 
 - **Input:** $blocked = [], source = [0,0], target = [999999,999999]$

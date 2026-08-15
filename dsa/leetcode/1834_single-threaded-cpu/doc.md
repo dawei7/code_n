@@ -31,23 +31,23 @@ Whenever the CPU is idle and one or more tasks are available, it chooses the tas
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tasks = [[1,2],[2,4],[3,2],[4,1]]`
-- Output: `[0,2,3,1]`
+- **Input:** `tasks = [[1,2],[2,4],[3,2],[4,1]]`
+- **Output:** `[0,2,3,1]`
 
 Task 0 finishes at time 3. Tasks 1 and 2 are then available, so the shorter task 2 runs next.
 
-**Example 2**
+#### Example 2
 
-- Input: `tasks = [[7,10],[7,12],[7,5],[7,4],[7,2]]`
-- Output: `[4,3,2,0,1]`
+- **Input:** `tasks = [[7,10],[7,12],[7,5],[7,4],[7,2]]`
+- **Output:** `[4,3,2,0,1]`
 
 All tasks arrive together and are selected by processing time.
 
-**Example 3**
+#### Example 3
 
-- Input: `tasks = [[5,2],[100,1]]`
-- Output: `[0,1]`
+- **Input:** `tasks = [[5,2],[100,1]]`
+- **Output:** `[0,1]`
 
 The CPU jumps across two idle intervals before the respective tasks arrive.

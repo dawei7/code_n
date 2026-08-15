@@ -26,46 +26,39 @@ Return the smallest result in lexicographic order among all `2n` legal prefix- a
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "dcab"
+- **Input:** s = "dcab"
 
-**Output:** "acdb"
+- **Output:** "acdb"
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose $k = 3$, reverse the first 3 characters.
 
 - Reverse `"dca"` to `"acd"`, resulting string `s = "acdb"`, which is the lexicographically smallest string achievable.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abba"
+- **Input:** s = "abba"
 
-**Output:** "aabb"
+- **Output:** "aabb"
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose $k = 3$, reverse the last 3 characters.
 
 - Reverse `"bba"` to `"abb"`, so the resulting string is `"aabb"`, which is the lexicographically smallest string achievable.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "zxy"
+- **Input:** s = "zxy"
 
-**Output:** "xzy"
+- **Output:** "xzy"
 
-**Explanation:**
+- **Explanation:** 
 
 - Choose $k = 2$, reverse the first 2 characters.
 
 - Reverse `"zx"` to `"xz"`, so the resulting string is `"xzy"`, which is the lexicographically smallest string achievable.
-
-</div>
 
 ### 4. Constraints
 

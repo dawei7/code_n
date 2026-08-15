@@ -32,14 +32,14 @@ The constraints are $1 \le n \le 2 \cdot 10^5$ and $1 \le \texttt{nums[i]} \le 2
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4, 2, 5, 3, 5]`
-- Output: `3`
-- Explanation: Replace `[2, 5]` by `5`, producing `[4, 5, 3, 5]`; then replace `[3, 5]` by `5`, producing the non-decreasing array `[4, 5, 5]`.
+- **Input:** `nums = [4, 2, 5, 3, 5]`
+- **Output:** `3`
+- **Explanation:** Replace `[2, 5]` by `5`, producing `[4, 5, 3, 5]`; then replace `[3, 5]` by `5`, producing the non-decreasing array `[4, 5, 5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3]`
-- Output: `3`
-- Explanation: The original array is already non-decreasing, so no operation is needed.
+- **Input:** `nums = [1, 2, 3]`
+- **Output:** `3`
+- **Explanation:** The original array is already non-decreasing, so no operation is needed.

@@ -21,11 +21,13 @@ Let $N = \lvert s \rvert$. Repetition requires equal contiguous contents at two 
 - **Input:** `s = "abcd"`
 - **Output:** `0`
 - **Explanation:** There is no repeating substring.
+
 #### Example 2
 
 - **Input:** `s = "abbaba"`
 - **Output:** `2`
 - **Explanation:** The longest repeating substrings are "ab" and "ba", each of which occurs twice.
+
 #### Example 3
 
 - **Input:** `s = "aabcaabdaab"`

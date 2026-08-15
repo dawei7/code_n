@@ -44,16 +44,16 @@ two directed distances, or `-1` if no node is reachable from both starts.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [2,2,3,-1], node1 = 0, node2 = 1`
-- Output: `2`
+- **Input:** `edges = [2,2,3,-1], node1 = 0, node2 = 1`
+- **Output:** `2`
 
 Both starts reach node 2 in one step.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [1,2,-1], node1 = 0, node2 = 2`
-- Output: `2`
+- **Input:** `edges = [1,2,-1], node1 = 0, node2 = 2`
+- **Output:** `2`
 
 Node 2 is two steps from node 0 and zero steps from itself.

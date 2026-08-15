@@ -8,21 +8,24 @@ Return the **minimum** number of **valid** strings that can be *concatenated* to
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["abc","aaaaa","bcdef"], target = "aabcdabc"
+- **Input:** words = ["abc","aaaaa","bcdef"], target = "aabcdabc"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The target string can be formed by concatenating:
+- **Explanation:** The target string can be formed by concatenating:
 
 - Prefix of length 2 of $\text{words}[1]$, i.e. `"aa"`.
 
@@ -30,31 +33,23 @@ The target string can be formed by concatenating:
 
 - Prefix of length 3 of $\text{words}[0]$, i.e. `"abc"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["abababab","ab"], target = "ababaababa"
+- **Input:** words = ["abababab","ab"], target = "ababaababa"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The target string can be formed by concatenating:
+- **Explanation:** The target string can be formed by concatenating:
 
 - Prefix of length 5 of $\text{words}[0]$, i.e. `"ababa"`.
 
 - Prefix of length 5 of $\text{words}[0]$, i.e. `"ababa"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words = ["abcdef"], target = "xyz"
+- **Input:** words = ["abcdef"], target = "xyz"
 
-**Output:** -1
-
-</div>
+- **Output:** -1
 
 ### 4. Constraints
 

@@ -12,37 +12,36 @@ Return the number of such arrays.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `original`: Input parameter (`List[int]`).
+- `bounds`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** original = [1,2,3,4], bounds = [[1,2],[2,3],[3,4],[4,5]]
+- **Input:** original = [1,2,3,4], bounds = [[1,2],[2,3],[3,4],[4,5]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The possible arrays are:
+- **Explanation:** The possible arrays are:
 
 - `[1, 2, 3, 4]`
 
 - `[2, 3, 4, 5]`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** original = [1,2,3,4], bounds = [[1,10],[2,9],[3,8],[4,7]]
+- **Input:** original = [1,2,3,4], bounds = [[1,10],[2,9],[3,8],[4,7]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The possible arrays are:
+- **Explanation:** The possible arrays are:
 
 - `[1, 2, 3, 4]`
 
@@ -52,19 +51,13 @@ The possible arrays are:
 
 - `[4, 5, 6, 7]`
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** original = [1,2,1,2], bounds = [[1,1],[2,3],[3,3],[2,3]]
+- **Input:** original = [1,2,1,2], bounds = [[1,1],[2,3],[3,3],[2,3]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No array is possible.
-
-</div>
+- **Explanation:** No array is possible.
 
 ### 4. Constraints
 

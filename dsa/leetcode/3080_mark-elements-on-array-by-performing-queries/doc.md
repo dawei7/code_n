@@ -35,14 +35,14 @@ The constraints are $1 \leq m \leq n \leq 10^5$, $1 \leq \texttt{nums[i]} \leq 1
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 2, 1, 2, 3, 1]`, `queries = [[1, 2], [3, 3], [4, 2]]`
-- Output: `[8, 3, 0]`
-- Explanation: The first query marks index `1` and the values at indices `0` and `3`, leaving a sum of `8`. Index `3` is already marked for the second query; the next three smallest eligible elements leave only the value `3`. The last query marks everything that remains.
+- **Input:** `nums = [1, 2, 2, 1, 2, 3, 1]`, `queries = [[1, 2], [3, 3], [4, 2]]`
+- **Output:** `[8, 3, 0]`
+- **Explanation:** The first query marks index `1` and the values at indices `0` and `3`, leaving a sum of `8`. Index `3` is already marked for the second query; the next three smallest eligible elements leave only the value `3`. The last query marks everything that remains.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 4, 2, 3]`, `queries = [[0, 1]]`
-- Output: `[7]`
-- Explanation: Marking index `0` and then the smallest remaining value, `2`, leaves `4 + 3 = 7`.
+- **Input:** `nums = [1, 4, 2, 3]`, `queries = [[0, 1]]`
+- **Output:** `[7]`
+- **Explanation:** Marking index `0` and then the smallest remaining value, `2`, leaves `4 + 3 = 7`.

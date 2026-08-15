@@ -10,21 +10,24 @@ Return the **minimum** amount of time required for the potions to be brewed prop
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `skill`: Input parameter (`List[int]`).
+- `mana`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** skill = [1,5,2,4], mana = [5,1,4,2]
+- **Input:** skill = [1,5,2,4], mana = [5,1,4,2]
 
-**Output:** 110
+- **Output:** 110
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Potion Number</th>
@@ -71,15 +74,13 @@ Return the **minimum** amount of time required for the potions to be brewed prop
 
 As an example for why wizard 0 cannot start working on the 1^st potion before time $t = 52$, consider the case where the wizards started preparing the 1^st potion at time $t = 50$. At time $t = 58$, wizard 2 is done with the 1^st potion, but wizard 3 will still be working on the 0^th potion till time $t = 60$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** skill = [1,1,1], mana = [1,1,1]
+- **Input:** skill = [1,1,1], mana = [1,1,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - Preparation of the 0^th potion begins at time $t = 0$, and is completed by time $t = 3$.
 
@@ -87,15 +88,11 @@ As an example for why wizard 0 cannot start working on the 1^st potion before ti
 
 - Preparation of the 2^nd potion begins at time $t = 2$, and is completed by time $t = 5$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** skill = [1,2,3,4], mana = [1,2]
+- **Input:** skill = [1,2,3,4], mana = [1,2]
 
-**Output:** 21
-
-</div>
+- **Output:** 21
 
 ### 4. Constraints
 

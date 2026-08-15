@@ -54,7 +54,7 @@ Both key columns participate in the lookup, so equal IDs in different years rema
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 NPV table:
 +------+--------+--------+
 | id   | year   | npv    |
@@ -80,7 +80,7 @@ Queries table:
 | 7    | 2020   |
 | 13   | 2019   |
 +------+--------+
-**Output:**
+- **Output:** 
 +------+--------+--------+
 | id   | year   | npv    |
 +------+--------+--------+
@@ -92,7 +92,6 @@ Queries table:
 | 7    | 2020   | 30     |
 | 13   | 2019   | 40     |
 +------+--------+--------+
-**Explanation:**
-The npv value of (7, 2018) is not present in the NPV table, we consider it 0.
+- **Explanation:** The npv value of (7, 2018) is not present in the NPV table, we consider it 0.
 The npv values of all other queries can be found in the NPV table.
 ```

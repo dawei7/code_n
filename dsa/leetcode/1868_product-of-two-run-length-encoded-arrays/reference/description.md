@@ -32,6 +32,7 @@ Compression should be done such that the run-length encoded array has the **mini
 - **Output:** `[[6,6]]`
 - **Explanation:** encoded1 expands to [1,1,1,2,2,2] and encoded2 expands to [6,6,6,3,3,3].
 prodNums = [6,6,6,6,6,6], which is compressed into the run-length encoded array [[6,6]].
+
 #### Example 2
 
 - **Input:** $encoded1 = [[1,3],[2,1],[3,2]], encoded2 = [[2,3],[3,3]]$

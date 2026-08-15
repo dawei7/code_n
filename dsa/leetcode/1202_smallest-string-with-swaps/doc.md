@@ -31,21 +31,21 @@ Each allowed pair may be used any number of times and in any order. Return the l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "dcab"`, `pairs = [[0,3],[1,2]]`
-- Output: `"bacd"`
+- **Input:** `s = "dcab"`, `pairs = [[0,3],[1,2]]`
+- **Output:** `"bacd"`
 
 The two disconnected pairs can be optimized independently.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "dcab"`, `pairs = [[0,3],[1,2],[0,2]]`
-- Output: `"abcd"`
+- **Input:** `s = "dcab"`, `pairs = [[0,3],[1,2],[0,2]]`
+- **Output:** `"abcd"`
 
 The extra pair connects all four indices, allowing the characters to be fully reordered.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "cba"`, `pairs = [[0,1],[1,2]]`
-- Output: `"abc"`
+- **Input:** `s = "cba"`, `pairs = [[0,1],[1,2]]`
+- **Output:** `"abc"`

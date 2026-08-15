@@ -28,6 +28,7 @@ It can be shown that other nodes are not great enough.
 See the picture below for a better understanding.
 
 ![](images/1.png)
+
 #### Example 2
 
 - **Input:** `root = [1,2,3], k = 1`
@@ -39,6 +40,7 @@ The values in the subtree of node 3: {3}. Since node.val == 3, there are no node
 See the picture below for a better understanding.
 
 ![](images/2.png)
+
 #### Example 3
 
 - **Input:** `root = [3,2,2], k = 2`

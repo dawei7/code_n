@@ -32,20 +32,20 @@ Let $n$ be the length of `nums`. The input satisfies $1 \le n \le 10^5$ and $-10
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [7, 6, 5, 4, 3, 2, 1, 6, 10, 11]`
-- Output: `8`
-- Explanation: The subarray from the first `7` through the later `6` has length $8$, and its first value is strictly greater than its last.
+- **Input:** `nums = [7, 6, 5, 4, 3, 2, 1, 6, 10, 11]`
+- **Output:** `8`
+- **Explanation:** The subarray from the first `7` through the later `6` has length $8$, and its first value is strictly greater than its last.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [57, 55, 50, 60, 61, 58, 63, 59, 64, 60, 63]`
-- Output: `6`
-- Explanation: The subarray `[61, 58, 63, 59, 64, 60]` qualifies because $61>60$.
+- **Input:** `nums = [57, 55, 50, 60, 61, 58, 63, 59, 64, 60, 63]`
+- **Output:** `6`
+- **Explanation:** The subarray `[61, 58, 63, 59, 64, 60]` qualifies because $61>60$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4]`
-- Output: `0`
-- Explanation: No earlier element is strictly greater than a later element.
+- **Input:** `nums = [1, 2, 3, 4]`
+- **Output:** `0`
+- **Explanation:** No earlier element is strictly greater than a later element.

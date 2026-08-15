@@ -10,8 +10,10 @@ Return *an array of the *`k`* parts*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `splitListToParts(head: Optional[ListNode], k: int) -> `List[Optional[ListNode]]``: Executes operation.
 
 ### 3. Examples
 
@@ -21,17 +23,16 @@ Return *an array of the *`k`* parts*.
 
 - **Input:** $head = [1,2,3], k = 5$
 - **Output:** `[[1],[2],[3],[],[]]`
-- **Explanation:**
-The first element output[0] has output[0].val = 1, output[0].next = null.
+- **Explanation:** The first element output[0] has output[0].val = 1, output[0].next = null.
 The last element output[4] is null, but its string representation as a ListNode is [].
+
 #### Example 2
 
 ![](images/split2-lc.jpg)
 
 - **Input:** $head = [1,2,3,4,5,6,7,8,9,10], k = 3$
 - **Output:** `[[1,2,3,4],[5,6,7],[8,9,10]]`
-- **Explanation:**
-The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
+- **Explanation:** The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.
 
 ### 4. Constraints
 

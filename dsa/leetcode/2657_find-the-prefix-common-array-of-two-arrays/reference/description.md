@@ -10,8 +10,14 @@ A sequence of `n` integers is called a **permutation** if it contains all intege
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `A`: Input parameter (`List[int]`).
+- `B`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ A sequence of `n` integers is called a **permutation** if it contains all intege
 At i = 1: 1 and 3 are common in A and B, so C[1] = 2.
 At i = 2: 1, 2, and 3 are common in A and B, so C[2] = 3.
 At i = 3: 1, 2, 3, and 4 are common in A and B, so C[3] = 4.
+
 #### Example 2
 
 - **Input:** $A = [2,3,1], B = [3,1,2]$
@@ -37,4 +44,4 @@ At i = 2: 1, 2, and 3 are common in A and B, so C[2] = 3.
 
 - $1 \le A[i], B[i] \le n$
 
-- `It is guaranteed that A and B are both a permutation of n integers.`
+- It is guaranteed that `A` and `B` are both a permutation of `n` integers.

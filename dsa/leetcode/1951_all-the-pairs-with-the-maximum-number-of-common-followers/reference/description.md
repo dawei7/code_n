@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Relations table:
 +---------+-------------+
 | user_id | follower_id |
@@ -45,14 +45,13 @@ Relations table:
 | 2       | 6           |
 | 7       | 5           |
 +---------+-------------+
-**Output:**
+- **Output:** 
 +----------+----------+
 | user1_id | user2_id |
 +----------+----------+
 | 1        | 7        |
 +----------+----------+
-**Explanation:**
-Users 1 and 2 have two common followers (3 and 4).
+- **Explanation:** Users 1 and 2 have two common followers (3 and 4).
 Users 1 and 7 have three common followers (3, 4, and 5).
 Users 2 and 7 have two common followers (3 and 4).
 Since the maximum number of common followers between any two users is 3, we return all pairs of users with three common followers, which is only the pair (1, 7). We return the pair as (1, 7), not as (7, 1).

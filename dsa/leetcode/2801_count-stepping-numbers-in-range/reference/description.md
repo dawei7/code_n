@@ -10,8 +10,14 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `low`: Input parameter (`str`).
+- `high`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -24,6 +30,7 @@ A stepping number should not have a leading zero.
 - **Input:** $low = "1", high = "11"$
 - **Output:** `10`
 - **Explanation:** The stepping numbers in the range [1,11] are 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10. There are a total of 10 stepping numbers in the range. Hence, the output is 10.
+
 #### Example 2
 
 - **Input:** $low = "90", high = "101"$

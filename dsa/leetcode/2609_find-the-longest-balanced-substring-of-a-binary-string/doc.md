@@ -30,20 +30,20 @@ Return the length of the longest balanced substring.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "01000111"`
-- Output: `6`
-- Explanation: `"000111"` is balanced and has length six.
+- **Input:** `s = "01000111"`
+- **Output:** `6`
+- **Explanation:** `"000111"` is balanced and has length six.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "00111"`
-- Output: `4`
-- Explanation: `"0011"` is the longest balanced choice.
+- **Input:** `s = "00111"`
+- **Output:** `4`
+- **Explanation:** `"0011"` is the longest balanced choice.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "111"`
-- Output: `0`
-- Explanation: No nonempty substring contains a zero-run followed by an equally long one-run.
+- **Input:** `s = "111"`
+- **Output:** `0`
+- **Explanation:** No nonempty substring contains a zero-run followed by an equally long one-run.

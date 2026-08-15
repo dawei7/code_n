@@ -12,21 +12,25 @@ Return the **minimum** time `t` at which the string `s` becomes **active**. If i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `order`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abc", order = [1,0,2], k = 2
+- **Input:** s = "abc", order = [1,0,2], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`t`</th>
@@ -53,17 +57,13 @@ Return the **minimum** time `t` at which the string `s` becomes **active**. If i
 
 The string `s` becomes active at $t = 0$. Thus, the answer is 0.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "cat", order = [0,2,1], k = 6
+- **Input:** s = "cat", order = [0,2,1], k = 6
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`t`</th>
@@ -106,19 +106,13 @@ The string `s` becomes active at $t = 0$. Thus, the answer is 0.
 
 The string `s` becomes active at $t = 2$. Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "xy", order = [0,1], k = 4
+- **Input:** s = "xy", order = [0,1], k = 4
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-Even after all replacements, it is impossible to obtain $k = 4$ valid substrings. Thus, the answer is -1.
-
-</div>
+- **Explanation:** Even after all replacements, it is impossible to obtain $k = 4$ valid substrings. Thus, the answer is -1.
 
 ### 4. Constraints
 

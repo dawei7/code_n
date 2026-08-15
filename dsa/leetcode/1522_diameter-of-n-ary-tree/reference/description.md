@@ -27,6 +27,7 @@ Return the maximum number of edges on a simple path between any two nodes in the
 - **Input:** `root = [1,null,3,2,4,null,5,6]`
 - **Output:** `3`
 - **Explanation:** Diameter is shown in red color.
+
 #### Example 2
 
 **
@@ -37,6 +38,7 @@ Return the maximum number of edges on a simple path between any two nodes in the
 
 - **Input:** `root = [1,null,2,null,3,4,null,5,null,6]`
 - **Output:** `4`
+
 #### Example 3
 
 ![](images/sample_3_1897.png)

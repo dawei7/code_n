@@ -32,20 +32,20 @@ Combine terms with identical sorted variable factors and omit terms whose coeffi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `expression = "e + 8 - a + 5"`, `evalvars = ["e"]`, `evalints = [1]`
-- Output: `["-1*a","14"]`
-- Explanation: Substituting $e = 1$ leaves $-a + 14$.
+- **Input:** `expression = "e + 8 - a + 5"`, `evalvars = ["e"]`, `evalints = [1]`
+- **Output:** `["-1*a","14"]`
+- **Explanation:** Substituting $e = 1$ leaves $-a + 14$.
 
-**Example 2**
+#### Example 2
 
-- Input: `expression = "e - 8 + temperature - pressure"`, `evalvars = ["e","temperature"]`, `evalints = [1,12]`
-- Output: `["-1*pressure","5"]`
-- Explanation: The substituted constants combine while `pressure` remains symbolic.
+- **Input:** `expression = "e - 8 + temperature - pressure"`, `evalvars = ["e","temperature"]`, `evalints = [1,12]`
+- **Output:** `["-1*pressure","5"]`
+- **Explanation:** The substituted constants combine while `pressure` remains symbolic.
 
-**Example 3**
+#### Example 3
 
-- Input: `expression = "(e + 8) * (e - 8)"`, `evalvars = []`, `evalints = []`
-- Output: `["1*e*e","-64"]`
-- Explanation: Expansion combines the opposite linear terms and cancels them.
+- **Input:** `expression = "(e + 8) * (e - 8)"`, `evalvars = []`, `evalints = []`
+- **Output:** `["1*e*e","-64"]`
+- **Explanation:** Expansion combines the opposite linear terms and cancels them.

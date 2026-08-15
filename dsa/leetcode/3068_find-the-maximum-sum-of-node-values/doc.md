@@ -36,20 +36,20 @@ Return the maximum achievable sum of the final node values.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1], k = 3, edges = [[0, 1], [0, 2]]`
-- Output: `6`
-- Explanation: Operating on `[0, 2]` changes both endpoint values from `1` to `2`, producing `[2, 2, 2]`.
+- **Input:** `nums = [1, 2, 1], k = 3, edges = [[0, 1], [0, 2]]`
+- **Output:** `6`
+- **Explanation:** Operating on `[0, 2]` changes both endpoint values from `1` to `2`, producing `[2, 2, 2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3], k = 7, edges = [[0, 1]]`
-- Output: `9`
-- Explanation: Operating on the only edge produces `[5, 4]`.
+- **Input:** `nums = [2, 3], k = 7, edges = [[0, 1]]`
+- **Output:** `9`
+- **Explanation:** Operating on the only edge produces `[5, 4]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [7, 7, 7, 7, 7, 7], k = 3, edges = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]`
-- Output: `42`
-- Explanation: Performing no operation preserves the maximum sum.
+- **Input:** `nums = [7, 7, 7, 7, 7, 7], k = 3, edges = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]`
+- **Output:** `42`
+- **Explanation:** Performing no operation preserves the maximum sum.

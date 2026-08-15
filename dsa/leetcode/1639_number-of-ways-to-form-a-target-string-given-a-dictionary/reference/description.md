@@ -14,8 +14,14 @@ Your task is to form `target` using the given `words` under the following rules:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Notice
 
@@ -36,6 +42,7 @@ Return *the number of ways to form `target` from `words`*. Since the answer may 
 "aba" -> index 0 ("<u>a</u>cca"), index 2 ("bb<u>b</u>b"), index 3 ("acc<u>a</u>")
 "aba" -> index 1 ("c<u>a</u>ca"), index 2 ("bb<u>b</u>b"), index 3 ("acc<u>a</u>")
 "aba" -> index 1 ("c<u>a</u>ca"), index 2 ("bb<u>b</u>b"), index 3 ("cac<u>a</u>")
+
 #### Example 2
 
 - **Input:** $words = ["abba","baab"], target = "bab"$

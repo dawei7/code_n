@@ -30,12 +30,12 @@ Perform the modification directly in `arr` and return nothing. Nonzero values re
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1, 0, 2, 3, 0, 4, 5, 0]`
-- Output: `[1, 0, 0, 2, 3, 0, 0, 4]`
+- **Input:** `arr = [1, 0, 2, 3, 0, 4, 5, 0]`
+- **Output:** `[1, 0, 0, 2, 3, 0, 0, 4]`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1, 2, 3]`
-- Output: `[1, 2, 3]`
+- **Input:** `arr = [1, 2, 3]`
+- **Output:** `[1, 2, 3]`

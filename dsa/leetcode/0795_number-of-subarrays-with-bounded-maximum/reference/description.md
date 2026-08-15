@@ -6,8 +6,15 @@ The test cases are generated so that the answer will fit in a **32-bit** integer
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `left`: Input parameter (`int`).
+- `right`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +23,7 @@ The test cases are generated so that the answer will fit in a **32-bit** integer
 - **Input:** `nums = [2,1,4,3], left = 2, right = 3`
 - **Output:** `3`
 - **Explanation:** There are three subarrays that meet the requirements: [2], [2, 1], [3].
+
 #### Example 2
 
 - **Input:** `nums = [2,9,2,5,6], left = 2, right = 8`

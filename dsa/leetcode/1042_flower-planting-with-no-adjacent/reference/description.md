@@ -10,8 +10,14 @@ Return ***any** such a choice as an array *`answer`*, where *$\text{answer}[i]$*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `paths`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,15 +25,16 @@ Return ***any** such a choice as an array *`answer`*, where *$\text{answer}[i]$*
 
 - **Input:** $n = 3, paths = [[1,2],[2,3],[3,1]]$
 - **Output:** `[1,2,3]`
-- **Explanation:**
-Gardens 1 and 2 have different types.
+- **Explanation:** Gardens 1 and 2 have different types.
 Gardens 2 and 3 have different types.
 Gardens 3 and 1 have different types.
 Hence, [1,2,3] is a valid answer. Other valid answers include [1,2,4], [1,4,2], and [3,2,1].
+
 #### Example 2
 
 - **Input:** $n = 4, paths = [[1,2],[3,4]]$
 - **Output:** `[1,2,1,2]`
+
 #### Example 3
 
 - **Input:** $n = 4, paths = [[1,2],[2,3],[3,4],[4,1],[1,3],[2,4]]$

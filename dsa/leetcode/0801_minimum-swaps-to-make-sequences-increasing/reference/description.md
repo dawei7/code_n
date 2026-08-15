@@ -10,8 +10,14 @@ An array `arr` is **strictly increasing** if and only if $\text{arr}[0] < \text{
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,10 +25,10 @@ An array `arr` is **strictly increasing** if and only if $\text{arr}[0] < \text{
 
 - **Input:** $nums1 = [1,3,5,4], nums2 = [1,2,3,7]$
 - **Output:** `1`
-- **Explanation:**
-Swap nums1[3] and nums2[3]. Then the sequences are:
+- **Explanation:** Swap nums1[3] and nums2[3]. Then the sequences are:
 nums1 = [1, 3, 5, 7] and nums2 = [1, 2, 3, 4]
 which are both strictly increasing.
+
 #### Example 2
 
 - **Input:** $nums1 = [0,3,5,8,9], nums2 = [2,1,4,6,9]$

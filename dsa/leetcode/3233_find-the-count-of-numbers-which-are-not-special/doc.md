@@ -33,20 +33,20 @@ Return the number of non-special integers in $[l,r]$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `l = 5, r = 7`
-- Output: `3`
-- Explanation: None of $5$, $6$, and $7$ has exactly two proper divisors.
+- **Input:** `l = 5, r = 7`
+- **Output:** `3`
+- **Explanation:** None of $5$, $6$, and $7$ has exactly two proper divisors.
 
-**Example 2**
+#### Example 2
 
-- Input: `l = 4, r = 16`
-- Output: `11`
-- Explanation: The interval has $13$ values, and only $4=2^2$ and $9=3^2$ are special.
+- **Input:** `l = 4, r = 16`
+- **Output:** `11`
+- **Explanation:** The interval has $13$ values, and only $4=2^2$ and $9=3^2$ are special.
 
-**Example 3**
+#### Example 3
 
-- Input: `l = 4, r = 4`
-- Output: `0`
-- Explanation: The only value is special because its proper divisors are $1$ and $2$.
+- **Input:** `l = 4, r = 4`
+- **Output:** `0`
+- **Explanation:** The only value is special because its proper divisors are $1$ and $2$.

@@ -4,8 +4,13 @@ Given a $m * n$ matrix of ones and zeros, return how many **square** submatrices
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,11 @@ Given a $m * n$ matrix of ones and zeros, return how many **square** submatrices
 [0,1,1,1]
 ]
 - **Output:** `15`
-- **Explanation:**
-There are **10** squares of side 1.
+- **Explanation:** There are **10** squares of side 1.
 There are **4** squares of side 2.
 There is  **1** square of side 3.
 Total number of squares = 10 + 4 + 1 = **15**.
+
 #### Example 2
 
 - **Input:** `matrix =`
@@ -32,8 +37,7 @@ Total number of squares = 10 + 4 + 1 = **15**.
 [1,1,0]
 ]
 - **Output:** `7`
-- **Explanation:**
-There are **6** squares of side 1.
+- **Explanation:** There are **6** squares of side 1.
 There is **1** square of side 2.
 Total number of squares = 6 + 1 = **7**.
 

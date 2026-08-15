@@ -33,20 +33,20 @@ Both tables contain the same number $N$ of students.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: New York scores `[90,87]` and California scores `[89,88]`.
-- Output: `New York University`
-- Explanation: New York has one excellent student and California has none.
+- **Input:** New York scores `[90,87]` and California scores `[89,88]`.
+- **Output:** `New York University`
+- **Explanation:** New York has one excellent student and California has none.
 
-**Example 2**
+#### Example 2
 
-- Input: New York scores `[89,88]` and California scores `[90,87]`.
-- Output: `California University`
-- Explanation: California has one excellent student and New York has none.
+- **Input:** New York scores `[89,88]` and California scores `[90,87]`.
+- **Output:** `California University`
+- **Explanation:** California has one excellent student and New York has none.
 
-**Example 3**
+#### Example 3
 
-- Input: New York scores `[89,90]` and California scores `[87,99]`.
-- Output: `No Winner`
-- Explanation: Each university has one excellent student.
+- **Input:** New York scores `[89,90]` and California scores `[87,99]`.
+- **Output:** `No Winner`
+- **Explanation:** Each university has one excellent student.

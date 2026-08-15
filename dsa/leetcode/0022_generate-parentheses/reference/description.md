@@ -18,6 +18,7 @@ Return all well-formed strings containing exactly $n$ opening and $n$ closing pa
 
 - **Input:** $n = 3$
 - **Output:** `["((()))","(()())","(())()","()(())","()()()"]`
+
 #### Example 2
 
 - **Input:** $n = 1$

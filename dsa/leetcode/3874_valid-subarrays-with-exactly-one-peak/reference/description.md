@@ -37,12 +37,11 @@ Return the total number of index intervals `[l, r]` that contain exactly one ori
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,2], k = 1
+- **Input:** nums = [1,3,2], k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Index $i = 1$ is a peak because $\text{nums}[1] = 3$ is greater than $\text{nums}[0] = 1$ and $\text{nums}[2] = 2$.
 
@@ -50,37 +49,31 @@ Return the total number of index intervals `[l, r]` that contain exactly one ori
 
 - The valid subarrays are `[3]`, `[1, 3]`, `[3, 2]`, and `[1, 3, 2]`, so the answer is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [7,8,9], k = 2
+- **Input:** nums = [7,8,9], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - There is no index `i` such that $\text{nums}[i]$ is greater than both $nums[i - 1]$ and $nums[i + 1]$.
 
 - Therefore, the array contains no peak. Thus, the number of valid subarrays is 0.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,3,5,1], k = 2
+- **Input:** nums = [4,3,5,1], k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - Index $i = 2$ is a peak because $\text{nums}[2] = 5$ is greater than $\text{nums}[1] = 3$ and $\text{nums}[3] = 1$.
 
 - Any valid subarray must contain this peak, and the distance from the peak to both ends of the subarray must not exceed $k = 2$.
 
 - The valid subarrays are `[5]`, `[3, 5]`, `[5, 1]`, `[3, 5, 1]`, `[4, 3, 5]`, and `[4, 3, 5, 1]`, so the answer is 6.
-
-</div>
 
 ### 4. Constraints
 

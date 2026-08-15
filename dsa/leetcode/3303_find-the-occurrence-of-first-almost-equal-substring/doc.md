@@ -33,26 +33,26 @@ The pattern is strictly shorter than `s`, and `s.length` is at most $10^5$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcdefg"`, `pattern = "bcdffg"`
-- Output: `1`
-- Explanation: `s[1..6]` is `"bcdefg"`, which differs from the pattern only at its fourth character.
+- **Input:** `s = "abcdefg"`, `pattern = "bcdffg"`
+- **Output:** `1`
+- **Explanation:** `s[1..6]` is `"bcdefg"`, which differs from the pattern only at its fourth character.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ababbababa"`, `pattern = "bacaba"`
-- Output: `4`
-- Explanation: The window `"bababa"` starting at 4 has one mismatching character.
+- **Input:** `s = "ababbababa"`, `pattern = "bacaba"`
+- **Output:** `4`
+- **Explanation:** The window `"bababa"` starting at 4 has one mismatching character.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcd"`, `pattern = "dba"`
-- Output: `-1`
-- Explanation: Neither length-three window is within one character change of the pattern.
+- **Input:** `s = "abcd"`, `pattern = "dba"`
+- **Output:** `-1`
+- **Explanation:** Neither length-three window is within one character change of the pattern.
 
-**Example 4**
+#### Example 4
 
-- Input: `s = "dde"`, `pattern = "d"`
-- Output: `0`
-- Explanation: The first one-character window is already an exact match.
+- **Input:** `s = "dde"`, `pattern = "d"`
+- **Output:** `0`
+- **Explanation:** The first one-character window is already an exact match.

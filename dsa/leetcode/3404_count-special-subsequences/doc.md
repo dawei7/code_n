@@ -36,16 +36,16 @@ The constraints are $7\le n\le1000$ and $1\le\texttt{nums[i]}\le1000$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 3, 6, 1]`
-- Output: `1`
+- **Input:** `nums = [1, 2, 3, 4, 3, 6, 1]`
+- **Output:** `1`
 
 The sole valid quadruple is $(0,2,4,6)$, producing values $(1,3,3,1)$. Both products equal 3, and every neighboring selected pair has one intervening index.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 4, 3, 4, 3, 4, 3, 4]`
-- Output: `3`
+- **Input:** `nums = [3, 4, 3, 4, 3, 4, 3, 4]`
+- **Output:** `3`
 
 The valid index quadruples are $(0,2,4,6)$, $(1,3,5,7)$, and $(0,2,5,7)$. Their corresponding products match while respecting all three required gaps.

@@ -523,8 +523,8 @@ export function EloGuideModal({ challenges, onClose }: EloGuideModalProps) {
                 <div>
                   <strong className="text-coden-text">Est. Elo N</strong>
                   <p>
-                    cOde(n)’s explicit fallback for unrated problems. Official difficulty selects a non-overlapping real-Elo band, acceptance percentile positions the problem inside it,
-                    and each legacy cohort is calibrated to average the 33rd percentile of its matching real difficulty. The stored value is refreshed by the repository metadata updater.
+                    cOde(n)’s reproducible statistical fallback for unrated problems. Fitted from 2,549 real ZeroTrac contest ratings using the failure log-odds of acceptance rate ln((1-p)/p),
+                    empirical topic difficulty adjustments (e.g. Dynamic Programming, Segment Trees, Bitmasking), and calibrated legacy cohort offsets. Stored values and reproducible parameters are documented in LEETCODE_METADATA.md.
                   </p>
                 </div>
                 <div>

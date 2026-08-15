@@ -22,6 +22,7 @@ A valid division assigns every array occurrence to exactly one subsequence. Each
 - **Input:** `nums = [1,2,2,3,3,4,4], k = 3`
 - **Output:** `true`
 - **Explanation:** The array can be divided into two subsequences [1,2,3,4] and [2,3,4] with lengths at least 3 each.
+
 #### Example 2
 
 - **Input:** `nums = [5,6,6,7,8], k = 3`

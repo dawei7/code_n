@@ -26,12 +26,11 @@ Mario can switch lanes immediately upon entering or just before exiting the free
 
 #### Example 1
 
-<div class="example-block">
-**Input:** lane1 = [1,-2,-10,3], lane2 = [-5,10,0,1]
+- **Input:** lane1 = [1,-2,-10,3], lane2 = [-5,10,0,1]
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Mario drives the first mile on lane 1.
 
@@ -41,15 +40,13 @@ Mario can switch lanes immediately upon entering or just before exiting the free
 
 Mario collects $1 + 10 + 0 + 3 = 14$ coins.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** lane1 = [1,-1,-1,-1], lane2 = [0,3,4,-5]
+- **Input:** lane1 = [1,-1,-1,-1], lane2 = [0,3,4,-5]
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - Mario starts at mile 0 in lane 1 and drives one mile.
 
@@ -57,49 +54,41 @@ Mario collects $1 + 10 + 0 + 3 = 14$ coins.
 
 He collects $1 + 3 + 4 = 8$ coins.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** lane1 = [-5,-4,-3], lane2 = [-1,2,3]
+- **Input:** lane1 = [-5,-4,-3], lane2 = [-1,2,3]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - Mario enters at mile 1 and immediately switches to lane 2. He stays here the entire way.
 
 He collects a total of $2 + 3 = 5$ coins.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** lane1 = [-3,-3,-3], lane2 = [9,-2,4]
+- **Input:** lane1 = [-3,-3,-3], lane2 = [9,-2,4]
 
-**Output:** 11
+- **Output:** 11
 
-**Explanation:**
+- **Explanation:** 
 
 - Mario starts at the beginning of the freeway and immediately switches to lane 2. He stays here the whole way.
 
 He collects a total of $9 + (-2) + 4 = 11$ coins.
 
-</div>
 #### Example 5
 
-<div class="example-block">
-**Input:** lane1 = [-10], lane2 = [-2]
+- **Input:** lane1 = [-10], lane2 = [-2]
 
-**Output:** -2
+- **Output:** -2
 
-**Explanation:**
+- **Explanation:** 
 
 - Since Mario must ride on the freeway for at least one mile, he rides just one mile in lane 2.
 
 He collects a total of -2 coins.
-
-</div>
 
 ### 5. Constraints
 

@@ -30,20 +30,20 @@ Return a new object or array with every falsy value removed at every nesting lev
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obj = [null,0,false,1]`
-- Output: `[1]`
-- Explanation: The first three array elements are falsy and are removed.
+- **Input:** `obj = [null,0,false,1]`
+- **Output:** `[1]`
+- **Explanation:** The first three array elements are falsy and are removed.
 
-**Example 2**
+#### Example 2
 
-- Input: `obj = {"a":null,"b":[false,1]}`
-- Output: `{"b":[1]}`
-- Explanation: Property `a` and the first element inside `b` are falsy.
+- **Input:** `obj = {"a":null,"b":[false,1]}`
+- **Output:** `{"b":[1]}`
+- **Explanation:** Property `a` and the first element inside `b` are falsy.
 
-**Example 3**
+#### Example 3
 
-- Input: `obj = [null,0,5,[0],[false,16]]`
-- Output: `[5,[],[16]]`
-- Explanation: Both nested arrays are truthy containers, so they remain after their falsy elements are removed.
+- **Input:** `obj = [null,0,5,[0],[false,16]]`
+- **Output:** `[5,[],[16]]`
+- **Explanation:** Both nested arrays are truthy containers, so they remain after their falsy elements are removed.

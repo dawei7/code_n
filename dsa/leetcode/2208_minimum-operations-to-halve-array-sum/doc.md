@@ -32,20 +32,20 @@ Return $k$, the fewest exact-halving operations whose combined reduction is at l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, 19, 8, 1]`
-- Output: `3`
-- Explanation: halving `19`, then `9.5`, then `8` reduces the sum from `33` to `14.75`.
+- **Input:** `nums = [5, 19, 8, 1]`
+- **Output:** `3`
+- **Explanation:** halving `19`, then `9.5`, then `8` reduces the sum from `33` to `14.75`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 8, 20]`
-- Output: `3`
-- Explanation: halving `20` twice and `3` once removes `16.5`, at least half of `31`.
+- **Input:** `nums = [3, 8, 20]`
+- **Output:** `3`
+- **Explanation:** halving `20` twice and `3` once removes `16.5`, at least half of `31`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10]`
-- Output: `1`
-- Explanation: one halving changes the only value to `5`, exactly half the original sum.
+- **Input:** `nums = [10]`
+- **Output:** `1`
+- **Explanation:** one halving changes the only value to `5`, exactly half the original sum.

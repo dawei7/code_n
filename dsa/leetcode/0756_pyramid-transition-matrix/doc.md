@@ -31,14 +31,14 @@ Given the bottom row and all allowed patterns, return `True` if some sequence of
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `bottom = "BCD"`, `allowed = ["BCC", "CDE", "CEA", "FFF"]`
-- Output: `True`
-- Explanation: `BCD` can produce `CE`, and `CE` can produce `A`.
+- **Input:** `bottom = "BCD"`, `allowed = ["BCC", "CDE", "CEA", "FFF"]`
+- **Output:** `True`
+- **Explanation:** `BCD` can produce `CE`, and `CE` can produce `A`.
 
-**Example 2**
+#### Example 2
 
-- Input: `bottom = "AAAA"`, `allowed = ["AAB", "AAC", "BCD", "BBE", "DEF"]`
-- Output: `False`
-- Explanation: Every possible construction eventually reaches a pair with no legal top block.
+- **Input:** `bottom = "AAAA"`, `allowed = ["AAB", "AAC", "BCD", "BBE", "DEF"]`
+- **Output:** `False`
+- **Explanation:** Every possible construction eventually reaches a pair with no legal top block.

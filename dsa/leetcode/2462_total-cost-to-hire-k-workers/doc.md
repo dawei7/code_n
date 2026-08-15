@@ -34,14 +34,14 @@ The constraints are $1\le\lvert\texttt{costs}\rvert\le10^5$, $1\le\texttt{costs[
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `costs = [17, 12, 10, 2, 7, 2, 11, 20, 8], k = 3, candidates = 4`
-- Output: `11`
-- Explanation: The selected costs are `2`, `2`, and `7` as the two candidate regions are replenished.
+- **Input:** `costs = [17, 12, 10, 2, 7, 2, 11, 20, 8], k = 3, candidates = 4`
+- **Output:** `11`
+- **Explanation:** The selected costs are `2`, `2`, and `7` as the two candidate regions are replenished.
 
-**Example 2**
+#### Example 2
 
-- Input: `costs = [1, 2, 4, 1], k = 3, candidates = 3`
-- Output: `4`
-- Explanation: The candidate regions overlap, so each worker is considered only once; the selected costs are `1`, `1`, and `2`.
+- **Input:** `costs = [1, 2, 4, 1], k = 3, candidates = 3`
+- **Output:** `4`
+- **Explanation:** The candidate regions overlap, so each worker is considered only once; the selected costs are `1`, `1`, and `2`.

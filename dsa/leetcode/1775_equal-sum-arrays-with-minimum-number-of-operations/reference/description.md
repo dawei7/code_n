@@ -8,8 +8,14 @@ Return *the minimum number of operations required to make the sum of values in *
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,11 +27,13 @@ Return *the minimum number of operations required to make the sum of values in *
 - Change nums2[0] to 6. nums1 = [1,2,3,4,5,6], nums2 = [<u>**6**</u>,1,2,2,2,2].
 - Change nums1[5] to 1. nums1 = [1,2,3,4,5,**<u>1</u>**], nums2 = [6,1,2,2,2,2].
 - Change nums1[2] to 2. nums1 = [1,2,**<u>2</u>**,4,5,1], nums2 = [6,1,2,2,2,2].
+
 #### Example 2
 
 - **Input:** $nums1 = [1,1,1,1,1,1,1], nums2 = [6]$
 - **Output:** `-1`
 - **Explanation:** There is no way to decrease the sum of nums1 or to increase the sum of nums2 to make them equal.
+
 #### Example 3
 
 - **Input:** $nums1 = [6,6], nums2 = [1]$

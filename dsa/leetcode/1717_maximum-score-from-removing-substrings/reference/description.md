@@ -4,21 +4,25 @@ You are given a string `s` and two integers `x` and `y`. You can perform two typ
 
 - Remove substring `"ab"` and gain `x` points.
 
-		<li>For example, when removing `"ab"` from `"c<u>ab</u>xbae"` it becomes `"cxbae"`.
+		- For example, when removing `"ab"` from `"c<u>ab</u>xbae"` it becomes `"cxbae"`.
 
-	</li>
 - Remove substring `"ba"` and gain `y` points.
 
-		<li>For example, when removing `"ba"` from `"cabx<u>ba</u>e"` it becomes `"cabxe"`.
-
-	</li>
+		- For example, when removing `"ba"` from `"cabx<u>ba</u>e"` it becomes `"cabxe"`.
 
 Return *the maximum points you can gain after applying the above operations on* `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,12 +30,13 @@ Return *the maximum points you can gain after applying the above operations on* 
 
 - **Input:** `s = "cdbcbbaaabab", x = 4, y = 5`
 - **Output:** `19`
-- **Explanation:**
+- **Explanation:** 
 - Remove the "ba" underlined in "cdbcbbaaa<u>ba</u>b". Now, s = "cdbcbbaaab" and 5 points are added to the score.
 - Remove the "ab" underlined in "cdbcbbaa<u>ab</u>". Now, s = "cdbcbbaa" and 4 points are added to the score.
 - Remove the "ba" underlined in "cdbcb<u>ba</u>a". Now, s = "cdbcba" and 5 points are added to the score.
 - Remove the "ba" underlined in "cdbc<u>ba</u>". Now, s = "cdbc" and 5 points are added to the score.
 Total score = 5 + 4 + 5 + 5 = 19.
+
 #### Example 2
 
 - **Input:** `s = "aabbaaxybbaabb", x = 5, y = 4`

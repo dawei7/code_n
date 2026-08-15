@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/maximum-total-importance-of-roads/) |
 
 ## Problem Description
+
 ### Goal
+
 A country has $n$ cities numbered from 0 through $n-1$. Each pair
 `roads[i] = [a_i, b_i]` describes one bidirectional road between distinct
 cities, and no road is repeated.
@@ -20,6 +22,7 @@ endpoints. Return the maximum possible sum of importance over all roads after
 choosing the assignment optimally.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: The number of cities.
@@ -34,17 +37,18 @@ The greatest total road importance attainable by assigning the values from 1
 through $n$ bijectively to the cities.
 
 ### Examples
-**Example 1**
 
-- Input: `n = 5`, `roads = [[0, 1], [1, 2], [2, 3], [0, 2], [1, 3], [2, 4]]`
-- Output: `43`
+#### Example 1
 
-**Example 2**
+- **Input:** `n = 5`, `roads = [[0, 1], [1, 2], [2, 3], [0, 2], [1, 3], [2, 4]]`
+- **Output:** `43`
 
-- Input: `n = 5`, `roads = [[0, 3], [2, 4], [1, 3]]`
-- Output: `20`
+#### Example 2
 
-**Example 3**
+- **Input:** `n = 5`, `roads = [[0, 3], [2, 4], [1, 3]]`
+- **Output:** `20`
 
-- Input: `n = 2`, `roads = [[0, 1]]`
-- Output: `3`
+#### Example 3
+
+- **Input:** `n = 2`, `roads = [[0, 1]]`
+- **Output:** `3`

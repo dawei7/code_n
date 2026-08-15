@@ -29,14 +29,11 @@ Return the maximum $\text{nums}[i] + \text{nums}[j]$ over all indices satisfying
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,5,2,8], k = 2
+- **Input:** nums = [1,3,5,2,8], k = 2
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-The valid pairs are:
+- **Explanation:** The valid pairs are:
 
 - `(0, 2)`: $\text{nums}[0] + \text{nums}[2] = 6$
 
@@ -52,23 +49,19 @@ The valid pairs are:
 
 Thus, the answer is 13.​​​​​​​
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,1,9], k = 1
+- **Input:** nums = [5,1,9], k = 1
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Since $k = 1$, every pair is valid.
 
 - The maximum value is obtained from a pair `(0, 2)`​​​​​​​, which is $\text{nums}[0] + \text{nums}[2] = 5 + 9 = 14$.
 
 - Thus, the answer is 14.
-
-</div>
 
 ### 4. Constraints
 

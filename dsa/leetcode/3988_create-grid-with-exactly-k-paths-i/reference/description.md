@@ -16,11 +16,9 @@ A **valid path** is a sequence of free cells that:
 
 - Moves only:
 
-		<li>Right, from `(i, j)` to $(i, j + 1)$, or
+		- Right, from `(i, j)` to $(i, j + 1)$, or
 
 - Down, from `(i, j)` to $(i + 1, j)$.
-
-	</li>
 
 Return any grid such that there are **exactly** `k` **valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.
 
@@ -44,14 +42,11 @@ Return a list of exactly `m` strings of length `n`, using only `.` for free cell
 
 #### Example 1
 
-<div class="example-block">
-**Input:** m = 2, n = 3, k = 2
+- **Input:** m = 2, n = 3, k = 2
 
-**Output:** ["...","#.."]
+- **Output:** ["...","#.."]
 
-**Explanation:**
-
-![](images/screenshot-2026-05-27-at-113554am.png)
+- **Explanation:** ![](images/screenshot-2026-05-27-at-113554am.png)
 
 There are exactly $k = 2$ valid paths from `(0, 0)` to `(1, 2)`:
 
@@ -59,17 +54,13 @@ There are exactly $k = 2$ valid paths from `(0, 0)` to `(1, 2)`:
 
 - `(0, 0) → (0, 1) → (1, 1) → (1, 2)`
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** m = 3, n = 3, k = 4
+- **Input:** m = 3, n = 3, k = 4
 
-**Output:** ["..#","...","#.."]
+- **Output:** ["..#","...","#.."]
 
-**Explanation:**
-
-![](images/screenshot-2026-05-27-at-113452am.png)
+- **Explanation:** ![](images/screenshot-2026-05-27-at-113452am.png)
 
 There are exactly $k = 4$ valid paths from `(0, 0)` to `(2, 2)`:
 
@@ -81,19 +72,15 @@ There are exactly $k = 4$ valid paths from `(0, 0)` to `(2, 2)`:
 
 - `(0, 0) → (1, 0) → (1, 1) → (2, 1) → (2, 2)`
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** m = 1, n = 4, k = 2
+- **Input:** m = 1, n = 4, k = 2
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**​
+- **Explanation:** ​
 
 No grid exists with exactly $k = 2$ valid paths for a `1 x 4` grid, so the answer is an empty array.
-
-</div>
 
 ### 4. Constraints
 

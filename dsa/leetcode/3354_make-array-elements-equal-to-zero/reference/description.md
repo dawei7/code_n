@@ -12,13 +12,11 @@ After that, you repeat the following process:
 
 - Else if $\text{nums}[curr] > 0$:
 
-		<li>Decrement $\text{nums}[curr]$ by 1.
+		- Decrement $\text{nums}[curr]$ by 1.
 
 - **Reverse** your movement direction (left becomes right and vice versa).
 
 - Take a step in your new direction.
-
-	</li>
 
 A selection of the initial position `curr` and movement direction is considered **valid** if every element in `nums` becomes 0 by the end of the process.
 
@@ -26,46 +24,39 @@ Return the number of possible **valid** selections.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,0,2,0,3]
+- **Input:** nums = [1,0,2,0,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The only possible valid selections are the following:
+- **Explanation:** The only possible valid selections are the following:
 
 - Choose $curr = 3$, and a movement direction to the left.
 
-		<li>`[1,0,2,**<u>0</u>**,3] -> [1,0,**<u>2</u>**,0,3] -> [1,0,1,**<u>0</u>**,3] -> [1,0,1,0,**<u>3</u>**] -> [1,0,1,**<u>0</u>**,2] -> [1,0,**<u>1</u>**,0,2] -> [1,0,0,**<u>0</u>**,2] -> [1,0,0,0,**<u>2</u>**] -> [1,0,0,**<u>0</u>**,1] -> [1,0,**<u>0</u>**,0,1] -> [1,**<u>0</u>**,0,0,1] -> [**<u>1</u>**,0,0,0,1] -> [0,**<u>0</u>**,0,0,1] -> [0,0,**<u>0</u>**,0,1] -> [0,0,0,**<u>0</u>**,1] -> [0,0,0,0,**<u>1</u>**] -> [0,0,0,0,0]`.
+		- `[1,0,2,**<u>0</u>**,3] -> [1,0,**<u>2</u>**,0,3] -> [1,0,1,**<u>0</u>**,3] -> [1,0,1,0,**<u>3</u>**] -> [1,0,1,**<u>0</u>**,2] -> [1,0,**<u>1</u>**,0,2] -> [1,0,0,**<u>0</u>**,2] -> [1,0,0,0,**<u>2</u>**] -> [1,0,0,**<u>0</u>**,1] -> [1,0,**<u>0</u>**,0,1] -> [1,**<u>0</u>**,0,0,1] -> [**<u>1</u>**,0,0,0,1] -> [0,**<u>0</u>**,0,0,1] -> [0,0,**<u>0</u>**,0,1] -> [0,0,0,**<u>0</u>**,1] -> [0,0,0,0,**<u>1</u>**] -> [0,0,0,0,0]`.
 
-	</li>
 - Choose $curr = 3$, and a movement direction to the right.
 
-		<li>$[1,0,2,**<u>0</u>**,3] -> [1,0,2,0,**<u>3</u>**] -> [1,0,2,**<u>0</u>**,2] -> [1,0,**<u>2</u>**,0,2] -> [1,0,1,**<u>0</u>**,2] -> [1,0,1,0,**<u>2</u>**] -> [1,0,1,**<u>0</u>**,1] -> [1,0,**<u>1</u>**,0,1] -> [1,0,0,**<u>0</u>**,1] -> [1,0,0,0,**<u>1</u>**] -> [1,0,0,**<u>0</u>**,0] -> [1,0,**<u>0</u>**,0,0] -> [1,**<u>0</u>**,0,0,0] -> [**<u>1</u>**,0,0,0,0] -> [0,0,0,0,0].$
+		- $[1,0,2,**<u>0</u>**,3] -> [1,0,2,0,**<u>3</u>**] -> [1,0,2,**<u>0</u>**,2] -> [1,0,**<u>2</u>**,0,2] -> [1,0,1,**<u>0</u>**,2] -> [1,0,1,0,**<u>2</u>**] -> [1,0,1,**<u>0</u>**,1] -> [1,0,**<u>1</u>**,0,1] -> [1,0,0,**<u>0</u>**,1] -> [1,0,0,0,**<u>1</u>**] -> [1,0,0,**<u>0</u>**,0] -> [1,0,**<u>0</u>**,0,0] -> [1,**<u>0</u>**,0,0,0] -> [**<u>1</u>**,0,0,0,0] -> [0,0,0,0,0].$
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,4,0,4,1,0]
+- **Input:** nums = [2,3,4,0,4,1,0]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are no possible valid selections.
-
-</div>
+- **Explanation:** There are no possible valid selections.
 
 ### 4. Constraints
 

@@ -52,6 +52,7 @@ The pattern ("home", "cart", "home") has score 1 (james).
 The pattern ("home", "maps", "home") has score 1 (james).
 The pattern ("cart", "maps", "home") has score 1 (james).
 The pattern ("home", "home", "home") has score 0 (no user visited home 3 times).
+
 #### Example 2
 
 - **Input:** $username = ["ua","ua","ua","ub","ub","ub"], timestamp = [1,2,3,4,5,6], website = ["a","b","a","a","b","c"]$

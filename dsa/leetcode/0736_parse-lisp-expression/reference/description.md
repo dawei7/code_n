@@ -20,8 +20,13 @@ The syntax for these expressions is given as follows.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `expression`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,11 +37,13 @@ The syntax for these expressions is given as follows.
 - **Explanation:** In the expression (add x y), when checking for the value of the variable x,
 we check from the innermost scope to the outermost in the context of the variable we are trying to evaluate.
 Since x = 3 is found first, the value of x is 3.
+
 #### Example 2
 
 - **Input:** $expression = "(let x 3 x 2 x)"$
 - **Output:** `2`
 - **Explanation:** Assignment in let statements is processed sequentially.
+
 #### Example 3
 
 - **Input:** $expression = "(let x 1 y 2 x (add x y) (add x y))"$

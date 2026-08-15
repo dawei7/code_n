@@ -39,22 +39,22 @@ Let $C$ be the number of candidate rows and $R$ the number of round rows.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: candidates `[(11, "Atticus", 1, 101), (9, "Ruben", 6, 104), (6, "Aliza", 10, 109), (8, "Alfredo", 0, 107)]`, with interview totals `16`, `22`, `10`, and `6`
-- Output: `candidate_id = 9`
-- Explanation: Candidate `9` satisfies both thresholds. Candidate `11` has
+- **Input:** candidates `[(11, "Atticus", 1, 101), (9, "Ruben", 6, 104), (6, "Aliza", 10, 109), (8, "Alfredo", 0, 107)]`, with interview totals `16`, `22`, `10`, and `6`
+- **Output:** `candidate_id = 9`
+- **Explanation:** Candidate `9` satisfies both thresholds. Candidate `11` has
   enough score but not enough experience.
 
-**Example 2**
+#### Example 2
 
-- Input: one candidate with `years_of_exp = 2` and round scores `[8, 8]`
-- Output: that candidate's identifier
-- Explanation: Exactly two years is included, and the total `16` is above the
+- **Input:** one candidate with `years_of_exp = 2` and round scores `[8, 8]`
+- **Output:** that candidate's identifier
+- **Explanation:** Exactly two years is included, and the total `16` is above the
   score threshold.
 
-**Example 3**
+#### Example 3
 
-- Input: one experienced candidate with round scores `[7, 8]`
-- Output: no rows
-- Explanation: A total of exactly `15` is not strictly greater than `15`.
+- **Input:** one experienced candidate with round scores `[7, 8]`
+- **Output:** no rows
+- **Explanation:** A total of exactly `15` is not strictly greater than `15`.

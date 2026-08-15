@@ -30,17 +30,17 @@ An expression `&(subExpr1, subExpr2, ..., subExprN)` applies logical AND to one 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `expression = "&(|(f))"`
-- Output: `False`
+- **Input:** `expression = "&(|(f))"`
+- **Output:** `False`
 
-**Example 2**
+#### Example 2
 
-- Input: `expression = "|(f,f,f,t)"`
-- Output: `True`
+- **Input:** `expression = "|(f,f,f,t)"`
+- **Output:** `True`
 
-**Example 3**
+#### Example 3
 
-- Input: `expression = "!(&(f,t))"`
-- Output: `True`
+- **Input:** `expression = "!(&(f,t))"`
+- **Output:** `True`

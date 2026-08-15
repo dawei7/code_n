@@ -33,20 +33,20 @@ Return the greatest length of a non-decreasing contiguous subarray obtainable in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [2, 3, 1], nums2 = [1, 2, 1]`
-- Output: `2`
-- Explanation: Choosing `[2, 2, 1]` gives a non-decreasing prefix of length $2$.
+- **Input:** `nums1 = [2, 3, 1], nums2 = [1, 2, 1]`
+- **Output:** `2`
+- **Explanation:** Choosing `[2, 2, 1]` gives a non-decreasing prefix of length $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [1, 3, 2, 1], nums2 = [2, 2, 3, 4]`
-- Output: `4`
-- Explanation: The choices `[1, 2, 3, 4]` make the complete array non-decreasing.
+- **Input:** `nums1 = [1, 3, 2, 1], nums2 = [2, 2, 3, 4]`
+- **Output:** `4`
+- **Explanation:** The choices `[1, 2, 3, 4]` make the complete array non-decreasing.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1, 1], nums2 = [2, 2]`
-- Output: `2`
-- Explanation: Selecting both entries from either source produces a non-decreasing array of length $2$.
+- **Input:** `nums1 = [1, 1], nums2 = [2, 2]`
+- **Output:** `2`
+- **Explanation:** Selecting both entries from either source produces a non-decreasing array of length $2$.

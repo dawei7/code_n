@@ -6,8 +6,14 @@ The two dates are given as strings, their format is `YYYY-MM-DD` as shown in the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `date1`: Input parameter (`str`).
+- `date2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,6 +21,7 @@ The two dates are given as strings, their format is `YYYY-MM-DD` as shown in the
 
 - **Input:** $date1 = "2019-06-29", date2 = "2019-06-30"$
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** $date1 = "2020-01-15", date2 = "2019-12-31"$

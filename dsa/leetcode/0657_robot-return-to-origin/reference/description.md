@@ -8,8 +8,13 @@ Return `true`* if the robot returns to the origin after it finishes all of its m
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `moves`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Note
 
@@ -22,6 +27,7 @@ Return `true`* if the robot returns to the origin after it finishes all of its m
 - **Input:** $moves = "UD"$
 - **Output:** `true`
 **Explanation**: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.
+
 #### Example 2
 
 - **Input:** $moves = "LL"$

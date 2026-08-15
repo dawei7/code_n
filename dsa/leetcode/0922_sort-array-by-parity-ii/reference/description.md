@@ -8,8 +8,13 @@ Return *any answer array that satisfies this condition*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ Return *any answer array that satisfies this condition*.
 - **Input:** `nums = [4,2,5,7]`
 - **Output:** `[4,5,2,7]`
 - **Explanation:** [4,7,2,5], [2,5,4,7], [2,7,4,5] would also have been accepted.
+
 #### Example 2
 
 - **Input:** `nums = [2,3]`

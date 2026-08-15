@@ -8,8 +8,14 @@ Given `n` and `k`, return *the **number** of such arrangements*. Since the answe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,12 +25,14 @@ Given `n` and `k`, return *the **number** of such arrangements*. Since the answe
 - **Output:** `3`
 - **Explanation:** [<u>1</u>,<u>3</u>,2], [<u>2</u>,<u>3</u>,1], and [<u>2</u>,1,<u>3</u>] are the only arrangements such that exactly 2 sticks are visible.
 The visible sticks are underlined.
+
 #### Example 2
 
 - **Input:** $n = 5, k = 5$
 - **Output:** `1`
 - **Explanation:** [<u>1</u>,<u>2</u>,<u>3</u>,<u>4</u>,<u>5</u>] is the only arrangement such that all 5 sticks are visible.
 The visible sticks are underlined.
+
 #### Example 3
 
 - **Input:** $n = 20, k = 11$

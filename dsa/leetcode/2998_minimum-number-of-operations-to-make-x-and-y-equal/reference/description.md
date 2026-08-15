@@ -16,8 +16,14 @@ Return *the **minimum** number of operations required to make * `x` *and* `y` eq
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +36,7 @@ Return *the **minimum** number of operations required to make * `x` *and* `y` eq
 2. Divide x by 5
 3. Divide x by 5
 It can be shown that 3 is the minimum number of operations required to make 26 equal to 1.
+
 #### Example 2
 
 - **Input:** $x = 54, y = 2$
@@ -40,6 +47,7 @@ It can be shown that 3 is the minimum number of operations required to make 26 e
 3. Divide x by 5
 4. Increment x by 1
 It can be shown that 4 is the minimum number of operations required to make 54 equal to 2.
+
 #### Example 3
 
 - **Input:** $x = 25, y = 30$

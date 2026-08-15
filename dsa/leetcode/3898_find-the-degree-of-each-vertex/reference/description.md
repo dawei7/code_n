@@ -28,12 +28,11 @@ Return an array of length $N$ whose entry at index $i$ is the number of edges co
 
 ![](images/g41f.png)
 
-<div class="example-block">
-**Input:** matrix = [[0,1,1],[1,0,1],[1,1,0]]
+- **Input:** matrix = [[0,1,1],[1,0,1],[1,1,0]]
 
-**Output:** [2,2,2]
+- **Output:** [2,2,2]
 
-**Explanation:**
+- **Explanation:** 
 
 - Vertex 0 is connected to vertices 1 and 2, so its degree is 2.
 
@@ -43,17 +42,15 @@ Return an array of length $N$ whose entry at index $i$ is the number of edges co
 
 Thus, the answer is `[2, 2, 2]`.
 
-</div>
 #### Example 2
 
 ![](images/g42f.png)
 
-<div class="example-block">
-**Input:** matrix = [[0,1,0],[1,0,0],[0,0,0]]
+- **Input:** matrix = [[0,1,0],[1,0,0],[0,0,0]]
 
-**Output:** [1,1,0]
+- **Output:** [1,1,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - Vertex 0 is connected to vertex 1, so its degree is 1.
 
@@ -63,19 +60,13 @@ Thus, the answer is `[2, 2, 2]`.
 
 Thus, the answer is `[1, 1, 0]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** matrix = [[0]]
+- **Input:** matrix = [[0]]
 
-**Output:** [0]
+- **Output:** [0]
 
-**Explanation:**
-
-There is only one vertex and it has no edges connected to it. Thus, the answer is `[0]`.
-
-</div>
+- **Explanation:** There is only one vertex and it has no edges connected to it. Thus, the answer is `[0]`.
 
 ### 4. Constraints
 

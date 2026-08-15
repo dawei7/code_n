@@ -6,8 +6,13 @@ Return *the average salary of employees excluding the minimum and maximum salary
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `salary`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ Return *the average salary of employees excluding the minimum and maximum salary
 - **Output:** `2500.00000`
 - **Explanation:** Minimum salary and maximum salary are 1000 and 4000 respectively.
 Average salary excluding minimum and maximum salary is (2000+3000) / 2 = 2500
+
 #### Example 2
 
 - **Input:** $salary = [1000,2000,3000]$

@@ -32,14 +32,11 @@ Return the number of distinct valid arrays, reduced modulo $1{,}000{,}000{,}007$
 
 #### Example 1
 
-<div class="example-block">
-**Input:** digitSum = [25,1]
+- **Input:** digitSum = [25,1]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-Numbers whose sum of digits is 25 are 799, 889, 898, 979, 988, and 997.
+- **Explanation:** Numbers whose sum of digits is 25 are 799, 889, 898, 979, 988, and 997.
 
 The only number whose sum of digits is 1 that can appear after these values while keeping the array non-decreasing is 1000.
 
@@ -47,33 +44,23 @@ Thus, the valid arrays are `[799, 1000]`, `[889, 1000]`, `[898, 1000]`, `[979, 1
 
 Hence, the answer is 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** digitSum = [1]
+- **Input:** digitSum = [1]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The valid arrays are `[1]`, `[10]`, `[100]`, and `[1000]`.
+- **Explanation:** The valid arrays are `[1]`, `[10]`, `[100]`, and `[1000]`.
 
 Thus, the answer is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** digitSum = [2,49,23]
+- **Input:** digitSum = [2,49,23]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There is no integer in the range [0, 5000] whose sum of digits is 49. Thus, the answer is 0.
-
-</div>
+- **Explanation:** There is no integer in the range [0, 5000] whose sum of digits is 49. Thus, the answer is 0.
 
 ### 4. Constraints
 

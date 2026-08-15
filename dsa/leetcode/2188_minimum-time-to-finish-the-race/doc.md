@@ -44,17 +44,17 @@ Return the minimum total number of seconds needed to complete all $N$ laps.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tires = [[2,3],[3,4]]`, `changeTime = 5`, `numLaps = 4`
-- Output: `21`
+- **Input:** `tires = [[2,3],[3,4]]`, `changeTime = 5`, `numLaps = 4`
+- **Output:** `21`
 
-**Example 2**
+#### Example 2
 
-- Input: `tires = [[1,10],[2,2],[3,4]]`, `changeTime = 6`, `numLaps = 5`
-- Output: `25`
+- **Input:** `tires = [[1,10],[2,2],[3,4]]`, `changeTime = 6`, `numLaps = 5`
+- **Output:** `25`
 
-**Example 3**
+#### Example 3
 
-- Input: `tires = [[2,2]]`, `changeTime = 100`, `numLaps = 4`
-- Output: `30`
+- **Input:** `tires = [[2,2]]`, `changeTime = 100`, `numLaps = 4`
+- **Output:** `30`

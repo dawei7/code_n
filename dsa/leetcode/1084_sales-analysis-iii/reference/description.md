@@ -48,7 +48,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Product table:
 +------------+--------------+------------+
 | product_id | product_name | unit_price |
@@ -66,14 +66,13 @@ Sales table:
 | 2         | 2          | 3        | 2019-06-02 | 1        | 800   |
 | 3         | 3          | 4        | 2019-05-13 | 2        | 2800  |
 +-----------+------------+----------+------------+----------+-------+
-**Output:**
+- **Output:** 
 +-------------+--------------+
 | product_id  | product_name |
 +-------------+--------------+
 | 1           | S8           |
 +-------------+--------------+
-**Explanation:**
-The product with id 1 was only sold in the spring of 2019.
+- **Explanation:** The product with id 1 was only sold in the spring of 2019.
 The product with id 2 was sold in the spring of 2019 but was also sold after the spring of 2019.
 The product with id 3 was sold after spring 2019.
 We return only product 1 as it is the product that was only sold in the spring of 2019.

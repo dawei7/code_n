@@ -18,6 +18,7 @@ queries[1]: substring = "bc", is not palidrome.
 queries[2]: substring = "abcd", is not palidrome after replacing only 1 character.
 queries[3]: substring = "abcd", could be changed to "abba" which is palidrome. Also this can be changed to "baab" first rearrange it "bacd" then replace "cd" with "ab".
 queries[4]: substring = "abcda", could be changed to "abcba" which is palidrome.
+
 #### Example 2
 
 - **Input:** `s = "lyb", queries = [[0,1,0],[2,2,1]]`
@@ -25,8 +26,14 @@ queries[4]: substring = "abcda", could be changed to "abcba" which is palidrome.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Constraints
 

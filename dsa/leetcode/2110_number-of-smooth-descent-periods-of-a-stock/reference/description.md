@@ -8,8 +8,13 @@ Return *the number of **smooth descent periods***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `prices`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,12 +25,14 @@ Return *the number of **smooth descent periods***.
 - **Explanation:** There are 7 smooth descent periods:
 [3], [2], [1], [4], [3,2], [2,1], and [3,2,1]
 Note that a period with one day is a smooth descent period by the definition.
+
 #### Example 2
 
 - **Input:** $prices = [8,6,7,7]$
 - **Output:** `4`
 - **Explanation:** There are 4 smooth descent periods: [8], [6], [7], and [7]
 Note that [8,6] is not a smooth descent period as 8 - 6 ≠ 1.
+
 #### Example 3
 
 - **Input:** $prices = [1]$

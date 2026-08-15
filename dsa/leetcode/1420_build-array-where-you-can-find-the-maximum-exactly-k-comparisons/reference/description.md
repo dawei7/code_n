@@ -16,8 +16,15 @@ Return *the number of ways* to build the array `arr` under the mentioned conditi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,11 +33,13 @@ Return *the number of ways* to build the array `arr` under the mentioned conditi
 - **Input:** $n = 2, m = 3, k = 1$
 - **Output:** `6`
 - **Explanation:** The possible arrays are [1, 1], [2, 1], [2, 2], [3, 1], [3, 2] [3, 3]
+
 #### Example 2
 
 - **Input:** $n = 5, m = 2, k = 3$
 - **Output:** `0`
 - **Explanation:** There are no possible arrays that satisfy the mentioned conditions.
+
 #### Example 3
 
 - **Input:** $n = 9, m = 1, k = 1$

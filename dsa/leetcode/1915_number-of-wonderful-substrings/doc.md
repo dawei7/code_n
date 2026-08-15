@@ -30,23 +30,23 @@ Count the non-empty contiguous substrings of `word` that are wonderful. Substrin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aba"`
-- Output: `4`
+- **Input:** `word = "aba"`
+- **Output:** `4`
 
 The three one-letter substrings and the complete string are wonderful.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aabb"`
-- Output: `9`
+- **Input:** `word = "aabb"`
+- **Output:** `9`
 
 Every substring except `"ab"` at either middle boundary is wonderful.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "he"`
-- Output: `2`
+- **Input:** `word = "he"`
+- **Output:** `2`
 
 Each single character is wonderful, while `"he"` has two odd counts.

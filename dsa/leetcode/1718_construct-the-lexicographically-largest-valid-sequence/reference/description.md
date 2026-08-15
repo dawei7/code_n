@@ -16,8 +16,13 @@ A sequence `a` is lexicographically larger than a sequence `b` (of the same leng
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ A sequence `a` is lexicographically larger than a sequence `b` (of the same leng
 - **Input:** $n = 3$
 - **Output:** `[3,1,2,3,2]`
 - **Explanation:** [2,3,2,1,3] is also a valid sequence, but [3,1,2,3,2] is the lexicographically largest valid sequence.
+
 #### Example 2
 
 - **Input:** $n = 5$

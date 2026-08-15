@@ -10,19 +10,23 @@ Given a 2D character matrix `grid`, where $\text{grid}[i][j]$ is either `'X'`, `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [["X","Y","."],["Y",".","."]]
+- **Input:** grid = [["X","Y","."],["Y",".","."]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -30,31 +34,21 @@ Given a 2D character matrix `grid`, where $\text{grid}[i][j]$ is either `'X'`, `
 
 **
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [["X","X"],["X","Y"]]
+- **Input:** grid = [["X","X"],["X","Y"]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** No submatrix has an equal frequency of `'X'` and `'Y'`.
 
-No submatrix has an equal frequency of `'X'` and `'Y'`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[".","."],[".","."]]
+- **Input:** grid = [[".","."],[".","."]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No submatrix has at least one `'X'`.
-
-</div>
+- **Explanation:** No submatrix has at least one `'X'`.
 
 ### 4. Constraints
 

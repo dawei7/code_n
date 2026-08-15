@@ -12,25 +12,24 @@ Implement the `KthLargest` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `KthLargest(k: int, nums: List[int])`: Initializes the data structure.
+- `add(val: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["KthLargest", "add", "add", "add", "add", "add"]
 
 [[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]]
 
-**Output:** [null, 4, 5, 5, 8, 8]
+- **Output:** [null, 4, 5, 5, 8, 8]
 
-**Explanation:**
-
-KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]);
+- **Explanation:** KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]);
 
 kthLargest.add(3); // return 4
 
@@ -42,21 +41,17 @@ kthLargest.add(9); // return 8
 
 kthLargest.add(4); // return 8
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["KthLargest", "add", "add", "add", "add"]
 
 [[4, [7, 7, 7, 7, 8, 3]], [2], [10], [9], [9]]
 
-**Output:** [null, 7, 7, 7, 8]
+- **Output:** [null, 7, 7, 7, 8]
 
-**Explanation:**
-
-KthLargest kthLargest = new KthLargest(4, [7, 7, 7, 7, 8, 3]);
+- **Explanation:** KthLargest kthLargest = new KthLargest(4, [7, 7, 7, 7, 8, 3]);
 
 kthLargest.add(2); // return 7
 
@@ -64,7 +59,7 @@ kthLargest.add(10); // return 7
 
 kthLargest.add(9); // return 7
 
-kthLargest.add(9); // return 8</div>
+kthLargest.add(9); // return 8
 
 ### 4. Constraints
 

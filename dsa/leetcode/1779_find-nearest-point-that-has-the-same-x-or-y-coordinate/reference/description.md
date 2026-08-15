@@ -8,8 +8,15 @@ The **Manhattan distance** between two points $(x_{1}, y_{1})$ and $(x_{2}, y_{2
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +25,13 @@ The **Manhattan distance** between two points $(x_{1}, y_{1})$ and $(x_{2}, y_{2
 - **Input:** $x = 3, y = 4, points = [[1,2],[3,1],[2,4],[2,3],[4,4]]$
 - **Output:** `2`
 - **Explanation:** Of all the points, only [3,1], [2,4] and [4,4] are valid. Of the valid points, [2,4] and [4,4] have the smallest Manhattan distance from your current location, with a distance of 1. [2,4] has the smallest index, so return 2.
+
 #### Example 2
 
 - **Input:** $x = 3, y = 4, points = [[3,4]]$
 - **Output:** `0`
 - **Explanation:** The answer is allowed to be on the same location as your current location.
+
 #### Example 3
 
 - **Input:** $x = 3, y = 4, points = [[2,3]]$

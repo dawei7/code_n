@@ -18,28 +18,27 @@ Given `lights`, return *the **brightest** position on the** street. If there are
 
 - **Input:** $lights = [[-3,2],[1,2],[3,3]]$
 - **Output:** `-1`
-- **Explanation:**
-The first street lamp lights up the area from [(-3) - 2, (-3) + 2] = [-5, -1].
+- **Explanation:** The first street lamp lights up the area from [(-3) - 2, (-3) + 2] = [-5, -1].
 The second street lamp lights up the area from [1 - 2, 1 + 2] = [-1, 3].
 The third street lamp lights up the area from [3 - 3, 3 + 3] = [0, 6].
 Position -1 has a brightness of 2, illuminated by the first and second street light.
 Positions 0, 1, 2, and 3 have a brightness of 2, illuminated by the second and third street light.
 Out of all these positions, -1 is the smallest, so return it.
+
 #### Example 2
 
 - **Input:** $lights = [[1,0],[0,1]]$
 - **Output:** `1`
-- **Explanation:**
-The first street lamp lights up the area from [1 - 0, 1 + 0] = [1, 1].
+- **Explanation:** The first street lamp lights up the area from [1 - 0, 1 + 0] = [1, 1].
 The second street lamp lights up the area from [0 - 1, 0 + 1] = [-1, 1].
 Position 1 has a brightness of 2, illuminated by the first and second street light.
 Return 1 because it is the brightest position on the street.
+
 #### Example 3
 
 - **Input:** $lights = [[1,2]]$
 - **Output:** `-1`
-- **Explanation:**
-The first street lamp lights up the area from [1 - 2, 1 + 2] = [-1, 3].
+- **Explanation:** The first street lamp lights up the area from [1 - 2, 1 + 2] = [-1, 3].
 Positions -1, 0, 1, 2, and 3 have a brightness of 1, illuminated by the first street light.
 Out of all these positions, -1 is the smallest, so return it.
 

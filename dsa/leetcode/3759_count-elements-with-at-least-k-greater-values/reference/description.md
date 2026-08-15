@@ -23,30 +23,21 @@ Return the number of occurrences in `nums` for which at least `k` other array va
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,1,2], k = 1
+- **Input:** nums = [3,1,2], k = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The elements 1 and 2 each have at least $k = 1$ element greater than themselves.
+- **Explanation:** The elements 1 and 2 each have at least $k = 1$ element greater than themselves.
 
 ​​​​​​​No element is greater than 3. Therefore, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,5,5], k = 2
+- **Input:** nums = [5,5,5], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Since all elements are equal to 5, no element is greater than the other. Therefore, the answer is 0.
-
-</div>
+- **Explanation:** Since all elements are equal to 5, no element is greater than the other. Therefore, the answer is 0.
 
 ### 4. Constraints
 

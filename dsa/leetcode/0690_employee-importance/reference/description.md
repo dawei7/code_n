@@ -14,8 +14,10 @@ Given an integer `id` that represents an employee's ID, return *the **total** im
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Employee(id: int, importance: int, subordinates: List[int])`: Initializes the data structure.
+- `getImportance(employees: List['Employee'], id: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -28,6 +30,7 @@ Given an integer `id` that represents an employee's ID, return *the **total** im
 - **Explanation:** Employee 1 has an importance value of 5 and has two direct subordinates: employee 2 and employee 3.
 They both have an importance value of 3.
 Thus, the total importance value of employee 1 is 5 + 3 + 3 = 11.
+
 #### Example 2
 
 ![](images/emp2-tree.jpg)

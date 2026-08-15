@@ -22,28 +22,19 @@ Return the earliest-by-index even integer that appears exactly once. Return `-1`
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,4,2,5,4,6]
+- **Input:** nums = [3,4,2,5,4,6]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** Both 2 and 6 are even and they appear exactly once. Since 2 occurs first in the array, the answer is 2.
 
-Both 2 and 6 are even and they appear exactly once. Since 2 occurs first in the array, the answer is 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,4]
+- **Input:** nums = [4,4]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-No even integer appears exactly once, so return -1.
-
-</div>
+- **Explanation:** No even integer appears exactly once, so return -1.
 
 ### 4. Constraints
 

@@ -14,8 +14,13 @@ Return `true`* if the array has **at least** one valid partition*. Otherwise, re
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return `true`* if the array has **at least** one valid partition*. Otherwise, re
 - **Output:** `true`
 - **Explanation:** The array can be partitioned into the subarrays [4,4] and [4,5,6].
 This partition is valid, so we return true.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,2]`

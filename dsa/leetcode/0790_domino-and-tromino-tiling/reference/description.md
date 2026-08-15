@@ -10,8 +10,13 @@ In a tiling, every square must be covered by a tile. Two tilings are different i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ In a tiling, every square must be covered by a tile. Two tilings are different i
 - **Input:** $n = 3$
 - **Output:** `5`
 - **Explanation:** The five different ways are shown above.
+
 #### Example 2
 
 - **Input:** $n = 1$

@@ -31,23 +31,23 @@ Return the greatest score achievable by playing each token at most once under th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tokens = [100]`, `power = 50`
-- Output: `0`
+- **Input:** `tokens = [100]`, `power = 50`
+- **Output:** `0`
 
 The token is too expensive to play face-up, and a zero score cannot pay for a face-down play.
 
-**Example 2**
+#### Example 2
 
-- Input: `tokens = [200, 100]`, `power = 150`
-- Output: `1`
+- **Input:** `tokens = [200, 100]`, `power = 150`
+- **Output:** `1`
 
 Play `100` face-up and stop.
 
-**Example 3**
+#### Example 3
 
-- Input: `tokens = [100, 200, 300, 400]`, `power = 200`
-- Output: `2`
+- **Input:** `tokens = [100, 200, 300, 400]`, `power = 200`
+- **Output:** `2`
 
 One optimal sequence plays `100` face-up, `400` face-down, then `200` and `300` face-up.

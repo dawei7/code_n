@@ -28,26 +28,23 @@ Return the sum of all represented integers reduced modulo $1{,}000{,}000{,}007$.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 1, r = 2, k = 2
+- **Input:** l = 1, r = 2, k = 2
 
-**Output:** 66
+- **Output:** 66
 
-**Explanation:**
+- **Explanation:** 
 
 - All numbers formed using $k = 2$ digits in the range `[1, 2]` are `11, 12, 21, 22`.
 
 - The total sum is $11 + 12 + 21 + 22 = 66$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 0, r = 1, k = 3
+- **Input:** l = 0, r = 1, k = 3
 
-**Output:** 444
+- **Output:** 444
 
-**Explanation:**
+- **Explanation:** 
 
 - All numbers formed using $k = 3$ digits in the range `[0, 1]` are `000, 001, 010, 011, 100, 101, 110, 111`​​​​​​​.
 
@@ -55,21 +52,17 @@ Return the sum of all represented integers reduced modulo $1{,}000{,}000{,}007$.
 
 - The total sum is 444.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** l = 5, r = 5, k = 10
+- **Input:** l = 5, r = 5, k = 10
 
-**Output:** 555555520
+- **Output:** 555555520
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - 5555555555 is the only valid number consisting of $k = 10$ digits in the range `[5, 5]`.
 
 - The total sum is $5555555555 \% (10^{9} + 7) = 555555520$.
-
-</div>
 
 ### 4. Constraints
 

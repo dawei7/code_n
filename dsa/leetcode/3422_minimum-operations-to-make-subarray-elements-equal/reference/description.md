@@ -14,12 +14,11 @@ Return the **minimum** number of operations required to ensure that **at least**
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,-3,2,1,-4,6], k = 3
+- **Input:** nums = [4,-3,2,1,-4,6], k = 3
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - Use 4 operations to add 4 to $\text{nums}[1]$. The resulting array is `[4, 1, 2, 1, -4, 6]`.
 
@@ -27,19 +26,15 @@ Return the **minimum** number of operations required to ensure that **at least**
 
 - The array now contains a subarray `[1, 1, 1]` of size $k = 3$ with all elements equal. Hence, the answer is 5.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-2,-2,3,1,4], k = 2
+- **Input:** nums = [-2,-2,3,1,4], k = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The subarray `[-2, -2]` of size $k = 2$ already contains all equal elements, so no operations are needed. Hence, the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

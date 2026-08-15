@@ -33,17 +33,17 @@ Return the names ordered by strictly descending corresponding height.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `names = ["Mary","John","Emma"]`, `heights = [180,165,170]`
-- Output: `["Mary","Emma","John"]`
+- **Input:** `names = ["Mary","John","Emma"]`, `heights = [180,165,170]`
+- **Output:** `["Mary","Emma","John"]`
 
-**Example 2**
+#### Example 2
 
-- Input: `names = ["Alice","Bob","Bob"]`, `heights = [155,185,150]`
-- Output: `["Bob","Alice","Bob"]`
+- **Input:** `names = ["Alice","Bob","Bob"]`, `heights = [155,185,150]`
+- **Output:** `["Bob","Alice","Bob"]`
 
-**Example 3**
+#### Example 3
 
-- Input: `names = ["Alex"]`, `heights = [100]`
-- Output: `["Alex"]`
+- **Input:** `names = ["Alex"]`, `heights = [100]`
+- **Output:** `["Alex"]`

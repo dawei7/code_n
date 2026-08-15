@@ -33,20 +33,20 @@ Return an integer: the greatest possible number of pairwise non-overlapping pali
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abaccdbbd", k = 3`
-- Output: `2`
-- Explanation: `"aba"` and `"dbbd"` occupy disjoint ranges and both meet the minimum length.
+- **Input:** `s = "abaccdbbd", k = 3`
+- **Output:** `2`
+- **Explanation:** `"aba"` and `"dbbd"` occupy disjoint ranges and both meet the minimum length.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "adbcda", k = 2`
-- Output: `0`
-- Explanation: No substring of length at least two is palindromic.
+- **Input:** `s = "adbcda", k = 2`
+- **Output:** `0`
+- **Explanation:** No substring of length at least two is palindromic.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaaa", k = 2`
-- Output: `2`
-- Explanation: Two disjoint copies of `"aa"` can be selected; the remaining character cannot form another valid substring.
+- **Input:** `s = "aaaaa", k = 2`
+- **Output:** `2`
+- **Explanation:** Two disjoint copies of `"aa"` can be selected; the remaining character cannot form another valid substring.

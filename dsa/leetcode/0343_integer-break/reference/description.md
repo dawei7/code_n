@@ -21,6 +21,7 @@ Return the maximum product of the positive integers in a valid sum decomposition
 - **Input:** $n = 2$
 - **Output:** `1`
 - **Explanation:** 2 = 1 + 1, 1 × 1 = 1.
+
 #### Example 2
 
 - **Input:** $n = 10$

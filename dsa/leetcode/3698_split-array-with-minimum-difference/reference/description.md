@@ -22,14 +22,11 @@ Return the minimum value of $\lvert\operatorname{sum}(\texttt{left})-\operatorna
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,2]
+- **Input:** nums = [1,3,2]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -65,17 +62,13 @@ Return the minimum value of $\lvert\operatorname{sum}(\texttt{left})-\operatorna
 
 Thus, the minimum absolute difference is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,4,3]
+- **Input:** nums = [1,2,4,3]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -120,19 +113,13 @@ Thus, the minimum absolute difference is 2.
 
 Thus, the minimum absolute difference is 4.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [3,1,2]
+- **Input:** nums = [3,1,2]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-No valid split exists, so the answer is -1.
-
-</div>
+- **Explanation:** No valid split exists, so the answer is -1.
 
 ### 4. Constraints
 

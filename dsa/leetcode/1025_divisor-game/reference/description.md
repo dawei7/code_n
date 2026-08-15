@@ -14,8 +14,13 @@ Return `true` *if and only if Alice wins the game, assuming both players play op
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return `true` *if and only if Alice wins the game, assuming both players play op
 - **Input:** $n = 2$
 - **Output:** `true`
 - **Explanation:** Alice chooses 1, and Bob has no more moves.
+
 #### Example 2
 
 - **Input:** $n = 3$

@@ -10,8 +10,14 @@ For each query:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -23,12 +29,11 @@ Return an array containing the result for each query, in the order they are give
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,1,3,1,2], queries = [[1,2],[3,3]]
+- **Input:** nums = [2,1,3,1,2], queries = [[1,2],[3,3]]
 
-**Output:** [3,4]
+- **Output:** [3,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially `nums = [2, 1, 3, 1, 2]`.
 
@@ -38,23 +43,19 @@ Return an array containing the result for each query, in the order they are give
 
 - The output is `[3, 4]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,4], queries = [[0,1]]
+- **Input:** nums = [2,1,4], queries = [[0,1]]
 
-**Output:** [0]
+- **Output:** [0]
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially `nums = [2, 1, 4]`.
 
 - After 1^st query, `nums = [1, 1, 4]`. There are no prime numbers in `nums`, hence the answer for this query is 0.
 
 - The output is `[0]`.
-
-</div>
 
 ### 5. Constraints
 

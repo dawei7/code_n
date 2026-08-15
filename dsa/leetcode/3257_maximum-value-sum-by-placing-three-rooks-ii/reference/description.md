@@ -8,49 +8,41 @@ Return the **maximum** sum of the cell **values** on which the rooks are placed.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `board`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** board = [[-3,1,1,1],[-3,1,-3,1],[-3,2,1,1]]
+- **Input:** board = [[-3,1,1,1],[-3,1,-3,1],[-3,2,1,1]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-![](images/rooks2.png)
+- **Explanation:** ![](images/rooks2.png)
 
 We can place the rooks in the cells `(0, 2)`, `(1, 3)`, and `(2, 1)` for a sum of $1 + 1 + 2 = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** board = [[1,2,3],[4,5,6],[7,8,9]]
+- **Input:** board = [[1,2,3],[4,5,6],[7,8,9]]
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** We can place the rooks in the cells `(0, 0)`, `(1, 1)`, and `(2, 2)` for a sum of $1 + 5 + 9 = 15$.
 
-We can place the rooks in the cells `(0, 0)`, `(1, 1)`, and `(2, 2)` for a sum of $1 + 5 + 9 = 15$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** board = [[1,1,1],[1,1,1],[1,1,1]]
+- **Input:** board = [[1,1,1],[1,1,1],[1,1,1]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-We can place the rooks in the cells `(0, 2)`, `(1, 1)`, and `(2, 0)` for a sum of $1 + 1 + 1 = 3$.
-
-</div>
+- **Explanation:** We can place the rooks in the cells `(0, 2)`, `(1, 1)`, and `(2, 0)` for a sum of $1 + 1 + 1 = 3$.
 
 ### 4. Constraints
 

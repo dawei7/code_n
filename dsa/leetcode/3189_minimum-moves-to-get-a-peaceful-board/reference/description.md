@@ -18,28 +18,19 @@ that **at no point** can there be two rooks in the same cell.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** rooks = [[0,0],[1,0],[1,1]]
+- **Input:** rooks = [[0,0],[1,0],[1,1]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** ![](images/ex1-edited.gif)
 
-![](images/ex1-edited.gif)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** rooks = [[0,0],[0,1],[0,2],[0,3]]
+- **Input:** rooks = [[0,0],[0,1],[0,2],[0,3]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-![](images/ex2-edited.gif)
-
-</div>
+- **Explanation:** ![](images/ex2-edited.gif)
 
 ### 5. Constraints
 

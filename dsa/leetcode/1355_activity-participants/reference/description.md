@@ -58,7 +58,7 @@ If several activities share either extreme, exclude all of them. The result orde
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Friends table:
 +------+--------------+---------------+
 | id   | name         | activity      |
@@ -78,14 +78,13 @@ Activities table:
 | 2    | Singing      |
 | 3    | Horse Riding |
 +------+--------------+
-**Output:**
+- **Output:** 
 +--------------+
 | activity     |
 +--------------+
 | Singing      |
 +--------------+
-**Explanation:**
-Eating activity is performed by 3 friends, maximum number of participants, (Jonathan D. , Elvis Q. and Daniel A.)
+- **Explanation:** Eating activity is performed by 3 friends, maximum number of participants, (Jonathan D. , Elvis Q. and Daniel A.)
 Horse Riding activity is performed by 1 friend, minimum number of participants, (Bob B.)
 Singing is performed by 2 friends (Victor J. and Jade W.)
 ```

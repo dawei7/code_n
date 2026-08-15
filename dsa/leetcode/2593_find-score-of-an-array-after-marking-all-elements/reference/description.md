@@ -16,8 +16,13 @@ Return *the score you get after applying the above algorithm*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -30,6 +35,7 @@ Return *the score you get after applying the above algorithm*.
 - 2 is the smallest unmarked element, so we mark it and its left adjacent element: [<u>2</u>,<u>1</u>,<u>3</u>,4,<u>5</u>,<u>2</u>].
 - 4 is the only remaining unmarked element, so we mark it: [<u>2</u>,<u>1</u>,<u>3</u>,<u>4</u>,<u>5</u>,<u>2</u>].
 Our score is 1 + 2 + 4 = 7.
+
 #### Example 2
 
 - **Input:** `nums = [2,3,5,1,3,2]`

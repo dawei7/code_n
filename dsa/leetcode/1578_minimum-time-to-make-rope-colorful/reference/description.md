@@ -8,8 +8,14 @@ Return *the **minimum time** Bob needs to make the rope **colorful***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `colors`: Input parameter (`str`).
+- `neededTime`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *the **minimum time** Bob needs to make the rope **colorful***.
 - **Explanation:** In the above image, 'a' is blue, 'b' is red, and 'c' is green.
 Bob can remove the blue balloon at index 2. This takes 3 seconds.
 There are no longer two consecutive balloons of the same color. Total time = 3.
+
 #### Example 2
 
 ![](images/balloon2.jpg)
@@ -29,6 +36,7 @@ There are no longer two consecutive balloons of the same color. Total time = 3.
 - **Input:** $colors = "abc", neededTime = [1,2,3]$
 - **Output:** `0`
 - **Explanation:** The rope is already colorful. Bob does not need to remove any balloons from the rope.
+
 #### Example 3
 
 ![](images/balloon3.jpg)

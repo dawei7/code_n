@@ -32,20 +32,20 @@ The source guarantees $2 \le n \le 2 \cdot 10^5$ and $-10^9 \le \texttt{nums[i]}
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 5, 7, 8, 9, 2, 3, 4, 3, 1]`
-- Output: `3`
-- Explanation: `[7, 8, 9]` and `[2, 3, 4]` begin at indices 2 and 5. Both are strictly increasing and adjacent, and no valid pair has length greater than three.
+- **Input:** `nums = [2, 5, 7, 8, 9, 2, 3, 4, 3, 1]`
+- **Output:** `3`
+- **Explanation:** `[7, 8, 9]` and `[2, 3, 4]` begin at indices 2 and 5. Both are strictly increasing and adjacent, and no valid pair has length greater than three.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4, 4, 4, 4, 5, 6, 7]`
-- Output: `2`
-- Explanation: `[1, 2]` and `[3, 4]` are adjacent strictly increasing blocks. No adjacent pair of length three or more satisfies both conditions.
+- **Input:** `nums = [1, 2, 3, 4, 4, 4, 4, 5, 6, 7]`
+- **Output:** `2`
+- **Explanation:** `[1, 2]` and `[3, 4]` are adjacent strictly increasing blocks. No adjacent pair of length three or more satisfies both conditions.
 
 **Boundary example**
 
-- Input: `nums = [1, 2, 2, 3]`
-- Output: `2`
-- Explanation: `[1, 2]` and `[2, 3]` are independently strictly increasing. Equality across their shared boundary is allowed.
+- **Input:** `nums = [1, 2, 2, 3]`
+- **Output:** `2`
+- **Explanation:** `[1, 2]` and `[2, 3]` are independently strictly increasing. Equality across their shared boundary is allowed.

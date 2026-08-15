@@ -30,20 +30,20 @@ Return an integer equal to the fewest permitted additions and subtractions requi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 39`
-- Output: `3`
-- Explanation: Add $1$ to obtain `40`, subtract $8$ to obtain `32`, and subtract $32$ to obtain `0`.
+- **Input:** `n = 39`
+- **Output:** `3`
+- **Explanation:** Add $1$ to obtain `40`, subtract $8$ to obtain `32`, and subtract $32$ to obtain `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 54`
-- Output: `3`
-- Explanation: Add $2$ to obtain `56`, add $8$ to obtain `64`, and subtract $64$ to obtain `0`.
+- **Input:** `n = 54`
+- **Output:** `3`
+- **Explanation:** Add $2$ to obtain `56`, add $8$ to obtain `64`, and subtract $64$ to obtain `0`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 28`
-- Output: `2`
-- Explanation: Adding $4$ carries through the adjacent set bits and produces `32`, which can then be reduced to zero in one subtraction.
+- **Input:** `n = 28`
+- **Output:** `2`
+- **Explanation:** Adding $4$ carries through the adjacent set bits and produces `32`, which can then be reduced to zero in one subtraction.

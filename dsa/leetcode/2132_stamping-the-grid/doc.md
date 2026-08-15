@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/stamping-the-grid/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an $m\times n$ binary grid. A `0` denotes an empty cell and a
 `1` denotes an occupied cell. You also have any number of identical
 rectangular stamps, each with the specified height and width.
@@ -20,6 +22,7 @@ Determine whether some collection of valid placements covers every empty cell;
 occupied cells must remain uncovered.
 
 ### Function Contract
+
 **Inputs**
 
 - `grid`: An $m\times n$ binary matrix with
@@ -33,17 +36,18 @@ occupied cells must remain uncovered.
 otherwise `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `grid = [[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0]]`,
+#### Example 1
+
+- **Input:** `grid = [[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0]]`,
   `stampHeight = 4`, `stampWidth = 3`
-- Output: `true`
-- Explanation: Two overlapping placements cover the empty three-column strip.
+- **Output:** `true`
+- **Explanation:** Two overlapping placements cover the empty three-column strip.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]`,
+- **Input:** `grid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]`,
   `stampHeight = 2`, `stampWidth = 2`
-- Output: `false`
-- Explanation: Some empty cells cannot belong to an in-bounds stamp without
+- **Output:** `false`
+- **Explanation:** Some empty cells cannot belong to an in-bounds stamp without
   also covering an occupied diagonal cell.

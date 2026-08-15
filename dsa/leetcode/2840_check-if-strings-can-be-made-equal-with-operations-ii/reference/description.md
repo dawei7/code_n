@@ -10,8 +10,14 @@ Return `true`* if you can make the strings *`s1`* and *`s2`* equal, and *`false`
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return `true`* if you can make the strings *`s1`* and *`s2`* equal, and *`false`
 - Choose the indices i = 0, j = 2. The resulting string is s1 = "cbadba".
 - Choose the indices i = 2, j = 4. The resulting string is s1 = "cbbdaa".
 - Choose the indices i = 1, j = 5. The resulting string is s1 = "cabdab" = s2.
+
 #### Example 2
 
 - **Input:** $s1 = "abe", s2 = "bea"$

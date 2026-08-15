@@ -30,20 +30,20 @@ These roles must use distinct indices, although two or more roles may hold equal
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 5, 10]`
-- Output: `10`
-- Explanation: `2` and `3` are special, `5` is their sum, and `10` is the outlier.
+- **Input:** `nums = [2, 3, 5, 10]`
+- **Output:** `10`
+- **Explanation:** `2` and `3` are special, `5` is their sum, and `10` is the outlier.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-2, -1, -3, -6, 4]`
-- Output: `4`
-- Explanation: The three negative special numbers sum to `-6`, leaving `4` as the outlier.
+- **Input:** `nums = [-2, -1, -3, -6, 4]`
+- **Output:** `4`
+- **Explanation:** The three negative special numbers sum to `-6`, leaving `4` as the outlier.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 1, 1, 5, 5]`
-- Output: `5`
-- Explanation: Five special ones sum to one copy of `5`; the other copy of `5` is the outlier.
+- **Input:** `nums = [1, 1, 1, 1, 1, 5, 5]`
+- **Output:** `5`
+- **Explanation:** Five special ones sum to one copy of `5`; the other copy of `5` is the outlier.

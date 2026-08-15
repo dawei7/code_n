@@ -14,8 +14,13 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `strength`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -35,6 +40,7 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 - [3,1,2] from [1,<u>**3,1,2**</u>] has a total strength of min([3,1,2]) * sum([3,1,2]) = 1 * 6 = 6
 - [1,3,1,2] from [<u>**1,3,1,2**</u>] has a total strength of min([1,3,1,2]) * sum([1,3,1,2]) = 1 * 7 = 7
 The sum of all the total strengths is 1 + 9 + 1 + 4 + 4 + 4 + 3 + 5 + 6 + 7 = 44.
+
 #### Example 2
 
 - **Input:** $strength = [5,4,6]$

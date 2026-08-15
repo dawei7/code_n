@@ -40,23 +40,23 @@ $1\le n\le 50$, $0\le\texttt{nums[i]}<2^{31}$, and $1\le\texttt{k}\le n$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [7, 12, 9, 8, 9, 15], k = 4`
-- Output: `9`
-- Explanation: Bit 0 occurs in `7`, both copies of `9`, and `15`. Bit 3
+- **Input:** `nums = [7, 12, 9, 8, 9, 15], k = 4`
+- **Output:** `9`
+- **Explanation:** Bit 0 occurs in `7`, both copies of `9`, and `15`. Bit 3
   occurs in five values. Those are the only positions reaching four
   occurrences, so the result is `1001` in binary.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 12, 1, 11, 4, 5], k = 6`
-- Output: `0`
-- Explanation: No bit is present in every one of the six values.
+- **Input:** `nums = [2, 12, 1, 11, 4, 5], k = 6`
+- **Output:** `0`
+- **Explanation:** No bit is present in every one of the six values.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10, 8, 5, 9, 11, 6, 8], k = 1`
-- Output: `15`
-- Explanation: With a threshold of one, every bit appearing anywhere
+- **Input:** `nums = [10, 8, 5, 9, 11, 6, 8], k = 1`
+- **Output:** `15`
+- **Explanation:** With a threshold of one, every bit appearing anywhere
   qualifies, which is the ordinary bitwise OR of the array.

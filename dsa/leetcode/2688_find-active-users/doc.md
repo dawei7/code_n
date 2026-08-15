@@ -30,18 +30,18 @@ Return one `user_id` row for every user who has two purchase rows whose timestam
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: User `6` bought items on `2021-09-10` and `2021-09-14`; user `4` bought on `2021-09-02` and `2021-09-13`; users `5` and `8` bought once.
-- Output: `[[6]]`
-- Explanation: Only user `6` has a second purchase within seven days of another purchase.
+- **Input:** User `6` bought items on `2021-09-10` and `2021-09-14`; user `4` bought on `2021-09-02` and `2021-09-13`; users `5` and `8` bought once.
+- **Output:** `[[6]]`
+- **Explanation:** Only user `6` has a second purchase within seven days of another purchase.
 
-**Example 2**
+#### Example 2
 
-- Input: One user purchases on `2024-01-01` and `2024-01-08`.
-- Output: That user's identifier, because the gap is exactly seven days.
+- **Input:** One user purchases on `2024-01-01` and `2024-01-08`.
+- **Output:** That user's identifier, because the gap is exactly seven days.
 
-**Example 3**
+#### Example 3
 
-- Input: Two purchase rows for one user share the same `created_at` value.
-- Output: That user's identifier, because the zero-day gap qualifies.
+- **Input:** Two purchase rows for one user share the same `created_at` value.
+- **Output:** That user's identifier, because the zero-day gap qualifies.

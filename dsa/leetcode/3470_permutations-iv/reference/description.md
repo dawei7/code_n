@@ -6,21 +6,24 @@ Return the **k-th** **alternating permutation** sorted in *lexicographical order
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 4, k = 6
+- **Input:** n = 4, k = 6
 
-**Output:** [3,4,1,2]
+- **Output:** [3,4,1,2]
 
-**Explanation:**
-
-The lexicographically-sorted alternating permutations of `[1, 2, 3, 4]` are:
+- **Explanation:** The lexicographically-sorted alternating permutations of `[1, 2, 3, 4]` are:
 
 - `[1, 2, 3, 4]`
 
@@ -40,17 +43,13 @@ The lexicographically-sorted alternating permutations of `[1, 2, 3, 4]` are:
 
 Since $k = 6$, we return `[3, 4, 1, 2]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, k = 2
+- **Input:** n = 3, k = 2
 
-**Output:** [3,2,1]
+- **Output:** [3,2,1]
 
-**Explanation:**
-
-The lexicographically-sorted alternating permutations of `[1, 2, 3]` are:
+- **Explanation:** The lexicographically-sorted alternating permutations of `[1, 2, 3]` are:
 
 - `[1, 2, 3]`
 
@@ -58,25 +57,19 @@ The lexicographically-sorted alternating permutations of `[1, 2, 3]` are:
 
 Since $k = 2$, we return `[3, 2, 1]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 2, k = 3
+- **Input:** n = 2, k = 3
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-The lexicographically-sorted alternating permutations of `[1, 2]` are:
+- **Explanation:** The lexicographically-sorted alternating permutations of `[1, 2]` are:
 
 - `[1, 2]`
 
 - `[2, 1]`
 
 There are only 2 alternating permutations, but $k = 3$, which is out of range. Thus, we return an empty list `[]`.
-
-</div>
 
 ### 4. Constraints
 

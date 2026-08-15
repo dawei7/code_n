@@ -41,21 +41,21 @@ $1\le a_{j+1}-a_j\le k$ for every adjacent pair.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,2,1,4,3,4,5,8,15]`, `k = 3`
-- Output: `5`
-- Explanation: `[1,3,4,5,8]` is valid, while appending 15 would make a jump
+- **Input:** `nums = [4,2,1,4,3,4,5,8,15]`, `k = 3`
+- **Output:** `5`
+- **Explanation:** `[1,3,4,5,8]` is valid, while appending 15 would make a jump
   of 7.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [7,4,5,1,8,12,4,7]`, `k = 5`
-- Output: `4`
-- Explanation: One longest valid subsequence is `[4,5,8,12]`.
+- **Input:** `nums = [7,4,5,1,8,12,4,7]`, `k = 5`
+- **Output:** `4`
+- **Explanation:** One longest valid subsequence is `[4,5,8,12]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,5]`, `k = 1`
-- Output: `1`
-- Explanation: The increase from 1 to 5 exceeds `k`.
+- **Input:** `nums = [1,5]`, `k = 1`
+- **Output:** `1`
+- **Explanation:** The increase from 1 to 5 exceeds `k`.

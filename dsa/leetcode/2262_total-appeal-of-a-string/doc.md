@@ -40,17 +40,17 @@ the total distinct-character count across every substring.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abbca"`
-- Output: `28`
+- **Input:** `s = "abbca"`
+- **Output:** `28`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "code"`
-- Output: `20`
+- **Input:** `s = "code"`
+- **Output:** `20`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aaaa"`
-- Output: `10`
+- **Input:** `s = "aaaa"`
+- **Output:** `10`

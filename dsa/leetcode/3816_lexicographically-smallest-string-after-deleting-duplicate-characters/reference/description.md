@@ -24,30 +24,21 @@ Return the lexicographically smallest subsequence reachable under the deletion r
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aaccb"
+- **Input:** s = "aaccb"
 
-**Output:** "aacb"
+- **Output:** "aacb"
 
-**Explanation:**
-
-We can form the strings `"acb"`, `"aacb"`, `"accb"`, and `"aaccb"`. `"aacb"` is the lexicographically smallest one.
+- **Explanation:** We can form the strings `"acb"`, `"aacb"`, `"accb"`, and `"aaccb"`. `"aacb"` is the lexicographically smallest one.
 
 For example, we can obtain `"aacb"` by choosing `'c'` and deleting its first occurrence.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "z"
+- **Input:** s = "z"
 
-**Output:** "z"
+- **Output:** "z"
 
-**Explanation:**
-
-We cannot perform any operations. The only string we can form is `"z"`.
-
-</div>
+- **Explanation:** We cannot perform any operations. The only string we can form is `"z"`.
 
 ### 4. Constraints
 

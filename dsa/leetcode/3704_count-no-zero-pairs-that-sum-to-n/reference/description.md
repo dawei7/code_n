@@ -26,40 +26,27 @@ Return the number of ordered no-zero pairs whose sum is exactly `n`.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2
+- **Input:** n = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The only pair is `(1, 1)`.
 
-The only pair is `(1, 1)`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3
+- **Input:** n = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The pairs are `(1, 2)` and `(2, 1)`.
 
-The pairs are `(1, 2)` and `(2, 1)`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 11
+- **Input:** n = 11
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
-
-The pairs are `(2, 9)`, `(3, 8)`, `(4, 7)`, `(5, 6)`, `(6, 5)`, `(7, 4)`, `(8, 3)`, and `(9, 2)`. Note that `(1, 10)` and `(10, 1)` do not satisfy the conditions because 10 contains 0 in its decimal representation.
-
-</div>
+- **Explanation:** The pairs are `(2, 9)`, `(3, 8)`, `(4, 7)`, `(5, 6)`, `(6, 5)`, `(7, 4)`, `(8, 3)`, and `(9, 2)`. Note that `(1, 10)` and `(10, 1)` do not satisfy the conditions because 10 contains 0 in its decimal representation.
 
 ### 4. Constraints
 

@@ -32,20 +32,20 @@ Recover and return the original permutation. The input guarantees $3 \le n < 10^
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `encoded = [3,1]`
-- Output: `[1,2,3]`
-- Explanation: The adjacent XOR values are `1 ^ 2 = 3` and `2 ^ 3 = 1`.
+- **Input:** `encoded = [3,1]`
+- **Output:** `[1,2,3]`
+- **Explanation:** The adjacent XOR values are `1 ^ 2 = 3` and `2 ^ 3 = 1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `encoded = [6,5,4,6]`
-- Output: `[2,4,1,5,3]`
-- Explanation: XORing every adjacent pair of the returned permutation recreates `encoded`.
+- **Input:** `encoded = [6,5,4,6]`
+- **Output:** `[2,4,1,5,3]`
+- **Explanation:** XORing every adjacent pair of the returned permutation recreates `encoded`.
 
-**Example 3**
+#### Example 3
 
-- Input: `encoded = [4,3,1,7]`
-- Output: `[5,1,2,3,4]`
-- Explanation: The odd length and permutation range determine the otherwise missing first value.
+- **Input:** `encoded = [4,3,1,7]`
+- **Output:** `[5,1,2,3,4]`
+- **Explanation:** The odd length and permutation range determine the otherwise missing first value.

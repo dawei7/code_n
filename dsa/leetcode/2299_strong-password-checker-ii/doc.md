@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/strong-password-checker-ii/) |
 
 ## Problem Description
+
 ### Goal
+
 Determine whether `password` satisfies every strong-password rule:
 
 - its length is at least eight;
@@ -23,6 +25,7 @@ Return `true` only when all six requirements hold. A repeated character is
 allowed at nonadjacent positions.
 
 ### Function Contract
+
 **Inputs**
 
 - `password`: A string made only from English letters, digits, and the allowed special-character set.
@@ -35,17 +38,18 @@ Its length is between 1 and 100, inclusive.
 `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `password = "IloveLe3tcode!"`
-- Output: `true`
+#### Example 1
 
-**Example 2**
+- **Input:** `password = "IloveLe3tcode!"`
+- **Output:** `true`
 
-- Input: `password = "Me+You--IsMyDream"`
-- Output: `false`
+#### Example 2
 
-**Example 3**
+- **Input:** `password = "Me+You--IsMyDream"`
+- **Output:** `false`
 
-- Input: `password = "1aB!"`
-- Output: `false`
+#### Example 3
+
+- **Input:** `password = "1aB!"`
+- **Output:** `false`

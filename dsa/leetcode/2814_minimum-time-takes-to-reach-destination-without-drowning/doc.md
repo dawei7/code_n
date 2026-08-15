@@ -32,20 +32,20 @@ Return the minimum safe arrival time at `D`, or `-1` if no safe path exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `land = [["D",".","*"],[".",".","."],[".","S","."]]`
-- Output: `3`
-- Explanation: A three-step route reaches the destination before flooding enters any cell used at the same time.
+- **Input:** `land = [["D",".","*"],[".",".","."],[".","S","."]]`
+- **Output:** `3`
+- **Explanation:** A three-step route reaches the destination before flooding enters any cell used at the same time.
 
-**Example 2**
+#### Example 2
 
-- Input: `land = [["D","X","*"],[".",".","."],[".",".","S"]]`
-- Output: `-1`
-- Explanation: Every route to the destination is overtaken before its minimum four-step travel time.
+- **Input:** `land = [["D","X","*"],[".",".","."],[".",".","S"]]`
+- **Output:** `-1`
+- **Explanation:** Every route to the destination is overtaken before its minimum four-step travel time.
 
-**Example 3**
+#### Example 3
 
-- Input: `land = [["D",".",".",".","*","."],[".","X",".","X",".","."],[".",".",".",".","S","."]]`
-- Output: `6`
-- Explanation: A safe route exists and its shortest travel time is six seconds.
+- **Input:** `land = [["D",".",".",".","*","."],[".","X",".","X",".","."],[".",".",".",".","S","."]]`
+- **Output:** `6`
+- **Explanation:** A safe route exists and its shortest travel time is six seconds.

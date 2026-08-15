@@ -35,18 +35,14 @@ Return the increasing list of edge indices in a shortest valid toggle sequence. 
 
 ​​​​​​​**
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], start = "010", target = "100"
+- **Input:** n = 3, edges = [[0,1],[1,2]], start = "010", target = "100"
 
-**Output:** [0]
+- **Output:** [0]
 
-**Explanation:**
-
-Toggle edge with index 0, which flips nodes 0 and 1.
+- **Explanation:** Toggle edge with index 0, which flips nodes 0 and 1.
 
 ​​​​​​​The string changes from `"010"` to `"100"`, matching the target.
 
-</div>
 #### Example 2
 
 **
@@ -55,12 +51,11 @@ Toggle edge with index 0, which flips nodes 0 and 1.
 
 **
 
-<div class="example-block">
-**Input:** n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]], start = "0011000", target = "0010001"
+- **Input:** n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]], start = "0011000", target = "0010001"
 
-**Output:** [1,2,5]
+- **Output:** [1,2,5]
 
-**Explanation:**
+- **Explanation:** 
 
 - Toggle edge with index 1, which flips nodes 1 and 2.
 
@@ -70,7 +65,6 @@ Toggle edge with index 0, which flips nodes 0 and 1.
 
 After these operations, the resulting string becomes `"0010001"`, which matches the target.
 
-</div>
 #### Example 3
 
 **
@@ -79,16 +73,11 @@ After these operations, the resulting string becomes `"0010001"`, which matches 
 
 ​​​​​​​**
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1]], start = "00", target = "01"
+- **Input:** n = 2, edges = [[0,1]], start = "00", target = "01"
 
-**Output:** [-1]
+- **Output:** [-1]
 
-**Explanation:**
-
-There is no sequence of edge toggles that transforms `"00"` into `"01"`. Therefore, we return `[-1]`.
-
-</div>
+- **Explanation:** There is no sequence of edge toggles that transforms `"00"` into `"01"`. Therefore, we return `[-1]`.
 
 ### 4. Constraints
 

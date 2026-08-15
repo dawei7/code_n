@@ -32,14 +32,14 @@ Return the sum of the minimum operation counts for all queries.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = [[1,2],[2,4]]`
-- Output: `3`
-- Explanation: The interval `[1,2]` needs one paired operation. The interval `[2,4]` needs two, so their contribution is `1 + 2`.
+- **Input:** `queries = [[1,2],[2,4]]`
+- **Output:** `3`
+- **Explanation:** The interval `[1,2]` needs one paired operation. The interval `[2,4]` needs two, so their contribution is `1 + 2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = [[2,6]]`
-- Output: `4`
-- Explanation: Values `2` and `3` need one division step each, while `4`, `5`, and `6` need two each, for eight required steps that can be paired into four operations.
+- **Input:** `queries = [[2,6]]`
+- **Output:** `4`
+- **Explanation:** Values `2` and `3` need one division step each, while `4`, `5`, and `6` need two each, for eight required steps that can be paired into four operations.

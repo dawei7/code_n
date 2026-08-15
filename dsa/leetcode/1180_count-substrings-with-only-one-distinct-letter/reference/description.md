@@ -26,6 +26,7 @@ Let $n = \lvert s\rvert$. Each candidate substring is identified by an interval 
 "a" occurs 4 times.
 "b" occurs 1 time.
 So the answer is 1 + 2 + 4 + 1 = 8.
+
 #### Example 2
 
 - **Input:** `s = "aaaaaaaaaa"`

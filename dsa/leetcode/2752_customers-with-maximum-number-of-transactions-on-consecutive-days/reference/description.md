@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Transactions table:
 +----------------+-------------+------------------+--------+
 | transaction_id | customer_id | transaction_date | amount |
@@ -45,14 +45,14 @@ Transactions table:
 | 8              | 105         | 2023-05-02       | 150    |
 | 9              | 105         | 2023-05-03       | 200    |
 +----------------+-------------+------------------+--------+
-**Output:**
+- **Output:** 
 +-------------+
 | customer_id |
 +-------------+
 | 101         |
 | 105         |
 +-------------+
-**Explanation:**
+- **Explanation:** 
 - customer_id 101 has a total of 3 transactions, and all of them are consecutive.
 - customer_id 102 has a total of 3 transactions, but only 2 of them are consecutive.
 - customer_id 105 has a total of 3 transactions, and all of them are consecutive.

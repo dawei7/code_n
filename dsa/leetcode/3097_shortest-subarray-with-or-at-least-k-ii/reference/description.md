@@ -8,47 +8,40 @@ Return *the length of the **shortest** **special** **non-empty** subarray of* `n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 2
+- **Input:** nums = [1,2,3], k = 2
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The subarray `[3]` has `OR` value of `3`. Hence, we return `1`.
 
-The subarray `[3]` has `OR` value of `3`. Hence, we return `1`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,8], k = 10
+- **Input:** nums = [2,1,8], k = 10
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The subarray `[2,1,8]` has `OR` value of `11`. Hence, we return `3`.
 
-The subarray `[2,1,8]` has `OR` value of `11`. Hence, we return `3`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2], k = 0
+- **Input:** nums = [1,2], k = 0
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-The subarray `[1]` has `OR` value of `1`. Hence, we return `1`.
-
-</div>
+- **Explanation:** The subarray `[1]` has `OR` value of `1`. Hence, we return `1`.
 
 ### 4. Constraints
 

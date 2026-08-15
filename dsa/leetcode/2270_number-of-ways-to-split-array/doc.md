@@ -44,17 +44,17 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10,4,-8,7]`
-- Output: `2`
+- **Input:** `nums = [10,4,-8,7]`
+- **Output:** `2`
 
 Splits after indices `0` and `1` have left sums at least as large as their
 right sums. The split after index `2` has sums $6$ and $7$ and is invalid.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,3,1,0]`
-- Output: `2`
+- **Input:** `nums = [2,3,1,0]`
+- **Output:** `2`
 
 The valid split indices are `1` and `2`.

@@ -24,28 +24,19 @@ Return the **minimum** number of connected groups after adding **exactly one** n
 
 #### Example 1
 
-<div class="example-block">
-**Input:** intervals = [[1,3],[5,6],[8,10]], k = 3
+- **Input:** intervals = [[1,3],[5,6],[8,10]], k = 3
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** After adding the interval `[3, 5]`, we have two connected groups: `[[1, 3], [3, 5], [5, 6]]` and `[[8, 10]]`.
 
-After adding the interval `[3, 5]`, we have two connected groups: `[[1, 3], [3, 5], [5, 6]]` and `[[8, 10]]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** intervals = [[5,10],[1,1],[3,3]], k = 1
+- **Input:** intervals = [[5,10],[1,1],[3,3]], k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-After adding the interval `[1, 1]`, we have three connected groups: `[[1, 1], [1, 1]]`, `[[3, 3]]`, and `[[5, 10]]`.
-
-</div>
+- **Explanation:** After adding the interval `[1, 1]`, we have three connected groups: `[[1, 1], [1, 1]]`, `[[3, 3]]`, and `[[5, 10]]`.
 
 ### 4. Constraints
 

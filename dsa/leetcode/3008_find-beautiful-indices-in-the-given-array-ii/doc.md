@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-beautiful-indices-in-the-given-array-ii/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed lowercase text `s`, lowercase patterns `a` and
 `b`, and an integer `k`.
 
@@ -23,6 +25,7 @@ text.
 Return every beautiful index in increasing order.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: the text searched for both patterns
@@ -40,17 +43,18 @@ English letters only.
 Return the sorted list of all qualifying starts of `a`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "isawsquirrelnearmysquirrelhouseohmy", a = "my", b = "squirrel", k = 15`
-- Output: `[16,33]`
+#### Example 1
+
+- **Input:** `s = "isawsquirrelnearmysquirrelhouseohmy", a = "my", b = "squirrel", k = 15`
+- **Output:** `[16,33]`
 
 The starts 16 and 33 have `"squirrel"` starts at 4 and 18 within the allowed
 distance.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcd", a = "a", b = "a", k = 4`
-- Output: `[0]`
+- **Input:** `s = "abcd", a = "a", b = "a", k = 4`
+- **Output:** `[0]`
 
 The occurrence at 0 witnesses both patterns and has distance zero.

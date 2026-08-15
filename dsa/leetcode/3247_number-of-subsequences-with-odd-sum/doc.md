@@ -30,17 +30,17 @@ The empty subsequence has sum zero and therefore is not counted. Return the numb
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,1,1]`
-- Output: `4`
+- **Input:** `nums = [1,1,1]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,2]`
-- Output: `4`
+- **Input:** `nums = [1,2,2]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,4,6]`
-- Output: `0`
+- **Input:** `nums = [2,4,6]`
+- **Output:** `0`

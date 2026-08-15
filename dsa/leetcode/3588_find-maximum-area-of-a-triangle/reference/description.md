@@ -8,8 +8,13 @@ If no such triangle exists, return -1.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `coords`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,30 +24,21 @@ that a triangle *cannot* have zero area.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** coords = [[1,1],[1,2],[3,2],[3,3]]
+- **Input:** coords = [[1,1],[1,2],[3,2],[3,3]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/image-20250420010047-1.png)
+- **Explanation:** ![](images/image-20250420010047-1.png)
 
 The triangle shown in the image has a base 1 and height 2. Hence its area is $1/2 * base * height = 1$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** coords = [[1,1],[2,2],[3,3]]
+- **Input:** coords = [[1,1],[2,2],[3,3]]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-The only possible triangle has corners `(1, 1)`, `(2, 2)`, and `(3, 3)`. None of its sides are parallel to the x-axis or the y-axis.
-
-</div>
+- **Explanation:** The only possible triangle has corners `(1, 1)`, `(2, 2)`, and `(3, 3)`. None of its sides are parallel to the x-axis or the y-axis.
 
 ### 5. Constraints
 

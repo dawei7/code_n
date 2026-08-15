@@ -58,14 +58,14 @@ For `"encode"`, return the codec's transport string. For `"decode"`, return the 
 
 - **Input:** $\text{dummy}_{input} = ["Hello","World"]$
 - **Output:** `["Hello","World"]`
-- **Explanation:**
-Machine 1:
+- **Explanation:** Machine 1:
 Codec encoder = new Codec();
 String msg = encoder.encode(strs);
 Machine 1 ---msg---> Machine 2
 Machine 2:
 Codec decoder = new Codec();
 String[] strs = decoder.decode(msg);
+
 #### Example 2
 
 - **Input:** $\text{dummy}_{input} = [""]$

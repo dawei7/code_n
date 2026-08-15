@@ -29,12 +29,11 @@ Return an integer equal to the number of values $x$ satisfying $l\le x\le r$ for
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 8, r = 10
+- **Input:** l = 8, r = 10
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - 8 and 9 are single-digit integers, so they are good and therefore fancy.
 
@@ -42,46 +41,39 @@ Return an integer equal to the number of values $x$ satisfying $l\le x\le r$ for
 
 Therefore, the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 12340, r = 12341
+- **Input:** l = 12340, r = 12341
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - 12340
 
-		<li>12340 is not good because `[1, 2, 3, 4, 0]` is not strictly monotone.
+		- 12340 is not good because `[1, 2, 3, 4, 0]` is not strictly monotone.
 
 - The digit sum is $1 + 2 + 3 + 4 + 0 = 10$.
 
 - 10 is good as it has digits `[1, 0]`, which is strictly decreasing. Therefore, 12340 is fancy.
 
-	</li>
 - 12341
 
-		<li>12341 is not good because `[1, 2, 3, 4, 1]` is not strictly monotone.
+		- 12341 is not good because `[1, 2, 3, 4, 1]` is not strictly monotone.
 
 - The digit sum is $1 + 2 + 3 + 4 + 1 = 11$.
 
 - 11 is not good as it has digits `[1, 1]`, which is not strictly monotone. Therefore, 12341 is not fancy.
 
-	</li>
-
 Therefore, the answer is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** l = 123456788, r = 123456788
+- **Input:** l = 123456788, r = 123456788
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - 123456788 is not good because its digits are not strictly monotone.
 
@@ -90,8 +82,6 @@ Therefore, the answer is 1.
 - 44 is not good as it has digits `[4, 4]`, which is not strictly monotone. Therefore, 123456788 is not fancy.
 
 Therefore, the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

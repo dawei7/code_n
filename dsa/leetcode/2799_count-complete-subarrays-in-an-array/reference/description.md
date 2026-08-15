@@ -12,8 +12,13 @@ A **subarray** is a contiguous non-empty part of an array.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ A **subarray** is a contiguous non-empty part of an array.
 - **Input:** `nums = [1,3,1,2,2]`
 - **Output:** `4`
 - **Explanation:** The complete subarrays are the following: [1,3,1,2], [1,3,1,2,2], [3,1,2] and [3,1,2,2].
+
 #### Example 2
 
 - **Input:** `nums = [5,5,5,5]`

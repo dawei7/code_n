@@ -33,23 +33,23 @@ One cyclic rotation moves every element of every layer to its adjacent position 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[40,10],[30,20]], k = 1`
-- Output: `[[10,20],[40,30]]`
+- **Input:** `grid = [[40,10],[30,20]], k = 1`
+- **Output:** `[[10,20],[40,30]]`
 
 Each corner value moves to the next corner in the counter-clockwise direction.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], k = 2`
-- Output: `[[3,4,8,12],[2,11,10,16],[1,7,6,15],[5,9,13,14]]`
+- **Input:** `grid = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], k = 2`
+- **Output:** `[[3,4,8,12],[2,11,10,16],[1,7,6,15],[5,9,13,14]]`
 
 The outer and inner layers each advance two positions along their own perimeter.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,2,3,4],[5,6,7,8]], k = 1`
-- Output: `[[2,3,4,8],[1,5,6,7]]`
+- **Input:** `grid = [[1,2,3,4],[5,6,7,8]], k = 1`
+- **Output:** `[[2,3,4,8],[1,5,6,7]]`
 
 The single rectangular layer has perimeter eight.

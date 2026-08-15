@@ -16,8 +16,17 @@ Return *the minimum cost of painting all the remaining houses in such a way that
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `houses`: Input parameter (`List[int]`).
+- `cost`: Input parameter (`List[List[int]]`).
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +37,7 @@ Return *the minimum cost of painting all the remaining houses in such a way that
 - **Explanation:** Paint houses of this way [1,2,2,1,1]
 This array contains target = 3 neighborhoods, [{1}, {2,2}, {1,1}].
 Cost of paint all houses (1 + 1 + 1 + 1 + 5) = 9.
+
 #### Example 2
 
 - **Input:** $houses = [0,2,1,2,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3$
@@ -35,6 +45,7 @@ Cost of paint all houses (1 + 1 + 1 + 1 + 5) = 9.
 - **Explanation:** Some houses are already painted, Paint the houses of this way [2,2,1,2,2]
 This array contains target = 3 neighborhoods, [{2,2}, {1}, {2,2}].
 Cost of paint the first and last house (10 + 1) = 11.
+
 #### Example 3
 
 - **Input:** $houses = [3,1,2,3], cost = [[1,1,1],[1,1,1],[1,1,1],[1,1,1]], m = 4, n = 3, target = 3$

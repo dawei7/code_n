@@ -36,9 +36,9 @@ Return `student_id`, `department_id`, and the student's department-relative `per
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Students = [(2,2,650),(8,2,650),(7,1,920),(1,1,610),(3,1,530)]`
-- Output: `[(7,1,0.0),(1,1,50.0),(3,1,100.0),(2,2,0.0),(8,2,0.0)]`
+- **Input:** `Students = [(2,2,650),(8,2,650),(7,1,920),(1,1,610),(3,1,530)]`
+- **Output:** `[(7,1,0.0),(1,1,50.0),(3,1,100.0),(2,2,0.0),(8,2,0.0)]`
 
 Department 1 has three distinct ranks. Both students in department 2 share its highest mark and therefore both receive rank 1 and percentage 0.

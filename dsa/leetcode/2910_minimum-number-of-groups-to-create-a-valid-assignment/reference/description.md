@@ -10,7 +10,6 @@ You are given a collection of numbered `balls` and instructed to sort them into 
 
 **Example 1: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  balls = [3,2,3,2,3]
 
 **Output: **  2
@@ -25,11 +24,8 @@ We can sort `balls` into boxes as follows:
 
 The size difference between the two boxes doesn't exceed one.
 
-</div>
-
 **Example 2: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  balls = [10,10,10,3,1,1]
 
 **Output: **  4
@@ -48,12 +44,15 @@ We can sort `balls` into boxes as follows:
 
 You can't use fewer than four boxes while still following the rules. For example, putting all three balls numbered 10 in one box would break the rule about the maximum size difference between boxes.
 
-</div>
-
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `balls`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Constraints
 

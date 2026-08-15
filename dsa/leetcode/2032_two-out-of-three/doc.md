@@ -43,19 +43,19 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1, 1, 3, 2], nums2 = [2, 3], nums3 = [3]`
-- Output: `[3, 2]`
-- Explanation: `3` appears in all three arrays and `2` appears in the first
+- **Input:** `nums1 = [1, 1, 3, 2], nums2 = [2, 3], nums3 = [3]`
+- **Output:** `[3, 2]`
+- **Explanation:** `3` appears in all three arrays and `2` appears in the first
   two.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [3, 1], nums2 = [2, 3], nums3 = [1, 2]`
-- Output: `[2, 3, 1]`
+- **Input:** `nums1 = [3, 1], nums2 = [2, 3], nums3 = [1, 2]`
+- **Output:** `[2, 3, 1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [1, 2, 2], nums2 = [4, 3, 3], nums3 = [5]`
-- Output: `[]`
+- **Input:** `nums1 = [1, 2, 2], nums2 = [4, 3, 3], nums3 = [5]`
+- **Output:** `[]`

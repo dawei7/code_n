@@ -32,14 +32,14 @@ Return coordinates for a smallest possible initial red set that eventually makes
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`
-- Output: `[[1,1],[2,1],[2,3],[3,1],[3,5]]`
-- Explanation: These five triangles allow the four remaining triangles to become red one after another; no set of four can color the whole figure.
+- **Input:** `n = 3`
+- **Output:** `[[1,1],[2,1],[2,3],[3,1],[3,5]]`
+- **Explanation:** These five triangles allow the four remaining triangles to become red one after another; no set of four can color the whole figure.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `[[1,1],[2,1],[2,3]]`
-- Explanation: The middle triangle in row 2 then has enough red neighbors to turn red. Two initial triangles are insufficient.
+- **Input:** `n = 2`
+- **Output:** `[[1,1],[2,1],[2,3]]`
+- **Explanation:** The middle triangle in row 2 then has enough red neighbors to turn red. Two initial triangles are insufficient.

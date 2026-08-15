@@ -12,8 +12,16 @@ Note that $\text{digit}_{sum}(x)$ denotes the sum of the digits of `x`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num1`: Input parameter (`str`).
+- `num2`: Input parameter (`str`).
+- `min_sum`: Input parameter (`int`).
+- `max_sum`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +30,7 @@ Note that $\text{digit}_{sum}(x)$ denotes the sum of the digits of `x`.
 - **Input:** $num1 = "1", num2 = "12", \text{min}_{sum} = 1, \text{max}_{sum} = 8$
 - **Output:** `11`
 - **Explanation:** There are 11 integers whose sum of digits lies between 1 and 8 are 1,2,3,4,5,6,7,8,10,11, and 12. Thus, we return 11.
+
 #### Example 2
 
 - **Input:** $num1 = "1", num2 = "5", \text{min}_{sum} = 1, \text{max}_{sum} = 5$

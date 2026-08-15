@@ -33,14 +33,14 @@ Return the ascending list of 1-based friend numbers that never received the ball
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, k = 2`
-- Output: `[4,5]`
-- Explanation: Friends 1, 3, and 2 receive the ball before friend 3 receives it again.
+- **Input:** `n = 5, k = 2`
+- **Output:** `[4,5]`
+- **Explanation:** Friends 1, 3, and 2 receive the ball before friend 3 receives it again.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, k = 4`
-- Output: `[2,3,4]`
-- Explanation: The first pass wraps from friend 1 back to friend 1, immediately ending the game.
+- **Input:** `n = 4, k = 4`
+- **Output:** `[2,3,4]`
+- **Explanation:** The first pass wraps from friend 1 back to friend 1, immediately ending the game.

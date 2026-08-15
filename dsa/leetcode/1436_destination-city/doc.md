@@ -32,17 +32,17 @@ Return that unique destination city. The path entries may be given in any order,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]`
-- Output: `"Sao Paulo"`
+- **Input:** `paths = [["London","New York"],["New York","Lima"],["Lima","Sao Paulo"]]`
+- **Output:** `"Sao Paulo"`
 
-**Example 2**
+#### Example 2
 
-- Input: `paths = [["B","C"],["D","B"],["C","A"]]`
-- Output: `"A"`
+- **Input:** `paths = [["B","C"],["D","B"],["C","A"]]`
+- **Output:** `"A"`
 
-**Example 3**
+#### Example 3
 
-- Input: `paths = [["A","Z"]]`
-- Output: `"Z"`
+- **Input:** `paths = [["A","Z"]]`
+- **Output:** `"Z"`

@@ -39,14 +39,14 @@ Because the square-root function is increasing on nonnegative values, ordering p
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[1, 3], [-2, 2]], k = 1`
-- Output: `[[-2, 2]]`
-- Explanation: the squared distances are $10$ and $8$, so `[-2, 2]` is closer.
+- **Input:** `points = [[1, 3], [-2, 2]], k = 1`
+- **Output:** `[[-2, 2]]`
+- **Explanation:** the squared distances are $10$ and $8$, so `[-2, 2]` is closer.
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[3, 3], [5, -1], [-2, 4]], k = 2`
-- Output: `[[3, 3], [-2, 4]]`
-- Explanation: `[[-2, 4], [3, 3]]` is equally valid because answer order is unrestricted.
+- **Input:** `points = [[3, 3], [5, -1], [-2, 4]], k = 2`
+- **Output:** `[[3, 3], [-2, 4]]`
+- **Explanation:** `[[-2, 4], [3, 3]]` is equally valid because answer order is unrestricted.

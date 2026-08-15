@@ -4,8 +4,14 @@ Given an array of **digit** strings `nums` and a **digit** string `target`, retu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[str]`).
+- `target`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Given an array of **digit** strings `nums` and a **digit** string `target`, retu
 - (1, 0): "7" + "777"
 - (2, 3): "77" + "77"
 - (3, 2): "77" + "77"
+
 #### Example 2
 
 - **Input:** `nums = ["123","4","12","34"], target = "1234"`
@@ -25,6 +32,7 @@ Given an array of **digit** strings `nums` and a **digit** string `target`, retu
 - **Explanation:** Valid pairs are:
 - (0, 1): "123" + "4"
 - (2, 3): "12" + "34"
+
 #### Example 3
 
 - **Input:** `nums = ["1","1","1"], target = "11"`

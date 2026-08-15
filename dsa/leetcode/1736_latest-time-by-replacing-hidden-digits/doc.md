@@ -30,20 +30,20 @@ A time is valid when it lies from `00:00` through `23:59`, inclusive. Replace ev
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `time = "2?:?0"`
-- Output: `"23:50"`
-- Explanation: The latest hour beginning with `2` is `23`, and the latest minute ending with `0` is `50`.
+- **Input:** `time = "2?:?0"`
+- **Output:** `"23:50"`
+- **Explanation:** The latest hour beginning with `2` is `23`, and the latest minute ending with `0` is `50`.
 
-**Example 2**
+#### Example 2
 
-- Input: `time = "0?:3?"`
-- Output: `"09:39"`
-- Explanation: The fixed leading zero limits the hour to `00` through `09`.
+- **Input:** `time = "0?:3?"`
+- **Output:** `"09:39"`
+- **Explanation:** The fixed leading zero limits the hour to `00` through `09`.
 
-**Example 3**
+#### Example 3
 
-- Input: `time = "1?:22"`
-- Output: `"19:22"`
-- Explanation: Only the hidden hour digit changes, and `9` gives the latest valid match.
+- **Input:** `time = "1?:22"`
+- **Output:** `"19:22"`
+- **Explanation:** Only the hidden hour digit changes, and `9` gives the latest valid match.

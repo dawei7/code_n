@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Followers table:
 +---------+-------------+
 | user_id | follower_id |
@@ -39,7 +39,7 @@ Followers table:
 | 2       | 0           |
 | 2       | 1           |
 +---------+-------------+
-**Output:**
+- **Output:** 
 +---------+----------------+
 | user_id | followers_count|
 +---------+----------------+
@@ -47,8 +47,7 @@ Followers table:
 | 1       | 1              |
 | 2       | 2              |
 +---------+----------------+
-**Explanation:**
-The followers of 0 are {1}
+- **Explanation:** The followers of 0 are {1}
 The followers of 1 are {0}
 The followers of 2 are {0,1}
 ```

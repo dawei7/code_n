@@ -30,20 +30,20 @@ Return an integer array `answer` aligned with the list positions, where `answer[
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [2, 1, 5]`
-- Output: `[5, 5, 0]`
-- Explanation: The final value `5` is the first greater value after both earlier nodes.
+- **Input:** `head = [2, 1, 5]`
+- **Output:** `[5, 5, 0]`
+- **Explanation:** The final value `5` is the first greater value after both earlier nodes.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [2, 7, 4, 3, 5]`
-- Output: `[7, 0, 5, 5, 0]`
-- Explanation: No later value exceeds `7` or the final `5`.
+- **Input:** `head = [2, 7, 4, 3, 5]`
+- **Output:** `[7, 0, 5, 5, 0]`
+- **Explanation:** No later value exceeds `7` or the final `5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [5, 4, 3]`
-- Output: `[0, 0, 0]`
-- Explanation: A strictly decreasing list has no next greater node.
+- **Input:** `head = [5, 4, 3]`
+- **Output:** `[0, 0, 0]`
+- **Explanation:** A strictly decreasing list has no next greater node.

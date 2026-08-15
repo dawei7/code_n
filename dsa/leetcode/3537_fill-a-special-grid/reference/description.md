@@ -14,8 +14,13 @@ Return the **special** $2^n x 2^n$ grid.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Note
 
@@ -25,26 +30,19 @@ Return the **special** $2^n x 2^n$ grid.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 0
+- **Input:** n = 0
 
-**Output:** [[0]]
+- **Output:** [[0]]
 
-**Explanation:**
+- **Explanation:** The only number that can be placed is 0, and there is only one possible position in the grid.
 
-The only number that can be placed is 0, and there is only one possible position in the grid.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1
+- **Input:** n = 1
 
-**Output:** [[3,0],[2,1]]
+- **Output:** [[3,0],[2,1]]
 
-**Explanation:**
-
-The numbers in each quadrant are:
+- **Explanation:** The numbers in each quadrant are:
 
 - Top-right: 0
 
@@ -56,17 +54,13 @@ The numbers in each quadrant are:
 
 Since `0 < 1 < 2 < 3`, this satisfies the given constraints.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 2
+- **Input:** n = 2
 
-**Output:** [[15,12,3,0],[14,13,2,1],[11,8,7,4],[10,9,6,5]]
+- **Output:** [[15,12,3,0],[14,13,2,1],[11,8,7,4],[10,9,6,5]]
 
-**Explanation:**
-
-![](images/4123example3p1drawio.png)
+- **Explanation:** ![](images/4123example3p1drawio.png)
 
 The numbers in each quadrant are:
 
@@ -85,8 +79,6 @@ The numbers in each quadrant are:
 - `max(11, 8, 10, 9) < min(15, 12, 14, 13)`
 
 This satisfies the first three requirements. Additionally, each quadrant is also a special grid. Thus, this is a special grid.
-
-</div>
 
 ### 5. Constraints
 

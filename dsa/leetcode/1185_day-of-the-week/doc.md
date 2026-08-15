@@ -33,17 +33,17 @@ Return exactly one of `"Sunday"`, `"Monday"`, `"Tuesday"`, `"Wednesday"`, `"Thur
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `day = 31`, `month = 8`, `year = 2019`
-- Output: `"Saturday"`
+- **Input:** `day = 31`, `month = 8`, `year = 2019`
+- **Output:** `"Saturday"`
 
-**Example 2**
+#### Example 2
 
-- Input: `day = 18`, `month = 7`, `year = 1999`
-- Output: `"Sunday"`
+- **Input:** `day = 18`, `month = 7`, `year = 1999`
+- **Output:** `"Sunday"`
 
-**Example 3**
+#### Example 3
 
-- Input: `day = 15`, `month = 8`, `year = 1993`
-- Output: `"Sunday"`
+- **Input:** `day = 15`, `month = 8`, `year = 1993`
+- **Output:** `"Sunday"`

@@ -10,8 +10,15 @@ Return* the **number of pairs** that satisfy the conditions.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `diff`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,18 +26,17 @@ Return* the **number of pairs** that satisfy the conditions.*
 
 - **Input:** $nums1 = [3,2,5], nums2 = [2,2,1], diff = 1$
 - **Output:** `3`
-- **Explanation:**
-There are 3 pairs that satisfy the conditions:
+- **Explanation:** There are 3 pairs that satisfy the conditions:
 1. i = 0, j = 1: 3 - 2 <= 2 - 2 + 1. Since i < j and 1 <= 1, this pair satisfies the conditions.
 2. i = 0, j = 2: 3 - 5 <= 2 - 1 + 1. Since i < j and -2 <= 2, this pair satisfies the conditions.
 3. i = 1, j = 2: 2 - 5 <= 2 - 1 + 1. Since i < j and -3 <= 2, this pair satisfies the conditions.
 Therefore, we return 3.
+
 #### Example 2
 
 - **Input:** $nums1 = [3,-1], nums2 = [-2,2], diff = -1$
 - **Output:** `0`
-- **Explanation:**
-Since there does not exist any pair that satisfies the conditions, we return 0.
+- **Explanation:** Since there does not exist any pair that satisfies the conditions, we return 0.
 
 ### 4. Constraints
 

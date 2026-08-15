@@ -6,8 +6,14 @@ Return `true` *if it is possible to make both strings equal by performing **at m
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s1`: Input parameter (`str`).
+- `s2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Return `true` *if it is possible to make both strings equal by performing **at m
 - **Input:** $s1 = "bank", s2 = "kanb"$
 - **Output:** `true`
 - **Explanation:** For example, swap the first character with the last character of s2 to make "bank".
+
 #### Example 2
 
 - **Input:** $s1 = "attack", s2 = "defend"$
 - **Output:** `false`
 - **Explanation:** It is impossible to make them equal with one string swap.
+
 #### Example 3
 
 - **Input:** $s1 = "kelb", s2 = "kelb"$

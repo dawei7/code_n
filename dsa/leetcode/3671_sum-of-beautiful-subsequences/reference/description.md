@@ -10,21 +10,23 @@ Since the answer could be very large, return it modulo $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-All strictly increasing subsequences and their GCDs are:
+- **Explanation:** All strictly increasing subsequences and their GCDs are:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -96,17 +98,13 @@ Calculating beauty for each GCD:
 
 Total beauty is $5 + 2 + 3 = 10$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,6]
+- **Input:** nums = [4,6]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-All strictly increasing subsequences and their GCDs are:
+- **Explanation:** All strictly increasing subsequences and their GCDs are:
 
 <table style="border: 1px solid black;">
 	<thead>
@@ -161,8 +159,6 @@ Calculating beauty for each GCD:
 </table>
 
 Total beauty is $2 + 4 + 6 = 12$.
-
-</div>
 
 ### 4. Constraints
 

@@ -37,17 +37,17 @@ Let $N$ be the length of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [0, 1, 1, 0, 1]`
-- Output: `9`
+- **Input:** `nums = [0, 1, 1, 0, 1]`
+- **Output:** `9`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0]`
-- Output: `0`
+- **Input:** `nums = [0]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1]`
-- Output: `1`
+- **Input:** `nums = [1]`
+- **Output:** `1`

@@ -56,7 +56,7 @@ Result order is unrestricted.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Salary table:
 +----+-------------+--------+------------+
 | id | employee_id | amount | pay_date   |
@@ -76,7 +76,7 @@ Employee table:
 | 2           | 2             |
 | 3           | 2             |
 +-------------+---------------+
-**Output:**
+- **Output:** 
 +-----------+---------------+------------+
 | pay_month | department_id | comparison |
 +-----------+---------------+------------+
@@ -85,8 +85,7 @@ Employee table:
 | 2017-02   | 2             | same       |
 | 2017-03   | 2             | lower      |
 +-----------+---------------+------------+
-**Explanation:**
-In March, the company's average salary is (9000+6000+10000)/3 = 8333.33...
+- **Explanation:** In March, the company's average salary is (9000+6000+10000)/3 = 8333.33...
 The average salary for department '1' is 9000, which is the salary of employee_id '1' since there is only one employee in this department. So the comparison result is 'higher' since 9000 > 8333.33 obviously.
 The average salary of department '2' is (6000 + 10000)/2 = 8000, which is the average of employee_id '2' and '3'. So the comparison result is 'lower' since 8000 < 8333.33.
 

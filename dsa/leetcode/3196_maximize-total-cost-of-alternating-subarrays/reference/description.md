@@ -16,8 +16,13 @@ Return an integer denoting the *maximum total cost* of the subarrays after split
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -27,52 +32,35 @@ If `nums` is not split into subarrays, i.e. $k = 1$, the total cost is simply $c
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,-2,3,4]
+- **Input:** nums = [1,-2,3,4]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** One way to maximize the total cost is by splitting `[1, -2, 3, 4]` into subarrays `[1, -2, 3]` and `[4]`. The total cost will be $(1 + 2 + 3) + 4 = 10$.
 
-One way to maximize the total cost is by splitting `[1, -2, 3, 4]` into subarrays `[1, -2, 3]` and `[4]`. The total cost will be $(1 + 2 + 3) + 4 = 10$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,-1,1,-1]
+- **Input:** nums = [1,-1,1,-1]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** One way to maximize the total cost is by splitting `[1, -1, 1, -1]` into subarrays `[1, -1]` and `[1, -1]`. The total cost will be $(1 + 1) + (1 + 1) = 4$.
 
-One way to maximize the total cost is by splitting `[1, -1, 1, -1]` into subarrays `[1, -1]` and `[1, -1]`. The total cost will be $(1 + 1) + (1 + 1) = 4$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [0]
+- **Input:** nums = [0]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** We cannot split the array further, so the answer is 0.
 
-We cannot split the array further, so the answer is 0.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** nums = [1,-1]
+- **Input:** nums = [1,-1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Selecting the whole array gives a total cost of $1 + 1 = 2$, which is the maximum.
-
-</div>
+- **Explanation:** Selecting the whole array gives a total cost of $1 + 1 = 2$, which is the maximum.
 
 ### 5. Constraints
 

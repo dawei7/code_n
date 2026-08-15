@@ -38,20 +38,20 @@ be the total number of decimal digits across the input values.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10,12,13,14]`
-- Output: `1`
-- Explanation: The replacements are `[1,3,4,5]`.
+- **Input:** `nums = [10,12,13,14]`
+- **Output:** `1`
+- **Explanation:** The replacements are `[1,3,4,5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`
-- Output: `1`
-- Explanation: Every one-digit value remains unchanged.
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `1`
+- **Explanation:** Every one-digit value remains unchanged.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [999,19,199]`
-- Output: `10`
-- Explanation: The digit sums are `[27,10,19]`, whose minimum is 10.
+- **Input:** `nums = [999,19,199]`
+- **Output:** `10`
+- **Explanation:** The digit sums are `[27,10,19]`, whose minimum is 10.

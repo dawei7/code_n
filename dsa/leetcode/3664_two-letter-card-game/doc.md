@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/two-letter-card-game/) |
 
 ## Problem Description
+
 ### Goal
 
 A deck is represented by an array `cards`, where every card is a two-letter lowercase string. A separate letter `x` identifies which cards may participate in the game.
@@ -34,20 +35,20 @@ Return the maximum number of disjoint compatible pairs in which both selected ca
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `cards = ["aa", "ab", "ba", "ac"]`, `x = "a"`
-- Output: `2`
+- **Input:** `cards = ["aa", "ab", "ba", "ac"]`, `x = "a"`
+- **Output:** `2`
 - Pair `"ab"` with `"ac"`, then pair `"aa"` with `"ba"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `cards = ["aa", "ab", "ba"]`, `x = "a"`
-- Output: `1`
+- **Input:** `cards = ["aa", "ab", "ba"]`, `x = "a"`
+- **Output:** `1`
 - Only one disjoint compatible pair can be removed.
 
-**Example 3**
+#### Example 3
 
-- Input: `cards = ["aa", "ab", "ba", "ac"]`, `x = "b"`
-- Output: `0`
+- **Input:** `cards = ["aa", "ab", "ba", "ac"]`, `x = "b"`
+- **Output:** `0`
 - The two cards containing `b` are `"ab"` and `"ba"`, which differ in both positions.

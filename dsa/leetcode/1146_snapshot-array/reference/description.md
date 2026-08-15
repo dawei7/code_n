@@ -12,8 +12,12 @@ Implement a SnapshotArray that supports the following interface:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `SnapshotArray(length: int)`: Initializes the data structure.
+- `set(index: int, val: int)`: Executes operation.
+- `snap() -> `int``: Executes operation.
+- `get(index: int, snap_id: int) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -22,8 +26,7 @@ Implement a SnapshotArray that supports the following interface:
 - **Input:** `["SnapshotArray","set","snap","set","get"]`
 [[3],[0,5],[],[0,6],[0,0]]
 - **Output:** `[null,null,0,null,5]`
-- **Explanation:**
-SnapshotArray snapshotArr = new SnapshotArray(3); // set the length to be 3
+- **Explanation:** SnapshotArray snapshotArr = new SnapshotArray(3); // set the length to be 3
 snapshotArr.set(0,5);  // Set array[0] = 5
 snapshotArr.snap();  // Take a snapshot, return snap_id = 0
 snapshotArr.set(0,6);

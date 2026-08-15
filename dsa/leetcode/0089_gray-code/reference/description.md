@@ -30,8 +30,7 @@ Return any sequence containing every value from `0` through $2^n-1$ exactly once
 
 - **Input:** $n = 2$
 - **Output:** `[0,1,3,2]`
-- **Explanation:**
-The binary representation of [0,1,3,2] is [00,01,11,10].
+- **Explanation:** The binary representation of [0,1,3,2] is [00,01,11,10].
 - 0<u>0</u> and 0<u>1</u> differ by one bit
 - <u>0</u>1 and <u>1</u>1 differ by one bit
 - 1<u>1</u> and 1<u>0</u> differ by one bit
@@ -41,6 +40,7 @@ The binary representation of [0,1,3,2] is [00,01,11,10].
 - 1<u>0</u> and 1<u>1</u> differ by one bit
 - <u>1</u>1 and <u>0</u>1 differ by one bit
 - 0<u>1</u> and 0<u>0</u> differ by one bit
+
 #### Example 2
 
 - **Input:** $n = 1$

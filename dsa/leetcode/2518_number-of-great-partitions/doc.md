@@ -35,20 +35,20 @@ Return, modulo $10^9 + 7$, the number of ordered assignments of all elements to 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4], k = 4`
-- Output: `6`
-- Explanation: There are three qualifying divisions of the indexed elements, and each division has two orders for its groups.
+- **Input:** `nums = [1, 2, 3, 4], k = 4`
+- **Output:** `6`
+- **Explanation:** There are three qualifying divisions of the indexed elements, and each division has two orders for its groups.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3, 3, 3], k = 4`
-- Output: `0`
-- Explanation: Every split leaves one group with sum below `4`.
+- **Input:** `nums = [3, 3, 3], k = 4`
+- **Output:** `0`
+- **Explanation:** Every split leaves one group with sum below `4`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [6, 6], k = 2`
-- Output: `2`
-- Explanation: Either indexed `6` may be assigned to the first group; the equal values do not make those two assignments identical.
+- **Input:** `nums = [6, 6], k = 2`
+- **Output:** `2`
+- **Explanation:** Either indexed `6` may be assigned to the first group; the equal values do not make those two assignments identical.

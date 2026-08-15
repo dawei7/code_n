@@ -10,21 +10,23 @@ Return the **minimum** possible difference.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,-1,10,8]
+- **Input:** nums = [1,2,-1,10,8]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-By choosing the pair as `(6, 7)`, nums can be changed to `[1, 2, 6, 10, 8]`.
+- **Explanation:** By choosing the pair as `(6, 7)`, nums can be changed to `[1, 2, 6, 10, 8]`.
 
 The absolute differences between adjacent elements are:
 
@@ -36,31 +38,21 @@ The absolute differences between adjacent elements are:
 
 - $|10 - 8| = 2$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-1,-1,-1]
+- **Input:** nums = [-1,-1,-1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** By choosing the pair as `(4, 4)`, nums can be changed to `[4, 4, 4]`.
 
-By choosing the pair as `(4, 4)`, nums can be changed to `[4, 4, 4]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [-1,10,-1,8]
+- **Input:** nums = [-1,10,-1,8]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-By choosing the pair as `(11, 9)`, nums can be changed to `[11, 10, 9, 8]`.
-
-</div>
+- **Explanation:** By choosing the pair as `(11, 9)`, nums can be changed to `[11, 10, 9, 8]`.
 
 ### 4. Constraints
 

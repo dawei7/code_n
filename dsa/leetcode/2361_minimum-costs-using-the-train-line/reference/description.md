@@ -37,6 +37,7 @@ Note that a stop can be counted as **reached** from either route.
 - Take the regular route from stop 3 to stop 4, costing 5.
 The total cost is 1 + 10 + 3 + 5 = 19.
 Note that a different route could be taken to reach the other stops with minimum cost.
+
 #### Example 2
 
 ![](images/ex2drawio.png)

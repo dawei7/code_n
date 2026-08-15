@@ -16,8 +16,10 @@ The adding rule is:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `addOneRow(root: Optional[TreeNode], val: int, depth: int) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -27,6 +29,7 @@ The adding rule is:
 
 - **Input:** `root = [4,2,6,3,1,5], val = 1, depth = 2`
 - **Output:** `[4,1,1,2,null,null,6,3,1,5]`
+
 #### Example 2
 
 ![](images/add2-tree.jpg)

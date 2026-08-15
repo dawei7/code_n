@@ -12,8 +12,11 @@ Implement the `SeatManager` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `SeatManager(n: int)`: Initializes the data structure.
+- `reserve() -> `int``: Executes operation.
+- `unreserve(seatNumber: int)`: Executes operation.
 
 ### 3. Examples
 

@@ -8,8 +8,13 @@ Each word would be put on only one column and that in one column there will be o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Each word would be put on only one column and that in one column there will be o
 "HAY"
 "ORO"
 "WEU"
+
 #### Example 2
 
 - **Input:** `s = "TO BE OR NOT TO BE"`
@@ -29,6 +35,7 @@ Each word would be put on only one column and that in one column there will be o
 "TBONTB"
 "OEROOE"
 "   T"
+
 #### Example 3
 
 - **Input:** `s = "CONTEST IS COMING"`

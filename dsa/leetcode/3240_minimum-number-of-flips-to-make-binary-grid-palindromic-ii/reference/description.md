@@ -10,47 +10,39 @@ Return the **minimum** number of cells that need to be flipped to make **all** r
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,0,0],[0,1,0],[0,0,1]]
+- **Input:** grid = [[1,0,0],[0,1,0],[0,0,1]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** ![](images/image.png)
 
-![](images/image.png)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[0,1],[0,1],[0,0]]
+- **Input:** grid = [[0,1],[0,1],[0,0]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** ![](images/screenshot-from-2024-07-09-01-37-48.png)
 
-![](images/screenshot-from-2024-07-09-01-37-48.png)
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1],[1]]
+- **Input:** grid = [[1],[1]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/screenshot-from-2024-08-01-23-05-26.png)
-
-</div>
+- **Explanation:** ![](images/screenshot-from-2024-08-01-23-05-26.png)
 
 ### 4. Constraints
 

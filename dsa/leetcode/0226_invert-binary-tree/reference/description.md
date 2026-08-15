@@ -20,12 +20,14 @@ Return the root after exchanging the left and right subtrees at every node.
 
 - **Input:** `root = [4,2,7,1,3,6,9]`
 - **Output:** `[4,7,2,9,6,3,1]`
+
 #### Example 2
 
 ![](images/invert2-tree.jpg)
 
 - **Input:** `root = [2,1,3]`
 - **Output:** `[2,3,1]`
+
 #### Example 3
 
 - **Input:** `root = []`

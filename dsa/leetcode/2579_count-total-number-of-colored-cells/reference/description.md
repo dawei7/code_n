@@ -14,8 +14,13 @@ Return *the number of **colored cells** at the end of *`n` *minutes*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the number of **colored cells** at the end of *`n` *minutes*.
 - **Input:** $n = 1$
 - **Output:** `1`
 - **Explanation:** After 1 minute, there is only 1 blue cell, so we return 1.
+
 #### Example 2
 
 - **Input:** $n = 2$

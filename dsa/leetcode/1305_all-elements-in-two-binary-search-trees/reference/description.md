@@ -4,8 +4,10 @@ Given two binary search trees `root1` and `root2`, return *a list containing all
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `getAllElements(root1: Optional[TreeNode], root2: Optional[TreeNode]) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -15,6 +17,7 @@ Given two binary search trees `root1` and `root2`, return *a list containing all
 
 - **Input:** $root1 = [2,1,4], root2 = [1,0,3]$
 - **Output:** `[0,1,1,2,3,4]`
+
 #### Example 2
 
 ![](images/q2-e5-.png)

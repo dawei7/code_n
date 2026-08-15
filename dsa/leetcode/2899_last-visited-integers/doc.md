@@ -34,14 +34,14 @@ Return one integer for each `-1` in `nums`: the requested previously seen value,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, -1, -1, -1]`
-- Output: `[2, 1, -1]`
-- Explanation: The three queries ask for the first, second, and third most recent values. Only `2` and `1` have been seen.
+- **Input:** `nums = [1, 2, -1, -1, -1]`
+- **Output:** `[2, 1, -1]`
+- **Explanation:** The three queries ask for the first, second, and third most recent values. Only `2` and `1` have been seen.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, -1, 2, -1, -1]`
-- Output: `[1, 2, 1]`
-- Explanation: Reading `2` resets the consecutive-query count, so the following two queries request the first and second most recent values.
+- **Input:** `nums = [1, -1, 2, -1, -1]`
+- **Output:** `[1, 2, 1]`
+- **Explanation:** Reading `2` resets the consecutive-query count, so the following two queries request the first and second most recent values.

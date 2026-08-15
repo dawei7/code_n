@@ -34,7 +34,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 OrdersDetails table:
 +----------+------------+----------+
 | order_id | product_id | quantity |
@@ -54,15 +54,14 @@ OrdersDetails table:
 | 3        | 9          | 20       |
 | 2        | 9          | 4        |
 +----------+------------+----------+
-**Output:**
+- **Output:** 
 +----------+
 | order_id |
 +----------+
 | 1        |
 | 3        |
 +----------+
-**Explanation:**
-The average quantity of each order is:
+- **Explanation:** The average quantity of each order is:
 - order_id=1: (12+10+15)/3 = 12.3333333
 - order_id=2: (8+4+6+4)/4 = 5.5
 - order_id=3: (5+18+20)/3 = 14.333333

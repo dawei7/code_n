@@ -21,40 +21,27 @@ Return the largest non-negative integer with at most `n` digits and digit sum `s
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, s = 9
+- **Input:** n = 2, s = 9
 
-**Output:** 90
+- **Output:** 90
 
-**Explanation:**
+- **Explanation:** The largest integer with at most 2 digits that has a sum of digits of 9 is 90.
 
-The largest integer with at most 2 digits that has a sum of digits of 9 is 90.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 2, s = 19
+- **Input:** n = 2, s = 19
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** There is no integer with at most 2 digits that has a sum of digits of 19, so the answer is -1.
 
-There is no integer with at most 2 digits that has a sum of digits of 19, so the answer is -1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, s = 0
+- **Input:** n = 5, s = 0
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The only non-negative integer whose digits sum to 0 is 0.
-
-</div>
+- **Explanation:** The only non-negative integer whose digits sum to 0 is 0.
 
 ### 4. Constraints
 

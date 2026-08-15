@@ -35,20 +35,20 @@ For the app-local deterministic adapter, `cancelTime` is the time at which cance
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `delay = 50`, `period = 20`, `cancelTime = 225`
-- Output: `[50, 120, 210]`
-- Explanation: The successive waits are `50`, `70`, and `90` milliseconds, so the cumulative invocation times are $50$, $120$, and $210$.
+- **Input:** `delay = 50`, `period = 20`, `cancelTime = 225`
+- **Output:** `[50, 120, 210]`
+- **Explanation:** The successive waits are `50`, `70`, and `90` milliseconds, so the cumulative invocation times are $50$, $120$, and $210$.
 
-**Example 2**
+#### Example 2
 
-- Input: `delay = 20`, `period = 20`, `cancelTime = 150`
-- Output: `[20, 60, 120]`
-- Explanation: Waiting `20`, then `40`, then `60` milliseconds produces the three invocation times before cancellation.
+- **Input:** `delay = 20`, `period = 20`, `cancelTime = 150`
+- **Output:** `[20, 60, 120]`
+- **Explanation:** Waiting `20`, then `40`, then `60` milliseconds produces the three invocation times before cancellation.
 
-**Example 3**
+#### Example 3
 
-- Input: `delay = 100`, `period = 200`, `cancelTime = 500`
-- Output: `[100, 400]`
-- Explanation: The first two waits are `100` and `300` milliseconds. The next invocation would occur after cancellation.
+- **Input:** `delay = 100`, `period = 200`, `cancelTime = 500`
+- **Output:** `[100, 400]`
+- **Explanation:** The first two waits are `100` and `300` milliseconds. The next invocation would occur after cancellation.

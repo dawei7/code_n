@@ -20,8 +20,14 @@ Return an array `answer` containing the results of the queries of the first type
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `colors`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -31,12 +37,11 @@ that since `colors` represents a **circle**, the **first** and the **last** tile
 
 #### Example 1
 
-<div class="example-block">
-**Input:** colors = [0,1,1,0,1], queries = [[2,1,0],[1,4]]
+- **Input:** colors = [0,1,1,0,1], queries = [[2,1,0],[1,4]]
 
-**Output:** [2]
+- **Output:** [2]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -58,17 +63,13 @@ Count of the alternating groups with size 4:
 
 ![](images/screenshot-from-2024-06-03-20-24-12.png)
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** colors = [0,0,1,0,1,1], queries = [[1,3],[2,3,0],[1,5]]
+- **Input:** colors = [0,0,1,0,1,1], queries = [[1,3],[2,3,0],[1,5]]
 
-**Output:** [2,0]
+- **Output:** [2,0]
 
-**Explanation:**
-
-![](images/screenshot-from-2024-06-03-20-35-50.png)
+- **Explanation:** ![](images/screenshot-from-2024-06-03-20-35-50.png)
 
 First query:
 
@@ -82,8 +83,6 @@ Second query: `colors` will not change.
 
 Third query: There is no alternating group with size 5.
 
-</div>
-
 ### 5. Constraints
 
 - $4 \le \text{colors.length} \le 5 * 10^{4}$
@@ -96,8 +95,6 @@ Third query: There is no alternating group with size 5.
 
 - For all `i` that:
 
-		<li>$\text{queries}[i][0] = 1$: $\text{queries}[i].length = 2$, $3 \le \text{queries}[i][1] \le \text{colors.length} - 1$
+		- $\text{queries}[i][0] = 1$: $\text{queries}[i].length = 2$, $3 \le \text{queries}[i][1] \le \text{colors.length} - 1$
 
 - $\text{queries}[i][0] = 2$: $\text{queries}[i].length = 3$, $0 \le \text{queries}[i][1] \le \text{colors.length} - 1$, $0 \le \text{queries}[i][2] \le 1$
-
-	</li>

@@ -8,8 +8,15 @@ Return *an array *`answer`* where *$\text{answer}[i]$* is the answer to the *$$i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -17,16 +24,17 @@ Return *an array *`answer`* where *$\text{answer}[i]$* is the answer to the *$$i
 
 - **Input:** $nums1 = [4,3,1,2], nums2 = [2,4,9,5], queries = [[4,1],[1,3],[2,5]]$
 - **Output:** `[6,10,7]`
-- **Explanation:**
-For the 1st query x_i = 4 and y_i = 1, we can select index j = 0 since nums1[j] >= 4 and nums2[j] >= 1. The sum nums1[j] + nums2[j] is 6, and we can show that 6 is the maximum we can obtain.
+- **Explanation:** For the 1st query x_i = 4 and y_i = 1, we can select index j = 0 since nums1[j] >= 4 and nums2[j] >= 1. The sum nums1[j] + nums2[j] is 6, and we can show that 6 is the maximum we can obtain.
 For the 2nd query x_i = 1 and y_i = 3, we can select index j = 2 since nums1[j] >= 1 and nums2[j] >= 3. The sum nums1[j] + nums2[j] is 10, and we can show that 10 is the maximum we can obtain.
 For the 3rd query x_i = 2 and y_i = 5, we can select index j = 3 since nums1[j] >= 2 and nums2[j] >= 5. The sum nums1[j] + nums2[j] is 7, and we can show that 7 is the maximum we can obtain.
 Therefore, we return [6,10,7].
+
 #### Example 2
 
 - **Input:** $nums1 = [3,2,5], nums2 = [2,3,4], queries = [[4,4],[3,2],[1,1]]$
 - **Output:** `[9,9,9]`
 - **Explanation:** For this example, we can use index j = 2 for all the queries since it satisfies the constraints for each query.
+
 #### Example 3
 
 - **Input:** $nums1 = [2,1], nums2 = [2,3], queries = [[3,3]]$

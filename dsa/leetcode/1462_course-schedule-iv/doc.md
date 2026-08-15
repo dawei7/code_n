@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/course-schedule-iv/) |
 
 ## Problem Description
+
 ### Goal
 
 There are `numCourses` courses labeled from `0` through
@@ -25,6 +26,7 @@ prerequisite of `v`. Return the answers in exactly the same order as the
 queries.
 
 ### Function Contract
+
 **Inputs**
 
 - `numCourses`: the number $C$ of courses, where $2 \le C \le 100$.
@@ -40,17 +42,18 @@ path of one or more prerequisite edges exists from `queries[j][0]` to
 `queries[j][1]`.
 
 ### Examples
-**Example 1**
 
-- Input: `numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]`
-- Output: `[false,true]`
+#### Example 1
 
-**Example 2**
+- **Input:** `numCourses = 2, prerequisites = [[1,0]], queries = [[0,1],[1,0]]`
+- **Output:** `[false,true]`
 
-- Input: `numCourses = 2, prerequisites = [], queries = [[1,0],[0,1]]`
-- Output: `[false,false]`
+#### Example 2
 
-**Example 3**
+- **Input:** `numCourses = 2, prerequisites = [], queries = [[1,0],[0,1]]`
+- **Output:** `[false,false]`
 
-- Input: `numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]`
-- Output: `[true,true]`
+#### Example 3
+
+- **Input:** `numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]`
+- **Output:** `[true,true]`

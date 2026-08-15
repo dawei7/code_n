@@ -8,8 +8,13 @@ Return *the minimum length of the substring that can be replaced with **any** ot
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return *the minimum length of the substring that can be replaced with **any** ot
 - **Input:** `s = "QWER"`
 - **Output:** `0`
 - **Explanation:** s is already balanced.
+
 #### Example 2
 
 - **Input:** `s = "QQWE"`
 - **Output:** `1`
 - **Explanation:** We need to replace a 'Q' to 'R', so that "RQWE" (or "QRWE") is balanced.
+
 #### Example 3
 
 - **Input:** `s = "QQQW"`

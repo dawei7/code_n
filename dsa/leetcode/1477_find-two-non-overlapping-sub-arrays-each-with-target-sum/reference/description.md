@@ -8,8 +8,14 @@ Return *the minimum sum of the lengths* of the two required sub-arrays, or retur
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Return *the minimum sum of the lengths* of the two required sub-arrays, or retur
 - **Input:** `arr = [3,2,2,4,3], target = 3`
 - **Output:** `2`
 - **Explanation:** Only two sub-arrays have sum = 3 ([3] and [3]). The sum of their lengths is 2.
+
 #### Example 2
 
 - **Input:** `arr = [7,3,4,7], target = 7`
 - **Output:** `2`
 - **Explanation:** Although we have three non-overlapping sub-arrays of sum = 7 ([7], [3,4] and [7]), but we will choose the first and third sub-arrays as the sum of their lengths is 2.
+
 #### Example 3
 
 - **Input:** `arr = [4,3,2,6,2,3,4], target = 6`

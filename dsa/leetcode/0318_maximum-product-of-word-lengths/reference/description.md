@@ -19,11 +19,13 @@ Return the largest product of lengths over two words with disjoint letter sets, 
 - **Input:** $words = ["abcw","baz","foo","bar","xtfn","abcdef"]$
 - **Output:** `16`
 - **Explanation:** The two words can be "abcw", "xtfn".
+
 #### Example 2
 
 - **Input:** $words = ["a","ab","abc","d","cd","bcd","abcd"]$
 - **Output:** `4`
 - **Explanation:** The two words can be "ab", "cd".
+
 #### Example 3
 
 - **Input:** $words = ["a","aa","aaa","aaaa"]$

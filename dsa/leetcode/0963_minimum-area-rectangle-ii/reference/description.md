@@ -8,8 +8,13 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 - **Input:** $points = [[1,2],[2,1],[1,0],[0,1]]$
 - **Output:** `2.00000`
 - **Explanation:** The minimum area rectangle occurs at [1,2],[2,1],[1,0],[0,1], with an area of 2.
+
 #### Example 2
 
 ![](images/2.png)
@@ -27,6 +33,7 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 - **Input:** $points = [[0,1],[2,1],[1,1],[1,0],[2,0]]$
 - **Output:** `1.00000`
 - **Explanation:** The minimum area rectangle occurs at [1,0],[1,1],[2,1],[2,0], with an area of 1.
+
 #### Example 3
 
 ![](images/3.png)

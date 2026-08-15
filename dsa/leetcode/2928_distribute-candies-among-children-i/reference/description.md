@@ -6,8 +6,14 @@ Return *the **total number** of ways to distribute *`n` *candies among *`3`* chi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `limit`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Return *the **total number** of ways to distribute *`n` *candies among *`3`* chi
 - **Input:** $n = 5, limit = 2$
 - **Output:** `3`
 - **Explanation:** There are 3 ways to distribute 5 candies such that no child gets more than 2 candies: (1, 2, 2), (2, 1, 2) and (2, 2, 1).
+
 #### Example 2
 
 - **Input:** $n = 3, limit = 3$

@@ -4,8 +4,13 @@ Given an integer array of even length `arr`, return `true`* if it is possible to
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -13,10 +18,12 @@ Given an integer array of even length `arr`, return `true`* if it is possible to
 
 - **Input:** `arr = [3,1,3,6]`
 - **Output:** `false`
+
 #### Example 2
 
 - **Input:** `arr = [2,1,2,6]`
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** `arr = [4,-2,2,-4]`

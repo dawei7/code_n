@@ -31,14 +31,14 @@ The bitwise AND of all values in `nums` must equal `x`. Among every array satisf
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, x = 4`
-- Output: `6`
-- Explanation: The array `[4, 5, 6]` is strictly increasing, its bitwise AND is `4`, and its final value is minimal.
+- **Input:** `n = 3, x = 4`
+- **Output:** `6`
+- **Explanation:** The array `[4, 5, 6]` is strictly increasing, its bitwise AND is `4`, and its final value is minimal.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, x = 7`
-- Output: `15`
-- Explanation: The array `[7, 15]` meets the requirements and has the minimum possible final value.
+- **Input:** `n = 2, x = 7`
+- **Output:** `15`
+- **Explanation:** The array `[7, 15]` meets the requirements and has the minimum possible final value.

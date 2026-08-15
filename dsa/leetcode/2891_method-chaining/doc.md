@@ -32,17 +32,17 @@ Return a one-column DataFrame named `name` containing the $h$ qualifying animals
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `animals = [{"name": "Tatiana", "species": "Snake", "age": 98, "weight": 464}, {"name": "Khaled", "species": "Giraffe", "age": 50, "weight": 41}, {"name": "Alex", "species": "Leopard", "age": 6, "weight": 328}, {"name": "Jonathan", "species": "Monkey", "age": 45, "weight": 463}, {"name": "Stefan", "species": "Bear", "age": 100, "weight": 50}, {"name": "Tommy", "species": "Panda", "age": 26, "weight": 349}]`
-- Output: `[{"name": "Tatiana"}, {"name": "Jonathan"}, {"name": "Tommy"}, {"name": "Alex"}]`
+- **Input:** `animals = [{"name": "Tatiana", "species": "Snake", "age": 98, "weight": 464}, {"name": "Khaled", "species": "Giraffe", "age": 50, "weight": 41}, {"name": "Alex", "species": "Leopard", "age": 6, "weight": 328}, {"name": "Jonathan", "species": "Monkey", "age": 45, "weight": 463}, {"name": "Stefan", "species": "Bear", "age": 100, "weight": 50}, {"name": "Tommy", "species": "Panda", "age": 26, "weight": 349}]`
+- **Output:** `[{"name": "Tatiana"}, {"name": "Jonathan"}, {"name": "Tommy"}, {"name": "Alex"}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `animals = [{"name": "Moose", "species": "Mammal", "age": 8, "weight": 101}, {"name": "Wolf", "species": "Mammal", "age": 5, "weight": 100}, {"name": "Fox", "species": "Mammal", "age": 3, "weight": 99}, {"name": "Bison", "species": "Mammal", "age": 12, "weight": 430}]`
-- Output: `[{"name": "Bison"}, {"name": "Moose"}]`
+- **Input:** `animals = [{"name": "Moose", "species": "Mammal", "age": 8, "weight": 101}, {"name": "Wolf", "species": "Mammal", "age": 5, "weight": 100}, {"name": "Fox", "species": "Mammal", "age": 3, "weight": 99}, {"name": "Bison", "species": "Mammal", "age": 12, "weight": 430}]`
+- **Output:** `[{"name": "Bison"}, {"name": "Moose"}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `animals = [{"name": "Rabbit", "species": "Mammal", "age": 2, "weight": 4}, {"name": "Eagle", "species": "Bird", "age": 7, "weight": 7}]`
-- Output: `[]`
+- **Input:** `animals = [{"name": "Rabbit", "species": "Mammal", "age": 2, "weight": 4}, {"name": "Eagle", "species": "Bird", "age": 7, "weight": 7}]`
+- **Output:** `[]`

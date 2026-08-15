@@ -22,6 +22,7 @@ Return the one-digit value obtained by repeatedly summing decimal digits.
 38 --> 3 + 8 --> 11
 11 --> 1 + 1 --> 2
 Since 2 has only one digit, return it.
+
 #### Example 2
 
 - **Input:** $num = 0$

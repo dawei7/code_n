@@ -10,8 +10,13 @@ Return *the number of matches played in the tournament until a winner is decided
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the number of matches played in the tournament until a winner is decided
 - 2nd Round: Teams = 4, Matches = 2, and 2 teams advance.
 - 3rd Round: Teams = 2, Matches = 1, and 1 team is declared the winner.
 Total number of matches = 3 + 2 + 1 = 6.
+
 #### Example 2
 
 - **Input:** $n = 14$

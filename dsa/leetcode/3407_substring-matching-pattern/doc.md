@@ -33,23 +33,23 @@ Let $n=\lvert s\rvert$ and $m=\lvert p\rvert$. The constraints are $1\le n,m\le5
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "leetcode", p = "ee*e"`
-- Output: `true`
+- **Input:** `s = "leetcode", p = "ee*e"`
+- **Output:** `true`
 
 Replacing `'*'` with `"tcod"` makes the pattern `"eetcode"`, which occurs in `s`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "car", p = "c*v"`
-- Output: `false`
+- **Input:** `s = "car", p = "c*v"`
+- **Output:** `false`
 
 No substring begins with `"c"` and later ends with `"v"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "luck", p = "u*"`
-- Output: `true`
+- **Input:** `s = "luck", p = "u*"`
+- **Output:** `true`
 
 The star may represent the empty string, `"c"`, or `"ck"`, so several substrings beginning with `"u"` match.

@@ -27,12 +27,11 @@ Return $abs(\text{largest}_{sum} - \text{smallest}_{sum})$. When $k = n$, both g
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,2,2,4], k = 2
+- **Input:** nums = [5,2,2,4], k = 2
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - The $k = 2$ largest elements are 4 and 5. Their sum is $4 + 5 = 9$.
 
@@ -40,23 +39,19 @@ Return $abs(\text{largest}_{sum} - \text{smallest}_{sum})$. When $k = n$, both g
 
 - The absolute difference is $abs(9 - 4) = 5$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [100], k = 1
+- **Input:** nums = [100], k = 1
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** 
 
 - The largest element is 100.
 
 - The smallest element is 100.
 
 - The absolute difference is $abs(100 - 100) = 0$.
-
-</div>
 
 ### 4. Constraints
 

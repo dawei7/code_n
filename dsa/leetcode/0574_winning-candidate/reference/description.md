@@ -50,7 +50,7 @@ Return a one-row table with a `name` column containing the unique candidate with
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Candidate table:
 +----+------+
 | id | name |
@@ -71,13 +71,12 @@ Vote table:
 | 4  | 2           |
 | 5  | 5           |
 +----+-------------+
-**Output:**
+- **Output:** 
 +------+
 | name |
 +------+
 | B    |
 +------+
-**Explanation:**
-Candidate B has 2 votes. Candidates C, D, and E have 1 vote each.
+- **Explanation:** Candidate B has 2 votes. Candidates C, D, and E have 1 vote each.
 The winner is candidate B.
 ```

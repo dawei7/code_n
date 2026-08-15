@@ -34,14 +34,14 @@ Return the maximum whole number of containers that can be loaded without exceedi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 2, w = 3, maxWeight = 15`
-- Output: `4`
-- Explanation: The four deck cells can all be occupied because their combined weight is `12`.
+- **Input:** `n = 2, w = 3, maxWeight = 15`
+- **Output:** `4`
+- **Explanation:** The four deck cells can all be occupied because their combined weight is `12`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, w = 5, maxWeight = 20`
-- Output: `4`
-- Explanation: Although the deck has nine cells, the weight capacity permits only four containers.
+- **Input:** `n = 3, w = 5, maxWeight = 20`
+- **Output:** `4`
+- **Explanation:** Although the deck has nine cells, the weight capacity permits only four containers.

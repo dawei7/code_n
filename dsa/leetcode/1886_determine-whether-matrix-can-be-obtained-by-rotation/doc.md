@@ -31,23 +31,23 @@ Determine whether applying this operation zero, one, two, or three times can mak
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mat = [[0,1],[1,0]], target = [[1,0],[0,1]]`
-- Output: `True`
+- **Input:** `mat = [[0,1],[1,0]], target = [[1,0],[0,1]]`
+- **Output:** `True`
 
 One clockwise quarter-turn produces the target.
 
-**Example 2**
+#### Example 2
 
-- Input: `mat = [[0,1],[1,1]], target = [[1,0],[0,1]]`
-- Output: `False`
+- **Input:** `mat = [[0,1],[1,1]], target = [[1,0],[0,1]]`
+- **Output:** `False`
 
 None of the four orientations has the same cells as `target`.
 
-**Example 3**
+#### Example 3
 
-- Input: `mat = [[0,0,0],[0,1,0],[1,1,1]], target = [[1,1,1],[0,1,0],[0,0,0]]`
-- Output: `True`
+- **Input:** `mat = [[0,0,0],[0,1,0],[1,1,1]], target = [[1,1,1],[0,1,0],[0,0,0]]`
+- **Output:** `True`
 
 Two clockwise quarter-turns, or one $180^\circ$ rotation, produce the target.

@@ -12,8 +12,16 @@ The answer is guaranteed to fit in a 32-bit signed integer.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+- `w`: Input parameter (`int`).
+- `profits`: Input parameter (`List[int]`).
+- `capital`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +34,7 @@ After finishing it you will obtain profit 1 and your capital becomes 1.
 With capital 1, you can either start the project indexed 1 or the project indexed 2.
 Since you can choose at most 2 projects, you need to finish the project indexed 2 to get the maximum capital.
 Therefore, output the final maximized capital, which is 0 + 1 + 3 = 4.
+
 #### Example 2
 
 - **Input:** $k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]$

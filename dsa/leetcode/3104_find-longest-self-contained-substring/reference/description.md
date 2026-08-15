@@ -14,40 +14,27 @@ Return the length of the *longest** **self-contained *substring of `s` if it exi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abba"
+- **Input:** s = "abba"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** Let's check the substring `"bb"`. You can see that no other `"b"` is outside of this substring. Hence the answer is 2.
 
-Let's check the substring `"bb"`. You can see that no other `"b"` is outside of this substring. Hence the answer is 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abab"
+- **Input:** s = "abab"
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** Every substring we choose does not satisfy the described property (there is some character which is inside and outside of that substring). So the answer would be -1.
 
-Every substring we choose does not satisfy the described property (there is some character which is inside and outside of that substring). So the answer would be -1.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "abacd"
+- **Input:** s = "abacd"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-Let's check the substring `"abac"`. There is only one character outside of this substring and that is `"d"`. There is no `"d"` inside the chosen substring, so it satisfies the condition and the answer is 4.
-
-</div>
+- **Explanation:** Let's check the substring `"abac"`. There is only one character outside of this substring and that is `"d"`. There is no `"d"` inside the chosen substring, so it satisfies the condition and the answer is 4.
 
 ### 4. Constraints
 

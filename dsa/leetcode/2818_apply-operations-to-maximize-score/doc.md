@@ -39,20 +39,20 @@ Return the greatest product obtainable using at most `k` distinct subarrays, red
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [8,3,9,3,8], k = 2`
-- Output: `81`
-- Explanation: Subarrays `[9]` and `[9,3]` both select the value `9`, so the product is `9 * 9`.
+- **Input:** `nums = [8,3,9,3,8], k = 2`
+- **Output:** `81`
+- **Explanation:** Subarrays `[9]` and `[9,3]` both select the value `9`, so the product is `9 * 9`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [19,12,14,6,10,18], k = 3`
-- Output: `4788`
-- Explanation: An optimal set of operations contributes `19`, `18`, and `14`, whose product is `4788`.
+- **Input:** `nums = [19,12,14,6,10,18], k = 3`
+- **Output:** `4788`
+- **Explanation:** An optimal set of operations contributes `19`, `18`, and `14`, whose product is `4788`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,3], k = 3`
-- Output: `12`
-- Explanation: Both values have prime score one. The three subarrays contribute `2`, `3`, and `2`; their product is `12`.
+- **Input:** `nums = [2,3], k = 3`
+- **Output:** `12`
+- **Explanation:** Both values have prime score one. The three subarrays contribute `2`, `3`, and `2`; their product is `12`.

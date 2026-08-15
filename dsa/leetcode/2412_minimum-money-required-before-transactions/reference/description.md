@@ -8,8 +8,13 @@ Return* the minimum amount of *`money`* required before any transaction so that 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `transactions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,14 +22,15 @@ Return* the minimum amount of *`money`* required before any transaction so that 
 
 - **Input:** $transactions = [[2,1],[5,0],[4,2]]$
 - **Output:** `10`
-- **Explanation:**
+- **Explanation:** 
 **Starting with money = 10, the transactions can be performed in any order.
 It can be shown that starting with money < 10 will fail to complete all transactions in some order.
+
 #### Example 2
 
 - **Input:** $transactions = [[3,0],[0,3]]$
 - **Output:** `3`
-- **Explanation:**
+- **Explanation:** 
 - If transactions are in the order [[3,0],[0,3]], the minimum money required to complete the transactions is 3.
 - If transactions are in the order [[0,3],[3,0]], the minimum money required to complete the transactions is 0.
 Thus, starting with money = 3, the transactions can be performed in any order.

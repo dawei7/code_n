@@ -14,8 +14,14 @@ Return *the maximum number of connecting lines we can draw in this way*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,10 +33,12 @@ Return *the maximum number of connecting lines we can draw in this way*.
 - **Output:** `2`
 - **Explanation:** We can draw 2 uncrossed lines as in the diagram.
 We cannot draw 3 uncrossed lines, because the line from nums1[1] = 4 to nums2[2] = 4 will intersect the line from nums1[2]=2 to nums2[1]=2.
+
 #### Example 2
 
 - **Input:** $nums1 = [2,5,1,2,5], nums2 = [10,5,2,1,5,2]$
 - **Output:** `3`
+
 #### Example 3
 
 - **Input:** $nums1 = [1,3,7,1,7,5], nums2 = [1,9,2,5,1]$

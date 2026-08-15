@@ -41,7 +41,7 @@ $Spending(\text{user}_{id}, \text{spend}_{date}, platform, amount)$ contains $R$
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Spending table:
 +---------+------------+----------+--------+
 | user_id | spend_date | platform | amount |
@@ -53,7 +53,7 @@ Spending table:
 | 3       | 2019-07-01 | desktop  | 100    |
 | 3       | 2019-07-02 | desktop  | 100    |
 +---------+------------+----------+--------+
-**Output:**
+- **Output:** 
 +------------+----------+--------------+-------------+
 | spend_date | platform | total_amount | total_users |
 +------------+----------+--------------+-------------+
@@ -64,7 +64,6 @@ Spending table:
 | 2019-07-02 | mobile   | 100          | 1           |
 | 2019-07-02 | both     | 0            | 0           |
 +------------+----------+--------------+-------------+
-**Explanation:**
-On 2019-07-01, user 1 purchased using **both** desktop and mobile, user 2 purchased using mobile **only** and user 3 purchased using desktop **only**.
+- **Explanation:** On 2019-07-01, user 1 purchased using **both** desktop and mobile, user 2 purchased using mobile **only** and user 3 purchased using desktop **only**.
 On 2019-07-02, user 2 purchased using mobile **only**, user 3 purchased using desktop **only** and no one purchased using **both** platforms.
 ```

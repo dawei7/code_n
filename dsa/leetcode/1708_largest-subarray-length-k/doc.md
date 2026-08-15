@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/largest-subarray-length-k/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given an integer array `nums` whose values are all distinct and a positive integer `k`. Consider every contiguous subarray containing exactly `k` elements. Compare two such arrays lexicographically: at the first position where their values differ, the one with the greater value is larger.
@@ -18,6 +19,7 @@ You are given an integer array `nums` whose values are all distinct and a positi
 Return the lexicographically largest length-`k` subarray. The result must preserve the original contiguous order; elements cannot be rearranged or selected with gaps. Since all input values are distinct, the best subarray is unique.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: a list of $n$ distinct integers
@@ -29,23 +31,24 @@ Return the lexicographically largest length-`k` subarray. The result must preser
 A new list containing the lexicographically largest contiguous subarray of `nums` with exactly `k` elements.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1, 4, 5, 2, 3], k = 3`
-- Output: `[5, 2, 3]`
+#### Example 1
+
+- **Input:** `nums = [1, 4, 5, 2, 3], k = 3`
+- **Output:** `[5, 2, 3]`
 
 The eligible starting values are `1`, `4`, and `5`. The window beginning with `5` is lexicographically largest.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 4, 5, 2, 3], k = 4`
-- Output: `[4, 5, 2, 3]`
+- **Input:** `nums = [1, 4, 5, 2, 3], k = 4`
+- **Output:** `[4, 5, 2, 3]`
 
 Only indices `0` and `1` can start a four-element window, and `4` is the larger of those first values.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 4, 5, 2, 3], k = 1`
-- Output: `[5]`
+- **Input:** `nums = [1, 4, 5, 2, 3], k = 1`
+- **Output:** `[5]`
 
 For one-element subarrays, lexicographic order is simply the order of their only values.

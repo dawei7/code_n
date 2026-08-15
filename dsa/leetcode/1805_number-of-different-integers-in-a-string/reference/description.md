@@ -10,8 +10,13 @@ Two integers are considered different if their decimal representations **without
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,10 +25,12 @@ Two integers are considered different if their decimal representations **without
 - **Input:** $word = "a<u>123</u>bc<u>34</u>d<u>8</u>ef<u>34</u>"$
 - **Output:** `3`
 - **Explanation:** The three different integers are "123", "34", and "8". Notice that "34" is only counted once.
+
 #### Example 2
 
 - **Input:** $word = "leet<u>1234</u>code<u>234</u>"$
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** $word = "a<u>1</u>b<u>01</u>c<u>001</u>"$

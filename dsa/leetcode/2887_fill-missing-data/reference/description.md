@@ -25,7 +25,8 @@ The result format is in the following example.
 ### 3. Examples
 
 #### Example 1
-**Input:**+-----------------+----------+-------+
+
+- **Input:** +-----------------+----------+-------+
 | name            | quantity | price |
 +-----------------+----------+-------+
 | Wristwatch      | None     | 135   |
@@ -33,7 +34,7 @@ The result format is in the following example.
 | GolfClubs       | 779      | 9319  |
 | Printer         | 849      | 3051  |
 +-----------------+----------+-------+
-**Output:
+- **Output:** 
 **+-----------------+----------+-------+
 | name            | quantity | price |
 +-----------------+----------+-------+
@@ -42,6 +43,5 @@ The result format is in the following example.
 | GolfClubs       | 779      | 9319  |
 | Printer         | 849      | 3051  |
 +-----------------+----------+-------+
-**Explanation:**
-The quantity for Wristwatch and WirelessEarbuds are filled by 0.
+- **Explanation:** The quantity for Wristwatch and WirelessEarbuds are filled by 0.
 ```

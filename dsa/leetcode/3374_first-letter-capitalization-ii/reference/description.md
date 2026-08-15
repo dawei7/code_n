@@ -19,9 +19,8 @@ Write a solution to transform the text in the $\text{content}_{text}$ column by 
 
 - Special handling for words containing special characters:
 
-		<li>For words connected with a hyphen `-`, **both parts** should be **capitalized** (**e.g.**, top-rated → Top-Rated)
+		- For words connected with a hyphen `-`, **both parts** should be **capitalized** (**e.g.**, top-rated → Top-Rated)
 
-	</li>
 - All other **formatting** and **spacing** should remain **unchanged**
 
 Return *the result table that includes both the original $\text{content}_{text}$ and the modified text following the above rules*.
@@ -30,7 +29,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 user_content table:
@@ -63,32 +61,25 @@ user_content table:
 
 - For content_id = 1:
 
-		<li>Each word's first letter is capitalized: "Hello World Of Sql"
+		- Each word's first letter is capitalized: "Hello World Of Sql"
 
-	</li>
 - For content_id = 2:
 
-		<li>Contains the hyphenated word "QUICK-brown" which becomes "Quick-Brown"
+		- Contains the hyphenated word "QUICK-brown" which becomes "Quick-Brown"
 
 - Other words follow normal capitalization rules
 
-	</li>
 - For content_id = 3:
 
-		<li>Hyphenated word "modern-day" becomes "Modern-Day"
+		- Hyphenated word "modern-day" becomes "Modern-Day"
 
 - "DATA" is converted to "Data"
 
-	</li>
 - For content_id = 4:
 
-		<li>Contains two hyphenated words: "web-based" → "Web-Based"
+		- Contains two hyphenated words: "web-based" → "Web-Based"
 
 - And "FRONT-end" → "Front-End"
-
-	</li>
-
-</div>
 
 ### 2. Function Contract
 

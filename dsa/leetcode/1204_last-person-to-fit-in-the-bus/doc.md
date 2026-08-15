@@ -31,7 +31,7 @@ The bus has a weight limit of 1000 kilograms, so boarding stops before the first
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Queue`
 
@@ -44,7 +44,7 @@ The bus has a weight limit of 1000 kilograms, so boarding stops before the first
 | 1 | Winston | 500 | 6 |
 | 2 | Marie | 200 | 4 |
 
-Output:
+- **Output:** 
 
 | person_name |
 |---|
@@ -52,10 +52,10 @@ Output:
 
 In boarding order, the cumulative weights are 250, 600, and 1000 through John Cena. Adding Marie would raise the total to 1200, so John Cena is the last person who fits.
 
-**Example 2**
+#### Example 2
 
 If the first person's weight is exactly 1000, that person is returned and nobody later in the queue can board.
 
-**Example 3**
+#### Example 3
 
 The physical row order of `Queue` does not determine boarding order; only `turn` does.

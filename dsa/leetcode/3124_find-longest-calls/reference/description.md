@@ -44,8 +44,7 @@ The result format is in the following example.
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 Contacts table:
 
@@ -80,7 +79,7 @@ Calls table:
 +------------+----------+----------+
 ```
 
-**Output:**
+- **Output:** 
 
 ```
 +-----------+----------+-------------------+
@@ -95,7 +94,7 @@ Calls table:
 +-----------+----------+-------------------+
 ```
 
-**Explanation:**
+- **Explanation:** 
 
 - Alice had an outgoing call lasting 6 minutes.
 
@@ -112,5 +111,3 @@ Calls table:
 ### 4. Note
 
 Output table is sorted by type, duration, and first_name in descending order.
-
-</div>

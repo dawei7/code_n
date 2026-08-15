@@ -35,14 +35,14 @@ Return `count`, where `count[c]` is the number of unordered endpoint pairs satis
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]], signalSpeed = 1`
-- Output: `[0,4,6,6,4,0]`
-- Explanation: Every distance is divisible by `1`. In this path, choosing `c` separates the possible endpoints into the servers on its two sides, so their count is the product of the two side lengths.
+- **Input:** `edges = [[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]], signalSpeed = 1`
+- **Output:** `[0,4,6,6,4,0]`
+- **Explanation:** Every distance is divisible by `1`. In this path, choosing `c` separates the possible endpoints into the servers on its two sides, so their count is the product of the two side lengths.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]], signalSpeed = 3`
-- Output: `[2,0,0,0,0,0,2]`
-- Explanation: Pairs `(4, 5)` and `(4, 6)` qualify through server `0`; pairs `(4, 5)` and `(0, 5)` qualify through server `6`. No pair qualifies through another server.
+- **Input:** `edges = [[0,6,3],[6,5,3],[0,3,1],[3,2,7],[3,1,6],[3,4,2]], signalSpeed = 3`
+- **Output:** `[2,0,0,0,0,0,2]`
+- **Explanation:** Pairs `(4, 5)` and `(4, 6)` qualify through server `0`; pairs `(4, 5)` and `(0, 5)` qualify through server `6`. No pair qualifies through another server.

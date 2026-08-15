@@ -10,8 +10,13 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `lcp`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 - **Input:** $lcp = [[4,0,2,0],[0,3,0,1],[2,0,2,0],[0,1,0,1]]$
 - **Output:** `"abab"`
 - **Explanation:** lcp corresponds to any 4 letter string with two alternating letters. The lexicographically smallest of them is "abab".
+
 #### Example 2
 
 - **Input:** $lcp = [[4,3,2,1],[3,3,2,1],[2,2,2,1],[1,1,1,1]]$
 - **Output:** `"aaaa"`
 - **Explanation:** lcp corresponds to any 4 letter string with a single distinct letter. The lexicographically smallest of them is "aaaa".
+
 #### Example 3
 
 - **Input:** $lcp = [[4,3,2,1],[3,3,2,1],[2,2,2,1],[1,1,1,3]]$

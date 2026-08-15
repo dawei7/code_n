@@ -6,8 +6,15 @@ Return *the **number of distinct ways** you can buy some number of pens and penc
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `total`: Input parameter (`int`).
+- `cost1`: Input parameter (`int`).
+- `cost2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +27,7 @@ Return *the **number of distinct ways** you can buy some number of pens and penc
 - If you buy 1 pen, you can buy 0, 1, or 2 pencils.
 - If you buy 2 pens, you cannot buy any pencils.
 The total number of ways to buy pens and pencils is 5 + 3 + 1 = 9.
+
 #### Example 2
 
 - **Input:** $total = 5, cost1 = 10, cost2 = 10$

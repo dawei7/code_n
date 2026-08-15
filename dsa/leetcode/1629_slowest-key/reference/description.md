@@ -12,8 +12,14 @@ Note that the same key could have been pressed multiple times during the test, a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `releaseTimes`: Input parameter (`List[int]`).
+- `keysPressed`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ Keypress for 'c' had a duration of 49 - 29 = 20 (pressed at time 29 right after 
 Keypress for 'd' had a duration of 50 - 49 = 1 (pressed at time 49 right after the release of the previous character and released at time 50).
 The longest of these was the keypress for 'b' and the second keypress for 'c', both with duration 20.
 'c' is lexicographically larger than 'b', so the answer is 'c'.
+
 #### Example 2
 
 - **Input:** $releaseTimes = [12,23,36,46,62], keysPressed = "spuda"$

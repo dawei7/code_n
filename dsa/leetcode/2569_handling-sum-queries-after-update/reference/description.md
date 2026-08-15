@@ -12,8 +12,15 @@ Return *an array containing all the answers to the third type queries.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -22,6 +29,7 @@ Return *an array containing all the answers to the third type queries.*
 - **Input:** $nums1 = [1,0,1], nums2 = [0,0,0], queries = [[1,1,1],[2,1,0],[3,0,0]]$
 - **Output:** `[3]`
 - **Explanation:** After the first query nums1 becomes [1,1,1]. After the second query, nums2 becomes [1,1,1], so the answer to the third query is 3. Thus, [3] is returned.
+
 #### Example 2
 
 - **Input:** $nums1 = [1], nums2 = [5], queries = [[2,0,0],[3,0,0]]$

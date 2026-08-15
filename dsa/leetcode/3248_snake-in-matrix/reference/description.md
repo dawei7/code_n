@@ -10,22 +10,24 @@ Return the position of the final cell where the snake ends up after executing `c
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `commands`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2, commands = ["RIGHT","DOWN"]
+- **Input:** n = 2, commands = ["RIGHT","DOWN"]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-<div style="display:flex; gap: 12px;">
-<table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
+- **Explanation:** <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
 			<td data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" data-darkreader-inline-border-right="" data-darkreader-inline-border-top="" style="padding: 5px 10px; border: 1px solid red; --darkreader-inline-border-top: #8c8273; --darkreader-inline-border-right: #8c8273; --darkreader-inline-border-bottom: #8c8273; --darkreader-inline-border-left: #8c8273;">0</td>
@@ -63,19 +65,14 @@ Return the position of the final cell where the snake ends up after executing `c
 		</tr>
 	</tbody>
 </table>
-</div>
-</div>
+
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, commands = ["DOWN","RIGHT","UP"]
+- **Input:** n = 3, commands = ["DOWN","RIGHT","UP"]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-<div style="display:flex; gap: 12px;">
-<table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
+- **Explanation:** <table border="1" cellspacing="3" style="border-collapse: separate; text-align: center;">
 	<tbody>
 		<tr>
 			<td data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" data-darkreader-inline-border-right="" data-darkreader-inline-border-top="" style="padding: 5px 10px; border: 1px solid red; --darkreader-inline-border-top: #8c8273; --darkreader-inline-border-right: #8c8273; --darkreader-inline-border-bottom: #8c8273; --darkreader-inline-border-left: #8c8273;">0</td>
@@ -154,8 +151,6 @@ Return the position of the final cell where the snake ends up after executing `c
 		</tr>
 	</tbody>
 </table>
-</div>
-</div>
 
 ### 4. Constraints
 

@@ -4,31 +4,31 @@ Given a string `s`, return the **maximum** length of a substring such that it co
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "bcbbbcba"
+- **Input:** s = "bcbbbcba"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The following substring has a length of 4 and contains at most two occurrences of each character: `"bcbb<u>bcba</u>"`.
 
-The following substring has a length of 4 and contains at most two occurrences of each character: `"bcbb<u>bcba</u>"`.</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "aaaa"
+- **Input:** s = "aaaa"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The following substring has a length of 2 and contains at most two occurrences of each character: `"<u>aa</u>aa"`.</div>
+- **Explanation:** The following substring has a length of 2 and contains at most two occurrences of each character: `"<u>aa</u>aa"`.
 
 ### 4. Constraints
 

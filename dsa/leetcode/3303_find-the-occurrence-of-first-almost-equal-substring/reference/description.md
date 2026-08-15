@@ -10,51 +10,44 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `pattern`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcdefg", pattern = "bcdffg"
+- **Input:** s = "abcdefg", pattern = "bcdffg"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The substring $s[1..6] = "bcdefg"$ can be converted to `"bcdffg"` by changing $s[4]$ to `"f"`.
 
-The substring $s[1..6] = "bcdefg"$ can be converted to `"bcdffg"` by changing $s[4]$ to `"f"`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "ababbababa", pattern = "bacaba"
+- **Input:** s = "ababbababa", pattern = "bacaba"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The substring $s[4..9] = "bababa"$ can be converted to `"bacaba"` by changing $s[6]$ to `"c"`.
 
-The substring $s[4..9] = "bababa"$ can be converted to `"bacaba"` by changing $s[6]$ to `"c"`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "abcd", pattern = "dba"
+- **Input:** s = "abcd", pattern = "dba"
 
-**Output:** -1
+- **Output:** -1
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "dde", pattern = "d"
+- **Input:** s = "dde", pattern = "d"
 
-**Output:** 0
-
-</div>
+- **Output:** 0
 
 ### 4. Constraints
 

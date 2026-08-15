@@ -30,14 +30,11 @@ Return the sum of the points earned over all $N$ starting positions. A single ro
 
 #### Example 1
 
-<div class="example-block">
-**Input:** hp = 11, damage = [3,6,7], requirement = [4,2,5]
+- **Input:** hp = 11, damage = [3,6,7], requirement = [4,2,5]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-$score(1) = 2$, $score(2) = 1$, $score(3) = 0$. The total score is $2 + 1 + 0 = 3$.
+- **Explanation:** $score(1) = 2$, $score(2) = 1$, $score(3) = 0$. The total score is $2 + 1 + 0 = 3$.
 
 As an example, $score(1) = 2$ because you get 2 points if you start from room 1.
 
@@ -49,17 +46,13 @@ As an example, $score(1) = 2$ because you get 2 points if you start from room 1.
 
 - Enter room 3. Your health points are now $2 - 7 = -5$. You do not get any points because `-5 < 5`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** hp = 2, damage = [10000,1], requirement = [1,1]
+- **Input:** hp = 2, damage = [10000,1], requirement = [1,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-$score(1) = 0$, $score(2) = 1$. The total score is $0 + 1 = 1$.
+- **Explanation:** $score(1) = 0$, $score(2) = 1$. The total score is $0 + 1 = 1$.
 
 $score(1) = 0$ because you do not get any points if you start from room 1.
 
@@ -74,8 +67,6 @@ $score(2) = 1$ because you get 1 point if you start from room 2.
 - You start with 2 health points.
 
 - Enter room 2. Your health points are now $2 - 1 = 1$. You get 1 point because $1 \ge 1$.
-
-</div>
 
 ### 5. Constraints
 

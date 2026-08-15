@@ -12,47 +12,39 @@ Return the **maximum** possible total sum of the tower heights. If it's not poss
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `maximumHeight`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** maximumHeight = [2,3,4,3]
+- **Input:** maximumHeight = [2,3,4,3]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** We can assign heights in the following way: `[1, 2, 4, 3]`.
 
-We can assign heights in the following way: `[1, 2, 4, 3]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** maximumHeight = [15,10]
+- **Input:** maximumHeight = [15,10]
 
-**Output:** 25
+- **Output:** 25
 
-**Explanation:**
+- **Explanation:** We can assign heights in the following way: `[15, 10]`.
 
-We can assign heights in the following way: `[15, 10]`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** maximumHeight = [2,2,1]
+- **Input:** maximumHeight = [2,2,1]
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It's impossible to assign positive heights to each index so that no two towers have the same height.
-
-</div>
+- **Explanation:** It's impossible to assign positive heights to each index so that no two towers have the same height.
 
 ### 4. Constraints
 

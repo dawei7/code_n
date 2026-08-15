@@ -34,17 +34,17 @@ radius.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `circles = [[2,2,1]]`
-- Output: `5`
+- **Input:** `circles = [[2,2,1]]`
+- **Output:** `5`
 
-**Example 2**
+#### Example 2
 
-- Input: `circles = [[2,2,2],[3,4,1]]`
-- Output: `16`
+- **Input:** `circles = [[2,2,2],[3,4,1]]`
+- **Output:** `16`
 
-**Example 3**
+#### Example 3
 
-- Input: `circles = [[1,1,1],[1,1,1]]`
-- Output: `5`
+- **Input:** `circles = [[1,1,1],[1,1,1]]`
+- **Output:** `5`

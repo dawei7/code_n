@@ -32,17 +32,17 @@ Return one integer per query: the smallest gap between two distinct values prese
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 4, 8], queries = [[0, 1], [1, 2], [2, 3], [0, 3]]`
-- Output: `[2, 1, 4, 1]`
+- **Input:** `nums = [1, 3, 4, 8], queries = [[0, 1], [1, 2], [2, 3], [0, 3]]`
+- **Output:** `[2, 1, 4, 1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 5, 2, 2, 7, 10], queries = [[2, 3], [0, 2], [0, 5], [3, 5]]`
-- Output: `[-1, 1, 1, 3]`
+- **Input:** `nums = [4, 5, 2, 2, 7, 10], queries = [[2, 3], [0, 2], [0, 5], [3, 5]]`
+- **Output:** `[-1, 1, 1, 3]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1], queries = [[0, 2]]`
-- Output: `[-1]`
+- **Input:** `nums = [1, 1, 1], queries = [[0, 2]]`
+- **Output:** `[-1]`

@@ -6,47 +6,40 @@ Return the **maximum** product of the first and last elements of any **subsequen
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [-1,-9,2,3,-2,-3,1], m = 1
+- **Input:** nums = [-1,-9,2,3,-2,-3,1], m = 1
 
-**Output:** 81
+- **Output:** 81
 
-**Explanation:**
+- **Explanation:** The subsequence `[-9]` has the largest product of the first and last elements: $-9 * -9 = 81$. Therefore, the answer is 81.
 
-The subsequence `[-9]` has the largest product of the first and last elements: $-9 * -9 = 81$. Therefore, the answer is 81.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,3,-5,5,6,-4], m = 3
+- **Input:** nums = [1,3,-5,5,6,-4], m = 3
 
-**Output:** 20
+- **Output:** 20
 
-**Explanation:**
+- **Explanation:** The subsequence `[-5, 6, -4]` has the largest product of the first and last elements.
 
-The subsequence `[-5, 6, -4]` has the largest product of the first and last elements.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [2,-1,2,-6,5,2,-5,7], m = 2
+- **Input:** nums = [2,-1,2,-6,5,2,-5,7], m = 2
 
-**Output:** 35
+- **Output:** 35
 
-**Explanation:**
-
-The subsequence `[5, 7]` has the largest product of the first and last elements.
-
-</div>
+- **Explanation:** The subsequence `[5, 7]` has the largest product of the first and last elements.
 
 ### 4. Constraints
 

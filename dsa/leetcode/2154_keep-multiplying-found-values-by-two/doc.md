@@ -37,15 +37,15 @@ Return the first value in the doubling sequence that does not appear in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [5, 3, 6, 1, 12]`, `original = 3`
-- Output: `24`
-- Explanation: The found values are `3`, `6`, and `12`; their successive
+- **Input:** `nums = [5, 3, 6, 1, 12]`, `original = 3`
+- **Output:** `24`
+- **Explanation:** The found values are `3`, `6`, and `12`; their successive
   doublings lead to absent value `24`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 7, 9]`, `original = 4`
-- Output: `4`
-- Explanation: The starting value is absent, so no multiplication occurs.
+- **Input:** `nums = [2, 7, 9]`, `original = 4`
+- **Output:** `4`
+- **Explanation:** The starting value is absent, so no multiplication occurs.

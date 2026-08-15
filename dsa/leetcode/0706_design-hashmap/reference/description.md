@@ -14,8 +14,12 @@ Implement the `MyHashMap` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MyHashMap()`: Initializes the data structure.
+- `put(key: int, value: int)`: Executes operation.
+- `get(key: int) -> `int``: Executes operation.
+- `remove(key: int)`: Executes operation.
 
 ### 3. Examples
 

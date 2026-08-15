@@ -10,8 +10,13 @@ Return *the sum of all digits with their corresponding sign*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ Return *the sum of all digits with their corresponding sign*.
 - **Input:** $n = 521$
 - **Output:** `4`
 - **Explanation:** (+5) + (-2) + (+1) = 4.
+
 #### Example 2
 
 - **Input:** $n = 111$
 - **Output:** `1`
 - **Explanation:** (+1) + (-1) + (+1) = 1.
+
 #### Example 3
 
 - **Input:** $n = 886996$
@@ -35,10 +42,9 @@ Return *the sum of all digits with their corresponding sign*.
 
 - $1 \le n \le 10^{9}$
 
-<style type="text/css">.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
+.spoilerbutton {display:block; border:dashed; padding: 0px 0px; margin:10px 0px; font-size:150%; font-weight: bold; color:#000000; background-color:cyan; outline:0;
 }
 .spoiler {overflow:hidden;}
 .spoiler > div {-webkit-transition: all 0s ease;-moz-transition: margin 0s ease;-o-transition: all 0s ease;transition: margin 0s ease;}
 .spoilerbutton[value="Show Message"] + .spoiler > div {margin-top:-500%;}
 .spoilerbutton[value="Hide Message"] + .spoiler {padding:5px;}
-</style>

@@ -36,18 +36,18 @@ whose length is maximum. Return `[]` when `finalSum` is odd.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `finalSum = 12`
-- Output: `[2,4,6]`
+- **Input:** `finalSum = 12`
+- **Output:** `[2,4,6]`
 
-**Example 2**
+#### Example 2
 
-- Input: `finalSum = 7`
-- Output: `[]`
+- **Input:** `finalSum = 7`
+- **Output:** `[]`
 
-**Example 3**
+#### Example 3
 
-- Input: `finalSum = 28`
-- Output: one valid answer is `[2,4,6,16]`; other four-term splits are also
+- **Input:** `finalSum = 28`
+- **Output:** one valid answer is `[2,4,6,16]`; other four-term splits are also
   accepted.

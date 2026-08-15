@@ -14,8 +14,13 @@ Return *the smallest possible weight of the left stone*. If there are no stones 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `stones`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,11 +28,11 @@ Return *the smallest possible weight of the left stone*. If there are no stones 
 
 - **Input:** $stones = [2,7,4,1,8,1]$
 - **Output:** `1`
-- **Explanation:**
-We can combine 2 and 4 to get 2, so the array converts to [2,7,1,8,1] then,
+- **Explanation:** We can combine 2 and 4 to get 2, so the array converts to [2,7,1,8,1] then,
 we can combine 7 and 8 to get 1, so the array converts to [2,1,1,1] then,
 we can combine 2 and 1 to get 1, so the array converts to [1,1,1] then,
 we can combine 1 and 1 to get 0, so the array converts to [1], then that's the optimal value.
+
 #### Example 2
 
 - **Input:** $stones = [31,26,33,21,40]$

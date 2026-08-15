@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an integer array `nums` and a positive integer `k`. Identify the
 maximum value of the complete array.
 
@@ -21,6 +23,7 @@ reorder elements. Different start or end indices define different subarrays,
 even when their value sequences happen to match.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the integer array whose contiguous subarrays are counted
@@ -35,14 +38,15 @@ The number of contiguous subarrays containing the global maximum of `nums` at
 least `k` times.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,3,2,3,3], k = 2`
-- Output: `6`
-- Explanation: Six ranges contain the global maximum `3` at least twice, including `[1,3,2,3]`, `[3,2,3]`, and `[3,3]`.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,3,2,3,3], k = 2`
+- **Output:** `6`
+- **Explanation:** Six ranges contain the global maximum `3` at least twice, including `[1,3,2,3]`, `[3,2,3]`, and `[3,3]`.
 
-- Input: `nums = [1,4,2,1], k = 3`
-- Output: `0`
-- Explanation: The global maximum `4` occurs only once in the entire array, so no subarray can contain it three times.
+#### Example 2
+
+- **Input:** `nums = [1,4,2,1], k = 3`
+- **Output:** `0`
+- **Explanation:** The global maximum `4` occurs only once in the entire array, so no subarray can contain it three times.

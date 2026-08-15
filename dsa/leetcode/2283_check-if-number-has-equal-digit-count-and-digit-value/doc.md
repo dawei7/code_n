@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-number-has-equal-digit-count-and-digit-value/) |
 
 ## Problem Description
+
 ### Goal
+
 The string `num` contains $n$ decimal digits and is indexed from zero. For
 each index $i$, interpret `num[i]` as a numeric count.
 
@@ -19,6 +21,7 @@ count differs from its actual frequency. Every comparison uses frequencies
 from the complete original string.
 
 ### Function Contract
+
 **Inputs**
 
 - `num`: A string of $n$ decimal digits.
@@ -31,17 +34,18 @@ Here, $1 \le n \le 10$.
 otherwise, `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `num = "1210"`
-- Output: `true`
+#### Example 1
 
-**Example 2**
+- **Input:** `num = "1210"`
+- **Output:** `true`
 
-- Input: `num = "030"`
-- Output: `false`
+#### Example 2
 
-**Example 3**
+- **Input:** `num = "030"`
+- **Output:** `false`
 
-- Input: `num = "2020"`
-- Output: `true`
+#### Example 3
+
+- **Input:** `num = "2020"`
+- **Output:** `true`

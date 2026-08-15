@@ -23,25 +23,24 @@ top to bottom under the word and spacing rules.
 
 - **Input:** $sentence = ["hello","world"], rows = 2, cols = 8$
 - **Output:** `1`
-- **Explanation:**
-hello---
+- **Explanation:** hello---
 world---
 The character '-' signifies an empty space on the screen.
+
 #### Example 2
 
 - **Input:** $sentence = ["a", "bcd", "e"], rows = 3, cols = 6$
 - **Output:** `2`
-- **Explanation:**
-a-bcd-
+- **Explanation:** a-bcd-
 e-a---
 bcd-e-
 The character '-' signifies an empty space on the screen.
+
 #### Example 3
 
 - **Input:** $sentence = ["i","had","apple","pie"], rows = 4, cols = 5$
 - **Output:** `1`
-- **Explanation:**
-i-had
+- **Explanation:** i-had
 apple
 pie-i
 had--

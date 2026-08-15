@@ -24,8 +24,13 @@ Implement the `TextEditor` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TextEditor()`: Initializes the data structure.
+- `addText(text: str)`: Executes operation.
+- `deleteText(k: int) -> `int``: Executes operation.
+- `cursorLeft(k: int) -> `str``: Executes operation.
+- `cursorRight(k: int) -> `str``: Executes operation.
 
 ### 3. Examples
 

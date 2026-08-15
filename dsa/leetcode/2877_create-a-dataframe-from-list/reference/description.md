@@ -16,7 +16,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:
+- **Input:** 
 **student_data:**
 **[
   [1, 15],
@@ -24,7 +24,7 @@ The result format is in the following example.
   [3, 11],
   [4, 20]
 ]
-**Output:**
+- **Output:** 
 +------------+-----+
 | student_id | age |
 +------------+-----+
@@ -33,6 +33,5 @@ The result format is in the following example.
 | 3          | 11  |
 | 4          | 20  |
 +------------+-----+
-**Explanation:**
-A DataFrame was created on top of student_data, with two columns named student_id and age.
+- **Explanation:** A DataFrame was created on top of student_data, with two columns named student_id and age.
 ```

@@ -35,15 +35,15 @@ Return the fewest straight lines needed to cover all points.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `points = [[0, 1], [2, 3], [4, 5], [4, 3]]`
-- Output: `2`
-- Explanation: One line covers `(0, 1)` and `(4, 5)` together with `(2, 3)`;
+- **Input:** `points = [[0, 1], [2, 3], [4, 5], [4, 3]]`
+- **Output:** `2`
+- **Explanation:** One line covers `(0, 1)` and `(4, 5)` together with `(2, 3)`;
   another line covers the remaining point.
 
-**Example 2**
+#### Example 2
 
-- Input: `points = [[0, 2], [-2, -2], [1, 4]]`
-- Output: `1`
-- Explanation: All three points lie on the same straight line.
+- **Input:** `points = [[0, 2], [-2, -2], [1, 4]]`
+- **Output:** `1`
+- **Explanation:** All three points lie on the same straight line.

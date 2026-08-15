@@ -8,8 +8,13 @@ Given an integer array `machines` representing the number of dresses in each was
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `machines`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,23 +22,22 @@ Given an integer array `machines` representing the number of dresses in each was
 
 - **Input:** $machines = [1,0,5]$
 - **Output:** `3`
-- **Explanation:**
-1st move:    1     0 <-- 5    =>    1     1     4
+- **Explanation:** 1st move:    1     0 <-- 5    =>    1     1     4
 2nd move:    1 <-- 1 <-- 4    =>    2     1     3
 3rd move:    2     1 <-- 3    =>    2     2     2
+
 #### Example 2
 
 - **Input:** $machines = [0,3,0]$
 - **Output:** `2`
-- **Explanation:**
-1st move:    0 <-- 3     0    =>    1     2     0
+- **Explanation:** 1st move:    0 <-- 3     0    =>    1     2     0
 2nd move:    1     2 --> 0    =>    1     1     1
+
 #### Example 3
 
 - **Input:** $machines = [0,2,0]$
 - **Output:** `-1`
-- **Explanation:**
-It's impossible to make all three washing machines have the same number of dresses.
+- **Explanation:** It's impossible to make all three washing machines have the same number of dresses.
 
 ### 4. Constraints
 

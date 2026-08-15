@@ -30,16 +30,16 @@ Each boy may send an invitation to at most one girl, and each girl may accept an
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,1,1],[1,0,1],[0,0,1]]`
-- Output: `3`
+- **Input:** `grid = [[1,1,1],[1,0,1],[0,0,1]]`
+- **Output:** `3`
 
 All three boys can be paired with different acceptable girls.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,1,0],[1,0,0,0],[0,0,1,0],[1,1,1,0]]`
-- Output: `3`
+- **Input:** `grid = [[1,0,1,0],[1,0,0,0],[0,0,1,0],[1,1,1,0]]`
+- **Output:** `3`
 
 The fourth girl has no incident edge, but three non-conflicting invitations can still be accepted.

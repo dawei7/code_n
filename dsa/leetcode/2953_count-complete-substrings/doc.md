@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-complete-substrings/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a lowercase English string `word` and a positive integer `k`.
 A nonempty substring is complete only when every distinct character present in
 that substring occurs exactly `k` times; characters absent from it impose no
@@ -23,6 +25,7 @@ positions must be at most `2`. Return the total number of contiguous substrings
 of `word` that satisfy both the exact-frequency and adjacency conditions.
 
 ### Function Contract
+
 **Inputs**
 
 - `word`: the lowercase English source string
@@ -37,14 +40,15 @@ The number of nonempty contiguous substrings satisfying both completeness
 conditions.
 
 ### Examples
-**Example 1**
 
-- Input: `word = "igigee", k = 2`
-- Output: `3`
-- Explanation: `"igig"`, `"ee"`, and `"igigee"` each use every present letter exactly twice and respect the adjacency limit.
+#### Example 1
 
-**Example 2**
+- **Input:** `word = "igigee", k = 2`
+- **Output:** `3`
+- **Explanation:** `"igig"`, `"ee"`, and `"igigee"` each use every present letter exactly twice and respect the adjacency limit.
 
-- Input: `word = "aaabbbccc", k = 3`
-- Output: `6`
-- Explanation: The three single-letter blocks, the two adjacent pairs of blocks, and the whole string are complete.
+#### Example 2
+
+- **Input:** `word = "aaabbbccc", k = 3`
+- **Output:** `6`
+- **Explanation:** The three single-letter blocks, the two adjacent pairs of blocks, and the whole string are complete.

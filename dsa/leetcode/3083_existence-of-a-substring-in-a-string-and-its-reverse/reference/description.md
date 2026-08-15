@@ -6,41 +6,39 @@ Return `true`* if such a substring exists, and *`false`* otherwise.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **s = "leetcode"
+- **Input:** s = "leetcode"
 
-**Output: **true
+- **Output:** true
 
-**Explanation:** Substring `"ee"` is of length `2` which is also present in $reverse(s) = "edocteel"$.
+- **Explanation:** Substring `"ee"` is of length `2` which is also present in $reverse(s) = "edocteel"$.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **s = "abcba"
+- **Input:** s = "abcba"
 
-**Output: **true
+- **Output:** true
 
-**Explanation:** All of the substrings of length `2` `"ab"`, `"bc"`, `"cb"`, `"ba"` are also present in $reverse(s) = "abcba"$.
+- **Explanation:** All of the substrings of length `2` `"ab"`, `"bc"`, `"cb"`, `"ba"` are also present in $reverse(s) = "abcba"$.
 
-</div>
 #### Example 3
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **s = "abcd"
+- **Input:** s = "abcd"
 
-**Output: **false
+- **Output:** false
 
-**Explanation:** There is no substring of length `2` in `s`, which is also present in the reverse of `s`.
-
-</div>
+- **Explanation:** There is no substring of length `2` in `s`, which is also present in the reverse of `s`.
 
 ### 4. Constraints
 

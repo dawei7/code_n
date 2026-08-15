@@ -18,8 +18,10 @@ Return *the longest **ZigZag** path contained in that tree*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `longestZigZag(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -30,6 +32,7 @@ Return *the longest **ZigZag** path contained in that tree*.
 - **Input:** `root = [1,null,1,1,1,null,null,1,1,null,1,null,null,null,1]`
 - **Output:** `3`
 - **Explanation:** Longest ZigZag path in blue nodes (right -> left -> right).
+
 #### Example 2
 
 ![](images/sample_2_1702.png)
@@ -37,6 +40,7 @@ Return *the longest **ZigZag** path contained in that tree*.
 - **Input:** `root = [1,1,1,null,1,null,null,1,1,null,1]`
 - **Output:** `4`
 - **Explanation:** Longest ZigZag path in blue nodes (left -> right -> left -> right).
+
 #### Example 3
 
 - **Input:** `root = [1]`

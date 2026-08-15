@@ -10,8 +10,14 @@ Return *an array of size* `n-1` *where the *$$d^{\text{th}}$$* **element **(1-in
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Notice
 
@@ -29,14 +35,16 @@ that the **distance** between the two cities is the number of edges in the path 
 
 - **Input:** $n = 4, edges = [[1,2],[2,3],[2,4]]$
 - **Output:** `[3,4,0]`
-- **Explanation:**
+- **Explanation:** 
 **The subtrees with subsets {1,2}, {2,3} and {2,4} have a max distance of 1.
 The subtrees with subsets {1,2,3}, {1,2,4}, {2,3,4} and {1,2,3,4} have a max distance of 2.
 No subtree has two nodes where the max distance between them is 3.
+
 #### Example 2
 
 - **Input:** $n = 2, edges = [[1,2]]$
 - **Output:** `[1]`
+
 #### Example 3
 
 - **Input:** $n = 3, edges = [[1,2],[2,3]]$

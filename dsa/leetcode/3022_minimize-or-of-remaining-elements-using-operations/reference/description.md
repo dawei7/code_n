@@ -8,8 +8,14 @@ Return *the **minimum** possible value of the bitwise *`OR`* of the remaining el
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return *the **minimum** possible value of the bitwise *`OR`* of the remaining el
 2. Replace nums[2] and nums[3] with (nums[2] & nums[3]) so that nums becomes equal to [1,3,2].
 The bitwise-or of the final array is 3.
 It can be shown that 3 is the minimum possible value of the bitwise OR of the remaining elements of nums after applying at most k operations.
+
 #### Example 2
 
 - **Input:** `nums = [7,3,15,14,2,8], k = 4`
@@ -33,6 +40,7 @@ It can be shown that 3 is the minimum possible value of the bitwise OR of the re
 4. Replace nums[1] and nums[2] with (nums[1] & nums[2]) so that nums becomes equal to [2,0].
 The bitwise-or of the final array is 2.
 It can be shown that 2 is the minimum possible value of the bitwise OR of the remaining elements of nums after applying at most k operations.
+
 #### Example 3
 
 - **Input:** `nums = [10,7,10,3,9,14,9,4], k = 1`

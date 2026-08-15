@@ -1,4 +1,3 @@
-
 # Increment Submatrices by One
 
 | Field | Value |
@@ -34,16 +33,16 @@ Return an $n \times n$ matrix in which each entry equals the number of query rec
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, queries = [[1,1,2,2],[0,0,1,1]]`
-- Output: `[[1,1,0],[1,2,1],[0,1,1]]`
+- **Input:** `n = 3, queries = [[1,1,2,2],[0,0,1,1]]`
+- **Output:** `[[1,1,0],[1,2,1],[0,1,1]]`
 
 The two rectangles overlap at row 1, column 1, so that entry is incremented twice.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, queries = [[0,0,1,1]]`
-- Output: `[[1,1],[1,1]]`
+- **Input:** `n = 2, queries = [[0,0,1,1]]`
+- **Output:** `[[1,1],[1,1]]`
 
 The single query covers the entire matrix.

@@ -33,20 +33,20 @@ Let $N = \lvert a \rvert + \lvert b \rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = "aba", b = "caa"`
-- Output: `2`
-- Explanation: Changing `b` to `"ccc"` satisfies the first condition, while making both strings all `a` also costs two.
+- **Input:** `a = "aba", b = "caa"`
+- **Output:** `2`
+- **Explanation:** Changing `b` to `"ccc"` satisfies the first condition, while making both strings all `a` also costs two.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = "dabadd", b = "cda"`
-- Output: `3`
-- Explanation: Changing `b` to `"eee"` makes every letter in `a` strictly smaller than every letter in `b`.
+- **Input:** `a = "dabadd", b = "cda"`
+- **Output:** `3`
+- **Explanation:** Changing `b` to `"eee"` makes every letter in `a` strictly smaller than every letter in `b`.
 
-**Example 3**
+#### Example 3
 
-- Input: `a = "aaaa", b = "bbbb"`
-- Output: `0`
-- Explanation: The first strict-order condition already holds.
+- **Input:** `a = "aaaa", b = "bbbb"`
+- **Output:** `0`
+- **Explanation:** The first strict-order condition already holds.

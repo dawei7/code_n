@@ -37,12 +37,11 @@ Return an integer array `ans` with $\text{ans}[i]$ equal to the number of maxima
 
 #### Example 1
 
-<div class="example-block">
-**Input:** chunks = ["hello wor","ld hello"], queries = ["hello","world","wor"]
+- **Input:** chunks = ["hello wor","ld hello"], queries = ["hello","world","wor"]
 
-**Output:** [2,1,0]
+- **Output:** [2,1,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - After concatenating all strings in `chunks`, `s = "hello world hello"`.
 
@@ -50,15 +49,13 @@ Return an integer array `ans` with $\text{ans}[i]$ equal to the number of maxima
 
 - The substring `"wor"` appears inside `"world"`, but it is not a full word.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** chunks = ["a-b a--b ","a-","b"], queries = ["a-b","a","b"]
+- **Input:** chunks = ["a-b a--b ","a-","b"], queries = ["a-b","a","b"]
 
-**Output:** [2,1,1]
+- **Output:** [2,1,1]
 
-**Explanation:**
+- **Explanation:** 
 
 - After concatenating all strings in `chunks`, `s = "a-b a--b a-b"`.
 
@@ -68,23 +65,19 @@ Return an integer array `ans` with $\text{ans}[i]$ equal to the number of maxima
 
 - Therefore, the words are `"a-b"`, `"a"`, `"b"`, and `"a-b"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** chunks = ["-cat dog- mouse"], queries = ["cat","dog","mouse","cat-dog"]
+- **Input:** chunks = ["-cat dog- mouse"], queries = ["cat","dog","mouse","cat-dog"]
 
-**Output:** [1,1,1,0]
+- **Output:** [1,1,1,0]
 
-**Explanation:**
+- **Explanation:** 
 
 - After concatenating all strings in `chunks`, `s = "-cat dog- mouse"`.
 
 - The leading hyphen before `"cat"` and the trailing hyphen after `"dog"` are not joiner hyphens, so they are separators.
 
 - The words are `"cat"`, `"dog"`, and `"mouse"`.
-
-</div>
 
 ### 4. Constraints
 

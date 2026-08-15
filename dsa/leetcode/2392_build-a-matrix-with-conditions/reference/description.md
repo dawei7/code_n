@@ -20,8 +20,15 @@ Return ***any** matrix that satisfies the conditions*. If no answer exists, retu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `k`: Input parameter (`int`).
+- `rowConditions`: Input parameter (`List[List[int]]`).
+- `colConditions`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -39,6 +46,7 @@ The column conditions are the following:
 - Number 2 is in column <u>1</u>, and number 1 is in column <u>2</u>, so 2 is left of 1 in the matrix.
 - Number 3 is in column <u>0</u>, and number 2 is in column <u>1</u>, so 3 is left of 2 in the matrix.
 Note that there may be multiple correct answers.
+
 #### Example 2
 
 - **Input:** $k = 3, rowConditions = [[1,2],[2,3],[3,1],[2,3]], colConditions = [[2,1]]$

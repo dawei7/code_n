@@ -22,6 +22,7 @@ Return the head after reversing the inclusive segment `[left, right]` and leavin
 
 - **Input:** $head = [1,2,3,4,5], left = 2, right = 4$
 - **Output:** `[1,4,3,2,5]`
+
 #### Example 2
 
 - **Input:** $head = [5], left = 1, right = 1$

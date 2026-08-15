@@ -32,16 +32,16 @@ Return the number of peaks that are not contained in or on any other mountain.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `peaks = [[2,2],[6,3],[5,4]]`
-- Output: `2`
+- **Input:** `peaks = [[2,2],[6,3],[5,4]]`
+- **Output:** `2`
 
 The peak at `(6,3)` lies on the side of the mountain centered at `(5,4)`, while the other two peaks are visible.
 
-**Example 2**
+#### Example 2
 
-- Input: `peaks = [[1,3],[1,3]]`
-- Output: `0`
+- **Input:** `peaks = [[1,3],[1,3]]`
+- **Output:** `0`
 
 The two mountains completely overlap, so each peak lies within the other mountain.

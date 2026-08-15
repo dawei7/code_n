@@ -35,19 +35,19 @@ Implement initialization, lookup, insertion, and deletion with expected logarith
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["Skiplist","add","add","add","search","add","search","erase","erase","search"]`, `arguments = [[],[1],[2],[3],[0],[4],[1],[0],[1],[1]]`
-- Output: `[null,null,null,null,false,null,true,false,true,false]`
+- **Input:** `operations = ["Skiplist","add","add","add","search","add","search","erase","erase","search"]`, `arguments = [[],[1],[2],[3],[0],[4],[1],[0],[1],[1]]`
+- **Output:** `[null,null,null,null,false,null,true,false,true,false]`
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["Skiplist","add","add","search","erase","search"]`, `arguments = [[],[5],[5],[5],[5],[5]]`
-- Output: `[null,null,null,true,true,true]`
+- **Input:** `operations = ["Skiplist","add","add","search","erase","search"]`, `arguments = [[],[5],[5],[5],[5],[5]]`
+- **Output:** `[null,null,null,true,true,true]`
 
 One copy of `5` remains after a successful erase.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["Skiplist","search","erase"]`, `arguments = [[],[10],[10]]`
-- Output: `[null,false,false]`
+- **Input:** `operations = ["Skiplist","search","erase"]`, `arguments = [[],[10],[10]]`
+- **Output:** `[null,false,false]`

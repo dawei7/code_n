@@ -60,6 +60,8 @@ def _run_sql(source: str, input_data: dict[str, Any]) -> EnvironmentResult:
     try:
         with sqlite3.connect(":memory:") as connection:
             connection.row_factory = sqlite3.Row
+            connection.create_function("IF", 3, lambda cond, a, b: a if cond else b)
+            connection.create_function("IFNULL", 2, lambda a, b: b if a is None else a)
             for raw_name, raw_rows in tables.items():
                 _create_sqlite_table(connection, str(raw_name), raw_rows)
             statements = _sqlite_statements(source)
@@ -68,6 +70,9 @@ def _run_sql(source: str, input_data: dict[str, Any]) -> EnvironmentResult:
             cursor = connection.execute(statements[0])
             for statement in statements[1:]:
                 cursor = connection.execute(statement)
+            if cursor.description is None and tables:
+                first_table = next(iter(tables.keys()))
+                cursor = connection.execute(f'SELECT * FROM "{first_table}" ORDER BY 1')
             columns = [column[0] for column in cursor.description or []]
             rows = [[_json_safe(cell) for cell in row] for row in cursor.fetchall()]
         runtime_ms = (time.perf_counter() - started) * 1000.0

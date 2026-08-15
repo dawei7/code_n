@@ -40,15 +40,15 @@ differ, and the represented strength relation is transitive.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0, 1], [0, 0]]`
-- Output: `0`
-- Explanation: Team 0 is stronger than team 1, so nobody is stronger than
+- **Input:** `grid = [[0, 1], [0, 0]]`
+- **Output:** `0`
+- **Explanation:** Team 0 is stronger than team 1, so nobody is stronger than
   team 0.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[0, 0, 1], [1, 0, 1], [0, 0, 0]]`
-- Output: `1`
-- Explanation: Team 1 is stronger than both teams 0 and 2.
+- **Input:** `grid = [[0, 0, 1], [1, 0, 1], [0, 0, 0]]`
+- **Output:** `1`
+- **Explanation:** Team 1 is stronger than both teams 0 and 2.

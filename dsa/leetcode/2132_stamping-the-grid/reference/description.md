@@ -20,8 +20,15 @@ Return `true` *if it is possible to fit the stamps while following the given res
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `stampHeight`: Input parameter (`int`).
+- `stampWidth`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -32,6 +39,7 @@ Return `true` *if it is possible to fit the stamps while following the given res
 - **Input:** `grid = [[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0]], stampHeight = 4, stampWidth = 3`
 - **Output:** `true`
 - **Explanation:** We have two overlapping stamps (labeled 1 and 2 in the image) that are able to cover all the empty cells.
+
 #### Example 2
 
 ![](images/ex2.png)

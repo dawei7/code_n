@@ -36,20 +36,20 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = [[2,6],[5,1],[73,660]]`
-- Output: `[4,1,50734910]`
-- Explanation: Product $6$ can be split across two positions as `(1,6)`, `(2,3)`, `(3,2)`, or `(6,1)`; product $1$ forces every entry to be $1$.
+- **Input:** `queries = [[2,6],[5,1],[73,660]]`
+- **Output:** `[4,1,50734910]`
+- **Explanation:** Product $6$ can be split across two positions as `(1,6)`, `(2,3)`, `(3,2)`, or `(6,1)`; product $1$ forces every entry to be $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = [[1,1],[2,2],[3,3],[4,4],[5,5]]`
-- Output: `[1,2,3,10,5]`
-- Explanation: Every query is counted independently, including prime and prime-power products.
+- **Input:** `queries = [[1,1],[2,2],[3,3],[4,4],[5,5]]`
+- **Output:** `[1,2,3,10,5]`
+- **Explanation:** Every query is counted independently, including prime and prime-power products.
 
-**Example 3**
+#### Example 3
 
-- Input: `queries = [[4,8],[3,12],[2,36]]`
-- Output: `[20,18,9]`
-- Explanation: The prime exponents of each product are distributed independently among the requested positions.
+- **Input:** `queries = [[4,8],[3,12],[2,36]]`
+- **Output:** `[20,18,9]`
+- **Explanation:** The prime exponents of each product are distributed independently among the requested positions.

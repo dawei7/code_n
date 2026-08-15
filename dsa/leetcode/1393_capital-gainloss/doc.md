@@ -32,17 +32,17 @@ Let $K$ be the number of distinct stock names.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `Stocks = [["Leetcode","Buy",1,1000],["Leetcode","Sell",5,9000],["Leetcode","Buy",8,1230],["Leetcode","Sell",10,1900]]`
-- Output: `[["Leetcode",8670]]`
+- **Input:** `Stocks = [["Leetcode","Buy",1,1000],["Leetcode","Sell",5,9000],["Leetcode","Buy",8,1230],["Leetcode","Sell",10,1900]]`
+- **Output:** `[["Leetcode",8670]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `Stocks = [["Handbags","Buy",17,30000],["Handbags","Sell",29,7000],["Handbags","Buy",37,17000],["Handbags","Sell",47,20000]]`
-- Output: `[["Handbags",-20000]]`
+- **Input:** `Stocks = [["Handbags","Buy",17,30000],["Handbags","Sell",29,7000],["Handbags","Buy",37,17000],["Handbags","Sell",47,20000]]`
+- **Output:** `[["Handbags",-20000]]`
 
-**Example 3**
+#### Example 3
 
-- Input: one stock bought for `40` and sold for `40`.
-- Output: that stock with `capital_gain_loss = 0`.
+- **Input:** one stock bought for `40` and sold for `40`.
+- **Output:** that stock with `capital_gain_loss = 0`.

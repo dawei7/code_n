@@ -35,18 +35,18 @@ Return columns `project_id`, `candidate_id`, and `score`, with at most one row p
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Project `501` requires Python, Tableau, and PostgreSQL; candidates `101`, `102`, and `103` have the proficiencies shown in the source example.
-- Output: `[[501, 101, 105]]`
-- Explanation: All three suitable candidates tie at `105`, so candidate `101` wins by ID.
+- **Input:** Project `501` requires Python, Tableau, and PostgreSQL; candidates `101`, `102`, and `103` have the proficiencies shown in the source example.
+- **Output:** `[[501, 101, 105]]`
+- **Explanation:** All three suitable candidates tie at `105`, so candidate `101` wins by ID.
 
-**Example 2**
+#### Example 2
 
-- Input: One project requires Python and SQL; candidate `1` has both skills while candidate `2` has only Python.
-- Output: The project is assigned to candidate `1`; candidate `2` is excluded before ranking.
+- **Input:** One project requires Python and SQL; candidate `1` has both skills while candidate `2` has only Python.
+- **Output:** The project is assigned to candidate `1`; candidate `2` is excluded before ranking.
 
-**Example 3**
+#### Example 3
 
-- Input: A project has required skills that no single candidate fully covers.
-- Output: No row is returned for that project.
+- **Input:** A project has required skills that no single candidate fully covers.
+- **Output:** No row is returned for that project.

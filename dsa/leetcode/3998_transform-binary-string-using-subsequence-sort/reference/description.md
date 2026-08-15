@@ -31,14 +31,11 @@ Return a length-$m$ boolean array. Its element at index `i` is `true` exactly wh
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "101", strs = ["1?1","0?1","0?0"]
+- **Input:** s = "101", strs = ["1?1","0?1","0?0"]
 
-**Output:** [true,true,false]
+- **Output:** [true,true,false]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -79,17 +76,13 @@ Return a length-$m$ boolean array. Its element at index `i` is `true` exactly wh
 
 Thus, $ans = [true, true, false]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "1100", strs = ["0011","11?1","1?1?"]
+- **Input:** s = "1100", strs = ["0011","11?1","1?1?"]
 
-**Output:** [true,false,true]
+- **Output:** [true,false,true]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -134,17 +127,13 @@ Thus, $ans = [true, true, false]$.
 
 Thus, $ans = [true, false, true]$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1010", strs = ["0011"]
+- **Input:** s = "1010", strs = ["0011"]
 
-**Output:** [true]
+- **Output:** [true]
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -168,8 +157,6 @@ Thus, $ans = [true, false, true]$.
 </table>
 
 Thus, $ans = [true]$.
-
-</div>
 
 ### 4. Constraints
 

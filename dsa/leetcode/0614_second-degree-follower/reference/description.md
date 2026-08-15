@@ -41,7 +41,7 @@ For each user who appears as both a `follower` and a `followee`, return that use
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Follow table:
 +----------+----------+
 | followee | follower |
@@ -51,15 +51,14 @@ Follow table:
 | Bob      | Donald   |
 | Donald   | Edward   |
 +----------+----------+
-**Output:**
+- **Output:** 
 +----------+-----+
 | follower | num |
 +----------+-----+
 | Bob      | 2   |
 | Donald   | 1   |
 +----------+-----+
-**Explanation:**
-User Bob has 2 followers. Bob is a second-degree follower because he follows Alice, so we include him in the result table.
+- **Explanation:** User Bob has 2 followers. Bob is a second-degree follower because he follows Alice, so we include him in the result table.
 User Donald has 1 follower. Donald is a second-degree follower because he follows Bob, so we include him in the result table.
 User Alice has 1 follower. Alice is not a second-degree follower because she does not follow anyone, so we don not include her in the result table.
 ```

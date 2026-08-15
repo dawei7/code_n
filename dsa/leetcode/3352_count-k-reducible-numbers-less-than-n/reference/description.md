@@ -16,47 +16,40 @@ Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "111", k = 1
+- **Input:** s = "111", k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation: **
+- **Explanation:** $n = 7$. The 1-reducible integers less than 7 are 1, 2, and 4.
 
-$n = 7$. The 1-reducible integers less than 7 are 1, 2, and 4.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "1000", k = 2
+- **Input:** s = "1000", k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** $n = 8$. The 2-reducible integers less than 8 are 1, 2, 3, 4, 5, and 6.
 
-$n = 8$. The 2-reducible integers less than 8 are 1, 2, 3, 4, 5, and 6.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1", k = 3
+- **Input:** s = "1", k = 3
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-There are no positive integers less than $n = 1$, so the answer is 0.
-
-</div>
+- **Explanation:** There are no positive integers less than $n = 1$, so the answer is 0.
 
 ### 4. Constraints
 

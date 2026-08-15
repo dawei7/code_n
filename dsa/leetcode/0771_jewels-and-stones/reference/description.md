@@ -6,8 +6,14 @@ Letters are case sensitive, so `"a"` is considered a different type of stone fro
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `jewels`: Input parameter (`str`).
+- `stones`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -15,6 +21,7 @@ Letters are case sensitive, so `"a"` is considered a different type of stone fro
 
 - **Input:** $jewels = "aA", stones = "aAAbbbb"$
 - **Output:** `3`
+
 #### Example 2
 
 - **Input:** $jewels = "z", stones = "ZZ"$

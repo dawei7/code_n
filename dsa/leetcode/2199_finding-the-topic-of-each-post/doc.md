@@ -35,14 +35,14 @@ Return one row per post with columns `post_id` and `topic`. `topic` is either th
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 With keywords `(1, handball)`, `(1, football)`, `(3, WAR)`, and `(2, Vaccine)`, a post containing `football` receives topic `1`.
 
-**Example 2**
+#### Example 2
 
 A post containing both `war` and `handball` receives `1,3`, with topic IDs sorted and deduplicated.
 
-**Example 3**
+#### Example 3
 
 A post containing `warning` but none of the complete keyword words receives `Ambiguous!`; `war` is not a complete word inside `warning`.

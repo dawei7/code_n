@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/successful-pairs-of-spells-and-potions/) |
 
 ## Problem Description
+
 ### Goal
+
 The positive integer arrays `spells` and `potions` describe the strengths of
 $n$ spells and $m$ potions. Pairing spell `spells[i]` with potion
 `potions[j]` is successful when their product is at least `success`.
@@ -21,6 +23,7 @@ contribute to several output counts.
 Return the $n$ counts aligned with `spells`.
 
 ### Function Contract
+
 **Inputs**
 
 - `spells`: An array of $n$ positive spell strengths.
@@ -36,12 +39,13 @@ An integer array where position $i$ contains the number of potions $p$ for
 which $\texttt{spells}[i]\cdot p \ge \texttt{success}$.
 
 ### Examples
-**Example 1**
 
-- Input: `spells = [5, 1, 3]`, `potions = [1, 2, 3, 4, 5]`, `success = 7`
-- Output: `[4, 0, 3]`
+#### Example 1
 
-**Example 2**
+- **Input:** `spells = [5, 1, 3]`, `potions = [1, 2, 3, 4, 5]`, `success = 7`
+- **Output:** `[4, 0, 3]`
 
-- Input: `spells = [3, 1, 2]`, `potions = [8, 5, 8]`, `success = 16`
-- Output: `[2, 0, 2]`
+#### Example 2
+
+- **Input:** `spells = [3, 1, 2]`, `potions = [8, 5, 8]`, `success = 16`
+- **Output:** `[2, 0, 2]`

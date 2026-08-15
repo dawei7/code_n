@@ -26,11 +26,13 @@ that `s` may contain leading or trailing spaces or multiple spaces between two w
 
 - **Input:** `s = "the sky is blue"`
 - **Output:** `"blue is sky the"`
+
 #### Example 2
 
 - **Input:** `s = "  hello world  "`
 - **Output:** `"world hello"`
 - **Explanation:** Your reversed string should not contain leading or trailing spaces.
+
 #### Example 3
 
 - **Input:** `s = "a good   example"`

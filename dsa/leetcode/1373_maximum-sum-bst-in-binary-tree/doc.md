@@ -30,17 +30,17 @@ Find the greatest sum of node values among all subtrees that are binary search t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [1,4,3,2,4,2,5,null,null,null,null,null,null,4,6]`
-- Output: `20`
+- **Input:** `root = [1,4,3,2,4,2,5,null,null,null,null,null,null,4,6]`
+- **Output:** `20`
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [4,3,null,1,2]`
-- Output: `2`
+- **Input:** `root = [4,3,null,1,2]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [-4,-2,-5]`
-- Output: `0`
+- **Input:** `root = [-4,-2,-5]`
+- **Output:** `0`

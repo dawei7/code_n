@@ -8,8 +8,13 @@ Return *the **minimum** number of deletions needed to make *`s`* **balanced***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the **minimum** number of deletions needed to make *`s`* **balanced***.
 - **Explanation:** You can either:
 Delete the characters at 0-indexed positions 2 and 6 ("aa<u>b</u>abb<u>a</u>b" -> "aaabbb"), or
 Delete the characters at 0-indexed positions 3 and 6 ("aab<u>a</u>bb<u>a</u>b" -> "aabbbb").
+
 #### Example 2
 
 - **Input:** `s = "bbaaaaabb"`

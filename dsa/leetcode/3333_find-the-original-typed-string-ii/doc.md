@@ -31,19 +31,19 @@ Given a positive integer `k`, count the distinct intended strings that could pro
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aabbccdd", k = 7`
-- Output: `5`
-- Explanation: The displayed word itself and the four strings formed by shortening exactly one run to one character have sufficient length.
+- **Input:** `word = "aabbccdd", k = 7`
+- **Output:** `5`
+- **Explanation:** The displayed word itself and the four strings formed by shortening exactly one run to one character have sufficient length.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aabbccdd", k = 8`
-- Output: `1`
-- Explanation: Only the full displayed word reaches length $8$.
+- **Input:** `word = "aabbccdd", k = 8`
+- **Output:** `1`
+- **Explanation:** Only the full displayed word reaches length $8$.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "aaabbb", k = 3`
-- Output: `8`
+- **Input:** `word = "aaabbb", k = 3`
+- **Output:** `8`

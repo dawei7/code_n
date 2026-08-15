@@ -12,19 +12,23 @@ Assuming Alice and Bob play optimally, return the maximum number of stones Alice
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `piles`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** piles = [2,7,9,4,4]
+- **Input:** piles = [2,7,9,4,4]
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
+- **Explanation:** 
 
 - If Alice takes one pile at the beginning, Bob takes two piles, then Alice takes 2 piles again. Alice can get $2 + 4 + 4 = 10$ stones in total.
 
@@ -32,15 +36,11 @@ Assuming Alice and Bob play optimally, return the maximum number of stones Alice
 
 So we return 10 since it's larger.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** piles = [1,2,3,4,5,100]
+- **Input:** piles = [1,2,3,4,5,100]
 
-**Output:** 104
-
-</div>
+- **Output:** 104
 
 ### 4. Constraints
 

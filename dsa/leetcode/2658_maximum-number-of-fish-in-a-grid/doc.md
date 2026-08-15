@@ -30,14 +30,14 @@ Return the largest total number of fish obtainable by choosing the starting cell
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[0,2,1,0],[4,0,0,3],[1,0,0,4],[0,3,2,0]]`
-- Output: `7`
-- Explanation: The connected cells containing `3` and `4` form the richest reachable water component.
+- **Input:** `grid = [[0,2,1,0],[4,0,0,3],[1,0,0,4],[0,3,2,0]]`
+- **Output:** `7`
+- **Explanation:** The connected cells containing `3` and `4` form the richest reachable water component.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,1]]`
-- Output: `1`
-- Explanation: The two water cells are isolated from each other, and either contains one fish.
+- **Input:** `grid = [[1,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,1]]`
+- **Output:** `1`
+- **Explanation:** The two water cells are isolated from each other, and either contains one fish.

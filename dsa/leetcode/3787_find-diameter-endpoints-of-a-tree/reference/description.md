@@ -33,12 +33,11 @@ Return an `n`-character binary string whose index `i` is `'1'` exactly when node
 
 **
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]]
+- **Input:** n = 3, edges = [[0,1],[1,2]]
 
-**Output:** "101"
+- **Output:** "101"
 
-**Explanation:**
+- **Explanation:** 
 
 - The diameter of this tree consists of 2 edges.
 
@@ -46,7 +45,6 @@ Return an `n`-character binary string whose index `i` is `'1'` exactly when node
 
 - The endpoints of this path are nodes 0 and 2, so they are special.
 
-</div>
 #### Example 2
 
 **
@@ -55,14 +53,11 @@ Return an `n`-character binary string whose index `i` is `'1'` exactly when node
 
 **
 
-<div class="example-block">
-**Input:** n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]]
+- **Input:** n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]]
 
-**Output:** "1000111"
+- **Output:** "1000111"
 
-**Explanation:**
-
-The diameter of this tree consists of 4 edges. There are 4 diameter paths:
+- **Explanation:** The diameter of this tree consists of 4 edges. There are 4 diameter paths:
 
 - The path from node 0 to node 4
 
@@ -74,7 +69,6 @@ The diameter of this tree consists of 4 edges. There are 4 diameter paths:
 
 The special nodes are nodes `0, 4, 5, 6`, as they are endpoints in at least one diameter path.
 
-</div>
 #### Example 3
 
 **
@@ -83,20 +77,17 @@ The special nodes are nodes `0, 4, 5, 6`, as they are endpoints in at least one 
 
 ​​​​​​​**
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1]]
+- **Input:** n = 2, edges = [[0,1]]
 
-**Output:** "11"
+- **Output:** "11"
 
-**Explanation:**
+- **Explanation:** 
 
 - The diameter of this tree consists of 1 edge.
 
 - The only diameter path is the path from node 0 to node 1
 
 - The endpoints of this path are nodes 0 and 1, so they are special.
-
-</div>
 
 ### 4. Constraints
 

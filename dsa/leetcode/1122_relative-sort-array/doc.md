@@ -33,12 +33,12 @@ An array containing exactly the values of `arr1`, with values named by `arr2` gr
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr1 = [2,3,1,3,2,4,6,7,9,2,19]`, `arr2 = [2,1,4,3,9,6]`
-- Output: `[2,2,2,1,4,3,3,9,6,7,19]`
+- **Input:** `arr1 = [2,3,1,3,2,4,6,7,9,2,19]`, `arr2 = [2,1,4,3,9,6]`
+- **Output:** `[2,2,2,1,4,3,3,9,6,7,19]`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr1 = [28,6,22,8,44,17]`, `arr2 = [22,28,8,6]`
-- Output: `[22,28,8,6,17,44]`
+- **Input:** `arr1 = [28,6,22,8,44,17]`, `arr2 = [22,28,8,6]`
+- **Output:** `[22,28,8,6,17,44]`

@@ -34,17 +34,17 @@ The constraints are $1 \le \lvert\texttt{nums}\rvert \le 10^5$, $1 \le k \le 5$,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5], k = 3, queries = [[2, 2, 0, 2], [3, 3, 3, 0], [0, 1, 0, 1]]`
-- Output: `[2, 2, 2]`
+- **Input:** `nums = [1, 2, 3, 4, 5], k = 3, queries = [[2, 2, 0, 2], [3, 3, 3, 0], [0, 1, 0, 1]]`
+- **Output:** `[2, 2, 2]`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 4, 8, 16, 32], k = 4, queries = [[0, 2, 0, 2], [0, 2, 0, 1]]`
-- Output: `[1, 0]`
+- **Input:** `nums = [1, 2, 4, 8, 16, 32], k = 4, queries = [[0, 2, 0, 2], [0, 2, 0, 1]]`
+- **Output:** `[1, 0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 2, 1, 1], k = 2, queries = [[2, 1, 0, 1]]`
-- Output: `[5]`
+- **Input:** `nums = [1, 1, 2, 1, 1], k = 2, queries = [[2, 1, 0, 1]]`
+- **Output:** `[5]`

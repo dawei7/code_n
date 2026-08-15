@@ -12,8 +12,13 @@ Return the **maximum** possible value of `X XOR Y`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,14 +28,11 @@ The XOR of an **empty** subsequence is 0.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-Choose subsequences:
+- **Explanation:** Choose subsequences:
 
 - First subsequence `[2]`, whose XOR is 2.
 
@@ -40,17 +42,13 @@ Then, XOR of both subsequences = $2 XOR 1 = 3$.
 
 This is the maximum XOR value achievable from any two subsequences.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,2]
+- **Input:** nums = [5,2]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-Choose subsequences:
+- **Explanation:** Choose subsequences:
 
 - First subsequence `[5]`, whose XOR is 5.
 
@@ -59,8 +57,6 @@ Choose subsequences:
 Then, XOR of both subsequences = $5 XOR 2 = 7$.
 
 This is the maximum XOR value achievable from any two subsequences.
-
-</div>
 
 ### 5. Constraints
 

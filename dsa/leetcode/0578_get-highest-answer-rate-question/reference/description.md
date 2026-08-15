@@ -43,7 +43,7 @@ Return a one-row table with a $\text{survey}_{log}$ column containing the select
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 SurveyLog table:
 +----+--------+-------------+-----------+-------+-----------+
 | id | action | question_id | answer_id | q_num | timestamp |
@@ -53,14 +53,13 @@ SurveyLog table:
 | 5  | show   | 369         | null      | 2     | 125       |
 | 5  | skip   | 369         | null      | 2     | 126       |
 +----+--------+-------------+-----------+-------+-----------+
-**Output:**
+- **Output:** 
 +------------+
 | survey_log |
 +------------+
 | 285        |
 +------------+
-**Explanation:**
-Question 285 was showed 1 time and answered 1 time. The answer rate of question 285 is 1.0
+- **Explanation:** Question 285 was showed 1 time and answered 1 time. The answer rate of question 285 is 1.0
 Question 369 was showed 1 time and was not answered. The answer rate of question 369 is 0.0
 Question 285 has the highest answer rate.
 ```

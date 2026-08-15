@@ -32,14 +32,14 @@ Return the number of distinct board values after the daily process has run for $
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `4`
-- Explanation: The final board contains `2`, `3`, `4`, and `5`.
+- **Input:** `n = 5`
+- **Output:** `4`
+- **Explanation:** The final board contains `2`, `3`, `4`, and `5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`
-- Output: `2`
-- Explanation: Since `3 % 2 == 1`, the final board contains `2` and `3`.
+- **Input:** `n = 3`
+- **Output:** `2`
+- **Explanation:** Since `3 % 2 == 1`, the final board contains `2` and `3`.

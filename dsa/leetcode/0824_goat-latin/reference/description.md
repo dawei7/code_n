@@ -6,26 +6,27 @@ We would like to convert the sentence to "Goat Latin" (a made-up language simila
 
 - If a word begins with a vowel (`'a'`, `'e'`, `'i'`, `'o'`, or `'u'`), append `"ma"` to the end of the word.
 
-		<li>For example, the word `"apple"` becomes `"applema"`.
+		- For example, the word `"apple"` becomes `"applema"`.
 
-	</li>
 - If a word begins with a consonant (i.e., not a vowel), remove the first letter and append it to the end, then add `"ma"`.
 
-		<li>For example, the word `"goat"` becomes `"oatgma"`.
+		- For example, the word `"goat"` becomes `"oatgma"`.
 
-	</li>
 - Add one letter `'a'` to the end of each word per its word index in the sentence, starting with `1`.
 
-		<li>For example, the first word gets `"a"` added to the end, the second word gets `"aa"` added to the end, and so on.
-
-	</li>
+		- For example, the first word gets `"a"` added to the end, the second word gets `"aa"` added to the end, and so on.
 
 Return* the final sentence representing the conversion from sentence to Goat Latin*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `sentence`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -33,6 +34,7 @@ Return* the final sentence representing the conversion from sentence to Goat Lat
 
 - **Input:** $sentence = "I speak Goat Latin"$
 - **Output:** `"Imaa peaksmaaa oatGmaaaa atinLmaaaaa"`
+
 #### Example 2
 
 - **Input:** $sentence = "The quick brown fox jumped over the lazy dog"$

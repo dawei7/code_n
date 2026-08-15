@@ -16,8 +16,13 @@ The function `gcd(x, y)` is the greatest common divisor of `x` and `y`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,12 +32,14 @@ The function `gcd(x, y)` is the greatest common divisor of `x` and `y`.
 - **Output:** `1`
 - **Explanation:** The optimal choice of operations is:
 (1 * gcd(1, 2)) = 1
+
 #### Example 2
 
 - **Input:** `nums = [3,4,6,8]`
 - **Output:** `11`
 - **Explanation:** The optimal choice of operations is:
 (1 * gcd(3, 6)) + (2 * gcd(4, 8)) = 3 + 8 = 11
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3,4,5,6]`

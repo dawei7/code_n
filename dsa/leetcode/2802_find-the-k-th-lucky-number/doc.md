@@ -32,20 +32,20 @@ Return the $k$-th lucky number as a string containing only `"4"` and `"7"`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `k = 4`
-- Output: `"47"`
-- Explanation: The sequence starts `4`, `7`, `44`, `47`, so its fourth value is `47`.
+- **Input:** `k = 4`
+- **Output:** `"47"`
+- **Explanation:** The sequence starts `4`, `7`, `44`, `47`, so its fourth value is `47`.
 
-**Example 2**
+#### Example 2
 
-- Input: `k = 10`
-- Output: `"477"`
-- Explanation: The first ten values are `4`, `7`, `44`, `47`, `74`, `77`, `444`, `447`, `474`, and `477`.
+- **Input:** `k = 10`
+- **Output:** `"477"`
+- **Explanation:** The first ten values are `4`, `7`, `44`, `47`, `74`, `77`, `444`, `447`, `474`, and `477`.
 
-**Example 3**
+#### Example 3
 
-- Input: `k = 1000`
-- Output: `"777747447"`
-- Explanation: The thousandth value in increasing order is `777747447`.
+- **Input:** `k = 1000`
+- **Output:** `"777747447"`
+- **Explanation:** The thousandth value in increasing order is `777747447`.

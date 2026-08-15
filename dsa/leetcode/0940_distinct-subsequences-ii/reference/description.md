@@ -6,8 +6,13 @@ A **subsequence** of a string is a new string that is formed from the original s
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +21,13 @@ A **subsequence** of a string is a new string that is formed from the original s
 - **Input:** `s = "abc"`
 - **Output:** `7`
 - **Explanation:** The 7 distinct subsequences are "a", "b", "c", "ab", "ac", "bc", and "abc".
+
 #### Example 2
 
 - **Input:** `s = "aba"`
 - **Output:** `6`
 - **Explanation:** The 6 distinct subsequences are "a", "b", "ab", "aa", "ba", and "aba".
+
 #### Example 3
 
 - **Input:** `s = "aaa"`

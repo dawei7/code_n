@@ -8,8 +8,10 @@ Return *a reference to the same node* in the `cloned` tree.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(x)`: Initializes the data structure.
+- `getTargetCopy(original: TreeNode, cloned: TreeNode, target: TreeNode) -> `TreeNode``: Executes operation.
 
 ### 3. Note
 
@@ -24,12 +26,14 @@ that you are **not allowed** to change any of the two trees or the `target` node
 - **Input:** $tree = [7,4,3,null,null,6,19], target = 3$
 - **Output:** `3`
 - **Explanation:** In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
+
 #### Example 2
 
 ![](images/e2.png)
 
 - **Input:** $tree = [7], target = 7$
 - **Output:** `7`
+
 #### Example 3
 
 ![](images/e3.png)

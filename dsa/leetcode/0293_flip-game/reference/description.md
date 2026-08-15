@@ -22,6 +22,7 @@ Return one next-state string for each adjacent `"++"` pair. The app implementati
 
 - **Input:** $currentState = "++++"$
 - **Output:** `["--++","+--+","++--"]`
+
 #### Example 2
 
 - **Input:** $currentState = "+"$

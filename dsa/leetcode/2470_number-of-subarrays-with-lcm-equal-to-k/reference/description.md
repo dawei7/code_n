@@ -8,8 +8,14 @@ The **least common multiple of an array** is the smallest positive integer that 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ The **least common multiple of an array** is the smallest positive integer that 
 - [<u>**3**</u>,<u>**6**</u>,<u>**2**</u>,7,1]
 - [3,<u>**6**</u>,2,7,1]
 - [3,<u>**6**</u>,<u>**2**</u>,7,1]
+
 #### Example 2
 
 - **Input:** `nums = [3], k = 2`

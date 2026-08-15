@@ -30,14 +30,14 @@ Return an integer equal to the sum of each character's reversed-alphabet value t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abc"`
-- Output: `148`
-- Explanation: The three products are $26 \cdot 1$, $25 \cdot 2$, and $24 \cdot 3$.
+- **Input:** `s = "abc"`
+- **Output:** `148`
+- **Explanation:** The three products are $26 \cdot 1$, $25 \cdot 2$, and $24 \cdot 3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "zaza"`
-- Output: `160`
-- Explanation: The products are $1 \cdot 1$, $26 \cdot 2$, $1 \cdot 3$, and $26 \cdot 4$.
+- **Input:** `s = "zaza"`
+- **Output:** `160`
+- **Explanation:** The products are $1 \cdot 1$, $26 \cdot 2$, $1 \cdot 3$, and $26 \cdot 4$.

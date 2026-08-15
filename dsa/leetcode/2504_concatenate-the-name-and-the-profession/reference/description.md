@@ -30,7 +30,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Person table:
 +-----------+-------+------------+
 | person_id | name  | profession |
@@ -42,7 +42,7 @@ Person table:
 | 6         | Tyson | Engineer   |
 | 5         | Meir  | Lawyer     |
 +-----------+-------+------------+
-**Output:**
+- **Output:** 
 +-----------+----------+
 | person_id | name     |
 +-----------+----------+
@@ -53,5 +53,5 @@ Person table:
 | 2         | Bob(P)   |
 | 1         | Alex(S)  |
 +-----------+----------+
-**Explanation:** Note that there should not be any white space between the name and the first letter of the profession.
+- **Explanation:** Note that there should not be any white space between the name and the first letter of the profession.
 ```

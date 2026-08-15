@@ -30,19 +30,19 @@ Return `True` if some binary `original` satisfies every circular neighboring-XOR
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `derived = [1,1,0]`
-- Output: `true`
-- Explanation: `original = [0,1,0]` produces the three required XOR values.
+- **Input:** `derived = [1,1,0]`
+- **Output:** `true`
+- **Explanation:** `original = [0,1,0]` produces the three required XOR values.
 
-**Example 2**
+#### Example 2
 
-- Input: `derived = [1,1]`
-- Output: `true`
-- Explanation: `original = [0,1]` produces both entries.
+- **Input:** `derived = [1,1]`
+- **Output:** `true`
+- **Explanation:** `original = [0,1]` produces both entries.
 
-**Example 3**
+#### Example 3
 
-- Input: `derived = [1,0]`
-- Output: `false`
+- **Input:** `derived = [1,0]`
+- **Output:** `false`

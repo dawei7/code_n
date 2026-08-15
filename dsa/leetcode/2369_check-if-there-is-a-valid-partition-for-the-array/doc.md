@@ -36,14 +36,14 @@ A partition is valid only when every part has one of three exact forms: two equa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [4,4,4,5,6]`
-- Output: `true`
-- Explanation: The parts `[4,4]` and `[4,5,6]` are valid: the first is an equal pair, and the second is a consecutive increasing triple.
+- **Input:** `nums = [4,4,4,5,6]`
+- **Output:** `true`
+- **Explanation:** The parts `[4,4]` and `[4,5,6]` are valid: the first is an equal pair, and the second is a consecutive increasing triple.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,1,2]`
-- Output: `false`
-- Explanation: No sequence of allowed two- or three-element parts covers the whole array.
+- **Input:** `nums = [1,1,1,2]`
+- **Output:** `false`
+- **Explanation:** No sequence of allowed two- or three-element parts covers the whole array.

@@ -33,17 +33,17 @@ The selected elements must occupy consecutive indices in the original array; val
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [8,2,4,7], limit = 4`
-- Output: `2`
+- **Input:** `nums = [8,2,4,7], limit = 4`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10,1,2,4,7,2], limit = 5`
-- Output: `4`
+- **Input:** `nums = [10,1,2,4,7,2], limit = 5`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [4,2,2,2,4,4,2,2], limit = 0`
-- Output: `3`
+- **Input:** `nums = [4,2,2,2,4,4,2,2], limit = 0`
+- **Output:** `3`

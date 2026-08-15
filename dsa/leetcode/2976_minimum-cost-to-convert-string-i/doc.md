@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-cost-to-convert-string-i/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given equal-length lowercase strings `source` and `target`. Each aligned
 position may be transformed independently by applying any number of directed
 single-character conversion rules.
@@ -25,6 +27,7 @@ corresponding position of `target`, or `-1` if any required character
 conversion is impossible.
 
 ### Function Contract
+
 **Inputs**
 
 - `source`: the initial lowercase string
@@ -44,20 +47,21 @@ The minimum sum of conversion costs across all positions, or `-1` if at least
 one aligned character pair is unreachable.
 
 ### Examples
-**Example 1**
 
-- Input: `source = "abcd"`, `target = "acbe"`, `original = ["a","b","c","c","e","d"]`, `changed = ["b","c","b","e","b","e"]`, `cost = [2,5,5,1,2,20]`
-- Output: `28`
-- Explanation: The cheapest aligned conversions cost `0`, `5`, `3`, and `20`.
+#### Example 1
 
-**Example 2**
+- **Input:** `source = "abcd"`, `target = "acbe"`, `original = ["a","b","c","c","e","d"]`, `changed = ["b","c","b","e","b","e"]`, `cost = [2,5,5,1,2,20]`
+- **Output:** `28`
+- **Explanation:** The cheapest aligned conversions cost `0`, `5`, `3`, and `20`.
 
-- Input: `source = "aaaa"`, `target = "bbbb"`, `original = ["a","c"]`, `changed = ["c","b"]`, `cost = [1,2]`
-- Output: `12`
-- Explanation: Each `a` reaches `b` through `c` for cost `3`.
+#### Example 2
 
-**Example 3**
+- **Input:** `source = "aaaa"`, `target = "bbbb"`, `original = ["a","c"]`, `changed = ["c","b"]`, `cost = [1,2]`
+- **Output:** `12`
+- **Explanation:** Each `a` reaches `b` through `c` for cost `3`.
 
-- Input: `source = "abcd"`, `target = "abce"`, `original = ["a"]`, `changed = ["e"]`, `cost = [10000]`
-- Output: `-1`
-- Explanation: No sequence of rules converts `d` into `e`.
+#### Example 3
+
+- **Input:** `source = "abcd"`, `target = "abce"`, `original = ["a"]`, `changed = ["e"]`, `cost = [10000]`
+- **Output:** `-1`
+- **Explanation:** No sequence of rules converts `d` into `e`.

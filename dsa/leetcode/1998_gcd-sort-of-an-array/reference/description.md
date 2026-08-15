@@ -8,8 +8,13 @@ Return `true` *if it is possible to sort *`nums`* in **non-decreasing** order us
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ Return `true` *if it is possible to sort *`nums`* in **non-decreasing** order us
 - **Explanation:** We can sort [7,21,3] by performing the following operations:
 - Swap 7 and 21 because gcd(7,21) = 7. nums = [<u>**21**</u>,<u>**7**</u>,3]
 - Swap 21 and 3 because gcd(21,3) = 3. nums = [<u>**3**</u>,7,<u>**21**</u>]
+
 #### Example 2
 
 - **Input:** `nums = [5,2,6,2]`
 - **Output:** `false`
 - **Explanation:** It is impossible to sort the array because 5 cannot be swapped with any other element.
+
 #### Example 3
 
 - **Input:** `nums = [10,5,9,3,15]`

@@ -38,23 +38,23 @@ $$
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: \`target = "abcdef", words = ["abdef","abc","d","def","ef"], costs = [100,1,1,10,5]\`
-- Output: \`7\`
+- **Input:** \`target = "abcdef", words = ["abdef","abc","d","def","ef"], costs = [100,1,1,10,5]\`
+- **Output:** \`7\`
 
 Appending \`"abc"\`, \`"d"\`, and \`"ef"\` costs $1+1+5=7$.
 
-**Example 2**
+#### Example 2
 
-- Input: \`target = "aaaa", words = ["z","zz","zzz"], costs = [1,10,100]\`
-- Output: \`-1\`
+- **Input:** \`target = "aaaa", words = ["z","zz","zzz"], costs = [1,10,100]\`
+- **Output:** \`-1\`
 
 No available word matches even the first target character.
 
-**Example 3**
+#### Example 3
 
-- Input: \`target = "abc", words = ["ab","a","bc","c"], costs = [10,1,1,1]\`
-- Output: \`2\`
+- **Input:** \`target = "abc", words = ["ab","a","bc","c"], costs = [10,1,1,1]\`
+- **Output:** \`2\`
 
 Appending \`"a"\` and then \`"bc"\` is cheaper than using \`"ab"\` and \`"c"\`.

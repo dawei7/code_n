@@ -16,17 +16,17 @@ A **descendant** of a node `x` is any node that is on the path from node `x` to 
 
 - **Input:** `root = [10,3,4,2,1]`
 - **Output:** `2`
-- **Explanation:**
-For the node with value 10: The sum of its descendants is 3+4+2+1 = 10.
+- **Explanation:** For the node with value 10: The sum of its descendants is 3+4+2+1 = 10.
 For the node with value 3: The sum of its descendants is 2+1 = 3.
+
 #### Example 2
 
 ![](images/screenshot-2021-08-17-at-17-25-21-diagram-drawio-diagrams-net.png)
 
 - **Input:** `root = [2,3,null,2,null]`
 - **Output:** `0`
-- **Explanation:**
-No node has a value that is equal to the sum of its descendants.
+- **Explanation:** No node has a value that is equal to the sum of its descendants.
+
 #### Example 3
 
 ![](images/screenshot-2021-08-17-at-17-23-53-diagram-drawio-diagrams-net.png)

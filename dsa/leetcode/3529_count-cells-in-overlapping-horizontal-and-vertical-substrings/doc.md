@@ -33,17 +33,17 @@ The dimensions satisfy $1 \le m,n \le 1000$ and $1 \le mn \le 10^5$. The pattern
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [["a", "a", "c", "c"], ["b", "b", "b", "c"], ["a", "a", "b", "a"], ["c", "a", "a", "c"], ["a", "a", "b", "a"]], pattern = "abaca"`
-- Output: `1`
+- **Input:** `grid = [["a", "a", "c", "c"], ["b", "b", "b", "c"], ["a", "a", "b", "a"], ["c", "a", "a", "c"], ["a", "a", "b", "a"]], pattern = "abaca"`
+- **Output:** `1`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [["c", "a", "a", "a"], ["a", "a", "b", "a"], ["b", "b", "a", "a"], ["a", "a", "b", "a"]], pattern = "aba"`
-- Output: `4`
+- **Input:** `grid = [["c", "a", "a", "a"], ["a", "a", "b", "a"], ["b", "b", "a", "a"], ["a", "a", "b", "a"]], pattern = "aba"`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [["a"]], pattern = "a"`
-- Output: `1`
+- **Input:** `grid = [["a"]], pattern = "a"`
+- **Output:** `1`

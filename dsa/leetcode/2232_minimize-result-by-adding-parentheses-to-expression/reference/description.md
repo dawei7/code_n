@@ -10,8 +10,13 @@ The input has been generated such that the original value of `expression`, and t
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `expression`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -22,11 +27,13 @@ The input has been generated such that the original value of `expression`, and t
 - **Explanation:** The expression evaluates to 2 * (47 + 38) = 2 * 85 = 170.
 Note that "2(4)7+38" is invalid because the right parenthesis must be to the right of the '+'.
 It can be shown that 170 is the smallest possible value.
+
 #### Example 2
 
 - **Input:** $expression = "12+34"$
 - **Output:** `"1(2+3)4"`
 - **Explanation:** The expression evaluates to 1 * (2 + 3) * 4 = 1 * 5 * 4 = 20.
+
 #### Example 3
 
 - **Input:** $expression = "999+999"$

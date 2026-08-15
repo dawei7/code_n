@@ -27,32 +27,27 @@ Return `true` if an allowed version of `s` is a subsequence of `t`; otherwise, r
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "cat", t = "chat"
+- **Input:** s = "cat", t = "chat"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - Replace $s[1]$ from `'a'` to `'h'`. The resulting string is `"cht"`.
 
 - `"cht"` is a subsequence of `"chat"` because we can match `'c'`, `'h'`, and `'t'` in order.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "plane", t = "apple"
+- **Input:** s = "plane", t = "apple"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - The characters `'p'`, `'l'`, and `'e'` can be matched in `t`, but the remaining characters cannot be matched while preserving the required order.
 
 - Even after replacing any one character in `s`, it is impossible to make `s` a subsequence of `t`.
-
-</div>
 
 ### 4. Constraints
 

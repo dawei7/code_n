@@ -31,20 +31,20 @@ Return the maximum number of consecutive `1`s that can appear after those flips.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], k = 2`
-- Output: `6`
-- Explanation: Flipping the zero at index `5` and the final zero creates a consecutive run of six ones from indices `5` through `10`.
+- **Input:** `nums = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], k = 2`
+- **Output:** `6`
+- **Explanation:** Flipping the zero at index `5` and the final zero creates a consecutive run of six ones from indices `5` through `10`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], k = 3`
-- Output: `10`
-- Explanation: The subarray from indices `2` through `11` contains exactly three zeroes, so all ten of its entries can become `1`.
+- **Input:** `nums = [0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], k = 3`
+- **Output:** `10`
+- **Explanation:** The subarray from indices `2` through `11` contains exactly three zeroes, so all ten of its entries can become `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1], k = 0`
-- Output: `3`
-- Explanation: No flip is needed because the entire array is already one consecutive run of ones.
+- **Input:** `nums = [1, 1, 1], k = 0`
+- **Output:** `3`
+- **Explanation:** No flip is needed because the entire array is already one consecutive run of ones.

@@ -30,20 +30,20 @@ Return the maximum number of chunks for which the final concatenation is the glo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [4,3,2,1,0]`
-- Output: `1`
-- Explanation: No proper prefix contains exactly the values that belong in those positions.
+- **Input:** `arr = [4,3,2,1,0]`
+- **Output:** `1`
+- **Explanation:** No proper prefix contains exactly the values that belong in those positions.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,0,2,3,4]`
-- Output: `4`
-- Explanation: `[1,0]`, `[2]`, `[3]`, and `[4]` can be sorted independently.
+- **Input:** `arr = [1,0,2,3,4]`
+- **Output:** `4`
+- **Explanation:** `[1,0]`, `[2]`, `[3]`, and `[4]` can be sorted independently.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [0,2,1,4,3]`
-- Output: `3`
-- Explanation: The maximum partition is `[0]`, `[2,1]`, and `[4,3]`.
+- **Input:** `arr = [0,2,1,4,3]`
+- **Output:** `3`
+- **Explanation:** The maximum partition is `[0]`, `[2,1]`, and `[4,3]`.

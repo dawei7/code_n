@@ -12,8 +12,14 @@ Return *the array obtained after applying all the operations*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `operations`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ Return *the array obtained after applying all the operations*.
 - Replace the number 4 with 7. nums becomes [3,2,<u>**7**</u>,6].
 - Replace the number 6 with 1. nums becomes [3,2,7,<u>**1**</u>].
 We return the final array [3,2,7,1].
+
 #### Example 2
 
 - **Input:** `nums = [1,2], operations = [[1,3],[2,1],[3,2]]`

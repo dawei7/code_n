@@ -33,14 +33,14 @@ Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. The sour
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 0, 1], queries = [[0, 2]]`
-- Output: `true`
-- Explanation: For the single query, choose indices $0$ and $2$; decrementing them produces `[0, 0, 0]`.
+- **Input:** `nums = [1, 0, 1], queries = [[0, 2]]`
+- **Output:** `true`
+- **Explanation:** For the single query, choose indices $0$ and $2$; decrementing them produces `[0, 0, 0]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 3, 2, 1], queries = [[1, 3], [0, 2]]`
-- Output: `false`
-- Explanation: Index $0$ is covered only once, so its value $4$ cannot be reduced to zero.
+- **Input:** `nums = [4, 3, 2, 1], queries = [[1, 3], [0, 2]]`
+- **Output:** `false`
+- **Explanation:** Index $0$ is covered only once, so its value $4$ cannot be reduced to zero.

@@ -32,16 +32,16 @@ Return the maximum vowel frequency plus the maximum consonant frequency, treatin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "successes"`
-- Output: `6`
-- Explanation: `e` occurs twice, the most among vowels, while `s` occurs four times, the most among consonants. Their frequencies sum to $2 + 4 = 6$.
+- **Input:** `s = "successes"`
+- **Output:** `6`
+- **Explanation:** `e` occurs twice, the most among vowels, while `s` occurs four times, the most among consonants. Their frequencies sum to $2 + 4 = 6$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "aeiaeia"`
-- Output: `3`
-- Explanation: `a` is the most frequent vowel with three occurrences, and the string has no consonants.
+- **Input:** `s = "aeiaeia"`
+- **Output:** `3`
+- **Explanation:** `a` is the most frequent vowel with three occurrences, and the string has no consonants.
 
 ---

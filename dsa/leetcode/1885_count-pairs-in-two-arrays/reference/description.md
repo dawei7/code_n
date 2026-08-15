@@ -16,6 +16,7 @@ Return *the **number of pairs** satisfying the condition.*
 - **Output:** `1`
 **Explanation**: The pairs satisfying the condition are:
 - (0, 2) where 2 + 2 > 1 + 1.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,10,6,2], nums2 = [1,4,1,5]$

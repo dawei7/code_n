@@ -34,20 +34,20 @@ Return the result formed by concatenating `arr1` followed by `arr2`. The order i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 1, 3, 3]`
-- Output: `[2, 3, 1, 3]`
-- Explanation: Both greater counts are zero for each `3`. The first `3` goes to `arr1` because the lengths are tied; the second goes to the now-shorter `arr2`.
+- **Input:** `nums = [2, 1, 3, 3]`
+- **Output:** `[2, 3, 1, 3]`
+- **Explanation:** Both greater counts are zero for each `3`. The first `3` goes to `arr1` because the lengths are tied; the second goes to the now-shorter `arr2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 14, 3, 1, 2]`
-- Output: `[5, 3, 1, 2, 14]`
-- Explanation: The first count tie sends `3` to `arr1`. For both `1` and `2`, `arr1` then contains more strictly greater values than `arr2`.
+- **Input:** `nums = [5, 14, 3, 1, 2]`
+- **Output:** `[5, 3, 1, 2, 14]`
+- **Explanation:** The first count tie sends `3` to `arr1`. For both `1` and `2`, `arr1` then contains more strictly greater values than `arr2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 3, 3, 3]`
-- Output: `[3, 3, 3, 3]`
-- Explanation: Equal values are never strictly greater, so length and final `arr1` tie-breaking alternate the placements evenly.
+- **Input:** `nums = [3, 3, 3, 3]`
+- **Output:** `[3, 3, 3, 3]`
+- **Explanation:** Equal values are never strictly greater, so length and final `arr1` tie-breaking alternate the placements evenly.

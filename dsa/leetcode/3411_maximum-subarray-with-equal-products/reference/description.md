@@ -14,43 +14,37 @@ Return the length of the **longest** **product equivalent** subarray of `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,1,2,1,1,1]
+- **Input:** nums = [1,2,1,2,1,1,1]
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** The longest product equivalent subarray is `[1, 2, 1, 1, 1]`, where $prod([1, 2, 1, 1, 1]) = 2$, $gcd([1, 2, 1, 1, 1]) = 1$, and $lcm([1, 2, 1, 1, 1]) = 2$.
 
-The longest product equivalent subarray is `[1, 2, 1, 1, 1]`, where $prod([1, 2, 1, 1, 1]) = 2$, $gcd([1, 2, 1, 1, 1]) = 1$, and $lcm([1, 2, 1, 1, 1]) = 2$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,4,5,6]
+- **Input:** nums = [2,3,4,5,6]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The longest product equivalent subarray is $[3, 4, 5].$
 
-The longest product equivalent subarray is $[3, 4, 5].$
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,1,4,5,1]
+- **Input:** nums = [1,2,3,1,4,5,1]
 
-**Output:** 5
-
-</div>
+- **Output:** 5
 
 ### 4. Constraints
 

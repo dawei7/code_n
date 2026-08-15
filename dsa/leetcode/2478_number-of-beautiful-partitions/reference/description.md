@@ -16,8 +16,15 @@ A **substring** is a contiguous sequence of characters within a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+- `minLength`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,11 +36,13 @@ A **substring** is a contiguous sequence of characters within a string.
 "2354 | 218 | 5131"
 "2354 | 21851 | 31"
 "2354218 | 51 | 31"
+
 #### Example 2
 
 - **Input:** `s = "23542185131", k = 3, minLength = 3`
 - **Output:** `1`
 - **Explanation:** There exists one way to create a beautiful partition: "2354 | 218 | 5131".
+
 #### Example 3
 
 - **Input:** `s = "3312958", k = 3, minLength = 1`

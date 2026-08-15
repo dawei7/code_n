@@ -30,20 +30,20 @@ Return a generator object. When fully consumed, it yields `[1!, 2!, ..., n!]` fo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `[1, 2, 6, 24, 120]`
-- Explanation: Consecutive generator advances produce `1!` through `5!`.
+- **Input:** `n = 5`
+- **Output:** `[1, 2, 6, 24, 120]`
+- **Explanation:** Consecutive generator advances produce `1!` through `5!`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `[1, 2]`
-- Explanation: The generator yields `1!`, followed by `2!`.
+- **Input:** `n = 2`
+- **Output:** `[1, 2]`
+- **Explanation:** The generator yields `1!`, followed by `2!`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 0`
-- Output: `[1]`
-- Explanation: The sole yielded value is `0!`.
+- **Input:** `n = 0`
+- **Output:** `[1]`
+- **Explanation:** The sole yielded value is `0!`.

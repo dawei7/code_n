@@ -32,16 +32,16 @@ Both dimensions satisfy $1\le m,n\le50$, and every original cell satisfies $0\le
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[3, 2], [1, 3], [3, 4], [0, 1]]`
-- Output: `15`
+- **Input:** `grid = [[3, 2], [1, 3], [3, 4], [0, 1]]`
+- **Output:** `15`
 
 The first column requires 3, 2, and 6 increments in its last three rows. The final cell of the second column requires 4 more, for a total of 15.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[3, 2, 1], [2, 1, 0], [1, 2, 3]]`
-- Output: `12`
+- **Input:** `grid = [[3, 2, 1], [2, 1, 0], [1, 2, 3]]`
+- **Output:** `12`
 
 Raising only the cells that fail their column's strict inequality costs 6 operations in the first column, 4 in the second, and 2 in the third.

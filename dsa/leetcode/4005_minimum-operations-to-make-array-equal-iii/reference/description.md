@@ -28,14 +28,11 @@ Return the minimum number of permitted multiplication and division operations re
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [6,12,8]
+- **Input:** nums = [6,12,8]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-We can perform following operates to make all numbers to 6:
+- **Explanation:** We can perform following operates to make all numbers to 6:
 
 - Divide $\text{nums}[1] = 12$ by 2 to get 6.
 
@@ -43,35 +40,25 @@ We can perform following operates to make all numbers to 6:
 
 - Multiply $\text{nums}[2] = 2$ by 3 to get 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,15,20]
+- **Input:** nums = [5,15,20]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-We can perform following operates to make all numbers to 5:
+- **Explanation:** We can perform following operates to make all numbers to 5:
 
 - Divide $\text{nums}[1] = 15$ by 3 to get 5.
 
 - Divide $\text{nums}[2] = 20$ by 4 to get 5.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [7,7,7]
+- **Input:** nums = [7,7,7]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-All elements are already equal, so no operations are needed.
-
-</div>
+- **Explanation:** All elements are already equal, so no operations are needed.
 
 ### 4. Constraints
 

@@ -8,8 +8,14 @@ Given a list `piles`, where $\text{piles}[i]$ is a list of integers denoting the
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `piles`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,14 +25,14 @@ Given a list `piles`, where $\text{piles}[i]$ is a list of integers denoting the
 
 - **Input:** $piles = [[1,100,3],[7,8,9]], k = 2$
 - **Output:** `101`
-- **Explanation:**
-The above diagram shows the different ways we can choose k coins.
+- **Explanation:** The above diagram shows the different ways we can choose k coins.
 The maximum total we can obtain is 101.
+
 #### Example 2
 
 - **Input:** $piles = [[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]], k = 7$
 - **Output:** `706`
-- **Explanation:**
+- **Explanation:** 
 **The maximum total can be obtained if we choose all coins from the last pile.
 
 ### 4. Constraints

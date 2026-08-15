@@ -9,12 +9,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/stickers-to-spell-word/) |
 
 ## Problem Description
+
 ### Goal
+
 You have infinitely many copies of each supplied sticker, and every sticker contains one lowercase English word. You may cut individual letters from chosen stickers and rearrange them to spell the string `target`; each physical sticker copy contributes each printed letter at most once.
 
 Return the minimum number of sticker copies needed to provide all target letters with their required multiplicities. Unused letters on a chosen sticker are allowed. If no combination of the available sticker types can form `target`, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
 - `stickers`: reusable lowercase sticker strings
@@ -25,17 +28,18 @@ Return the minimum number of sticker copies needed to provide all target letters
 - The minimum sticker count covering every target letter, or `-1` if impossible
 
 ### Examples
-**Example 1**
 
-- Input: `stickers = ["with","example","science"], target = "thehat"`
-- Output: `3`
+#### Example 1
 
-**Example 2**
+- **Input:** `stickers = ["with","example","science"], target = "thehat"`
+- **Output:** `3`
 
-- Input: `stickers = ["notice","possible"], target = "basicbasic"`
-- Output: `-1`
+#### Example 2
 
-**Example 3**
+- **Input:** `stickers = ["notice","possible"], target = "basicbasic"`
+- **Output:** `-1`
 
-- Input: `stickers = ["these","guess","about","garden","him"], target = "atomher"`
-- Output: `3`
+#### Example 3
+
+- **Input:** `stickers = ["these","guess","about","garden","him"], target = "atomher"`
+- **Output:** `3`

@@ -46,24 +46,24 @@ earliest-arrival-first rule.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `buses = [10,20]`, `passengers = [2,17,18,19]`, `capacity = 2`
-- Output: `16`
-- Explanation: Arriving at 16 puts you ahead of the passengers at 17 and 18
+- **Input:** `buses = [10,20]`, `passengers = [2,17,18,19]`, `capacity = 2`
+- **Output:** `16`
+- **Explanation:** Arriving at 16 puts you ahead of the passengers at 17 and 18
   for the final bus; 17 is unavailable.
 
-**Example 2**
+#### Example 2
 
-- Input: `buses = [20,30,10]`,
+- **Input:** `buses = [20,30,10]`,
   `passengers = [19,13,26,4,25,11,21]`, `capacity = 2`
-- Output: `20`
-- Explanation: After the earlier buses leave, arrival time 20 secures a place
+- **Output:** `20`
+- **Explanation:** After the earlier buses leave, arrival time 20 secures a place
   on the bus at 30 ahead of the passenger at 21.
 
-**Example 3**
+#### Example 3
 
-- Input: `buses = [10]`, `passengers = [10]`, `capacity = 1`
-- Output: `9`
-- Explanation: The full bus requires arriving before its passenger, and 9 is
+- **Input:** `buses = [10]`, `passengers = [10]`, `capacity = 1`
+- **Output:** `9`
+- **Explanation:** The full bus requires arriving before its passenger, and 9 is
   the latest unoccupied choice.

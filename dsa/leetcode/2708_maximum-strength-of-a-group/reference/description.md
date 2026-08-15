@@ -6,8 +6,13 @@ Return *the maximum strength of a group the teacher can create*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Return *the maximum strength of a group the teacher can create*.
 - **Input:** `nums = [3,-1,-5,2,5,-9]`
 - **Output:** `1350`
 - **Explanation:** One way to form a group of maximal strength is to group the students at indices [0,2,3,4,5]. Their strength is 3 * (-5) * 2 * 5 * (-9) = 1350, which we can show is optimal.
+
 #### Example 2
 
 - **Input:** `nums = [-4,-5,-4]`

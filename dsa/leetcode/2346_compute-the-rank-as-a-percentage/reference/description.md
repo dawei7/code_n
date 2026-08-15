@@ -29,7 +29,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Students table:
 +------------+---------------+------+
 | student_id | department_id | mark |
@@ -40,7 +40,7 @@ Students table:
 | 1          | 1             | 610  |
 | 3          | 1             | 530  |
 +------------+---------------+------+
-**Output:**
+- **Output:** 
 +------------+---------------+------------+
 | student_id | department_id | percentage |
 +------------+---------------+------------+
@@ -50,8 +50,7 @@ Students table:
 | 2          | 2             | 0.0        |
 | 8          | 2             | 0.0        |
 +------------+---------------+------------+
-**Explanation:**
-For Department 1:
+- **Explanation:** For Department 1:
  - Student 7: percentage = (1 - 1) * 100 / (3 - 1) = 0.0
  - Student 1: percentage = (2 - 1) * 100 / (3 - 1) = 50.0
  - Student 3: percentage = (3 - 1) * 100 / (3 - 1) = 100.0

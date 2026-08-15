@@ -33,20 +33,20 @@ Let $M = \max(\texttt{k}, \max(\texttt{nums}))$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 4, 5], k = 3`
-- Output: `0`
-- Explanation: The subarray `nums[0..1]` has OR value `3`, so its absolute difference from `k` is `0`.
+- **Input:** `nums = [1, 2, 4, 5], k = 3`
+- **Output:** `0`
+- **Explanation:** The subarray `nums[0..1]` has OR value `3`, so its absolute difference from `k` is `0`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 1, 3], k = 2`
-- Output: `1`
-- Explanation: A one-element subarray containing `3` has difference `1`, and no subarray OR equals `2`.
+- **Input:** `nums = [1, 3, 1, 3], k = 2`
+- **Output:** `1`
+- **Explanation:** A one-element subarray containing `3` has difference `1`, and no subarray OR equals `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1], k = 10`
-- Output: `9`
-- Explanation: The only non-empty subarray has OR value `1`.
+- **Input:** `nums = [1], k = 10`
+- **Output:** `9`
+- **Explanation:** The only non-empty subarray has OR value `1`.

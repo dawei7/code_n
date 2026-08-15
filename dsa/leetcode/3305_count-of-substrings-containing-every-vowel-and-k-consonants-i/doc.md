@@ -31,20 +31,20 @@ It must also contain exactly `k` consonants; extra vowel occurrences are allowed
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aeioqq"`, `k = 1`
-- Output: `0`
-- Explanation: No substring contains all five vowels because `u` is absent.
+- **Input:** `word = "aeioqq"`, `k = 1`
+- **Output:** `0`
+- **Explanation:** No substring contains all five vowels because `u` is absent.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aeiou"`, `k = 0`
-- Output: `1`
-- Explanation: The whole string contains every vowel and no consonants.
+- **Input:** `word = "aeiou"`, `k = 0`
+- **Output:** `1`
+- **Explanation:** The whole string contains every vowel and no consonants.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "ieaouqqieaouqq"`, `k = 1`
-- Output: `3`
-- Explanation: Exactly three ranges contain all vowels and one of the `q` characters.
+- **Input:** `word = "ieaouqqieaouqq"`, `k = 1`
+- **Output:** `3`
+- **Explanation:** Exactly three ranges contain all vowels and one of the `q` characters.

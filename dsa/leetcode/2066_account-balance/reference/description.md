@@ -31,7 +31,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Transactions table:
 +------------+------------+----------+--------+
 | account_id | day        | type     | amount |
@@ -42,7 +42,7 @@ Transactions table:
 | 2          | 2021-12-07 | Deposit  | 7000   |
 | 2          | 2021-12-12 | Withdraw | 7000   |
 +------------+------------+----------+--------+
-**Output:**
+- **Output:** 
 +------------+------------+---------+
 | account_id | day        | balance |
 +------------+------------+---------+
@@ -52,8 +52,7 @@ Transactions table:
 | 2          | 2021-12-07 | 7000    |
 | 2          | 2021-12-12 | 0       |
 +------------+------------+---------+
-**Explanation:**
-Account 1:
+- **Explanation:** Account 1:
 - Initial balance is 0.
 - 2021-11-07 --> deposit 2000. Balance is 0 + 2000 = 2000.
 - 2021-11-09 --> withdraw 1000. Balance is 2000 - 1000 = 1000.

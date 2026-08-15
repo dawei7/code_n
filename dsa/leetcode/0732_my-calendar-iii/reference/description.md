@@ -12,8 +12,10 @@ Implement the `MyCalendarThree` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MyCalendarThree()`: Initializes the data structure.
+- `book(startTime: int, endTime: int) -> `int``: Executes operation.
 
 ### 3. Examples
 

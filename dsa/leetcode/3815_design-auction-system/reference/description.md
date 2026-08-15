@@ -35,14 +35,13 @@ Return one result for every operation: `null` for construction, addition, update
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["AuctionSystem", "addBid", "addBid", "getHighestBidder", "updateBid", "getHighestBidder", "removeBid", "getHighestBidder", "getHighestBidder"]
 
 [[], [1, 7, 5], [2, 7, 6], [7], [1, 7, 8], [7], [2, 7], [7], [3]]
 
-**Output:**
+- **Output:** 
 
 [null, null, null, 2, null, 1, null, 1, -1]
 
@@ -64,7 +63,7 @@ auctionSystem.removeBid(2, 7); // Remove User 2's bid on item 7
 
 auctionSystem.getHighestBidder(7); // return 1 as User 1 is the current highest bidder
 
-auctionSystem.getHighestBidder(3); // return -1 as no bids exist for item 3</div>
+auctionSystem.getHighestBidder(3); // return -1 as no bids exist for item 3
 
 ### 4. Constraints
 

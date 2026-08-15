@@ -35,7 +35,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Steps table:
 +---------+-------------+------------+
 | user_id | steps_count | steps_date |
@@ -58,7 +58,7 @@ Steps table:
 | 6       | 191         | 2021-09-02 |
 | 6       | 303         | 2021-09-05 |
 +---------+-------------+------------+
-**Output:**
+- **Output:** 
 +---------+------------+-----------------+
 | user_id | steps_date | rolling_average |
 +---------+------------+-----------------+
@@ -68,7 +68,7 @@ Steps table:
 | 3       | 2021-09-09 | 505.67          |
 | 3       | 2021-09-10 | 674.67          |
 +---------+------------+-----------------+
-**Explanation:**
+- **Explanation:** 
 - For user id 1, the step counts for the three consecutive days up to 2021-09-06 are available. Consequently, the rolling average for this particular date is computed as (395 + 499 + 712) / 3 = 535.33.
 - For user id 1, the step counts for the three consecutive days up to 2021-09-07 are available. Consequently, the rolling average for this particular date is computed as (499 + 712 + 576) / 3 = 595.67.
 - For user id 2, the step counts for the three consecutive days up to 2021-09-08 are available. Consequently, the rolling average for this particular date is computed as (153 + 171 + 530) / 3 = 284.67.

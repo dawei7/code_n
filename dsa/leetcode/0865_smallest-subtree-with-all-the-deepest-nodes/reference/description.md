@@ -10,8 +10,10 @@ The **subtree** of a node is a tree consisting of that node, plus the set of all
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `subtreeWithAllDeepest(root: Optional[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -24,11 +26,13 @@ The **subtree** of a node is a tree consisting of that node, plus the set of all
 - **Explanation:** We return the node with value 2, colored in yellow in the diagram.
 The nodes coloured in blue are the deepest nodes of the tree.
 Notice that nodes 5, 3 and 2 contain the deepest nodes in the tree but node 2 is the smallest subtree among them, so we return it.
+
 #### Example 2
 
 - **Input:** `root = [1]`
 - **Output:** `[1]`
 - **Explanation:** The root is the deepest node in the tree.
+
 #### Example 3
 
 - **Input:** `root = [0,1,3,null,2]`

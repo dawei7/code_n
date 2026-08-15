@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/calculate-amount-paid-in-taxes/) |
 
 ## Problem Description
+
 ### Goal
+
 The zero-indexed array `brackets` describes a progressive tax schedule.
 `brackets[i] = [upper_i, percent_i]` gives the inclusive income ceiling of
 bracket $i$ and its percentage rate. The upper bounds are strictly increasing.
@@ -21,6 +23,7 @@ owed across all portions of that income. The final bracket is guaranteed to
 reach `income`.
 
 ### Function Contract
+
 **Inputs**
 
 - `brackets`: Between 1 and 100 pairs `[upper_i, percent_i]`, ordered by
@@ -37,22 +40,23 @@ The total tax as a floating-point monetary amount. An error of at most
 $10^{-5}$ is accepted.
 
 ### Examples
-**Example 1**
 
-- Input: `brackets = [[3, 50], [7, 10], [12, 25]]`, `income = 10`
-- Output: `2.65`
-- Explanation: The taxable portions are $3$, $4$, and $3$ dollars, producing
+#### Example 1
+
+- **Input:** `brackets = [[3, 50], [7, 10], [12, 25]]`, `income = 10`
+- **Output:** `2.65`
+- **Explanation:** The taxable portions are $3$, $4$, and $3$ dollars, producing
   `3 * 50% + 4 * 10% + 3 * 25% = 2.65`.
 
-**Example 2**
+#### Example 2
 
-- Input: `brackets = [[1, 0], [4, 25], [5, 50]]`, `income = 2`
-- Output: `0.25`
-- Explanation: The first dollar has a zero rate and the second has a
+- **Input:** `brackets = [[1, 0], [4, 25], [5, 50]]`, `income = 2`
+- **Output:** `0.25`
+- **Explanation:** The first dollar has a zero rate and the second has a
   25-percent rate.
 
-**Example 3**
+#### Example 3
 
-- Input: `brackets = [[2, 50]]`, `income = 0`
-- Output: `0.0`
-- Explanation: There is no income to tax.
+- **Input:** `brackets = [[2, 50]]`, `income = 0`
+- **Output:** `0.0`
+- **Explanation:** There is no income to tax.

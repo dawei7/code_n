@@ -8,8 +8,13 @@ Return *the maximum number of rows that have all values equal after some number 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return *the maximum number of rows that have all values equal after some number 
 - **Input:** $matrix = [[0,1],[1,1]]$
 - **Output:** `1`
 - **Explanation:** After flipping no values, 1 row has all values equal.
+
 #### Example 2
 
 - **Input:** $matrix = [[0,1],[1,0]]$
 - **Output:** `2`
 - **Explanation:** After flipping values in the first column, both rows have equal values.
+
 #### Example 3
 
 - **Input:** $matrix = [[0,0,0],[0,0,1],[1,1,0]]$

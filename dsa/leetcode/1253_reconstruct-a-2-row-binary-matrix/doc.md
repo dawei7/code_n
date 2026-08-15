@@ -32,17 +32,17 @@ Return any matrix satisfying all three requirements. Every entry must be either 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `upper = 2`, `lower = 1`, `colsum = [1, 1, 1]`
-- Output: `[[1, 1, 0], [0, 0, 1]]`
+- **Input:** `upper = 2`, `lower = 1`, `colsum = [1, 1, 1]`
+- **Output:** `[[1, 1, 0], [0, 0, 1]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `upper = 2`, `lower = 3`, `colsum = [2, 2, 1, 1]`
-- Output: `[]`
+- **Input:** `upper = 2`, `lower = 3`, `colsum = [2, 2, 1, 1]`
+- **Output:** `[]`
 
-**Example 3**
+#### Example 3
 
-- Input: `upper = 5`, `lower = 5`, `colsum = [2, 1, 2, 0, 1, 0, 1, 2, 0, 1]`
-- Output: one valid matrix is `[[1, 1, 1, 0, 1, 0, 0, 1, 0, 0], [1, 0, 1, 0, 0, 0, 1, 1, 0, 1]]`.
+- **Input:** `upper = 5`, `lower = 5`, `colsum = [2, 1, 2, 0, 1, 0, 1, 2, 0, 1]`
+- **Output:** one valid matrix is `[[1, 1, 1, 0, 1, 0, 0, 1, 0, 0], [1, 0, 1, 0, 0, 0, 1, 1, 0, 1]]`.

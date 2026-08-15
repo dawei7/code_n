@@ -42,23 +42,23 @@ The constraints are $2\le\lvert\texttt{nums}\rvert\le10^4$ and $1\le\texttt{nums
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [16, 6, 3]`
-- Output: `3`
+- **Input:** `nums = [16, 6, 3]`
+- **Output:** `3`
 
 The complete array is valid because its differences are `[10, 3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6, 5, 3, 4, 2, 1]`
-- Output: `4`
+- **Input:** `nums = [6, 5, 3, 4, 2, 1]`
+- **Output:** `4`
 
 One longest choice is `[6, 4, 2, 1]`, whose differences are `[2, 2, 1]`. The repeated difference 2 is permitted.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10, 20, 10, 19, 10, 20]`
-- Output: `5`
+- **Input:** `nums = [10, 20, 10, 19, 10, 20]`
+- **Output:** `5`
 
 The subsequence `[10, 20, 10, 19, 10]` has differences `[10, 10, 9, 9]`.

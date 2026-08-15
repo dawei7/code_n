@@ -8,8 +8,13 @@ Return *the number of land cells in* `grid` *for which we cannot walk off the bo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the number of land cells in* `grid` *for which we cannot walk off the bo
 - **Input:** `grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]`
 - **Output:** `3`
 - **Explanation:** There are three 1s that are enclosed by 0s, and one 1 that is not enclosed because its on the boundary.
+
 #### Example 2
 
 ![](images/enclaves2.jpg)

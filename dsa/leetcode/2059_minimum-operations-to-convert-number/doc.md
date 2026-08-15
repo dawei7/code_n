@@ -34,19 +34,19 @@ Let $R$ be the number of reachable values in the expandable range $[0,1000]$, so
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,4,12], start = 2, goal = 12`
-- Output: `2`
-- Explanation: One shortest sequence is `2 + 12 = 14`, followed by `14 - 2 = 12`.
+- **Input:** `nums = [2,4,12], start = 2, goal = 12`
+- **Output:** `2`
+- **Explanation:** One shortest sequence is `2 + 12 = 14`, followed by `14 - 2 = 12`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,5,7], start = 0, goal = -4`
-- Output: `2`
-- Explanation: `0 + 3 = 3`, then `3 - 7 = -4`; the final out-of-range result is allowed.
+- **Input:** `nums = [3,5,7], start = 0, goal = -4`
+- **Output:** `2`
+- **Explanation:** `0 + 3 = 3`, then `3 - 7 = -4`; the final out-of-range result is allowed.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,8,16], start = 0, goal = 1`
-- Output: `-1`
+- **Input:** `nums = [2,8,16], start = 0, goal = 1`
+- **Output:** `-1`

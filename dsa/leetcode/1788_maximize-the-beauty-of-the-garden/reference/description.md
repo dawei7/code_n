@@ -23,11 +23,13 @@ Return the maximum possible beauty of some **valid** garden after you have remov
 - **Input:** $flowers = [1,2,3,1,2]$
 - **Output:** `8`
 - **Explanation:** You can produce the valid garden [2,3,1,2] to have a total beauty of 2 + 3 + 1 + 2 = 8.
+
 #### Example 2
 
 - **Input:** $flowers = [100,1,1,-3,1]$
 - **Output:** `3`
 - **Explanation:** You can produce the valid garden [1,1,1] to have a total beauty of 1 + 1 + 1 = 3.
+
 #### Example 3
 
 - **Input:** $flowers = [-1,-2,0,-1]$

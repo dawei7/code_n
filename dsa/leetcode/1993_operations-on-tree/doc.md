@@ -32,14 +32,14 @@ Each operation returns `true` exactly when it succeeds and changes the stored lo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["LockingTree", "lock", "unlock", "unlock", "lock", "upgrade", "lock"]`, `arguments = [[[-1, 0, 0, 1, 1, 2, 2]], [2, 2], [2, 3], [2, 2], [4, 5], [0, 1], [0, 1]]`
-- Output: `[null, true, false, true, true, true, false]`
-- Explanation: User $2$ first locks and then correctly unlocks node $2$; user $3$ cannot release that lock. After node $4$ is locked, upgrading the root clears node $4$ and locks node $0$, so the final lock attempt fails.
+- **Input:** `operations = ["LockingTree", "lock", "unlock", "unlock", "lock", "upgrade", "lock"]`, `arguments = [[[-1, 0, 0, 1, 1, 2, 2]], [2, 2], [2, 3], [2, 2], [4, 5], [0, 1], [0, 1]]`
+- **Output:** `[null, true, false, true, true, true, false]`
+- **Explanation:** User $2$ first locks and then correctly unlocks node $2$; user $3$ cannot release that lock. After node $4$ is locked, upgrading the root clears node $4$ and locks node $0$, so the final lock attempt fails.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["LockingTree", "upgrade", "lock", "upgrade"]`, `arguments = [[[-1, 0, 0]], [0, 1], [1, 7], [0, 1]]`
-- Output: `[null, false, true, true]`
-- Explanation: The first upgrade has no locked descendant. Locking node $1$ supplies one, so the second upgrade succeeds.
+- **Input:** `operations = ["LockingTree", "upgrade", "lock", "upgrade"]`, `arguments = [[[-1, 0, 0]], [0, 1], [1, 7], [0, 1]]`
+- **Output:** `[null, false, true, true]`
+- **Explanation:** The first upgrade has no locked descendant. Locking node $1$ supplies one, so the second upgrade succeeds.

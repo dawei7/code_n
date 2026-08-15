@@ -23,7 +23,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Tasks table:
@@ -58,7 +57,7 @@ Tasks table:
 
 - For employee ID 1001:
 
-		<li>Task 1 and Task 2 overlap from 08:30 to 09:00 (30 minutes).
+		- Task 1 and Task 2 overlap from 08:30 to 09:00 (30 minutes).
 
 - Task 7 has a duration of 150 minutes (2 hours and 30 minutes).
 
@@ -66,10 +65,9 @@ Tasks table:
 
 - Maximum concurrent tasks: 2 (during the overlap period).
 
-	</li>
 - For employee ID 1002:
 
-		<li>Task 4 and Task 5 overlap from 09:30 to 10:00 (30 minutes).
+		- Task 4 and Task 5 overlap from 09:30 to 10:00 (30 minutes).
 
 - Total task time: 60 (Task 4) + 120 (Task 5) - 30 (overlap) = 150 minutes = 2 hours and 30 minutes.
 
@@ -77,16 +75,13 @@ Tasks table:
 
 - Maximum concurrent tasks: 2 (during the overlap period).
 
-	</li>
 - For employee ID 1003:
 
-		<li>No overlapping tasks.
+		- No overlapping tasks.
 
 - Total task time: 120 minutes = 2 hours.
 
 - Maximum concurrent tasks: 1.
-
-	</li>
 
 ### 2. Function Contract
 
@@ -95,5 +90,3 @@ Tasks table:
 ### 3. Note
 
 Output table is ordered by employee_id in ascending order.
-
-</div>

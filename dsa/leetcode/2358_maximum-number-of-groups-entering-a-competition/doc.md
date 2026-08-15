@@ -39,18 +39,18 @@ counts and grade sums are both strictly increasing.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grades = [10,6,12,7,3,5]`
-- Output: `3`
+- **Input:** `grades = [10,6,12,7,3,5]`
+- **Output:** `3`
 
 The six students can be split into groups of sizes 1, 2, and 3 with increasing
 grade sums, so three groups are attainable.
 
-**Example 2**
+#### Example 2
 
-- Input: `grades = [8,8]`
-- Output: `1`
+- **Input:** `grades = [8,8]`
+- **Output:** `1`
 
 Two strictly increasing positive group sizes would require at least three
 students, so only one group can be formed.

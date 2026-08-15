@@ -6,39 +6,39 @@ Return `true` if `num` is **balanced**, otherwise return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num = "1234"
+- **Input:** num = "1234"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - The sum of digits at even indices is $1 + 3 = 4$, and the sum of digits at odd indices is $2 + 4 = 6$.
 
 - Since 4 is not equal to 6, `num` is not balanced.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num = "24123"
+- **Input:** num = "24123"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - The sum of digits at even indices is $2 + 1 + 3 = 6$, and the sum of digits at odd indices is $4 + 2 = 6$.
 
 - Since both are equal the `num` is balanced.
-
-</div>
 
 ### 4. Constraints
 

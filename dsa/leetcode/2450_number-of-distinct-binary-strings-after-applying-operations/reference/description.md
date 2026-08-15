@@ -32,6 +32,7 @@ that:
 - Applying one operation on the substring starting at index 1 gives s = "1<u>**110**</u>".
 - Applying one operation on both the substrings starting at indices 0 and 1 gives s = "<u>**0000**</u>".
 It can be shown that we cannot obtain any other string, so the answer is 4.
+
 #### Example 2
 
 - **Input:** `s = "10110", k = 5`

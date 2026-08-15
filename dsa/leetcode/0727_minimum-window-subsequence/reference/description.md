@@ -25,9 +25,9 @@ Return the shortest qualifying substring of `s1`. On a length tie, return the wi
 
 - **Input:** $s1 = "abcdebdde", s2 = "bde"$
 - **Output:** `"bcde"`
-- **Explanation:**
-"bcde" is the answer because it occurs before "bdde" which has the same length.
+- **Explanation:** "bcde" is the answer because it occurs before "bdde" which has the same length.
 "deb" is not a smaller window because the elements of s2 in the window must occur in order.
+
 #### Example 2
 
 - **Input:** $s1 = "jmeqksfrsdcmsiwvaovztaqenprpvnbstl", s2 = "u"$

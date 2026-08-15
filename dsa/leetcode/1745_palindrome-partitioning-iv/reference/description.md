@@ -6,8 +6,13 @@ A string is said to be palindrome if it the same string when reversed.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ A string is said to be palindrome if it the same string when reversed.
 - **Input:** `s = "abcbdd"`
 - **Output:** `true`
 - **Explanation:** "abcbdd" = "a" + "bcb" + "dd", and all three substrings are palindromes.
+
 #### Example 2
 
 - **Input:** `s = "bcbddxy"`

@@ -18,6 +18,7 @@ Submissions making **more than 400 calls** to `hasShips` will be judged *Wrong A
 ships = [[1,1],[2,2],[3,3],[5,5]], topRight = [4,4], bottomLeft = [0,0]
 - **Output:** `3`
 - **Explanation:** From [0,0] to [4,4] we can count 3 ships within the range.
+
 #### Example 2
 
 - **Input:** $ans = [[1,1],[2,2],[3,3]], topRight = [1000,1000], bottomLeft = [0,0]$

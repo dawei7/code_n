@@ -36,17 +36,17 @@ Return the answers to type-1 queries in their original order. Update queries do 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `colors = [0,1,1,0,1], queries = [[2,1,0],[1,4]]`
-- Output: `[2]`
+- **Input:** `colors = [0,1,1,0,1], queries = [[2,1,0],[1,4]]`
+- **Output:** `[2]`
 
-**Example 2**
+#### Example 2
 
-- Input: `colors = [0,0,1,0,1,1], queries = [[1,3],[2,3,0],[1,5]]`
-- Output: `[2,0]`
+- **Input:** `colors = [0,0,1,0,1,1], queries = [[1,3],[2,3,0],[1,5]]`
+- **Output:** `[2,0]`
 
-**Example 3**
+#### Example 3
 
-- Input: `colors = [0,1,0,1,0,1], queries = [[1,3],[2,4,1],[1,3]]`
-- Output: `[6,3]`
+- **Input:** `colors = [0,1,0,1,0,1], queries = [[1,3],[2,4,1],[1,3]]`
+- **Output:** `[6,3]`

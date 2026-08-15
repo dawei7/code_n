@@ -31,16 +31,16 @@ Return the maximum achievable Manhattan distance from the origin at any time whi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "NWSE", k = 1`
-- Output: `3`
+- **Input:** `s = "NWSE", k = 1`
+- **Output:** `3`
 
 Changing `S` to `N` produces `"NWNE"`, whose third move reaches distance $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "NSWWEW", k = 3`
-- Output: `6`
+- **Input:** `s = "NSWWEW", k = 3`
+- **Output:** `6`
 
 The path can be changed to `"NNWWWW"`, ending at Manhattan distance $6$.

@@ -33,17 +33,17 @@ The head begins with urgent news. When employee `i` receives it, that employee n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1, headID = 0, manager = [-1], informTime = [0]`
-- Output: `0`
+- **Input:** `n = 1, headID = 0, manager = [-1], informTime = [0]`
+- **Output:** `0`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]`
-- Output: `1`
+- **Input:** `n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]`
+- **Output:** `1`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 7, headID = 6, manager = [1,2,3,4,5,6,-1], informTime = [0,6,5,4,3,2,1]`
-- Output: `21`
+- **Input:** `n = 7, headID = 6, manager = [1,2,3,4,5,6,-1], informTime = [0,6,5,4,3,2,1]`
+- **Output:** `21`

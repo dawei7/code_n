@@ -10,8 +10,14 @@ Return *the **maximum** possible average pass ratio after assigning the *`extraS
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `classes`: Input parameter (`List[List[int]]`).
+- `extraStudents`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the **maximum** possible average pass ratio after assigning the *`extraS
 - **Input:** $classes = [[1,2],[3,5],[2,2]], extraStudents = 2$
 - **Output:** `0.78333`
 - **Explanation:** You can assign the two extra students to the first class. The average pass ratio will be equal to (3/4 + 3/5 + 2/2) / 3 = 0.78333.
+
 #### Example 2
 
 - **Input:** $classes = [[2,4],[3,9],[4,5],[2,10]], extraStudents = 4$

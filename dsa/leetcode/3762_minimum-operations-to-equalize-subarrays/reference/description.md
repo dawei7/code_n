@@ -28,14 +28,11 @@ Return an array of $q$ integers containing the minimum operation count for each 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,7], k = 3, queries = [[0,1],[0,2]]
+- **Input:** nums = [1,4,7], k = 3, queries = [[0,1],[0,2]]
 
-**Output:** [1,2]
+- **Output:** [1,2]
 
-**Explanation:**
-
-One optimal set of operations:
+- **Explanation:** One optimal set of operations:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -77,17 +74,13 @@ One optimal set of operations:
 
 Thus, $ans = [1, 2]$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,4], k = 2, queries = [[0,2],[0,0],[1,2]]
+- **Input:** nums = [1,2,4], k = 2, queries = [[0,2],[0,0],[1,2]]
 
-**Output:** [-1,0,1]
+- **Output:** [-1,0,1]
 
-**Explanation:**
-
-One optimal set of operations:
+- **Explanation:** One optimal set of operations:
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -133,8 +126,6 @@ One optimal set of operations:
 </table>
 
 Thus, $ans = [-1, 0, 1]$.
-
-</div>
 
 ### 4. Constraints
 

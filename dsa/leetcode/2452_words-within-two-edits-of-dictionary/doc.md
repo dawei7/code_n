@@ -33,14 +33,14 @@ All words have one shared length $n$, where $1 \le n \le 100$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queries = ["word", "note", "ants", "wood"], dictionary = ["wood", "joke", "moat"]`
-- Output: `["word", "note", "wood"]`
-- Explanation: The three returned queries need one, two, and zero substitutions respectively; `"ants"` needs more than two against every dictionary word.
+- **Input:** `queries = ["word", "note", "ants", "wood"], dictionary = ["wood", "joke", "moat"]`
+- **Output:** `["word", "note", "wood"]`
+- **Explanation:** The three returned queries need one, two, and zero substitutions respectively; `"ants"` needs more than two against every dictionary word.
 
-**Example 2**
+#### Example 2
 
-- Input: `queries = ["yes"], dictionary = ["not"]`
-- Output: `[]`
-- Explanation: All three positions differ, so two edits cannot create a match.
+- **Input:** `queries = ["yes"], dictionary = ["not"]`
+- **Output:** `[]`
+- **Explanation:** All three positions differ, so two edits cannot create a match.

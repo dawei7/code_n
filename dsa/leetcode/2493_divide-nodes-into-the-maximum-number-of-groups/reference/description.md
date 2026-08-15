@@ -14,8 +14,14 @@ Return *the maximum number of groups (i.e., maximum *`m`*) into which you can di
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -32,6 +38,7 @@ Return *the maximum number of groups (i.e., maximum *`m`*) into which you can di
 - Add nodes 3 and 6 to the fourth group.
 We can see that every edge is satisfied.
 It can be shown that that if we create a fifth group and move any node from the third or fourth group to it, at least on of the edges will not be satisfied.
+
 #### Example 2
 
 - **Input:** $n = 3, edges = [[1,2],[2,3],[3,1]]$

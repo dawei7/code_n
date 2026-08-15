@@ -14,8 +14,13 @@ An example mapping of letters to keys on a telephone keypad is given below. Note
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,6 +38,7 @@ An example mapping of letters to keys on a telephone keypad is given below. Note
 "e" -> one push on key 6
 Total cost is 1 + 1 + 1 + 1 + 1 = 5.
 It can be shown that no other mapping can provide a lower cost.
+
 #### Example 2
 
 ![](images/edited.png)
@@ -46,6 +52,7 @@ It can be shown that no other mapping can provide a lower cost.
 Total cost is 1 * 4 + 1 * 4 + 1 * 4 = 12
 It can be shown that no other mapping can provide a lower cost.
 Note that the key 9 is not mapped to any letter: it is not necessary to map letters to every key, but to map all the letters.
+
 #### Example 3
 
 ![](images/keypadv2.png)

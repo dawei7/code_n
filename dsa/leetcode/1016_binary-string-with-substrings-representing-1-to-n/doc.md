@@ -33,20 +33,20 @@ Let $L=\lfloor\log_2 n\rfloor+1$ be the bit length of `n`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "0110", n = 3`
-- Output: `True`
-- Explanation: The representations `1`, `10`, and `11` all occur contiguously.
+- **Input:** `s = "0110", n = 3`
+- **Output:** `True`
+- **Explanation:** The representations `1`, `10`, and `11` all occur contiguously.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0110", n = 4`
-- Output: `False`
-- Explanation: The representation `100` does not occur.
+- **Input:** `s = "0110", n = 4`
+- **Output:** `False`
+- **Explanation:** The representation `100` does not occur.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1111000101", n = 5`
-- Output: `True`
-- Explanation: The string contains `1`, `10`, `11`, `100`, and `101`.
+- **Input:** `s = "1111000101", n = 5`
+- **Output:** `True`
+- **Explanation:** The string contains `1`, `10`, `11`, `100`, and `101`.

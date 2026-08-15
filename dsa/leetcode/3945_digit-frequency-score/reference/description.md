@@ -22,12 +22,11 @@ Return the sum of $d * freq(d)$ over every distinct decimal digit `d` present in
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 122
+- **Input:** n = 122
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
+- **Explanation:** 
 
 - The digit 1 appears 1 time, contributing $1 * 1 = 1$.
 
@@ -35,23 +34,19 @@ Return the sum of $d * freq(d)$ over every distinct decimal digit `d` present in
 
 - Thus, the score of `n` is $1 + 4 = 5$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 101
+- **Input:** n = 101
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The digit 0 appears 1 time, contributing $0 * 1 = 0$.
 
 - The digit 1 appears 2 times, contributing $1 * 2 = 2$.
 
 - Thus, the score of `n` is 2.
-
-</div>
 
 ### 4. Constraints
 

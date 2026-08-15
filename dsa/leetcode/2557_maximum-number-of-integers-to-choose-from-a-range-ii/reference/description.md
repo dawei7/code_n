@@ -24,6 +24,7 @@ Return *the **maximum** number of integers you can choose following the mentione
 - **Output:** `1`
 - **Explanation:** You can choose the integer 3.
 3 is in the range [1, 6], and do not appear in banned. The sum of the chosen integers is 3, which does not exceed maxSum.
+
 #### Example 2
 
 - **Input:** $banned = [4,3,5,6], n = 7, maxSum = 18$

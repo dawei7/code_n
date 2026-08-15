@@ -34,25 +34,25 @@ Return `[cancel, promise]`, where `cancel` requests interruption and `promise` r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: a generator that immediately returns `42`; cancellation at `100`
-- Output: `{"resolved":42}`
-- Explanation: The generator completes immediately, so the later cancellation does nothing.
+- **Input:** a generator that immediately returns `42`; cancellation at `100`
+- **Output:** `{"resolved":42}`
+- **Explanation:** The generator completes immediately, so the later cancellation does nothing.
 
-**Example 2**
+#### Example 2
 
-- Input: a generator that receives resolved string `"Hello"` and then throws ``Error: Hello``; no cancellation
-- Output: `{"rejected":"Error: Hello"}`
+- **Input:** a generator that receives resolved string `"Hello"` and then throws ``Error: Hello``; no cancellation
+- **Output:** `{"rejected":"Error: Hello"}`
 
-**Example 3**
+#### Example 3
 
-- Input: a generator waiting for `200` ms; cancellation at `100`
-- Output: `{"rejected":"Cancelled"}`
-- Explanation: The generator does not catch the injected cancellation string.
+- **Input:** a generator waiting for `200` ms; cancellation at `100`
+- **Output:** `{"rejected":"Cancelled"}`
+- **Explanation:** The generator does not catch the injected cancellation string.
 
-**Example 4**
+#### Example 4
 
-- Input: a generator that catches cancellation after accumulating one resolved value
-- Output: `{"resolved":1}`
-- Explanation: Its catch block returns the partial result, which becomes the controller promise's resolved value.
+- **Input:** a generator that catches cancellation after accumulating one resolved value
+- **Output:** `{"resolved":1}`
+- **Explanation:** Its catch block returns the partial result, which becomes the controller promise's resolved value.

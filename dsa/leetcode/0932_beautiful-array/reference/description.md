@@ -10,8 +10,13 @@ Given the integer `n`, return *any **beautiful** array *`nums`* of length *`n`. 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Given the integer `n`, return *any **beautiful** array *`nums`* of length *`n`. 
 
 - **Input:** $n = 4$
 - **Output:** `[2,1,4,3]`
+
 #### Example 2
 
 - **Input:** $n = 5$

@@ -32,18 +32,18 @@ For each query, first report whether its cell is currently illuminated. Then tur
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, lamps = [[0, 0], [4, 4]], queries = [[1, 1], [1, 0]]`
-- Output: `[1, 0]`
+- **Input:** `n = 5, lamps = [[0, 0], [4, 4]], queries = [[1, 1], [1, 0]]`
+- **Output:** `[1, 0]`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, lamps = [[0, 0], [4, 4]], queries = [[1, 1], [1, 1]]`
-- Output: `[1, 1]`
-- Explanation: The first shutdown removes the lamp at `[0, 0]`, but the other diagonal lamp still illuminates the repeated query.
+- **Input:** `n = 5, lamps = [[0, 0], [4, 4]], queries = [[1, 1], [1, 1]]`
+- **Output:** `[1, 1]`
+- **Explanation:** The first shutdown removes the lamp at `[0, 0]`, but the other diagonal lamp still illuminates the repeated query.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, lamps = [[0, 0], [0, 4]], queries = [[0, 4], [0, 1], [1, 4]]`
-- Output: `[1, 1, 0]`
+- **Input:** `n = 5, lamps = [[0, 0], [0, 4]], queries = [[0, 4], [0, 1], [1, 4]]`
+- **Output:** `[1, 1, 0]`

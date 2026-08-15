@@ -22,8 +22,16 @@ A **substring** is a contiguous sequence of characters in a string.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `indices`: Input parameter (`List[int]`).
+- `sources`: Input parameter (`List[str]`).
+- `targets`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -33,17 +41,16 @@ A **substring** is a contiguous sequence of characters in a string.
 
 - **Input:** `s = "abcd", indices = [0, 2], sources = ["a", "cd"], targets = ["eee", "ffff"]`
 - **Output:** `"eeebffff"`
-- **Explanation:**
-"a" occurs at index 0 in s, so we replace it with "eee".
+- **Explanation:** "a" occurs at index 0 in s, so we replace it with "eee".
 "cd" occurs at index 2 in s, so we replace it with "ffff".
+
 #### Example 2
 
 ![](images/833-ex2-1.png)
 
 - **Input:** `s = "abcd", indices = [0, 2], sources = ["ab","ec"], targets = ["eee","ffff"]`
 - **Output:** `"eeecd"`
-- **Explanation:**
-"ab" occurs at index 0 in s, so we replace it with "eee".
+- **Explanation:** "ab" occurs at index 0 in s, so we replace it with "eee".
 "ec" does not occur at index 2 in s, so we do nothing.
 
 ### 4. Constraints

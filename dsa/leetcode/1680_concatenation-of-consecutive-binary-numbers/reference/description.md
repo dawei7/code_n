@@ -4,8 +4,13 @@ Given an integer `n`, return *the **decimal value** of the binary string formed 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,12 +19,14 @@ Given an integer `n`, return *the **decimal value** of the binary string formed 
 - **Input:** $n = 1$
 - **Output:** `1`
 - **Explanation:** "1" in binary corresponds to the decimal value 1.
+
 #### Example 2
 
 - **Input:** $n = 3$
 - **Output:** `27`
 - **Explanation:** In binary, 1, 2, and 3 corresponds to "1", "10", and "11".
 After concatenating them, we have "11011", which corresponds to the decimal value 27.
+
 #### Example 3
 
 - **Input:** $n = 12$

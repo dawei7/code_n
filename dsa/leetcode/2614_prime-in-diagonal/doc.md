@@ -32,20 +32,20 @@ Return the largest prime value found on the primary or secondary diagonal. Retur
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [[1, 2, 3], [5, 6, 7], [9, 10, 11]]`
-- Output: `11`
-- Explanation: The diagonal values are $1,3,6,9,11$; the largest prime among them is $11$.
+- **Input:** `nums = [[1, 2, 3], [5, 6, 7], [9, 10, 11]]`
+- **Output:** `11`
+- **Explanation:** The diagonal values are $1,3,6,9,11$; the largest prime among them is $11$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [[1, 2, 3], [5, 17, 7], [9, 11, 10]]`
-- Output: `17`
-- Explanation: The center value belongs to both diagonals, and $17$ is the largest diagonal prime.
+- **Input:** `nums = [[1, 2, 3], [5, 17, 7], [9, 11, 10]]`
+- **Output:** `17`
+- **Explanation:** The center value belongs to both diagonals, and $17$ is the largest diagonal prime.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [[4, 4], [4, 4]]`
-- Output: `0`
-- Explanation: Neither diagonal contains a prime number.
+- **Input:** `nums = [[4, 4], [4, 4]]`
+- **Output:** `0`
+- **Explanation:** Neither diagonal contains a prime number.

@@ -43,7 +43,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Flights table:
 +-----------+----------+
 | flight_id | capacity |
@@ -64,7 +64,7 @@ Passengers table:
 | 106          | 3         |
 | 107          | 3         |
 +--------------+-----------+
-**Output:**
+- **Output:** 
 +-----------+------------+--------------+
 | flight_id | booked_cnt | waitlist_cnt |
 +-----------+------------+--------------+
@@ -72,7 +72,7 @@ Passengers table:
 | 2         | 2          | 0            |
 | 3         | 1          | 1            |
 +-----------+------------+--------------+
-**Explanation:**
+- **Explanation:** 
 - Flight 1 has a capacity of 2. As there are 3 passengers who have booked tickets, only 2 passengers can get a seat. Therefore, 2 passengers are successfully booked, and 1 passenger is on the waitlist.
 - Flight 2 has a capacity of 2. Since there are exactly 2 passengers who booked tickets, everyone can secure a seat. As a result, 2 passengers successfully booked their seats and there are no passengers on the waitlist.
 - Flight 3 has a capacity of 1. As there are 2 passengers who have booked tickets, only 1 passenger can get a seat. Therefore, 1 passenger is successfully booked, and 1 passenger is on the waitlist.

@@ -6,8 +6,13 @@ Given an `m x n` matrix `mat` of integers, sort each **matrix diagonal** in asce
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -17,6 +22,7 @@ Given an `m x n` matrix `mat` of integers, sort each **matrix diagonal** in asce
 
 - **Input:** $mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]$
 - **Output:** `[[1,1,1,1],[1,2,2,2],[1,2,3,3]]`
+
 #### Example 2
 
 - **Input:** $mat = [[11,25,66,1,69,7],[23,55,17,45,15,52],[75,31,36,44,58,8],[22,27,33,25,68,4],[84,28,14,11,5,50]]$

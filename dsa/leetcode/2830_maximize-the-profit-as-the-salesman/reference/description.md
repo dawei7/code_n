@@ -10,8 +10,14 @@ Return *the maximum amount of gold you can earn*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `offers`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -26,6 +32,7 @@ that different buyers can't buy the same house, and some houses may remain unsol
 - **Explanation:** There are 5 houses numbered from 0 to 4 and there are 3 purchase offers.
 We sell houses in the range [0,0] to 1^st buyer for 1 gold and houses in the range [1,3] to 3^rd buyer for 2 golds.
 It can be proven that 3 is the maximum amount of gold we can achieve.
+
 #### Example 2
 
 - **Input:** $n = 5, offers = [[0,0,1],[0,2,10],[1,3,2]]$

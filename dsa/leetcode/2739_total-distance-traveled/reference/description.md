@@ -8,8 +8,14 @@ Return *the maximum distance which can be traveled.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mainTank`: Input parameter (`int`).
+- `additionalTank`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,16 +27,15 @@ Injection from the additional tank is not continuous. It happens suddenly and im
 
 - **Input:** $mainTank = 5, additionalTank = 10$
 - **Output:** `60`
-- **Explanation:**
-After spending 5 litre of fuel, fuel remaining is (5 - 5 + 1) = 1 litre and distance traveled is 50km.
+- **Explanation:** After spending 5 litre of fuel, fuel remaining is (5 - 5 + 1) = 1 litre and distance traveled is 50km.
 After spending another 1 litre of fuel, no fuel gets injected in the main tank and the main tank becomes empty.
 Total distance traveled is 60km.
+
 #### Example 2
 
 - **Input:** $mainTank = 1, additionalTank = 2$
 - **Output:** `10`
-- **Explanation:**
-After spending 1 litre of fuel, the main tank becomes empty.
+- **Explanation:** After spending 1 litre of fuel, the main tank becomes empty.
 Total distance traveled is 10km.
 
 ### 5. Constraints

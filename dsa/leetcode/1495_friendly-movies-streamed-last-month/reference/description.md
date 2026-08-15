@@ -70,7 +70,7 @@ Return one column named `title`, containing each distinct title of a $\text{Kids
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 TVProgram table:
 +--------------------+--------------+-------------+
 | program_date       | content_id   | channel     |
@@ -92,14 +92,13 @@ Content table:
 | 4          | Aladdin        | Y             | Movies        |
 | 5          | Cinderella     | Y             | Movies        |
 +------------+----------------+---------------+---------------+
-**Output:**
+- **Output:** 
 +--------------+
 | title        |
 +--------------+
 | Aladdin      |
 +--------------+
-**Explanation:**
-"Leetcode Movie" is not a content for kids.
+- **Explanation:** "Leetcode Movie" is not a content for kids.
 "Alg. for Kids" is not a movie.
 "Database Sols" is not a movie
 "Alladin" is a movie, content for kids and was streamed in June 2020.

@@ -6,8 +6,14 @@ Return *an array of strings containing the new strings formed after the splits, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+- `separator`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Note
 
@@ -28,6 +34,7 @@ Return *an array of strings containing the new strings formed after the splits, 
 "four.five" splits into "four", "five"
 "six" splits into "six"
 Hence, the resulting array is ["one","two","three","four","five","six"].
+
 #### Example 2
 
 - **Input:** $words = ["$easy$","$problem$"], separator = "$"$
@@ -36,6 +43,7 @@ Hence, the resulting array is ["one","two","three","four","five","six"].
 "$easy$" splits into "easy" (excluding empty strings)
 "$problem$" splits into "problem" (excluding empty strings)
 Hence, the resulting array is ["easy","problem"].
+
 #### Example 3
 
 - **Input:** $words = ["|||"], separator = "|"$

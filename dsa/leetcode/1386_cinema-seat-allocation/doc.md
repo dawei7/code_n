@@ -31,17 +31,17 @@ Within one row, a family may occupy seats `2-5`, `4-7`, or `6-9`. These are the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, reservedSeats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]`
-- Output: `4`
+- **Input:** `n = 3, reservedSeats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]`
+- **Output:** `4`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2, reservedSeats = [[2,1],[1,8],[2,6]]`
-- Output: `2`
+- **Input:** `n = 2, reservedSeats = [[2,1],[1,8],[2,6]]`
+- **Output:** `2`
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, reservedSeats = [[4,3],[1,4],[4,6],[1,7]]`
-- Output: `4`
+- **Input:** `n = 4, reservedSeats = [[4,3],[1,4],[4,6],[1,7]]`
+- **Output:** `4`

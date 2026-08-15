@@ -16,8 +16,13 @@ Return *an *`n x m`* matrix representing the box after the rotation described ab
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `boxGrid`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `List[List[str]]`.
 
 ### 3. Examples
 
@@ -29,6 +34,7 @@ Return *an *`n x m`* matrix representing the box after the rotation described ab
 - **Output:** `[["."],`
 ["#"],
 ["#"]]
+
 #### Example 2
 
 ![](images/rotatingtheboxleetcode2withstones.png)
@@ -39,6 +45,7 @@ Return *an *`n x m`* matrix representing the box after the rotation described ab
 ["#","#"],
 ["*","*"],
 [".","."]]
+
 #### Example 3
 
 ![](images/rotatingtheboxleetcode3withstone.png)

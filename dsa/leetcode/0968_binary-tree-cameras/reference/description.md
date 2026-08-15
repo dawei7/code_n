@@ -6,8 +6,10 @@ Return *the minimum number of cameras needed to monitor all nodes of the tree*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `minCameraCover(root: Optional[TreeNode]) -> `int``: Executes operation.
 
 ### 3. Examples
 
@@ -18,6 +20,7 @@ Return *the minimum number of cameras needed to monitor all nodes of the tree*.
 - **Input:** `root = [0,0,null,0,0]`
 - **Output:** `1`
 - **Explanation:** One camera is enough to monitor all nodes if placed as shown.
+
 #### Example 2
 
 ![](images/bst_cameras_02.png)

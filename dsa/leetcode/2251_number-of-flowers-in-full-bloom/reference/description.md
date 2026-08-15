@@ -6,8 +6,14 @@ Return *an integer array *`answer`* of size *`n`*, where *$\text{answer}[i]$* is
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `flowers`: Input parameter (`List[List[int]]`).
+- `people`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Return *an integer array *`answer`* of size *`n`*, where *$\text{answer}[i]$* is
 - **Output:** `[1,2,2,2]`
 - **Explanation:** The figure above shows the times when the flowers are in full bloom and when the people arrive.
 For each person, we return the number of flowers in full bloom during their arrival.
+
 #### Example 2
 
 ![](images/ex2new.jpg)

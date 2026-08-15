@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/bank-account-summary-ii/) |
 
 ## Problem Description
+
 ### Goal
 
 The `Users` table associates each bank account with its uniquely named owner. The `Transactions` table records changes to account balances: a positive `amount` adds money and a negative `amount` removes money. Every account begins with a zero balance.
@@ -18,6 +19,7 @@ Compute each account's balance as the sum of all its transaction amounts. Report
 Return the qualifying rows in any order.
 
 ### Function Contract
+
 **Inputs**
 
 - `Users(account, name)`: one row per account; `account` is unique, and user names are also distinct.
@@ -30,17 +32,18 @@ Let $U$ be the number of users and $T$ the number of transactions.
 Return columns `name` and `balance`, with one row for every user whose summed transaction amount is greater than `10000`.
 
 ### Examples
-**Example 1**
 
-- Input: Alice has amounts `7000`, `7000`, and `-3000`; Bob has `1000`; Charlie has `6000`, `6000`, and `-4000`
-- Output: `[Alice, 11000]`
+#### Example 1
 
-**Example 2**
+- **Input:** Alice has amounts `7000`, `7000`, and `-3000`; Bob has `1000`; Charlie has `6000`, `6000`, and `-4000`
+- **Output:** `[Alice, 11000]`
 
-- Input: one account has a single transaction of `10000`
-- Output: an empty result because the comparison is strict
+#### Example 2
 
-**Example 3**
+- **Input:** one account has a single transaction of `10000`
+- **Output:** an empty result because the comparison is strict
 
-- Input: Ann has `15000` and `-4000`, while Ben has `9000` and `2000`
-- Output: `[Ann, 11000]` and `[Ben, 11000]`
+#### Example 3
+
+- **Input:** Ann has `15000` and `-4000`, while Ben has `9000` and `2000`
+- **Output:** `[Ann, 11000]` and `[Ben, 11000]`

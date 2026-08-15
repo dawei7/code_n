@@ -6,8 +6,10 @@ A subtree of a node `node` is `node` plus every node that is a descendant of `no
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `pruneTree(root: Optional[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -17,15 +19,16 @@ A subtree of a node `node` is `node` plus every node that is a descendant of `no
 
 - **Input:** `root = [1,null,0,0,1]`
 - **Output:** `[1,null,0,null,1]`
-- **Explanation:**
-Only the red nodes satisfy the property "every subtree not containing a 1".
+- **Explanation:** Only the red nodes satisfy the property "every subtree not containing a 1".
 The diagram on the right represents the answer.
+
 #### Example 2
 
 ![](images/1028_1.png)
 
 - **Input:** `root = [1,0,1,0,0,0,1]`
 - **Output:** `[1,null,1,null,1]`
+
 #### Example 3
 
 ![](images/1028.png)

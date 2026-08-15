@@ -36,14 +36,14 @@ The constraints are $2\le n\le10^5$. Every `amount[i]` is even and lies in the i
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount = [-2,4,2,-4,6]`
-- Output: `6`
-- Explanation: Alice pays $2$ at the root, shares the reward at node $1$, gets nothing at node $3$ after Bob opened it, and collects $6$ at leaf $4$.
+- **Input:** `edges = [[0,1],[1,2],[1,3],[3,4]], bob = 3, amount = [-2,4,2,-4,6]`
+- **Output:** `6`
+- **Explanation:** Alice pays $2$ at the root, shares the reward at node $1$, gets nothing at node $3$ after Bob opened it, and collects $6$ at leaf $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [[0,1]], bob = 1, amount = [-7280,2350]`
-- Output: `-7280`
-- Explanation: Alice opens the root gate before Bob arrives, while Bob opens node $1$ before Alice reaches it.
+- **Input:** `edges = [[0,1]], bob = 1, amount = [-7280,2350]`
+- **Output:** `-7280`
+- **Explanation:** Alice opens the root gate before Bob arrives, while Bob opens node $1$ before Alice reaches it.

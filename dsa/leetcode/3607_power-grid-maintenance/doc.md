@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/power-grid-maintenance/) |
 
 ## Problem Description
+
 ### Goal
 
 There are `c` power stations numbered from $1$ through $c$. Each pair in `connections` is a bidirectional cable, and stations joined directly or indirectly belong to the same power grid. Every station begins online.
@@ -35,14 +36,14 @@ Return one integer for each type-1 query: either the station that resolves the c
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `c = 5, connections = [[1, 2], [2, 3], [3, 4], [4, 5]], queries = [[1, 3], [2, 1], [1, 1], [2, 2], [1, 2]]`
-- Output: `[3, 2, 3]`
-- Explanation: Station 3 initially answers for itself. After stations 1 and then 2 go offline, their checks are handled by the smallest remaining online identifiers 2 and 3.
+- **Input:** `c = 5, connections = [[1, 2], [2, 3], [3, 4], [4, 5]], queries = [[1, 3], [2, 1], [1, 1], [2, 2], [1, 2]]`
+- **Output:** `[3, 2, 3]`
+- **Explanation:** Station 3 initially answers for itself. After stations 1 and then 2 go offline, their checks are handled by the smallest remaining online identifiers 2 and 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `c = 3, connections = [], queries = [[1, 1], [2, 1], [1, 1]]`
-- Output: `[1, -1]`
-- Explanation: Each station is an isolated grid, so station 1 has no substitute after its outage.
+- **Input:** `c = 3, connections = [], queries = [[1, 1], [2, 1], [1, 1]]`
+- **Output:** `[1, -1]`
+- **Explanation:** Each station is an isolated grid, so station 1 has no substitute after its outage.

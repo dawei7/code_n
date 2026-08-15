@@ -4,8 +4,10 @@ Given the `root` of a binary search tree, rearrange the tree in **in-order** so 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `increasingBST(root: Optional[TreeNode]) -> `Optional[TreeNode]``: Executes operation.
 
 ### 3. Examples
 
@@ -15,6 +17,7 @@ Given the `root` of a binary search tree, rearrange the tree in **in-order** so 
 
 - **Input:** `root = [5,3,6,2,4,null,8,1,null,null,null,7,9]`
 - **Output:** `[1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]`
+
 #### Example 2
 
 ![](images/ex2.jpg)

@@ -30,7 +30,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 products table:
@@ -72,8 +71,6 @@ products table:
 - **Product 5:** Valid serial number SN4321-8765
 
 The result table is ordered by product_id in ascending order.
-
-</div>
 
 ### 2. Function Contract
 

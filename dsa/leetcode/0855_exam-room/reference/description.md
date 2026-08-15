@@ -16,8 +16,11 @@ Implement the `ExamRoom` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ExamRoom(n: int)`: Initializes the data structure.
+- `seat() -> `int``: Executes operation.
+- `leave(p: int)`: Executes operation.
 
 ### 3. Examples
 

@@ -38,17 +38,17 @@ Return the root of the constructed binary tree.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `descriptions = [[20,15,1],[20,17,0],[50,20,1],[50,80,0],[80,19,1]]`
-- Output: `[50,20,80,15,17,19]`
+- **Input:** `descriptions = [[20,15,1],[20,17,0],[50,20,1],[50,80,0],[80,19,1]]`
+- **Output:** `[50,20,80,15,17,19]`
 
-**Example 2**
+#### Example 2
 
-- Input: `descriptions = [[1,2,1],[2,3,0],[3,4,1]]`
-- Output: `[1,2,null,null,3,4]`
+- **Input:** `descriptions = [[1,2,1],[2,3,0],[3,4,1]]`
+- **Output:** `[1,2,null,null,3,4]`
 
-**Example 3**
+#### Example 3
 
-- Input: `descriptions = [[7,9,0]]`
-- Output: `[7,null,9]`
+- **Input:** `descriptions = [[7,9,0]]`
+- **Output:** `[7,null,9]`

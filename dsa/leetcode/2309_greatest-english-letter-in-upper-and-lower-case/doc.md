@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/) |
 
 ## Problem Description
+
 ### Goal
+
 Given a string `s` of English letters, find the alphabetically greatest letter
 that occurs in both lowercase and uppercase somewhere in the string.
 
@@ -19,6 +21,7 @@ later in the English alphabet. Occurrence order and repetition counts do not
 affect which qualifying letter is greatest.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: A string of lowercase and uppercase English letters.
@@ -31,21 +34,22 @@ The uppercase form of the greatest letter whose two cases both occur, or `""`
 when no such letter exists.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "lEeTcOdE"`
-- Output: `"E"`
-- Explanation: `e` and `E` are both present, and no greater letter has both
+#### Example 1
+
+- **Input:** `s = "lEeTcOdE"`
+- **Output:** `"E"`
+- **Explanation:** `e` and `E` are both present, and no greater letter has both
   cases.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "arRAzFif"`
-- Output: `"R"`
-- Explanation: `A`, `F`, and `R` qualify; `R` is greatest.
+- **Input:** `s = "arRAzFif"`
+- **Output:** `"R"`
+- **Explanation:** `A`, `F`, and `R` qualify; `R` is greatest.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "AbCdEfGhIjK"`
-- Output: `""`
-- Explanation: No letter occurs in both cases.
+- **Input:** `s = "AbCdEfGhIjK"`
+- **Output:** `""`
+- **Explanation:** No letter occurs in both cases.

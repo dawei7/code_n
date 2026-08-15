@@ -24,8 +24,15 @@ You must solve the problem without using the built-in queue data structure in yo
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `MyCircularQueue(k: int)`: Initializes the data structure.
+- `enQueue(value: int) -> `bool``: Executes operation.
+- `deQueue() -> `bool``: Executes operation.
+- `Front() -> `int``: Executes operation.
+- `Rear() -> `int``: Executes operation.
+- `isEmpty() -> `bool``: Executes operation.
+- `isFull() -> `bool``: Executes operation.
 
 ### 3. Examples
 

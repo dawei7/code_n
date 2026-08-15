@@ -27,14 +27,11 @@ Return the number of accepted edges after all $M$ proposals have been processed 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,1]]
+- **Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,1]]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/hmadizgovu.png)
+- **Explanation:** ![](images/hmadizgovu.png)
 
 - `[0, 1, 1]`: We add the edge between vertex 0 and vertex 1 with weight 1.
 
@@ -42,17 +39,13 @@ Return the number of accepted edges after all $M$ proposals have been processed 
 
 - `[0, 2, 1]`: The edge between vertex 0 and vertex 2 (the dashed edge in the diagram) is not added because the cycle $0 - 1 - 2 - 0$ has total edge weight $1 + 1 + 1 = 3$, which is an odd number.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,0]]
+- **Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,0]]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/rbdgrefwok.png)
+- **Explanation:** ![](images/rbdgrefwok.png)
 
 - `[0, 1, 1]`: We add the edge between vertex 0 and vertex 1 with weight 1.
 
@@ -61,8 +54,6 @@ Return the number of accepted edges after all $M$ proposals have been processed 
 - `[0, 2, 0]`: We add the edge between vertex 0 and vertex 2 with weight 0.
 
 - Note that the cycle $0 - 1 - 2 - 0$ has total edge weight $1 + 1 + 0 = 2$, which is an even number.
-
-</div>
 
 ### 4. Constraints
 

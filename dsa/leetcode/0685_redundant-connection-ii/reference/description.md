@@ -10,8 +10,13 @@ Return *an edge that can be removed so that the resulting graph is a rooted tree
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Return *an edge that can be removed so that the resulting graph is a rooted tree
 
 - **Input:** $edges = [[1,2],[1,3],[2,3]]$
 - **Output:** `[2,3]`
+
 #### Example 2
 
 ![](images/graph2.jpg)

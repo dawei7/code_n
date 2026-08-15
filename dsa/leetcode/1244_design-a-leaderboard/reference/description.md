@@ -36,8 +36,7 @@ For the app trace, return results in call order: `null` for each mutating operat
 [[],[1,73],[2,56],[3,39],[4,51],[5,4],[1],[1],[2],[2,51],[3]]
 - **Output:** ``
 [null,null,null,null,null,null,73,null,null,null,141]
-- **Explanation:**
-Leaderboard leaderboard = new Leaderboard ();
+- **Explanation:** Leaderboard leaderboard = new Leaderboard ();
 leaderboard.addScore(1,73);   // leaderboard = [[1,73]];
 leaderboard.addScore(2,56);   // leaderboard = [[1,73],[2,56]];
 leaderboard.addScore(3,39);   // leaderboard = [[1,73],[2,56],[3,39]];

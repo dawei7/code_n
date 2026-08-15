@@ -12,8 +12,13 @@ Return *the element that is repeated *`n`* times*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,10 +26,12 @@ Return *the element that is repeated *`n`* times*.
 
 - **Input:** `nums = [1,2,3,3]`
 - **Output:** `3`
+
 #### Example 2
 
 - **Input:** `nums = [2,1,2,5,3,2]`
 - **Output:** `2`
+
 #### Example 3
 
 - **Input:** `nums = [5,1,5,2,5,3,5,4]`

@@ -25,46 +25,37 @@ Return the minimum cost of a valid route from node `0` to node $n - 1$. Return `
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = "aab", k = 1
+- **Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = "aab", k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-The optimal valid path from node 0 to node 2 is as follows:
+- **Explanation:** The optimal valid path from node 0 to node 2 is as follows:
 
 - Use $\text{edges}[2] = [0, 2, 3]$ to reach node 2 with a weight $w_{i} = 3$.
 
-The corresponding concatenation of labels is `"ab"`, which satisfies at most $k = 1$ consecutive identical characters. Thus, the answer is 3.</div>
+The corresponding concatenation of labels is `"ab"`, which satisfies at most $k = 1$ consecutive identical characters. Thus, the answer is 3.
+
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = "aab", k = 2
+- **Input:** n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = "aab", k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The optimal valid path from node 0 to node 2 is as follows:
+- **Explanation:** The optimal valid path from node 0 to node 2 is as follows:
 
 - Use $\text{edges}[0] = [0, 1, 1]$ to reach node 1 with weight $w_{i} = 1$.
 
 - Use $\text{edges}[1] = [1, 2, 1]$ to reach node 2 with weight $w_{i} = 1$.
 
-The corresponding concatenation of labels is `"aab"`, which satisfies at most $k = 2$ consecutive identical characters. Thus, the answer is 2.</div>
+The corresponding concatenation of labels is `"aab"`, which satisfies at most $k = 2$ consecutive identical characters. Thus, the answer is 2.
+
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1],[1,2,1]], labels = "aaa", k = 2
+- **Input:** n = 3, edges = [[0,1,1],[1,2,1]], labels = "aaa", k = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-There is no valid path from node 0 to node 2 that satisfies at most $k = 2$ consecutive identical characters. Thus, the answer is -1.
-
-</div>
+- **Explanation:** There is no valid path from node 0 to node 2 that satisfies at most $k = 2$ consecutive identical characters. Thus, the answer is -1.
 
 ### 4. Constraints
 

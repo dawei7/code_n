@@ -33,8 +33,8 @@ Let $R$ be the number of rows in `Transactions`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: account `1` deposits `2000`, withdraws `1000`, then deposits `3000`; account `2` deposits and later withdraws `7000`.
-- Output: balances `2000`, `1000`, and `4000` for account `1`, followed by `7000` and `0` for account `2`.
-- Explanation: Each balance is the signed running total within its account through that transaction's day.
+- **Input:** account `1` deposits `2000`, withdraws `1000`, then deposits `3000`; account `2` deposits and later withdraws `7000`.
+- **Output:** balances `2000`, `1000`, and `4000` for account `1`, followed by `7000` and `0` for account `2`.
+- **Explanation:** Each balance is the signed running total within its account through that transaction's day.

@@ -30,10 +30,12 @@ Return the head of one ascending-sorted list containing every input node.
 ]
 merging them into one sorted linked list:
 1->1->2->3->4->4->5->6
+
 #### Example 2
 
 - **Input:** $lists = []$
 - **Output:** `[]`
+
 #### Example 3
 
 - **Input:** $lists = [[]]$

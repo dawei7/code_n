@@ -43,7 +43,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Boxes table:
 +--------+----------+-------------+--------------+
 | box_id | chest_id | apple_count | orange_count |
@@ -66,14 +66,13 @@ Chests table:
 | 3        | 19          | 4            |
 | 16       | 19          | 19           |
 +----------+-------------+--------------+
-**Output:**
+- **Output:** 
 +-------------+--------------+
 | apple_count | orange_count |
 +-------------+--------------+
 | 151         | 123          |
 +-------------+--------------+
-**Explanation:**
-box 2 has 6 apples and 15 oranges.
+- **Explanation:** box 2 has 6 apples and 15 oranges.
 box 18 has 4 + 20 (from the chest) = 24 apples and 15 + 10 (from the chest) = 25 oranges.
 box 19 has 8 + 19 (from the chest) = 27 apples and 4 + 4 (from the chest) = 8 oranges.
 box 12 has 19 + 8 (from the chest) = 27 apples and 20 + 8 (from the chest) = 28 oranges.

@@ -8,8 +8,14 @@ Return *the minimum possible good integer after flipping the cards*. If there ar
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `fronts`: Input parameter (`List[int]`).
+- `backs`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,16 +23,15 @@ Return *the minimum possible good integer after flipping the cards*. If there ar
 
 - **Input:** $fronts = [1,2,4,4,7], backs = [1,3,4,1,3]$
 - **Output:** `2`
-- **Explanation:**
-If we flip the second card, the face up numbers are [1,3,4,4,7] and the face down are [1,2,4,1,3].
+- **Explanation:** If we flip the second card, the face up numbers are [1,3,4,4,7] and the face down are [1,2,4,1,3].
 2 is the minimum good integer as it appears facing down but not facing up.
 It can be shown that 2 is the minimum possible good integer obtainable after flipping some cards.
+
 #### Example 2
 
 - **Input:** $fronts = [1], backs = [1]$
 - **Output:** `0`
-- **Explanation:**
-There are no good integers no matter how we flip the cards, so we return 0.
+- **Explanation:** There are no good integers no matter how we flip the cards, so we return 0.
 
 ### 4. Constraints
 

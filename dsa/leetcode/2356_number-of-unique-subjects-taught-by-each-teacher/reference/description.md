@@ -30,7 +30,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Teacher table:
 +------------+------------+---------+
 | teacher_id | subject_id | dept_id |
@@ -43,15 +43,14 @@ Teacher table:
 | 2          | 3          | 1       |
 | 2          | 4          | 1       |
 +------------+------------+---------+
-**Output:**
+- **Output:** 
 +------------+-----+
 | teacher_id | cnt |
 +------------+-----+
 | 1          | 2   |
 | 2          | 4   |
 +------------+-----+
-**Explanation:**
-Teacher 1:
+- **Explanation:** Teacher 1:
   - They teach subject 2 in departments 3 and 4.
   - They teach subject 3 in department 3.
 Teacher 2:

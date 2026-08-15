@@ -35,18 +35,18 @@ A square on a component's border either lies on the first or last row or column 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,1],[1,2]], row = 0, col = 0, color = 3`
-- Output: `[[3,3],[3,2]]`
+- **Input:** `grid = [[1,1],[1,2]], row = 0, col = 0, color = 3`
+- **Output:** `[[3,3],[3,2]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,2,2],[2,3,2]], row = 0, col = 1, color = 3`
-- Output: `[[1,3,3],[2,3,3]]`
+- **Input:** `grid = [[1,2,2],[2,3,2]], row = 0, col = 1, color = 3`
+- **Output:** `[[1,3,3],[2,3,3]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1],[1,1,1],[1,1,1]], row = 1, col = 1, color = 2`
-- Output: `[[2,2,2],[2,1,2],[2,2,2]]`
-- Explanation: The center belongs to the component but is not on its border.
+- **Input:** `grid = [[1,1,1],[1,1,1],[1,1,1]], row = 1, col = 1, color = 2`
+- **Output:** `[[2,2,2],[2,1,2],[2,2,2]]`
+- **Explanation:** The center belongs to the component but is not on its border.

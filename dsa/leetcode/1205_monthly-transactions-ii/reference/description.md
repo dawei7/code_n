@@ -68,7 +68,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Transactions table:
 +-----+---------+----------+--------+------------+
 | id  | country | state    | amount | trans_date |
@@ -87,7 +87,7 @@ Chargebacks table:
 | 101      | 2019-06-30 |
 | 105      | 2019-09-18 |
 +----------+------------+
-**Output:**
+- **Output:** 
 +---------+---------+----------------+-----------------+------------------+-------------------+
 | month   | country | approved_count | approved_amount | chargeback_count | chargeback_amount |
 +---------+---------+----------------+-----------------+------------------+-------------------+

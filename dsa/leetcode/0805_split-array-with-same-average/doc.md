@@ -30,20 +30,20 @@ Return `True` if the partition can make $\operatorname{avg}(A) = \operatorname{a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,2,3,4,5,6,7,8]`
-- Output: `True`
-- Explanation: `[1,8]` and the remaining six values both have average `4.5`.
+- **Input:** `nums = [1,2,3,4,5,6,7,8]`
+- **Output:** `True`
+- **Explanation:** `[1,8]` and the remaining six values both have average `4.5`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,1]`
-- Output: `False`
-- Explanation: The only split produces singleton averages `3` and `1`.
+- **Input:** `nums = [3,1]`
+- **Output:** `False`
+- **Explanation:** The only split produces singleton averages `3` and `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3]`
-- Output: `True`
-- Explanation: The subset `[2]` and its complement `[1,3]` both average `2`.
+- **Input:** `nums = [1,2,3]`
+- **Output:** `True`
+- **Explanation:** The subset `[2]` and its complement `[1,3]` both average `2`.

@@ -32,21 +32,21 @@ Return the probability that passenger `n` ultimately sits in seat `n`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 1`
-- Output: `1.0`
+- **Input:** `n = 1`
+- **Output:** `1.0`
 
 The only passenger necessarily chooses the only seat.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 2`
-- Output: `0.5`
+- **Input:** `n = 2`
+- **Output:** `0.5`
 
 The first passenger chooses seat `1` or seat `2` with equal probability.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3`
-- Output: `0.5`
+- **Input:** `n = 3`
+- **Output:** `0.5`

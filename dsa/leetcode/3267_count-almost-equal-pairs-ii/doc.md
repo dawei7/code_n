@@ -34,23 +34,23 @@ Let $d$ be the maximum decimal digit count, so $d \le 7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1023,2310,2130,213]`
-- Output: `4`
+- **Input:** `nums = [1023,2310,2130,213]`
+- **Output:** `4`
 
 The qualifying pairs are `(1023,2310)`, `(1023,213)`, `(2310,2130)`, and `(2310,213)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,10,100]`
-- Output: `3`
+- **Input:** `nums = [1,10,100]`
+- **Output:** `3`
 
 Every pair qualifies through a swap that moves a nonzero digit past one or more leading zeros.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [123456,456123]`
-- Output: `0`
+- **Input:** `nums = [123456,456123]`
+- **Output:** `0`
 
 These arrangements differ by three disjoint position swaps, so two operations are insufficient.

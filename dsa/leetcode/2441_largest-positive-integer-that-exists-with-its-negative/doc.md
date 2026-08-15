@@ -30,20 +30,20 @@ Among all qualifying positive integers, find and return the largest one. If the 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [-1, 2, -3, 3]`
-- Output: `3`
-- Explanation: Only 3 has its negative counterpart.
+- **Input:** `nums = [-1, 2, -3, 3]`
+- **Output:** `3`
+- **Explanation:** Only 3 has its negative counterpart.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-1, 10, 6, 7, -7, 1]`
-- Output: `7`
-- Explanation: Both 1 and 7 qualify, so return the larger value.
+- **Input:** `nums = [-1, 10, 6, 7, -7, 1]`
+- **Output:** `7`
+- **Explanation:** Both 1 and 7 qualify, so return the larger value.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [-10, 8, 6, 7, -2, -3]`
-- Output: `-1`
-- Explanation: No positive value has its negative counterpart.
+- **Input:** `nums = [-10, 8, 6, 7, -2, -3]`
+- **Output:** `-1`
+- **Explanation:** No positive value has its negative counterpart.

@@ -10,8 +10,14 @@ Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `maximumBit`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -24,6 +30,7 @@ Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$
 2^nd query: nums = [0,1,1], k = 3 since 0 XOR 1 XOR 1 XOR 3 = 3.
 3^rd query: nums = [0,1], k = 2 since 0 XOR 1 XOR 2 = 3.
 4^th query: nums = [0], k = 3 since 0 XOR 3 = 3.
+
 #### Example 2
 
 - **Input:** `nums = [2,3,4,7], maximumBit = 3`
@@ -33,6 +40,7 @@ Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$
 2^nd query: nums = [2,3,4], k = 2 since 2 XOR 3 XOR 4 XOR 2 = 7.
 3^rd query: nums = [2,3], k = 6 since 2 XOR 3 XOR 6 = 7.
 4^th query: nums = [2], k = 5 since 2 XOR 5 = 7.
+
 #### Example 3
 
 - **Input:** `nums = [0,1,2,2,5,7], maximumBit = 3`

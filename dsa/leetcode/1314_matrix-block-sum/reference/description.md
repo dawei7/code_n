@@ -10,8 +10,14 @@ Given a `m x n` matrix `mat` and an integer `k`, return *a matrix* `answer` *whe
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `mat`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Given a `m x n` matrix `mat` and an integer `k`, return *a matrix* `answer` *whe
 
 - **Input:** $mat = [[1,2,3],[4,5,6],[7,8,9]], k = 1$
 - **Output:** `[[12,21,16],[27,45,33],[24,39,28]]`
+
 #### Example 2
 
 - **Input:** $mat = [[1,2,3],[4,5,6],[7,8,9]], k = 2$

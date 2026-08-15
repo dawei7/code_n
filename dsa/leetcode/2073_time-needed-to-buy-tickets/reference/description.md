@@ -10,19 +10,24 @@ Return the **time taken** for the person **initially** at position **k**** **(0-
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tickets`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** tickets = [2,3,2], k = 2
+- **Input:** tickets = [2,3,2], k = 2
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
+- **Explanation:** 
 
 - The queue starts as [2,3,<u>2</u>], where the kth person is underlined.
 
@@ -38,15 +43,13 @@ Return the **time taken** for the person **initially** at position **k**** **(0-
 
 - Continuing this process, the queue becomes [1] at 6 seconds. The kth person has bought all their tickets, so return 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** tickets = [5,1,1,1], k = 0
+- **Input:** tickets = [5,1,1,1], k = 0
 
-**Output:** 8
+- **Output:** 8
 
-**Explanation:**
+- **Explanation:** 
 
 - The queue starts as [<u>5</u>,1,1,1], where the kth person is underlined.
 
@@ -55,8 +58,6 @@ Return the **time taken** for the person **initially** at position **k**** **(0-
 - Continuing this process for 3 seconds, the queue becomes [<u>4]</u> at 4 seconds.
 
 - Continuing this process for 4 seconds, the queue becomes [] at 8 seconds. The kth person has bought all their tickets, so return 8.
-
-</div>
 
 ### 4. Constraints
 

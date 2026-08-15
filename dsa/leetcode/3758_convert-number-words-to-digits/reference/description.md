@@ -28,26 +28,23 @@ Return the string formed by the corresponding digits of all matched number words
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "onefourthree"
+- **Input:** s = "onefourthree"
 
-**Output:** "143"
+- **Output:** "143"
 
-**Explanation:**
+- **Explanation:** 
 
 - Parsing from left to right, extract the valid number words "one", "four", "three".
 
 - These map to digits 1, 4, 3. Thus, the final result is `"143"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "ninexsix"
+- **Input:** s = "ninexsix"
 
-**Output:** "96"
+- **Output:** "96"
 
-**Explanation:**
+- **Explanation:** 
 
 - The substring `"nine"` is a valid number word and maps to 9.
 
@@ -55,35 +52,29 @@ Return the string formed by the corresponding digits of all matched number words
 
 - Then, the substring `"six"` is a valid number word and maps to 6, so the final result is `"96"`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "zeero"
+- **Input:** s = "zeero"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
+- **Explanation:** 
 
 - No substring forms a valid number word during left-to-right parsing.
 
 - All characters are skipped and incomplete fragments are ignored, so the result is an empty string.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "tw"
+- **Input:** s = "tw"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
+- **Explanation:** 
 
 - No substring forms a valid number word during left-to-right parsing.
 
 - All characters are skipped and incomplete fragments are ignored, so the result is an empty string.
-
-</div>
 
 ### 4. Constraints
 

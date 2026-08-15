@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an array `nums` of $n$ positive integers, form the sum of every non-empty continuous subarray. There are $n(n+1)/2$ such sums. Sort this multiset in non-decreasing order, preserving duplicate values as separate entries.
@@ -16,6 +17,7 @@ Given an array `nums` of $n$ positive integers, form the sum of every non-empty 
 Return the sum of the entries at 1-indexed positions `left` through `right`, inclusive. Because the result may be large, return it modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
 Let $S = \sum \texttt{nums[i]}$.
@@ -29,18 +31,19 @@ Let $S = \sum \texttt{nums[i]}$.
 Return the sum of sorted subarray-sum ranks `left` through `right`, reduced modulo $10^9+7$.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1, 2, 3, 4], n = 4, left = 1, right = 5`
-- Output: `13`
-- Explanation: The sorted sums begin `[1, 2, 3, 3, 4]`, whose total is 13.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1, 2, 3, 4], n = 4, left = 1, right = 5`
+- **Output:** `13`
+- **Explanation:** The sorted sums begin `[1, 2, 3, 3, 4]`, whose total is 13.
 
-- Input: `nums = [1, 2, 3, 4], n = 4, left = 3, right = 4`
-- Output: `6`
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1, 2, 3, 4], n = 4, left = 3, right = 4`
+- **Output:** `6`
 
-- Input: `nums = [1, 2, 3, 4], n = 4, left = 1, right = 10`
-- Output: `50`
+#### Example 3
+
+- **Input:** `nums = [1, 2, 3, 4], n = 4, left = 1, right = 10`
+- **Output:** `50`

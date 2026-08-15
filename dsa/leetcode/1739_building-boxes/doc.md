@@ -30,20 +30,20 @@ Arrange the boxes while obeying that support rule and return the minimum possibl
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`
-- Output: `3`
-- Explanation: None of the three boxes can yet be supported above another, so all three touch the floor.
+- **Input:** `n = 3`
+- **Output:** `3`
+- **Explanation:** None of the three boxes can yet be supported above another, so all three touch the floor.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4`
-- Output: `3`
-- Explanation: Three boxes can form a supported corner base for the fourth box.
+- **Input:** `n = 4`
+- **Output:** `3`
+- **Explanation:** Three boxes can form a supported corner base for the fourth box.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 10`
-- Output: `6`
-- Explanation: A complete three-level corner stack contains ten boxes and has six floor boxes.
+- **Input:** `n = 10`
+- **Output:** `6`
+- **Explanation:** A complete three-level corner stack contains ten boxes and has six floor boxes.

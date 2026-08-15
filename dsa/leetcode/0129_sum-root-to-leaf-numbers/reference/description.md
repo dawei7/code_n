@@ -28,18 +28,17 @@ Return the sum of all decimal numbers formed by complete root-to-leaf paths.
 
 - **Input:** `root = [1,2,3]`
 - **Output:** `25`
-- **Explanation:**
-The root-to-leaf path 1->2 represents the number 12.
+- **Explanation:** The root-to-leaf path 1->2 represents the number 12.
 The root-to-leaf path 1->3 represents the number 13.
 Therefore, sum = 12 + 13 = 25.
+
 #### Example 2
 
 ![](images/num2tree.jpg)
 
 - **Input:** `root = [4,9,0,5,1]`
 - **Output:** `1026`
-- **Explanation:**
-The root-to-leaf path 4->9->5 represents the number 495.
+- **Explanation:** The root-to-leaf path 4->9->5 represents the number 495.
 The root-to-leaf path 4->9->1 represents the number 491.
 The root-to-leaf path 4->0 represents the number 40.
 Therefore, sum = 495 + 491 + 40 = 1026.

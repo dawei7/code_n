@@ -30,17 +30,17 @@ Return columns `order_date` and `immediate_percentage`, with one row per distinc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: On `2019-08-01`, two of three orders are immediate; on `2019-08-02`, two of three are immediate; on `2019-08-03`, both orders are immediate; and on `2019-08-04`, neither order is immediate.
-- Output: `[["2019-08-01",66.67],["2019-08-02",66.67],["2019-08-03",100.00],["2019-08-04",0.00]]`
+- **Input:** On `2019-08-01`, two of three orders are immediate; on `2019-08-02`, two of three are immediate; on `2019-08-03`, both orders are immediate; and on `2019-08-04`, neither order is immediate.
+- **Output:** `[["2019-08-01",66.67],["2019-08-02",66.67],["2019-08-03",100.00],["2019-08-04",0.00]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `Delivery = [[1,10,"2024-01-05","2024-01-05"]]`
-- Output: `[["2024-01-05",100.00]]`
+- **Input:** `Delivery = [[1,10,"2024-01-05","2024-01-05"]]`
+- **Output:** `[["2024-01-05",100.00]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `Delivery = [[1,10,"2024-02-01","2024-02-03"],[2,11,"2024-02-01","2024-02-02"]]`
-- Output: `[["2024-02-01",0.00]]`
+- **Input:** `Delivery = [[1,10,"2024-02-01","2024-02-03"],[2,11,"2024-02-01","2024-02-02"]]`
+- **Output:** `[["2024-02-01",0.00]]`

@@ -33,20 +33,20 @@ Return the integer value of `X` after applying every operation.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["--X", "X++", "X++"]`
-- Output: `1`
-- Explanation: The successive values are $-1$, $0$, and $1$.
+- **Input:** `operations = ["--X", "X++", "X++"]`
+- **Output:** `1`
+- **Explanation:** The successive values are $-1$, $0$, and $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["++X", "++X", "X++"]`
-- Output: `3`
-- Explanation: Every operation increments the variable.
+- **Input:** `operations = ["++X", "++X", "X++"]`
+- **Output:** `3`
+- **Explanation:** Every operation increments the variable.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["X++", "++X", "--X", "X--"]`
-- Output: `0`
-- Explanation: Two increments and two decrements cancel.
+- **Input:** `operations = ["X++", "++X", "--X", "X--"]`
+- **Output:** `0`
+- **Explanation:** Two increments and two decrements cancel.

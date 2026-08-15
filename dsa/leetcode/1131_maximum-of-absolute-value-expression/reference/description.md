@@ -8,8 +8,14 @@ where the maximum is taken over all $0 \le i, j < \text{arr1.length}$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr1`: Input parameter (`List[int]`).
+- `arr2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,6 +23,7 @@ where the maximum is taken over all $0 \le i, j < \text{arr1.length}$.
 
 - **Input:** $arr1 = [1,2,3,4], arr2 = [-1,4,5,6]$
 - **Output:** `13`
+
 #### Example 2
 
 - **Input:** $arr1 = [1,-2,-5,0,10], arr2 = [0,-2,-1,-7,-4]$

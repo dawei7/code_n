@@ -20,19 +20,24 @@ Return the **minimum** number of moves required to collect all litter items, or 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `classroom`: Input parameter (`List[str]`).
+- `energy`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** classroom = ["S.", "XL"], energy = 2
+- **Input:** classroom = ["S.", "XL"], energy = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The student starts at cell `(0, 0)` with 2 units of energy.
 
@@ -40,49 +45,39 @@ Return the **minimum** number of moves required to collect all litter items, or 
 
 - A valid sequence of moves to collect all litter is as follows:
 
-		<li>Move 1: From `(0, 0)` → `(0, 1)` with 1 unit of energy and 1 unit remaining.
+		- Move 1: From `(0, 0)` → `(0, 1)` with 1 unit of energy and 1 unit remaining.
 
 - Move 2: From `(0, 1)` → `(1, 1)` to collect the litter `'L'`.
 
-	</li>
 - The student collects all the litter using 2 moves. Thus, the output is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** classroom = ["LS", "RL"], energy = 4
+- **Input:** classroom = ["LS", "RL"], energy = 4
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The student starts at cell `(0, 1)` with 4 units of energy.
 
 - A valid sequence of moves to collect all litter is as follows:
 
-		<li>Move 1: From `(0, 1)` → `(0, 0)` to collect the first litter `'L'` with 1 unit of energy used and 3 units remaining.
+		- Move 1: From `(0, 1)` → `(0, 0)` to collect the first litter `'L'` with 1 unit of energy used and 3 units remaining.
 
 - Move 2: From `(0, 0)` → `(1, 0)` to `'R'` to reset and restore energy back to 4.
 
 - Move 3: From `(1, 0)` → `(1, 1)` to collect the second litter `'L'`.
 
-	</li>
 - The student collects all the litter using 3 moves. Thus, the output is 3.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** classroom = ["L.S", "RXL"], energy = 3
+- **Input:** classroom = ["L.S", "RXL"], energy = 3
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-No valid path collects all `'L'`.
-
-</div>
+- **Explanation:** No valid path collects all `'L'`.
 
 ### 4. Constraints
 

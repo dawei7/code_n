@@ -31,14 +31,14 @@ Change the tree simultaneously for every non-root node. For a node $x$, inspect 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `parent = [-1, 0, 0, 1, 1, 1], s = "abaabc"`
-- Output: `[6, 3, 1, 1, 1, 1]`
-- Explanation: Node $3$ moves from node $1$ to node $0$, its closest original ancestor carrying `a`.
+- **Input:** `parent = [-1, 0, 0, 1, 1, 1], s = "abaabc"`
+- **Output:** `[6, 3, 1, 1, 1, 1]`
+- **Explanation:** Node $3$ moves from node $1$ to node $0$, its closest original ancestor carrying `a`.
 
-**Example 2**
+#### Example 2
 
-- Input: `parent = [-1, 0, 4, 0, 1], s = "abbba"`
-- Output: `[5, 2, 1, 1, 1]`
-- Explanation: Node $4$ moves to node $0$, while node $2$ moves to node $1$ by following the original ancestry through node $4$.
+- **Input:** `parent = [-1, 0, 4, 0, 1], s = "abbba"`
+- **Output:** `[5, 2, 1, 1, 1]`
+- **Explanation:** Node $4$ moves to node $0$, while node $2$ moves to node $1$ by following the original ancestry through node $4$.

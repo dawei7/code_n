@@ -49,7 +49,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Contests table:
 +------------+------------+--------------+--------------+
 | contest_id | gold_medal | silver_medal | bronze_medal |
@@ -72,7 +72,7 @@ Users table:
 | 4       | hercy@leetcode.com | Hercy |
 | 5       | quarz@leetcode.com | Quarz |
 +---------+--------------------+-------+
-**Output:**
+- **Output:** 
 +-------+--------------------+
 | name  | mail               |
 +-------+--------------------+
@@ -81,8 +81,7 @@ Users table:
 | Alice | alice@leetcode.com |
 | Quarz | quarz@leetcode.com |
 +-------+--------------------+
-**Explanation:**
-Sarah won 3 gold medals (190, 193, and 196), so we include her in the result table.
+- **Explanation:** Sarah won 3 gold medals (190, 193, and 196), so we include her in the result table.
 Bob won a medal in 3 consecutive contests (190, 191, and 192), so we include him in the result table.
 - Note that he also won a medal in 3 other consecutive contests (194, 195, and 196).
 Alice won a medal in 3 consecutive contests (191, 192, and 193), so we include her in the result table.

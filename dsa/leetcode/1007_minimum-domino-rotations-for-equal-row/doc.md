@@ -31,20 +31,20 @@ You may rotate any domino, swapping its top and bottom values. Return the minimu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `tops = [2, 1, 2, 4, 2, 2], bottoms = [5, 2, 6, 2, 3, 2]`
-- Output: `2`
-- Explanation: Rotating the second and fourth dominoes makes every top value equal to `2`.
+- **Input:** `tops = [2, 1, 2, 4, 2, 2], bottoms = [5, 2, 6, 2, 3, 2]`
+- **Output:** `2`
+- **Explanation:** Rotating the second and fourth dominoes makes every top value equal to `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `tops = [3, 5, 1, 2, 3], bottoms = [3, 6, 3, 3, 4]`
-- Output: `-1`
-- Explanation: No number occurs on at least one half of every domino, so neither row can become uniform.
+- **Input:** `tops = [3, 5, 1, 2, 3], bottoms = [3, 6, 3, 3, 4]`
+- **Output:** `-1`
+- **Explanation:** No number occurs on at least one half of every domino, so neither row can become uniform.
 
-**Example 3**
+#### Example 3
 
-- Input: `tops = [1, 1, 1], bottoms = [2, 3, 4]`
-- Output: `0`
-- Explanation: The top row is already uniform.
+- **Input:** `tops = [1, 1, 1], bottoms = [2, 3, 4]`
+- **Output:** `0`
+- **Explanation:** The top row is already uniform.

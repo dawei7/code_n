@@ -8,21 +8,23 @@ Return *the **minimum** possible value for **maximum** distance between any two 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** points = [[3,10],[5,15],[10,2],[4,4]]
+- **Input:** points = [[3,10],[5,15],[10,2],[4,4]]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-The maximum distance after removing each point is the following:
+- **Explanation:** The maximum distance after removing each point is the following:
 
 - After removing the 0^th point the maximum distance is between points (5, 15) and (10, 2), which is $|5 - 10| + |15 - 2| = 18$.
 
@@ -34,19 +36,13 @@ The maximum distance after removing each point is the following:
 
 12 is the minimum possible maximum distance between any two points after removing exactly one point.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** points = [[1,1],[1,1],[1,1]]
+- **Input:** points = [[1,1],[1,1],[1,1]]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Removing any of the points results in the maximum distance between any two points of 0.
-
-</div>
+- **Explanation:** Removing any of the points results in the maximum distance between any two points of 0.
 
 ### 4. Constraints
 

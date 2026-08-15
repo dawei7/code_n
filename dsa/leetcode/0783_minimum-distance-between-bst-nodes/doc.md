@@ -30,20 +30,20 @@ Return the minimum absolute difference between their values. Distance here is nu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [4,2,6,1,3]`
-- Output: `1`
-- Explanation: Consecutive values such as `1` and `2` differ by one.
+- **Input:** `root = [4,2,6,1,3]`
+- **Output:** `1`
+- **Explanation:** Consecutive values such as `1` and `2` differ by one.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [1,0,48,null,null,12,49]`
-- Output: `1`
-- Explanation: The values `0` and `1`, as well as `48` and `49`, attain the minimum.
+- **Input:** `root = [1,0,48,null,null,12,49]`
+- **Output:** `1`
+- **Explanation:** The values `0` and `1`, as well as `48` and `49`, attain the minimum.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [10,5,15]`
-- Output: `5`
-- Explanation: Both adjacent values in sorted order differ by five.
+- **Input:** `root = [10,5,15]`
+- **Output:** `5`
+- **Explanation:** Both adjacent values in sorted order differ by five.

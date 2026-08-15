@@ -40,18 +40,18 @@ Let $N$ be the number of nodes.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [0, 2, -5, 5, 10, -10]`
-- Output: `[-10, -5, 0, 2, 5, 10]`
+- **Input:** `head = [0, 2, -5, 5, 10, -10]`
+- **Output:** `[-10, -5, 0, 2, 5, 10]`
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [0, 1, 2]`
-- Output: `[0, 1, 2]`
-- Explanation: The actual values are already non-decreasing.
+- **Input:** `head = [0, 1, 2]`
+- **Output:** `[0, 1, 2]`
+- **Explanation:** The actual values are already non-decreasing.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [1]`
-- Output: `[1]`
+- **Input:** `head = [1]`
+- **Output:** `[1]`

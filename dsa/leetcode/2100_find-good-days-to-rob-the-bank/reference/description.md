@@ -16,8 +16,14 @@ Return *a list of **all** days **(0-indexed) **that are good days to rob the ban
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `security`: Input parameter (`List[int]`).
+- `time`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -25,22 +31,21 @@ Return *a list of **all** days **(0-indexed) **that are good days to rob the ban
 
 - **Input:** $security = [5,3,3,3,5,6,2], time = 2$
 - **Output:** `[2,3]`
-- **Explanation:**
-On day 2, we have security[0] >= security[1] >= security[2] <= security[3] <= security[4].
+- **Explanation:** On day 2, we have security[0] >= security[1] >= security[2] <= security[3] <= security[4].
 On day 3, we have security[1] >= security[2] >= security[3] <= security[4] <= security[5].
 No other days satisfy this condition, so days 2 and 3 are the only good days to rob the bank.
+
 #### Example 2
 
 - **Input:** $security = [1,1,1,1,1], time = 0$
 - **Output:** `[0,1,2,3,4]`
-- **Explanation:**
-Since time equals 0, every day is a good day to rob the bank, so return every day.
+- **Explanation:** Since time equals 0, every day is a good day to rob the bank, so return every day.
+
 #### Example 3
 
 - **Input:** $security = [1,2,3,4,5,6], time = 2$
 - **Output:** `[]`
-- **Explanation:**
-No day has 2 days before it that have a non-increasing number of guards.
+- **Explanation:** No day has 2 days before it that have a non-increasing number of guards.
 Thus, no day is a good day to rob the bank, so return an empty list.
 
 ### 4. Constraints

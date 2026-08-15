@@ -18,8 +18,13 @@ Return *an integer denoting the **minimum** possible total cost to make *`nums`*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -29,12 +34,14 @@ Return *an integer denoting the **minimum** possible total cost to make *`nums`*
 - **Output:** `6`
 - **Explanation:** We can make the array equalindromic by changing all elements to 3 which is a palindromic number. The cost of changing the array to [3,3,3,3,3] using 4 special moves is given by |1 - 3| + |2 - 3| + |4 - 3| + |5 - 3| = 6.
 It can be shown that changing all elements to any palindromic number other than 3 cannot be achieved at a lower cost.
+
 #### Example 2
 
 - **Input:** `nums = [10,12,13,14,15]`
 - **Output:** `11`
 - **Explanation:** We can make the array equalindromic by changing all elements to 11 which is a palindromic number. The cost of changing the array to [11,11,11,11,11] using 5 special moves is given by |10 - 11| + |12 - 11| + |13 - 11| + |14 - 11| + |15 - 11| = 11.
 It can be shown that changing all elements to any palindromic number other than 11 cannot be achieved at a lower cost.
+
 #### Example 3
 
 - **Input:** `nums = [22,33,22,33,22]`

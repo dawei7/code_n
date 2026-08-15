@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/) |
 
 ## Problem Description
+
 ### Goal
 
 You are given two integer arrays of equal length: `target`, which describes
@@ -23,6 +24,7 @@ or alter values, so repeated values and their multiplicities must be handled
 precisely.
 
 ### Function Contract
+
 **Inputs**
 
 - `target`: an integer array of length $n$.
@@ -35,20 +37,21 @@ Return `true` if repeated reversals of non-empty subarrays can transform
 `arr` into `target`; otherwise return `false`.
 
 ### Examples
-**Example 1**
 
-- Input: `target = [1,2,3,4], arr = [2,4,1,3]`
-- Output: `true`
-- Explanation: Suitable reversals can reorder `arr` into the target order.
+#### Example 1
 
-**Example 2**
+- **Input:** `target = [1,2,3,4], arr = [2,4,1,3]`
+- **Output:** `true`
+- **Explanation:** Suitable reversals can reorder `arr` into the target order.
 
-- Input: `target = [7], arr = [7]`
-- Output: `true`
-- Explanation: No operation is necessary.
+#### Example 2
 
-**Example 3**
+- **Input:** `target = [7], arr = [7]`
+- **Output:** `true`
+- **Explanation:** No operation is necessary.
 
-- Input: `target = [3,7,9], arr = [3,7,11]`
-- Output: `false`
-- Explanation: Reversal cannot replace the value 11 with the missing value 9.
+#### Example 3
+
+- **Input:** `target = [3,7,9], arr = [3,7,11]`
+- **Output:** `false`
+- **Explanation:** Reversal cannot replace the value 11 with the missing value 9.

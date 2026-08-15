@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-stable-subsequences/) |
 
 ## Problem Description
+
 ### Goal
 
 Count the nonempty subsequences of `nums` that are stable. A subsequence retains the original order of its chosen positions, although it may omit any number of elements. Different choices of positions count separately even when they produce the same values.
@@ -29,23 +30,23 @@ Return the number of nonempty stable subsequences modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 5]`
-- Output: `6`
+- **Input:** `nums = [1, 3, 5]`
+- **Output:** `6`
 
 Every nonempty subsequence except the one containing all three odd elements is stable.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 4, 2]`
-- Output: `14`
+- **Input:** `nums = [2, 3, 4, 2]`
+- **Output:** `14`
 
 Among the 15 nonempty subsequences, only `[2, 4, 2]` contains three consecutive even elements.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 1, 1, 1]`
-- Output: `10`
+- **Input:** `nums = [1, 1, 1, 1]`
+- **Output:** `10`
 
 Only subsequences of length one or two can be stable when every value is odd.

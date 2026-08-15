@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-polygon-with-the-largest-perimeter/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an array `nums` of positive integers. You may choose some of its
 values as the side lengths of a polygon, which must have at least three sides.
 
@@ -28,6 +30,7 @@ perimeter obtainable from a selection of `nums`, or `-1` when no selection can
 form a polygon.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the available positive integer side lengths
@@ -41,20 +44,21 @@ The greatest sum of a subset containing at least three lengths that satisfies
 the polygon inequality, or `-1` if no such subset exists.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [5,5,5]`
-- Output: `15`
-- Explanation: All three equal sides form a polygon with perimeter `15`.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [5,5,5]`
+- **Output:** `15`
+- **Explanation:** All three equal sides form a polygon with perimeter `15`.
 
-- Input: `nums = [1,12,1,2,5,50,3]`
-- Output: `12`
-- Explanation: Sides `1,1,2,3,5` form the maximum-perimeter polygon; neither `12` nor `50` can be supported by the available smaller lengths.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1,12,1,2,5,50,3]`
+- **Output:** `12`
+- **Explanation:** Sides `1,1,2,3,5` form the maximum-perimeter polygon; neither `12` nor `50` can be supported by the available smaller lengths.
 
-- Input: `nums = [5,5,50]`
-- Output: `-1`
-- Explanation: The sum of the two smaller sides is not greater than the longest side.
+#### Example 3
+
+- **Input:** `nums = [5,5,50]`
+- **Output:** `-1`
+- **Explanation:** The sum of the two smaller sides is not greater than the longest side.

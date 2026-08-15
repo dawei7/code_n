@@ -27,7 +27,8 @@ The result format is in the following example.
 ### 3. Examples
 
 #### Example 1
-**Input:**
+
+- **Input:** 
 +-------------+---------+---------------------+
 | customer_id | name    | email               |
 +-------------+---------+---------------------+
@@ -38,7 +39,7 @@ The result format is in the following example.
 | 5           | Finn    | john@example.com    |
 | 6           | Violet  | alice@example.com   |
 +-------------+---------+---------------------+
-**Output: **
+- **Output:** 
 +-------------+---------+---------------------+
 | customer_id | name    | email               |
 +-------------+---------+---------------------+
@@ -48,6 +49,5 @@ The result format is in the following example.
 | 4           | Alice   | john@example.com    |
 | 6           | Violet  | alice@example.com   |
 +-------------+---------+---------------------+
-**Explanation:**
-Alic (customer_id = 4) and Finn (customer_id = 5) both use john@example.com, so only the first occurrence of this email is retained.
+- **Explanation:** Alic (customer_id = 4) and Finn (customer_id = 5) both use john@example.com, so only the first occurrence of this email is retained.
 ```

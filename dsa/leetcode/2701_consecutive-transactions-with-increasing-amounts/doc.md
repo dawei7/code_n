@@ -32,20 +32,20 @@ Return the columns `customer_id`, `consecutive_start`, and `consecutive_end`. Ea
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: Customer `101` has amounts `100`, `150`, and `200` on `2023-05-01` through `2023-05-03`.
-- Output: `(101, 2023-05-01, 2023-05-03)`
-- Explanation: All three dates are consecutive and both amount transitions are strictly increasing.
+- **Input:** Customer `101` has amounts `100`, `150`, and `200` on `2023-05-01` through `2023-05-03`.
+- **Output:** `(101, 2023-05-01, 2023-05-03)`
+- **Explanation:** All three dates are consecutive and both amount transitions are strictly increasing.
 
-**Example 2**
+#### Example 2
 
-- Input: Customer `102` transacts on `2023-05-01`, `2023-05-03`, and `2023-05-04` with increasing amounts.
-- Output: No row for customer `102`.
-- Explanation: The missing transaction on May 2 breaks calendar-day consecutiveness.
+- **Input:** Customer `102` transacts on `2023-05-01`, `2023-05-03`, and `2023-05-04` with increasing amounts.
+- **Output:** No row for customer `102`.
+- **Explanation:** The missing transaction on May 2 breaks calendar-day consecutiveness.
 
-**Example 3**
+#### Example 3
 
-- Input: Customer `105` has increasing daily transactions from May 1 through May 4 and another increasing run from May 12 through May 14.
-- Output: `(105, 2023-05-01, 2023-05-04)` and `(105, 2023-05-12, 2023-05-14)`
-- Explanation: The gap separates two maximal qualifying periods for the same customer.
+- **Input:** Customer `105` has increasing daily transactions from May 1 through May 4 and another increasing run from May 12 through May 14.
+- **Output:** `(105, 2023-05-01, 2023-05-04)` and `(105, 2023-05-12, 2023-05-14)`
+- **Explanation:** The gap separates two maximal qualifying periods for the same customer.

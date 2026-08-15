@@ -32,17 +32,17 @@ For every value in `queries`, find the size of the smallest input interval that 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `intervals = [[1, 4], [2, 4], [3, 6], [4, 4]]`, `queries = [2, 3, 4, 5]`
-- Output: `[3, 3, 1, 4]`
+- **Input:** `intervals = [[1, 4], [2, 4], [3, 6], [4, 4]]`, `queries = [2, 3, 4, 5]`
+- **Output:** `[3, 3, 1, 4]`
 
-**Example 2**
+#### Example 2
 
-- Input: `intervals = [[2, 3], [2, 5], [1, 8], [20, 25]]`, `queries = [2, 19, 5, 22]`
-- Output: `[2, -1, 4, 6]`
+- **Input:** `intervals = [[2, 3], [2, 5], [1, 8], [20, 25]]`, `queries = [2, 19, 5, 22]`
+- **Output:** `[2, -1, 4, 6]`
 
-**Example 3**
+#### Example 3
 
-- Input: `intervals = [[5, 5]]`, `queries = [4, 5, 6]`
-- Output: `[-1, 1, -1]`
+- **Input:** `intervals = [[5, 5]]`, `queries = [4, 5, 6]`
+- **Output:** `[-1, 1, -1]`

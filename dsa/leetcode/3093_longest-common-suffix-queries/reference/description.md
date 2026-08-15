@@ -8,21 +8,24 @@ Return *an array of integers *`ans`*, where *$\text{ans}[i]$* is the index of th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `wordsContainer`: Input parameter (`List[str]`).
+- `wordsQuery`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** wordsContainer = ["abcd","bcd","xbcd"], wordsQuery = ["cd","bcd","xyz"]
+- **Input:** wordsContainer = ["abcd","bcd","xbcd"], wordsQuery = ["cd","bcd","xyz"]
 
-**Output:** [1,1,1]
+- **Output:** [1,1,1]
 
-**Explanation:**
-
-Let's look at each $\text{wordsQuery}[i]$ separately:
+- **Explanation:** Let's look at each $\text{wordsQuery}[i]$ separately:
 
 - For $\text{wordsQuery}[0] = "cd"$, strings from `wordsContainer` that share the longest common suffix `"cd"` are at indices 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3.
 
@@ -30,25 +33,19 @@ Let's look at each $\text{wordsQuery}[i]$ separately:
 
 - For $\text{wordsQuery}[2] = "xyz"$, there is no string from `wordsContainer` that shares a common suffix. Hence the longest common suffix is `""`, that is shared with strings at index 0, 1, and 2. Among these, the answer is the string at index 1 because it has the shortest length of 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** wordsContainer = ["abcdefgh","poiuygh","ghghgh"], wordsQuery = ["gh","acbfgh","acbfegh"]
+- **Input:** wordsContainer = ["abcdefgh","poiuygh","ghghgh"], wordsQuery = ["gh","acbfgh","acbfegh"]
 
-**Output:** [2,0,2]
+- **Output:** [2,0,2]
 
-**Explanation:**
-
-Let's look at each $\text{wordsQuery}[i]$ separately:
+- **Explanation:** Let's look at each $\text{wordsQuery}[i]$ separately:
 
 - For $\text{wordsQuery}[0] = "gh"$, strings from `wordsContainer` that share the longest common suffix `"gh"` are at indices 0, 1, and 2. Among these, the answer is the string at index 2 because it has the shortest length of 6.
 
 - For $\text{wordsQuery}[1] = "acbfgh"$, only the string at index 0 shares the longest common suffix `"fgh"`. Hence it is the answer, even though the string at index 2 is shorter.
 
 - For $\text{wordsQuery}[2] = "acbfegh"$, strings from `wordsContainer` that share the longest common suffix `"gh"` are at indices 0, 1, and 2. Among these, the answer is the string at index 2 because it has the shortest length of 6.
-
-</div>
 
 ### 4. Constraints
 

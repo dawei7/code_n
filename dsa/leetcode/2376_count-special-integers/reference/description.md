@@ -6,8 +6,13 @@ Given a **positive** integer `n`, return *the number of special integers that be
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +21,13 @@ Given a **positive** integer `n`, return *the number of special integers that be
 - **Input:** $n = 20$
 - **Output:** `19`
 - **Explanation:** All the integers from 1 to 20, except 11, are special. Thus, there are 19 special integers.
+
 #### Example 2
 
 - **Input:** $n = 5$
 - **Output:** `5`
 - **Explanation:** All the integers from 1 to 5 are special.
+
 #### Example 3
 
 - **Input:** $n = 135$

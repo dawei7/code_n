@@ -8,8 +8,13 @@ Given a string `word`, return *the number of **vowel substrings** in* `word`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ Given a string `word`, return *the number of **vowel substrings** in* `word`.
 - **Explanation:** The vowel substrings of word are as follows (underlined):
 - "**<u>aeiou</u>**u"
 - "**<u>aeiouu</u>**"
+
 #### Example 2
 
 - **Input:** $word = "unicornarihan"$
 - **Output:** `0`
 - **Explanation:** Not all 5 vowels are present, so there are no vowel substrings.
+
 #### Example 3
 
 - **Input:** $word = "cuaieuouac"$

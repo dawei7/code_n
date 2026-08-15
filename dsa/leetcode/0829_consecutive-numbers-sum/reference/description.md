@@ -4,8 +4,13 @@ Given an integer `n`, return *the number of ways you can write *`n`* as the sum 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,11 +19,13 @@ Given an integer `n`, return *the number of ways you can write *`n`* as the sum 
 - **Input:** $n = 5$
 - **Output:** `2`
 - **Explanation:** 5 = 2 + 3
+
 #### Example 2
 
 - **Input:** $n = 9$
 - **Output:** `3`
 - **Explanation:** 9 = 4 + 5 = 2 + 3 + 4
+
 #### Example 3
 
 - **Input:** $n = 15$

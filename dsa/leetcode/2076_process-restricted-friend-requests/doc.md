@@ -33,20 +33,20 @@ Process the given friend requests in order. Accepting a request permanently adds
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, restrictions = [[0,1]], requests = [[0,2],[2,1]]`
-- Output: `[true,false]`
-- Explanation: Joining 0 with 2 is safe, but then joining 2 with 1 would indirectly connect the restricted pair 0 and 1.
+- **Input:** `n = 3, restrictions = [[0,1]], requests = [[0,2],[2,1]]`
+- **Output:** `[true,false]`
+- **Explanation:** Joining 0 with 2 is safe, but then joining 2 with 1 would indirectly connect the restricted pair 0 and 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, restrictions = [[0,1]], requests = [[1,2],[0,2]]`
-- Output: `[true,false]`
-- Explanation: The first request forms component `{1,2}`; merging person 0 into it would violate `[0,1]`.
+- **Input:** `n = 3, restrictions = [[0,1]], requests = [[1,2],[0,2]]`
+- **Output:** `[true,false]`
+- **Explanation:** The first request forms component `{1,2}`; merging person 0 into it would violate `[0,1]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, restrictions = [[0,1],[1,2],[2,3]], requests = [[0,4],[1,2],[3,1],[3,4]]`
-- Output: `[true,false,true,false]`
-- Explanation: The first and third requests are compatible. The second is directly restricted, and the final merge would connect restricted people 0 and 1 through the accumulated friendships.
+- **Input:** `n = 5, restrictions = [[0,1],[1,2],[2,3]], requests = [[0,4],[1,2],[3,1],[3,4]]`
+- **Output:** `[true,false,true,false]`
+- **Explanation:** The first and third requests are compatible. The second is directly restricted, and the final merge would connect restricted people 0 and 1 through the accumulated friendships.

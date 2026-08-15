@@ -8,8 +8,13 @@ A **subsequence** is a sequence that can be derived from an array by deleting so
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ A **subsequence** is a sequence that can be derived from an array by deleting so
 - **Explanation:** The subsequences are [1], [2], [3], [2,1], [2,3], [1,3], [2,1,3].
 The corresponding widths are 0, 0, 0, 1, 1, 2, 2.
 The sum of these widths is 6.
+
 #### Example 2
 
 - **Input:** `nums = [2]`

@@ -27,6 +27,7 @@ candidate without gaps or leftover characters.
 - **Explanation:** "catsdogcats" can be concatenated by "cats", "dog" and "cats";
 "dogcatsdog" can be concatenated by "dog", "cats" and "dog";
 "ratcatdogcat" can be concatenated by "rat", "cat", "dog" and "cat".
+
 #### Example 2
 
 - **Input:** $words = ["cat","dog","catdog"]$

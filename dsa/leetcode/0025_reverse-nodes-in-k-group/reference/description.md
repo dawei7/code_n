@@ -27,6 +27,7 @@ Return the head after reversing every complete group of $k$ nodes and retaining 
 
 - **Input:** $head = [1,2,3,4,5], k = 2$
 - **Output:** `[2,1,4,3,5]`
+
 #### Example 2
 
 ![](images/reverse_ex2.jpg)

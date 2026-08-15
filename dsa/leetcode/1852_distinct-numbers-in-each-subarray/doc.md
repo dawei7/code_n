@@ -33,19 +33,19 @@ For each window, count how many different integer values occur at least once ins
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 2, 2, 1, 3]`, `k = 3`
-- Output: `[3, 2, 2, 2, 3]`
+- **Input:** `nums = [1, 2, 3, 2, 2, 1, 3]`, `k = 3`
+- **Output:** `[3, 2, 2, 2, 3]`
 
 The first window contains 1, 2, and 3, while the second contains only 2 and 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 1, 1, 1, 2, 3, 4]`, `k = 4`
-- Output: `[1, 2, 3, 4]`
+- **Input:** `nums = [1, 1, 1, 1, 2, 3, 4]`, `k = 4`
+- **Output:** `[1, 2, 3, 4]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 5, 5]`, `k = 1`
-- Output: `[1, 1, 1]`
+- **Input:** `nums = [5, 5, 5]`, `k = 1`
+- **Output:** `[1, 1, 1]`

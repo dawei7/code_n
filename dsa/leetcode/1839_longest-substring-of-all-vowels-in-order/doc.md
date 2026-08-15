@@ -30,23 +30,23 @@ Given `word`, a string containing only those five lowercase vowels, return the l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aeiaaioaaaaeiiiiouuuooaauuaeiu"`
-- Output: `13`
+- **Input:** `word = "aeiaaioaaaaeiiiiouuuooaauuaeiu"`
+- **Output:** `13`
 
 The longest beautiful substring is `"aaaaeiiiiouuu"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aeeeiiiioooauuuaeiou"`
-- Output: `5`
+- **Input:** `word = "aeeeiiiioooauuuaeiou"`
+- **Output:** `5`
 
 The descending transition from `o` to `a` resets the first run; the final `"aeiou"` is beautiful.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "a"`
-- Output: `0`
+- **Input:** `word = "a"`
+- **Output:** `0`
 
 Four required vowel groups are absent.

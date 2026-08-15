@@ -36,14 +36,14 @@ The constraints are $2 \le n \le 5 \cdot 10^5$ and $1 \le k \le 10^{15}$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcd", t = "cdab", k = 2`
-- Output: `2`
-- Explanation: One sequence moves the suffix beginning at index `3` twice. Another moves the suffix beginning at index `1` twice. Both finish at `"cdab"` after exactly two operations.
+- **Input:** `s = "abcd", t = "cdab", k = 2`
+- **Output:** `2`
+- **Explanation:** One sequence moves the suffix beginning at index `3` twice. Another moves the suffix beginning at index `1` twice. Both finish at `"cdab"` after exactly two operations.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ababab", t = "ababab", k = 1`
-- Output: `2`
-- Explanation: Moving the suffix beginning at index `2` or the one beginning at index `4` reproduces the same periodic string, and the two suffix choices are distinct ways.
+- **Input:** `s = "ababab", t = "ababab", k = 1`
+- **Output:** `2`
+- **Explanation:** Moving the suffix beginning at index `2` or the one beginning at index `4` reproduces the same periodic string, and the two suffix choices are distinct ways.

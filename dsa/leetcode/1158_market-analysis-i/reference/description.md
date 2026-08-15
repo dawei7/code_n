@@ -59,7 +59,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +---------+------------+----------------+
 | user_id | join_date  | favorite_brand |
@@ -89,7 +89,7 @@ Items table:
 | 3       | LG         |
 | 4       | HP         |
 +---------+------------+
-**Output:**
+- **Output:** 
 +-----------+------------+----------------+
 | buyer_id  | join_date  | orders_in_2019 |
 +-----------+------------+----------------+

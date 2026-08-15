@@ -6,8 +6,14 @@ Given two integers n and k, return the number of different arrays consisting of 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +22,7 @@ Given two integers n and k, return the number of different arrays consisting of 
 - **Input:** $n = 3, k = 0$
 - **Output:** `1`
 - **Explanation:** Only the array [1,2,3] which consists of numbers from 1 to 3 has exactly 0 inverse pairs.
+
 #### Example 2
 
 - **Input:** $n = 3, k = 1$

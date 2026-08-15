@@ -36,23 +36,23 @@ Choose those operations so that the first resulting value is $1$ and the absolut
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [2, 2, 1, 2, 1]`
-- Output: `2`
+- **Input:** `arr = [2, 2, 1, 2, 1]`
+- **Output:** `2`
 
 There are too many small values to build a valid step above 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [100, 1, 1000]`
-- Output: `3`
+- **Input:** `arr = [100, 1, 1000]`
+- **Output:** `3`
 
 After sorting, the large values may be decreased to 2 and 3, producing `[1, 2, 3]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [1, 2, 3, 4, 5]`
-- Output: `5`
+- **Input:** `arr = [1, 2, 3, 4, 5]`
+- **Output:** `5`
 
 The array already forms the fastest permitted rise from 1.

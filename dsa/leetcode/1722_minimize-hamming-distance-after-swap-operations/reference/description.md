@@ -8,8 +8,15 @@ Return *the **minimum Hamming distance** of *`source`* and *`target`* after perf
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `source`: Input parameter (`List[int]`).
+- `target`: Input parameter (`List[int]`).
+- `allowedSwaps`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,12 +28,14 @@ Return *the **minimum Hamming distance** of *`source`* and *`target`* after perf
 - Swap indices 0 and 1: source = [<u>2</u>,<u>1</u>,3,4]
 - Swap indices 2 and 3: source = [2,1,<u>4</u>,<u>3</u>]
 The Hamming distance of source and target is 1 as they differ in 1 position: index 3.
+
 #### Example 2
 
 - **Input:** $source = [1,2,3,4], target = [1,3,2,4], allowedSwaps = []$
 - **Output:** `2`
 - **Explanation:** There are no allowed swaps.
 The Hamming distance of source and target is 2 as they differ in 2 positions: index 1 and index 2.
+
 #### Example 3
 
 - **Input:** $source = [5,1,2,4,3], target = [1,5,4,2,3], allowedSwaps = [[0,4],[4,2],[1,3],[1,4]]$

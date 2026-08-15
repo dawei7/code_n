@@ -12,55 +12,48 @@ Return `true` if you can reach the final cell with a health value of 1 or more, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `health`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]], health = 1
+- **Input:** grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]], health = 1
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-The final cell can be reached safely by walking along the gray cells below.
+- **Explanation:** The final cell can be reached safely by walking along the gray cells below.
 
 ![](images/3868_examples_1drawio.png)
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]], health = 3
+- **Input:** grid = [[0,1,1,0,0,0],[1,0,1,0,0,0],[0,1,1,1,0,1],[0,0,1,0,1,0]], health = 3
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-A minimum of 4 health points is needed to reach the final cell safely.
+- **Explanation:** A minimum of 4 health points is needed to reach the final cell safely.
 
 ![](images/3868_examples_2drawio.png)
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[1,1,1],[1,0,1],[1,1,1]], health = 5
+- **Input:** grid = [[1,1,1],[1,0,1],[1,1,1]], health = 5
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-The final cell can be reached safely by walking along the gray cells below.
+- **Explanation:** The final cell can be reached safely by walking along the gray cells below.
 
 ![](images/3868_examples_3drawio.png)
 
 Any path that does not go through the cell `(1, 1)` is unsafe since your health will drop to 0 when reaching the final cell.
-
-</div>
 
 ### 4. Constraints
 

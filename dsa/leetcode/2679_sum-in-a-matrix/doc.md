@@ -30,13 +30,13 @@ Return the sum of the largest row-removal value from every round.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [[7,2,1],[6,4,2],[6,5,3],[3,2,1]]`
-- Output: `15`
-- Explanation: The round maxima added to the score are 7, 5, and 3.
+- **Input:** `nums = [[7,2,1],[6,4,2],[6,5,3],[3,2,1]]`
+- **Output:** `15`
+- **Explanation:** The round maxima added to the score are 7, 5, and 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [[1]]`
-- Output: `1`
+- **Input:** `nums = [[1]]`
+- **Output:** `1`

@@ -20,16 +20,15 @@ Consider the string `"abcabc"`:
 
 - For $d = 2$:
 
-		<li>Group 1 (positions `1, 3, 5`): `"acb"`
+		- Group 1 (positions `1, 3, 5`): `"acb"`
 
 - Group 2 (positions `2, 4, 6`): `"bac"`
 
 - Neither group forms a palindrome.
 
-	</li>
 - For $d = 3$:
 
-		<li>Group 1 (positions `1, 4`): `"aa"`
+		- Group 1 (positions `1, 4`): `"aa"`
 
 - Group 2 (positions `2, 5`): `"bb"`
 
@@ -37,45 +36,40 @@ Consider the string `"abcabc"`:
 
 - All groups form palindromes. Therefore, `"abcabc"` is a semi-palindrome.
 
-	</li>
-
 **Example 1: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  s = "abcac", k = 2
 
 **Output: **  1
 
 **Explanation: ** Divide `s` into `"ab"` and `"cac"`. `"cac"` is already semi-palindrome. Change `"ab"` to `"aa"`, it becomes semi-palindrome with $d = 1$.
 
-</div>
-
 **Example 2: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  s = "abcdef", k = 2
 
 **Output: **  2
 
 **Explanation: ** Divide `s` into substrings `"abc"` and `"def"`. Each needs one change to become semi-palindrome.
 
-</div>
-
 **Example 3: **
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
 **Input: **  s = "aabbaa", k = 3
 
 **Output: **  0
 
 **Explanation: ** Divide `s` into substrings `"aa"`, `"bb"` and `"aa"`. All are already semi-palindromes.
 
-</div>
-
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Constraints
 

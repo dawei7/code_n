@@ -8,8 +8,16 @@ Given `edges` and the integers `n`, `source`, and `destination`, return `true`* 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `source`: Input parameter (`int`).
+- `destination`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -22,6 +30,7 @@ Given `edges` and the integers `n`, `source`, and `destination`, return `true`* 
 - **Explanation:** There are two paths from vertex 0 to vertex 2:
 - 0 → 1 → 2
 - 0 → 2
+
 #### Example 2
 
 ![](images/validpath-ex2.png)

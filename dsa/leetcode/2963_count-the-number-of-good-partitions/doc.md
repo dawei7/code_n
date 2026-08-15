@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-good-partitions/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed array `nums` of positive integers. Partition the
 entire array into one or more non-empty contiguous subarrays, preserving the
 original order and using every element exactly once.
@@ -23,6 +25,7 @@ belong to that same piece.
 Return the total number of good partitions modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the positive integer array to divide into contiguous pieces
@@ -36,20 +39,21 @@ The number of partitions in which each distinct value is confined to exactly
 one piece, reduced modulo $10^9+7$.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,2,3,4]`
-- Output: `8`
-- Explanation: All values are distinct, so each of the three boundaries can independently be cut or retained.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `8`
+- **Explanation:** All values are distinct, so each of the three boundaries can independently be cut or retained.
 
-- Input: `nums = [1,1,1,1]`
-- Output: `1`
-- Explanation: Cutting anywhere would put `1` in two pieces, leaving only the whole array as one piece.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [1,1,1,1]`
+- **Output:** `1`
+- **Explanation:** Cutting anywhere would put `1` in two pieces, leaving only the whole array as one piece.
 
-- Input: `nums = [1,2,1,3]`
-- Output: `2`
-- Explanation: The repeated `1` forces the first three positions together; the final `3` may remain joined or form a second piece.
+#### Example 3
+
+- **Input:** `nums = [1,2,1,3]`
+- **Output:** `2`
+- **Explanation:** The repeated `1` forces the first three positions together; the final `3` may remain joined or form a second piece.

@@ -33,22 +33,22 @@ Return the minimum number of allowed operations required to transform `word1` in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word1 = "abcdf", word2 = "dacbe"`
-- Output: `4`
-- Explanation: One optimal partition uses `"ab"`, `"c"`, and `"df"`; reversing and replacing within the first segment and making two replacements in the last costs four steps.
+- **Input:** `word1 = "abcdf", word2 = "dacbe"`
+- **Output:** `4`
+- **Explanation:** One optimal partition uses `"ab"`, `"c"`, and `"df"`; reversing and replacing within the first segment and making two replacements in the last costs four steps.
 
-**Example 2**
+#### Example 2
 
-- Input: `word1 = "abceded", word2 = "baecfef"`
-- Output: `4`
-- Explanation: Partitioning as `"ab"`, `"ce"`, and `"ded"` permits two swaps followed by two replacements.
+- **Input:** `word1 = "abceded", word2 = "baecfef"`
+- **Output:** `4`
+- **Explanation:** Partitioning as `"ab"`, `"ce"`, and `"ded"` permits two swaps followed by two replacements.
 
-**Example 3**
+#### Example 3
 
-- Input: `word1 = "abcdef", word2 = "fedabc"`
-- Output: `2`
-- Explanation: Reverse the complete string, then use one swap to obtain the target.
+- **Input:** `word1 = "abcdef", word2 = "fedabc"`
+- **Output:** `2`
+- **Explanation:** Reverse the complete string, then use one swap to obtain the target.
 
 ---

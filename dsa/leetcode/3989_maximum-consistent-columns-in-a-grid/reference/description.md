@@ -29,51 +29,43 @@ Return the largest number of columns that can be retained while every adjacent r
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[-2,0,3]], limit = 2
+- **Input:** grid = [[-2,0,3]], limit = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove column 2 and keep columns 0 and 1, which gives $|\text{grid}[0][1] − \text{grid}[0][0]| = |0 − (−2)| = 2 \le limit$.
 
 - Thus, the maximum number of columns that can remain is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,-1,1],[2,2,2]], limit = 1
+- **Input:** grid = [[1,-1,1],[2,2,2]], limit = 1
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove column 1 and keep columns 0 and 2, which gives
 
-		<li>$|\text{grid}[0][2] − \text{grid}[0][0]| = |1 − 1| = 0 \le limit$ and
+		- $|\text{grid}[0][2] − \text{grid}[0][0]| = |1 − 1| = 0 \le limit$ and
 
 - $|\text{grid}[1][2] − \text{grid}[1][0]| = |2 − 2| = 0 \le limit$.
 
-	</li>
 - Thus, the maximum number of columns that can remain is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** grid = [[-5,5]], limit = 9
+- **Input:** grid = [[-5,5]], limit = 9
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** 
 
 - Remove either column 0 or column 1, since $|\text{grid}[0][1] − \text{grid}[0][0]| = |5 − (−5)| = 10 > limit$.
 
 - Thus, the maximum number of columns that can remain is 1.
-
-</div>
 
 ### 4. Constraints
 

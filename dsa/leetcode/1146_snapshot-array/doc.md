@@ -35,8 +35,8 @@ For the cOde(n) adapter, return the ordered results of all operations: `null` fo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `length = 3, operations = [["set", [0, 5]], ["snap", []], ["set", [0, 6]], ["get", [0, 0]]]`
-- Output: `[null, 0, null, 5]`
-- Explanation: Snapshot `0` retains the value `5` at index `0` even after the current value becomes `6`.
+- **Input:** `length = 3, operations = [["set", [0, 5]], ["snap", []], ["set", [0, 6]], ["get", [0, 0]]]`
+- **Output:** `[null, 0, null, 5]`
+- **Explanation:** Snapshot `0` retains the value `5` at index `0` even after the current value becomes `6`.

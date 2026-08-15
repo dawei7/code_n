@@ -52,7 +52,7 @@ integer. Row order is unrestricted.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Salaries table:
 +------------+-------------+---------------+--------+
 | company_id | employee_id | employee_name | salary |
@@ -68,7 +68,7 @@ Salaries table:
 | 3          | 13          | Nyancat       | 3300   |
 | 3          | 15          | Morninngcat   | 7777   |
 +------------+-------------+---------------+--------+
-**Output:**
+- **Output:** 
 +------------+-------------+---------------+--------+
 | company_id | employee_id | employee_name | salary |
 +------------+-------------+---------------+--------+
@@ -83,8 +83,7 @@ Salaries table:
 | 3          | 13          | Nyancat       | 2508   |
 | 3          | 15          | Morninngcat   | 5911   |
 +------------+-------------+---------------+--------+
-**Explanation:**
-For company 1, Max salary is 21300. Employees in company 1 have taxes = 49%
+- **Explanation:** For company 1, Max salary is 21300. Employees in company 1 have taxes = 49%
 For company 2, Max salary is 700. Employees in company 2 have taxes = 0%
 For company 3, Max salary is 7777. Employees in company 3 have taxes = 24%
 The salary after taxes = salary - (taxes percentage / 100) * salary

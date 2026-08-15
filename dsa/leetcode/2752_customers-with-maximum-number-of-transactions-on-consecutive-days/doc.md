@@ -34,20 +34,20 @@ A one-column relation named `customer_id`, containing one row for each globally 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: customer 101 transacts on May 1, 2, and 3; customer 102 transacts on May 1, 3, and 4; customer 105 transacts on May 1, 2, and 3.
-- Output: `[[101], [105]]`
-- Explanation: customers 101 and 105 each have a three-day streak, while customer 102's longest streak has length two.
+- **Input:** customer 101 transacts on May 1, 2, and 3; customer 102 transacts on May 1, 3, and 4; customer 105 transacts on May 1, 2, and 3.
+- **Output:** `[[101], [105]]`
+- **Explanation:** customers 101 and 105 each have a three-day streak, while customer 102's longest streak has length two.
 
-**Example 2**
+#### Example 2
 
-- Input: customer 7 transacts on June 1, 2, 10, and 11.
-- Output: `[[7], [7]]`
-- Explanation: both separate two-day streaks attain the global maximum, so both winning streak rows remain.
+- **Input:** customer 7 transacts on June 1, 2, 10, and 11.
+- **Output:** `[[7], [7]]`
+- **Explanation:** both separate two-day streaks attain the global maximum, so both winning streak rows remain.
 
-**Example 3**
+#### Example 3
 
-- Input: customer 4 transacts on four consecutive dates with arbitrary increasing, decreasing, and equal amounts.
-- Output: `[[4]]`
-- Explanation: only the dates determine the streak.
+- **Input:** customer 4 transacts on four consecutive dates with arbitrary increasing, decreasing, and equal amounts.
+- **Output:** `[[4]]`
+- **Explanation:** only the dates determine the streak.

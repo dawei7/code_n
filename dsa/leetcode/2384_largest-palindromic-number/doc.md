@@ -36,14 +36,14 @@ Return the numerically largest palindromic integer that can be formed, represent
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "444947137"`
-- Output: `"7449447"`
-- Explanation: The selected digits can be arranged with outer sevens, then fours, and a central nine.
+- **Input:** `num = "444947137"`
+- **Output:** `"7449447"`
+- **Explanation:** The selected digits can be arranged with outer sevens, then fours, and a central nine.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "00009"`
-- Output: `"9"`
-- Explanation: Surrounding the nine with zeroes would create a leading zero, so the largest valid palindrome uses only the nine.
+- **Input:** `num = "00009"`
+- **Output:** `"9"`
+- **Explanation:** Surrounding the nine with zeroes would create a leading zero, so the largest valid palindrome uses only the nine.

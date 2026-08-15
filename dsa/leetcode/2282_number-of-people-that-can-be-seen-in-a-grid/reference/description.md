@@ -22,20 +22,21 @@ Return* an *`m x n`* 2D array of integers *`answer`* where *$\text{answer}[i][j]
 
 - **Input:** $heights = [[3,1,4,2,5]]$
 - **Output:** `[[2,1,2,1,0]]`
-- **Explanation:**
+- **Explanation:** 
 - The person at (0, 0) can see the people at (0, 1) and (0, 2).
 Note that he cannot see the person at (0, 4) because the person at (0, 2) is taller than him.
 - The person at (0, 1) can see the person at (0, 2).
 - The person at (0, 2) can see the people at (0, 3) and (0, 4).
 - The person at (0, 3) can see the person at (0, 4).
 - The person at (0, 4) cannot see anybody.
+
 #### Example 2
 
 ![](images/image-20220523113533-2.png)
 
 - **Input:** $heights = [[5,1],[3,1],[4,1]]$
 - **Output:** `[[3,1],[2,1],[1,0]]`
-- **Explanation:**
+- **Explanation:** 
 - The person at (0, 0) can see the people at (0, 1), (1, 0) and (2, 0).
 - The person at (0, 1) can see the person at (1, 1).
 - The person at (1, 0) can see the people at (1, 1) and (2, 0).

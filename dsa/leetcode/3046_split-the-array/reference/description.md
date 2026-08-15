@@ -12,8 +12,13 @@ Return `true`* if it is possible to split the array, and *`false` *otherwise**.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ Return `true`* if it is possible to split the array, and *`false` *otherwise**.*
 - **Input:** `nums = [1,1,2,2,3,4]`
 - **Output:** `true`
 - **Explanation:** One of the possible ways to split nums is nums1 = [1,2,3] and nums2 = [1,2,4].
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,1]`

@@ -26,12 +26,11 @@ Return the number of integers $x$ in the inclusive range $[l,r]$ for which every
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 10, r = 15, k = 1
+- **Input:** l = 10, r = 15, k = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The good integers in the range are 10, 11, and 12.
 
@@ -43,15 +42,13 @@ Return the number of integers $x$ in the inclusive range $[l,r]$ for which every
 
 - All these differences are at most $k = 1$. Thus, the answer is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 201, r = 204, k = 2
+- **Input:** l = 201, r = 204, k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The good integers in the range are 201 and 202.
 
@@ -60,8 +57,6 @@ Return the number of integers $x$ in the inclusive range $[l,r]$ for which every
 - For 202, $abs(2 - 0) = 2$ and $abs(0 - 2) = 2$.
 
 - Thus, the answer is 2.
-
-</div>
 
 ### 4. Constraints
 

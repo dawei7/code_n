@@ -35,20 +35,20 @@ The bounds are $1 \le n \le 2000$, $0 \le \texttt{nums[i]} \le 10^9$, $1 \le m \
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,2,0], changeIndices = [2,2,2,2,3,2,2,1]`
-- Output: `8`
-- Explanation: Four early seconds can perform the two decrements required for each of indices `1` and `2`. Later eligible seconds mark indices `3`, `2`, and `1`; the last required mark occurs at second `8`.
+- **Input:** `nums = [2,2,0], changeIndices = [2,2,2,2,3,2,2,1]`
+- **Output:** `8`
+- **Explanation:** Four early seconds can perform the two decrements required for each of indices `1` and `2`. Later eligible seconds mark indices `3`, `2`, and `1`; the last required mark occurs at second `8`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,3], changeIndices = [1,1,1,2,1,1,1]`
-- Output: `6`
-- Explanation: Use the first three seconds to reduce index `2` to zero, mark it at second `4`, decrement index `1` at second `5`, and mark index `1` at second `6`.
+- **Input:** `nums = [1,3], changeIndices = [1,1,1,2,1,1,1]`
+- **Output:** `6`
+- **Explanation:** Use the first three seconds to reduce index `2` to zero, mark it at second `4`, decrement index `1` at second `5`, and mark index `1` at second `6`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [0,1], changeIndices = [2,2,2]`
-- Output: `-1`
-- Explanation: Index `1` never occurs in `changeIndices`, so no second permits it to be marked.
+- **Input:** `nums = [0,1], changeIndices = [2,2,2]`
+- **Output:** `-1`
+- **Explanation:** Index `1` never occurs in `changeIndices`, so no second permits it to be marked.

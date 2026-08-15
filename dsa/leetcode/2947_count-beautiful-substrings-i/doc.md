@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-beautiful-substrings-i/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a lowercase English string `s` and a positive integer `k`.
 For any string, let its vowel count include occurrences of `a`, `e`, `i`,
 `o`, and `u`; every other lowercase English letter is a consonant.
@@ -21,6 +23,7 @@ consonants and the product of those two counts is divisible by `k`. Return
 the number of contiguous substrings of `s` that are beautiful.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: the lowercase English source string
@@ -35,23 +38,24 @@ The number of nonempty substrings whose vowel and consonant counts are equal
 and whose count product is divisible by `k`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "baeyh", k = 2`
-- Output: `2`
-- Explanation: `"baey"` and `"aeyh"` each contain two vowels and two
+#### Example 1
+
+- **Input:** `s = "baeyh", k = 2`
+- **Output:** `2`
+- **Explanation:** `"baey"` and `"aeyh"` each contain two vowels and two
   consonants.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abba", k = 1`
-- Output: `3`
-- Explanation: `"ab"`, `"ba"`, and `"abba"` are balanced, and every
+- **Input:** `s = "abba", k = 1`
+- **Output:** `3`
+- **Explanation:** `"ab"`, `"ba"`, and `"abba"` are balanced, and every
   integer product is divisible by `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "bcdf", k = 1`
-- Output: `0`
-- Explanation: No substring contains equal positive counts of vowels and
+- **Input:** `s = "bcdf", k = 1`
+- **Output:** `0`
+- **Explanation:** No substring contains equal positive counts of vowels and
   consonants.

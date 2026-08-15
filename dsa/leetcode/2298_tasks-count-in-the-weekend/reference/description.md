@@ -33,7 +33,7 @@ The result format is shown in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Tasks table:
 +---------+-------------+-------------+
 | task_id | assignee_id | submit_date |
@@ -45,14 +45,13 @@ Tasks table:
 | 5       | 5           | 2022-06-19  |
 | 6       | 7           | 2022-06-19  |
 +---------+-------------+-------------+
-**Output:**
+- **Output:** 
 +-------------+-------------+
 | weekend_cnt | working_cnt |
 +-------------+-------------+
 | 3           | 3           |
 +-------------+-------------+
-**Explanation:**
-Task 1 was submitted on Monday.
+- **Explanation:** Task 1 was submitted on Monday.
 Task 2 was submitted on Tuesday.
 Task 3 was submitted on Wednesday.
 Task 4 was submitted on Saturday.

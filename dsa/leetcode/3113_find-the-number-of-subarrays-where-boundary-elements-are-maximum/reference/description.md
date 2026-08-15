@@ -6,21 +6,23 @@ Return the number of subarrays of `nums`, where the **first** and the **last** e
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,4,3,3,2]
+- **Input:** nums = [1,4,3,3,2]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-There are 6 subarrays which have the first and the last elements equal to the largest element of the subarray:
+- **Explanation:** There are 6 subarrays which have the first and the last elements equal to the largest element of the subarray:
 
 - subarray `[**<u>1</u>**,4,3,3,2]`, with its largest element 1. The first element is 1 and the last element is also 1.
 
@@ -36,17 +38,13 @@ There are 6 subarrays which have the first and the last elements equal to the la
 
 Hence, we return 6.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,3,3]
+- **Input:** nums = [3,3,3]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-There are 6 subarrays which have the first and the last elements equal to the largest element of the subarray:
+- **Explanation:** There are 6 subarrays which have the first and the last elements equal to the largest element of the subarray:
 
 - subarray `[<u>**3**</u>,3,3]`, with its largest element 3. The first element is 3 and the last element is also 3.
 
@@ -62,21 +60,15 @@ There are 6 subarrays which have the first and the last elements equal to the la
 
 Hence, we return 6.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1]
+- **Input:** nums = [1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-There is a single subarray of `nums` which is `[**<u>1</u>**]`, with its largest element 1. The first element is 1 and the last element is also 1.
+- **Explanation:** There is a single subarray of `nums` which is `[**<u>1</u>**]`, with its largest element 1. The first element is 1 and the last element is also 1.
 
 Hence, we return 1.
-
-</div>
 
 ### 4. Constraints
 

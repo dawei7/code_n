@@ -6,8 +6,15 @@ Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `a`: Input parameter (`int`).
+- `b`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -21,12 +28,14 @@ that `XOR` is the bitwise XOR operation.
 - **Output:** `98`
 - **Explanation:** For x = 2, (a XOR x) = 14 and (b XOR x) = 7. Hence, (a XOR x) * (b XOR x) = 98.
 It can be shown that 98 is the maximum value of (a XOR x) * (b XOR x) for all 0 <= x < 2^n.
+
 #### Example 2
 
 - **Input:** $a = 6, b = 7 , n = 5$
 - **Output:** `930`
 - **Explanation:** For x = 25, (a XOR x) = 31 and (b XOR x) = 30. Hence, (a XOR x) * (b XOR x) = 930.
 It can be shown that 930 is the maximum value of (a XOR x) * (b XOR x) for all 0 <= x < 2^n.
+
 #### Example 3
 
 - **Input:** $a = 1, b = 6, n = 3$

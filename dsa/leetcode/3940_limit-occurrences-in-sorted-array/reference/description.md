@@ -23,14 +23,11 @@ The app-local function may resize and return `nums` itself. The returned list is
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,1,2,2,3], k = 2
+- **Input:** nums = [1,1,1,2,2,3], k = 2
 
-**Output:** [1,1,2,2,3]
+- **Output:** [1,1,2,2,3]
 
-**Explanation:**
-
-Each element can appear at most 2 times.
+- **Explanation:** Each element can appear at most 2 times.
 
 - The element 1 appears 3 times, so only 2 occurrences are kept.
 
@@ -40,19 +37,13 @@ Each element can appear at most 2 times.
 
 Thus, the resulting array is `[1, 1, 2, 2, 3]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3], k = 1
+- **Input:** nums = [1,2,3], k = 1
 
-**Output:** [1,2,3]
+- **Output:** [1,2,3]
 
-**Explanation:**
-
-All elements are distinct and already appear at most once, so the array remains unchanged.
-
-</div>
+- **Explanation:** All elements are distinct and already appear at most once, so the array remains unchanged.
 
 ### 4. Constraints
 

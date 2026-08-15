@@ -12,21 +12,23 @@ Return the **minimum** element in `averages`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [7,8,3,4,15,13,4,1]
+- **Input:** nums = [7,8,3,4,15,13,4,1]
 
-**Output:** 5.5
+- **Output:** 5.5
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>step</th>
@@ -60,17 +62,15 @@ Return the **minimum** element in `averages`.
 		</tr>
 	</tbody>
 </table>
-The smallest element of averages, 5.5, is returned.</div>
+The smallest element of averages, 5.5, is returned.
+
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,9,8,3,10,5]
+- **Input:** nums = [1,9,8,3,10,5]
 
-**Output:** 5.5
+- **Output:** 5.5
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>step</th>
@@ -99,17 +99,14 @@ The smallest element of averages, 5.5, is returned.</div>
 		</tr>
 	</tbody>
 </table>
-</div>
+
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3,7,8,9]
+- **Input:** nums = [1,2,3,7,8,9]
 
-**Output:** 5.0
+- **Output:** 5.0
 
-**Explanation:**
-
-<table>
+- **Explanation:** <table>
 	<tbody>
 		<tr>
 			<th>step</th>
@@ -138,7 +135,6 @@ The smallest element of averages, 5.5, is returned.</div>
 		</tr>
 	</tbody>
 </table>
-</div>
 
 ### 4. Constraints
 

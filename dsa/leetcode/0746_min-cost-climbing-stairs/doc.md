@@ -30,14 +30,14 @@ You may begin on stair `0` or stair `1`. Return the minimum total cost needed to
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `cost = [10, 15, 20]`
-- Output: `15`
-- Explanation: Start on stair `1`, pay `15`, and jump two positions to the top.
+- **Input:** `cost = [10, 15, 20]`
+- **Output:** `15`
+- **Explanation:** Start on stair `1`, pay `15`, and jump two positions to the top.
 
-**Example 2**
+#### Example 2
 
-- Input: `cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]`
-- Output: `6`
-- Explanation: Choosing the inexpensive stairs avoids every cost of `100`.
+- **Input:** `cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]`
+- **Output:** `6`
+- **Explanation:** Choosing the inexpensive stairs avoids every cost of `100`.

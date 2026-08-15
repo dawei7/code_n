@@ -16,36 +16,25 @@ Return `true` if any two positions contain the same value; otherwise return `fal
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,1]
+- **Input:** nums = [1,2,3,1]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** The element 1 occurs at the indices 0 and 3.
 
-The element 1 occurs at the indices 0 and 3.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4]
+- **Input:** nums = [1,2,3,4]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** All elements are distinct.
 
-All elements are distinct.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1,3,3,4,3,2,4,2]
+- **Input:** nums = [1,1,1,3,3,4,3,2,4,2]
 
-**Output:** true
-
-</div>
+- **Output:** true
 
 ### 4. Constraints
 

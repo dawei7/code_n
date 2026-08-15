@@ -49,11 +49,13 @@ Return the smallest initial budget sufficient to guarantee finding any hidden nu
 - If this is my number, your total is $7 +$3 = $10. Otherwise, you pay$1.
 - If my number is higher, it must be 2. Guess 2. Your total is $7 +$3 + $1 =$11.
 The worst case in all these scenarios is that you pay $16. Hence, you only need$16 to guarantee a win.
+
 #### Example 2
 
 - **Input:** $n = 1$
 - **Output:** `0`
 - **Explanation:** There is only one possible number, so you can guess 1 and not have to pay anything.
+
 #### Example 3
 
 - **Input:** $n = 2$

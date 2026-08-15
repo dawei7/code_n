@@ -31,20 +31,20 @@ Removing nothing has score $0$. Otherwise, let `left` and `right` be the smalles
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abacaba", t = "bzaa"`
-- Output: `1`
-- Explanation: Removing the `z` at index $1$ leaves `"baa"`, which is a subsequence of `s`, and the removed span has length $1$.
+- **Input:** `s = "abacaba", t = "bzaa"`
+- **Output:** `1`
+- **Explanation:** Removing the `z` at index $1$ leaves `"baa"`, which is a subsequence of `s`, and the removed span has length $1$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "cde", t = "xyz"`
-- Output: `3`
-- Explanation: No character can be retained, so removing all of `t` gives the minimum score $3$.
+- **Input:** `s = "cde", t = "xyz"`
+- **Output:** `3`
+- **Explanation:** No character can be retained, so removing all of `t` gives the minimum score $3$.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcde", t = "ace"`
-- Output: `0`
-- Explanation: `t` is already a subsequence of `s`, so no removal is necessary.
+- **Input:** `s = "abcde", t = "ace"`
+- **Output:** `0`
+- **Explanation:** `t` is already a subsequence of `s`, so no removal is necessary.

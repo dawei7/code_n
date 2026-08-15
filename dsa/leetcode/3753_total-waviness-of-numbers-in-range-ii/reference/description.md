@@ -31,14 +31,11 @@ Return the sum of the peak-and-valley counts of all integers from `num1` through
 
 #### Example 1
 
-<div class="example-block">
-**Input:** num1 = 120, num2 = 130
+- **Input:** num1 = 120, num2 = 130
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-In the range `[120, 130]`:
+- **Explanation:** In the range `[120, 130]`:
 
 - `120`: middle digit 2 is a peak, waviness = 1.
 
@@ -50,17 +47,13 @@ In the range `[120, 130]`:
 
 Thus, total waviness is $1 + 1 + 1 = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** num1 = 198, num2 = 202
+- **Input:** num1 = 198, num2 = 202
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-In the range `[198, 202]`:
+- **Explanation:** In the range `[198, 202]`:
 
 - `198`: middle digit 9 is a peak, waviness = 1.
 
@@ -72,19 +65,13 @@ In the range `[198, 202]`:
 
 Thus, total waviness is $1 + 1 + 1 = 3$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** num1 = 4848, num2 = 4848
+- **Input:** num1 = 4848, num2 = 4848
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Number `4848`: the second digit 8 is a peak, and the third digit 4 is a valley, giving a waviness of 2.
-
-</div>
+- **Explanation:** Number `4848`: the second digit 8 is a peak, and the third digit 4 is a valley, giving a waviness of 2.
 
 ### 4. Constraints
 

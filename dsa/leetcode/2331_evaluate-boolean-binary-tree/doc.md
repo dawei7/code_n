@@ -38,21 +38,21 @@ at `root`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `root = [2,1,3,null,null,0,1]`
-- Output: `true`
-- Explanation: The right AND subtree is false, and the root computes
+- **Input:** `root = [2,1,3,null,null,0,1]`
+- **Output:** `true`
+- **Explanation:** The right AND subtree is false, and the root computes
   `true OR false`.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [0]`
-- Output: `false`
-- Explanation: A leaf evaluates directly to the boolean encoded by its value.
+- **Input:** `root = [0]`
+- **Output:** `false`
+- **Explanation:** A leaf evaluates directly to the boolean encoded by its value.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [3,1,1]`
-- Output: `true`
-- Explanation: Both children of the AND root evaluate to true.
+- **Input:** `root = [3,1,1]`
+- **Output:** `true`
+- **Explanation:** Both children of the AND root evaluate to true.

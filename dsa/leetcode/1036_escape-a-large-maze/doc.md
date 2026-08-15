@@ -34,14 +34,14 @@ Return `true` if and only if some sequence of valid moves reaches `target` from 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `blocked = [[0,1],[1,0]], source = [0,0], target = [0,2]`
-- Output: `false`
-- Explanation: The grid boundary and the two blocked neighbors trap the source.
+- **Input:** `blocked = [[0,1],[1,0]], source = [0,0], target = [0,2]`
+- **Output:** `false`
+- **Explanation:** The grid boundary and the two blocked neighbors trap the source.
 
-**Example 2**
+#### Example 2
 
-- Input: `blocked = [], source = [0,0], target = [999999,999999]`
-- Output: `true`
-- Explanation: With no blocked cells, a path exists across the grid.
+- **Input:** `blocked = [], source = [0,0], target = [999999,999999]`
+- **Output:** `true`
+- **Explanation:** With no blocked cells, a path exists across the grid.

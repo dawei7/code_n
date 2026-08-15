@@ -36,20 +36,20 @@ Return the smallest number of contiguous substrings whose concatenation is
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abacaba"`
-- Output: `4`
-- Explanation: One optimal partition is `("ab", "a", "ca", "ba")`.
+- **Input:** `s = "abacaba"`
+- **Output:** `4`
+- **Explanation:** One optimal partition is `("ab", "a", "ca", "ba")`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ssssss"`
-- Output: `6`
-- Explanation: Every repeated `s` must begin a new substring.
+- **Input:** `s = "ssssss"`
+- **Output:** `6`
+- **Explanation:** Every repeated `s` must begin a new substring.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcdefghijklmnopqrstuvwxyz"`
-- Output: `1`
-- Explanation: All 26 characters are distinct, so the whole string is valid.
+- **Input:** `s = "abcdefghijklmnopqrstuvwxyz"`
+- **Output:** `1`
+- **Explanation:** All 26 characters are distinct, so the whole string is valid.

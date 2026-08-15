@@ -10,8 +10,14 @@ Return *an array *`answer`*, where *$\text{answer}[j]$* is the answer to the *$$
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `points`: Input parameter (`List[List[int]]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *an array *`answer`*, where *$\text{answer}[j]$* is the answer to the *$$
 - **Output:** `[3,2,2]`
 - **Explanation:** The points and circles are shown above.
 queries[0] is the green circle, queries[1] is the red circle, and queries[2] is the blue circle.
+
 #### Example 2
 
 ![](images/chrome_2021-03-25_22-42-07.png)

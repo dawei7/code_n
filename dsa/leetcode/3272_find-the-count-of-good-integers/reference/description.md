@@ -14,8 +14,14 @@ Return the count of **good** integers containing `n` digits.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -25,40 +31,29 @@ that *any* integer must **not** have leading zeros, **neither** before **nor** a
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, k = 5
+- **Input:** n = 3, k = 5
 
-**Output:** 27
+- **Output:** 27
 
-**Explanation:**
-
-*Some* of the good integers are:
+- **Explanation:** *Some* of the good integers are:
 
 - 551 because it can be rearranged to form 515.
 
 - 525 because it is already k-palindromic.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 1, k = 4
+- **Input:** n = 1, k = 4
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The two good integers are 4 and 8.
 
-The two good integers are 4 and 8.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 5, k = 6
+- **Input:** n = 5, k = 6
 
-**Output:** 2468
-
-</div>
+- **Output:** 2468
 
 ### 5. Constraints
 

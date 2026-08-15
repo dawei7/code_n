@@ -8,47 +8,40 @@ Return an array containing the chosen numbers in **strictly descending** order.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [84,93,100,77,90], k = 3
+- **Input:** nums = [84,93,100,77,90], k = 3
 
-**Output:** [100,93,90]
+- **Output:** [100,93,90]
 
-**Explanation:**
+- **Explanation:** The maximum sum is 283, which is attained by choosing 93, 100 and 90. We rearrange them in strictly descending order as `[100, 93, 90]`.
 
-The maximum sum is 283, which is attained by choosing 93, 100 and 90. We rearrange them in strictly descending order as `[100, 93, 90]`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [84,93,100,77,93], k = 3
+- **Input:** nums = [84,93,100,77,93], k = 3
 
-**Output:** [100,93,84]
+- **Output:** [100,93,84]
 
-**Explanation:**
+- **Explanation:** The maximum sum is 277, which is attained by choosing 84, 93 and 100. We rearrange them in strictly descending order as `[100, 93, 84]`. We cannot choose 93, 100 and 93 because the chosen numbers must be distinct.
 
-The maximum sum is 277, which is attained by choosing 84, 93 and 100. We rearrange them in strictly descending order as `[100, 93, 84]`. We cannot choose 93, 100 and 93 because the chosen numbers must be distinct.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,1,2,2,2], k = 6
+- **Input:** nums = [1,1,1,2,2,2], k = 6
 
-**Output:** [2,1]
+- **Output:** [2,1]
 
-**Explanation:**
-
-The maximum sum is 3, which is attained by choosing 1 and 2. We rearrange them in strictly descending order as `[2, 1]`.
-
-</div>
+- **Explanation:** The maximum sum is 3, which is attained by choosing 1 and 2. We rearrange them in strictly descending order as `[2, 1]`.
 
 ### 4. Constraints
 

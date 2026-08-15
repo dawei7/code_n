@@ -24,12 +24,11 @@ Return an integer array containing precisely the good indices in increasing orde
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "0234567890112"
+- **Input:** s = "0234567890112"
 
-**Output:** [0,11,12]
+- **Output:** [0,11,12]
 
-**Explanation:​​​​​​​**
+- **Explanation:** ​​​​​​​**
 
 - At index 0, the decimal representation of the index is `"0"`. The substring $s[0]$ is `"0"`, which matches, so index `0` is good.
 
@@ -39,35 +38,25 @@ Return an integer array containing precisely the good indices in increasing orde
 
 No other index has a substring ending at it that equals its decimal representation. Therefore, the answer is `[0, 11, 12]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "01234"
+- **Input:** s = "01234"
 
-**Output:** [0,1,2,3,4]
+- **Output:** [0,1,2,3,4]
 
-**Explanation:**
-
-For every index `i` from 0 to 4, the decimal representation of `i` is a single digit, and the substring $s[i]$ matches that digit.
+- **Explanation:** For every index `i` from 0 to 4, the decimal representation of `i` is a single digit, and the substring $s[i]$ matches that digit.
 
 Therefore, a valid substring ending at each index exists, making all indices good.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "12345"
+- **Input:** s = "12345"
 
-**Output:** []
+- **Output:** []
 
-**Explanation:**
-
-No index has a substring ending at it that matches its decimal representation.
+- **Explanation:** No index has a substring ending at it that matches its decimal representation.
 
 Therefore, there are no good indices and the result is an empty array.
-
-</div>
 
 ### 4. Constraints
 

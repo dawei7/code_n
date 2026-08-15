@@ -27,6 +27,7 @@ that if you want to test your solution using a custom test, behavior for tests w
 - **Input:** `nums = [3,3,3,3,3]`
 - **Output:** `1`
 - **Explanation:** There is only one block here which is the whole array (because all numbers are equal) and that is: [<u>3,3,3,3,3</u>]. So the answer would be 1.
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,3,9,9,9,2,10,10]`
@@ -38,6 +39,7 @@ Block number 3: [1,1,1,3,<u>9,9,9</u>,2,10,10]
 Block number 4: [1,1,1,3,9,9,9,<u>2</u>,10,10]
 Block number 5: [1,1,1,3,9,9,9,2,<u>10,10</u>]
 So the answer would be 5.
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3,4,5,6,7]`

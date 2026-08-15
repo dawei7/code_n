@@ -10,8 +10,13 @@ Given a binary array `bits` that ends with `0`, return `true` if the last charac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `bits`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Given a binary array `bits` that ends with `0`, return `true` if the last charac
 - **Output:** `true`
 - **Explanation:** The only way to decode it is two-bit character and one-bit character.
 So the last character is one-bit character.
+
 #### Example 2
 
 - **Input:** $bits = [1,1,1,0]$

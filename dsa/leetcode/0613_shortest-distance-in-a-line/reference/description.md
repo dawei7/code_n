@@ -33,7 +33,7 @@ Return one row with one column named `shortest`, containing the minimum absolute
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Point table:
 +----+
 | x  |
@@ -42,13 +42,13 @@ Point table:
 | 0  |
 | 2  |
 +----+
-**Output:**
+- **Output:** 
 +----------+
 | shortest |
 +----------+
 | 1        |
 +----------+
-**Explanation:** The shortest distance is between points -1 and 0 which is |(-1) - 0| = 1.
+- **Explanation:** The shortest distance is between points -1 and 0 which is |(-1) - 0| = 1.
 ```
 
 **Follow up:** How could you optimize your solution if the `Point` table is ordered **in ascending order**?

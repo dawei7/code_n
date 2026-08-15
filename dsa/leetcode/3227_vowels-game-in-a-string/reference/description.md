@@ -16,21 +16,23 @@ The English vowels are: `a`, `e`, `i`, `o`, and `u`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "leetcoder"
+- **Input:** s = "leetcoder"
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-Alice can win the game as follows:
+- **Explanation:** Alice can win the game as follows:
 
 - Alice plays first, she can delete the underlined substring in `s = "<u>**leetco**</u>der"` which contains 3 vowels. The resulting string is `s = "der"`.
 
@@ -40,19 +42,13 @@ Alice can win the game as follows:
 
 - Bob plays fourth, since the string is empty, there is no valid play for Bob. So Alice wins the game.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "bbcd"
+- **Input:** s = "bbcd"
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-There is no valid play for Alice in her first turn, so Alice loses the game.
-
-</div>
+- **Explanation:** There is no valid play for Alice in her first turn, so Alice loses the game.
 
 ### 4. Constraints
 

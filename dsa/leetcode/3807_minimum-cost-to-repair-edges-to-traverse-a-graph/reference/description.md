@@ -34,16 +34,12 @@ Return the minimum repair threshold that permits a route from node `0` to node $
 
 **
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,10],[1,2,10],[0,2,100]], k = 1
+- **Input:** n = 3, edges = [[0,1,10],[1,2,10],[0,2,100]], k = 1
 
-**Output:** 100
+- **Output:** 100
 
-**Explanation:**
+- **Explanation:** The only valid path using at most $k = 1$ edge is `0 -> 2`, which requires repairing the edge with cost 100. Therefore, the minimum required amount of money is 100.
 
-The only valid path using at most $k = 1$ edge is `0 -> 2`, which requires repairing the edge with cost 100. Therefore, the minimum required amount of money is 100.
-
-</div>
 #### Example 2
 
 **
@@ -52,12 +48,11 @@ The only valid path using at most $k = 1$ edge is `0 -> 2`, which requires repai
 
 **
 
-<div class="example-block">
-**Input:** n = 6, edges = [[0,2,5],[2,3,6],[3,4,7],[4,5,5],[0,1,10],[1,5,12],[0,3,9],[1,2,8],[2,4,11]], k = 2
+- **Input:** n = 6, edges = [[0,2,5],[2,3,6],[3,4,7],[4,5,5],[0,1,10],[1,5,12],[0,3,9],[1,2,8],[2,4,11]], k = 2
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
+- **Explanation:** 
 
 - With $money = 12$, all edges with repair cost at most 12 become usable.
 
@@ -67,7 +62,6 @@ The only valid path using at most $k = 1$ edge is `0 -> 2`, which requires repai
 
 - Therefore, the minimum required money is 12.
 
-</div>
 #### Example 3
 
 **
@@ -76,16 +70,11 @@ The only valid path using at most $k = 1$ edge is `0 -> 2`, which requires repai
 
 ​​​​​​​**
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1,1]], k = 1
+- **Input:** n = 3, edges = [[0,1,1]], k = 1
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-It is impossible to reach node 2 from node 0 using any amount of money. Therefore, the answer is -1.
-
-</div>
+- **Explanation:** It is impossible to reach node 2 from node 0 using any amount of money. Therefore, the answer is -1.
 
 ### 4. Constraints
 

@@ -36,20 +36,20 @@ For a word that begins with a vowel (`a`, `e`, `i`, `o`, or `u`, ignoring case),
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `sentence = "I speak Goat Latin"`
-- Output: `"Imaa peaksmaaa oatGmaaaa atinLmaaaaa"`
-- Explanation: `I` begins with a vowel, while the other three words begin with consonants and move their first letters to the end. Their index suffixes contain one through four added `"a"` characters.
+- **Input:** `sentence = "I speak Goat Latin"`
+- **Output:** `"Imaa peaksmaaa oatGmaaaa atinLmaaaaa"`
+- **Explanation:** `I` begins with a vowel, while the other three words begin with consonants and move their first letters to the end. Their index suffixes contain one through four added `"a"` characters.
 
-**Example 2**
+#### Example 2
 
-- Input: `sentence = "The quick brown fox jumped over the lazy dog"`
-- Output: `"heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa"`
-- Explanation: Each word follows its initial-letter rule, then receives an index-length suffix from one through nine `"a"` characters.
+- **Input:** `sentence = "The quick brown fox jumped over the lazy dog"`
+- **Output:** `"heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa"`
+- **Explanation:** Each word follows its initial-letter rule, then receives an index-length suffix from one through nine `"a"` characters.
 
-**Example 3**
+#### Example 3
 
-- Input: `sentence = "b A"`
-- Output: `"bmaa Amaaa"`
-- Explanation: Moving the only letter of `b` leaves that word unchanged, and uppercase `A` is a vowel.
+- **Input:** `sentence = "b A"`
+- **Output:** `"bmaa Amaaa"`
+- **Explanation:** Moving the only letter of `b` leaves that word unchanged, and uppercase `A` is a vowel.

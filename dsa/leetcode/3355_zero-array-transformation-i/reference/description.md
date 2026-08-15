@@ -14,54 +14,50 @@ Return `true` if it is *possible* to transform `nums` into a **Zero Array **afte
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,0,1], queries = [[0,2]]
+- **Input:** nums = [1,0,1], queries = [[0,2]]
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
+- **Explanation:** 
 
 - **For i = 0:**
 
-		<li>Select the subset of indices as `[0, 2]` and decrement the values at these indices by 1.
+		- Select the subset of indices as `[0, 2]` and decrement the values at these indices by 1.
 
 - The array will become `[0, 0, 0]`, which is a Zero Array.
 
-	</li>
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [4,3,2,1], queries = [[1,3],[0,2]]
+- **Input:** nums = [4,3,2,1], queries = [[1,3],[0,2]]
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
+- **Explanation:** 
 
 - **For i = 0:**
 
-		<li>Select the subset of indices as `[1, 2, 3]` and decrement the values at these indices by 1.
+		- Select the subset of indices as `[1, 2, 3]` and decrement the values at these indices by 1.
 
 - The array will become `[4, 2, 1, 0]`.
 
-	</li>
 - **For i = 1:**
 
-		<li>Select the subset of indices as `[0, 1, 2]` and decrement the values at these indices by 1.
+		- Select the subset of indices as `[0, 1, 2]` and decrement the values at these indices by 1.
 
 - The array will become `[3, 1, 0, 0]`, which is not a Zero Array.
-
-	</li>
-
-</div>
 
 ### 4. Constraints
 

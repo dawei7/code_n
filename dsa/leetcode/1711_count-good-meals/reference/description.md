@@ -10,8 +10,13 @@ Note that items with different indices are considered different even if they hav
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `deliciousness`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +26,7 @@ Note that items with different indices are considered different even if they hav
 - **Output:** `4`
 - **Explanation:** The good meals are (1,3), (1,7), (3,5) and, (7,9).
 Their respective sums are 4, 8, 8, and 16, all of which are powers of 2.
+
 #### Example 2
 
 - **Input:** $deliciousness = [1,1,1,3,3,3,7]$

@@ -31,20 +31,20 @@ Return the sum of all $n^2$ matrix cells after applying the queries in order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, queries = [[0,0,1],[1,2,2],[0,2,3],[1,0,4]]`
-- Output: `23`
-- Explanation: The final matrix is `[[4,1,2],[4,0,2],[4,3,3]]`, whose entries sum to $23$.
+- **Input:** `n = 3, queries = [[0,0,1],[1,2,2],[0,2,3],[1,0,4]]`
+- **Output:** `23`
+- **Explanation:** The final matrix is `[[4,1,2],[4,0,2],[4,3,3]]`, whose entries sum to $23$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, queries = [[0,0,4],[0,1,2],[1,0,1],[0,2,3],[1,2,1]]`
-- Output: `17`
-- Explanation: The last assignments to columns $0$ and $2$ overwrite one cell in each previously assigned row.
+- **Input:** `n = 3, queries = [[0,0,4],[0,1,2],[1,0,1],[0,2,3],[1,2,1]]`
+- **Output:** `17`
+- **Explanation:** The last assignments to columns $0$ and $2$ overwrite one cell in each previously assigned row.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, queries = [[0,1,2],[1,2,3]]`
-- Output: `18`
-- Explanation: The row contributes three cells of value $2$ after its intersection is overwritten, while the column contributes four cells of value $3$.
+- **Input:** `n = 4, queries = [[0,1,2],[1,2,3]]`
+- **Output:** `18`
+- **Explanation:** The row contributes three cells of value $2$ after its intersection is overwritten, while the column contributes four cells of value $3$.

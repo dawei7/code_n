@@ -36,14 +36,14 @@ Return the number of quadruplets satisfying both the index order and the require
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,3,2,4,5]`
-- Output: `2`
-- Explanation: Indices `(0,1,2,3)` and `(0,1,2,4)` both satisfy $1 < 2 < 3$ followed by a larger fourth value.
+- **Input:** `nums = [1,3,2,4,5]`
+- **Output:** `2`
+- **Explanation:** Indices `(0,1,2,3)` and `(0,1,2,4)` both satisfy $1 < 2 < 3$ followed by a larger fourth value.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4]`
-- Output: `0`
-- Explanation: Its only index quadruplet has `nums[j] < nums[k]`, contrary to the required crossed order.
+- **Input:** `nums = [1,2,3,4]`
+- **Output:** `0`
+- **Explanation:** Its only index quadruplet has `nums[j] < nums[k]`, contrary to the required crossed order.

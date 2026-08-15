@@ -8,8 +8,14 @@ Return *the maximum **score** you can achieve of all the possible partitions*. A
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `float`.
 
 ### 3. Examples
 
@@ -17,10 +23,10 @@ Return *the maximum **score** you can achieve of all the possible partitions*. A
 
 - **Input:** `nums = [9,1,2,3,9], k = 3`
 - **Output:** `20.00000`
-- **Explanation:**
-The best choice is to partition nums into [9], [1, 2, 3], [9]. The answer is 9 + (1 + 2 + 3) / 3 + 9 = 20.
+- **Explanation:** The best choice is to partition nums into [9], [1, 2, 3], [9]. The answer is 9 + (1 + 2 + 3) / 3 + 9 = 20.
 We could have also partitioned nums into [9, 1], [2], [3, 9], for example.
 That partition would lead to a score of 5 + 2 + 6 = 13, which is worse.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,4,5,6,7], k = 4`

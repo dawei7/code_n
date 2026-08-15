@@ -32,18 +32,18 @@ Apply all operations in their given order and return the number of matrix cells 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 2`, `n = 3`, `indices = [[0, 1], [1, 1]]`
-- Output: `6`
+- **Input:** `m = 2`, `n = 3`, `indices = [[0, 1], [1, 1]]`
+- **Output:** `6`
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 2`, `n = 2`, `indices = [[1, 1], [0, 0]]`
-- Output: `0`
+- **Input:** `m = 2`, `n = 2`, `indices = [[1, 1], [0, 0]]`
+- **Output:** `0`
 
-**Example 3**
+#### Example 3
 
-- Input: `m = 1`, `n = 1`, `indices = [[0, 0]]`
-- Output: `0`
-- Explanation: The sole cell is incremented once through its row and once through its column, ending at the even value `2`.
+- **Input:** `m = 1`, `n = 1`, `indices = [[0, 0]]`
+- **Output:** `0`
+- **Explanation:** The sole cell is incremented once through its row and once through its column, ending at the even value `2`.

@@ -10,21 +10,24 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **  nums = [1,2,3], k = 3
+- **Input:** nums = [1,2,3], k = 3
 
-**Output: **  6
+- **Output:** 6
 
-**Explanation:**
-
-There are `5` subsequences of nums with non-zero power:
+- **Explanation:** There are `5` subsequences of nums with non-zero power:
 
 - The subsequence `[<u>**1**</u>,<u>**2**</u>,<u>**3**</u>]` has `2` subsequences with $sum = 3$: `[1,2,<u>3</u>]` and `[<u>1</u>,<u>2</u>,3]`.
 
@@ -38,17 +41,13 @@ There are `5` subsequences of nums with non-zero power:
 
 Hence the answer is $2 + 1 + 1 + 1 + 1 = 6$.
 
-</div>
 #### Example 2
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **  nums = [2,3,3], k = 5
+- **Input:** nums = [2,3,3], k = 5
 
-**Output: **  4
+- **Output:** 4
 
-**Explanation:**
-
-There are `3` subsequences of nums with non-zero power:
+- **Explanation:** There are `3` subsequences of nums with non-zero power:
 
 - The subsequence `[<u>**2**</u>,<u>**3**</u>,<u>**3**</u>]` has 2 subsequences with $sum = 5$: `[<u>2</u>,3,<u>3</u>]` and `[<u>2</u>,<u>3</u>,3]`.
 
@@ -58,17 +57,13 @@ There are `3` subsequences of nums with non-zero power:
 
 Hence the answer is $2 + 1 + 1 = 4$.
 
-</div>
 #### Example 3
 
-<div class="example-block" style="border-color: var(--border-tertiary); border-left-width: 2px; color: var(--text-secondary); font-size: .875rem; margin-bottom: 1rem; margin-top: 1rem; overflow: visible; padding-left: 1rem;">
-**Input: **  nums = [1,2,3], k = 7
+- **Input:** nums = [1,2,3], k = 7
 
-**Output: **  0
+- **Output:** 0
 
-**Explanation: **There exists no subsequence with sum `7`. Hence all subsequences of nums have $power = 0$.
-
-</div>
+- **Explanation:** There exists no subsequence with sum `7`. Hence all subsequences of nums have $power = 0$.
 
 ### 4. Constraints
 

@@ -23,14 +23,11 @@ Return the total number of subarrays for which `target` satisfies that strict-ma
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,2,3], target = 2
+- **Input:** nums = [1,2,2,3], target = 2
 
-**Output:** 5
+- **Output:** 5
 
-**Explanation:**
-
-Valid subarrays with $target = 2$ as the majority element:
+- **Explanation:** Valid subarrays with $target = 2$ as the majority element:
 
 - $nums[1..1] = [2]$
 
@@ -44,31 +41,23 @@ Valid subarrays with $target = 2$ as the majority element:
 
 So there are 5 such subarrays.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,1,1], target = 1
+- **Input:** nums = [1,1,1,1], target = 1
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation: **
+- **Explanation:** 
 
 **​​​​​​​**All 10 subarrays have 1 as the majority element.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,2,3], target = 4
+- **Input:** nums = [1,2,3], target = 4
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-$target = 4$ does not appear in `nums` at all. Therefore, there cannot be any subarray where 4 is the majority element. Hence the answer is 0.
-
-</div>
+- **Explanation:** $target = 4$ does not appear in `nums` at all. Therefore, there cannot be any subarray where 4 is the majority element. Hence the answer is 0.
 
 ### 4. Constraints
 

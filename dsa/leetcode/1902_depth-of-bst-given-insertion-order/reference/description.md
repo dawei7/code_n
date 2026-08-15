@@ -33,6 +33,7 @@ A binary tree's **depth** is the number of **nodes** along the **longest path** 
 - **Input:** $order = [2,1,4,3]$
 - **Output:** `3`
 - **Explanation:** The binary search tree has a depth of 3 with path 2->3->4.
+
 #### Example 2
 
 ![](images/2.png)
@@ -40,6 +41,7 @@ A binary tree's **depth** is the number of **nodes** along the **longest path** 
 - **Input:** $order = [2,1,3,4]$
 - **Output:** `3`
 - **Explanation:** The binary search tree has a depth of 3 with path 2->3->4.
+
 #### Example 3
 
 ![](images/3.png)

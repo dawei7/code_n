@@ -31,20 +31,20 @@ Among every eligible factor pair for both products, return a pair whose two memb
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 8`
-- Output: `[3,3]`
-- Explanation: $3\cdot3=9=\texttt{num}+1$, and the difference is zero.
+- **Input:** `num = 8`
+- **Output:** `[3,3]`
+- **Explanation:** $3\cdot3=9=\texttt{num}+1$, and the difference is zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 123`
-- Output: `[5,25]`
-- Explanation: $5\cdot25=125=\texttt{num}+2$ is closer than every factor pair of 124.
+- **Input:** `num = 123`
+- **Output:** `[5,25]`
+- **Explanation:** $5\cdot25=125=\texttt{num}+2$ is closer than every factor pair of 124.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 999`
-- Output: `[25,40]`
-- Explanation: $25\cdot40=1000=\texttt{num}+1$.
+- **Input:** `num = 999`
+- **Output:** `[25,40]`
+- **Explanation:** $25\cdot40=1000=\texttt{num}+1$.

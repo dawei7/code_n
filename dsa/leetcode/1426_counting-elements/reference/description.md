@@ -21,6 +21,7 @@ The test is based on presence, not one-to-one pairing. A single occurrence of $x
 - **Input:** `arr = [1,2,3]`
 - **Output:** `2`
 - **Explanation:** 1 and 2 are counted cause 2 and 3 are in arr.
+
 #### Example 2
 
 - **Input:** `arr = [1,1,3,3,5,5,7,7]`

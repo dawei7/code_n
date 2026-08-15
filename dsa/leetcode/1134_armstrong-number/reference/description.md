@@ -27,6 +27,7 @@ Repeated digits contribute separately, and a zero digit contributes $0^k = 0$.
 - **Input:** $n = 153$
 - **Output:** `true`
 - **Explanation:** 153 is a 3-digit number, and 153 = $1^{3}$ + $5^{3}$ + $3^{3}$.
+
 #### Example 2
 
 - **Input:** $n = 123$

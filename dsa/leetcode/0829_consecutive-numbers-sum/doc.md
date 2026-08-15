@@ -30,20 +30,20 @@ Return the number of such representations. Terms must increase by exactly `1`, r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5`
-- Output: `2`
-- Explanation: The representations are $5$ and $2+3$.
+- **Input:** `n = 5`
+- **Output:** `2`
+- **Explanation:** The representations are $5$ and $2+3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 9`
-- Output: `3`
-- Explanation: The representations are $9$, $4+5$, and $2+3+4$.
+- **Input:** `n = 9`
+- **Output:** `3`
+- **Explanation:** The representations are $9$, $4+5$, and $2+3+4$.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 15`
-- Output: `4`
-- Explanation: The representations are $15$, $7+8$, $4+5+6$, and $1+2+3+4+5$.
+- **Input:** `n = 15`
+- **Output:** `4`
+- **Explanation:** The representations are $15$, $7+8$, $4+5+6$, and $1+2+3+4+5$.

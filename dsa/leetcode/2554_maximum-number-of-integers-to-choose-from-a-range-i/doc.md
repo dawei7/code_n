@@ -32,20 +32,20 @@ The sum of all chosen integers must not exceed `maxSum`. Return the largest poss
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `banned = [1, 6, 5], n = 5, maxSum = 6`
-- Output: `2`
-- Explanation: Choosing `2` and `4` uses two allowed values and reaches a sum of `6`.
+- **Input:** `banned = [1, 6, 5], n = 5, maxSum = 6`
+- **Output:** `2`
+- **Explanation:** Choosing `2` and `4` uses two allowed values and reaches a sum of `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `banned = [1, 2, 3, 4, 5, 6, 7], n = 8, maxSum = 1`
-- Output: `0`
-- Explanation: Every value small enough for the budget is forbidden.
+- **Input:** `banned = [1, 2, 3, 4, 5, 6, 7], n = 8, maxSum = 1`
+- **Output:** `0`
+- **Explanation:** Every value small enough for the budget is forbidden.
 
-**Example 3**
+#### Example 3
 
-- Input: `banned = [11], n = 7, maxSum = 50`
-- Output: `7`
-- Explanation: The banned value is outside the range, and all values from `1` through `7` sum to `28`.
+- **Input:** `banned = [11], n = 7, maxSum = 50`
+- **Output:** `7`
+- **Explanation:** The banned value is outside the range, and all values from `1` through `7` sum to `28`.

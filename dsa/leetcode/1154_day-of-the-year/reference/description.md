@@ -4,8 +4,13 @@ Given a string `date` representing a <a href="https://en.wikipedia.org/wiki/Greg
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `date`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,6 +19,7 @@ Given a string `date` representing a <a href="https://en.wikipedia.org/wiki/Greg
 - **Input:** $date = "2019-01-09"$
 - **Output:** `9`
 - **Explanation:** Given date is the 9th day of the year in 2019.
+
 #### Example 2
 
 - **Input:** $date = "2019-02-10"$

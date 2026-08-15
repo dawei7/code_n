@@ -54,7 +54,7 @@ The output grain is one row per project tied for the greatest assignment count. 
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Project table:
 +-------------+-------------+
 | project_id  | employee_id |
@@ -74,11 +74,11 @@ Employee table:
 | 3           | John   | 1                |
 | 4           | Doe    | 2                |
 +-------------+--------+------------------+
-**Output:**
+- **Output:** 
 +-------------+
 | project_id  |
 +-------------+
 | 1           |
 +-------------+
-**Explanation:** The first project has 3 employees while the second one has 2.
+- **Explanation:** The first project has 3 employees while the second one has 2.
 ```

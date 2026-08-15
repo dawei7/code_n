@@ -10,8 +10,13 @@ Return *the **maximum** number of groups that can be formed*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grades`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the **maximum** number of groups that can be formed*.
 - 2^nd group has the students with grades = [6,7]. Sum of grades: 6 + 7 = 13. Student count: 2
 - 3^rd group has the students with grades = [10,3,5]. Sum of grades: 10 + 3 + 5 = 18. Student count: 3
 It can be shown that it is not possible to form more than 3 groups.
+
 #### Example 2
 
 - **Input:** $grades = [8,8]$

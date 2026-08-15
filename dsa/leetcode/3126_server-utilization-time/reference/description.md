@@ -23,7 +23,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 Servers table:
@@ -69,23 +68,25 @@ Servers table:
 
 - For server ID 3:
 
-		<li>From 2023-11-04 16:29:47 to 2023-11-05 01:49:47: ~9.3 hours
+		- From 2023-11-04 16:29:47 to 2023-11-05 01:49:47: ~9.3 hours
 
 - From 2023-11-25 01:37:08 to 2023-11-25 03:50:08: ~2.2 hours
 
 - From 2023-11-04 23:16:48 to 2023-11-05 01:15:48: ~1.98 hours
 
-	Total for server 3: ~13.48 hours</li>
+	Total for server 3: ~13.48 hours
+
 - For server ID 1:
 
-		<li>From 2023-11-13 03:05:31 to 2023-11-13 11:10:31: ~8 hours
+		- From 2023-11-13 03:05:31 to 2023-11-13 11:10:31: ~8 hours
 
 - From 2023-11-20 00:27:11 to 2023-11-20 01:41:11: ~1.23 hours
 
-	Total for server 1: ~9.23 hours</li>
+	Total for server 1: ~9.23 hours
+
 - For server ID 4:
 
-		<li>From 2023-11-29 15:11:17 to 2023-11-29 15:42:17: ~0.52 hours
+		- From 2023-11-29 15:11:17 to 2023-11-29 15:42:17: ~0.52 hours
 
 - From 2023-11-20 00:31:44 to 2023-11-20 07:03:44: ~6.53 hours
 
@@ -93,14 +94,15 @@ Servers table:
 
 - From 2023-11-25 21:09:06 to 2023-11-26 04:58:06: ~7.82 hours
 
-	Total for server 4: ~20.52 hours</li>
+	Total for server 4: ~20.52 hours
+
 - For server ID 5:
 
-		<li>From 2023-11-16 19:42:22 to 2023-11-16 21:08:22: ~1.43 hours
+		- From 2023-11-16 19:42:22 to 2023-11-16 21:08:22: ~1.43 hours
 
-	Total for server 5: ~1.43 hours</li>
+	Total for server 5: ~1.43 hours
 
-The accumulated runtime for all servers totals approximately 44.46 hours, equivalent to one full day plus some additional hours. However, since we consider only full days, the final output is rounded to 1 full day.</div>
+The accumulated runtime for all servers totals approximately 44.46 hours, equivalent to one full day plus some additional hours. However, since we consider only full days, the final output is rounded to 1 full day.
 
 ### 2. Function Contract
 

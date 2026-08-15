@@ -30,19 +30,19 @@ Choose a water cell whose distance to its nearest land cell is as large as possi
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,0,1],[0,0,0],[1,0,1]]`
-- Output: `2`
+- **Input:** `grid = [[1,0,1],[0,0,0],[1,0,1]]`
+- **Output:** `2`
 
 The central water cell `(1, 1)` is two steps from its nearest land.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,0,0],[0,0,0],[0,0,0]]`
-- Output: `4`
+- **Input:** `grid = [[1,0,0],[0,0,0],[0,0,0]]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1],[1,1]]`
-- Output: `-1`
+- **Input:** `grid = [[1,1],[1,1]]`
+- **Output:** `-1`

@@ -33,17 +33,17 @@ Return one DataFrame containing the $n$ rows of `df1` followed by the $m$ rows o
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `df1 = [{"student_id": 1, "name": "Mason", "age": 8}, {"student_id": 2, "name": "Ava", "age": 6}, {"student_id": 3, "name": "Taylor", "age": 15}, {"student_id": 4, "name": "Georgia", "age": 17}]`, `df2 = [{"student_id": 5, "name": "Leo", "age": 7}, {"student_id": 6, "name": "Alex", "age": 7}]`
-- Output: `[{"student_id": 1, "name": "Mason", "age": 8}, {"student_id": 2, "name": "Ava", "age": 6}, {"student_id": 3, "name": "Taylor", "age": 15}, {"student_id": 4, "name": "Georgia", "age": 17}, {"student_id": 5, "name": "Leo", "age": 7}, {"student_id": 6, "name": "Alex", "age": 7}]`
+- **Input:** `df1 = [{"student_id": 1, "name": "Mason", "age": 8}, {"student_id": 2, "name": "Ava", "age": 6}, {"student_id": 3, "name": "Taylor", "age": 15}, {"student_id": 4, "name": "Georgia", "age": 17}]`, `df2 = [{"student_id": 5, "name": "Leo", "age": 7}, {"student_id": 6, "name": "Alex", "age": 7}]`
+- **Output:** `[{"student_id": 1, "name": "Mason", "age": 8}, {"student_id": 2, "name": "Ava", "age": 6}, {"student_id": 3, "name": "Taylor", "age": 15}, {"student_id": 4, "name": "Georgia", "age": 17}, {"student_id": 5, "name": "Leo", "age": 7}, {"student_id": 6, "name": "Alex", "age": 7}]`
 
-**Example 2**
+#### Example 2
 
-- Input: `df1 = [{"student_id": 10, "name": "Mina", "age": 12}]`, `df2 = [{"student_id": 11, "name": "Bo", "age": 14}]`
-- Output: `[{"student_id": 10, "name": "Mina", "age": 12}, {"student_id": 11, "name": "Bo", "age": 14}]`
+- **Input:** `df1 = [{"student_id": 10, "name": "Mina", "age": 12}]`, `df2 = [{"student_id": 11, "name": "Bo", "age": 14}]`
+- **Output:** `[{"student_id": 10, "name": "Mina", "age": 12}, {"student_id": 11, "name": "Bo", "age": 14}]`
 
-**Example 3**
+#### Example 3
 
-- Input: `df1 = [{"student_id": 7, "name": "Lee", "age": 9}, {"student_id": 3, "name": "Iris", "age": 16}]`, `df2 = [{"student_id": 7, "name": "Lee", "age": 9}]`
-- Output: `[{"student_id": 7, "name": "Lee", "age": 9}, {"student_id": 3, "name": "Iris", "age": 16}, {"student_id": 7, "name": "Lee", "age": 9}]`
+- **Input:** `df1 = [{"student_id": 7, "name": "Lee", "age": 9}, {"student_id": 3, "name": "Iris", "age": 16}]`, `df2 = [{"student_id": 7, "name": "Lee", "age": 9}]`
+- **Output:** `[{"student_id": 7, "name": "Lee", "age": 9}, {"student_id": 3, "name": "Iris", "age": 16}, {"student_id": 7, "name": "Lee", "age": 9}]`

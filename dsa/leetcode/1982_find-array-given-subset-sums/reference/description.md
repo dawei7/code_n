@@ -8,8 +8,14 @@ An array `sub` is a **subset** of an array `arr` if `sub` can be obtained from `
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `sums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -31,11 +37,13 @@ Test cases are generated such that there will **always** be at least one correct
 - [2,-3]: sum is -1
 - [1,2,-3]: sum is 0
 Note that any permutation of [1,2,-3] and also any permutation of [-1,-2,3] will also be accepted.
+
 #### Example 2
 
 - **Input:** $n = 2, sums = [0,0,0,0]$
 - **Output:** `[0,0]`
 - **Explanation:** The only correct answer is [0,0].
+
 #### Example 3
 
 - **Input:** $n = 4, sums = [0,0,5,5,4,-1,4,9,9,-1,4,3,4,8,3,8]$

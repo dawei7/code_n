@@ -12,8 +12,13 @@ The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in low
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in low
 - **Input:** `s = "lEetcOde"`
 - **Output:** `"lEOtcede"`
 - **Explanation:** 'E', 'O', and 'e' are the vowels in s; 'l', 't', 'c', and 'd' are all consonants. The vowels are sorted according to their ASCII values, and the consonants remain in the same places.
+
 #### Example 2
 
 - **Input:** `s = "lYmpH"`

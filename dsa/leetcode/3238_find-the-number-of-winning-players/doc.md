@@ -33,20 +33,20 @@ Return the number of distinct players who have at least $i+1$ picks of one color
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4, pick = [[0,0],[1,0],[1,0],[2,1],[2,1],[2,0]]`
-- Output: `2`
-- Explanation: Players $0$ and $1$ win; player $2$ has three picks split across two colors.
+- **Input:** `n = 4, pick = [[0,0],[1,0],[1,0],[2,1],[2,1],[2,0]]`
+- **Output:** `2`
+- **Explanation:** Players $0$ and $1$ win; player $2$ has three picks split across two colors.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 5, pick = [[1,1],[1,2],[1,3],[1,4]]`
-- Output: `0`
-- Explanation: Player $1$ never picks the same color twice.
+- **Input:** `n = 5, pick = [[1,1],[1,2],[1,3],[1,4]]`
+- **Output:** `0`
+- **Explanation:** Player $1$ never picks the same color twice.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 5, pick = [[1,1],[2,4],[2,4],[2,4]]`
-- Output: `1`
-- Explanation: Player $2$ picks color $4$ three times.
+- **Input:** `n = 5, pick = [[1,1],[2,4],[2,4],[2,4]]`
+- **Output:** `1`
+- **Explanation:** Player $2$ picks color $4$ three times.

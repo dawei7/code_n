@@ -10,8 +10,14 @@ Return* the **maximum** number of edges you can delete, such that every connecte
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +28,7 @@ Return* the **maximum** number of edges you can delete, such that every connecte
 - **Input:** `nums = [6,2,2,2,6], edges = [[0,1],[1,2],[1,3],[3,4]]`
 - **Output:** `2`
 - **Explanation:** The above figure shows how we can delete the edges [0,1] and [3,4]. The created components are nodes [0], [1,2,3] and [4]. The sum of the values in each component equals 6. It can be proven that no better deletion exists, so the answer is 2.
+
 #### Example 2
 
 - **Input:** `nums = [2], edges = []`

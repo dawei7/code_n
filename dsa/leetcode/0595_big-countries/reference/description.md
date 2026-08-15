@@ -38,7 +38,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 World table:
 +-------------+-----------+---------+------------+--------------+
 | name        | continent | area    | population | gdp          |
@@ -49,7 +49,7 @@ World table:
 | Andorra     | Europe    | 468     | 78115      | 3712000000   |
 | Angola      | Africa    | 1246700 | 20609294   | 100990000000 |
 +-------------+-----------+---------+------------+--------------+
-**Output:**
+- **Output:** 
 +-------------+------------+---------+
 | name        | population | area    |
 +-------------+------------+---------+

@@ -12,21 +12,23 @@ Return the **reverse degree** of `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abc"
+- **Input:** s = "abc"
 
-**Output:** 148
+- **Output:** 148
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Letter</th>
@@ -57,17 +59,13 @@ Return the **reverse degree** of `s`.
 
 The reversed degree is $26 + 50 + 72 = 148$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "zaza"
+- **Input:** s = "zaza"
 
-**Output:** 160
+- **Output:** 160
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<tbody>
 		<tr>
 			<th style="border: 1px solid black;">Letter</th>
@@ -103,8 +101,6 @@ The reversed degree is $26 + 50 + 72 = 148$.
 </table>
 
 The reverse degree is $1 + 52 + 3 + 104 = 160$.
-
-</div>
 
 ### 4. Constraints
 

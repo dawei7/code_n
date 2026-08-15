@@ -20,6 +20,7 @@ Return an array `ans` such that $\text{ans}[i]$ is the count of distinct element
 - nums[2..4] = [3,2,2] so ans[2] = 2
 - nums[3..5] = [2,2,1] so ans[3] = 2
 - nums[4..6] = [2,1,3] so ans[4] = 3
+
 #### Example 2
 
 - **Input:** `nums = [1,1,1,1,2,3,4], k = 4`

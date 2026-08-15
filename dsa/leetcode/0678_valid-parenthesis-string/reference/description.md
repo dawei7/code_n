@@ -14,8 +14,13 @@ The following rules define a **valid** string:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -23,10 +28,12 @@ The following rules define a **valid** string:
 
 - **Input:** `s = "()"`
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** `s = "(*)"`
 - **Output:** `true`
+
 #### Example 3
 
 - **Input:** `s = "(*))"`

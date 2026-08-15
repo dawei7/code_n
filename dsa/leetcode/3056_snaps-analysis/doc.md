@@ -41,17 +41,17 @@ buckets.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 For age bucket `31-35`, user `123` spends `3.50` sending and `5.75` opening.
 The total is `9.25`, so the returned percentages are `37.84` and `62.16`.
 
-**Example 2**
+#### Example 2
 
 If several users share an age bucket, their activity times are added before
 either percentage is calculated; users are not averaged separately.
 
-**Example 3**
+#### Example 3
 
 If every activity in a represented bucket is a `send`, its percentages are
 `100.00` for sending and `0.00` for opening.

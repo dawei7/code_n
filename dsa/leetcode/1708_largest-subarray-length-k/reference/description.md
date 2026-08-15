@@ -31,12 +31,14 @@ Return an integer array representing the lexicographically largest contiguous su
 - **Output:** `[5,2,3]`
 - **Explanation:** The subarrays of size 3 are: [1,4,5], [4,5,2], and [5,2,3].
 Of these, [5,2,3] is the largest.
+
 #### Example 2
 
 - **Input:** `nums = [1,4,5,2,3], k = 4`
 - **Output:** `[4,5,2,3]`
 - **Explanation:** The subarrays of size 4 are: [1,4,5,2], and [4,5,2,3].
 Of these, [4,5,2,3] is the largest.
+
 #### Example 3
 
 - **Input:** `nums = [1,4,5,2,3], k = 1`

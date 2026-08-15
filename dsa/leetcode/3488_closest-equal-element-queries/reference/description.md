@@ -10,19 +10,24 @@ Return an array `answer` of the **same** size as `queries`, where $\text{answer}
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3,1,4,1,3,2], queries = [0,3,5]
+- **Input:** nums = [1,3,1,4,1,3,2], queries = [0,3,5]
 
-**Output:** [2,-1,3]
+- **Output:** [2,-1,3]
 
-**Explanation:**
+- **Explanation:** 
 
 - Query 0: The element at $\text{queries}[0] = 0$ is $\text{nums}[0] = 1$. The nearest index with the same value is 2, and the distance between them is 2.
 
@@ -30,19 +35,13 @@ Return an array `answer` of the **same** size as `queries`, where $\text{answer}
 
 - Query 2: The element at $\text{queries}[2] = 5$ is $\text{nums}[5] = 3$. The nearest index with the same value is 1, and the distance between them is 3 (following the circular path: `5 -> 6 -> 0 -> 1`).
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4], queries = [0,1,2,3]
+- **Input:** nums = [1,2,3,4], queries = [0,1,2,3]
 
-**Output:** [-1,-1,-1,-1]
+- **Output:** [-1,-1,-1,-1]
 
-**Explanation:**
-
-Each value in `nums` is unique, so no index shares the same value as the queried element. This results in -1 for all queries.
-
-</div>
+- **Explanation:** Each value in `nums` is unique, so no index shares the same value as the queried element. This results in -1 for all queries.
 
 ### 4. Constraints
 

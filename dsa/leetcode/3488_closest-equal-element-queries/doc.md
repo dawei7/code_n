@@ -41,23 +41,23 @@ Return a list of length $q$. Its entry for each query is the smallest circular d
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 1, 4, 1, 3, 2]`, `queries = [0, 3, 5]`
-- Output: `[2, -1, 3]`
+- **Input:** `nums = [1, 3, 1, 4, 1, 3, 2]`, `queries = [0, 3, 5]`
+- **Output:** `[2, -1, 3]`
 
 Index 0 reaches another 1 at index 2 in two steps. The 4 at index 3 is unique. From index 5, wrapping through indices 6 and 0 reaches the other 3 at index 1 in three steps.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 2, 3, 4]`, `queries = [0, 1, 2, 3]`
-- Output: `[-1, -1, -1, -1]`
+- **Input:** `nums = [1, 2, 3, 4]`, `queries = [0, 1, 2, 3]`
+- **Output:** `[-1, -1, -1, -1]`
 
 Every value occurs once.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 1, 2, 3, 5]`, `queries = [0, 4]`
-- Output: `[1, 1]`
+- **Input:** `nums = [5, 1, 2, 3, 5]`, `queries = [0, 4]`
+- **Output:** `[1, 1]`
 
 The two copies of 5 are adjacent across the circular boundary.

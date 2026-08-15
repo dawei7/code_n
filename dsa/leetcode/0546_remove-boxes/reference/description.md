@@ -8,8 +8,13 @@ Return *the maximum points you can get*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `boxes`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,16 +22,17 @@ Return *the maximum points you can get*.
 
 - **Input:** $boxes = [1,3,2,2,2,3,4,3,1]$
 - **Output:** `23`
-- **Explanation:**
-[1, 3, 2, 2, 2, 3, 4, 3, 1]
+- **Explanation:** [1, 3, 2, 2, 2, 3, 4, 3, 1]
 ----> [1, 3, 3, 4, 3, 1] (3*3=9 points)
 ----> [1, 3, 3, 3, 1] (1*1=1 points)
 ----> [1, 1] (3*3=9 points)
 ----> [] (2*2=4 points)
+
 #### Example 2
 
 - **Input:** $boxes = [1,1,1]$
 - **Output:** `9`
+
 #### Example 3
 
 - **Input:** $boxes = [1]$

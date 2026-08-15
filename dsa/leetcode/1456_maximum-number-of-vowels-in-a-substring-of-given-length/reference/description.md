@@ -6,8 +6,14 @@ Given a string `s` and an integer `k`, return *the maximum number of vowel lette
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Given a string `s` and an integer `k`, return *the maximum number of vowel lette
 - **Input:** `s = "abciiidef", k = 3`
 - **Output:** `3`
 - **Explanation:** The substring "iii" contains 3 vowel letters.
+
 #### Example 2
 
 - **Input:** `s = "aeiou", k = 2`
 - **Output:** `2`
 - **Explanation:** Any substring of length 2 contains 2 vowels.
+
 #### Example 3
 
 - **Input:** `s = "leetcode", k = 3`

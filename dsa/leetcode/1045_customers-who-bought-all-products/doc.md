@@ -32,7 +32,7 @@ Report the identifiers of customers whose purchase records cover every product l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Customer`
 
@@ -51,7 +51,7 @@ Report the identifiers of customers whose purchase records cover every product l
 | 5 |
 | 6 |
 
-Output:
+- **Output:** 
 
 | customer_id |
 |---:|

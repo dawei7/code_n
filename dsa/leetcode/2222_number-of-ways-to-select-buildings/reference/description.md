@@ -14,8 +14,13 @@ Return *the **number of valid ways** to select 3 buildings.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,8 +28,7 @@ Return *the **number of valid ways** to select 3 buildings.*
 
 - **Input:** `s = "001101"`
 - **Output:** `6`
-- **Explanation:**
-The following sets of indices selected are valid:
+- **Explanation:** The following sets of indices selected are valid:
 - [0,2,4] from "<u>**0**</u>0**<u>1</u>**1**<u>0</u>**1" forms "010"
 - [0,3,4] from "<u>**0**</u>01<u>**10**</u>1" forms "010"
 - [1,2,4] from "0<u>**01**</u>1<u>**0**</u>1" forms "010"
@@ -32,6 +36,7 @@ The following sets of indices selected are valid:
 - [2,4,5] from "00<u>**1**</u>1<u>**01**</u>" forms "101"
 - [3,4,5] from "001<u>**101**</u>" forms "101"
 No other selection is valid. Thus, there are 6 total ways.
+
 #### Example 2
 
 - **Input:** `s = "11100"`

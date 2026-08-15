@@ -33,20 +33,20 @@ The array does not change after construction. Support as many as $10^5$ queries 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["RangeFreqQuery","query","query"], arguments = [[[12,33,4,56,22,2,34,33,22,12,34,56]],[1,2,4],[0,11,33]]`
-- Output: `[null,1,2]`
-- Explanation: Value 4 appears once from indices 1 through 2, while value 33 appears twice in the full array.
+- **Input:** `operations = ["RangeFreqQuery","query","query"], arguments = [[[12,33,4,56,22,2,34,33,22,12,34,56]],[1,2,4],[0,11,33]]`
+- **Output:** `[null,1,2]`
+- **Explanation:** Value 4 appears once from indices 1 through 2, while value 33 appears twice in the full array.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["RangeFreqQuery","query","query"], arguments = [[[1,1,2,2,2]],[0,4,2],[0,1,2]]`
-- Output: `[null,3,0]`
-- Explanation: The inclusive whole-array query sees all three 2s; the prefix query sees none.
+- **Input:** `operations = ["RangeFreqQuery","query","query"], arguments = [[[1,1,2,2,2]],[0,4,2],[0,1,2]]`
+- **Output:** `[null,3,0]`
+- **Explanation:** The inclusive whole-array query sees all three 2s; the prefix query sees none.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["RangeFreqQuery","query","query"], arguments = [[[5]],[0,0,5],[0,0,1]]`
-- Output: `[null,1,0]`
-- Explanation: A one-position range contains its stored value once and an absent value zero times.
+- **Input:** `operations = ["RangeFreqQuery","query","query"], arguments = [[[5]],[0,0,5],[0,0,1]]`
+- **Output:** `[null,1,0]`
+- **Explanation:** A one-position range contains its stored value once and an absent value zero times.

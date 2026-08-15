@@ -8,8 +8,15 @@ It is **guaranteed** that `target` exists in `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `target`: Input parameter (`int`).
+- `start`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +25,13 @@ It is **guaranteed** that `target` exists in `nums`.
 - **Input:** `nums = [1,2,3,4,5], target = 5, start = 3`
 - **Output:** `1`
 - **Explanation:** nums[4] = 5 is the only value equal to target, so the answer is abs(4 - 3) = 1.
+
 #### Example 2
 
 - **Input:** `nums = [1], target = 1, start = 0`
 - **Output:** `0`
 - **Explanation:** nums[0] = 1 is the only value equal to target, so the answer is abs(0 - 0) = 0.
+
 #### Example 3
 
 - **Input:** `nums = [1,1,1,1,1,1,1,1,1,1], target = 1, start = 0`

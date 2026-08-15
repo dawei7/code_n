@@ -32,23 +32,23 @@ Let $m=\lvert\texttt{coins}\rvert$ and $n=\lvert\texttt{coins[0]}\rvert$. The co
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coins = [[0, 1, -1], [1, -2, 3], [2, -3, 4]]`
-- Output: `8`
+- **Input:** `coins = [[0, 1, -1], [1, -2, 3], [2, -3, 4]]`
+- **Output:** `8`
 
 One optimal route visits values `0, 1, -2, 3, 4` and neutralizes `-2`, producing $0+1+0+3+4=8$.
 
-**Example 2**
+#### Example 2
 
-- Input: `coins = [[10, 10, 10], [10, 10, 10]]`
-- Output: `40`
+- **Input:** `coins = [[10, 10, 10], [10, 10, 10]]`
+- **Output:** `40`
 
 No neutralization is needed on an all-positive route.
 
-**Example 3**
+#### Example 3
 
-- Input: `coins = [[-5, -10], [-20, -1]]`
-- Output: `-1`
+- **Input:** `coins = [[-5, -10], [-20, -1]]`
+- **Output:** `-1`
 
 Every route contains three negative cells, so two can be neutralized and the least harmful remaining loss is `-1`.

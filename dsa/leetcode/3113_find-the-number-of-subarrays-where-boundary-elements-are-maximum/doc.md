@@ -32,20 +32,20 @@ Let $n$ be the length of `nums`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,4,3,3,2]`
-- Output: `6`
-- Explanation: The five one-element subarrays qualify, as does the subarray `[3,3]`.
+- **Input:** `nums = [1,4,3,3,2]`
+- **Output:** `6`
+- **Explanation:** The five one-element subarrays qualify, as does the subarray `[3,3]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [3,3,3]`
-- Output: `6`
-- Explanation: Every one of the six contiguous subarrays has boundary values equal to its maximum.
+- **Input:** `nums = [3,3,3]`
+- **Output:** `6`
+- **Explanation:** Every one of the six contiguous subarrays has boundary values equal to its maximum.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1]`
-- Output: `1`
-- Explanation: The single available subarray qualifies.
+- **Input:** `nums = [1]`
+- **Output:** `1`
+- **Explanation:** The single available subarray qualifies.

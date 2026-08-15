@@ -32,20 +32,20 @@ Return the maximum total amount of fruit harvestable in at most `k` steps.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `fruits = [[2, 8], [6, 3], [8, 6]], startPos = 5, k = 4`
-- Output: `9`
-- Explanation: Moving right through positions $6$ and $8$ costs three steps and harvests $3+6=9$ fruits.
+- **Input:** `fruits = [[2, 8], [6, 3], [8, 6]], startPos = 5, k = 4`
+- **Output:** `9`
+- **Explanation:** Moving right through positions $6$ and $8$ costs three steps and harvests $3+6=9$ fruits.
 
-**Example 2**
+#### Example 2
 
-- Input: `fruits = [[0, 9], [4, 1], [5, 7], [6, 2], [7, 4], [10, 9]], startPos = 5, k = 4`
-- Output: `14`
-- Explanation: Harvest at position $5$, visit $4$, then reverse and walk through $6$ to $7$. The four-step route collects $7+1+2+4=14$.
+- **Input:** `fruits = [[0, 9], [4, 1], [5, 7], [6, 2], [7, 4], [10, 9]], startPos = 5, k = 4`
+- **Output:** `14`
+- **Explanation:** Harvest at position $5$, visit $4$, then reverse and walk through $6$ to $7$. The four-step route collects $7+1+2+4=14$.
 
-**Example 3**
+#### Example 3
 
-- Input: `fruits = [[0, 3], [6, 4], [8, 5]], startPos = 3, k = 2`
-- Output: `0`
-- Explanation: No fruit position is reachable within two steps.
+- **Input:** `fruits = [[0, 3], [6, 4], [8, 5]], startPos = 3, k = 2`
+- **Output:** `0`
+- **Explanation:** No fruit position is reachable within two steps.

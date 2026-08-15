@@ -14,8 +14,14 @@ Notice that you can not jump outside of the array at any time.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `d`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,11 +34,13 @@ Notice that you can not jump outside of the array at any time.
 - **Explanation:** You can start at index 10. You can jump 10 --> 8 --> 6 --> 7 as shown.
 Note that if you start at index 6 you can only jump to index 7. You cannot jump to index 5 because 13 > 9. You cannot jump to index 4 because index 5 is between index 4 and 6 and 13 > 9.
 Similarly You cannot jump from index 3 to index 2 or index 1.
+
 #### Example 2
 
 - **Input:** `arr = [3,3,3,3,3], d = 3`
 - **Output:** `1`
 - **Explanation:** You can start at any index. You always cannot jump to any index.
+
 #### Example 3
 
 - **Input:** `arr = [7,6,5,4,3,2,1], d = 1`

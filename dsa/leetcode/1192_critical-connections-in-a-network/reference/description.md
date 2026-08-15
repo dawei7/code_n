@@ -8,8 +8,14 @@ Return all critical connections in the network in any order.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `connections`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return all critical connections in the network in any order.
 - **Input:** $n = 4, connections = [[0,1],[1,2],[2,0],[1,3]]$
 - **Output:** `[[1,3]]`
 - **Explanation:** [[3,1]] is also accepted.
+
 #### Example 2
 
 - **Input:** $n = 2, connections = [[0,1]]$

@@ -16,12 +16,11 @@ Return an array `answer` of length `q` where $\text{answer}[i]$ is the number of
 
 #### Example 1
 
-<div class="example-block">
-**Input:** conversions = [[0,1,2],[0,2,6]], queries = [[1,2],[1,0]]
+- **Input:** conversions = [[0,1,2],[0,2,6]], queries = [[1,2],[1,0]]
 
-**Output:** [3,500000004]
+- **Output:** [3,500000004]
 
-**Explanation:**
+- **Explanation:** 
 
 - In the first query, we can convert unit 1 into 3 units of type 2 using the inverse of $\text{conversions}[0]$, then $\text{conversions}[1]$.
 
@@ -29,15 +28,13 @@ Return an array `answer` of length `q` where $\text{answer}[i]$ is the number of
 
 ![](images/example1.png)
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** conversions = [[0,1,2],[0,2,6],[0,3,8],[2,4,2],[2,5,4],[3,6,3]], queries = [[1,2],[0,4],[6,5],[4,6],[6,1]]
+- **Input:** conversions = [[0,1,2],[0,2,6],[0,3,8],[2,4,2],[2,5,4],[3,6,3]], queries = [[1,2],[0,4],[6,5],[4,6],[6,1]]
 
-**Output:** [3,12,1,2,83333334]
+- **Output:** [3,12,1,2,83333334]
 
-**Explanation:**
+- **Explanation:** 
 
 - In the first query, we can convert unit 1 into 3 units of type 2 using the inverse of $\text{conversions}[0]$, then $\text{conversions}[1]$.
 
@@ -50,8 +47,6 @@ Return an array `answer` of length `q` where $\text{answer}[i]$ is the number of
 - In the fifth query, we can convert unit 6 into 1/12 units of type 1 using the inverse of $\text{conversions}[5]$, the inverse of $\text{conversions}[2]$, then $\text{conversions}[0]$. We return 83333334 since it is the multiplicative inverse of 12.
 
 ![](images/example2.png)
-
-</div>
 
 ### 4. Constraints
 

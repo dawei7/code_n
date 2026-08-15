@@ -37,23 +37,23 @@ zero.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `amount = [1,4,2]`
-- Output: `4`
-- Explanation: Three seconds can each pair a warm cup with another type, and
+- **Input:** `amount = [1,4,2]`
+- **Output:** `4`
+- **Explanation:** Three seconds can each pair a warm cup with another type, and
   one final warm cup takes the fourth second.
 
-**Example 2**
+#### Example 2
 
-- Input: `amount = [5,4,4]`
-- Output: `7`
-- Explanation: Thirteen cups require at least seven seconds, and the three
+- **Input:** `amount = [5,4,4]`
+- **Output:** `7`
+- **Explanation:** Thirteen cups require at least seven seconds, and the three
   types can be paired so that seven seconds suffice.
 
-**Example 3**
+#### Example 3
 
-- Input: `amount = [5,0,0]`
-- Output: `5`
-- Explanation: With only one water type requested, every cup must be filled
+- **Input:** `amount = [5,0,0]`
+- **Output:** `5`
+- **Explanation:** With only one water type requested, every cup must be filled
   separately.

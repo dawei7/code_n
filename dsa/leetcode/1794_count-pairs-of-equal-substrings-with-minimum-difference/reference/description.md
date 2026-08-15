@@ -23,6 +23,7 @@ Return *the **number** of such quadruples*.
 - **Input:** $firstString = "abcd", secondString = "bccda"$
 - **Output:** `1`
 - **Explanation:** The quadruple (0,0,4,4) is the only one that satisfies all the conditions and minimizes j - a.
+
 #### Example 2
 
 - **Input:** $firstString = "ab", secondString = "cd"$

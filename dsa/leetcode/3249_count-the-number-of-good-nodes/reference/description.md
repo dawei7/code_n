@@ -10,52 +10,45 @@ A **subtree** of `treeName` is a tree consisting of a node in `treeName` and all
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `edges`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]
+- **Input:** edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-![](images/tree1.png)
+- **Explanation:** ![](images/tree1.png)
 
 All of the nodes of the given tree are good.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** edges = [[0,1],[1,2],[2,3],[3,4],[0,5],[1,6],[2,7],[3,8]]
+- **Input:** edges = [[0,1],[1,2],[2,3],[3,4],[0,5],[1,6],[2,7],[3,8]]
 
-**Output:** 6
+- **Output:** 6
 
-**Explanation:**
-
-![](images/screenshot-2024-06-03-193552.png)
+- **Explanation:** ![](images/screenshot-2024-06-03-193552.png)
 
 There are 6 good nodes in the given tree. They are colored in the image above.
+
 #### Example 3
 
-<div class="example-block">
-**Input:** edges = [[0,1],[1,2],[1,3],[1,4],[0,5],[5,6],[6,7],[7,8],[0,9],[9,10],[9,12],[10,11]]
+- **Input:** edges = [[0,1],[1,2],[1,3],[1,4],[0,5],[5,6],[6,7],[7,8],[0,9],[9,10],[9,12],[10,11]]
 
-**Output:** 12
+- **Output:** 12
 
-**Explanation:**
-
-![](images/rob.jpg)
+- **Explanation:** ![](images/rob.jpg)
 
 All nodes except node 9 are good.
-
-</div>
-</div>
 
 ### 4. Constraints
 

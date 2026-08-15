@@ -12,8 +12,10 @@ Given a linked list `head`, return *an array of length 2 containing *`[minDistan
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `ListNode(val=0, next=None)`: Initializes the data structure.
+- `nodesBetweenCriticalPoints(head: Optional[ListNode]) -> `List[int]``: Executes operation.
 
 ### 3. Examples
 
@@ -24,6 +26,7 @@ Given a linked list `head`, return *an array of length 2 containing *`[minDistan
 - **Input:** $head = [3,1]$
 - **Output:** `[-1,-1]`
 - **Explanation:** There are no critical points in [3,1].
+
 #### Example 2
 
 ![](images/a2.png)
@@ -36,6 +39,7 @@ Given a linked list `head`, return *an array of length 2 containing *`[minDistan
 - [5,3,1,2,5,<u>**1**</u>,2]: The sixth node is a local minima because 1 is less than 5 and 2.
 The minimum distance is between the fifth and the sixth node. minDistance = 6 - 5 = 1.
 The maximum distance is between the third and the sixth node. maxDistance = 6 - 3 = 3.
+
 #### Example 3
 
 ![](images/a5.png)

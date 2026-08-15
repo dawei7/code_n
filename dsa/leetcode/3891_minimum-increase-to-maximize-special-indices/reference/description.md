@@ -30,12 +30,11 @@ Return the minimum total number of unit increases needed to attain the greatest 
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,2]
+- **Input:** nums = [1,2,2]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Start with `nums = [1, 2, 2]`.
 
@@ -45,15 +44,13 @@ Return the minimum total number of unit increases needed to attain the greatest 
 
 - It is impossible to achieve this number of special indices with fewer operations. Thus, the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,1,3]
+- **Input:** nums = [2,1,1,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - Start with `nums = [2, 1, 1, 3]`.
 
@@ -61,23 +58,19 @@ Return the minimum total number of unit increases needed to attain the greatest 
 
 - The final array is `[2, 3, 1, 3]` has 1 special index, which is the maximum achievable. Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,2,1,4,3]
+- **Input:** nums = [5,2,1,4,3]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**​​​​​​​​​​​​​​​​​​​​​
+- **Explanation:** ​​​​​​​​​​​​​​​​​​​​​
 
 - Start with `nums = [5, 2, 1, 4, 3]`.
 
 - Perform 4 operations at index 1, array becomes `[5, 6, 1, 4, 3]`.
 
 - The final array is `[5, 6, 1, 4, 3]` has 2 special indices, which is the maximum achievable. Thus, the answer is 4.​​​​​​​
-
-</div>
 
 ### 4. Constraints
 

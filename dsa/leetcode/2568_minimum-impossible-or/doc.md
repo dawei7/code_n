@@ -30,20 +30,20 @@ Return the smallest positive, nonzero integer that is not expressible. Values ma
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 1]`
-- Output: `4`
-- Explanation: The values $1$ and $2$ are present, and their OR forms $3$; no subsequence can form $4$.
+- **Input:** `nums = [2, 1]`
+- **Output:** `4`
+- **Explanation:** The values $1$ and $2$ are present, and their OR forms $3$; no subsequence can form $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 3, 2]`
-- Output: `1`
-- Explanation: Every available value has a bit other than the least significant bit, so none can produce exactly $1$.
+- **Input:** `nums = [5, 3, 2]`
+- **Output:** `1`
+- **Explanation:** Every available value has a bit other than the least significant bit, so none can produce exactly $1$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 4, 8]`
-- Output: `16`
-- Explanation: Every positive value below $16$ can be assembled from the four available single-bit values, while $16$ itself cannot.
+- **Input:** `nums = [1, 2, 4, 8]`
+- **Output:** `16`
+- **Explanation:** Every positive value below $16$ can be assembled from the four available single-bit values, while $16$ itself cannot.

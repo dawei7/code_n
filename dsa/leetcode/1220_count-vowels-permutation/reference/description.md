@@ -18,8 +18,13 @@ Since the answer may be too large, return it modulo $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +33,7 @@ Since the answer may be too large, return it modulo $10^{9} + 7$.
 - **Input:** $n = 1$
 - **Output:** `5`
 - **Explanation:** All possible strings are: "a", "e", "i" , "o" and "u".
+
 #### Example 2
 
 - **Input:** $n = 2$

@@ -30,20 +30,20 @@ Return the smallest integer number of simultaneous-update seconds needed to make
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 1, 2]`
-- Output: `1`
-- Explanation: Either alternating value can spread to its two neighboring positions in one second.
+- **Input:** `nums = [1, 2, 1, 2]`
+- **Output:** `1`
+- **Explanation:** Either alternating value can spread to its two neighboring positions in one second.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 1, 3, 3, 2]`
-- Output: `2`
-- Explanation: Choosing `3` as the final value requires two seconds to cover the longest circular gap between its occurrences.
+- **Input:** `nums = [2, 1, 3, 3, 2]`
+- **Output:** `2`
+- **Explanation:** Choosing `3` as the final value requires two seconds to cover the longest circular gap between its occurrences.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 5, 5, 5]`
-- Output: `0`
-- Explanation: Every position already contains the same value.
+- **Input:** `nums = [5, 5, 5, 5]`
+- **Output:** `0`
+- **Explanation:** Every position already contains the same value.

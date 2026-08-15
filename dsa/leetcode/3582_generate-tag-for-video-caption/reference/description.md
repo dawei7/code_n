@@ -14,47 +14,39 @@ Return the **tag** after performing the actions on `caption`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `caption`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** caption = "Leetcode daily streak achieved"
+- **Input:** caption = "Leetcode daily streak achieved"
 
-**Output:** "#leetcodeDailyStreakAchieved"
+- **Output:** "#leetcodeDailyStreakAchieved"
 
-**Explanation:**
+- **Explanation:** The first letter for all words except `"leetcode"` should be capitalized.
 
-The first letter for all words except `"leetcode"` should be capitalized.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** caption = "can I Go There"
+- **Input:** caption = "can I Go There"
 
-**Output:** "#canIGoThere"
+- **Output:** "#canIGoThere"
 
-**Explanation:**
+- **Explanation:** The first letter for all words except `"can"` should be capitalized.
 
-The first letter for all words except `"can"` should be capitalized.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** caption = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+- **Input:** caption = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
 
-**Output:** "#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+- **Output:** "#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
 
-**Explanation:**
-
-Since the first word has length 101, we need to truncate the last two letters from the word.
-
-</div>
+- **Explanation:** Since the first word has length 101, we need to truncate the last two letters from the word.
 
 ### 4. Constraints
 

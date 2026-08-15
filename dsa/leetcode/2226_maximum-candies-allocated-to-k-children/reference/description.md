@@ -8,8 +8,14 @@ Return *the **maximum number of candies** each child can get.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `candies`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the **maximum number of candies** each child can get.*
 - **Input:** $candies = [5,8,6], k = 3$
 - **Output:** `5`
 - **Explanation:** We can divide candies[1] into 2 piles of size 5 and 3, and candies[2] into 2 piles of size 5 and 1. We now have five piles of candies of sizes 5, 5, 3, 5, and 1. We can allocate the 3 piles of size 5 to 3 children. It can be proven that each child cannot receive more than 5 candies.
+
 #### Example 2
 
 - **Input:** $candies = [2,5], k = 11$

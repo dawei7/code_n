@@ -33,20 +33,20 @@ Let $T=\texttt{target}$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `startValue = 2, target = 3`
-- Output: `2`
-- Explanation: Double to $4$, then subtract one to reach $3$.
+- **Input:** `startValue = 2, target = 3`
+- **Output:** `2`
+- **Explanation:** Double to $4$, then subtract one to reach $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `startValue = 5, target = 8`
-- Output: `2`
-- Explanation: Subtract one to get $4$, then double to get $8$.
+- **Input:** `startValue = 5, target = 8`
+- **Output:** `2`
+- **Explanation:** Subtract one to get $4$, then double to get $8$.
 
-**Example 3**
+#### Example 3
 
-- Input: `startValue = 3, target = 10`
-- Output: `3`
-- Explanation: The sequence $3\to6\to5\to10$ uses three operations.
+- **Input:** `startValue = 3, target = 10`
+- **Output:** `3`
+- **Explanation:** The sequence $3\to6\to5\to10$ uses three operations.

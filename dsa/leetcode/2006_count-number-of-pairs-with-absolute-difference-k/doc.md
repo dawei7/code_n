@@ -41,22 +41,22 @@ difference.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 2, 1], k = 1`
-- Output: `4`
-- Explanation: Each of the two positions containing `1` pairs with each of the
+- **Input:** `nums = [1, 2, 2, 1], k = 1`
+- **Output:** `4`
+- **Explanation:** Each of the two positions containing `1` pairs with each of the
   two positions containing `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3], k = 3`
-- Output: `0`
-- Explanation: The only absolute difference is $2$, not $3$.
+- **Input:** `nums = [1, 3], k = 3`
+- **Output:** `0`
+- **Explanation:** The only absolute difference is $2$, not $3$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3, 2, 1, 5, 4], k = 2`
-- Output: `3`
-- Explanation: The value pairs are `3` with `1`, `3` with `5`, and `2` with
+- **Input:** `nums = [3, 2, 1, 5, 4], k = 2`
+- **Output:** `3`
+- **Explanation:** The value pairs are `3` with `1`, `3` with `5`, and `2` with
   `4`.

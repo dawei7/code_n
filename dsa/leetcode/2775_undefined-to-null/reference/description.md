@@ -15,6 +15,7 @@ Given a deeply nested object or array `obj`, return the object `obj` with any `u
 - **Input:** $obj = {"a": undefined, "b": 3}$
 - **Output:** `{"a": null, "b": 3}`
 - **Explanation:** The value for obj.a has been changed from undefined to null
+
 #### Example 2
 
 - **Input:** $obj = {"a": undefined, "b": ["a", undefined]}$

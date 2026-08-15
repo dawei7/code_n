@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/strong-friendship/) |
 
 ## Problem Description
+
 ### Goal
+
 The `Friendship` table stores undirected friendships. Each pair is recorded
 once in canonical order, with the smaller user ID in `user1_id` and the larger
 one in `user2_id`.
@@ -20,6 +22,7 @@ for that pair. A pair that is not itself present in `Friendship` must not be
 returned, even if those users share several friends.
 
 ### Function Contract
+
 **Inputs**
 
 - `Friendship(user1_id, user2_id)`: one row per undirected friendship.
@@ -37,21 +40,22 @@ neighbor-pair matches examined while intersecting adjacency lists.
 - Each pair appears once with `user1_id < user2_id`. Row order is unrestricted.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 For the published friendship graph, users 1 and 2 share users 3, 4, 5, and 6,
 while users 1 and 3 share users 2, 6, and 7.
 
 - Output rows: `(1, 2, 4)` and `(1, 3, 3)`.
 
-**Example 2**
+#### Example 2
 
 An existing pair shares exactly users 3, 4, and 5.
 
 - Output row: that pair with `common_friend = 3`.
 
-**Example 3**
+#### Example 3
 
 Every friendship has fewer than three common friends.
 
-- Output: no rows.
+- **Output:** no rows.

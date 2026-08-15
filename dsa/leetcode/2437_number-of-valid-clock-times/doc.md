@@ -32,23 +32,23 @@ The pattern is guaranteed to have at least one valid completion.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `time = "?5:00"`
-- Output: `2`
+- **Input:** `time = "?5:00"`
+- **Output:** `2`
 
 The leading question mark may be 0 or 1, producing `"05:00"` and `"15:00"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `time = "0?:0?"`
-- Output: `100`
+- **Input:** `time = "0?:0?"`
+- **Output:** `100`
 
 Both unknown positions independently accept all ten digits.
 
-**Example 3**
+#### Example 3
 
-- Input: `time = "??:??"`
-- Output: `1440`
+- **Input:** `time = "??:??"`
+- **Output:** `1440`
 
 All 24 hour values and all 60 minute values are possible.

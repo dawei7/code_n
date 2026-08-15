@@ -20,12 +20,14 @@ Return the area of the largest axis-aligned square consisting entirely of `"1"` 
 
 - **Input:** $matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]$
 - **Output:** `4`
+
 #### Example 2
 
 ![](images/max2grid.jpg)
 
 - **Input:** $matrix = [["0","1"],["1","0"]]$
 - **Output:** `1`
+
 #### Example 3
 
 - **Input:** $matrix = [["0"]]$

@@ -22,6 +22,7 @@ Return *the **maximum** possible number of accepted invitations.*
 - The 1^st boy invites the 2^nd girl.
 - The 2^nd boy invites the 1^st girl.
 - The 3^rd boy invites the 3^rd girl.
+
 #### Example 2
 
 - **Input:** `grid = [[1,0,1,0],`

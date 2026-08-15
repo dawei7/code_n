@@ -10,8 +10,14 @@ A **substring** is a contiguous sequence of characters in a string, possibly emp
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word`: Input parameter (`str`).
+- `forbidden`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ A **substring** is a contiguous sequence of characters in a string, possibly emp
 - **Output:** `4`
 - **Explanation:** There are 11 valid substrings in word: "c", "b", "a", "ba", "aa", "bc", "baa", "aab", "ab", "abc" and "aabc". The length of the longest valid substring is 4.
 It can be shown that all other substrings contain either "aaa" or "cb" as a substring.
+
 #### Example 2
 
 - **Input:** $word = "leetcode", forbidden = ["de","le","e"]$

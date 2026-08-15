@@ -6,24 +6,19 @@ Each $\text{events}[i]$ can be either of the following two types:
 
 - **Message Event:** $["MESSAGE", "\text{timestamp}_{i}", "mentions_string_i"]$
 
-		<li>This event indicates that a set of users was mentioned in a message at $\text{timestamp}_{i}$.
+		- This event indicates that a set of users was mentioned in a message at $\text{timestamp}_{i}$.
 
 - The `mentions_string_i` string can contain one of the following tokens:
-
-			<li>`id<number>`: where `<number>` is an integer in range `[0,numberOfUsers - 1]`. There can be **multiple** ids separated by a single whitespace and may contain duplicates. This can mention even the offline users.
+- `id<number>`: where `<number>` is an integer in range `[0,numberOfUsers - 1]`. There can be **multiple** ids separated by a single whitespace and may contain duplicates. This can mention even the offline users.
 
 - `ALL`: mentions **all** users.
 
 - `HERE`: mentions all **online** users.
 
-		</li>
-
-	</li>
+	
 - **Offline Event:** $["OFFLINE", "\text{timestamp}_{i}", "\text{id}_{i}"]$
 
-		<li>This event indicates that the user $\text{id}_{i}$ had become offline at $\text{timestamp}_{i}$ for **60 time units**. The user will automatically be online again at time $\text{timestamp}_{i} + 60$.
-
-	</li>
+		- This event indicates that the user $\text{id}_{i}$ had become offline at $\text{timestamp}_{i}$ for **60 time units**. The user will automatically be online again at time $\text{timestamp}_{i} + 60$.
 
 Return an array `mentions` where $\text{mentions}[i]$ represents the number of mentions the user with id `i` has across all `MESSAGE` events.
 
@@ -31,8 +26,14 @@ All users are initially online, and if a user goes offline or comes back online,
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `numberOfUsers`: Input parameter (`int`).
+- `events`: Input parameter (`List[List[str]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -42,14 +43,11 @@ that a user can be mentioned **multiple** times in a **single** message event, a
 
 #### Example 1
 
-<div class="example-block">
-**Input:** numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]
+- **Input:** numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]
 
-**Output:** [2,2]
+- **Output:** [2,2]
 
-**Explanation:**
-
-Initially, all users are online.
+- **Explanation:** Initially, all users are online.
 
 At timestamp 10, `id1` and `id0` are mentioned. $mentions = [1,1]$
 
@@ -57,17 +55,13 @@ At timestamp 11, `id0` goes **offline.**
 
 At timestamp 71, `id0` comes back **online** and `"HERE"` is mentioned. $mentions = [2,2]$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","12","ALL"]]
+- **Input:** numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","12","ALL"]]
 
-**Output:** [2,2]
+- **Output:** [2,2]
 
-**Explanation:**
-
-Initially, all users are online.
+- **Explanation:** Initially, all users are online.
 
 At timestamp 10, `id1` and `id0` are mentioned. $mentions = [1,1]$
 
@@ -75,23 +69,17 @@ At timestamp 11, `id0` goes **offline.**
 
 At timestamp 12, `"ALL"` is mentioned. This includes offline users, so both `id0` and `id1` are mentioned. $mentions = [2,2]$
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** numberOfUsers = 2, events = [["OFFLINE","10","0"],["MESSAGE","12","HERE"]]
+- **Input:** numberOfUsers = 2, events = [["OFFLINE","10","0"],["MESSAGE","12","HERE"]]
 
-**Output:** [0,1]
+- **Output:** [0,1]
 
-**Explanation:**
-
-Initially, all users are online.
+- **Explanation:** Initially, all users are online.
 
 At timestamp 10, `id0` goes **offline.**
 
 At timestamp 12, `"HERE"` is mentioned. Because `id0` is still offline, they will not be mentioned. $mentions = [0,1]$
-
-</div>
 
 ### 5. Constraints
 

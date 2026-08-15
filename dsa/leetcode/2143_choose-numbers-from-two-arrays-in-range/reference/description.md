@@ -37,6 +37,7 @@ The sum of the numbers chosen from nums1 equals the sum of the numbers chosen fr
 The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 1 + 2 = 3.
 Note that the second and third balanced ranges are different.
 In the second balanced range, we choose nums2[1] and in the third balanced range, we choose nums1[1].
+
 #### Example 2
 
 - **Input:** $nums1 = [0,1], nums2 = [1,0]$

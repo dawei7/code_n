@@ -8,8 +8,13 @@ Return the **median** of the **uniqueness array** of `nums`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -19,40 +24,27 @@ that the **median** of an array is defined as the middle element of the array wh
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3]
+- **Input:** nums = [1,2,3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** The uniqueness array of `nums` is `[distinct(nums[0..0]), distinct(nums[1..1]), distinct(nums[2..2]), distinct(nums[0..1]), distinct(nums[1..2]), distinct(nums[0..2])]` which is equal to `[1, 1, 1, 2, 2, 3]`. The uniqueness array has a median of 1. Therefore, the answer is 1.
 
-The uniqueness array of `nums` is `[distinct(nums[0..0]), distinct(nums[1..1]), distinct(nums[2..2]), distinct(nums[0..1]), distinct(nums[1..2]), distinct(nums[0..2])]` which is equal to `[1, 1, 1, 2, 2, 3]`. The uniqueness array has a median of 1. Therefore, the answer is 1.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,4,3,4,5]
+- **Input:** nums = [3,4,3,4,5]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The uniqueness array of `nums` is `[1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3]`. The uniqueness array has a median of 2. Therefore, the answer is 2.
 
-The uniqueness array of `nums` is `[1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3]`. The uniqueness array has a median of 2. Therefore, the answer is 2.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,3,5,4]
+- **Input:** nums = [4,3,5,4]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The uniqueness array of `nums` is `[1, 1, 1, 1, 2, 2, 2, 3, 3, 3]`. The uniqueness array has a median of 2. Therefore, the answer is 2.
-
-</div>
+- **Explanation:** The uniqueness array of `nums` is `[1, 1, 1, 1, 2, 2, 2, 3, 3, 3]`. The uniqueness array has a median of 2. Therefore, the answer is 2.
 
 ### 5. Constraints
 

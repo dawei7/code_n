@@ -16,21 +16,23 @@ Return the final string `result` after processing all characters in `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "a#b%*"
+- **Input:** s = "a#b%*"
 
-**Output:** "ba"
+- **Output:** "ba"
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -75,17 +77,13 @@ Return the final string `result` after processing all characters in `s`.
 
 Thus, the final `result` is `"ba"`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "z*#"
+- **Input:** s = "z*#"
 
-**Output:** ""
+- **Output:** ""
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">`i`</th>
@@ -117,8 +115,6 @@ Thus, the final `result` is `"ba"`.
 </table>
 
 Thus, the final `result` is `""`.
-
-</div>
 
 ### 4. Constraints
 

@@ -34,16 +34,16 @@ Return the unique array obtained after no adjacent non-coprime pair remains.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [6, 4, 3, 2, 7, 6, 2]`
-- Output: `[12, 7, 6]`
+- **Input:** `nums = [6, 4, 3, 2, 7, 6, 2]`
+- **Output:** `[12, 7, 6]`
 
 The first four values can merge into `12`, while the final `6` and `2` merge into `6`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2, 1, 1, 3, 3, 3]`
-- Output: `[2, 1, 1, 3]`
+- **Input:** `nums = [2, 2, 1, 1, 3, 3, 3]`
+- **Output:** `[2, 1, 1, 3]`
 
 Equal adjacent `2` values collapse to one `2`, and the three adjacent `3` values collapse to one `3`. Values equal to `1` cannot merge with a neighbor.

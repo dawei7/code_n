@@ -30,20 +30,20 @@ Return `True` if all such diagonals satisfy the condition and `False` otherwise.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]`
-- Output: `True`
-- Explanation: Every descending diagonal repeats its first value.
+- **Input:** `matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]`
+- **Output:** `True`
+- **Explanation:** Every descending diagonal repeats its first value.
 
-**Example 2**
+#### Example 2
 
-- Input: `matrix = [[1,2],[2,2]]`
-- Output: `False`
-- Explanation: The main diagonal contains `1` and `2`.
+- **Input:** `matrix = [[1,2],[2,2]]`
+- **Output:** `False`
+- **Explanation:** The main diagonal contains `1` and `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `matrix = [[3,4,5,6]]`
-- Output: `True`
-- Explanation: A one-row matrix has only length-one diagonals.
+- **Input:** `matrix = [[3,4,5,6]]`
+- **Output:** `True`
+- **Explanation:** A one-row matrix has only length-one diagonals.

@@ -4,8 +4,10 @@ Given the `root` of a binary tree, return *the average value of the nodes on eac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `TreeNode(val=0, left=None, right=None)`: Initializes the data structure.
+- `averageOfLevels(root: Optional[TreeNode]) -> `List[float]``: Executes operation.
 
 ### 3. Examples
 
@@ -17,6 +19,7 @@ Given the `root` of a binary tree, return *the average value of the nodes on eac
 - **Output:** `[3.00000,14.50000,11.00000]`
 - **Explanation:** The average value of nodes on level 0 is 3, on level 1 is 14.5, and on level 2 is 11.
 Hence return [3, 14.5, 11].
+
 #### Example 2
 
 ![](images/avg2-tree.jpg)

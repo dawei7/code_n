@@ -8,8 +8,14 @@ Given two axis-aligned rectangles `rec1` and `rec2`, return `true`* if they over
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rec1`: Input parameter (`List[int]`).
+- `rec2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -17,10 +23,12 @@ Given two axis-aligned rectangles `rec1` and `rec2`, return `true`* if they over
 
 - **Input:** $rec1 = [0,0,2,2], rec2 = [1,1,3,3]$
 - **Output:** `true`
+
 #### Example 2
 
 - **Input:** $rec1 = [0,0,1,1], rec2 = [1,0,2,1]$
 - **Output:** `false`
+
 #### Example 3
 
 - **Input:** $rec1 = [0,0,1,1], rec2 = [2,2,3,3]$

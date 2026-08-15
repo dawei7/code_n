@@ -30,20 +30,20 @@ Return the smallest possible number of characters remaining after valid deletion
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aaabc"`
-- Output: `3`
-- Explanation: Two copies of `'a'` can be deleted, leaving one each of `'a'`, `'b'`, and `'c'`.
+- **Input:** `s = "aaabc"`
+- **Output:** `3`
+- **Explanation:** Two copies of `'a'` can be deleted, leaving one each of `'a'`, `'b'`, and `'c'`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "cbbd"`
-- Output: `3`
-- Explanation: Delete either copy of `'b'`; the three distinct characters cannot be reduced further.
+- **Input:** `s = "cbbd"`
+- **Output:** `3`
+- **Explanation:** Delete either copy of `'b'`; the three distinct characters cannot be reduced further.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "baadccab"`
-- Output: `4`
-- Explanation: Repeated operations can leave exactly one occurrence of each of `'a'`, `'b'`, `'c'`, and `'d'`.
+- **Input:** `s = "baadccab"`
+- **Output:** `4`
+- **Explanation:** Repeated operations can leave exactly one occurrence of each of `'a'`, `'b'`, `'c'`, and `'d'`.

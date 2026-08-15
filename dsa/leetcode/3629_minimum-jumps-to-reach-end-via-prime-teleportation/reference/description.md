@@ -14,21 +14,23 @@ Return the **minimum** number of jumps required to reach index $n - 1$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,4,6]
+- **Input:** nums = [1,2,4,6]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One optimal sequence of jumps is:
+- **Explanation:** One optimal sequence of jumps is:
 
 - Start at index $i = 0$. Take an adjacent step to index 1.
 
@@ -36,17 +38,13 @@ One optimal sequence of jumps is:
 
 Thus, the answer is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,4,7,9]
+- **Input:** nums = [2,3,4,7,9]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-One optimal sequence of jumps is:
+- **Explanation:** One optimal sequence of jumps is:
 
 - Start at index $i = 0$. Take an adjacent step to index $i = 1$.
 
@@ -54,19 +52,15 @@ One optimal sequence of jumps is:
 
 Thus, the answer is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4,6,5,8]
+- **Input:** nums = [4,6,5,8]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Since no teleportation is possible, we move through `0 → 1 → 2 → 3`. Thus, the answer is 3.
-
-</div>
 
 ### 4. Constraints
 

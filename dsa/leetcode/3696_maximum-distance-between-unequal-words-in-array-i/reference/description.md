@@ -26,40 +26,27 @@ Return the maximum distance among all valid pairs, or `0` when no unequal pair e
 
 #### Example 1
 
-<div class="example-block">
-**Input:** words = ["leetcode","leetcode","codeforces"]
+- **Input:** words = ["leetcode","leetcode","codeforces"]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** In this example, $\text{words}[0]$ and $\text{words}[2]$ are not equal, and they have the maximum distance $2 - 0 + 1 = 3$.
 
-In this example, $\text{words}[0]$ and $\text{words}[2]$ are not equal, and they have the maximum distance $2 - 0 + 1 = 3$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** words = ["a","b","c","a","a"]
+- **Input:** words = ["a","b","c","a","a"]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** In this example $\text{words}[1]$ and $\text{words}[4]$ have the largest distance of $4 - 1 + 1 = 4$.
 
-In this example $\text{words}[1]$ and $\text{words}[4]$ have the largest distance of $4 - 1 + 1 = 4$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** words = ["z","z","z"]
+- **Input:** words = ["z","z","z"]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-In this example all the words are equal, thus the answer is 0.
-
-</div>
+- **Explanation:** In this example all the words are equal, thus the answer is 0.
 
 ### 4. Constraints
 

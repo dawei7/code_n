@@ -8,8 +8,13 @@ Return *the maximum number of events you can attend*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `events`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ One way to attend them all is as shown.
 Attend the first event on day 1.
 Attend the second event on day 2.
 Attend the third event on day 3.
+
 #### Example 2
 
 - **Input:** $events= [[1,2],[2,3],[3,4],[1,2]]$

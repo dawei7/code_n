@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-books-with-polarized-opinions/) |
 
 ## Problem Description
+
 ### Goal
 
 The `books` table stores each book's title, author, genre, and page count. The `reading_sessions` table records individual readers' progress and their integer rating from 1 through 5 for the associated book.
@@ -18,6 +19,7 @@ A book has polarized opinions only when it has at least five reading sessions, i
 Report only books whose polarization score is at least $0.6$. Include the book details, rating spread, and score rounded to two decimal places. Sort by polarization score descending and then by title descending.
 
 ### Function Contract
+
 **Inputs**
 
 - `books`: Rows with unique `book_id`, plus `title`, `author`, `genre`, and `pages`.
@@ -28,8 +30,9 @@ Report only books whose polarization score is at least $0.6$. Include the book d
 Return the columns `book_id`, `title`, `author`, `genre`, `pages`, `rating_spread`, and `polarization_score` in the required order.
 
 ### Examples
-**Example 1**
 
-- Input: The Great Gatsby has ratings `5, 1, 4, 2, 5`; 1984 has ratings `2, 1, 2, 1, 4, 5`; the remaining books either lack a low rating or have fewer than five sessions.
-- Output: The Great Gatsby followed by 1984, each with rating spread `4` and polarization score `1.00`.
-- Explanation: Both returned books have ratings at both extremes, meet the session minimum, and have an extreme rating in every session. Their equal scores are resolved by descending title order.
+#### Example 1
+
+- **Input:** The Great Gatsby has ratings `5, 1, 4, 2, 5`; 1984 has ratings `2, 1, 2, 1, 4, 5`; the remaining books either lack a low rating or have fewer than five sessions.
+- **Output:** The Great Gatsby followed by 1984, each with rating spread `4` and polarization score `1.00`.
+- **Explanation:** Both returned books have ratings at both extremes, meet the session minimum, and have an extreme rating in every session. Their equal scores are resolved by descending title order.

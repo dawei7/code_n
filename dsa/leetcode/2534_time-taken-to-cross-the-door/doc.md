@@ -33,14 +33,14 @@ Return an array `answer` of length $n$ where `answer[i]` is the second when pers
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arrival = [0, 1, 1, 2, 4], state = [0, 1, 0, 0, 1]`
-- Output: `[0, 3, 1, 2, 4]`
-- Explanation: Entering retains priority at seconds `1` and `2`; the waiting exiting person then crosses at `3`.
+- **Input:** `arrival = [0, 1, 1, 2, 4], state = [0, 1, 0, 0, 1]`
+- **Output:** `[0, 3, 1, 2, 4]`
+- **Explanation:** Entering retains priority at seconds `1` and `2`; the waiting exiting person then crosses at `3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arrival = [0, 0, 0], state = [1, 0, 1]`
-- Output: `[0, 2, 1]`
-- Explanation: The unused-door rule selects exiting, and smaller index `0` wins the first exiting tie.
+- **Input:** `arrival = [0, 0, 0], state = [1, 0, 1]`
+- **Output:** `[0, 2, 1]`
+- **Explanation:** The unused-door rule selects exiting, and smaller index `0` wins the first exiting tie.

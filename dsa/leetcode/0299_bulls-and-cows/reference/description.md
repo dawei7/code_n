@@ -33,6 +33,7 @@ Return a string formatted as `"xAyB"`, using the number of correct-position digi
 "1807"
 |
 "<u>7</u>8<u>10</u>"
+
 #### Example 2
 
 - **Input:** $secret = "1123", guess = "0111"$

@@ -4,8 +4,13 @@ Given the string `s`, return the size of the longest substring containing each v
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -14,11 +19,13 @@ Given the string `s`, return the size of the longest substring containing each v
 - **Input:** `s = "eleetminicoworoep"`
 - **Output:** `13`
 - **Explanation:** The longest substring is "leetminicowor" which contains two each of the vowels: **e**, **i** and **o** and zero of the vowels: **a** and **u**.
+
 #### Example 2
 
 - **Input:** `s = "leetcodeisgreat"`
 - **Output:** `5`
 - **Explanation:** The longest substring is "leetc" which contains two e's.
+
 #### Example 3
 
 - **Input:** `s = "bcbcbc"`

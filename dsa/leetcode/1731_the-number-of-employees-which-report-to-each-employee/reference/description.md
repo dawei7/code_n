@@ -33,7 +33,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +-------------+---------+------------+-----+
 | employee_id | name    | reports_to | age |
@@ -43,18 +43,19 @@ Employees table:
 | 4           | Bob     | 9          | 36  |
 | 2           | Winston | null       | 37  |
 +-------------+---------+------------+-----+
-**Output:**
+- **Output:** 
 +-------------+-------+---------------+-------------+
 | employee_id | name  | reports_count | average_age |
 +-------------+-------+---------------+-------------+
 | 9           | Hercy | 2             | 39          |
 +-------------+-------+---------------+-------------+
-**Explanation:** Hercy has 2 people report directly to him, Alice and Bob. Their average age is (41+36)/2 = 38.5, which is 39 after rounding it to the nearest integer.
+- **Explanation:** Hercy has 2 people report directly to him, Alice and Bob. Their average age is (41+36)/2 = 38.5, which is 39 after rounding it to the nearest integer.
 ```
+
 #### Example 2
 
 ```
-**Input:**
+- **Input:** 
 Employees table:
 +-------------+---------+------------+-----+
 | employee_id | name    | reports_to | age |
@@ -68,7 +69,7 @@ Employees table:
 | 7           | Frank   | null       | 50  |
 | 8           | Grace   | null       | 48  |
 +-------------+---------+------------+-----+
-**Output:**
+- **Output:** 
 +-------------+---------+---------------+-------------+
 | employee_id | name    | reports_count | average_age |
 | ----------- | ------- | ------------- | ----------- |

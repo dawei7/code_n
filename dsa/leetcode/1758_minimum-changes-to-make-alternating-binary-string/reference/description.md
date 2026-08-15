@@ -8,8 +8,13 @@ Return *the **minimum** number of operations needed to make* `s` *alternating*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +23,13 @@ Return *the **minimum** number of operations needed to make* `s` *alternating*.
 - **Input:** `s = "0100"`
 - **Output:** `1`
 - **Explanation:** If you change the last character to '1', s will be "0101", which is alternating.
+
 #### Example 2
 
 - **Input:** `s = "10"`
 - **Output:** `0`
 - **Explanation:** s is already alternating.
+
 #### Example 3
 
 - **Input:** `s = "1111"`

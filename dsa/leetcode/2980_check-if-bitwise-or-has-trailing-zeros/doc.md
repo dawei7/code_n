@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/check-if-bitwise-or-has-trailing-zeros/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given an array `nums` of positive integers. Select at least two array
 elements and compute their bitwise OR.
 
@@ -24,6 +26,7 @@ chosen elements come from distinct array positions, and the selection may
 contain more than two values.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums`: the positive integers available for selection
@@ -37,20 +40,21 @@ Whether at least two elements can be selected whose bitwise OR has a zero
 least-significant bit.
 
 ### Examples
-**Example 1**
 
-- Input: `nums = [1,2,3,4,5]`
-- Output: `true`
-- Explanation: `2 | 4` equals `6`, whose binary representation ends in zero.
+#### Example 1
 
-**Example 2**
+- **Input:** `nums = [1,2,3,4,5]`
+- **Output:** `true`
+- **Explanation:** `2 | 4` equals `6`, whose binary representation ends in zero.
 
-- Input: `nums = [2,4,8,16]`
-- Output: `true`
-- Explanation: Any pair consists of even values and therefore has an even OR.
+#### Example 2
 
-**Example 3**
+- **Input:** `nums = [2,4,8,16]`
+- **Output:** `true`
+- **Explanation:** Any pair consists of even values and therefore has an even OR.
 
-- Input: `nums = [1,3,5,7,9]`
-- Output: `false`
-- Explanation: Every selected set contains only values whose least-significant bit is one.
+#### Example 3
+
+- **Input:** `nums = [1,3,5,7,9]`
+- **Output:** `false`
+- **Explanation:** Every selected set contains only values whose least-significant bit is one.

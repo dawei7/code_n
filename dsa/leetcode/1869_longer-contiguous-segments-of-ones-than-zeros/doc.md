@@ -31,23 +31,23 @@ Return `true` exactly when the longest segment of ones is strictly longer than t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "1101"`
-- Output: `true`
+- **Input:** `s = "1101"`
+- **Output:** `true`
 
 The longest ones segment has length two, while the longest zeros segment has length one.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "111000"`
-- Output: `false`
+- **Input:** `s = "111000"`
+- **Output:** `false`
 
 Both longest segments have length three, and equality is not sufficient.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "110100010"`
-- Output: `false`
+- **Input:** `s = "110100010"`
+- **Output:** `false`
 
 The longest ones segment has length two, but the longest zeros segment has length three.

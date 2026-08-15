@@ -6,8 +6,13 @@ Return *the size of the longest non-empty subarray containing only *`1`*'s in th
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +21,13 @@ Return *the size of the longest non-empty subarray containing only *`1`*'s in th
 - **Input:** `nums = [1,1,0,1]`
 - **Output:** `3`
 - **Explanation:** After deleting the number in position 2, [1,1,1] contains 3 numbers with value of 1's.
+
 #### Example 2
 
 - **Input:** `nums = [0,1,1,1,0,1,1,0,1]`
 - **Output:** `5`
 - **Explanation:** After deleting the number in position 4, [0,1,1,1,1,1,0,1] longest subarray with value of 1's is [1,1,1,1,1].
+
 #### Example 3
 
 - **Input:** `nums = [1,1,1]`

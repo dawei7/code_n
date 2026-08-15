@@ -33,8 +33,8 @@ Return a list aligned with the operations. Construction contributes `null`; ever
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `commands = ["DataStream", "consec", "consec", "consec", "consec"]`, `inputs = [[4, 3], [4], [4], [4], [3]]`
-- Output: `[null, false, false, true, false]`
-- Explanation: The first two calls have not supplied three integers. The third completes a run of three `4`s, and the following `3` immediately breaks that run.
+- **Input:** `commands = ["DataStream", "consec", "consec", "consec", "consec"]`, `inputs = [[4, 3], [4], [4], [4], [3]]`
+- **Output:** `[null, false, false, true, false]`
+- **Explanation:** The first two calls have not supplied three integers. The third completes a run of three `4`s, and the following `3` immediately breaks that run.

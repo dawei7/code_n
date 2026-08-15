@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/) |
 
 ## Problem Description
+
 ### Goal
+
 Given an array of strings `patterns` and a string `word`, count how many array
 entries occur as substrings of `word`. A substring is a contiguous sequence of
 characters.
@@ -20,6 +22,7 @@ contributes one to the answer. A pattern contributes at most once regardless
 of how many different occurrences it has inside `word`.
 
 ### Function Contract
+
 **Inputs**
 
 - `patterns`: a list of $P$ nonempty lowercase strings, where
@@ -33,17 +36,18 @@ of how many different occurrences it has inside `word`.
 - The number of entries in `patterns` that occur contiguously in `word`.
 
 ### Examples
-**Example 1**
 
-- Input: `patterns = ["a", "abc", "bc", "d"], word = "abc"`
-- Output: `3`
+#### Example 1
 
-**Example 2**
+- **Input:** `patterns = ["a", "abc", "bc", "d"], word = "abc"`
+- **Output:** `3`
 
-- Input: `patterns = ["a", "b", "c"], word = "aaaaabbbbb"`
-- Output: `2`
+#### Example 2
 
-**Example 3**
+- **Input:** `patterns = ["a", "b", "c"], word = "aaaaabbbbb"`
+- **Output:** `2`
 
-- Input: `patterns = ["a", "a", "a"], word = "ab"`
-- Output: `3`
+#### Example 3
+
+- **Input:** `patterns = ["a", "a", "a"], word = "ab"`
+- **Output:** `3`

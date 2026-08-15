@@ -31,21 +31,21 @@ Return an integer array where each element is `gcdPairs[queries[i]]` for the asc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2, 3, 4], queries = [0, 2, 2]`
-- Output: `[1, 2, 2]`
+- **Input:** `nums = [2, 3, 4], queries = [0, 2, 2]`
+- **Output:** `[1, 2, 2]`
 
 The sorted pair GCDs are `[1, 1, 2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [4, 4, 2, 1], queries = [5, 3, 1, 0]`
-- Output: `[4, 2, 1, 1]`
+- **Input:** `nums = [4, 4, 2, 1], queries = [5, 3, 1, 0]`
+- **Output:** `[4, 2, 1, 1]`
 
 Here `gcdPairs = [1, 1, 1, 2, 2, 4]` after sorting.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2, 2], queries = [0, 0]`
-- Output: `[2, 2]`
+- **Input:** `nums = [2, 2], queries = [0, 0]`
+- **Output:** `[2, 2]`

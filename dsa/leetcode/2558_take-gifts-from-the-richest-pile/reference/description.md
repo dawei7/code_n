@@ -12,8 +12,14 @@ Return *the number of gifts remaining after *`k`* seconds.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `gifts`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,19 +27,18 @@ Return *the number of gifts remaining after *`k`* seconds.*
 
 - **Input:** $gifts = [25,64,9,4,100], k = 4$
 - **Output:** `29`
-- **Explanation:**
-The gifts are taken in the following way:
+- **Explanation:** The gifts are taken in the following way:
 - In the first second, the last pile is chosen and 10 gifts are left behind.
 - Then the second pile is chosen and 8 gifts are left behind.
 - After that the first pile is chosen and 5 gifts are left behind.
 - Finally, the last pile is chosen again and 3 gifts are left behind.
 The final remaining gifts are [5,8,9,4,3], so the total number of gifts remaining is 29.
+
 #### Example 2
 
 - **Input:** $gifts = [1,1,1,1], k = 4$
 - **Output:** `4`
-- **Explanation:**
-In this case, regardless which pile you choose, you have to leave behind 1 gift in each pile.
+- **Explanation:** In this case, regardless which pile you choose, you have to leave behind 1 gift in each pile.
 That is, you can't take any pile with you.
 So, the total gifts remaining are 4.
 

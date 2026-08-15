@@ -4,8 +4,13 @@ Given a **positive** integer `num` represented as a string, return *the integer 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `num`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -14,6 +19,7 @@ Given a **positive** integer `num` represented as a string, return *the integer 
 - **Input:** $num = "51230100"$
 - **Output:** `"512301"`
 - **Explanation:** Integer "51230100" has 2 trailing zeros, we remove them and return integer "512301".
+
 #### Example 2
 
 - **Input:** $num = "123"$

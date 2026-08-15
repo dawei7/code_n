@@ -12,8 +12,13 @@ Return `s` *after removing the outermost parentheses of every primitive string i
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -21,22 +26,21 @@ Return `s` *after removing the outermost parentheses of every primitive string i
 
 - **Input:** `s = "(()())(())"`
 - **Output:** `"()()()"`
-- **Explanation:**
-The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
+- **Explanation:** The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
 After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
+
 #### Example 2
 
 - **Input:** `s = "(()())(())(()(()))"`
 - **Output:** `"()()()()(())"`
-- **Explanation:**
-The input string is "(()())(())(()(()))", with primitive decomposition "(()())" + "(())" + "(()(()))".
+- **Explanation:** The input string is "(()())(())(()(()))", with primitive decomposition "(()())" + "(())" + "(()(()))".
 After removing outer parentheses of each part, this is "()()" + "()" + "()(())" = "()()()()(())".
+
 #### Example 3
 
 - **Input:** `s = "()()"`
 - **Output:** `""`
-- **Explanation:**
-The input string is "()()", with primitive decomposition "()" + "()".
+- **Explanation:** The input string is "()()", with primitive decomposition "()" + "()".
 After removing outer parentheses of each part, this is "" + "" = "".
 
 ### 4. Constraints

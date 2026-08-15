@@ -43,16 +43,16 @@ are equal, reduced modulo $10^9+7$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums1 = [1,2,5], nums2 = [2,6,3]`
-- Output: `3`
-- Explanation: One balanced selection uses range `[0,1]`; two distinct choice
+- **Input:** `nums1 = [1,2,5], nums2 = [2,6,3]`
+- **Output:** `3`
+- **Explanation:** One balanced selection uses range `[0,1]`; two distinct choice
   patterns balance range `[0,2]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [0,1], nums2 = [1,0]`
-- Output: `4`
-- Explanation: Both singleton ranges have one zero-valued balanced choice, and
+- **Input:** `nums1 = [0,1], nums2 = [1,0]`
+- **Output:** `4`
+- **Explanation:** Both singleton ranges have one zero-valued balanced choice, and
   the full range has two balanced choice patterns.

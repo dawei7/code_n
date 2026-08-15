@@ -33,14 +33,14 @@ The test data guarantees that the result does not exceed $2^{53}-1$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 3, 5, 2], cost = [2, 3, 1, 14]`
-- Output: `8`
-- Explanation: Choosing 2 costs 2 to move the first value, 3 to move the second, and 3 to move the third.
+- **Input:** `nums = [1, 3, 5, 2], cost = [2, 3, 1, 14]`
+- **Output:** `8`
+- **Explanation:** Choosing 2 costs 2 to move the first value, 3 to move the second, and 3 to move the third.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2, 2, 2, 2], cost = [4, 2, 8, 1, 3]`
-- Output: `0`
-- Explanation: Every value is already equal.
+- **Input:** `nums = [2, 2, 2, 2, 2], cost = [4, 2, 8, 1, 3]`
+- **Output:** `0`
+- **Explanation:** Every value is already equal.

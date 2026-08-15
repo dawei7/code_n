@@ -8,8 +8,13 @@ Given a **binary** **circular** array `nums`, return *the minimum number of swap
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Given a **binary** **circular** array `nums`, return *the minimum number of swap
 [1,1,0,0,0,0,1] using 2 swaps (using the circular property of the array).
 There is no way to group all 1's together with 0 swaps.
 Thus, the minimum number of swaps required is 1.
+
 #### Example 2
 
 - **Input:** `nums = [0,1,1,1,0,0,1,1,0]`
@@ -32,6 +38,7 @@ Thus, the minimum number of swaps required is 1.
 [1,1,1,1,1,0,0,0,0] using 2 swaps.
 There is no way to group all 1's together with 0 or 1 swaps.
 Thus, the minimum number of swaps required is 2.
+
 #### Example 3
 
 - **Input:** `nums = [1,1,0,0,1]`

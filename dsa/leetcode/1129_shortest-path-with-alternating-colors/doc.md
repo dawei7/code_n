@@ -32,12 +32,12 @@ An integer array of length $n$ containing each shortest alternating-path length 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, redEdges = [[0,1],[1,2]], blueEdges = []`
-- Output: `[0,1,-1]`
+- **Input:** `n = 3, redEdges = [[0,1],[1,2]], blueEdges = []`
+- **Output:** `[0,1,-1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, redEdges = [[0,1]], blueEdges = [[2,1]]`
-- Output: `[0,1,-1]`
+- **Input:** `n = 3, redEdges = [[0,1]], blueEdges = [[2,1]]`
+- **Output:** `[0,1,-1]`

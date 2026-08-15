@@ -35,14 +35,14 @@ Let $n = \lvert\texttt{word}\rvert$ and $B=n/k$ be the number of aligned length-
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "leetcodeleet", k = 4`
-- Output: `1`
-- Explanation: Copy the first block, `"leet"`, over the block beginning at index `4`, producing `"leetleetleet"`.
+- **Input:** `word = "leetcodeleet", k = 4`
+- **Output:** `1`
+- **Explanation:** Copy the first block, `"leet"`, over the block beginning at index `4`, producing `"leetleetleet"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "leetcoleet", k = 2`
-- Output: `3`
-- Explanation: The five aligned blocks are `"le"`, `"et"`, `"co"`, `"le"`, and `"et"`. Either of the two most frequent blocks can be copied over the three remaining positions.
+- **Input:** `word = "leetcoleet", k = 2`
+- **Output:** `3`
+- **Explanation:** The five aligned blocks are `"le"`, `"et"`, `"co"`, `"le"`, and `"et"`. Either of the two most frequent blocks can be copied over the three remaining positions.

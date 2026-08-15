@@ -30,20 +30,20 @@ Return the minimum number of row and column swaps needed to transform `board` in
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]`
-- Output: `2`
-- Explanation: One row swap and one column swap create alternating rows and columns.
+- **Input:** `board = [[0,1,1,0],[0,1,1,0],[1,0,0,1],[1,0,0,1]]`
+- **Output:** `2`
+- **Explanation:** One row swap and one column swap create alternating rows and columns.
 
-**Example 2**
+#### Example 2
 
-- Input: `board = [[0,1],[1,0]]`
-- Output: `0`
-- Explanation: The board already has chessboard adjacency.
+- **Input:** `board = [[0,1],[1,0]]`
+- **Output:** `0`
+- **Explanation:** The board already has chessboard adjacency.
 
-**Example 3**
+#### Example 3
 
-- Input: `board = [[1,0],[1,0]]`
-- Output: `-1`
-- Explanation: Swapping whole rows or columns cannot make the two rows complementary.
+- **Input:** `board = [[1,0],[1,0]]`
+- **Output:** `-1`
+- **Explanation:** Swapping whole rows or columns cannot make the two rows complementary.

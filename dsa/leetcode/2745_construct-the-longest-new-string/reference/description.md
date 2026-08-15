@@ -10,8 +10,15 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `x`: Input parameter (`int`).
+- `y`: Input parameter (`int`).
+- `z`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +28,7 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 - **Output:** `12`
 - **Explanation:** We can concatenate the strings "BB", "AA", "BB", "AA", "BB", and "AB" in that order. Then, our new string is "BBAABBAABBAB".
 That string has length 12, and we can show that it is impossible to construct a string of longer length.
+
 #### Example 2
 
 - **Input:** $x = 3, y = 2, z = 2$

@@ -10,8 +10,13 @@ A number `x` is power of `2` if $x = 2^i$ where $i \ge 0$*.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ A number `x` is power of `2` if $x = 2^i$ where $i \ge 0$*.*
 - Subtract $2^{3}$ = 8 from n, so now n = 32.
 - Subtract $2^{5}$ = 32 from n, so now n = 0.
 It can be shown that 3 is the minimum number of operations we need to make n equal to 0.
+
 #### Example 2
 
 - **Input:** $n = 54$

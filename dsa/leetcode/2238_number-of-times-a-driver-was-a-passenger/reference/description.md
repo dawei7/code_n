@@ -30,7 +30,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Rides table:
 +---------+-----------+--------------+
 | ride_id | driver_id | passenger_id |
@@ -42,15 +42,14 @@ Rides table:
 | 5       | 11        | 7            |
 | 6       | 11        | 3            |
 +---------+-----------+--------------+
-**Output:**
+- **Output:** 
 +-----------+-----+
 | driver_id | cnt |
 +-----------+-----+
 | 7         | 2   |
 | 11        | 0   |
 +-----------+-----+
-**Explanation:**
-There are two drivers in all the given rides: 7 and 11.
+- **Explanation:** There are two drivers in all the given rides: 7 and 11.
 The driver with ID = 7 was a passenger two times.
 The driver with ID = 11 was never a passenger.
 ```

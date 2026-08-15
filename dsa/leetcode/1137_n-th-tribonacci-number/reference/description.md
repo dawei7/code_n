@@ -8,8 +8,13 @@ Given `n`, return the value of T_n.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -17,9 +22,9 @@ Given `n`, return the value of T_n.
 
 - **Input:** $n = 4$
 - **Output:** `4`
-- **Explanation:**
-T_3 = 0 + 1 + 1 = 2
+- **Explanation:** T_3 = 0 + 1 + 1 = 2
 T_4 = 1 + 1 + 2 = 4
+
 #### Example 2
 
 - **Input:** $n = 25$

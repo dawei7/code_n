@@ -28,12 +28,11 @@ Return the sum of path lengths over all unordered pairs `(u, v)` with $u \neq v$
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], group = [1,1,1]
+- **Input:** n = 3, edges = [[0,1],[1,2]], group = [1,1,1]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -51,31 +50,25 @@ All nodes belong to group 1. The interaction costs between the pairs of nodes ar
 
 Thus, the total interaction cost is $1 + 1 + 2 = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 3, edges = [[0,1],[1,2]], group = [3,2,3]
+- **Input:** n = 3, edges = [[0,1],[1,2]], group = [3,2,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - Nodes 0 and 2 belong to group 3. The interaction cost between this pair is 2.
 
 - Node 1 belongs to a different group and forms no valid pair. Therefore, the total interaction cost is 2.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 4, edges = [[0,1],[0,2],[0,3]], group = [1,1,4,4]
+- **Input:** n = 4, edges = [[0,1],[0,2],[0,3]], group = [1,1,4,4]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-![](images/screenshot-2025-09-24-at-51312-pm.png)
+- **Explanation:** ![](images/screenshot-2025-09-24-at-51312-pm.png)
 
 Nodes belonging to the same groups and their interaction costs are:
 
@@ -85,19 +78,13 @@ Nodes belonging to the same groups and their interaction costs are:
 
 Thus, the total interaction cost is $1 + 2 = 3$.
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** n = 2, edges = [[0,1]], group = [9,8]
+- **Input:** n = 2, edges = [[0,1]], group = [9,8]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-All nodes belong to different groups and there are no valid pairs. Therefore, the total interaction cost is 0.
-
-</div>
+- **Explanation:** All nodes belong to different groups and there are no valid pairs. Therefore, the total interaction cost is 0.
 
 ### 4. Constraints
 

@@ -43,7 +43,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Users table:
 +------+-----------+
 | id   | name      |
@@ -70,7 +70,7 @@ Rides table:
 | 8    | 19       | 400      |
 | 9    | 7        | 230      |
 +------+----------+----------+
-**Output:**
+- **Output:** 
 +----------+--------------------+
 | name     | travelled_distance |
 +----------+--------------------+
@@ -82,8 +82,7 @@ Rides table:
 | Alice    | 120                |
 | Donald   | 0                  |
 +----------+--------------------+
-**Explanation:**
-Elvis and Lee traveled 450 miles, Elvis is the top traveler as his name is alphabetically smaller than Lee.
+- **Explanation:** Elvis and Lee traveled 450 miles, Elvis is the top traveler as his name is alphabetically smaller than Lee.
 Bob, Jonathan, Alex, and Alice have only one ride and we just order them by the total distances of the ride.
 Donald did not have any rides, the distance traveled by him is 0.
 ```

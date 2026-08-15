@@ -35,7 +35,7 @@ Note: **Any** activity from ($'\text{open}_{session}'$, $'\text{end}_{session}'$
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Activity table:
 +---------+------------+---------------+---------------+
 | user_id | session_id | activity_date | activity_type |
@@ -52,12 +52,12 @@ Activity table:
 | 4       | 3          | 2019-06-25    | open_session  |
 | 4       | 3          | 2019-06-25    | end_session   |
 +---------+------------+---------------+---------------+
-**Output:**
+- **Output:** 
 +------------+--------------+
 | day        | active_users |
 +------------+--------------+
 | 2019-07-20 | 2            |
 | 2019-07-21 | 2            |
 +------------+--------------+
-**Explanation:** Note that we do not care about days with zero active users.
+- **Explanation:** Note that we do not care about days with zero active users.
 ```

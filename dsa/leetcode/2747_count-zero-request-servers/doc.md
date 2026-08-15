@@ -35,14 +35,14 @@ Return an array of length $q$ whose $i$-th value is the number of servers with z
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, logs = [[1,3],[2,6],[1,5]], x = 5, queries = [10,11]`
-- Output: `[1,2]`
-- Explanation: Servers `1` and `2` are active in `[5,10]`, while only server `2` is active in `[6,11]`.
+- **Input:** `n = 3, logs = [[1,3],[2,6],[1,5]], x = 5, queries = [10,11]`
+- **Output:** `[1,2]`
+- **Explanation:** Servers `1` and `2` are active in `[5,10]`, while only server `2` is active in `[6,11]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, logs = [[2,4],[2,1],[1,2],[3,1]], x = 2, queries = [3,4]`
-- Output: `[0,1]`
-- Explanation: All servers appear in `[1,3]`; server `3` is absent from `[2,4]`.
+- **Input:** `n = 3, logs = [[2,4],[2,1],[1,2],[3,1]], x = 2, queries = [3,4]`
+- **Output:** `[0,1]`
+- **Explanation:** All servers appear in `[1,3]`; server `3` is absent from `[2,4]`.

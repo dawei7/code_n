@@ -34,20 +34,20 @@ Let $n=\lvert\texttt{nums}\rvert$. The constraints are $1\le n\le100$, $1\le l\l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, -2, 1, 4]`, `l = 2`, `r = 3`
-- Output: `1`
-- Explanation: The allowed positive sums are 1, 5, 2, and 3, so the minimum is 1.
+- **Input:** `nums = [3, -2, 1, 4]`, `l = 2`, `r = 3`
+- **Output:** `1`
+- **Explanation:** The allowed positive sums are 1, 5, 2, and 3, so the minimum is 1.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-2, 2, -3, 1]`, `l = 2`, `r = 3`
-- Output: `-1`
-- Explanation: Every allowed subarray has sum zero or less.
+- **Input:** `nums = [-2, 2, -3, 1]`, `l = 2`, `r = 3`
+- **Output:** `-1`
+- **Explanation:** Every allowed subarray has sum zero or less.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2, 3, 4]`, `l = 2`, `r = 4`
-- Output: `3`
-- Explanation: The length-two subarray `[1, 2]` has the smallest positive sum.
+- **Input:** `nums = [1, 2, 3, 4]`, `l = 2`, `r = 4`
+- **Output:** `3`
+- **Explanation:** The length-two subarray `[1, 2]` has the smallest positive sum.

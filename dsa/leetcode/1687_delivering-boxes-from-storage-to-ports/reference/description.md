@@ -24,8 +24,16 @@ Return *the **minimum** number of **trips** the ship needs to make to deliver al
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `boxes`: Input parameter (`List[List[int]]`).
+- `portsCount`: Input parameter (`int`).
+- `maxBoxes`: Input parameter (`int`).
+- `maxWeight`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -37,6 +45,7 @@ Return *the **minimum** number of **trips** the ship needs to make to deliver al
 - The ship takes all the boxes in the queue, goes to port 1, then port 2, then port 1 again, then returns to storage. 4 trips.
 So the total number of trips is 4.
 Note that the first and third boxes cannot be delivered together because the boxes need to be delivered in order (i.e. the second box needs to be delivered at port 2 before the third box).
+
 #### Example 2
 
 - **Input:** $boxes = [[1,2],[3,3],[3,1],[3,1],[2,4]], portsCount = 3, maxBoxes = 3, maxWeight = 6$
@@ -46,6 +55,7 @@ Note that the first and third boxes cannot be delivered together because the box
 - The ship takes the second, third and fourth boxes, goes to port 3, then returns to storage. 2 trips.
 - The ship takes the fifth box, goes to port 2, then returns to storage. 2 trips.
 So the total number of trips is 2 + 2 + 2 = 6.
+
 #### Example 3
 
 - **Input:** $boxes = [[1,4],[1,2],[2,1],[2,1],[3,2],[3,4]], portsCount = 3, maxBoxes = 6, maxWeight = 7$

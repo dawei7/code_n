@@ -40,6 +40,7 @@ Different selections of indices count as different subsequences, even if they pr
 [4,6,8,10]
 [2,4,6,8,10]
 [2,6,10]
+
 #### Example 2
 
 - **Input:** `nums = [7,7,7,7,7]`

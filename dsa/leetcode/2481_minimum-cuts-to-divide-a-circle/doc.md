@@ -30,20 +30,20 @@ Return an integer: the minimum number of valid cuts that produces exactly `n` eq
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 4`
-- Output: `2`
-- Explanation: Two diameter cuts through the center create four equal slices.
+- **Input:** `n = 4`
+- **Output:** `2`
+- **Explanation:** Two diameter cuts through the center create four equal slices.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3`
-- Output: `3`
-- Explanation: Three radius cuts are needed to mark all three equal sectors.
+- **Input:** `n = 3`
+- **Output:** `3`
+- **Explanation:** Three radius cuts are needed to mark all three equal sectors.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 1`
-- Output: `0`
-- Explanation: The uncut circle is already one slice.
+- **Input:** `n = 1`
+- **Output:** `0`
+- **Explanation:** The uncut circle is already one slice.

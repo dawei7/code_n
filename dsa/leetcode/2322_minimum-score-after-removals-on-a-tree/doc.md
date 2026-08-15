@@ -43,20 +43,20 @@ XORs after removing exactly two distinct edges.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,5,5,4,11]`,
+- **Input:** `nums = [1,5,5,4,11]`,
   `edges = [[0,1],[1,2],[1,3],[3,4]]`
-- Output: `9`
-- Explanation: Cutting the edges to nodes `0` and `2` leaves component XORs
+- **Output:** `9`
+- **Explanation:** Cutting the edges to nodes `0` and `2` leaves component XORs
   `10`, `1`, and `5`, whose spread is $10-1=9$. No cut pair has a smaller
   spread.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5,5,2,4,4,2]`,
+- **Input:** `nums = [5,5,2,4,4,2]`,
   `edges = [[0,1],[1,2],[5,2],[4,3],[1,3]]`
-- Output: `0`
-- Explanation: The tree can be split into components with node values
+- **Output:** `0`
+- **Explanation:** The tree can be split into components with node values
   `[4,4]`, `[5,5]`, and `[2,2]`. Every component XOR is zero, so the score is
   zero, the smallest possible value.

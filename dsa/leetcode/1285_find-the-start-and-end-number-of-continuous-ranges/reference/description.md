@@ -40,7 +40,7 @@ Return exactly one row for each of the $r$ ranges, ordered by $\text{start}_{id}
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Logs table:
 +------------+
 | log_id     |
@@ -52,7 +52,7 @@ Logs table:
 | 8          |
 | 10         |
 +------------+
-**Output:**
+- **Output:** 
 +------------+--------------+
 | start_id   | end_id       |
 +------------+--------------+
@@ -60,8 +60,7 @@ Logs table:
 | 7          | 8            |
 | 10         | 10           |
 +------------+--------------+
-**Explanation:**
-The result table should contain all ranges in table Logs.
+- **Explanation:** The result table should contain all ranges in table Logs.
 From 1 to 3 is contained in the table.
 From 4 to 6 is missing in the table
 From 7 to 8 is contained in the table.

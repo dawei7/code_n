@@ -8,39 +8,41 @@ Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `l`: Input parameter (`str`).
+- `r`: Input parameter (`str`).
+- `b`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = "23", r = "28", b = 8
+- **Input:** l = "23", r = "28", b = 8
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - The numbers from 23 to 28 in base 8 are: 27, 30, 31, 32, 33, and 34.
 
 - Out of these, 27, 33, and 34 have non-decreasing digits. Hence, the output is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = "2", r = "7", b = 2
+- **Input:** l = "2", r = "7", b = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** 
 
 - The numbers from 2 to 7 in base 2 are: 10, 11, 100, 101, 110, and 111.
 
 - Out of these, 11 and 111 have non-decreasing digits. Hence, the output is 2.
-
-</div>
 
 ### 4. Constraints
 

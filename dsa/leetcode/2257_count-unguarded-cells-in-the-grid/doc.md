@@ -44,17 +44,17 @@ have no unobstructed guard in the same row or column.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `m = 4, n = 6, guards = [[0,0],[1,1],[2,3]], walls = [[0,1],[2,2],[1,4]]`
-- Output: `7`
+- **Input:** `m = 4, n = 6, guards = [[0,0],[1,1],[2,3]], walls = [[0,1],[2,2],[1,4]]`
+- **Output:** `7`
 
-**Example 2**
+#### Example 2
 
-- Input: `m = 3, n = 3, guards = [[1,1]], walls = [[0,1],[1,0],[2,1],[1,2]]`
-- Output: `4`
+- **Input:** `m = 3, n = 3, guards = [[1,1]], walls = [[0,1],[1,0],[2,1],[1,2]]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `m = 2, n = 2, guards = [[0,0]], walls = [[1,1]]`
-- Output: `0`
+- **Input:** `m = 2, n = 2, guards = [[0,0]], walls = [[1,1]]`
+- **Output:** `0`

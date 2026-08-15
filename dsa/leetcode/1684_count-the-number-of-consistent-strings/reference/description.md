@@ -6,8 +6,14 @@ Return* the number of **consistent** strings in the array *`words`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `allowed`: Input parameter (`str`).
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,11 +22,13 @@ Return* the number of **consistent** strings in the array *`words`.
 - **Input:** $allowed = "ab", words = ["ad","bd","aaab","baa","badab"]$
 - **Output:** `2`
 - **Explanation:** Strings "aaab" and "baa" are consistent since they only contain characters 'a' and 'b'.
+
 #### Example 2
 
 - **Input:** $allowed = "abc", words = ["a","b","c","ab","ac","bc","abc"]$
 - **Output:** `7`
 - **Explanation:** All strings are consistent.
+
 #### Example 3
 
 - **Input:** $allowed = "cad", words = ["cc","acd","b","ba","bac","bad","ac","d"]$

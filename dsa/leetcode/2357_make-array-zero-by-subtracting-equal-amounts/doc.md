@@ -39,17 +39,17 @@ every entry into zero.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,5,0,3,5]`
-- Output: `3`
+- **Input:** `nums = [1,5,0,3,5]`
+- **Output:** `3`
 
 Choosing amounts `1`, `2`, and `2` successively reduces the three distinct
 positive levels 1, 3, and 5 to zero.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0]`
-- Output: `0`
+- **Input:** `nums = [0]`
+- **Output:** `0`
 
 The array is already all zero, so no operation is necessary.

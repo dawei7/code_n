@@ -6,21 +6,25 @@ Return the **maximum** sum of `k` non-overlapping subarrays of `nums`, where eac
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,-1,3,3,4], k = 2, m = 2
+- **Input:** nums = [1,2,-1,3,3,4], k = 2, m = 2
 
-**Output:** 13
+- **Output:** 13
 
-**Explanation:**
-
-The optimal choice is:
+- **Explanation:** The optimal choice is:
 
 - Subarray `nums[3..5]` with sum $3 + 3 + 4 = 10$ (length is $3 \ge m$).
 
@@ -28,19 +32,13 @@ The optimal choice is:
 
 The total sum is $10 + 3 = 13$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-10,3,-1,-2], k = 4, m = 1
+- **Input:** nums = [-10,3,-1,-2], k = 4, m = 1
 
-**Output:** -10
+- **Output:** -10
 
-**Explanation:**
-
-The optimal choice is choosing each element as a subarray. The output is $(-10) + 3 + (-1) + (-2) = -10$.
-
-</div>
+- **Explanation:** The optimal choice is choosing each element as a subarray. The output is $(-10) + 3 + (-1) + (-2) = -10$.
 
 ### 4. Constraints
 

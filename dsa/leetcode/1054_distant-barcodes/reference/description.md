@@ -6,8 +6,13 @@ Rearrange the barcodes so that no two adjacent barcodes are equal. You may retur
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `barcodes`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Rearrange the barcodes so that no two adjacent barcodes are equal. You may retur
 
 - **Input:** $barcodes = [1,1,1,2,2,2]$
 - **Output:** `[2,1,2,1,2,1]`
+
 #### Example 2
 
 - **Input:** $barcodes = [1,1,1,1,2,2,3,3]$

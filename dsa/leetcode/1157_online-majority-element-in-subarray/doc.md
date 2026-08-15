@@ -31,17 +31,17 @@ For `query(left, right, threshold)`, consider the inclusive subarray from index 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,1,2,2,1,1]`, `queries = [[0,5,4]]`
-- Output: `[1]`
+- **Input:** `arr = [1,1,2,2,1,1]`, `queries = [[0,5,4]]`
+- **Output:** `[1]`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1,1,2,2,1,1]`, `queries = [[0,3,3]]`
-- Output: `[-1]`
+- **Input:** `arr = [1,1,2,2,1,1]`, `queries = [[0,3,3]]`
+- **Output:** `[-1]`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [1,1,2,2,1,1]`, `queries = [[2,3,2]]`
-- Output: `[2]`
+- **Input:** `arr = [1,1,2,2,1,1]`, `queries = [[2,3,2]]`
+- **Output:** `[2]`

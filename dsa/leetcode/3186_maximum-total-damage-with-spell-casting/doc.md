@@ -32,16 +32,16 @@ Choose a valid collection of spells and return the maximum total damage they can
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `power = [1, 1, 3, 4]`
-- Output: `6`
+- **Input:** `power = [1, 1, 3, 4]`
+- **Output:** `6`
 
 Casting the two damage-1 spells and the damage-4 spell produces total damage 6. Damage values 1 and 4 differ by 3, so they may be used together.
 
-**Example 2**
+#### Example 2
 
-- Input: `power = [7, 1, 6, 6]`
-- Output: `13`
+- **Input:** `power = [7, 1, 6, 6]`
+- **Output:** `13`
 
 The damage-1 spell can be combined with both damage-6 spells, producing $1+6+6=13$.

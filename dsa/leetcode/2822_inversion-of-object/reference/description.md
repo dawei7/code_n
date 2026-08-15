@@ -19,11 +19,13 @@ It is guaranteed that the values in `obj` are only strings.
 - **Input:** $obj = {"a": "1", "b": "2", "c": "3", "d": "4"}$
 - **Output:** $invertedObj = {"1": "a", "2": "b", "3": "c", "4": "d"}$
 - **Explanation:** The keys from obj become the values in invertedObj, and the values from obj become the keys in invertedObj.
+
 #### Example 2
 
 - **Input:** $obj = {"a": "1", "b": "2", "c": "2", "d": "4"}$
 - **Output:** $invertedObj = {"1": "a", "2": ["b", "c"], "4": "d"}$
 - **Explanation:** There are two keys in obj with the same value, the invertedObj mapped the value to an array containing all corresponding keys.
+
 #### Example 3
 
 - **Input:** $obj = ["1", "2", "3", "4"]$

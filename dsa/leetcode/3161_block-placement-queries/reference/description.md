@@ -12,19 +12,23 @@ Return a boolean array `results`, where $\text{results}[i]$ is `true` if you can
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** queries = [[1,2],[2,3,3],[2,3,1],[2,2,2]]
+- **Input:** queries = [[1,2],[2,3,3],[2,3,1],[2,2,2]]
 
-**Output:** [false,true,true]
+- **Output:** [false,true,true]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -34,15 +38,13 @@ Return a boolean array `results`, where $\text{results}[i]$ is `true` if you can
 
 For query 0, place an obstacle at $x = 2$. A block of size at most 2 can be placed before $x = 3$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** queries = [[1,7],[2,7,6],[1,2],[2,7,5],[2,7,6]]<!-- notionvc: 4a471445-5af1-4d72-b11b-94d351a2c8e9 -->
+- **Input:** queries = [[1,7],[2,7,6],[1,2],[2,7,5],[2,7,6]]<!-- notionvc: 4a471445-5af1-4d72-b11b-94d351a2c8e9 -->
 
-**Output:** [true,true,false]
+- **Output:** [true,true,false]
 
-**Explanation:**
+- **Explanation:** 
 
 **
 
@@ -53,8 +55,6 @@ For query 0, place an obstacle at $x = 2$. A block of size at most 2 can be plac
 - Place an obstacle at $x = 7$ for query 0. A block of size at most 7 can be placed before $x = 7$.
 
 - Place an obstacle at $x = 2$ for query 2. Now, a block of size at most 5 can be placed before $x = 7$, and a block of size at most 2 before $x = 2$.
-
-</div>
 
 ### 4. Constraints
 

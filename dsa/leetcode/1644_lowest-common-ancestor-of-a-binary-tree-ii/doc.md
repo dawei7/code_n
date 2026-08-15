@@ -11,12 +11,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/) |
 
 ## Problem Description
+
 ### Goal
+
 Given the root of a binary tree and two distinct target nodes `p` and `q`, return their lowest common ancestor. The lowest common ancestor is the deepest node whose subtree contains both targets; a node counts as its own descendant.
 
 Unlike the standard version of this problem, either target may be absent from the tree. Return `null` unless both `p` and `q` exist. Every node value in the tree is unique.
 
 ### Function Contract
+
 **Inputs**
 
 - `root`: the root of a binary tree containing $n$ nodes, where $1 \le n \le 10^4$.
@@ -31,23 +34,24 @@ JSON fixtures use each target's unique value to recover the corresponding object
 Return the lowest-common-ancestor `TreeNode` when both targets occur in the tree; otherwise return `null`. The result display uses the returned node's value.
 
 ### Examples
-**Example 1**
 
-- Input: `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1`
-- Output: `3`
+#### Example 1
+
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1`
+- **Output:** `3`
 
 The targets lie in different subtrees of the root.
 
-**Example 2**
+#### Example 2
 
-- Input: `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4`
-- Output: `5`
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4`
+- **Output:** `5`
 
 Node 5 is an ancestor of node 4 and also counts as its own descendant.
 
-**Example 3**
+#### Example 3
 
-- Input: `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 10`
-- Output: `null`
+- **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 10`
+- **Output:** `null`
 
 The value 10 is absent, so no result may be returned even though node 5 exists.

@@ -30,17 +30,17 @@ A pandas `DataFrame` with columns `student_id` and `age`, preserving the input r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `student_data = [[1, 15], [2, 11], [3, 11], [4, 20]]`
-- Output: a four-row DataFrame with columns `student_id` and `age` and rows `[1, 15]`, `[2, 11]`, `[3, 11]`, and `[4, 20]`.
+- **Input:** `student_data = [[1, 15], [2, 11], [3, 11], [4, 20]]`
+- **Output:** a four-row DataFrame with columns `student_id` and `age` and rows `[1, 15]`, `[2, 11]`, `[3, 11]`, and `[4, 20]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `student_data = [[42, 18]]`
-- Output: a one-row DataFrame whose only row is `[42, 18]`.
+- **Input:** `student_data = [[42, 18]]`
+- **Output:** a one-row DataFrame whose only row is `[42, 18]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `student_data = [[9, 20], [2, 11], [7, 16]]`
-- Output: a three-row DataFrame retaining the row order `9`, `2`, `7` in its `student_id` column.
+- **Input:** `student_data = [[9, 20], [2, 11], [7, 16]]`
+- **Output:** a three-row DataFrame retaining the row order `9`, `2`, `7` in its `student_id` column.

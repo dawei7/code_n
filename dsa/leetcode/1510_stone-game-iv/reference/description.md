@@ -10,8 +10,13 @@ Given a positive integer `n`, return `true` if and only if Alice wins the game o
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ Given a positive integer `n`, return `true` if and only if Alice wins the game o
 - **Input:** $n = 1$
 - **Output:** `true`
 - **Explanation:** Alice can remove 1 stone winning the game because Bob doesn't have any moves.
+
 #### Example 2
 
 - **Input:** $n = 2$
 - **Output:** `false`
 - **Explanation:** Alice can only remove 1 stone, after that Bob removes the last one winning the game (2 -> 1 -> 0).
+
 #### Example 3
 
 - **Input:** $n = 4$

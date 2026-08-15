@@ -36,7 +36,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Orders table:
 +----------+-------------+------------+-------+
 | order_id | customer_id | order_date | price |
@@ -51,14 +51,13 @@ Orders table:
 | 8        | 3           | 2017-01-01 | 900   |
 | 9        | 3           | 2018-11-07 | 900   |
 +----------+-------------+------------+-------+
-**Output:**
+- **Output:** 
 +-------------+
 | customer_id |
 +-------------+
 | 1           |
 +-------------+
-**Explanation:**
-Customer 1: The first year is 2019 and the last year is 2022
+- **Explanation:** Customer 1: The first year is 2019 and the last year is 2022
   - 2019: 1100 + 1200 = 2300
   - 2020: 3000
   - 2021: 3100

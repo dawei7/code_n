@@ -33,20 +33,20 @@ The constraints are $1\leq n\leq10^5$, $1\leq\texttt{nums[i]}\leq10^9$, and $1\l
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,4,8,3,9]`, `threshold = 5`
-- Output: `4`
-- Explanation: Only `2` and `4` share a qualifying edge; the other three values are isolated.
+- **Input:** `nums = [2,4,8,3,9]`, `threshold = 5`
+- **Output:** `4`
+- **Explanation:** Only `2` and `4` share a qualifying edge; the other three values are isolated.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2,4,8,3,9,12]`, `threshold = 10`
-- Output: `2`
-- Explanation: The values `2`, `3`, `4`, `8`, and `9` are connected through qualifying edges, while `12` is isolated.
+- **Input:** `nums = [2,4,8,3,9,12]`, `threshold = 10`
+- **Output:** `2`
+- **Explanation:** The values `2`, `3`, `4`, `8`, and `9` are connected through qualifying edges, while `12` is isolated.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [2,6,30,35]`, `threshold = 12`
-- Output: `3`
-- Explanation: `2` and `6` connect because their LCM is `6`; both values above the threshold form separate components.
+- **Input:** `nums = [2,6,30,35]`, `threshold = 12`
+- **Output:** `3`
+- **Explanation:** `2` and `6` connect because their LCM is `6`; both values above the threshold form separate components.

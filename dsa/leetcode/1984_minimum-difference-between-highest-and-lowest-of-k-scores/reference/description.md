@@ -8,8 +8,14 @@ Return *the **minimum** possible difference*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +26,7 @@ Return *the **minimum** possible difference*.
 - **Explanation:** There is one way to pick score(s) of one student:
 - [**<u>90</u>**]. The difference between the highest and lowest score is 90 - 90 = 0.
 The minimum possible difference is 0.
+
 #### Example 2
 
 - **Input:** `nums = [9,4,1,7], k = 2`

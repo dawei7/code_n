@@ -16,8 +16,13 @@ Return *the number of triplets* (`i`, `j` and `k`) Where $a = b$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +31,7 @@ Return *the number of triplets* (`i`, `j` and `k`) Where $a = b$.
 - **Input:** `arr = [2,3,1,6,7]`
 - **Output:** `4`
 - **Explanation:** The triplets are (0,1,2), (0,2,2), (2,3,4) and (2,4,4)
+
 #### Example 2
 
 - **Input:** `arr = [1,1,1,1,1]`

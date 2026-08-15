@@ -29,12 +29,11 @@ Return the largest sum of values at distinct covered indices obtainable when eve
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [9,2,6,1], s = "0101"
+- **Input:** nums = [9,2,6,1], s = "0101"
 
-**Output:** 15
+- **Output:** 15
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially, indices 1 and 3 contain tokens.
 
@@ -44,15 +43,13 @@ Return the largest sum of values at distinct covered indices obtainable when eve
 
 - The covered indices are `[0, 2]`, so the total value is $\text{nums}[0] + \text{nums}[2] = 9 + 6 = 15$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,1,4], s = "001"
+- **Input:** nums = [5,1,4], s = "001"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially, only index 2 contains a token.
 
@@ -60,23 +57,19 @@ Return the largest sum of values at distinct covered indices obtainable when eve
 
 - The covered index is `[2]`, so the total value is $\text{nums}[2] = 4$.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [9,3,5], s = "011"
+- **Input:** nums = [9,3,5], s = "011"
 
-**Output:** 14
+- **Output:** 14
 
-**Explanation:**
+- **Explanation:** 
 
 - Initially, indices 1 and 2 contain tokens.
 
 - Move the token from index 1 to index 0.
 
 - The covered indices are `[0, 2]`, so the total value is $\text{nums}[0] + \text{nums}[2] = 9 + 5 = 14$.
-
-</div>
 
 ### 4. Constraints
 

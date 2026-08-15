@@ -61,11 +61,13 @@ The robot is initially standing on cell (0, 1), denoted by the 3.
 - master.move('L') doesn't move the robot and returns -1.
 - master.move('R') moves the robot to the cell (1, 1) and returns 1.
 We now know that the target is the cell (1, 0), and the minimum total cost to reach it is 2.
+
 #### Example 2
 
 - **Input:** `grid = [[0,3,1],[3,4,2],[1,2,0]], r1 = 2, c1 = 0, r2 = 0, c2 = 2`
 - **Output:** `9`
 - **Explanation:** The minimum cost path is (2,0) -> (2,1) -> (1,1) -> (1,2) -> (0,2).
+
 #### Example 3
 
 - **Input:** `grid = [[1,0],[0,1]], r1 = 0, c1 = 0, r2 = 1, c2 = 1`

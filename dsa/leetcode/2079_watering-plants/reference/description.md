@@ -16,8 +16,14 @@ Given a **0-indexed** integer array `plants` of `n` integers, where $\text{plant
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `plants`: Input parameter (`List[int]`).
+- `capacity`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -33,6 +39,7 @@ Given a **0-indexed** integer array `plants` of `n` integers, where $\text{plant
 - Since you cannot completely water plant 3, walk back to the river to refill (3 steps).
 - Walk to plant 3 (4 steps) and water it.
 Steps needed = 1 + 1 + 2 + 3 + 3 + 4 = 14.
+
 #### Example 2
 
 - **Input:** $plants = [1,1,1,4,2,3], capacity = 4$
@@ -43,6 +50,7 @@ Steps needed = 1 + 1 + 2 + 3 + 3 + 4 = 14.
 - Water plant 4 (5 steps). Return to river (5 steps).
 - Water plant 5 (6 steps).
 Steps needed = 3 + 3 + 4 + 4 + 5 + 5 + 6 = 30.
+
 #### Example 3
 
 - **Input:** $plants = [7,7,7,7,7,7,7], capacity = 8$

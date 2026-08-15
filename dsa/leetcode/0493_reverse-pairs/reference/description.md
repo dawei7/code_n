@@ -10,8 +10,13 @@ A **reverse pair** is a pair `(i, j)` where:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ A **reverse pair** is a pair `(i, j)` where:
 - **Explanation:** The reverse pairs are:
 (1, 4) --> nums[1] = 3, nums[4] = 1, 3 > 2 * 1
 (3, 4) --> nums[3] = 3, nums[4] = 1, 3 > 2 * 1
+
 #### Example 2
 
 - **Input:** `nums = [2,4,3,5,1]`

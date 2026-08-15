@@ -34,20 +34,20 @@ Return the next calendar day as a `YYYY-MM-DD` string. The receiver itself does 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `date = "2014-06-20"`
-- Output: `"2014-06-21"`
-- Explanation: June 21 is the calendar day immediately after June 20.
+- **Input:** `date = "2014-06-20"`
+- **Output:** `"2014-06-21"`
+- **Explanation:** June 21 is the calendar day immediately after June 20.
 
-**Example 2**
+#### Example 2
 
-- Input: `date = "2017-10-31"`
-- Output: `"2017-11-01"`
-- Explanation: Advancing one day crosses from October into November.
+- **Input:** `date = "2017-10-31"`
+- **Output:** `"2017-11-01"`
+- **Explanation:** Advancing one day crosses from October into November.
 
-**Example 3**
+#### Example 3
 
-- Input: `date = "2020-02-28"`
-- Output: `"2020-02-29"`
-- Explanation: The year 2020 is a leap year, so February contains a 29th day.
+- **Input:** `date = "2020-02-28"`
+- **Output:** `"2020-02-29"`
+- **Explanation:** The year 2020 is a leap year, so February contains a 29th day.

@@ -16,47 +16,40 @@ Return the **minimum** number of operations required to make every element in `n
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,2,5,4,5], k = 2
+- **Input:** nums = [5,2,5,4,5], k = 2
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The operations can be performed in order using valid integers 4 and then 2.
 
-The operations can be performed in order using valid integers 4 and then 2.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,2], k = 2
+- **Input:** nums = [2,1,2], k = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** It is impossible to make all the values equal to 2.
 
-It is impossible to make all the values equal to 2.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [9,7,5,3], k = 1
+- **Input:** nums = [9,7,5,3], k = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The operations can be performed using valid integers in the order 7, 5, 3, and 1.
-
-</div>
+- **Explanation:** The operations can be performed using valid integers in the order 7, 5, 3, and 1.
 
 ### 4. Constraints
 

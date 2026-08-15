@@ -6,8 +6,14 @@ Return *the merged string.*
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `word1`: Input parameter (`str`).
+- `word2`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Return *the merged string.*
 word1:  a   b   c
 word2:    p   q   r
 merged: a p b q c r
+
 #### Example 2
 
 - **Input:** $word1 = "ab", word2 = "pqrs"$
@@ -27,6 +34,7 @@ merged: a p b q c r
 word1:  a   b
 word2:    p   q   r   s
 merged: a p b q   r   s
+
 #### Example 3
 
 - **Input:** $word1 = "abcd", word2 = "pq"$

@@ -36,7 +36,7 @@ Let $s$, $c$, and $e$ be the row counts of `students`, `courses`, and `enrollmen
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 Input `students`:
 
@@ -69,7 +69,7 @@ Input `enrollments`:
 | 4 | 103 | Fall 2023 | A |
 | 4 | 104 | Fall 2023 | B |
 
-Output:
+- **Output:** 
 
 | student_id |
 |---:|

@@ -30,14 +30,14 @@ Leading zeros in a reversed digit sequence do not remain in its integer value; f
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 13, 10, 12, 31]`
-- Output: `6`
-- Explanation: The reversals are `[1, 31, 1, 21, 13]`; the distinct final values are 1, 10, 12, 13, 21, and 31.
+- **Input:** `nums = [1, 13, 10, 12, 31]`
+- **Output:** `6`
+- **Explanation:** The reversals are `[1, 31, 1, 21, 13]`; the distinct final values are 1, 10, 12, 13, 21, and 31.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 2, 2]`
-- Output: `1`
-- Explanation: Every original value and every reversal equals 2.
+- **Input:** `nums = [2, 2, 2]`
+- **Output:** `1`
+- **Explanation:** Every original value and every reversal equals 2.

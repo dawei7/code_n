@@ -32,20 +32,20 @@ The maze's confusion score is the number of distinct cycles containing exactly t
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 5, corridors = [[1,2],[5,2],[4,1],[2,4],[3,1],[3,4]]`
-- Output: `2`
-- Explanation: Rooms `{1,3,4}` and `{1,2,4}` form the two triangular cycles.
+- **Input:** `n = 5, corridors = [[1,2],[5,2],[4,1],[2,4],[3,1],[3,4]]`
+- **Output:** `2`
+- **Explanation:** Rooms `{1,3,4}` and `{1,2,4}` form the two triangular cycles.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 4, corridors = [[1,2],[3,4]]`
-- Output: `0`
-- Explanation: Two disconnected corridors do not close any three-room cycle.
+- **Input:** `n = 4, corridors = [[1,2],[3,4]]`
+- **Output:** `0`
+- **Explanation:** Two disconnected corridors do not close any three-room cycle.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 3, corridors = [[1,2],[2,3],[1,3]]`
-- Output: `1`
-- Explanation: All three room pairs are connected, so the rooms form exactly one cycle.
+- **Input:** `n = 3, corridors = [[1,2],[2,3],[1,3]]`
+- **Output:** `1`
+- **Explanation:** All three room pairs are connected, so the rooms form exactly one cycle.

@@ -6,47 +6,39 @@ Return the **lexicographically smallest** palindromic permutation of `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "z"
+- **Input:** s = "z"
 
-**Output:** "z"
+- **Output:** "z"
 
-**Explanation:**
+- **Explanation:** A string of only one character is already the lexicographically smallest palindrome.
 
-A string of only one character is already the lexicographically smallest palindrome.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "babab"
+- **Input:** s = "babab"
 
-**Output:** "abbba"
+- **Output:** "abbba"
 
-**Explanation:**
+- **Explanation:** Rearranging `"babab"` → `"abbba"` gives the smallest lexicographic palindrome.
 
-Rearranging `"babab"` → `"abbba"` gives the smallest lexicographic palindrome.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "daccad"
+- **Input:** s = "daccad"
 
-**Output:** "acddca"
+- **Output:** "acddca"
 
-**Explanation:**
-
-Rearranging `"daccad"` → `"acddca"` gives the smallest lexicographic palindrome.
-
-</div>
+- **Explanation:** Rearranging `"daccad"` → `"acddca"` gives the smallest lexicographic palindrome.
 
 ### 4. Constraints
 

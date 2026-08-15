@@ -10,27 +10,29 @@ An integer `a` is closer to `x` than an integer `b` if:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `x`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** arr = [1,2,3,4,5], k = 4, x = 3
+- **Input:** arr = [1,2,3,4,5], k = 4, x = 3
 
-**Output:** [1,2,3,4]
+- **Output:** [1,2,3,4]
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** arr = [1,1,2,3,4,5], k = 4, x = -1
+- **Input:** arr = [1,1,2,3,4,5], k = 4, x = -1
 
-**Output:** [1,1,2,3]
-
-</div>
+- **Output:** [1,1,2,3]
 
 ### 4. Constraints
 

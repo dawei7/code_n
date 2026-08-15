@@ -33,19 +33,19 @@ Return the coordinates of every queen that can directly attack the king. The coo
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `queens = [[0,1],[1,0],[4,0],[0,4],[3,3],[2,4]]`, `king = [0,0]`
-- Output: `[[0,1],[1,0],[3,3]]`
+- **Input:** `queens = [[0,1],[1,0],[4,0],[0,4],[3,3],[2,4]]`, `king = [0,0]`
+- **Output:** `[[0,1],[1,0],[3,3]]`
 
 The queens at `[4,0]` and `[0,4]` are blocked by nearer queens on their respective rays.
 
-**Example 2**
+#### Example 2
 
-- Input: `queens = [[0,0],[1,1],[2,2],[3,4],[3,5],[4,4],[4,5]]`, `king = [3,3]`
-- Output: `[[2,2],[3,4],[4,4]]`
+- **Input:** `queens = [[0,0],[1,1],[2,2],[3,4],[3,5],[4,4],[4,5]]`, `king = [3,3]`
+- **Output:** `[[2,2],[3,4],[4,4]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `queens = [[5,6],[7,7],[2,1]]`, `king = [4,5]`
-- Output: `[[5,6]]`
+- **Input:** `queens = [[5,6],[7,7],[2,1]]`, `king = [4,5]`
+- **Output:** `[[5,6]]`

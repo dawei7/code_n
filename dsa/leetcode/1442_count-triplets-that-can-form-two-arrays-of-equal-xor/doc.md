@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/) |
 
 ## Problem Description
+
 ### Goal
 
 Given an integer array `arr`, choose indices `i`, `j`, and `k` satisfying
@@ -22,6 +23,7 @@ $(i,j,k)$ for which $a=b$. Triplets with the same outer endpoints but different
 split indices are counted separately.
 
 ### Function Contract
+
 **Inputs**
 
 - `arr`: a list of $n$ positive integers, where $1 \le n \le 300$ and
@@ -33,19 +35,20 @@ Return the number of index triplets $(i,j,k)$ satisfying the stated bounds and
 equal-XOR condition.
 
 ### Examples
-**Example 1**
 
-- Input: `arr = [2, 3, 1, 6, 7]`
-- Output: `4`
-- Explanation: The valid triplets are `(0, 1, 2)`, `(0, 2, 2)`,
+#### Example 1
+
+- **Input:** `arr = [2, 3, 1, 6, 7]`
+- **Output:** `4`
+- **Explanation:** The valid triplets are `(0, 1, 2)`, `(0, 2, 2)`,
   `(2, 3, 4)`, and `(2, 4, 4)`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [1, 1, 1, 1, 1]`
-- Output: `10`
+- **Input:** `arr = [1, 1, 1, 1, 1]`
+- **Output:** `10`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [2, 3]`
-- Output: `0`
+- **Input:** `arr = [2, 3]`
+- **Output:** `0`

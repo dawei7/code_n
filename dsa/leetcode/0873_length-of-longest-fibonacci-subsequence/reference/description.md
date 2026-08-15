@@ -12,8 +12,13 @@ A **subsequence** is derived from another sequence `arr` by deleting any number 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -22,6 +27,7 @@ A **subsequence** is derived from another sequence `arr` by deleting any number 
 - **Input:** `arr = [1,2,3,4,5,6,7,8]`
 - **Output:** `5`
 - **Explanation:** The longest subsequence that is fibonacci-like: [1,2,3,5,8].
+
 #### Example 2
 
 - **Input:** `arr = [1,3,7,11,12,14,18]`

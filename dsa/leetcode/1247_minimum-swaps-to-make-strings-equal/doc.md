@@ -32,20 +32,20 @@ Return the minimum number of such swaps needed to make the two strings equal. If
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s1 = "xx"`, `s2 = "yy"`
-- Output: `1`
-- Explanation: Swapping `s1[0]` with `s2[1]` makes both strings `"yx"`.
+- **Input:** `s1 = "xx"`, `s2 = "yy"`
+- **Output:** `1`
+- **Explanation:** Swapping `s1[0]` with `s2[1]` makes both strings `"yx"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s1 = "xy"`, `s2 = "yx"`
-- Output: `2`
-- Explanation: The two mismatches have opposite orientations, so one swap cannot repair both of them.
+- **Input:** `s1 = "xy"`, `s2 = "yx"`
+- **Output:** `2`
+- **Explanation:** The two mismatches have opposite orientations, so one swap cannot repair both of them.
 
-**Example 3**
+#### Example 3
 
-- Input: `s1 = "xx"`, `s2 = "xy"`
-- Output: `-1`
-- Explanation: There is an odd number of mismatched positions, so the strings cannot be made equal.
+- **Input:** `s1 = "xx"`, `s2 = "xy"`
+- **Output:** `-1`
+- **Explanation:** There is an odd number of mismatched positions, so the strings cannot be made equal.

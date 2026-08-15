@@ -35,20 +35,20 @@ Let $n=\lvert\texttt{nums}\rvert$ and $M=1+\max(\texttt{nums})$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1,1,1], k = 1`
-- Output: `6`
-- Explanation: All six nonempty subarrays contain only ones and therefore have AND value `1`.
+- **Input:** `nums = [1,1,1], k = 1`
+- **Output:** `6`
+- **Explanation:** All six nonempty subarrays contain only ones and therefore have AND value `1`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,1,2], k = 1`
-- Output: `3`
-- Explanation: The two singleton `1` subarrays and the length-two prefix have AND value `1`.
+- **Input:** `nums = [1,1,2], k = 1`
+- **Output:** `3`
+- **Explanation:** The two singleton `1` subarrays and the length-two prefix have AND value `1`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3], k = 2`
-- Output: `2`
-- Explanation: The singleton `[2]` and subarray `[2,3]` have AND value `2`.
+- **Input:** `nums = [1,2,3], k = 2`
+- **Output:** `2`
+- **Explanation:** The singleton `[2]` and subarray `[2,3]` have AND value `2`.

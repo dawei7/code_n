@@ -34,20 +34,20 @@ Return `true` if legal greatest-common-divisor swaps can sort the array in non-d
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [7, 21, 3]`
-- Output: `true`
-- Explanation: Swap `7` with `21`, then `21` with `3`; the respective greatest common divisors are $7$ and $3$.
+- **Input:** `nums = [7, 21, 3]`
+- **Output:** `true`
+- **Explanation:** Swap `7` with `21`, then `21` with `3`; the respective greatest common divisors are $7$ and $3$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [5, 2, 6, 2]`
-- Output: `false`
-- Explanation: The value `5` shares no factor greater than one with another value and cannot leave its incorrect position.
+- **Input:** `nums = [5, 2, 6, 2]`
+- **Output:** `false`
+- **Explanation:** The value `5` shares no factor greater than one with another value and cannot leave its incorrect position.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [10, 5, 9, 3, 15]`
-- Output: `true`
-- Explanation: Shared factors connect the values through $3$ and $5$, permitting the needed rearrangement.
+- **Input:** `nums = [10, 5, 9, 3, 15]`
+- **Output:** `true`
+- **Explanation:** Shared factors connect the values through $3$ and $5$, permitting the needed rearrangement.

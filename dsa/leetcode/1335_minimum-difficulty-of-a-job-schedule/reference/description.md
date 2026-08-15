@@ -10,8 +10,14 @@ Return *the minimum difficulty of a job schedule*. If you cannot find a schedule
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `jobDifficulty`: Input parameter (`List[int]`).
+- `d`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,11 +30,13 @@ Return *the minimum difficulty of a job schedule*. If you cannot find a schedule
 - **Explanation:** First day you can finish the first 5 jobs, total difficulty = 6.
 Second day you can finish the last job, total difficulty = 1.
 The difficulty of the schedule = 6 + 1 = 7
+
 #### Example 2
 
 - **Input:** $jobDifficulty = [9,9,9], d = 4$
 - **Output:** `-1`
 - **Explanation:** If you finish a job per day you will still have a free day. you cannot find a schedule for the given jobs.
+
 #### Example 3
 
 - **Input:** $jobDifficulty = [1,1,1], d = 3$

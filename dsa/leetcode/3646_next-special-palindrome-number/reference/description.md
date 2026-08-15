@@ -12,35 +12,31 @@ Return the **smallest** special number **strictly **greater than `n`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 2
+- **Input:** n = 2
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
+- **Explanation:** 22 is the smallest special number greater than 2, as it is a palindrome and the digit 2 appears exactly 2 times.
 
-22 is the smallest special number greater than 2, as it is a palindrome and the digit 2 appears exactly 2 times.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 33
+- **Input:** n = 33
 
-**Output:** 212
+- **Output:** 212
 
-**Explanation:**
-
-212 is the smallest special number greater than 33, as it is a palindrome and the digits 1 and 2 appear exactly 1 and 2 times respectively.
-
-</div>
+- **Explanation:** 212 is the smallest special number greater than 33, as it is a palindrome and the digits 1 and 2 appear exactly 1 and 2 times respectively.
 
 ### 4. Constraints
 

@@ -12,8 +12,14 @@ Return the **maximum** difference.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,36 +29,25 @@ that `subs` can contain more than 2 **distinct** characters.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "12233", k = 4
+- **Input:** s = "12233", k = 4
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** For the substring `"12233"`, the frequency of `'1'` is 1 and the frequency of `'3'` is 2. The difference is $1 - 2 = -1$.
 
-For the substring `"12233"`, the frequency of `'1'` is 1 and the frequency of `'3'` is 2. The difference is $1 - 2 = -1$.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "1122211", k = 3
+- **Input:** s = "1122211", k = 3
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
+- **Explanation:** For the substring `"11222"`, the frequency of `'2'` is 3 and the frequency of `'1'` is 2. The difference is $3 - 2 = 1$.
 
-For the substring `"11222"`, the frequency of `'2'` is 3 and the frequency of `'1'` is 2. The difference is $3 - 2 = 1$.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "110", k = 3
+- **Input:** s = "110", k = 3
 
-**Output:** -1
-
-</div>
+- **Output:** -1
 
 ### 5. Constraints
 

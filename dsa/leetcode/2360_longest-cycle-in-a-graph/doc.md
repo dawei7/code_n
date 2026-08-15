@@ -38,16 +38,16 @@ Return the length of the longest directed cycle, or `-1` when no cycle exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `edges = [3,3,4,2,3]`
-- Output: `3`
+- **Input:** `edges = [3,3,4,2,3]`
+- **Output:** `3`
 
 Nodes 2, 4, and 3 form a directed cycle of length 3.
 
-**Example 2**
+#### Example 2
 
-- Input: `edges = [2,-1,3,1]`
-- Output: `-1`
+- **Input:** `edges = [2,-1,3,1]`
+- **Output:** `-1`
 
 Every forward path terminates, so the graph has no cycle.

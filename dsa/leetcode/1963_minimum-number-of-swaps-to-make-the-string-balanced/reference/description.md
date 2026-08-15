@@ -16,8 +16,13 @@ Return *the **minimum** number of swaps to make *`s` ***balanced***.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -27,6 +32,7 @@ Return *the **minimum** number of swaps to make *`s` ***balanced***.
 - **Output:** `1`
 - **Explanation:** You can make the string balanced by swapping index 0 with index 3.
 The resulting string is "[[]]".
+
 #### Example 2
 
 - **Input:** `s = "]]][[["`
@@ -35,6 +41,7 @@ The resulting string is "[[]]".
 - Swap index 0 with index 4. s = "[]][][".
 - Swap index 1 with index 5. s = "[[][]]".
 The resulting string is "[[][]]".
+
 #### Example 3
 
 - **Input:** `s = "[]"`

@@ -42,40 +42,27 @@ Return the number of complete valid segmentations of `s` into codes from `1` thr
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "12"
+- **Input:** s = "12"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** "12" could be decoded as "AB" (1 2) or "L" (12).
 
-"12" could be decoded as "AB" (1 2) or "L" (12).
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "226"
+- **Input:** s = "226"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** "226" could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 
-"226" could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "06"
+- **Input:** s = "06"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-"06" cannot be mapped to "F" because of the leading zero ("6" is different from "06"). In this case, the string is not a valid encoding, so return 0.
-
-</div>
+- **Explanation:** "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06"). In this case, the string is not a valid encoding, so return 0.
 
 ### 4. Constraints
 

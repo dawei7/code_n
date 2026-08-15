@@ -31,20 +31,20 @@ Swap the values stored in those two nodes and return the original list head. The
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [1,2,3,4,5], k = 2`
-- Output: `[1,4,3,2,5]`
-- Explanation: The second node from the start and the second node from the end contain $2$ and $4$.
+- **Input:** `head = [1,2,3,4,5], k = 2`
+- **Output:** `[1,4,3,2,5]`
+- **Explanation:** The second node from the start and the second node from the end contain $2$ and $4$.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [7,9,6,6,7,8,3,0,9,5], k = 5`
-- Output: `[7,9,6,6,8,7,3,0,9,5]`
-- Explanation: Positions $5$ and $6$ exchange their values.
+- **Input:** `head = [7,9,6,6,7,8,3,0,9,5], k = 5`
+- **Output:** `[7,9,6,6,8,7,3,0,9,5]`
+- **Explanation:** Positions $5$ and $6$ exchange their values.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [1], k = 1`
-- Output: `[1]`
-- Explanation: Both positions refer to the sole node, so the list is unchanged.
+- **Input:** `head = [1], k = 1`
+- **Output:** `[1]`
+- **Explanation:** Both positions refer to the sole node, so the list is unchanged.

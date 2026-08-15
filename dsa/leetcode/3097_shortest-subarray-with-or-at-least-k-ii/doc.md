@@ -39,20 +39,20 @@ Thus, $O(\log V)$ bit positions suffice to represent every relevant value.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3], k = 2`
-- Output: `1`
-- Explanation: The one-element subarray `[3]` has bitwise OR $3$, which reaches the threshold.
+- **Input:** `nums = [1, 2, 3], k = 2`
+- **Output:** `1`
+- **Explanation:** The one-element subarray `[3]` has bitwise OR $3$, which reaches the threshold.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 1, 8], k = 10`
-- Output: `3`
-- Explanation: The entire array has bitwise OR $11$, and neither a one- nor a two-element subarray reaches $10$.
+- **Input:** `nums = [2, 1, 8], k = 10`
+- **Output:** `3`
+- **Explanation:** The entire array has bitwise OR $11$, and neither a one- nor a two-element subarray reaches $10$.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1, 2], k = 0`
-- Output: `1`
-- Explanation: Every non-empty subarray has a non-negative OR value, so one element is sufficient.
+- **Input:** `nums = [1, 2], k = 0`
+- **Output:** `1`
+- **Explanation:** Every non-empty subarray has a non-negative OR value, so one element is sufficient.

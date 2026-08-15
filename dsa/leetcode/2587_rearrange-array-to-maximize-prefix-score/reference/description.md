@@ -8,8 +8,13 @@ Return *the maximum score you can achieve*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,6 +25,7 @@ Return *the maximum score you can achieve*.
 - **Explanation:** We can rearrange the array into nums = [2,3,1,-1,-3,0,-3].
 prefix = [2,5,6,5,2,2,-1], so the score is 6.
 It can be shown that 6 is the maximum score we can obtain.
+
 #### Example 2
 
 - **Input:** `nums = [-2,-3,0]`

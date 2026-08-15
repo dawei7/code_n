@@ -32,18 +32,18 @@ Let $V$ be the number of non-obstacle squares.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 2, -1]]`
-- Output: `2`
+- **Input:** `grid = [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 2, -1]]`
+- **Output:** `2`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 2]]`
-- Output: `4`
+- **Input:** `grid = [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 2]]`
+- **Output:** `4`
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[0, 1], [2, 0]]`
-- Output: `0`
-- Explanation: no walk covers both empty squares exactly once before ending.
+- **Input:** `grid = [[0, 1], [2, 0]]`
+- **Output:** `0`
+- **Explanation:** no walk covers both empty squares exactly once before ending.

@@ -32,17 +32,17 @@ Let $N = a + b + c$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `a = 1, b = 1, c = 7`
-- Output: one valid answer is `"ccaccbcc"`.
+- **Input:** `a = 1, b = 1, c = 7`
+- **Output:** one valid answer is `"ccaccbcc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `a = 7, b = 1, c = 0`
-- Output: one valid answer is `"aabaa"`.
+- **Input:** `a = 7, b = 1, c = 0`
+- **Output:** one valid answer is `"aabaa"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `a = 2, b = 2, c = 2`
-- Output: any six-character happy arrangement within the budgets.
+- **Input:** `a = 2, b = 2, c = 2`
+- **Output:** any six-character happy arrangement within the budgets.

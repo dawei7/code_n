@@ -32,21 +32,21 @@ Multiply the selected value by `multiplier` and store the product back at the sa
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [2,1,3,5,6], k = 5, multiplier = 2`
-- Output: `[8,4,6,5,6]`
+- **Input:** `nums = [2,1,3,5,6], k = 5, multiplier = 2`
+- **Output:** `[8,4,6,5,6]`
 
 The selected indices are 1, 0, 1, 2, and 0 as the minimum changes.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2], k = 3, multiplier = 4`
-- Output: `[16,8]`
+- **Input:** `nums = [1,2], k = 3, multiplier = 4`
+- **Output:** `[16,8]`
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [3,3,5], k = 2, multiplier = 1`
-- Output: `[3,3,5]`
+- **Input:** `nums = [3,3,5], k = 2, multiplier = 1`
+- **Output:** `[3,3,5]`
 
 The first `3` is selected both times because multiplication by one leaves the tied minimum unchanged.

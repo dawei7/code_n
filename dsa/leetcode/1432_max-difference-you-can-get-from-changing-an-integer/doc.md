@@ -31,17 +31,17 @@ Neither result may have a leading zero or equal zero. The chosen digits may be e
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = 555`
-- Output: `888`
+- **Input:** `num = 555`
+- **Output:** `888`
 
-**Example 2**
+#### Example 2
 
-- Input: `num = 9`
-- Output: `8`
+- **Input:** `num = 9`
+- **Output:** `8`
 
-**Example 3**
+#### Example 3
 
-- Input: `num = 123456`
-- Output: `820000`
+- **Input:** `num = 123456`
+- **Output:** `820000`

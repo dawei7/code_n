@@ -32,14 +32,14 @@ Return two rows with columns `experience` and `accepted_candidates`: one row for
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: seniors with salaries `20000, 20000, 50000`; juniors with salaries `10000, 10000, 40000`
-- Output: `Senior | 2` and `Junior | 2`
-- Explanation: The two cheapest seniors cost $40{,}000$. The remaining $30{,}000$ pays for the two cheapest juniors.
+- **Input:** seniors with salaries `20000, 20000, 50000`; juniors with salaries `10000, 10000, 40000`
+- **Output:** `Senior | 2` and `Junior | 2`
+- **Explanation:** The two cheapest seniors cost $40{,}000$. The remaining $30{,}000$ pays for the two cheapest juniors.
 
-**Example 2**
+#### Example 2
 
-- Input: three seniors each costing `80000`; juniors costing `10000, 10000, 40000`
-- Output: `Senior | 0` and `Junior | 3`
-- Explanation: No senior fits, leaving the entire budget for all three juniors.
+- **Input:** three seniors each costing `80000`; juniors costing `10000, 10000, 40000`
+- **Output:** `Senior | 0` and `Junior | 3`
+- **Explanation:** No senior fits, leaving the entire budget for all three juniors.

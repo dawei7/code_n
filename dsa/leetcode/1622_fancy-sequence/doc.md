@@ -11,12 +11,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/fancy-sequence/) |
 
 ## Problem Description
+
 ### Goal
+
 Implement a mutable `Fancy` sequence that starts empty. `append(val)` places a new value at the end. `addAll(inc)` adds `inc` to every value already present, and `multAll(m)` multiplies every value already present by `m`. Operations performed before an append do not affect the newly appended value.
 
 `getIndex(idx)` returns the current zero-based value at `idx`, reduced modulo $10^9+7$; it returns `-1` when `idx` is outside the sequence. At most $10^5$ total method calls are made, so operations that rewrite every stored value cannot meet the required scaling.
 
 ### Function Contract
+
 **Inputs**
 
 - `operations`: a source-native trace beginning with `Fancy`, followed by method names `append`, `addAll`, `multAll`, or `getIndex`.
@@ -28,17 +31,18 @@ Implement a mutable `Fancy` sequence that starts empty. `append(val)` places a n
 Return the trace result list: `null` for construction and mutating calls, the current residue for a valid `getIndex`, and `-1` for an out-of-range index.
 
 ### Examples
-**Example 1**
 
-- Input: `operations = ["Fancy","append","addAll","append","multAll","getIndex","addAll","append","multAll","getIndex","getIndex","getIndex"]`, `arguments = [[],[2],[3],[7],[2],[0],[3],[10],[2],[0],[1],[2]]`
-- Output: `[null,null,null,null,null,10,null,null,null,26,34,20]`
+#### Example 1
 
-**Example 2**
+- **Input:** `operations = ["Fancy","append","addAll","append","multAll","getIndex","addAll","append","multAll","getIndex","getIndex","getIndex"]`, `arguments = [[],[2],[3],[7],[2],[0],[3],[10],[2],[0],[1],[2]]`
+- **Output:** `[null,null,null,null,null,10,null,null,null,26,34,20]`
 
-- Input: `operations = ["Fancy","getIndex"]`, `arguments = [[],[0]]`
-- Output: `[null,-1]`
+#### Example 2
 
-**Example 3**
+- **Input:** `operations = ["Fancy","getIndex"]`, `arguments = [[],[0]]`
+- **Output:** `[null,-1]`
 
-- Input: `operations = ["Fancy","addAll","append","getIndex"]`, `arguments = [[],[5],[2],[0]]`
-- Output: `[null,null,null,2]`
+#### Example 3
+
+- **Input:** `operations = ["Fancy","addAll","append","getIndex"]`, `arguments = [[],[5],[2],[0]]`
+- **Output:** `[null,null,null,2]`

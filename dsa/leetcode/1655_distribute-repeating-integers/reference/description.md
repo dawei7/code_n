@@ -12,8 +12,14 @@ Return `true`* if it is possible to distribute *`nums`* according to the above c
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `quantity`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -22,11 +28,13 @@ Return `true`* if it is possible to distribute *`nums`* according to the above c
 - **Input:** `nums = [1,2,3,4], quantity = [2]`
 - **Output:** `false`
 - **Explanation:** The 0^th customer cannot be given two different integers.
+
 #### Example 2
 
 - **Input:** `nums = [1,2,3,3], quantity = [2]`
 - **Output:** `true`
 - **Explanation:** The 0^th customer is given [3,3]. The integers [1,2] are not used.
+
 #### Example 3
 
 - **Input:** `nums = [1,1,2,2], quantity = [2,2]`

@@ -6,13 +6,11 @@ You are given two integer arrays `prices` and `strategy`, where:
 
 - $\text{strategy}[i]$ represents a trading action on the $$i^{\text{th}}$$ day, where:
 
-		<li>`-1` indicates buying one unit of the stock.
+		- `-1` indicates buying one unit of the stock.
 
 - `0` indicates holding the stock.
 
 - `1` indicates selling one unit of the stock.
-
-	</li>
 
 You are also given an **even** integer `k`, and may perform **at most one** modification to `strategy`. A modification consists of:
 
@@ -28,8 +26,15 @@ Return the **maximum** possible profit you can achieve.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `prices`: Input parameter (`List[int]`).
+- `strategy`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -39,14 +44,11 @@ There are no constraints on budget or stock ownership, so all buy and sell opera
 
 #### Example 1
 
-<div class="example-block">
-**Input:** prices = [4,2,8], strategy = [-1,0,1], k = 2
+- **Input:** prices = [4,2,8], strategy = [-1,0,1], k = 2
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Modification</th>
@@ -79,18 +81,13 @@ There are no constraints on budget or stock ownership, so all buy and sell opera
 
 Thus, the maximum possible profit is 10, which is achieved by modifying the subarray `[0, 1]`​​​​​​​.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** prices = [5,4,3], strategy = [1,1,0], k = 2
+- **Input:** prices = [5,4,3], strategy = [1,1,0], k = 2
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-<div class="example-block">
-<table style="border: 1px solid black;">
+- **Explanation:** <table style="border: 1px solid black;">
 	<thead>
 		<tr>
 			<th style="border: 1px solid black;">Modification</th>
@@ -122,9 +119,6 @@ Thus, the maximum possible profit is 10, which is achieved by modifying the suba
 </table>
 
 Thus, the maximum possible profit is 9, which is achieved without any modification.
-
-</div>
-</div>
 
 ### 5. Constraints
 

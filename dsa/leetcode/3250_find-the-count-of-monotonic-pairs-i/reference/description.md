@@ -18,21 +18,23 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,3,2]
+- **Input:** nums = [2,3,2]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The good pairs are:
+- **Explanation:** The good pairs are:
 
 - $([0, 1, 1], [2, 2, 1])$
 
@@ -42,15 +44,11 @@ The good pairs are:
 
 - $([1, 2, 2], [1, 1, 0])$
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [5,5,5,5]
+- **Input:** nums = [5,5,5,5]
 
-**Output:** 126
-
-</div>
+- **Output:** 126
 
 ### 4. Constraints
 

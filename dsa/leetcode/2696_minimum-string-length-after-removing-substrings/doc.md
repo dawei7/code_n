@@ -32,14 +32,14 @@ Return an integer equal to the smallest possible length after removing any seque
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "ABFCACDB"`
-- Output: `2`
-- Explanation: Successive removals can leave `"FC"`.
+- **Input:** `s = "ABFCACDB"`
+- **Output:** `2`
+- **Explanation:** Successive removals can leave `"FC"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "ACBBD"`
-- Output: `5`
-- Explanation: Neither removable pair occurs, so the string is unchanged.
+- **Input:** `s = "ACBBD"`
+- **Output:** `5`
+- **Explanation:** Neither removable pair occurs, so the string is unchanged.

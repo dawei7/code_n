@@ -12,21 +12,24 @@ Return the **minimum** total cost to reach cell $(m - 1, n - 1)$ from `(0, 0)`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `grid`: Input parameter (`List[List[int]]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** grid = [[1,3,3],[2,5,4],[4,3,5]], k = 2
+- **Input:** grid = [[1,3,3],[2,5,4],[4,3,5]], k = 2
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
-
-Initially we are at (0, 0) and cost is 0.
+- **Explanation:** Initially we are at (0, 0) and cost is 0.
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -59,17 +62,13 @@ Initially we are at (0, 0) and cost is 0.
 
 The minimum cost to reach bottom-right cell is 7.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** grid = [[1,2],[2,3],[3,4]], k = 1
+- **Input:** grid = [[1,2],[2,3],[3,4]], k = 1
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation: **
-
-Initially we are at (0, 0) and cost is 0.
+- **Explanation:** Initially we are at (0, 0) and cost is 0.
 
 <table style="border: 1px solid black;">
 	<tbody>
@@ -101,8 +100,6 @@ Initially we are at (0, 0) and cost is 0.
 </table>
 
 The minimum cost to reach bottom-right cell is 9.
-
-</div>
 
 ### 4. Constraints
 

@@ -8,8 +8,14 @@ Return *the `sentence`* after the replacement.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `dictionary`: Input parameter (`List[str]`).
+- `sentence`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -17,6 +23,7 @@ Return *the `sentence`* after the replacement.
 
 - **Input:** $dictionary = ["cat","bat","rat"], sentence = "the cattle was rattled by the battery"$
 - **Output:** `"the cat was rat by the bat"`
+
 #### Example 2
 
 - **Input:** $dictionary = ["a","b","c"], sentence = "aadsfasf absbs bbab cadsfafs"$

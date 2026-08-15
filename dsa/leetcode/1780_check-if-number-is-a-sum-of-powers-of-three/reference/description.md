@@ -6,8 +6,13 @@ An integer `y` is a power of three if there exists an integer `x` such that $y =
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -16,11 +21,13 @@ An integer `y` is a power of three if there exists an integer `x` such that $y =
 - **Input:** $n = 12$
 - **Output:** `true`
 - **Explanation:** 12 = $3^{1}$ + $3^{2}$
+
 #### Example 2
 
 - **Input:** $n = 91$
 - **Output:** `true`
 - **Explanation:** 91 = $3^{0}$ + $3^{2}$ + $3^{4}$
+
 #### Example 3
 
 - **Input:** $n = 21$

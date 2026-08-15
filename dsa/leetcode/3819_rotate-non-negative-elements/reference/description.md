@@ -29,31 +29,27 @@ Return the array produced by rotating and reinserting only the non-negative valu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,-2,3,-4], k = 3
+- **Input:** nums = [1,-2,3,-4], k = 3
 
-**Output:** [3,-2,1,-4]
+- **Output:** [3,-2,1,-4]
 
-**Explanation:**​​​​​​​
+- **Explanation:** ​​​​​​​
 
 - The non-negative elements, in order, are `[1, 3]`.
 
 - Left rotation with $k = 3$ results in:
 
-		<li>`[1, 3] -> [3, 1] -> [1, 3] -> [3, 1]`
+		- `[1, 3] -> [3, 1] -> [1, 3] -> [3, 1]`
 
-	</li>
 - Placing them back into the non-negative indices results in `[3, -2, 1, -4]`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [-3,-2,7], k = 1
+- **Input:** nums = [-3,-2,7], k = 1
 
-**Output:** [-3,-2,7]
+- **Output:** [-3,-2,7]
 
-**Explanation:**
+- **Explanation:** 
 
 - The non-negative elements, in order, are `[7]`.
 
@@ -61,23 +57,19 @@ Return the array produced by rotating and reinserting only the non-negative valu
 
 - Placing them back into the non-negative indices results in `[-3, -2, 7]`.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [5,4,-9,6], k = 2
+- **Input:** nums = [5,4,-9,6], k = 2
 
-**Output:** [6,5,-9,4]
+- **Output:** [6,5,-9,4]
 
-**Explanation:**
+- **Explanation:** 
 
 - The non-negative elements, in order, are `[5, 4, 6]`.
 
 - Left rotation with $k = 2$ results in `[6, 5, 4]`.
 
 - Placing them back into the non-negative indices results in `[6, 5, -9, 4]`.
-
-</div>
 
 ### 4. Constraints
 

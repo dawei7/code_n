@@ -16,8 +16,14 @@ Return *the label of the town judge if the town judge exists and can be identifi
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `trust`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,10 +31,12 @@ Return *the label of the town judge if the town judge exists and can be identifi
 
 - **Input:** $n = 2, trust = [[1,2]]$
 - **Output:** `2`
+
 #### Example 2
 
 - **Input:** $n = 3, trust = [[1,3],[2,3]]$
 - **Output:** `3`
+
 #### Example 3
 
 - **Input:** $n = 3, trust = [[1,3],[2,3],[3,1]]$

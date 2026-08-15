@@ -30,19 +30,19 @@ A string is valid exactly when it consists of one or more consecutive copies of 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "b"`
-- Output: `2`
-- Explanation: Insert `a` before the existing `b` and `c` after it.
+- **Input:** `word = "b"`
+- **Output:** `2`
+- **Explanation:** Insert `a` before the existing `b` and `c` after it.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aaa"`
-- Output: `6`
-- Explanation: Each existing `a` must begin a different `"abc"` group.
+- **Input:** `word = "aaa"`
+- **Output:** `6`
+- **Explanation:** Each existing `a` must begin a different `"abc"` group.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "abc"`
-- Output: `0`
+- **Input:** `word = "abc"`
+- **Output:** `0`

@@ -26,6 +26,7 @@ difference.
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `3`
 - **Explanation:** We have 3 arithmetic slices in nums: [1, 2, 3], [2, 3, 4] and [1,2,3,4] itself.
+
 #### Example 2
 
 - **Input:** `nums = [1]`

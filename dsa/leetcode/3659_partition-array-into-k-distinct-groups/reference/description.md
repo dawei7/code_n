@@ -14,21 +14,24 @@ Return `true` if such a partition is possible, otherwise return `false`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,2,3,4], k = 2
+- **Input:** nums = [1,2,3,4], k = 2
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-One possible partition is to have 2 groups:
+- **Explanation:** One possible partition is to have 2 groups:
 
 - Group 1: `[1, 2]`
 
@@ -36,17 +39,13 @@ One possible partition is to have 2 groups:
 
 Each group contains $k = 2$ distinct elements, and all elements are used exactly once.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [3,5,2,2], k = 2
+- **Input:** nums = [3,5,2,2], k = 2
 
-**Output:** true
+- **Output:** true
 
-**Explanation:**
-
-One possible partition is to have 2 groups:
+- **Explanation:** One possible partition is to have 2 groups:
 
 - Group 1: `[2, 3]`
 
@@ -54,19 +53,13 @@ One possible partition is to have 2 groups:
 
 Each group contains $k = 2$ distinct elements, and all elements are used exactly once.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,5,2,3], k = 3
+- **Input:** nums = [1,5,2,3], k = 3
 
-**Output:** false
+- **Output:** false
 
-**Explanation:**
-
-We cannot form groups of $k = 3$ distinct elements using all values exactly once.
-
-</div>
+- **Explanation:** We cannot form groups of $k = 3$ distinct elements using all values exactly once.
 
 ### 4. Constraints
 

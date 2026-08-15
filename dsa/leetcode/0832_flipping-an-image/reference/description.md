@@ -12,8 +12,13 @@ To invert an image means that each `0` is replaced by `1`, and each `1` is repla
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `image`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ To invert an image means that each `0` is replaced by `1`, and each `1` is repla
 - **Output:** `[[1,0,0],[0,1,0],[1,1,1]]`
 - **Explanation:** First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
 Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+
 #### Example 2
 
 - **Input:** $image = [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]$

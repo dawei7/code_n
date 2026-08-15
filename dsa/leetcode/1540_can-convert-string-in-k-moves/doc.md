@@ -11,12 +11,15 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/can-convert-string-in-k-moves/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given lowercase strings `s` and `t` and may perform at most `k` numbered moves. On move $i$, either do nothing or choose one position that has never been chosen before and advance its character by exactly $i$ alphabet steps. Shifts wrap around from `z` to `a`.
 
 Each position can therefore be changed at most once, and two positions cannot both use the same move number. Determine whether some choices among moves $1$ through $k$ transform every character of `s` into the corresponding character of `t`. Strings of different lengths cannot be converted.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: the source string of lowercase English letters.
@@ -29,20 +32,21 @@ Each position can therefore be changed at most once, and two positions cannot bo
 `True` if `s` can be converted into `t` using no more than the first `k` moves; otherwise `False`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "input", t = "ouput", k = 9`
-- Output: `True`
-- Explanation: Use move `6` for `i` to `o` and move `7` for `n` to `u`.
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "input", t = "ouput", k = 9`
+- **Output:** `True`
+- **Explanation:** Use move `6` for `i` to `o` and move `7` for `n` to `u`.
 
-- Input: `s = "abc", t = "bcd", k = 10`
-- Output: `False`
-- Explanation: All three positions need shift `1`, but only move `1` supplies that residue within ten moves.
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "abc", t = "bcd", k = 10`
+- **Output:** `False`
+- **Explanation:** All three positions need shift `1`, but only move `1` supplies that residue within ten moves.
 
-- Input: `s = "aab", t = "bbb", k = 27`
-- Output: `True`
-- Explanation: The two `a` positions can use moves `1` and `27`, which are congruent modulo 26.
+#### Example 3
+
+- **Input:** `s = "aab", t = "bbb", k = 27`
+- **Output:** `True`
+- **Explanation:** The two `a` positions can use moves `1` and `27`, which are congruent modulo 26.

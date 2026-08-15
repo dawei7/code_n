@@ -17,6 +17,7 @@ Return *the features in sorted order.*
 - **Input:** $features = ["cooler","lock","touch"], responses = ["i like cooler cooler","lock touch cool","locker like touch"]$
 - **Output:** `["touch","cooler","lock"]`
 - **Explanation:** appearances("cooler") = 1, appearances("lock") = 1, appearances("touch") = 2. Since "cooler" and "lock" both had 1 appearance, "cooler" comes first because "cooler" came first in the features array.
+
 #### Example 2
 
 - **Input:** $features = ["a","aa","b","c"], responses = ["a","a aa","a a a a a","b a"]$

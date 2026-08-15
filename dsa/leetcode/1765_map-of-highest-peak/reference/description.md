@@ -20,8 +20,13 @@ Return *an integer matrix *`height`* of size *`m x n`* where *$\text{height}[i][
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `isWater`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Examples
 
@@ -37,6 +42,7 @@ Return *an integer matrix *`height`* of size *`m x n`* where *$\text{height}[i][
 - **Output:** `[[1,0],[2,1]]`
 - **Explanation:** The image shows the assigned heights of each cell.
 The blue cell is the water cell, and the green cells are the land cells.
+
 #### Example 2
 
 **

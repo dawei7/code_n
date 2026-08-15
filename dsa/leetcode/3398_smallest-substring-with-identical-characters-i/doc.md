@@ -33,23 +33,23 @@ Every character of `s` is either `0` or `1`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "000001", numOps = 1`
-- Output: `2`
+- **Input:** `s = "000001", numOps = 1`
+- **Output:** `2`
 
 Flipping `s[2]` produces `"001001"`, whose longest identical blocks have length two.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0000", numOps = 2`
-- Output: `1`
+- **Input:** `s = "0000", numOps = 2`
+- **Output:** `1`
 
 Flipping `s[0]` and `s[2]` produces the alternating string `"1010"`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "0101", numOps = 0`
-- Output: `1`
+- **Input:** `s = "0101", numOps = 0`
+- **Output:** `1`
 
 The input already alternates, so every identical block has length one.

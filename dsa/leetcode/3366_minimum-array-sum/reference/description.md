@@ -10,8 +10,16 @@ You can perform the following operations on `nums`:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+- `op1`: Input parameter (`int`).
+- `op2`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -23,12 +31,11 @@ Return the **minimum** possible **sum** of all elements in `nums` after performi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,8,3,19,3], k = 3, op1 = 1, op2 = 1
+- **Input:** nums = [2,8,3,19,3], k = 3, op1 = 1, op2 = 1
 
-**Output:** 23
+- **Output:** 23
 
-**Explanation:**
+- **Explanation:** 
 
 - Apply Operation 2 to $\text{nums}[1] = 8$, making $\text{nums}[1] = 5$.
 
@@ -36,15 +43,13 @@ Return the **minimum** possible **sum** of all elements in `nums` after performi
 
 - The resulting array becomes `[2, 5, 3, 10, 3]`, which has the minimum possible sum of 23 after applying the operations.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,4,3], k = 3, op1 = 2, op2 = 1
+- **Input:** nums = [2,4,3], k = 3, op1 = 2, op2 = 1
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Apply Operation 1 to $\text{nums}[0] = 2$, making $\text{nums}[0] = 1$.
 
@@ -53,8 +58,6 @@ Return the **minimum** possible **sum** of all elements in `nums` after performi
 - Apply Operation 2 to $\text{nums}[2] = 3$, making $\text{nums}[2] = 0$.
 
 - The resulting array becomes `[1, 2, 0]`, which has the minimum possible sum of 3 after applying the operations.
-
-</div>
 
 ### 5. Constraints
 

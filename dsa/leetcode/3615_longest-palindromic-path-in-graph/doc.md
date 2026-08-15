@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/longest-palindromic-path-in-graph/) |
 
 ## Problem Description
+
 ### Goal
 
 An undirected graph has `n` nodes numbered from $0$ through $n-1`. Each pair `[u, v]` in `edges` connects two different nodes, and `label[i]` is the lowercase English letter assigned to node `i`.
@@ -33,20 +34,20 @@ Return the maximum length of a simple graph path whose sequence of node labels r
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3, edges = [[0, 1], [1, 2]], label = "aba"`
-- Output: `3`
-- Explanation: Path `0 -> 1 -> 2` spells `"aba"`.
+- **Input:** `n = 3, edges = [[0, 1], [1, 2]], label = "aba"`
+- **Output:** `3`
+- **Explanation:** Path `0 -> 1 -> 2` spells `"aba"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 3, edges = [[0, 1], [0, 2]], label = "abc"`
-- Output: `1`
-- Explanation: No adjacent pair has equal labels, so only a one-node palindrome is possible.
+- **Input:** `n = 3, edges = [[0, 1], [0, 2]], label = "abc"`
+- **Output:** `1`
+- **Explanation:** No adjacent pair has equal labels, so only a one-node palindrome is possible.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4, edges = [[0, 2], [0, 3], [3, 1]], label = "bbac"`
-- Output: `3`
-- Explanation: Path `0 -> 3 -> 1` spells `"bcb"`.
+- **Input:** `n = 4, edges = [[0, 2], [0, 3], [3, 1]], label = "bbac"`
+- **Output:** `3`
+- **Explanation:** Path `0 -> 3 -> 1` spells `"bcb"`.

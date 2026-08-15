@@ -31,20 +31,20 @@ Among all distinct critical-point pairs, find the minimum and maximum distances 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [3,1]`
-- Output: `[-1,-1]`
-- Explanation: Neither endpoint can be critical.
+- **Input:** `head = [3,1]`
+- **Output:** `[-1,-1]`
+- **Explanation:** Neither endpoint can be critical.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [5,3,1,2,5,1,2]`
-- Output: `[1,3]`
-- Explanation: Critical positions are `2`, `4`, and `5`.
+- **Input:** `head = [5,3,1,2,5,1,2]`
+- **Output:** `[1,3]`
+- **Explanation:** Critical positions are `2`, `4`, and `5`.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [1,3,2,2,3,2,2,2,7]`
-- Output: `[3,3]`
-- Explanation: The two critical positions are `1` and `4`.
+- **Input:** `head = [1,3,2,2,3,2,2,2,7]`
+- **Output:** `[3,3]`
+- **Explanation:** The two critical positions are `1` and `4`.

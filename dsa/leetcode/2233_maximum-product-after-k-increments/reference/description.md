@@ -6,8 +6,14 @@ Return* the **maximum** **product** of *`nums`* after **at most** *`k`* operatio
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +25,7 @@ Return* the **maximum** **product** of *`nums`* after **at most** *`k`* operatio
 Now nums = [5, 4], with a product of 5 * 4 = 20.
 It can be shown that 20 is maximum product possible, so we return 20.
 Note that there may be other ways to increment nums to have the maximum product.
+
 #### Example 2
 
 - **Input:** `nums = [6,3,3,2], k = 2`

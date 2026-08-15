@@ -24,40 +24,27 @@ Return the minimum-cardinality list of base-10 components in descending order.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 537
+- **Input:** n = 537
 
-**Output:** [500,30,7]
+- **Output:** [500,30,7]
 
-**Explanation:**
+- **Explanation:** We can express 537 as $500 + 30 + 7$. It is impossible to express 537 as a sum using fewer than 3 base-10 components.
 
-We can express 537 as $500 + 30 + 7$. It is impossible to express 537 as a sum using fewer than 3 base-10 components.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 102
+- **Input:** n = 102
 
-**Output:** [100,2]
+- **Output:** [100,2]
 
-**Explanation:**
+- **Explanation:** We can express 102 as $100 + 2$. 102 is not a base-10 component, which means 2 base-10 components are needed.
 
-We can express 102 as $100 + 2$. 102 is not a base-10 component, which means 2 base-10 components are needed.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 6
+- **Input:** n = 6
 
-**Output:** [6]
+- **Output:** [6]
 
-**Explanation:**
-
-6 is a base-10 component.
-
-</div>
+- **Explanation:** 6 is a base-10 component.
 
 ### 4. Constraints
 

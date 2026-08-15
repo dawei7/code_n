@@ -30,18 +30,18 @@ Given a nonempty string `s` containing only `'a'`, `'b'`, and `'c'`, return `tru
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aabcbc"`
-- Output: `true`
-- Explanation: Insert `"abc"`, then insert another `"abc"` between its `"a"` and `"bc"`.
+- **Input:** `s = "aabcbc"`
+- **Output:** `true`
+- **Explanation:** Insert `"abc"`, then insert another `"abc"` between its `"a"` and `"bc"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcabcababcc"`
-- Output: `true`
+- **Input:** `s = "abcabcababcc"`
+- **Output:** `true`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abccba"`
-- Output: `false`
+- **Input:** `s = "abccba"`
+- **Output:** `false`

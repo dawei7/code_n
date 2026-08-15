@@ -35,20 +35,20 @@ The bounds are $1 \le n \le 5000$, $0 \le \texttt{nums[i]} \le 10^9$, $1 \le m \
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3,2,3], changeIndices = [1,3,2,2,2,2,3]`
-- Output: `6`
-- Explanation: Set each of the three designated values to zero during the first three seconds, then use seconds `4` through `6` to mark the three indices.
+- **Input:** `nums = [3,2,3], changeIndices = [1,3,2,2,2,2,3]`
+- **Output:** `6`
+- **Explanation:** Set each of the three designated values to zero during the first three seconds, then use seconds `4` through `6` to mark the three indices.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [0,0,1,2], changeIndices = [1,2,1,2,1,2,1,2]`
-- Output: `7`
-- Explanation: Mark the two initially zero indices, use three seconds to decrement the remaining values to zero, and mark those two indices at seconds `6` and `7`.
+- **Input:** `nums = [0,0,1,2], changeIndices = [1,2,1,2,1,2,1,2]`
+- **Output:** `7`
+- **Explanation:** Mark the two initially zero indices, use three seconds to decrement the remaining values to zero, and mark those two indices at seconds `6` and `7`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3], changeIndices = [1,2,3]`
-- Output: `-1`
-- Explanation: Three seconds cannot perform enough value-changing work and also provide a separate mark for every index.
+- **Input:** `nums = [1,2,3], changeIndices = [1,2,3]`
+- **Output:** `-1`
+- **Explanation:** Three seconds cannot perform enough value-changing work and also provide a separate mark for every index.

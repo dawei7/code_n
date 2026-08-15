@@ -22,6 +22,7 @@ Return `true` if removing exactly one parent-child edge produces two trees with 
 
 - **Input:** `root = [5,10,10,null,null,2,3]`
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/split2-tree.jpg)

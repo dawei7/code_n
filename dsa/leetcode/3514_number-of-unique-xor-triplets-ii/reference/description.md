@@ -8,21 +8,23 @@ Return the number of **unique** XOR triplet values from all possible triplets `(
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,3]
+- **Input:** nums = [1,3]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The possible XOR triplet values are:
+- **Explanation:** The possible XOR triplet values are:
 
 - $(0, 0, 0) → 1 XOR 1 XOR 1 = 1$
 
@@ -34,19 +36,13 @@ The possible XOR triplet values are:
 
 The unique XOR values are `{1, 3}`. Thus, the output is 2.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [6,7,8,9]
+- **Input:** nums = [6,7,8,9]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The possible XOR triplet values are `{6, 7, 8, 9}`. Thus, the output is 4.
-
-</div>
+- **Explanation:** The possible XOR triplet values are `{6, 7, 8, 9}`. Thus, the output is 4.
 
 ### 4. Constraints
 

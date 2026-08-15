@@ -16,8 +16,16 @@ The **grid happiness** is the **sum** of each person's happiness. Return* the **
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `m`: Input parameter (`int`).
+- `n`: Input parameter (`int`).
+- `introvertsCount`: Input parameter (`int`).
+- `extrovertsCount`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -34,6 +42,7 @@ We can put the introvert in cell (1,1) and put the extroverts in cells (1,3) and
 - Extrovert at (2,3) happiness: 40 (starting happiness) + (1 * 20) (1 neighbor) = 60
 The grid happiness is 120 + 60 + 60 = 240.
 The above figure shows the grid in this example with each person's happiness. The introvert stays in the light green cell while the extroverts live on the light purple cells.
+
 #### Example 2
 
 - **Input:** $m = 3, n = 1, introvertsCount = 2, extrovertsCount = 1$
@@ -43,6 +52,7 @@ The above figure shows the grid in this example with each person's happiness. Th
 - Extrovert at (2,1) happiness: 40 (starting happiness) + (2 * 20) (2 neighbors) = 80
 - Introvert at (3,1) happiness: 120 (starting happiness) - (1 * 30) (1 neighbor) = 90
 The grid happiness is 90 + 80 + 90 = 260.
+
 #### Example 3
 
 - **Input:** $m = 2, n = 2, introvertsCount = 4, extrovertsCount = 0$

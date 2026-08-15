@@ -10,8 +10,17 @@ Return *an array containing all edges (even unmodified ones) in any order if it 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `edges`: Input parameter (`List[List[int]]`).
+- `source`: Input parameter (`int`).
+- `destination`: Input parameter (`int`).
+- `target`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[List[int]]`.
 
 ### 3. Note
 
@@ -30,6 +39,7 @@ You are not allowed to modify the weights of edges with initial positive weights
 - **Input:** $n = 5, edges = [[4,1,-1],[2,0,-1],[0,3,-1],[4,3,-1]], source = 0, destination = 1, target = 5$
 - **Output:** `[[4,1,1],[2,0,1],[0,3,3],[4,3,1]]`
 - **Explanation:** The graph above shows a possible modification to the edges, making the distance from 0 to 1 equal to 5.
+
 #### Example 2
 
 **
@@ -41,6 +51,7 @@ You are not allowed to modify the weights of edges with initial positive weights
 - **Input:** $n = 3, edges = [[0,1,-1],[0,2,5]], source = 0, destination = 2, target = 6$
 - **Output:** `[]`
 - **Explanation:** The graph above contains the initial edges. It is not possible to make the distance from 0 to 2 equal to 6 by modifying the edge with weight -1. So, an empty array is returned.
+
 #### Example 3
 
 **

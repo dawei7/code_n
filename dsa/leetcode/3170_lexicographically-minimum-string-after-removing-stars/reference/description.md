@@ -10,35 +10,31 @@ Return the lexicographically smallest resulting string after removing all `'*'` 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "aaba*"
+- **Input:** s = "aaba*"
 
-**Output:** "aab"
+- **Output:** "aab"
 
-**Explanation:**
+- **Explanation:** We should delete one of the `'a'` characters with `'*'`. If we choose $s[3]$, `s` becomes the lexicographically smallest.
 
-We should delete one of the `'a'` characters with `'*'`. If we choose $s[3]$, `s` becomes the lexicographically smallest.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abc"
+- **Input:** s = "abc"
 
-**Output:** "abc"
+- **Output:** "abc"
 
-**Explanation:**
-
-There is no `'*'` in the string.<!-- notionvc: ff07e34f-b1d6-41fb-9f83-5d0ba3c1ecde -->
-
-</div>
+- **Explanation:** There is no `'*'` in the string.<!-- notionvc: ff07e34f-b1d6-41fb-9f83-5d0ba3c1ecde -->
 
 ### 4. Constraints
 

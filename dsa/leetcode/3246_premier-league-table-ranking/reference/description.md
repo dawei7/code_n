@@ -39,7 +39,6 @@ The query result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 `TeamStats` table:
@@ -81,5 +80,3 @@ The query result format is in the following example.
 - Tottenham has 14 points (3 wins * 3 points + 5 draws * 1 point) and is position 5th.
 
 The output table is ordered by points in descending order, then by team_name in ascending order.
-
-</div>

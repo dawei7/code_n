@@ -32,16 +32,16 @@ Let $n = \lvert\texttt{word}\rvert$. The constraints satisfy $1 \le n \le 2\cdot
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "abcde"`
-- Output: `"1a1b1c1d1e"`
+- **Input:** `word = "abcde"`
+- **Output:** `"1a1b1c1d1e"`
 
 Every maximal equal-character prefix has length one.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "aaaaaaaaaaaaaabb"`
-- Output: `"9a5a2b"`
+- **Input:** `word = "aaaaaaaaaaaaaabb"`
+- **Output:** `"9a5a2b"`
 
 The fourteen `a` characters are consumed as chunks of nine and five, followed by the two-character `b` run.

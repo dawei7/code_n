@@ -8,8 +8,14 @@ Return `true`* If you can find a way to do that or *`false`* otherwise*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Return `true`* If you can find a way to do that or *`false`* otherwise*.
 - **Input:** `arr = [1,2,3,4,5,10,6,7,8,9], k = 5`
 - **Output:** `true`
 - **Explanation:** Pairs are (1,9),(2,8),(3,7),(4,6) and (5,10).
+
 #### Example 2
 
 - **Input:** `arr = [1,2,3,4,5,6], k = 7`
 - **Output:** `true`
 - **Explanation:** Pairs are (1,6),(2,5) and(3,4).
+
 #### Example 3
 
 - **Input:** `arr = [1,2,3,4,5,6], k = 10`

@@ -10,8 +10,13 @@ Return* the number of **distinct** integers present on the board after* $10^{9}$
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Note
 
@@ -29,12 +34,12 @@ Return* the number of **distinct** integers present on the board after* $10^{9}$
 The next day, 2 and 4 will be added since 5 % 2 == 1 and 5 % 4 == 1.
 After that day, 3 will be added to the board because 4 % 3 == 1.
 At the end of a billion days, the distinct numbers on the board will be 2, 3, 4, and 5.
+
 #### Example 2
 
 - **Input:** $n = 3$
 - **Output:** `2`
-- **Explanation:**
-Since 3 % 2 == 1, 2 will be added to the board.
+- **Explanation:** Since 3 % 2 == 1, 2 will be added to the board.
 After a billion days, the only two distinct numbers on the board are 2 and 3.
 
 ### 5. Constraints

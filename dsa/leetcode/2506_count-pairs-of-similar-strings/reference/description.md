@@ -12,8 +12,13 @@ Return *the number of pairs *`(i, j)`* such that *$0 \le i < j \le \text{word.le
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `words`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,6 +29,7 @@ Return *the number of pairs *`(i, j)`* such that *$0 \le i < j \le \text{word.le
 - **Explanation:** There are 2 pairs that satisfy the conditions:
 - i = 0 and j = 1 : both words[0] and words[1] only consist of characters 'a' and 'b'.
 - i = 3 and j = 4 : both words[3] and words[4] only consist of characters 'a', 'b', and 'c'.
+
 #### Example 2
 
 - **Input:** $words = ["aabb","ab","ba"]$
@@ -32,6 +38,7 @@ Return *the number of pairs *`(i, j)`* such that *$0 \le i < j \le \text{word.le
 - i = 0 and j = 1 : both words[0] and words[1] only consist of characters 'a' and 'b'.
 - i = 0 and j = 2 : both words[0] and words[2] only consist of characters 'a' and 'b'.
 - i = 1 and j = 2 : both words[1] and words[2] only consist of characters 'a' and 'b'.
+
 #### Example 3
 
 - **Input:** $words = ["nba","cba","dba"]$

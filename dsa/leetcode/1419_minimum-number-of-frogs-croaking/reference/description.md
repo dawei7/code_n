@@ -8,8 +8,13 @@ A valid `"croak"` means a frog is printing five letters `'c'`, `'r'`, `'o'`, `'a
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `croakOfFrogs`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +23,7 @@ A valid `"croak"` means a frog is printing five letters `'c'`, `'r'`, `'o'`, `'a
 - **Input:** $croakOfFrogs = "croakcroak"$
 - **Output:** `1`
 - **Explanation:** One frog yelling "croak**"** twice.
+
 #### Example 2
 
 - **Input:** $croakOfFrogs = "crcoakroak"$
@@ -25,6 +31,7 @@ A valid `"croak"` means a frog is printing five letters `'c'`, `'r'`, `'o'`, `'a
 - **Explanation:** The minimum number of frogs is two.
 The first frog could yell "**cr**c**oak**roak".
 The second frog could yell later "cr**c**oak**roak**".
+
 #### Example 3
 
 - **Input:** $croakOfFrogs = "croakcrook"$

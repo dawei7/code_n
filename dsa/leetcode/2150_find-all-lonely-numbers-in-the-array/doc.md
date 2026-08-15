@@ -36,16 +36,16 @@ Return a list containing each lonely value exactly once, in any order.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10, 6, 5, 8]`
-- Output: `[10, 8]`
-- Explanation: `10` and `8` occur once and have no adjacent integer in the
+- **Input:** `nums = [10, 6, 5, 8]`
+- **Output:** `[10, 8]`
+- **Explanation:** `10` and `8` occur once and have no adjacent integer in the
   array. The values `5` and `6` disqualify each other.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1, 3, 5, 3]`
-- Output: `[1, 5]`
-- Explanation: `1` and `5` have absent neighbors, while `3` is excluded
+- **Input:** `nums = [1, 3, 5, 3]`
+- **Output:** `[1, 5]`
+- **Explanation:** `1` and `5` have absent neighbors, while `3` is excluded
   because it occurs twice.

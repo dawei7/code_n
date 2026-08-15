@@ -29,6 +29,7 @@ Return $List[\text{List}[int]]$ representing the shortest sorted list of ranges 
 [4,49]
 [51,74]
 [76,99]
+
 #### Example 2
 
 - **Input:** `nums = [-1], lower = -1, upper = -1`

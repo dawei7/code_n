@@ -22,14 +22,11 @@ Return the largest sum of exactly three selected elements that is congruent to z
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [4,2,3,1]
+- **Input:** nums = [4,2,3,1]
 
-**Output:** 9
+- **Output:** 9
 
-**Explanation:**
-
-The valid triplets whose sum is divisible by 3 are:
+- **Explanation:** The valid triplets whose sum is divisible by 3 are:
 
 - `(4, 2, 3)` with a sum of $4 + 2 + 3 = 9$.
 
@@ -37,19 +34,13 @@ The valid triplets whose sum is divisible by 3 are:
 
 Thus, the answer is 9.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,5]
+- **Input:** nums = [2,1,5]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-No triplet forms a sum divisible by 3, so the answer is 0.
-
-</div>
+- **Explanation:** No triplet forms a sum divisible by 3, so the answer is 0.
 
 ### 4. Constraints
 

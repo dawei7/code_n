@@ -15,12 +15,14 @@ You are given an integer `k`, return* the *$$k^{\text{th}}$$* lucky number repre
 - **Input:** $k = 4$
 - **Output:** `"47"`
 - **Explanation:** The first lucky number is 4, the second one is 7, the third one is 44 and the fourth one is 47.
+
 #### Example 2
 
 - **Input:** $k = 10$
 - **Output:** `"477"`
 - **Explanation:** Here are lucky numbers sorted in increasing order:
 4, 7, 44, 47, 74, 77, 444, 447, 474, 477. So the 10^th lucky number is 477.
+
 #### Example 3
 
 - **Input:** $k = 1000$

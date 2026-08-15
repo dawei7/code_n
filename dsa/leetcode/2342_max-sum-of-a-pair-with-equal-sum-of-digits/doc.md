@@ -36,15 +36,15 @@ equal, or `-1` if no such pair exists.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [18,43,36,13,7]`
-- Output: `54`
-- Explanation: `18` and `36` both have digit sum 9 and total 54; the eligible
+- **Input:** `nums = [18,43,36,13,7]`
+- **Output:** `54`
+- **Explanation:** `18` and `36` both have digit sum 9 and total 54; the eligible
   pair `43` and `7` totals only 50.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10,12,19,14]`
-- Output: `-1`
-- Explanation: All four digit sums differ, so no eligible pair exists.
+- **Input:** `nums = [10,12,19,14]`
+- **Output:** `-1`
+- **Explanation:** All four digit sums differ, so no eligible pair exists.

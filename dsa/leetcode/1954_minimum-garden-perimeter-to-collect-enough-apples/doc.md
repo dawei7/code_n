@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-garden-perimeter-to-collect-enough-apples/) |
 
 ## Problem Description
+
 ### Goal
+
 An infinite two-dimensional garden has an apple tree at every integer
 coordinate $(i,j)$. The tree at that coordinate bears
 $\lvert i\rvert+\lvert j\rvert$ apples.
@@ -21,6 +23,7 @@ perimeter of such a square whose included trees bear at least that many
 apples.
 
 ### Function Contract
+
 **Inputs**
 
 - `neededApples`: the required number of apples $A$, where
@@ -32,17 +35,18 @@ apples.
   contains at least $A$ apples.
 
 ### Examples
-**Example 1**
 
-- Input: `neededApples = 1`
-- Output: `8`
+#### Example 1
 
-**Example 2**
+- **Input:** `neededApples = 1`
+- **Output:** `8`
 
-- Input: `neededApples = 13`
-- Output: `16`
+#### Example 2
 
-**Example 3**
+- **Input:** `neededApples = 13`
+- **Output:** `16`
 
-- Input: `neededApples = 1000000000`
-- Output: `5040`
+#### Example 3
+
+- **Input:** `neededApples = 1000000000`
+- **Output:** `5040`

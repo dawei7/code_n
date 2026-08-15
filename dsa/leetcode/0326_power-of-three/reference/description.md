@@ -21,11 +21,13 @@ Return `True` exactly when `n` is an integral power of three; otherwise return `
 - **Input:** $n = 27$
 - **Output:** `true`
 - **Explanation:** 27 = $3^{3}$
+
 #### Example 2
 
 - **Input:** $n = 0$
 - **Output:** `false`
 - **Explanation:** There is no x where 3^x = 0.
+
 #### Example 3
 
 - **Input:** $n = -1$

@@ -43,6 +43,7 @@ At time 15, there are 4 possible outcomes:
 - If only the second pig dies, then bucket 3 must be poisonous.
 - If both pigs die, then bucket 2 must be poisonous.
 - If neither pig dies, then bucket 4 must be poisonous.
+
 #### Example 2
 
 - **Input:** $buckets = 4, minutesToDie = 15, minutesToTest = 30$

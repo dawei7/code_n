@@ -30,20 +30,20 @@ Return `true` when the object has no key-value pair or the array has no element;
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `obj = {"x":5,"y":42}`
-- Output: `false`
-- Explanation: The object contains two key-value pairs.
+- **Input:** `obj = {"x":5,"y":42}`
+- **Output:** `false`
+- **Explanation:** The object contains two key-value pairs.
 
-**Example 2**
+#### Example 2
 
-- Input: `obj = {}`
-- Output: `true`
-- Explanation: No property is present.
+- **Input:** `obj = {}`
+- **Output:** `true`
+- **Explanation:** No property is present.
 
-**Example 3**
+#### Example 3
 
-- Input: `obj = [null,false,0]`
-- Output: `false`
-- Explanation: All three values count as array elements despite being null or falsy.
+- **Input:** `obj = [null,false,0]`
+- **Output:** `false`
+- **Explanation:** All three values count as array elements despite being null or falsy.

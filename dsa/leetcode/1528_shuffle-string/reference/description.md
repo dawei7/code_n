@@ -6,8 +6,14 @@ Return *the shuffled string*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+- `indices`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Return *the shuffled string*.
 - **Input:** `s = "codeleet", indices = [4,5,6,7,0,2,1,3]`
 - **Output:** `"leetcode"`
 - **Explanation:** As shown, "codeleet" becomes "leetcode" after shuffling.
+
 #### Example 2
 
 - **Input:** `s = "abc", indices = [0,1,2]`

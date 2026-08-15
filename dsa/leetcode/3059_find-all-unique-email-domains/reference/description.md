@@ -28,7 +28,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Emails table:
 +-----+-----------------------+
 | id  | email                 |
@@ -40,14 +40,14 @@ Emails table:
 | 320 | jxhbagkpm@example.org |
 | 411 | zxcf@outlook.com      |
 +----+------------------------+
-**Output:**
+- **Output:** 
 +--------------+-------+
 | email_domain | count |
 +--------------+-------+
 | outlook.com  | 2     |
 | yahoo.com    | 1     |
 +--------------+-------+
-**Explanation:**
+- **Explanation:** 
 - The valid domains ending with ".com" are only "outlook.com" and "yahoo.com", with respective counts of 2 and 1.
 Output table is ordered by email_domains in ascending order.
 ```

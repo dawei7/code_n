@@ -30,20 +30,20 @@ Every non-leaf node must have two children, and its value must equal the product
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [2, 4]`
-- Output: `3`
-- Explanation: The single-node trees rooted at `2` and `4` are valid, as is the tree with root `4` and two children valued `2`.
+- **Input:** `arr = [2, 4]`
+- **Output:** `3`
+- **Explanation:** The single-node trees rooted at `2` and `4` are valid, as is the tree with root `4` and two children valued `2`.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [2, 4, 5, 10]`
-- Output: `7`
-- Explanation: Besides the four single-node trees and the tree rooted at `4`, root `10` can have ordered children `(2, 5)` or `(5, 2)`.
+- **Input:** `arr = [2, 4, 5, 10]`
+- **Output:** `7`
+- **Explanation:** Besides the four single-node trees and the tree rooted at `4`, root `10` can have ordered children `(2, 5)` or `(5, 2)`.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [2, 4, 8]`
-- Output: `8`
-- Explanation: There is one tree rooted at `2`, two rooted at `4`, and five rooted at `8`.
+- **Input:** `arr = [2, 4, 8]`
+- **Output:** `8`
+- **Explanation:** There is one tree rooted at `2`, two rooted at `4`, and five rooted at `8`.

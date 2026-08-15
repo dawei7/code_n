@@ -16,8 +16,11 @@ Write synchronization code for oxygen and hydrogen molecules that enforces these
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `H2O()`: Initializes the data structure.
+- `hydrogen(releaseHydrogen: 'Callable[[], None]')`: Executes operation.
+- `oxygen(releaseOxygen: 'Callable[[], None]')`: Executes operation.
 
 ### 3. Examples
 
@@ -26,6 +29,7 @@ Write synchronization code for oxygen and hydrogen molecules that enforces these
 - **Input:** $water = "HOH"$
 - **Output:** `"HHO"`
 - **Explanation:** "HOH" and "OHH" are also valid answers.
+
 #### Example 2
 
 - **Input:** $water = "OOHHHH"$

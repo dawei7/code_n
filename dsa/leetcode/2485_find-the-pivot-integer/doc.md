@@ -36,20 +36,20 @@ If no such integer exists, return `-1`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 8`
-- Output: `6`
-- Explanation: Both inclusive sums equal $21$: $1+2+3+4+5+6 = 6+7+8$.
+- **Input:** `n = 8`
+- **Output:** `6`
+- **Explanation:** Both inclusive sums equal $21$: $1+2+3+4+5+6 = 6+7+8$.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`
-- Output: `1`
-- Explanation: The only possible pivot appears in both one-element sums.
+- **Input:** `n = 1`
+- **Output:** `1`
+- **Explanation:** The only possible pivot appears in both one-element sums.
 
-**Example 3**
+#### Example 3
 
-- Input: `n = 4`
-- Output: `-1`
-- Explanation: No integer from $1$ through $4$ balances the two inclusive sums.
+- **Input:** `n = 4`
+- **Output:** `-1`
+- **Explanation:** No integer from $1$ through $4$ balances the two inclusive sums.

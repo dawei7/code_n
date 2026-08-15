@@ -18,8 +18,13 @@ Note that the entire part is used when considering what binary value it represen
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -27,10 +32,12 @@ Note that the entire part is used when considering what binary value it represen
 
 - **Input:** `arr = [1,0,1,0,1]`
 - **Output:** `[0,3]`
+
 #### Example 2
 
 - **Input:** `arr = [1,1,0,1,1]`
 - **Output:** `[-1,-1]`
+
 #### Example 3
 
 - **Input:** `arr = [1,1,0,0,1]`

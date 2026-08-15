@@ -43,20 +43,20 @@ be the total number of valid task-subtask pairs.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: tasks `(1,3)`, `(2,2)`, and `(3,4)`; executed pairs `(1,2)` and every subtask of task `3`.
-- Output: `(1,1)`, `(1,3)`, `(2,1)`, `(2,2)`.
-- Explanation: Task `1` is missing two of its three subtasks, task `2` is missing both, and task `3` is complete.
+- **Input:** tasks `(1,3)`, `(2,2)`, and `(3,4)`; executed pairs `(1,2)` and every subtask of task `3`.
+- **Output:** `(1,1)`, `(1,3)`, `(2,1)`, `(2,2)`.
+- **Explanation:** Task `1` is missing two of its three subtasks, task `2` is missing both, and task `3` is complete.
 
-**Example 2**
+#### Example 2
 
-- Input: task `(8,1)` and no executed rows.
-- Output: `(8,1)`.
-- Explanation: The task's only valid subtask did not execute.
+- **Input:** task `(8,1)` and no executed rows.
+- **Output:** `(8,1)`.
+- **Explanation:** The task's only valid subtask did not execute.
 
-**Example 3**
+#### Example 3
 
-- Input: task `(5,3)` with executed pairs `(5,1)`, `(5,2)`, and `(5,3)`.
-- Output: an empty table.
-- Explanation: Every valid subtask has an execution record.
+- **Input:** task `(5,3)` with executed pairs `(5,1)`, `(5,2)`, and `(5,3)`.
+- **Output:** an empty table.
+- **Explanation:** Every valid subtask has an execution record.

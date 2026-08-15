@@ -32,20 +32,20 @@ Return the head of a linked list whose digits represent twice the input integer,
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [1,8,9]`
-- Output: `[3,7,8]`
-- Explanation: The input represents $189$, and $2 \cdot 189 = 378$.
+- **Input:** `head = [1,8,9]`
+- **Output:** `[3,7,8]`
+- **Explanation:** The input represents $189$, and $2 \cdot 189 = 378$.
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [9,9,9]`
-- Output: `[1,9,9,8]`
-- Explanation: The input represents $999$, and doubling it produces the four-digit value $1998$.
+- **Input:** `head = [9,9,9]`
+- **Output:** `[1,9,9,8]`
+- **Explanation:** The input represents $999$, and doubling it produces the four-digit value $1998$.
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [0]`
-- Output: `[0]`
-- Explanation: Doubling zero leaves the single valid zero representation unchanged.
+- **Input:** `head = [0]`
+- **Output:** `[0]`
+- **Explanation:** Doubling zero leaves the single valid zero representation unchanged.

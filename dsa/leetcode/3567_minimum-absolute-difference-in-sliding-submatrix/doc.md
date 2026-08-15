@@ -35,22 +35,22 @@ Return an $R\times C$ integer matrix in which each entry is the minimum gap betw
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,8],[3,-2]], k = 2`
-- Output: `[[2]]`
-- Explanation: Sorting the distinct values as `[-2,1,3,8]` shows the smallest adjacent gap is 2.
+- **Input:** `grid = [[1,8],[3,-2]], k = 2`
+- **Output:** `[[2]]`
+- **Explanation:** Sorting the distinct values as `[-2,1,3,8]` shows the smallest adjacent gap is 2.
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[3,-1]], k = 1`
-- Output: `[[0,0]]`
-- Explanation: Each one-cell window has only one distinct value.
+- **Input:** `grid = [[3,-1]], k = 1`
+- **Output:** `[[0,0]]`
+- **Explanation:** Each one-cell window has only one distinct value.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,-2,3],[2,3,5]], k = 2`
-- Output: `[[1,2]]`
-- Explanation: The left window has minimum distinct-value gap 1, while the right window has gap 2.
+- **Input:** `grid = [[1,-2,3],[2,3,5]], k = 2`
+- **Output:** `[[1,2]]`
+- **Explanation:** The left window has minimum distinct-value gap 1, while the right window has gap 2.
 
 ---

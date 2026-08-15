@@ -38,14 +38,14 @@ The length satisfies $1 \le n \le 1000$, and every value satisfies $1 \le \textt
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [10,4,8,3]`
-- Output: `[15,1,11,22]`
-- Explanation: The left sums are `[0,10,14,22]` and the right sums are `[15,11,3,0]`; taking the elementwise absolute differences gives the result.
+- **Input:** `nums = [10,4,8,3]`
+- **Output:** `[15,1,11,22]`
+- **Explanation:** The left sums are `[0,10,14,22]` and the right sums are `[15,11,3,0]`; taking the elementwise absolute differences gives the result.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1]`
-- Output: `[0]`
-- Explanation: There are no elements on either side of the only index.
+- **Input:** `nums = [1]`
+- **Output:** `[0]`
+- **Explanation:** There are no elements on either side of the only index.

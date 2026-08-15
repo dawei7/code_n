@@ -34,7 +34,7 @@ Return one row per qualifying value under the column `ConsecutiveNums`, in any o
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Logs table:
 +----+-----+
 | id | num |
@@ -47,11 +47,11 @@ Logs table:
 | 6  | 2   |
 | 7  | 2   |
 +----+-----+
-**Output:**
+- **Output:** 
 +-----------------+
 | ConsecutiveNums |
 +-----------------+
 | 1               |
 +-----------------+
-**Explanation:** 1 is the only number that appears consecutively for at least three times.
+- **Explanation:** 1 is the only number that appears consecutively for at least three times.
 ```

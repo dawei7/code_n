@@ -33,14 +33,14 @@ Return the number of nonempty contiguous subarrays of `nums` whose median, under
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [3, 2, 1, 4, 5], k = 4`
-- Output: `3`
-- Explanation: The qualifying ranges are `[4]`, `[4, 5]`, and `[1, 4, 5]`.
+- **Input:** `nums = [3, 2, 1, 4, 5], k = 4`
+- **Output:** `3`
+- **Explanation:** The qualifying ranges are `[4]`, `[4, 5]`, and `[1, 4, 5]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [2, 3, 1], k = 3`
-- Output: `1`
-- Explanation: Only the one-element subarray `[3]` has median `3`.
+- **Input:** `nums = [2, 3, 1], k = 3`
+- **Output:** `1`
+- **Explanation:** Only the one-element subarray `[3]` has median `3`.

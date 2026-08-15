@@ -6,8 +6,13 @@ Return ***all** lonely numbers in *`nums`. You may return the answer in **any or
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,17 +20,18 @@ Return ***all** lonely numbers in *`nums`. You may return the answer in **any or
 
 - **Input:** `nums = [10,6,5,8]`
 - **Output:** `[10,8]`
-- **Explanation:**
+- **Explanation:** 
 - 10 is a lonely number since it appears exactly once and 9 and 11 does not appear in nums.
 - 8 is a lonely number since it appears exactly once and 7 and 9 does not appear in nums.
 - 5 is not a lonely number since 6 appears in nums and vice versa.
 Hence, the lonely numbers in nums are [10, 8].
 Note that [8, 10] may also be returned.
+
 #### Example 2
 
 - **Input:** `nums = [1,3,5,3]`
 - **Output:** `[1,5]`
-- **Explanation:**
+- **Explanation:** 
 - 1 is a lonely number since it appears exactly once and 0 and 2 does not appear in nums.
 - 5 is a lonely number since it appears exactly once and 4 and 6 does not appear in nums.
 - 3 is not a lonely number since it appears twice.

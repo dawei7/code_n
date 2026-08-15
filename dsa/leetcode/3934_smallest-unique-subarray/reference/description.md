@@ -24,12 +24,11 @@ Return the minimum length of a subarray sequence that occurs exactly once in `nu
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,3,3]
+- **Input:** nums = [3,3,3]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** 
 
 - Subarrays of length 1: `[3]` → appears 3 times
 
@@ -39,17 +38,13 @@ Return the minimum length of a subarray sequence that occurs exactly once in `nu
 
 The subarray `[3, 3, 3]` is unique, so the smallest unique subarray length is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,1,2,3,3]
+- **Input:** nums = [2,1,2,3,3]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-Subarrays of length 1:
+- **Explanation:** Subarrays of length 1:
 
 - `[2]` → appears 2 times
 
@@ -57,17 +52,15 @@ Subarrays of length 1:
 
 - `[3]` → appears 2 times
 
-The subarray `[1]` is unique, so the smallest unique subarray length is 1.</div>
+The subarray `[1]` is unique, so the smallest unique subarray length is 1.
+
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [1,1,2,2,1]
+- **Input:** nums = [1,1,2,2,1]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-Subarrays of length 1:
+- **Explanation:** Subarrays of length 1:
 
 - `[1]` → appears 3 times
 
@@ -83,7 +76,7 @@ Subarrays of length 2:
 
 - `[2, 1]` → appears once
 
-There is at least one subarray of length 2 that is unique, so the smallest unique subarray length is 2.</div>
+There is at least one subarray of length 2 that is unique, so the smallest unique subarray length is 2.
 
 ### 4. Constraints
 

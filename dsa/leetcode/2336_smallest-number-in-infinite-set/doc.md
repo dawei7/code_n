@@ -40,24 +40,24 @@ each `addBack`, and the returned integer for each `popSmallest`.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `operations = ["SmallestInfiniteSet","addBack","popSmallest","popSmallest","popSmallest","addBack","popSmallest","popSmallest","popSmallest"]`,
+- **Input:** `operations = ["SmallestInfiniteSet","addBack","popSmallest","popSmallest","popSmallest","addBack","popSmallest","popSmallest","popSmallest"]`,
   `arguments = [[],[2],[],[],[],[1],[],[],[]]`
-- Output: `[null,null,1,2,3,null,1,4,5]`
-- Explanation: Adding 2 initially changes nothing. After 1, 2, and 3 are
+- **Output:** `[null,null,1,2,3,null,1,4,5]`
+- **Explanation:** Adding 2 initially changes nothing. After 1, 2, and 3 are
   removed, restoring 1 makes it the smallest again.
 
-**Example 2**
+#### Example 2
 
-- Input: `operations = ["SmallestInfiniteSet","popSmallest","addBack","popSmallest"]`,
+- **Input:** `operations = ["SmallestInfiniteSet","popSmallest","addBack","popSmallest"]`,
   `arguments = [[],[],[1],[]]`
-- Output: `[null,1,null,1]`
-- Explanation: The removed value 1 becomes available again.
+- **Output:** `[null,1,null,1]`
+- **Explanation:** The removed value 1 becomes available again.
 
-**Example 3**
+#### Example 3
 
-- Input: `operations = ["SmallestInfiniteSet","addBack","popSmallest"]`,
+- **Input:** `operations = ["SmallestInfiniteSet","addBack","popSmallest"]`,
   `arguments = [[],[1000],[]]`
-- Output: `[null,null,1]`
-- Explanation: Since 1000 was never removed, adding it back has no effect.
+- **Output:** `[null,null,1]`
+- **Explanation:** Since 1000 was never removed, adding it back has no effect.

@@ -4,8 +4,13 @@ Given a 2D integer array `nums`, return *all elements of *`nums`* in diagonal or
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Examples
 
@@ -15,6 +20,7 @@ Given a 2D integer array `nums`, return *all elements of *`nums`* in diagonal or
 
 - **Input:** `nums = [[1,2,3],[4,5,6],[7,8,9]]`
 - **Output:** `[1,4,2,7,5,3,8,6,9]`
+
 #### Example 2
 
 ![](images/sample_2_1784.png)

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/number-of-ways-to-select-buildings/) |
 
 ## Problem Description
+
 ### Goal
 
 A 0-indexed binary string describes buildings along a street. Character `0` represents an office, while `1` represents a restaurant.
@@ -16,6 +17,7 @@ A 0-indexed binary string describes buildings along a street. Character `0` repr
 Select exactly three buildings at strictly increasing indices. To provide variety, adjacent buildings within the selected triple must have different types, so the chosen types must form either `010` or `101`. Return the number of distinct index triples satisfying this condition.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: A binary string containing at least three characters.
@@ -27,17 +29,18 @@ Let $n=\lvert s\rvert$.
 Return the number of increasing index triples whose selected characters alternate.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "001101"`
-- Output: `6`
+#### Example 1
 
-**Example 2**
+- **Input:** `s = "001101"`
+- **Output:** `6`
 
-- Input: `s = "11100"`
-- Output: `0`
+#### Example 2
 
-**Example 3**
+- **Input:** `s = "11100"`
+- **Output:** `0`
 
-- Input: `s = "010"`
-- Output: `1`
+#### Example 3
+
+- **Input:** `s = "010"`
+- **Output:** `1`

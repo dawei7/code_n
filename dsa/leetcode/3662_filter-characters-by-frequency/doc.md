@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/filter-characters-by-frequency/) |
 
 ## Problem Description
+
 ### Goal
 
 Given a string `s` of lowercase English letters and an integer `k`, determine each character's frequency across the complete original string.
@@ -32,20 +33,20 @@ Return the stable-order subsequence containing all and only occurrences of chara
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "aadbbcccca"`, `k = 3`
-- Output: `"dbb"`
+- **Input:** `s = "aadbbcccca"`, `k = 3`
+- **Output:** `"dbb"`
 - The frequencies of `a`, `b`, `c`, and `d` are `3`, `2`, `4`, and `1`; only `b` and `d` qualify.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "xyz"`, `k = 2`
-- Output: `"xyz"`
+- **Input:** `s = "xyz"`, `k = 2`
+- **Output:** `"xyz"`
 - Every character occurs once, which is strictly below `2`.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "aabcc"`, `k = 2`
-- Output: `"b"`
+- **Input:** `s = "aabcc"`, `k = 2`
+- **Output:** `"b"`
 - Frequencies equal to the threshold do not qualify.

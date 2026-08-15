@@ -30,20 +30,20 @@ A binary string is alternating when every pair of adjacent characters differs. D
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "0100"`
-- Output: `1`
-- Explanation: Changing the final character produces `"0101"`.
+- **Input:** `s = "0100"`
+- **Output:** `1`
+- **Explanation:** Changing the final character produces `"0101"`.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "10"`
-- Output: `0`
-- Explanation: The two existing adjacent characters already differ.
+- **Input:** `s = "10"`
+- **Output:** `0`
+- **Explanation:** The two existing adjacent characters already differ.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "1111"`
-- Output: `2`
-- Explanation: Either `"0101"` or `"1010"` can be reached with two changes.
+- **Input:** `s = "1111"`
+- **Output:** `2`
+- **Explanation:** Either `"0101"` or `"1010"` can be reached with two changes.

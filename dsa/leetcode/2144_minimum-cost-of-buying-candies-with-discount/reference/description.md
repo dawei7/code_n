@@ -10,8 +10,13 @@ Given a **0-indexed** integer array `cost`, where $\text{cost}[i]$ denotes the c
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `cost`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +28,7 @@ Given a **0-indexed** integer array `cost`, where $\text{cost}[i]$ denotes the c
 The total cost of buying all candies is 2 + 3 = 5. This is the **only** way we can buy the candies.
 Note that we cannot buy candies with costs 1 and 3, and then take the candy with cost 2 for free.
 The cost of the free candy has to be less than or equal to the minimum cost of the purchased candies.
+
 #### Example 2
 
 - **Input:** $cost = [6,5,7,9,2,2]$
@@ -33,6 +39,7 @@ The cost of the free candy has to be less than or equal to the minimum cost of t
 - We buy candies with costs 5 and 2
 - Take the last remaining candy with cost 2 for free
 Hence, the minimum cost to buy all candies is 9 + 7 + 5 + 2 = 23.
+
 #### Example 3
 
 - **Input:** $cost = [5,5]$

@@ -11,7 +11,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given a 0-indexed array `words` whose elements contain only lowercase
 English letters. Two words are anagrams when one can be rearranged into the
 other using every original letter exactly once, including the same
@@ -27,6 +29,7 @@ Return that stable array of remaining words. The relative order of all
 survivors must stay the same as in the input.
 
 ### Function Contract
+
 **Inputs**
 
 - `words`: a nonempty list of between 1 and 100 lowercase English words, each
@@ -44,17 +47,18 @@ The words remaining after all valid adjacent-anagram deletions, in their
 original relative order.
 
 ### Examples
-**Example 1**
 
-- Input: `words = ["abba", "baba", "bbaa", "cd", "cd"]`
-- Output: `["abba", "cd"]`
+#### Example 1
 
-**Example 2**
+- **Input:** `words = ["abba", "baba", "bbaa", "cd", "cd"]`
+- **Output:** `["abba", "cd"]`
 
-- Input: `words = ["a", "b", "c", "d", "e"]`
-- Output: `["a", "b", "c", "d", "e"]`
+#### Example 2
 
-**Example 3**
+- **Input:** `words = ["a", "b", "c", "d", "e"]`
+- **Output:** `["a", "b", "c", "d", "e"]`
 
-- Input: `words = ["abc", "cba", "bac"]`
-- Output: `["abc"]`
+#### Example 3
+
+- **Input:** `words = ["abc", "cba", "bac"]`
+- **Output:** `["abc"]`

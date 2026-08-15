@@ -32,19 +32,19 @@ Return the maximum of the number of strictly positive elements and the number of
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [-2, -1, -1, 1, 2, 3]`
-- Output: `3`
-- Explanation: There are three negative and three positive values.
+- **Input:** `nums = [-2, -1, -1, 1, 2, 3]`
+- **Output:** `3`
+- **Explanation:** There are three negative and three positive values.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [-3, -2, -1, 0, 0, 1, 2]`
-- Output: `3`
-- Explanation: The three negatives outnumber the two positives; the zeros belong to neither group.
+- **Input:** `nums = [-3, -2, -1, 0, 0, 1, 2]`
+- **Output:** `3`
+- **Explanation:** The three negatives outnumber the two positives; the zeros belong to neither group.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [5, 20, 66, 1314]`
-- Output: `4`
+- **Input:** `nums = [5, 20, 66, 1314]`
+- **Output:** `4`

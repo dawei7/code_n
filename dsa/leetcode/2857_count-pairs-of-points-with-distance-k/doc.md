@@ -39,23 +39,23 @@ The number of index pairs `(i, j)` with $i < j$ for which `(x_i XOR x_j) + (y_i 
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coordinates = [[1, 2], [4, 2], [1, 3], [5, 2]], k = 5`
-- Output: `2`
+- **Input:** `coordinates = [[1, 2], [4, 2], [1, 3], [5, 2]], k = 5`
+- **Output:** `2`
 
 Pairs `(0, 1)` and `(2, 3)` have the required distance.
 
-**Example 2**
+#### Example 2
 
-- Input: `coordinates = [[1, 3], [1, 3], [1, 3], [1, 3], [1, 3]], k = 0`
-- Output: `10`
+- **Input:** `coordinates = [[1, 3], [1, 3], [1, 3], [1, 3], [1, 3]], k = 0`
+- **Output:** `10`
 
 Every pair of the five identical points has distance zero.
 
-**Example 3**
+#### Example 3
 
-- Input: `coordinates = [[0, 0], [1, 2], [2, 1], [3, 0]], k = 3`
-- Output: `3`
+- **Input:** `coordinates = [[0, 0], [1, 2], [2, 1], [3, 0]], k = 3`
+- **Output:** `3`
 
 The point `[0, 0]` forms a qualifying pair with each of the other three points.

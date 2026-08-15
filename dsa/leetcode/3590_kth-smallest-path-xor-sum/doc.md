@@ -38,19 +38,19 @@ Return a length-$q$ integer array containing each query's ranked distinct path X
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `par = [-1, 0, 0], vals = [1, 1, 1], queries = [[0, 1], [0, 2], [0, 3]]`
-- Output: `[0, 1, -1]`
-- Explanation: The root-to-node XORs are `[1, 0, 0]`, so the root subtree has distinct sorted sums `[0, 1]`.
+- **Input:** `par = [-1, 0, 0], vals = [1, 1, 1], queries = [[0, 1], [0, 2], [0, 3]]`
+- **Output:** `[0, 1, -1]`
+- **Explanation:** The root-to-node XORs are `[1, 0, 0]`, so the root subtree has distinct sorted sums `[0, 1]`.
 
-**Example 2**
+#### Example 2
 
-- Input: `par = [-1, 0, 1], vals = [5, 2, 7], queries = [[0, 1], [1, 2], [1, 3], [2, 1]]`
-- Output: `[0, 7, -1, 0]`
-- Explanation: The path XORs are `[5, 7, 0]`. Node `1`'s subtree has distinct sums `[0, 7]`, while node `2`'s singleton subtree contains only `0`.
+- **Input:** `par = [-1, 0, 1], vals = [5, 2, 7], queries = [[0, 1], [1, 2], [1, 3], [2, 1]]`
+- **Output:** `[0, 7, -1, 0]`
+- **Explanation:** The path XORs are `[5, 7, 0]`. Node `1`'s subtree has distinct sums `[0, 7]`, while node `2`'s singleton subtree contains only `0`.
 
-**Example 3**
+#### Example 3
 
-- Input: `par = [-1], vals = [7], queries = [[0, 1], [0, 2]]`
-- Output: `[7, -1]`
+- **Input:** `par = [-1], vals = [7], queries = [[0, 1], [0, 2]]`
+- **Output:** `[7, -1]`

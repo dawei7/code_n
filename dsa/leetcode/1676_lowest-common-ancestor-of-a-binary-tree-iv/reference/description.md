@@ -38,6 +38,7 @@ Return the `TreeNode` object that is the lowest common ancestor shared by every 
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [4,7]`
 - **Output:** `2`
 - **Explanation:** The lowest common ancestor of nodes 4 and 7 is node 2.
+
 #### Example 2
 
 ![](images/binarytree.png)
@@ -45,6 +46,7 @@ Return the `TreeNode` object that is the lowest common ancestor shared by every 
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [1]`
 - **Output:** `1`
 - **Explanation:** The lowest common ancestor of a single node is the node itself.
+
 #### Example 3
 
 ![](images/binarytree.png)

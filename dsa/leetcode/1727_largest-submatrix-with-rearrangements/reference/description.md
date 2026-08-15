@@ -6,8 +6,13 @@ Return *the area of the largest submatrix within *`matrix`* where **every** elem
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `matrix`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -19,6 +24,7 @@ Return *the area of the largest submatrix within *`matrix`* where **every** elem
 - **Output:** `4`
 - **Explanation:** You can rearrange the columns as shown above.
 The largest submatrix of 1s, in bold, has an area of 4.
+
 #### Example 2
 
 ![](images/screenshot-2020-12-30-at-40852-pm.png)
@@ -27,6 +33,7 @@ The largest submatrix of 1s, in bold, has an area of 4.
 - **Output:** `3`
 - **Explanation:** You can rearrange the columns as shown above.
 The largest submatrix of 1s, in bold, has an area of 3.
+
 #### Example 3
 
 - **Input:** $matrix = [[1,1,0],[1,0,1]]$

@@ -12,39 +12,36 @@ The term `lcm(a, b)` denotes the **least common multiple** of `a` and `b`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `threshold`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [2,4,8,3,9], threshold = 5
+- **Input:** nums = [2,4,8,3,9], threshold = 5
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-![](images/example0.png)
+- **Explanation:** ![](images/example0.png)
 
 The four connected components are `(2, 4)`, `(3)`, `(8)`, `(9)`.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,4,8,3,9,12], threshold = 10
+- **Input:** nums = [2,4,8,3,9,12], threshold = 10
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-![](images/example1.png)
+- **Explanation:** ![](images/example1.png)
 
 The two connected components are `(2, 3, 4, 8, 9)`, and `(12)`.
-
-</div>
 
 ### 4. Constraints
 

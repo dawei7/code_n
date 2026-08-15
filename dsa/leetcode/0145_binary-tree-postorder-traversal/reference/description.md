@@ -16,44 +16,31 @@ Return the node values in left-right-root postorder.
 
 #### Example 1
 
-<div class="example-block">
-**Input:** root = [1,null,2,3]
+- **Input:** root = [1,null,2,3]
 
-**Output:** [3,2,1]
+- **Output:** [3,2,1]
 
-**Explanation:**
+- **Explanation:** ![](images/screenshot-2024-08-29-202743.png)
 
-![](images/screenshot-2024-08-29-202743.png)
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** root = [1,2,3,4,5,null,8,null,null,6,7,9]
+- **Input:** root = [1,2,3,4,5,null,8,null,null,6,7,9]
 
-**Output:** [4,6,7,5,2,9,8,3,1]
+- **Output:** [4,6,7,5,2,9,8,3,1]
 
-**Explanation:**
+- **Explanation:** ![](images/tree_2.png)
 
-![](images/tree_2.png)
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** root = []
+- **Input:** root = []
 
-**Output:** []
+- **Output:** []
 
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** root = [1]
+- **Input:** root = [1]
 
-**Output:** [1]
-
-</div>
+- **Output:** [1]
 
 ### 4. Constraints
 

@@ -9,6 +9,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/group-sold-products-by-the-date/) |
 
 ## Problem Description
+
 ### Goal
 
 The `Activities` table records a sale date and product name for each market activity. It has no primary key, so identical rows may appear more than once.
@@ -16,6 +17,7 @@ The `Activities` table records a sale date and product name for each market acti
 Produce one row for every represented `sell_date`. Report the number of different products sold on that date as `num_sold`, and report those distinct names as one comma-separated `products` string in lexicographic order. Sort the result rows by `sell_date` in ascending order.
 
 ### Function Contract
+
 **Inputs**
 
 Let $R$ be the number of rows in `Activities`, and let $P$ be the number of distinct `(sell_date, product)` pairs.
@@ -41,7 +43,8 @@ Return a relation with these columns:
 Order rows by `sell_date` ascending.
 
 ### Examples
-**Example 1**
+
+#### Example 1
 
 Input `Activities`:
 
@@ -55,7 +58,7 @@ Input `Activities`:
 | 2020-06-02 | Mask |
 | 2020-05-30 | T-Shirt |
 
-Output:
+- **Output:** 
 
 | sell_date | num_sold | products |
 |---|---:|---|

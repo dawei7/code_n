@@ -10,8 +10,14 @@ Return *the minimum number of taps* that should be open to water the whole garde
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `ranges`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -28,6 +34,7 @@ The tap at point 3 can cover the interval [2,4]
 The tap at point 4 can cover the interval [4,4]
 The tap at point 5 can cover the interval [5,5]
 Opening Only the second tap will water the whole garden [0,5]
+
 #### Example 2
 
 - **Input:** $n = 3, ranges = [0,0,0,0]$

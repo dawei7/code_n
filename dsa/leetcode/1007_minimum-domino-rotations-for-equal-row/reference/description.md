@@ -10,8 +10,14 @@ If it cannot be done, return `-1`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `tops`: Input parameter (`List[int]`).
+- `bottoms`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,15 +27,14 @@ If it cannot be done, return `-1`.
 
 - **Input:** $tops = [2,1,2,4,2,2], bottoms = [5,2,6,2,3,2]$
 - **Output:** `2`
-- **Explanation:**
-The first figure represents the dominoes as given by tops and bottoms: before we do any rotations.
+- **Explanation:** The first figure represents the dominoes as given by tops and bottoms: before we do any rotations.
 If we rotate the second and fourth dominoes, we can make every value in the top row equal to 2, as indicated by the second figure.
+
 #### Example 2
 
 - **Input:** $tops = [3,5,1,2,3], bottoms = [3,6,3,3,4]$
 - **Output:** `-1`
-- **Explanation:**
-In this case, it is not possible to rotate the dominoes to make one row of values equal.
+- **Explanation:** In this case, it is not possible to rotate the dominoes to make one row of values equal.
 
 ### 4. Constraints
 

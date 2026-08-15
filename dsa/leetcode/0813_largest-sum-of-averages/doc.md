@@ -31,20 +31,20 @@ Define a partition's score as the sum of the arithmetic average of each group. R
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [9,1,2,3,9], k = 3`
-- Output: `20.0`
-- Explanation: The partition `[9] | [1,2,3] | [9]` contributes $9 + 2 + 9$.
+- **Input:** `nums = [9,1,2,3,9], k = 3`
+- **Output:** `20.0`
+- **Explanation:** The partition `[9] | [1,2,3] | [9]` contributes $9 + 2 + 9$.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [1,2,3,4,5,6,7], k = 4`
-- Output: `20.5`
-- Explanation: An optimal partition is `[1,2,3,4] | [5] | [6] | [7]`.
+- **Input:** `nums = [1,2,3,4,5,6,7], k = 4`
+- **Output:** `20.5`
+- **Explanation:** An optimal partition is `[1,2,3,4] | [5] | [6] | [7]`.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [1,2,3], k = 1`
-- Output: `2.0`
-- Explanation: With one group, the result is the average of the entire array.
+- **Input:** `nums = [1,2,3], k = 1`
+- **Output:** `2.0`
+- **Explanation:** With one group, the result is the average of the entire array.

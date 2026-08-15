@@ -16,8 +16,13 @@ Return *the minimum number of moves required to make *`s`* valid*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +30,7 @@ Return *the minimum number of moves required to make *`s`* valid*.
 
 - **Input:** `s = "())"`
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** `s = "((("`

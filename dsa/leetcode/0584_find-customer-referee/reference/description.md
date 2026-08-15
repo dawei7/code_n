@@ -34,7 +34,7 @@ The result format is in the following example.
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customer table:
 +----+------+------------+
 | id | name | referee_id |
@@ -46,7 +46,7 @@ Customer table:
 | 5  | Zack | 1          |
 | 6  | Mark | 2          |
 +----+------+------------+
-**Output:**
+- **Output:** 
 +------+
 | name |
 +------+

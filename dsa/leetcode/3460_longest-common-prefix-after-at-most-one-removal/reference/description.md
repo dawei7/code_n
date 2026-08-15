@@ -16,52 +16,35 @@ Return the **length** of the **longest common prefix** between `s` and `t` after
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "madxa", t = "madam"
+- **Input:** s = "madxa", t = "madam"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** Removing $s[3]$ from `s` results in `"mada"`, which has a longest common prefix of length 4 with `t`.
 
-Removing $s[3]$ from `s` results in `"mada"`, which has a longest common prefix of length 4 with `t`.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "leetcode", t = "eetcode"
+- **Input:** s = "leetcode", t = "eetcode"
 
-**Output:** 7
+- **Output:** 7
 
-**Explanation:**
+- **Explanation:** Removing $s[0]$ from `s` results in `"eetcode"`, which matches `t`.
 
-Removing $s[0]$ from `s` results in `"eetcode"`, which matches `t`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "one", t = "one"
+- **Input:** s = "one", t = "one"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** No removal is needed.
 
-No removal is needed.
-
-</div>
 #### Example 4
 
-<div class="example-block">
-**Input:** s = "a", t = "b"
+- **Input:** s = "a", t = "b"
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-`s` and `t` cannot have a common prefix.
-
-</div>
+- **Explanation:** `s` and `t` cannot have a common prefix.
 
 ### 5. Constraints
 

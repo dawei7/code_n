@@ -33,20 +33,20 @@ Return the greatest integer $k$ with $0 \le k \le r$ such that deleting the char
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "abcacb", p = "ab", removable = [3, 1, 0]`
-- Output: `2`
-- Explanation: Removing original indices `3` and `1` leaves `"accb"`, which still contains `"ab"` as a subsequence. Removing index `0` as well destroys that subsequence.
+- **Input:** `s = "abcacb", p = "ab", removable = [3, 1, 0]`
+- **Output:** `2`
+- **Explanation:** Removing original indices `3` and `1` leaves `"accb"`, which still contains `"ab"` as a subsequence. Removing index `0` as well destroys that subsequence.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "abcbddddd", p = "abcd", removable = [3, 2, 1, 4, 5, 6]`
-- Output: `1`
-- Explanation: After the first removal, `"abcddddd"` still contains `"abcd"`. The next removal makes that impossible.
+- **Input:** `s = "abcbddddd", p = "abcd", removable = [3, 2, 1, 4, 5, 6]`
+- **Output:** `1`
+- **Explanation:** After the first removal, `"abcddddd"` still contains `"abcd"`. The next removal makes that impossible.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "abcab", p = "abc", removable = [0, 1, 2, 3, 4]`
-- Output: `0`
-- Explanation: Removing original index `0` immediately eliminates every possible `"abc"` subsequence.
+- **Input:** `s = "abcab", p = "abc", removable = [0, 1, 2, 3, 4]`
+- **Output:** `0`
+- **Explanation:** Removing original index `0` immediately eliminates every possible `"abc"` subsequence.

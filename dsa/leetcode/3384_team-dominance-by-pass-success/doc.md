@@ -35,7 +35,7 @@ Let $t$ be the number of player rows, $p$ the number of pass rows, and $g$ the n
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 `Teams`
 

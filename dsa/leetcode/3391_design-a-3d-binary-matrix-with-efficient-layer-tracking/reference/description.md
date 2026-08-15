@@ -20,14 +20,13 @@ Implement the `Matrix3D` class:
 
 #### Example 1
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["Matrix3D", "setCell", "largestMatrix", "setCell", "largestMatrix", "setCell", "largestMatrix"]
 
 [[3], [0, 0, 0], [], [1, 1, 2], [], [0, 0, 1], []]
 
-**Output:**
+- **Output:** 
 
 [null, null, 0, null, 1, null, 0]
 
@@ -45,17 +44,17 @@ matrix3D.largestMatrix(); // Returns 1. $\text{matrix}[0]$ and $\text{matrix}[1]
 
 matrix3D.setCell(0, 0, 1); // Sets $\text{matrix}[0][0][1]$ to 1.
 
-matrix3D.largestMatrix(); // Returns 0. $\text{matrix}[0]$ has the most number of 1's.</div>
+matrix3D.largestMatrix(); // Returns 0. $\text{matrix}[0]$ has the most number of 1's.
+
 #### Example 2
 
-<div class="example-block">
-**Input:**
+- **Input:** 
 
 ["Matrix3D", "setCell", "largestMatrix", "unsetCell", "largestMatrix"]
 
 [[4], [2, 1, 1], [], [2, 1, 1], []]
 
-**Output:**
+- **Output:** 
 
 [null, null, 2, null, 3]
 
@@ -69,7 +68,7 @@ matrix3D.largestMatrix(); // Returns 2. $\text{matrix}[2]$ has the most number o
 
 matrix3D.unsetCell(2, 1, 1); // Sets $\text{matrix}[2][1][1]$ to 0.
 
-matrix3D.largestMatrix(); // Returns 3. All indices from 0 to 3 tie with the same number of 1's, but index 3 is the biggest.</div>
+matrix3D.largestMatrix(); // Returns 3. All indices from 0 to 3 tie with the same number of 1's, but index 3 is the biggest.
 
 ### 4. Constraints
 

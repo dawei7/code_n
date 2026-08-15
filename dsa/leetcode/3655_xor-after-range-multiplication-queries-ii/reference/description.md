@@ -10,29 +10,32 @@ For each query, you must apply the following operations in order:
 
 - While $idx \le r_{i}$:
 
-		<li>Update: $\text{nums}[idx] = (\text{nums}[idx] * v_{i}) \% (10^{9} + 7)$.
+		- Update: $\text{nums}[idx] = (\text{nums}[idx] * v_{i}) \% (10^{9} + 7)$.
 
 - Set $idx += k_{i}$.
-
-	</li>
 
 Return the **bitwise XOR** of all elements in `nums` after processing all queries.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `queries`: Input parameter (`List[List[int]]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,1,1], queries = [[0,2,1,4]]
+- **Input:** nums = [1,1,1], queries = [[0,2,1,4]]
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** 
 
 - A single query `[0, 2, 1, 4]` multiplies every element from index 0 through index 2 by 4.
 
@@ -40,23 +43,19 @@ Return the **bitwise XOR** of all elements in `nums` after processing all querie
 
 - The XOR of all elements is $4 ^ 4 ^ 4 = 4$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,1,5,4], queries = [[1,4,2,3],[0,2,1,2]]
+- **Input:** nums = [2,3,1,5,4], queries = [[1,4,2,3],[0,2,1,2]]
 
-**Output:** 31
+- **Output:** 31
 
-**Explanation:**
+- **Explanation:** 
 
 - The first query `[1, 4, 2, 3]` multiplies the elements at indices 1 and 3 by 3, transforming the array to `[2, 9, 1, 15, 4]`.
 
 - The second query `[0, 2, 1, 2]` multiplies the elements at indices 0, 1, and 2 by 2, resulting in `[4, 18, 2, 15, 4]`.
 
 - Finally, the XOR of all elements is $4 ^ 18 ^ 2 ^ 15 ^ 4 = 31$.​​​​​​​**​​​​​​​**
-
-</div>
 
 ### 4. Constraints
 

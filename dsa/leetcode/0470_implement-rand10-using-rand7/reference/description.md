@@ -23,10 +23,12 @@ The immutable native form instead exposes `Solution.rand10()` with no arguments 
 
 - **Input:** $n = 1$
 - **Output:** `[2]`
+
 #### Example 2
 
 - **Input:** $n = 2$
 - **Output:** `[2,8]`
+
 #### Example 3
 
 - **Input:** $n = 3$

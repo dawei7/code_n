@@ -6,35 +6,32 @@ Return the count of **beautiful** numbers between `l` and `r`, inclusive.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `l`: Input parameter (`int`).
+- `r`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** l = 10, r = 20
+- **Input:** l = 10, r = 20
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** The beautiful numbers in the range are 10 and 20.
 
-The beautiful numbers in the range are 10 and 20.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** l = 1, r = 15
+- **Input:** l = 1, r = 15
 
-**Output:** 10
+- **Output:** 10
 
-**Explanation:**
-
-The beautiful numbers in the range are 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
-
-</div>
+- **Explanation:** The beautiful numbers in the range are 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
 
 ### 4. Constraints
 

@@ -55,7 +55,7 @@ Return each qualifying book once, in any order. A qualifying book without an ord
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Books table:
 +---------+--------------------+----------------+
 | book_id | name               | available_from |
@@ -78,7 +78,7 @@ Orders table:
 | 6        | 5       | 9        | 2009-02-02    |
 | 7        | 5       | 8        | 2010-04-13    |
 +----------+---------+----------+---------------+
-**Output:**
+- **Output:** 
 +-----------+--------------------+
 | book_id   | name               |
 +-----------+--------------------+

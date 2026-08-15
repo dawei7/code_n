@@ -14,8 +14,13 @@ The test cases are generated so that the answer always exists and is in the rang
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,10 +28,12 @@ The test cases are generated so that the answer always exists and is in the rang
 
 - **Input:** $n = 6$
 - **Output:** `7`
+
 #### Example 2
 
 - **Input:** $n = 8$
 - **Output:** `11`
+
 #### Example 3
 
 - **Input:** $n = 13$

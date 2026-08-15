@@ -4,8 +4,13 @@ Given a positive integer, check whether it has alternating bits: namely, if two 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -14,11 +19,13 @@ Given a positive integer, check whether it has alternating bits: namely, if two 
 - **Input:** $n = 5$
 - **Output:** `true`
 - **Explanation:** The binary representation of 5 is: 101
+
 #### Example 2
 
 - **Input:** $n = 7$
 - **Output:** `false`
 - **Explanation:** The binary representation of 7 is: 111.
+
 #### Example 3
 
 - **Input:** $n = 11$

@@ -32,17 +32,17 @@ The path may begin at any tree node, but after it begins each next list value mu
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `head = [4,2,8]`, `root = [1,4,9,null,2,null,4,null,8]`
-- Output: `true`
+- **Input:** `head = [4,2,8]`, `root = [1,4,9,null,2,null,4,null,8]`
+- **Output:** `true`
 
-**Example 2**
+#### Example 2
 
-- Input: `head = [1,4,2,6]`, `root = [1,4,3,null,2,null,null,6]`
-- Output: `true`
+- **Input:** `head = [1,4,2,6]`, `root = [1,4,3,null,2,null,null,6]`
+- **Output:** `true`
 
-**Example 3**
+#### Example 3
 
-- Input: `head = [1,4,2,6,8]`, `root = [1,4,3,null,2,null,null,6]`
-- Output: `false`
+- **Input:** `head = [1,4,2,6,8]`, `root = [1,4,3,null,2,null,null,6]`
+- **Output:** `false`

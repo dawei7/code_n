@@ -10,8 +10,14 @@ The **final** answer is **guaranteed** to fit into a signed **32-bit** integer.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `amount`: Input parameter (`int`).
+- `coins`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -24,11 +30,13 @@ The **final** answer is **guaranteed** to fit into a signed **32-bit** integer.
 5=2+2+1
 5=2+1+1+1
 5=1+1+1+1+1
+
 #### Example 2
 
 - **Input:** $amount = 3, coins = [2]$
 - **Output:** `0`
 - **Explanation:** the amount of 3 cannot be made up just with coins of 2.
+
 #### Example 3
 
 - **Input:** $amount = 10, coins = [10]$

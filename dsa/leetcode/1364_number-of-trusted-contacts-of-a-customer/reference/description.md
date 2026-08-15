@@ -84,7 +84,7 @@ Sort the result by $\text{invoice}_{id}$ in ascending order. An email's existenc
 #### Example 1
 
 ```
-**Input:**
+- **Input:** 
 Customers table:
 +-------------+---------------+--------------------+
 | customer_id | customer_name | email              |
@@ -116,7 +116,7 @@ Invoices table:
 | 55         | 500   | 13      |
 | 44         | 60    | 6       |
 +------------+-------+---------+
-**Output:**
+- **Output:** 
 +------------+---------------+-------+--------------+----------------------+
 | invoice_id | customer_name | price | contacts_cnt | trusted_contacts_cnt |
 +------------+---------------+-------+--------------+----------------------+
@@ -127,8 +127,7 @@ Invoices table:
 | 88         | Alice         | 200   | 3            | 2                    |
 | 99         | Bob           | 300   | 2            | 0                    |
 +------------+---------------+-------+--------------+----------------------+
-**Explanation:**
-Alice has three contacts, two of them are trusted contacts (Bob and John).
+- **Explanation:** Alice has three contacts, two of them are trusted contacts (Bob and John).
 Bob has two contacts, none of them is a trusted contact.
 Alex has one contact and it is a trusted contact (Alice).
 John doesn't have any contacts.

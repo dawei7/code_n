@@ -32,27 +32,27 @@ Let $r = \lvert\texttt{arr}\rvert$, let $k$ be the number of distinct leaf paths
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [{"b":1,"a":2},{"b":3,"a":4}]`
-- Output: `[["a","b"],[2,1],[4,3]]`
+- **Input:** `arr = [{"b":1,"a":2},{"b":3,"a":4}]`
+- **Output:** `[["a","b"],[2,1],[4,3]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [{"a":1,"b":2},{"c":3,"d":4},{}]`
-- Output: `[["a","b","c","d"],[1,2,"",""],["","",3,4],["","","",""]]`
+- **Input:** `arr = [{"a":1,"b":2},{"c":3,"d":4},{}]`
+- **Output:** `[["a","b","c","d"],[1,2,"",""],["","",3,4],["","","",""]]`
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [{"a":{"b":1,"c":2}},{"a":{"b":3,"d":4}}]`
-- Output: `[["a.b","a.c","a.d"],[1,2,""],[3,"",4]]`
+- **Input:** `arr = [{"a":{"b":1,"c":2}},{"a":{"b":3,"d":4}}]`
+- **Output:** `[["a.b","a.c","a.d"],[1,2,""],[3,"",4]]`
 
-**Example 4**
+#### Example 4
 
-- Input: `arr = [[{"a":null}],[{"b":true}],[{"c":"x"}]]`
-- Output: `[["0.a","0.b","0.c"],[null,"",""],["",true,""],["","","x"]]`
+- **Input:** `arr = [[{"a":null}],[{"b":true}],[{"c":"x"}]]`
+- **Output:** `[["0.a","0.b","0.c"],[null,"",""],["",true,""],["","","x"]]`
 
-**Example 5**
+#### Example 5
 
-- Input: `arr = [{},{},{}]`
-- Output: `[[],[],[],[]]`
+- **Input:** `arr = [{},{},{}]`
+- **Output:** `[[],[],[],[]]`

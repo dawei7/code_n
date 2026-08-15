@@ -34,43 +34,30 @@ Return the least total purchase cost whose contributions meet or exceed both req
 
 #### Example 1
 
-<div class="example-block">
-**Input:** cost1 = 3, cost2 = 2, costBoth = 1, need1 = 3, need2 = 2
+- **Input:** cost1 = 3, cost2 = 2, costBoth = 1, need1 = 3, need2 = 2
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
-
-After buying three type 3 items, which cost $3 * 1 = 3$, the total contribution to type 1 is 3 ($\ge need1 = 3$) and to type 2 is 3 ($\ge need2 = 2$).<br data-end="229" data-start="226" />
+- **Explanation:** After buying three type 3 items, which cost $3 * 1 = 3$, the total contribution to type 1 is 3 ($\ge need1 = 3$) and to type 2 is 3 ($\ge need2 = 2$).<br data-end="229" data-start="226" />
 Any other valid combination would cost more, so the minimum total cost is 3.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** cost1 = 5, cost2 = 4, costBoth = 15, need1 = 2, need2 = 3
+- **Input:** cost1 = 5, cost2 = 4, costBoth = 15, need1 = 2, need2 = 3
 
-**Output:** 22
+- **Output:** 22
 
-**Explanation:**
-
-We buy $need1 = 2$ items of type 1 and $need2 = 3$ items of type 2: $2 * 5 + 3 * 4 = 10 + 12 = 22$.
+- **Explanation:** We buy $need1 = 2$ items of type 1 and $need2 = 3$ items of type 2: $2 * 5 + 3 * 4 = 10 + 12 = 22$.
 
 Any other valid combination would cost more, so the minimum total cost is 22.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** cost1 = 5, cost2 = 4, costBoth = 15, need1 = 0, need2 = 0
+- **Input:** cost1 = 5, cost2 = 4, costBoth = 15, need1 = 0, need2 = 0
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-Since no items are required ($need1 = need2 = 0$), we buy nothing and pay 0.
-
-</div>
+- **Explanation:** Since no items are required ($need1 = need2 = 0$), we buy nothing and pay 0.
 
 ### 4. Constraints
 

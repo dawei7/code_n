@@ -20,40 +20,27 @@ Return the maximum number of elements in a subsequence that is strictly increasi
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [5,4,7]
+- **Input:** nums = [5,4,7]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** One longest strictly increasing subsequence is `[5, 7]`. The bitwise AND is $5 AND 7 = 5$, which is non-zero.
 
-One longest strictly increasing subsequence is `[5, 7]`. The bitwise AND is $5 AND 7 = 5$, which is non-zero.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [2,3,6]
+- **Input:** nums = [2,3,6]
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** The longest strictly increasing subsequence is `[2, 3, 6]`. The bitwise AND is $2 AND 3 AND 6 = 2$, which is non-zero.
 
-The longest strictly increasing subsequence is `[2, 3, 6]`. The bitwise AND is $2 AND 3 AND 6 = 2$, which is non-zero.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [0,1]
+- **Input:** nums = [0,1]
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-One longest strictly increasing subsequence is `[1]`. The bitwise AND is 1, which is non-zero.
-
-</div>
+- **Explanation:** One longest strictly increasing subsequence is `[1]`. The bitwise AND is 1, which is non-zero.
 
 ### 4. Constraints
 

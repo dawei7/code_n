@@ -6,8 +6,14 @@ Return `true` *if you can make *`arr`* equal to *`target`* or *`false`* otherwis
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`List[int]`).
+- `arr`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -20,11 +26,13 @@ Return `true` *if you can make *`arr`* equal to *`target`* or *`false`* otherwis
 2- Reverse subarray [4,2], arr becomes [1,2,4,3]
 3- Reverse subarray [4,3], arr becomes [1,2,3,4]
 There are multiple ways to convert arr to target, this is not the only way to do so.
+
 #### Example 2
 
 - **Input:** $target = [7], arr = [7]$
 - **Output:** `true`
 - **Explanation:** arr is equal to target without any reverses.
+
 #### Example 3
 
 - **Input:** $target = [3,7,9], arr = [3,7,11]$

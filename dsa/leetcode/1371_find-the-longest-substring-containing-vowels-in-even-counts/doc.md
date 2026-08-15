@@ -30,17 +30,17 @@ Zero is an even count, so a qualifying substring may omit any or all vowels. Con
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `s = "eleetminicoworoep"`
-- Output: `13`
+- **Input:** `s = "eleetminicoworoep"`
+- **Output:** `13`
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "leetcodeisgreat"`
-- Output: `5`
+- **Input:** `s = "leetcodeisgreat"`
+- **Output:** `5`
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "bcbcbc"`
-- Output: `6`
+- **Input:** `s = "bcbcbc"`
+- **Output:** `6`

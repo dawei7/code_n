@@ -4,8 +4,13 @@ Given a list of 24-hour clock time points in **"HH:MM"** format, return *the min
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `timePoints`: Input parameter (`List[str]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -13,6 +18,7 @@ Given a list of 24-hour clock time points in **"HH:MM"** format, return *the min
 
 - **Input:** $timePoints = ["23:59","00:00"]$
 - **Output:** `1`
+
 #### Example 2
 
 - **Input:** $timePoints = ["00:00","23:59","00:00"]$

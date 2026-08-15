@@ -22,8 +22,15 @@ Return *a list of *`boolean` *elements* `answer`*, where* $\text{answer}[i]$ *is
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `l`: Input parameter (`List[int]`).
+- `r`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `List[bool]`.
 
 ### 3. Examples
 
@@ -31,10 +38,10 @@ Return *a list of *`boolean` *elements* `answer`*, where* $\text{answer}[i]$ *is
 
 - **Input:** `nums = [4,6,5,9,3,7], l = [0,0,2], r = [2,3,5]`
 - **Output:** `[true,false,true]`
-- **Explanation:**
-In the 0^th query, the subarray is [4,6,5]. This can be rearranged as [6,5,4], which is an arithmetic sequence.
+- **Explanation:** In the 0^th query, the subarray is [4,6,5]. This can be rearranged as [6,5,4], which is an arithmetic sequence.
 In the 1^st query, the subarray is [4,6,5,9]. This cannot be rearranged as an arithmetic sequence.
 In the 2^nd query, the subarray is [5,9,3,7]. This can be rearranged as [3,5,7,9], which is an arithmetic sequence.
+
 #### Example 2
 
 - **Input:** `nums = [-12,-9,-3,-12,-6,15,20,-25,-20,-15,-10], l = [0,1,6,4,8,7], r = [4,4,9,7,9,10]`

@@ -22,46 +22,33 @@ Return the minimum index $i$ for which $s[i] = s[n - i - 1]$. Return `-1` when n
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "abcacbd"
+- **Input:** s = "abcacbd"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-At index $i = 1$, $s[1]$ and $s[5]$ are both `'b'`.
+- **Explanation:** At index $i = 1$, $s[1]$ and $s[5]$ are both `'b'`.
 
 No smaller index satisfies the condition, so the answer is 1.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "abc"
+- **Input:** s = "abc"
 
-**Output:** 1
+- **Output:** 1
 
-**Explanation:**
-
-​​​​​​​At index $i = 1$, the two compared positions coincide, so both characters are `'b'`.
+- **Explanation:** ​​​​​​​At index $i = 1$, the two compared positions coincide, so both characters are `'b'`.
 
 No smaller index satisfies the condition, so the answer is 1.
 
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "abcdab"
+- **Input:** s = "abcdab"
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-​​​​​​​For every index `i`, the characters at positions `i` and $n - i - 1$ are different.
+- **Explanation:** ​​​​​​​For every index `i`, the characters at positions `i` and $n - i - 1$ are different.
 
 Therefore, no valid index exists, so the answer is -1.
-
-</div>
 
 ### 4. Constraints
 

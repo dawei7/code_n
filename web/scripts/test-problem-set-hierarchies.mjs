@@ -157,7 +157,7 @@ assert.deepEqual(
   ['lc_1', 'lc_2'],
   'All Problems by ID must be one flat numeric frontend-ID sequence.',
 );
-assert.equal(hierarchyProblemCount(buildStandardProblemHierarchy('elo', challenges).nodes), 1);
+assert.equal(hierarchyProblemCount(buildStandardProblemHierarchy('elo', challenges).nodes), 2);
 const eloBuckets = buildStandardProblemHierarchy('elo_buckets', [
   challenge('lc_2', { elo_rating: 1299 }),
   challenge('lc_1', { elo_rating: 1200 }),

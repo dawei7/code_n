@@ -11,6 +11,7 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/) |
 
 ## Problem Description
+
 ### Goal
 
 A binary string `s` describes a sequence of train cars in their current order.
@@ -28,6 +29,7 @@ The remaining sequence may contain legal cars or be empty; an empty sequence
 already satisfies the requirement.
 
 ### Function Contract
+
 **Inputs**
 
 - `s`: a binary string of length $n$, where $1\le n\le 2\cdot 10^5$ and every
@@ -40,25 +42,26 @@ The order of cars is fixed except for cars disappearing through removals.
 Return the minimum integer cost of removing every car represented by `1`.
 
 ### Examples
-**Example 1**
 
-- Input: `s = "1100101"`
-- Output: `5`
+#### Example 1
+
+- **Input:** `s = "1100101"`
+- **Output:** `5`
 
 One optimal plan removes two cars from the left, one from the right, and the
 remaining illegal car directly, for a total cost of $2+1+2=5$.
 
-**Example 2**
+#### Example 2
 
-- Input: `s = "0010"`
-- Output: `2`
+- **Input:** `s = "0010"`
+- **Output:** `2`
 
 The only illegal car can be removed directly for two units, or the two-car
 suffix can be removed from the right for the same cost.
 
-**Example 3**
+#### Example 3
 
-- Input: `s = "0000"`
-- Output: `0`
+- **Input:** `s = "0000"`
+- **Output:** `0`
 
 No operation is required when every car is already legal.

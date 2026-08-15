@@ -25,6 +25,7 @@ Return whether the graph defined by all nodes and edges is a tree.
 
 - **Input:** $n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]$
 - **Output:** `true`
+
 #### Example 2
 
 ![](images/tree2-graph.jpg)

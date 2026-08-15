@@ -36,20 +36,20 @@ Return a generator. Its first yielded value is `arr[startIndex]`; each later yie
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `arr = [1,2,3,4,5], startIndex = 0, steps = [1,2,6]`
-- Output: `[1,2,4,5]`
-- Explanation: The final jump of six moves from index 3 to index 4 after wrapping once.
+- **Input:** `arr = [1,2,3,4,5], startIndex = 0, steps = [1,2,6]`
+- **Output:** `[1,2,4,5]`
+- **Explanation:** The final jump of six moves from index 3 to index 4 after wrapping once.
 
-**Example 2**
+#### Example 2
 
-- Input: `arr = [10,11,12,13,14,15], startIndex = 1, steps = [1,4,0,-1,-3]`
-- Output: `[11,12,10,10,15,12]`
-- Explanation: Zero preserves the current index, while negative jumps move left with wraparound.
+- **Input:** `arr = [10,11,12,13,14,15], startIndex = 1, steps = [1,4,0,-1,-3]`
+- **Output:** `[11,12,10,10,15,12]`
+- **Explanation:** Zero preserves the current index, while negative jumps move left with wraparound.
 
-**Example 3**
+#### Example 3
 
-- Input: `arr = [2,4,6,7,8,10], startIndex = 3, steps = [-4,5,-3,10]`
-- Output: `[7,10,8,4,10]`
-- Explanation: Each jump begins from the index retained after the preceding yield.
+- **Input:** `arr = [2,4,6,7,8,10], startIndex = 3, steps = [-4,5,-3,10]`
+- **Output:** `[7,10,8,4,10]`
+- **Explanation:** Each jump begins from the index retained after the preceding yield.

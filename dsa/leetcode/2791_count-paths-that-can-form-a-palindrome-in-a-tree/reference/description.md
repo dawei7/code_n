@@ -10,8 +10,14 @@ A string is a **palindrome** when it reads the same backwards as forwards.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `parent`: Input parameter (`List[int]`).
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -26,6 +32,7 @@ A string is a **palindrome** when it reads the same backwards as forwards.
 - The pair (2,3) result in the string "aca" which is a palindrome.
 - The pair (1,5) result in the string "cac" which is a palindrome.
 - The pair (3,5) result in the string "acac" which can be rearranged into the palindrome "acca".
+
 #### Example 2
 
 - **Input:** $parent = [-1,0,0,0,0], s = "aaaaa"$

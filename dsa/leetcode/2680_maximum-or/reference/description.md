@@ -8,8 +8,14 @@ Note that `a | b` denotes the **bitwise or** between two integers `a` and `b`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,6 +24,7 @@ Note that `a | b` denotes the **bitwise or** between two integers `a` and `b`.
 - **Input:** `nums = [12,9], k = 1`
 - **Output:** `30`
 - **Explanation:** If we apply the operation to index 1, our new array nums will be equal to [12,18]. Thus, we return the bitwise or of 12 and 18, which is 30.
+
 #### Example 2
 
 - **Input:** `nums = [8,1,2], k = 2`

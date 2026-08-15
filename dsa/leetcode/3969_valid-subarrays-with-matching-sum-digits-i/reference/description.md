@@ -27,14 +27,11 @@ Return the number of index pairs $(l,r)$ for which the decimal representation of
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [1,100,1], x = 1
+- **Input:** nums = [1,100,1], x = 1
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
-
-The valid subarrays are:
+- **Explanation:** The valid subarrays are:
 
 - `nums[0..0]`: $sum = 1$
 
@@ -46,21 +43,15 @@ The valid subarrays are:
 
 Thus, the answer is 4.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1], x = 2
+- **Input:** nums = [1], x = 2
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The only subarray is `nums[0..0]` with a sum of 1, which does not satisfy the conditions.
+- **Explanation:** The only subarray is `nums[0..0]` with a sum of 1, which does not satisfy the conditions.
 
 Thus, the answer is 0.
-
-</div>
 
 ### 4. Constraints
 

@@ -33,20 +33,20 @@ Let $n=\lvert\texttt{events}\rvert$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `events = [[1, 2, 4], [3, 4, 3], [2, 3, 1]], k = 2`
-- Output: `7`
-- Explanation: The first and second events are compatible and contribute `4 + 3`.
+- **Input:** `events = [[1, 2, 4], [3, 4, 3], [2, 3, 1]], k = 2`
+- **Output:** `7`
+- **Explanation:** The first and second events are compatible and contribute `4 + 3`.
 
-**Example 2**
+#### Example 2
 
-- Input: `events = [[1, 2, 4], [3, 4, 3], [2, 3, 10]], k = 2`
-- Output: `10`
-- Explanation: The value-10 event overlaps both others, and selecting only it is optimal.
+- **Input:** `events = [[1, 2, 4], [3, 4, 3], [2, 3, 10]], k = 2`
+- **Output:** `10`
+- **Explanation:** The value-10 event overlaps both others, and selecting only it is optimal.
 
-**Example 3**
+#### Example 3
 
-- Input: `events = [[1, 1, 1], [2, 2, 2], [3, 3, 3], [4, 4, 4]], k = 3`
-- Output: `9`
-- Explanation: All events are mutually compatible, but only the three highest-valued ones may be selected.
+- **Input:** `events = [[1, 1, 1], [2, 2, 2], [3, 3, 3], [4, 4, 4]], k = 3`
+- **Output:** `9`
+- **Explanation:** All events are mutually compatible, but only the three highest-valued ones may be selected.

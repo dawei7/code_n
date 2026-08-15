@@ -35,16 +35,16 @@ The tree size satisfies $1 \leq n \leq 3 \cdot 10^4$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `coins = [1,0,0,0,0,1], edges = [[0,1],[1,2],[2,3],[3,4],[4,5]]`
-- Output: `2`
+- **Input:** `coins = [1,0,0,0,0,1], edges = [[0,1],[1,2],[2,3],[3,4],[4,5]]`
+- **Output:** `2`
 
 Start at vertex $2$, collect the coin at vertex $0$, traverse to vertex $3$, collect the coin at vertex $5$, and return to vertex $2$.
 
-**Example 2**
+#### Example 2
 
-- Input: `coins = [0,0,0,1,1,0,0,1], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[5,6],[5,7]]`
-- Output: `2`
+- **Input:** `coins = [0,0,0,1,1,0,0,1], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[5,6],[5,7]]`
+- **Output:** `2`
 
 Starting at vertex $0$, the two coins in its nearby branch can be collected immediately. One round trip across edge $0$-$2$ brings the remaining coin within distance $2$.

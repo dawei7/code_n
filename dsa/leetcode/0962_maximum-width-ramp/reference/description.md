@@ -6,8 +6,13 @@ Given an integer array `nums`, return *the maximum width of a **ramp** in *`nums
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -16,6 +21,7 @@ Given an integer array `nums`, return *the maximum width of a **ramp** in *`nums
 - **Input:** `nums = [6,0,8,2,1,5]`
 - **Output:** `4`
 - **Explanation:** The maximum width ramp is achieved at (i, j) = (1, 5): nums[1] = 0 and nums[5] = 5.
+
 #### Example 2
 
 - **Input:** `nums = [9,8,1,0,1,9,4,0,4,1]`

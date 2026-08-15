@@ -12,8 +12,15 @@ Return *an integer array* `answer`, *where* $answer = [i, j]$ *if there are two 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `indexDifference`: Input parameter (`int`).
+- `valueDifference`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[int]`.
 
 ### 3. Note
 
@@ -29,6 +36,7 @@ Return *an integer array* `answer`, *where* $answer = [i, j]$ *if there are two 
 abs(0 - 3) >= 2 and abs(nums[0] - nums[3]) >= 4.
 Hence, a valid answer is [0,3].
 [3,0] is also a valid answer.
+
 #### Example 2
 
 - **Input:** `nums = [2,1], indexDifference = 0, valueDifference = 0`
@@ -37,6 +45,7 @@ Hence, a valid answer is [0,3].
 abs(0 - 0) >= 0 and abs(nums[0] - nums[0]) >= 0.
 Hence, a valid answer is [0,0].
 Other valid answers are [0,1], [1,0], and [1,1].
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3], indexDifference = 2, valueDifference = 4`

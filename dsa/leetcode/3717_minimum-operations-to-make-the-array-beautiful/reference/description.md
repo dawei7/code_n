@@ -22,40 +22,27 @@ Return the minimum total number of single-unit increments that can make every el
 
 #### Example 1
 
-<div class="example-block">
-**Input:** nums = [3,7,9]
+- **Input:** nums = [3,7,9]
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
+- **Explanation:** Applying the operation twice on $\text{nums}[1]$ makes the array beautiful: `[3,9,9]`
 
-Applying the operation twice on $\text{nums}[1]$ makes the array beautiful: `[3,9,9]`
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** nums = [1,1,1]
+- **Input:** nums = [1,1,1]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
+- **Explanation:** The given array is already beautiful.
 
-The given array is already beautiful.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** nums = [4]
+- **Input:** nums = [4]
 
-**Output:** 0
+- **Output:** 0
 
-**Explanation:**
-
-The array has only one element, so it's already beautiful.
-
-</div>
+- **Explanation:** The array has only one element, so it's already beautiful.
 
 ### 4. Constraints
 

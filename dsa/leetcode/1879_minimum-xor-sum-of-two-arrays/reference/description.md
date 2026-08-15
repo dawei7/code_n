@@ -12,8 +12,14 @@ Return *the **XOR sum** after the rearrangement*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums1`: Input parameter (`List[int]`).
+- `nums2`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -23,6 +29,7 @@ Return *the **XOR sum** after the rearrangement*.
 - **Output:** `2`
 - **Explanation:** Rearrange nums2 so that it becomes [3,2].
 The XOR sum is (1 XOR 3) + (2 XOR 2) = 2 + 0 = 2.
+
 #### Example 2
 
 - **Input:** $nums1 = [1,0,3], nums2 = [5,3,4]$

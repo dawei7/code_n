@@ -6,8 +6,13 @@ Given the string `command`, return *the **Goal Parser**'s interpretation of *`co
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `command`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `str`.
 
 ### 3. Examples
 
@@ -20,10 +25,12 @@ G -> G
 () -> o
 (al) -> al
 The final concatenated result is "Goal".
+
 #### Example 2
 
 - **Input:** $command = "G()()()()(al)"$
 - **Output:** `"Gooooal"`
+
 #### Example 3
 
 - **Input:** $command = "(al)G(al)()()G"$

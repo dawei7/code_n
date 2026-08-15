@@ -30,20 +30,20 @@ Given a lowercase English string `word`, return the number of its vowel substrin
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `word = "aeiouu"`
-- Output: `2`
-- Explanation: The ranges spelling `"aeiou"` and `"aeiouu"` both satisfy the two conditions.
+- **Input:** `word = "aeiouu"`
+- **Output:** `2`
+- **Explanation:** The ranges spelling `"aeiou"` and `"aeiouu"` both satisfy the two conditions.
 
-**Example 2**
+#### Example 2
 
-- Input: `word = "unicornarihan"`
-- Output: `0`
-- Explanation: No all-vowel range contains all five distinct vowels.
+- **Input:** `word = "unicornarihan"`
+- **Output:** `0`
+- **Explanation:** No all-vowel range contains all five distinct vowels.
 
-**Example 3**
+#### Example 3
 
-- Input: `word = "cuaieuouac"`
-- Output: `7`
-- Explanation: Seven contiguous ranges stay within the central vowel run and contain every vowel.
+- **Input:** `word = "cuaieuouac"`
+- **Output:** `7`
+- **Explanation:** Seven contiguous ranges stay within the central vowel run and contain every vowel.

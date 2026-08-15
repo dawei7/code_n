@@ -46,20 +46,20 @@ row, and column, all ascending.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `grid = [[1,2,0,1],[1,3,0,1],[0,2,5,1]], pricing = [2,5], start = [0,0], k = 3`
-- Output: `[[0,1],[1,1],[2,1]]`
+- **Input:** `grid = [[1,2,0,1],[1,3,0,1],[0,2,5,1]], pricing = [2,5], start = [0,0], k = 3`
+- **Output:** `[[0,1],[1,1],[2,1]]`
 
-**Example 2**
+#### Example 2
 
-- Input: `grid = [[1,2,0,1],[1,3,3,1],[0,2,5,1]], pricing = [2,3], start = [2,3], k = 2`
-- Output: `[[2,1],[1,2]]`
-- Explanation: Both returned cells are distance two; price `2` ranks before
+- **Input:** `grid = [[1,2,0,1],[1,3,3,1],[0,2,5,1]], pricing = [2,3], start = [2,3], k = 2`
+- **Output:** `[[2,1],[1,2]]`
+- **Explanation:** Both returned cells are distance two; price `2` ranks before
   price `3`.
 
-**Example 3**
+#### Example 3
 
-- Input: `grid = [[1,1,1],[0,0,1],[2,3,4]], pricing = [2,3], start = [0,0], k = 3`
-- Output: `[[2,1],[2,0]]`
-- Explanation: Only two eligible items are reachable.
+- **Input:** `grid = [[1,1,1],[0,0,1],[2,3,4]], pricing = [2,3], start = [0,0], k = 3`
+- **Output:** `[[2,1],[2,0]]`
+- **Explanation:** Only two eligible items are reachable.

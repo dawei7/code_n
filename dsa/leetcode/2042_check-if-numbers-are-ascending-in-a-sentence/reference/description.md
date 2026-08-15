@@ -10,8 +10,13 @@ Return `true`* if so, or *`false`* otherwise*.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `bool`.
 
 ### 3. Examples
 
@@ -23,11 +28,13 @@ Return `true`* if so, or *`false`* otherwise*.
 - **Output:** `true`
 - **Explanation:** The numbers in s are: 1, 3, 4, 6, 12.
 They are strictly increasing from left to right: 1 < 3 < 4 < 6 < 12.
+
 #### Example 2
 
 - **Input:** `s = "hello world 5 x 5"`
 - **Output:** `false`
 - **Explanation:** The numbers in s are: <u>**5**</u>, **<u>5</u>**. They are not strictly increasing.
+
 #### Example 3
 
 ![example-3](images/example3.png)

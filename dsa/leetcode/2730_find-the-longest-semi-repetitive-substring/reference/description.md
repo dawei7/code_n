@@ -8,47 +8,39 @@ Return the length of the **longest semi-repetitive substring** of `s`.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "52233"
+- **Input:** s = "52233"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** The longest semi-repetitive substring is "5223". Picking the whole string "52233" has two adjacent same digit pairs 22 and 33, but at most one is allowed.
 
-The longest semi-repetitive substring is "5223". Picking the whole string "52233" has two adjacent same digit pairs 22 and 33, but at most one is allowed.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "5494"
+- **Input:** s = "5494"
 
-**Output:** 4
+- **Output:** 4
 
-**Explanation:**
+- **Explanation:** `s` is a semi-repetitive string.
 
-`s` is a semi-repetitive string.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** s = "1111111"
+- **Input:** s = "1111111"
 
-**Output:** 2
+- **Output:** 2
 
-**Explanation:**
-
-The longest semi-repetitive substring is "11". Picking the substring "111" has two adjacent same digit pairs, but at most one is allowed.
-
-</div>
+- **Explanation:** The longest semi-repetitive substring is "11". Picking the substring "111" has two adjacent same digit pairs, but at most one is allowed.
 
 ### 4. Constraints
 

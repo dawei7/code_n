@@ -37,17 +37,17 @@ Design a `TweetCounts` service that records the time of each occurrence of a nam
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
 - Operations: construct, record `"tweet3"` at times `0`, `60`, and `10`; then query minute buckets from `0` through `59`.
 - Query output: `[2]`
 
-**Example 2**
+#### Example 2
 
 - Using the same records, query minute buckets from `0` through `60`.
 - Query output: `[2, 1]`
 
-**Example 3**
+#### Example 3
 
 - After also recording `"tweet3"` at time `120`, query hour buckets from `0` through `210`.
 - Query output: `[4]`

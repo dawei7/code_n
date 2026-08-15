@@ -8,8 +8,14 @@ Return *the **minimum number of operations** needed to collect elements* `1, 2, 
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -18,11 +24,13 @@ Return *the **minimum number of operations** needed to collect elements* `1, 2, 
 - **Input:** `nums = [3,1,5,4,2], k = 2`
 - **Output:** `4`
 - **Explanation:** After 4 operations, we collect elements 2, 4, 5, and 1, in this order. Our collection contains elements 1 and 2. Hence, the answer is 4.
+
 #### Example 2
 
 - **Input:** `nums = [3,1,5,4,2], k = 5`
 - **Output:** `5`
 - **Explanation:** After 5 operations, we collect elements 2, 4, 5, 1, and 3, in this order. Our collection contains elements 1 through 5. Hence, the answer is 5.
+
 #### Example 3
 
 - **Input:** `nums = [3,2,5,3,1], k = 3`

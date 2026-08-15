@@ -35,7 +35,6 @@ The result format is in the following example.
 
 **Example:**
 
-<div class="example-block">
 **Input:**
 
 $\text{user}_{transactions}$ table:
@@ -68,44 +67,38 @@ $\text{user}_{transactions}$ table:
 
 - For product ID 123424:
 
-		<li>In 2019:
-
-			<li>Current year's spend is 1500.60
+		- In 2019:
+- Current year's spend is 1500.60
 
 - No previous year's spend recorded
 
 - YoY growth rate: NULL
 
-		</li>
 - In 2020:
 
-			<li>Current year's spend is 1000.20
+			- Current year's spend is 1000.20
 
 - Previous year's spend is 1500.60
 
 - YoY growth rate: ((1000.20 - 1500.60) / 1500.60) * 100 = -33.35%
 
-		</li>
 - In 2021:
 
-			<li>Current year's spend is 1246.44
+			- Current year's spend is 1246.44
 
 - Previous year's spend is 1000.20
 
 - YoY growth rate: ((1246.44 - 1000.20) / 1000.20) * 100 = 24.62%
 
-		</li>
 - In 2022:
 
-			<li>Current year's spend is 2145.32
+			- Current year's spend is 2145.32
 
 - Previous year's spend is 1246.44
 
 - YoY growth rate: ((2145.32 - 1246.44) / 1246.44) * 100 = 72.12%
 
-		</li>
-
-	</li>
+	
 
 ### 2. Function Contract
 
@@ -114,5 +107,3 @@ $\text{user}_{transactions}$ table:
 ### 3. Note
 
 Output table is ordered by $\text{product}_{id}$ and `year` in ascending order.
-
-</div>

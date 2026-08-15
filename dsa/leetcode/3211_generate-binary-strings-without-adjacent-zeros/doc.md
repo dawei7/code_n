@@ -34,14 +34,14 @@ Let $V_n$ denote the number of valid length-$n$ strings. It follows the Fibonacc
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `n = 3`
-- Output: `["010","011","101","110","111"]`
-- Explanation: These are exactly the five length-three strings that contain no adjacent zeros.
+- **Input:** `n = 3`
+- **Output:** `["010","011","101","110","111"]`
+- **Explanation:** These are exactly the five length-three strings that contain no adjacent zeros.
 
-**Example 2**
+#### Example 2
 
-- Input: `n = 1`
-- Output: `["0","1"]`
-- Explanation: A one-character string has no substring of length two, so both binary choices are valid.
+- **Input:** `n = 1`
+- **Output:** `["0","1"]`
+- **Explanation:** A one-character string has no substring of length two, so both binary choices are valid.

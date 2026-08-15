@@ -41,20 +41,20 @@ are $1\le n\le5\cdot10^4$ and $1\le\texttt{nums[i]}<2^{20}$.
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 2, 3, 4, 5]`
-- Output: `7`
-- Explanation: The strong pair `(3, 4)` has `3 ^ 4 = 7`.
+- **Input:** `nums = [1, 2, 3, 4, 5]`
+- **Output:** `7`
+- **Explanation:** The strong pair `(3, 4)` has `3 ^ 4 = 7`.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [10, 100]`
-- Output: `0`
-- Explanation: The distinct values are not strong together, leaving only zero-XOR self-pairs.
+- **Input:** `nums = [10, 100]`
+- **Output:** `0`
+- **Explanation:** The distinct values are not strong together, leaving only zero-XOR self-pairs.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums = [500, 520, 2500, 3000]`
-- Output: `1020`
-- Explanation: `(500, 520)` is strong and its XOR 1020 exceeds the XOR of the other distinct strong pair.
+- **Input:** `nums = [500, 520, 2500, 3000]`
+- **Output:** `1020`
+- **Explanation:** `(500, 520)` is strong and its XOR 1020 exceeds the XOR of the other distinct strong pair.

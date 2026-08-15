@@ -22,8 +22,14 @@ Return *the stack operations needed to build *`target` following the mentioned r
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `target`: Input parameter (`List[int]`).
+- `n`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `List[str]`.
 
 ### 3. Examples
 
@@ -36,6 +42,7 @@ Read 1 from the stream and push it to the stack. s = [1].
 Read 2 from the stream and push it to the stack. s = [1,2].
 Pop the integer on the top of the stack. s = [1].
 Read 3 from the stream and push it to the stack. s = [1,3].
+
 #### Example 2
 
 - **Input:** $target = [1,2,3], n = 3$
@@ -44,6 +51,7 @@ Read 3 from the stream and push it to the stack. s = [1,3].
 Read 1 from the stream and push it to the stack. s = [1].
 Read 2 from the stream and push it to the stack. s = [1,2].
 Read 3 from the stream and push it to the stack. s = [1,2,3].
+
 #### Example 3
 
 - **Input:** $target = [1,2], n = 4$

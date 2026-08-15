@@ -9,7 +9,9 @@
 | Official Link | [LeetCode](https://leetcode.com/problems/widest-pair-of-indices-with-equal-range-sum/) |
 
 ## Problem Description
+
 ### Goal
+
 You are given two 0-indexed binary arrays `nums1` and `nums2` of the same
 length. Choose indices `i` and `j` with $i \le j$ so that the sum of
 `nums1[i:j + 1]` equals the sum over the identical inclusive range in `nums2`.
@@ -20,6 +22,7 @@ over all qualifying index pairs. If no nonempty range has equal sums in the two
 arrays, return `0`.
 
 ### Function Contract
+
 **Inputs**
 
 - `nums1`: a binary list of length $N$.
@@ -32,21 +35,22 @@ arrays, return `0`.
   and `nums2` are equal, or `0` if no such range exists.
 
 ### Examples
-**Example 1**
 
-- Input: `nums1 = [1, 1, 0, 1], nums2 = [0, 1, 1, 0]`
-- Output: `3`
+#### Example 1
+
+- **Input:** `nums1 = [1, 1, 0, 1], nums2 = [0, 1, 1, 0]`
+- **Output:** `3`
 
 The range from index `1` through index `3` sums to `2` in both arrays.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums1 = [0, 1], nums2 = [1, 1]`
-- Output: `1`
+- **Input:** `nums1 = [0, 1], nums2 = [1, 1]`
+- **Output:** `1`
 
 The values at index `1` match, so that single-position range qualifies.
 
-**Example 3**
+#### Example 3
 
-- Input: `nums1 = [0], nums2 = [1]`
-- Output: `0`
+- **Input:** `nums1 = [0], nums2 = [1]`
+- **Output:** `0`

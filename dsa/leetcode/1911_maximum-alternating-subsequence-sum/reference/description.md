@@ -10,8 +10,13 @@ A **subsequence** of an array is a new array generated from the original array b
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -20,11 +25,13 @@ A **subsequence** of an array is a new array generated from the original array b
 - **Input:** `nums = [<u>4</u>,<u>2</u>,<u>5</u>,3]`
 - **Output:** `7`
 - **Explanation:** It is optimal to choose the subsequence [4,2,5] with alternating sum (4 + 5) - 2 = 7.
+
 #### Example 2
 
 - **Input:** `nums = [5,6,7,<u>8</u>]`
 - **Output:** `8`
 - **Explanation:** It is optimal to choose the subsequence [8] with alternating sum 8.
+
 #### Example 3
 
 - **Input:** `nums = [<u>6</u>,2,<u>1</u>,2,4,<u>5</u>]`

@@ -16,21 +16,24 @@ Return the **minimum** cost to transform `n` into `m`. If it is impossible, retu
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** n = 10, m = 12
+- **Input:** n = 10, m = 12
 
-**Output:** 85
+- **Output:** 85
 
-**Explanation:**
-
-We perform the following operations:
+- **Explanation:** We perform the following operations:
 
 - Increase the first digit, now $n = <u>**2**</u>0$.
 
@@ -40,31 +43,21 @@ We perform the following operations:
 
 - Decrease the first digit, now $n = **<u>1</u>**2$.
 
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** n = 4, m = 8
+- **Input:** n = 4, m = 8
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
+- **Explanation:** It is impossible to make `n` equal to `m`.
 
-It is impossible to make `n` equal to `m`.
-
-</div>
 #### Example 3
 
-<div class="example-block">
-**Input:** n = 6, m = 2
+- **Input:** n = 6, m = 2
 
-**Output:** -1
+- **Output:** -1
 
-**Explanation:**
-
-Since 2 is already a prime, we can't make `n` equal to `m`.
-
-</div>
+- **Explanation:** Since 2 is already a prime, we can't make `n` equal to `m`.
 
 ### 4. Constraints
 

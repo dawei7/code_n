@@ -12,8 +12,14 @@ Return *the integer* $num1 - num2$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `n`: Input parameter (`int`).
+- `m`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -25,6 +31,7 @@ Return *the integer* $num1 - num2$.
 - Integers in the range [1, 10] that are not divisible by 3 are [1,2,4,5,7,8,10], num1 is the sum of those integers = 37.
 - Integers in the range [1, 10] that are divisible by 3 are [3,6,9], num2 is the sum of those integers = 18.
 We return 37 - 18 = 19 as the answer.
+
 #### Example 2
 
 - **Input:** $n = 5, m = 6$
@@ -33,6 +40,7 @@ We return 37 - 18 = 19 as the answer.
 - Integers in the range [1, 5] that are not divisible by 6 are [1,2,3,4,5], num1 is the sum of those integers = 15.
 - Integers in the range [1, 5] that are divisible by 6 are [], num2 is the sum of those integers = 0.
 We return 15 - 0 = 15 as the answer.
+
 #### Example 3
 
 - **Input:** $n = 5, m = 1$

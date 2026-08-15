@@ -26,35 +26,31 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `s`: Input parameter (`str`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
 #### Example 1
 
-<div class="example-block">
-**Input:** s = "FFF"
+- **Input:** s = "FFF"
 
-**Output:** 3
+- **Output:** 3
 
-**Explanation:**
+- **Explanation:** Bob can beat Alice by making one of the following sequences of moves: `"WFW"`, `"FWF"`, or `"WEW"`. Note that other winning sequences like `"WWE"` or `"EWW"` are invalid since Bob cannot make the same move twice in a row.
 
-Bob can beat Alice by making one of the following sequences of moves: `"WFW"`, `"FWF"`, or `"WEW"`. Note that other winning sequences like `"WWE"` or `"EWW"` are invalid since Bob cannot make the same move twice in a row.
-
-</div>
 #### Example 2
 
-<div class="example-block">
-**Input:** s = "FWEFW"
+- **Input:** s = "FWEFW"
 
-**Output:** 18
+- **Output:** 18
 
-**Explanation:**
-
-<w>Bob can beat Alice by making one of the following sequences of moves: `"FWFWF"`, `"FWFWE"`, `"FWEFE"`, `"FWEWE"`, `"FEFWF"`, `"FEFWE"`, `"FEFEW"`, `"FEWFE"`, `"WFEFE"`, `"WFEWE"`, `"WEFWF"`, `"WEFWE"`, `"WEFEF"`, `"WEFEW"`, `"WEWFW"`, `"WEWFE"`, `"EWFWE"`, or `"EWEWE"`.</w>
-
-</div>
+- **Explanation:** <w>Bob can beat Alice by making one of the following sequences of moves: `"FWFWF"`, `"FWFWE"`, `"FWEFE"`, `"FWEWE"`, `"FEFWF"`, `"FEFWE"`, `"FEFEW"`, `"FEWFE"`, `"WFEFE"`, `"WFEWE"`, `"WEFWF"`, `"WEFWE"`, `"WEFEF"`, `"WEFEW"`, `"WEWFW"`, `"WEWFE"`, `"EWFWE"`, or `"EWEWE"`.</w>
 
 ### 4. Constraints
 

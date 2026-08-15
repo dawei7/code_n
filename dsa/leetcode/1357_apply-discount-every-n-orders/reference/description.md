@@ -14,8 +14,10 @@ Implement the `Cashier` class:
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Methods**
+
+- `Cashier(n: int, discount: int, products: List[int], prices: List[int])`: Initializes the data structure.
+- `getBill(product: List[int], amount: List[int]) -> `float``: Executes operation.
 
 ### 3. Examples
 

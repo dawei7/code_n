@@ -30,19 +30,19 @@ Using zero-based indices, a permutation is balanced when the sum of its digits a
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `num = "123"`
-- Output: `2`
-- Explanation: Among its six permutations, `"132"` and `"231"` have equal even- and odd-index sums.
+- **Input:** `num = "123"`
+- **Output:** `2`
+- **Explanation:** Among its six permutations, `"132"` and `"231"` have equal even- and odd-index sums.
 
-**Example 2**
+#### Example 2
 
-- Input: `num = "112"`
-- Output: `1`
-- Explanation: Only `"121"` is balanced; swapping the two equal `1` digits does not create another permutation.
+- **Input:** `num = "112"`
+- **Output:** `1`
+- **Explanation:** Only `"121"` is balanced; swapping the two equal `1` digits does not create another permutation.
 
-**Example 3**
+#### Example 3
 
-- Input: `num = "12345"`
-- Output: `0`
+- **Input:** `num = "12345"`
+- **Output:** `0`

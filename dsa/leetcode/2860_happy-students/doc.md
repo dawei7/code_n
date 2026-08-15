@@ -32,14 +32,14 @@ Let $n$ be the length of `nums`. The input satisfies $1 \le n \le 10^5$ and $0 \
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `nums = [1, 1]`
-- Output: `2`
-- Explanation: Selecting nobody works because $0 < 1$ for both unselected students. Selecting both students also works because $2 > 1$. Selecting exactly one student satisfies neither student's required condition.
+- **Input:** `nums = [1, 1]`
+- **Output:** `2`
+- **Explanation:** Selecting nobody works because $0 < 1$ for both unselected students. Selecting both students also works because $2 > 1$. Selecting exactly one student satisfies neither student's required condition.
 
-**Example 2**
+#### Example 2
 
-- Input: `nums = [6, 0, 3, 3, 6, 7, 2, 7]`
-- Output: `3`
-- Explanation: The valid group sizes are $1$, $4$, and $8$. For each size, the students with smaller thresholds are selected and all remaining thresholds are strictly larger than the group size.
+- **Input:** `nums = [6, 0, 3, 3, 6, 7, 2, 7]`
+- **Output:** `3`
+- **Explanation:** The valid group sizes are $1$, $4$, and $8$. For each size, the students with smaller thresholds are selected and all remaining thresholds are strictly larger than the group size.

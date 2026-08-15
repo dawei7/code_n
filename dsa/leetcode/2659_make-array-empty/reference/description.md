@@ -10,8 +10,13 @@ Return *an integer denoting the number of operations it takes to make *`nums`* e
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `nums`: Input parameter (`List[int]`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -50,6 +55,7 @@ Return *an integer denoting the number of operations it takes to make *`nums`* e
 		</tr>
 	</tbody>
 </table>
+
 #### Example 2
 
 - **Input:** `nums = [1,2,4,3]`
@@ -85,6 +91,7 @@ Return *an integer denoting the number of operations it takes to make *`nums`* e
 		</tr>
 	</tbody>
 </table>
+
 #### Example 3
 
 - **Input:** `nums = [1,2,3]`

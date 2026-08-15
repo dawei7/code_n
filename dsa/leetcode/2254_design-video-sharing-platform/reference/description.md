@@ -64,6 +64,7 @@ videoSharingPlatform.dislike(1);             // Increase the number of dislikes 
 videoSharingPlatform.getLikesAndDislikes(1); // There is 1 like and 2 dislikes on the video associated with videoId 1, so return [1, 2].
 videoSharingPlatform.getViews(1);            // The video associated with videoId 1 has 2 views, so return 2.
 ```
+
 #### Example 2
 
 ```

@@ -8,8 +8,14 @@ A **sequence of rolls** of length `len` is the result of rolling a `k` sided dic
 
 ### 2. Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
+**Inputs**
+
+- `rolls`: Input parameter (`List[int]`).
+- `k`: Input parameter (`int`).
+
+**Return value**
+
+- Returns `int`.
 
 ### 3. Examples
 
@@ -21,6 +27,7 @@ A **sequence of rolls** of length `len` is the result of rolling a `k` sided dic
 Every sequence of rolls of length 2, [1, 1], [1, 2], ..., [4, 4], can be taken from rolls.
 The sequence [1, 4, 2] cannot be taken from rolls, so we return 3.
 Note that there are other sequences that cannot be taken from rolls.
+
 #### Example 2
 
 - **Input:** $rolls = [1,1,2,2], k = 2$
@@ -28,6 +35,7 @@ Note that there are other sequences that cannot be taken from rolls.
 - **Explanation:** Every sequence of rolls of length 1, [1], [2], can be taken from rolls.
 The sequence [2, 1] cannot be taken from rolls, so we return 2.
 Note that there are other sequences that cannot be taken from rolls but [2, 1] is the shortest.
+
 #### Example 3
 
 - **Input:** $rolls = [1,1,3,2,2,2,3,3], k = 4$

@@ -32,19 +32,19 @@ Return `[row, column]` for any cell strictly larger than all of its existing ort
 
 ### Examples
 
-**Example 1**
+#### Example 1
 
-- Input: `mat = [[1, 4], [3, 2]]`
-- Output: `[0, 1]`
-- Explanation: Both `[0, 1]` and `[1, 0]` are valid peaks, so either answer is accepted.
+- **Input:** `mat = [[1, 4], [3, 2]]`
+- **Output:** `[0, 1]`
+- **Explanation:** Both `[0, 1]` and `[1, 0]` are valid peaks, so either answer is accepted.
 
-**Example 2**
+#### Example 2
 
-- Input: `mat = [[10, 20, 15], [21, 30, 14], [7, 16, 32]]`
-- Output: `[1, 1]`
-- Explanation: The values `30` and `32` are both peaks.
+- **Input:** `mat = [[10, 20, 15], [21, 30, 14], [7, 16, 32]]`
+- **Output:** `[1, 1]`
+- **Explanation:** The values `30` and `32` are both peaks.
 
-**Example 3**
+#### Example 3
 
-- Input: `mat = [[7]]`
-- Output: `[0, 0]`
+- **Input:** `mat = [[7]]`
+- **Output:** `[0, 0]`
