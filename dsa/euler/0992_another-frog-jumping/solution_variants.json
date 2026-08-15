@@ -11,6 +11,15 @@
       "summary": "Mathematical solution executing under 1 minute.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "numpy_vectorized",
+      "label": "NumPy Matrix-Tree Laplacian Determinant",
+      "kind": "alternative",
+      "directory": "variants/numpy_vectorized",
+      "summary": "Kirchhoff matrix-tree theorem and BEST theorem on Eulerian digraphs using NumPy determinant.",
+      "time_complexity": "O(N^3)",
+      "space_complexity": "O(N^2)"
     }
   ]
 }

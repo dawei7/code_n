@@ -11,6 +11,15 @@
       "summary": "Mathematical solution executing under 1 minute.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "numpy_vectorized",
+      "label": "NumPy Tribonacci Matrix Power",
+      "kind": "alternative",
+      "directory": "variants/numpy_vectorized",
+      "summary": "3x3 Tribonacci transfer matrix exponentiation modulo phi(10^9+7) using NumPy.",
+      "time_complexity": "O(log N)",
+      "space_complexity": "O(1)"
     }
   ]
 }

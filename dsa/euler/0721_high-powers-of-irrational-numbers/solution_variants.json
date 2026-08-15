@@ -11,6 +11,15 @@
       "summary": "Mathematical solution executing under 1 minute.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "numpy_vectorized",
+      "label": "NumPy Vectorized Lucas Companion Matrix",
+      "kind": "alternative",
+      "directory": "variants/numpy_vectorized",
+      "summary": "Vectorized 2x2 Lucas companion matrix exponentiations using NumPy arrays.",
+      "time_complexity": "O(N log N)",
+      "space_complexity": "O(1)"
     }
   ]
 }
