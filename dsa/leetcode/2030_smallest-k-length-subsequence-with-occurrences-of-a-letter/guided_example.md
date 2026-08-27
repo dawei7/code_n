@@ -1,104 +1,134 @@
 # Guided Example: Smallest K-Length Subsequence With Occurrences of a Letter
 
-We examine the step-by-step execution of the optimal String, Stack, Greedy, Monotonic Stack method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"s": "leet", "k": 3, "letter": "e", "repetition": 1}`
 - **Required output:** `"eet"`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Smallest K-Length Subsequence With Occurrences of a Letter** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a string `s`, an integer `k`, a letter `letter`, and an integer `repetition`.
+
+The objective is to compute `"eet"` from `{"s": "leet", "k": 3, "letter": "e", "repetition": 1}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Combine lexicographic greediness with two feasibility constraints
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+A lexicographically small subsequence wants the earliest possible character at each output position. A monotonic stack supports that goal: when a smaller current character arrives, larger characters at the end of the tentative answer may be removed.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+This problem adds two restrictions. The final stack must have exactly `k` characters, and at least `repetition` of them must equal `letter`. Every removal and every skipped character must preserve both possibilities.
 
----
+The source tracks:
 
-### Intermediate Phase: Invariant-Preserving Transitions
+- `stack`: the currently selected subsequence, in original index order;
+- `selected_letter`: how many selected characters equal `letter`;
+- `remaining_letter`: how many copies of `letter` remain at or after the current scan position.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+Initially, `remaining_letter = s.count(letter)`. It is decremented only after the current character has been processed, so during the decisions for one iteration it still includes the current character.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"s": "leet", "k": 3, "letter": "e", "repetition": 1}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: When a larger stack top may be removed
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The `while` loop considers replacing the last selected character with the smaller current `character`. The comparison `character < stack[-1]` is what makes the replacement lexicographically beneficial: the first changed output position becomes smaller.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+But a beneficial pop is allowed only when enough source characters remain to refill the output. After popping, there would be `len(stack) - 1` selected characters. The number of characters from the current index through the end is `len(s) - index`. The condition
+
+`len(stack) - 1 + len(s) - index >= k`
+
+guarantees that these together can still produce length `k`. Without it, a late small character could cause the final subsequence to be too short.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The `while` loop considers replacing the last selected chara... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Protect the required copies of `letter`
+
+If the stack top is not `letter`, popping it does not reduce `selected_letter` and is harmless to the repetition requirement.
+
+If the top is `letter`, the source requires
+
+`selected_letter - 1 + remaining_letter >= repetition`.
+
+The first term is how many required letters would remain selected after the pop. The second term counts every copy still available from the current position onward. Their sum is the greatest number of `letter` copies the final answer could still contain. A pop is safe only when that maximum remains at least `repetition`.
+
+This check is intentionally made before decrementing `remaining_letter` for the current character. If the current character itself equals `letter`, it is a legitimate replacement for the popped copy and must be counted as available.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `"eet"` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"s": "leet", "k": 3, "letter": "e", "repetition": 1}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `"eet"` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Enumerate subsequences:** There can be exponen:** - **Enumerate subsequences:** There can be exponentially many, so direct comparison is infeasible.
+- **Dynamic programming over positions and quota:** It can model feasibility but uses much more time and memory than the monotonic greedy method.
+- **Ordinary smallest-subsequence stack:** Ignoring the `letter` quota may pop or skip too many required copies.
+- **Exactly `k` source characters:** Nothing can ultimately be omitted; the capacity condition prevents destructive pops.
+- **`repetition = k`:** Every output slot is reserved for `letter`, so all non-`letter` characters are skipped.
+- **All characters equal `letter`:** The first `k` retained copies form the only value-level answer.
+- **More required letters than currently selected:** The non-`letter` append guard reserves enough remaining slots.
+- **Popping a required letter:** Allowed only when the current and future suffix can replace it.
+- **Extra copies of `letter`:** They are legal because the requirement is at least, not exactly, `repetition`.
+- **Equal current and top characters:** No pop occurs because equality cannot create a lexicographic improvement.
+- **Late smaller character:** It cannot trigger a pop when too few positions remain to refill length `k`.
+- **Duplicate subsequence values:** The task asks for the smallest string, not a unique index selection.
+- **Input preservation:** The source reads `s` and builds a separate stack.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(N)$. Let $N=\lvert s\rvert$. Counting `letter` takes $O(N)$ time. The main scan takes amortized $O(N)$ time because each character is pushed at most once and popped at most once. Joining at most `k` characters costs $O(k)$, which is within $O(N)$. Total time is $O(N)$.
+- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

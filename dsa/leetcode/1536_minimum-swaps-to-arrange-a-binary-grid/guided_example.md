@@ -1,104 +1,123 @@
 # Guided Example: Minimum Swaps to Arrange a Binary Grid
 
-We examine the step-by-step execution of the optimal Array, Greedy, Matrix method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Swaps to Arrange a Binary Grid** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an `n x n` binary `grid`, in one step you can choose two **adjacent rows** of the grid and swap them.
+
+The objective is to compute `3` from `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Translate the diagonal rule into a property of each row
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+In zero-based coordinates, row `i` is valid when every column strictly greater than `i` contains zero. Those cells lie above the main diagonal.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Instead of repeatedly checking many suffix cells, the solution records `pos[i]`, the column of the rightmost one in row `i`. It scans each row from right to left and stops at the first one it finds. An all-zero row keeps the initial value negative one.
 
----
+Row `r` can occupy final position `i` exactly when `pos[r] <= i`. If its rightmost one is at or before column `i`, every later column is zero. If its rightmost one is after `i`, that one would lie above the diagonal and violate validity.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The negative-one value for an all-zero row naturally satisfies every requirement because $-1 \le i$ for all valid positions.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Fill final positions from top to bottom
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The top row is most restrictive: it may contain a one only in column zero. Each lower position is weaker because it allows the rightmost one one column farther right.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+For each target position `i`, the solution searches current rows `i` through `n - 1` for the first row whose `pos` value is at most `i`. Call its current position `k`.
+
+Choosing the first such row means choosing the nearest eligible row. Bringing it upward requires exactly `k - i` adjacent swaps. The code adds this amount to `ans`.
+
+It then performs those swaps on `pos` itself. Swapping `pos[k]` with `pos[k - 1]` repeatedly moves the chosen row to position `i` and shifts every intervening row down by one. The original grid does not need to be rearranged because all later decisions depend only on each row's rightmost-one position.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The top row is most restrictive: it may contain a one only i... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why adjacent swaps cost k minus i
+
+An adjacent swap changes a row's position by exactly one. A row beginning at `k` must cross the boundaries between `k` and `k-1`, then `k-1` and `k-2`, continuing until it reaches `i`. There are exactly `k-i` such boundaries.
+
+No sequence of adjacent row swaps can move that row upward using fewer steps, so the amount added is both achievable and necessary for this choice.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Swap complete grid rows:** It produces the sam:** - **Swap complete grid rows:** It produces the same answer but moves $N$ cells per adjacent swap; updating only `pos` is sufficient.
+- **Recount trailing zeros repeatedly:** It is correct but repeats work that one preprocessing pass avoids.
+- **Choose any eligible row:** Feasibility may survive, but choosing a farther row can add unnecessary adjacent swaps; the nearest eligible row is the minimum-cost greedy choice.
+- **All-zero row:** Its `pos` value is negative one, so it is eligible for every target position.
+- **Already valid grid:** Every current row satisfies its position and each chosen `k` equals `i`, giving zero swaps.
+- **Identical invalid rows:** If no row satisfies an early requirement, row swaps cannot help and the result is negative one.
+- **One-by-one grid:** Its sole row is automatically valid and requires zero swaps.
+- **Rightmost one on the diagonal:** `pos == i` is legal because only cells strictly above the diagonal must be zero.
+- **Rightmost one just beyond the diagonal:** `pos == i + 1` is illegal for that position.
+- **Adjacent-only rule:** The distance `k-i` would not be the correct cost if arbitrary row swaps counted as one operation.
+- **Column swaps:** They are not allowed and are never used.
+- **Last target row:** Every row is eligible there because no column lies to the right of the last diagonal cell.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n^2)$. Let $N$ be the grid dimension. Finding each rightmost one can scan $N$ columns across $N$ rows, costing $O(N^2)$ time.
+- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,141 @@
 # Guided Example: Map of Highest Peak
 
-We examine the step-by-step execution of the optimal Array, Breadth-First Search, Matrix method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"isWater": [[0, 1], [0, 0]]}`
 - **Required output:** `[[1, 0], [2, 1]]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Map of Highest Peak** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer matrix `isWater` of size `m x n` that represents a map of **land** and **water** cells.
+
+The objective is to compute `[[1, 0], [2, 1]]` from `{"isWater": [[0, 1], [0, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: The greatest legal height is distance to nearest water
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Every water cell must have height zero, and moving across one grid edge can change height by at most one. If a cell is $d$ steps from a water cell, its height can be at most $d$: along that path, starting from zero, height can rise by at most one per step.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The strongest such upper bound comes from the nearest water cell. Therefore every legal assignment satisfies:
 
----
+$$
+\text{height}[i][j]
+\le
+\operatorname{distanceToNearestWater}(i,j).
+$$
 
-### Intermediate Phase: Invariant-Preserving Transitions
+Assigning each cell exactly that nearest-water distance is legal. Neighboring cells' distances to the same source differ by at most one, water distances are zero, and all distances are nonnegative. Because this assignment reaches the pointwise upper bound at every cell, it maximizes the highest peak.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The exact solution computes these distances with multi-source breadth-first search.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"isWater": [[0, 1], [0, 0]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Start BFS from every water cell
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+`ans` is initialized to minus one in every cell. Minus one means unvisited and cannot be confused with a valid height because heights are nonnegative.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The initialization scan places every water coordinate into deque `q` and sets its answer to zero. Instead of running a separate BFS from every water cell, all sources share one queue. They form distance layer zero simultaneously.
+
+The problem guarantees at least one water cell, so the queue is initially non-empty.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | `ans` is initialized to minus one in every cell.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Generate the four side-sharing neighbors
+
+The source uses:
+
+`pairwise((-1, 0, 1, 0, -1))`.
+
+Adjacent pairs of this five-value sequence are:
+
+- `(-1, 0)` for up,
+- `(0, 1)` for right,
+- `(1, 0)` for down,
+- `(0, -1)` for left.
+
+For current cell `(i, j)`, adding one pair `(a, b)` produces neighbor `(i + a, j + b)`. Diagonal movement is never generated.
+
+The boundary checks `0 <= x < m` and `0 <= y < n` reject coordinates outside the matrix.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[[1, 0], [2, 1]]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"isWater": [[0, 1], [0, 0]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[[1, 0], [2, 1]]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Run BFS from each land cell:** It repeats work:** - **Run BFS from each land cell:** It repeats work and can be far slower than one multi-source traversal.
+- **Two-pass dynamic programming:** Forward and backward distance passes also achieve $O(RC)$ time with an output matrix, but the BFS proof is more direct for multiple sources.
+- **Priority queue:** All grid edges have equal cost, so Dijkstra's heap is unnecessary; an ordinary deque gives linear time.
+- **All cells water:** Every cell starts at zero, no new cell is discovered, and the maximum height is zero.
+- **Single water cell:** Heights become Manhattan distances from that source.
+- **Several water cells:** The first BFS wave to reach a cell comes from a nearest source.
+- **One-row grid:** The method reduces to distance along a line.
+- **One-column grid:** The same line-distance behavior applies vertically.
+- **Water revisited from land:** Its zero marker prevents enqueueing again.
+- **Equal shortest paths:** First discovery chooses one path, but only distance matters.
+- **Minus-one sentinel:** It is safe because every legal height is nonnegative.
+- **Four-direction tuple:** `pairwise` over five values deliberately closes the direction cycle.
+- **No diagonal adjacency:** Only side-sharing moves are generated.
+- **At least one source:** The stated guarantee ensures every cell receives a finite height.
+- **Input preservation:** The returned assignment is independent of the original zero/one storage.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(RC)$. Let $R=m$ and $C=n$. The initialization scans all $RC$ cells. BFS enqueues and dequeues each cell once and examines four directions per cell. Total time is $O(RC)$.
+- **Auxiliary Space Complexity:** $O(RC)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

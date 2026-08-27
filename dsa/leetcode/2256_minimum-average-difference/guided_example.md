@@ -1,104 +1,132 @@
 # Guided Example: Minimum Average Difference
 
-We examine the step-by-step execution of the optimal Array, Prefix Sum method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [2, 5, 3, 9, 5, 3]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Average Difference** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a **0-indexed** integer array `nums` of length `n`.
+
+The objective is to compute `3` from `{"nums": [2, 5, 3, 9, 5, 3]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Maintain both side sums while moving the split
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+At index `i`, the left part contains positions zero through `i` and the right part contains `i + 1` through `n - 1`. Recomputing both sums from scratch at every index would repeat work.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The solution begins with `pre = 0` and `suf = sum(nums)`. Before processing an element, `pre` holds the sum strictly to its left and `suf` includes it and all later elements.
 
----
+For current value `x`, the code executes:
 
-### Intermediate Phase: Invariant-Preserving Transitions
+- `pre += x`, making `pre` the sum through index `i`;
+- `suf -= x`, making `suf` the sum strictly after index `i`.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+These are exactly the two sums required for that split.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [2, 5, 3, 9, 5, 3]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Compute rounded-down averages
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The left part contains `i + 1` elements, so its average is
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`a = pre // (i + 1)`.
+
+The right part contains `n - i - 1` elements. If that count is positive, its average is
+
+`suf // (n - i - 1)`.
+
+At the final index, the right part is empty and its average is defined as zero. The conditional assignment to `b` avoids division by zero and implements that rule directly.
+
+All input values and sums are nonnegative, so Python floor division `//` is exactly the stated rounding down.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The left part contains `i + 1` elements, so its average is
+
+... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Evaluate the average difference
+
+`t := abs(a - b)` calculates the absolute difference and stores it in `t` through the assignment expression. The method compares `t` with the smallest value `mi` seen so far.
+
+If `t < mi`, both `ans` and `mi` are updated. A strict comparison is essential for tie-breaking: when a later index has the same minimum difference, it does not replace the earlier `ans`. Since indices are scanned from zero upward, the retained index is the smallest minimum.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [2, 5, 3, 9, 5, 3]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Recompute both sums per index:** It is direct :** - **Recompute both sums per index:** It is direct but takes `O(n^2)` time.
+- **Prefix and suffix arrays:** They give constant-time split sums after preprocessing but use `O(n)` extra space.
+- **Floating-point averages:** They are unnecessary and can disagree with required integer rounding. Floor division must happen before subtraction.
+- **Round the final difference:** That changes the operation order; each average is rounded down separately.
+- **Single element:** The right average is zero and index zero is returned.
+- **Final index:** Explicit empty-side handling avoids division by zero.
+- **Difference tie:** Strict improvement preserves the earlier index.
+- **Zero values:** Running sums and averages handle them naturally.
+- **Minimum difference zero:** It is unbeatable, though the scan continues and retains its first occurrence.
+- **Large total sum:** Wide integer arithmetic is required in fixed-width languages.
+- **Nonnegative guarantee:** It makes `//` match ordinary truncating integer division for these sums.
+- **Input preservation:** No array element is changed.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. `sum(nums)` scans `n` elements once. The main loop scans them once more and performs constant arithmetic per index. Total time is `O(n)`.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,150 @@
 # Guided Example: Power of Four
 
-We examine the step-by-step execution of the optimal Math, Bit Manipulation, Recursion method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"n": 16}`
+- **Input:** `{"n": 1073741824}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Power of Four** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an integer `n`, return *`true` if it is a power of four. Otherwise, return `false`*.
+
+The objective is to compute `true` from `{"n": 1073741824}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: A power of four has one set bit in an even bit position.
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Every nonnegative power of four can be rewritten as a power of two:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+4^x=(2^2)^x=2^{2x}.
+$$
+
+A positive power of two has a binary representation containing exactly one `1` bit. The exponent tells us the zero-based position of that bit. Because a power of four has exponent $2x$, its lone set bit is always at an even position: `0`, `2`, `4`, and so on.
+
+For example:
+
+$$
+1=4^0=(1)_2
+$$
+
+has its set bit at position zero,
+
+$$
+4=4^1=(100)_2
+$$
+
+has it at position two, and
+
+$$
+16=4^2=(10000)_2
+$$
+
+has it at position four.
+
+The exact source checks these two properties separately: first it proves `n` is a positive power of two, then it rejects the powers of two whose set bit is at an odd position.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 1073741824}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: First require positivity.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The expression begins with `n > 0`. Every $4^x$ relevant to an integer input is positive. A negative exponent would produce a non-integer fraction, and zero or a negative number cannot equal a power of the positive base four.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+This check is also required for the one-set-bit trick. The value zero has no set bits, yet `0 & (0 - 1)` evaluates to zero in Python. Without the positivity condition, zero would be incorrectly treated as a power of two.
+
+Python's `and` short-circuits from left to right. If `n` is nonpositive, later bit-mask expressions do not need to establish anything; the full result is immediately false.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The expression begins with `n > 0`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Use `n & (n - 1)` to demand exactly one set bit.
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Subtracting one from a positive integer changes its rightmost `1` bit to `0` and changes all lower `0` bits to `1`. Taking a bitwise AND with the original number therefore clears the original number's rightmost set bit.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+If `n` had exactly one set bit, clearing it leaves zero:
+
+$$
+n\mathbin{\&}(n-1)=0.
+$$
+
+For `n = 16`, the relevant binary values are
+
+$$
+10000_2
+\quad\text{and}\quad
+01111_2,
+$$
+
+whose AND is zero.
+
+If `n` has two or more set bits, clearing only the rightmost one leaves at least one other `1`, so the AND is nonzero. For `n = 5`, binary `101`, subtracting one gives `100`, and their AND is `100`, not zero.
+
+After the positivity and zero-AND checks, `n` is known to be $2^p$ for some nonnegative integer bit position $p$. It may still be a power of two that is not a power of four, such as `2`, `8`, or `32`. The mask performs that final distinction.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 1073741824}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Repeated division by four:** While the positiv:** - **Repeated division by four:** While the positive value is divisible by four, divide it by four; accept only if the result reaches one. This is exact and easy to understand, but takes $O(\log_4 n)$ time and does not meet the constant-work follow-up.
+- **- **Power-of-two test plus modulo three:** Even po:** - **Power-of-two test plus modulo three:** Even powers of two satisfy $2^{2x}\bmod3=1$, while odd powers satisfy $2^{2x+1}\bmod3=2$. Thus a positive power of two is a power of four exactly when `n % 3 == 1`. It is also constant time under fixed-width arithmetic.
+- **- **Precomputed valid set:** Only sixteen powers f:** - **Precomputed valid set:** Only sixteen powers from $4^0$ through $4^{15}$ fit in the signed 32-bit positive range. Membership in a constant set works but hides the bit-position structure.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(1)$. The input is a fixed-width signed 32-bit integer. The source performs a constant number of comparisons, subtractions, and bitwise AND operations, each fixed-size. Its time complexity is $O(1)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,129 @@
 # Guided Example: Intersection of Multiple Arrays
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Sorting, Counting method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}`
 - **Required output:** `[3, 4]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Intersection of Multiple Arrays** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given a 2D integer array `nums` where $\text{nums}[i]$ is a non-empty array of **distinct** positive integers, return *the list of integers that are present in **each array** of* `nums`* sorted in **ascending order***.
+
+The objective is to compute `[3, 4]` from `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Count in how many rows each value appears
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+An integer belongs to the intersection exactly when it appears in every row of `nums`. The constraints provide a crucial guarantee: values inside each individual row are distinct.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Because of that guarantee, every occurrence of value `x` comes from a different row. If its total occurrence count equals `len(nums)`, then it appeared once in every row. If the count is smaller, at least one row omitted it.
 
----
+The solution uses `cnt = [0] * 1001` because every value lies from one through one thousand. Array index `x` directly stores the number of rows containing `x`.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Process every input value once
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The nested loops visit every row and every integer in that row:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`cnt[x] += 1`.
+
+No per-row set is needed because duplicates within a row are forbidden. That condition prevents one row from contributing two or more to the same value's count.
+
+Let `q = len(nums)`. After all rows:
+
+- if `cnt[x] == q`, `x` occurs in all `q` rows;
+- if `cnt[x] < q`, it is absent from at least one;
+- `cnt[x] > q` cannot occur under the distinct-within-row guarantee.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The nested loops visit every row and every integer in that r... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Build sorted output without a separate sort
+
+The return comprehension enumerates `cnt` from index zero through one thousand:
+
+`[x for x, v in enumerate(cnt) if v == len(nums)]`.
+
+Enumeration visits numeric indices in increasing order, so selected values are automatically ascending. No output sort is required.
+
+Index zero is outside the allowed input value range. Its count stays zero, and since `nums` has at least one row, it cannot satisfy the equality. Keeping slot zero simplifies direct indexing without affecting output.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[3, 4]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [[3, 1, 2, 4, 5], [1, 2, 3, 4], [3, 4, 5, 6]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[3, 4]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Repeated set intersection:** Convert rows to s:** - **Repeated set intersection:** Convert rows to sets and intersect them. It is general and matches the manifest summary but uses hash structures instead of the bounded domain.
+- **Sort every row and use pointers:** This avoids hashing but costs sorting time and requires more complicated multi-row coordination.
+- **Count raw occurrences when duplicates are allowed:** That would be incorrect without first deduplicating each row; this solution relies on the stated uniqueness guarantee.
+- **Single row:** All its values are returned in ascending order.
+- **No common value:** No count reaches the row total, producing `[]`.
+- **All rows identical:** Every row value reaches the required count.
+- **Value one or one thousand:** Both map to valid counter endpoints.
+- **Unused index zero:** It remains unselected because row count is positive.
+- **Input rows unsorted:** Counting ignores their order; final index enumeration supplies sorting.
+- **Different row lengths:** Only presence in every row matters, not row size.
+- **Output distinctness:** Each numeric index is considered once, so no duplicate can appear.
+- **Input preservation:** No row is sorted or mutated.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(U)$. Let
+- **Auxiliary Space Complexity:** $O(T)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

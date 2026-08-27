@@ -1,104 +1,127 @@
 # Guided Example: Rotate Image
 
-We examine the step-by-step execution of the optimal Array, Math, Matrix method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}`
 - **Required output:** `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Rotate Image** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an `n x n` 2D `matrix` representing an image, rotate the image by **90** degrees (clockwise).
+
+The objective is to compute `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]` from `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Start from the coordinate rule for a clockwise rotation
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+In an $n \times n$ matrix, an element originally at row $r$ and column $c$ must end at row $c$ and column $n - 1 - r$ after a $90^\circ$ clockwise rotation:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+(r,c) \longmapsto (c,n-1-r).
+$$
 
----
+Moving every element directly to its destination would overwrite values that have not yet moved unless four-cell cycles are handled carefully. The selected solution instead decomposes the coordinate rule into two familiar in-place reflections: reverse the order of the rows, then transpose across the main diagonal.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: First transformation: flip top and bottom
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The first nested loop swaps row `i` with row `n - i - 1`, one column at a time. Only `n >> 1`, which equals integer floor division by two for nonnegative `n`, top rows are processed. This prevents swapping each pair twice.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+After this vertical or horizontal-axis mirror, an original coordinate `(r, c)` has moved to `(n - 1 - r, c)`. For a three-by-three matrix,
+
+`[[1,2,3],[4,5,6],[7,8,9]]`
+
+becomes
+
+`[[7,8,9],[4,5,6],[1,2,3]]`.
+
+When $n$ is odd, the middle row is not swapped, which is correct because it mirrors to itself. Every element in paired rows is exchanged using Python's simultaneous assignment, so neither value is lost.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The first nested loop swaps row `i` with row `n - i - 1`, on... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Second transformation: transpose the main diagonal
+
+Transposition maps coordinate `(a, b)` to `(b, a)`. The source loops over each row `i` and only columns `j < i`, which is the strict lower triangle. It swaps `matrix[i][j]` with `matrix[j][i]`, the corresponding position in the strict upper triangle.
+
+The main diagonal is omitted because `(i, i)` maps to itself. Processing only one triangle is essential: if both `(i, j)` and `(j, i)` were visited as starting cells, the second swap would undo the first.
+
+Applied to the row-reversed example, transposition produces `[[7,4,1],[8,5,2],[9,6,3]]`, the required clockwise rotation.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[[7, 4, 1], [8, 5, 2], [9, 6, 3]]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Transpose first, then reverse each row:** Main:** - **Transpose first, then reverse each row:** Main-diagonal transposition followed by a left-to-right reversal also maps `(r,c)` to `(c,n-1-r)`. It is the most common equivalent decomposition.
+- **Four-cell cyclic swaps:** Process one quadrant and rotate top, left, bottom, and right values in groups of four. It performs one direct rotation pass but has more intricate index formulas.
+- **Allocate a new matrix:** Write each original value directly to `out[c][n-1-r]`. This is very easy to verify but violates the in-place requirement and uses $O(n^2)$ extra space.
+- **Anti-diagonal reflection plus top/bottom flip:** This is another valid composition. Its reflection coordinates differ, so mixing formulas between decompositions would rotate or reflect incorrectly.
+- **One-by-one matrix:** Both loops perform no swaps, leaving the sole value unchanged, which is the correct rotation.
+- **Odd dimension:** The middle row is unchanged by the first flip, and diagonal cells are unchanged by transposition; off-axis cells still move normally.
+- **Even dimension:** Every row participates in exactly one first-phase pair, with no special center.
+- **Negative or repeated values:** Rotation depends only on positions, so value magnitude and equality have no effect.
+- **Calling the method twice:** Two clockwise rotations produce a $180^\circ$ rotation; each call is an independent in-place coordinate transformation.
+- **Return behavior:** The absence of `return` is intentional. Callers inspect the same matrix object after the method completes.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n^2)$. The row-reversal phase swaps approximately $n^2/2$ element pairs: `floor(n/2)` row pairs times $n$ columns. The transpose phase swaps $n(n-1)/2$ off-diagonal pairs. Their sum is proportional to $n^2$, so time is $O(n^2)$. This is optimal up to constants because a rotation must place all $n^2$ matrix entries.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

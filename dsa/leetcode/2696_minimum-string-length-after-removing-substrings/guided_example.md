@@ -1,104 +1,128 @@
 # Guided Example: Minimum String Length After Removing Substrings
 
-We examine the step-by-step execution of the optimal String, Stack, Simulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"s": "ABFCACDB"}`
 - **Required output:** `2`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum String Length After Removing Substrings** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a string `s` consisting only of **uppercase** English letters.
+
+The objective is to compute `2` from `{"s": "ABFCACDB"}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Only the current suffix can become newly removable
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The string is processed from left to right. After some prefix has been fully handled, its irreducible remainder is stored in a stack.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+When the next character arrives, every old adjacent pair inside that remainder was already checked. The only pair that can be newly formed is:
 
----
+- the previous final character, which is on top of the stack;
+- the current character.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+Therefore one top comparison is enough. There is no reason to rescan the entire accumulated string after every input character.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"s": "ABFCACDB"}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Use a sentinel to avoid an empty-stack branch
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The exact stack begins as `[""]`. The empty string can never be one of the uppercase input letters.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Because the sentinel is always present, `stk[-1]` is safe even when no real character is currently stored. It cannot accidentally match `"A"` or `"C"`, so the first real character is appended normally.
+
+The final result subtracts one from `len(stk)` to exclude this artificial entry.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The exact stack begins as `[""]`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Recognize the two removable endings
+
+A pair must appear in its stated order:
+
+- top `"A"` followed by current `"B"` forms `"AB"`;
+- top `"C"` followed by current `"D"` forms `"CD"`.
+
+The condition checks the arriving second character first and the stored first character second.
+
+If either pair appears, `stk.pop()` removes the first character and the current character is not pushed. Both characters therefore disappear in one operation.
+
+All other combinations append the current character to the remainder.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `2` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"s": "ABFCACDB"}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `2` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Repeated `replace` calls:** Correct when conti:** - **Repeated `replace` calls:** Correct when continued to a fixed point, but can require $O(n^2)$ time.
+- **Writable-array two-pointer reduction:** Implements the same stack behavior using an array prefix and a write index.
+- **Recursive deletion search:** Explores unnecessary operation orders and can become exponential without a confluence argument.
+- **One character:** It cannot form a pair, so the answer is one.
+- **No removable pair:** Every character remains and the answer is `len(s)`.
+- **Entire string removable:** Only the sentinel remains and the answer is zero.
+- **Overlapping-looking input:** A character removed once cannot participate again; the stack enforces this naturally.
+- **Reversed pairs `BA` or `DC`:** They are not legal and remain.
+- **Cascading deletion:** Exposed stack characters are compared with later input characters.
+- **Sentinel:** It prevents empty-stack indexing and must be excluded from the final length.
+- **Uppercase guarantee:** The empty sentinel cannot collide with a real character.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let $n$ be the length of `s`. Every character is examined once, appended at most once, and popped at most once. Total time is $O(n)$.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

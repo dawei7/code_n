@@ -1,104 +1,115 @@
 # Guided Example: Generalized Abbreviation
 
-We examine the step-by-step execution of the optimal String, Backtracking, Bit Manipulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"word": "word"}`
-- **Required output:** `["4", "3d", "2r1", "2rd", "1o2", "1o1d", "1or1", "1ord", "w3", "w2d", "w1r1", "w1rd", "wo2", "wo1d", "wor1", "word"]`
+- **Input:** `{"word": "a"}`
+- **Required output:** `["1", "a"]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Generalized Abbreviation** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+A word's **generalized abbreviation** can be constructed by taking any number of **non-overlapping** and **non-adjacent** substrings and replacing them with their respective lengths.
+
+The objective is to compute `["1", "a"]` from `{"word": "a"}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: What a valid abbreviation really chooses.
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+At every position of `word`, the character is either kept literally or belongs to an abbreviated substring. If several consecutive characters are abbreviated, they must be represented by one number equal to the length of that whole run. Writing two numbers next to each other would represent two adjacent abbreviated substrings, which the definition forbids; those substrings should have been merged into one longer substring instead.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+For example, a choice pattern for `abcde` might be:
 
----
+- keep `a`;
+- abbreviate `bc`, producing `2`;
+- keep `d`;
+- abbreviate `e`, producing `1`.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The result is `a2d1`. The literal `d` separates the two abbreviated runs, so they are non-adjacent. By contrast, abbreviating `ab` and then immediately abbreviating `cde` should not produce `23`; with no kept character between the runs, they form one run of length five and must be written as `5`.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The exact optimal source generates valid results by building this separation rule directly into its recursion. It never creates adjacent number tokens and never needs a later cleanup pass.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"word": "a"}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Meaning of `dfs(i)`.
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Let $n$ be `len(word)`. The helper `dfs(i)` returns every valid abbreviation of the suffix beginning at index `i`, under the condition that index `i` is the next undecided position. Nothing before `i` needs to be reconsidered.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+When `i >= n`, the suffix is empty. There is exactly one abbreviation of an empty suffix: the empty string. Returning `['']` is important. It gives callers one neutral suffix to append, allowing a completed prefix to become one full result. Returning an empty list would incorrectly erase every branch that reaches the end because a loop or list comprehension over that list would produce nothing.
+
+For an ordinary index `i`, the helper divides all possibilities into two disjoint groups according to what happens to `word[i]`.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Let $n$ be `len(word)`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Group one: keep the current character.
+
+The expression based on `word[i] + s for s in dfs(i + 1)` places `word[i]` literally into every abbreviation of the remaining suffix. Once the current character is kept, index `i + 1` is free to begin either another literal portion or an abbreviated run. This produces every result whose first suffix character remains visible.
+
+For instance, if the current suffix is `cd` and the recursive results for `d` are `d` and `1`, prefixing `c` produces `cd` and `c1`.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `["1", "a"]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"word": "a"}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `["1", "a"]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Character-by-character backtracking with a pen:** - **Character-by-character backtracking with a pending count:** At each index, either keep the character or increase a counter for the current abbreviated run. When a character is kept, flush any positive counter before that character. This is a common $O(n2^n)$ method and usually uses only $O(n)$ auxiliary stack space beyond the output. The exact source instead chooses an entire run endpoint at once and forces its separator explicitly.
+- **- **Bitmask enumeration:** Use each integer from `:** - **Bitmask enumeration:** Use each integer from `0` through $2^n - 1$ as a keep-or-abbreviate pattern. Scan its bits, count consecutive abbreviated positions, and flush the count before each kept character and at the end. This has the same $O(n2^n)$ time and output space, but constructs each answer independently rather than sharing recursive suffix logic.
+- **- **Memoizing `dfs(i)`:** Caching all suffix resul:** - **Memoizing `dfs(i)`:** Caching all suffix result lists avoids recomputing the same index, but the cache itself contains exponentially many strings across suffixes. It can improve constants for this particular recursive structure, yet it cannot improve the asymptotic output bound and may keep more intermediate data alive.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n2^n)$. Let $n$ be the length of `word`. There are exactly $2^n$ abbreviations. Each returned string represents all $n$ source positions and can have $O(n)$ textual length: it may contain many literal characters and number tokens, and constructing it involves string concatenation. The total time complexity is therefore $O(n2^n)$. This bound includes producing the required output, not merely visiting abstract choices.
+- **Auxiliary Space Complexity:** $O(n2^n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,134 @@
 # Guided Example: Sort Integers by The Number of 1 Bits
 
-We examine the step-by-step execution of the optimal Array, Bit Manipulation, Sorting, Counting method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"arr": [0, 1, 2, 3, 4, 5, 6, 7, 8]}`
 - **Required output:** `[0, 1, 2, 4, 8, 3, 5, 6, 7]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Sort Integers by The Number of 1 Bits** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer array `arr`. Sort the integers in the array in ascending order by the number of `1`'s in their binary representation and in case of two or more integers have the same number of `1`'s you have to sort them in ascending order.
+
+The objective is to compute `[0, 1, 2, 4, 8, 3, 5, 6, 7]` from `{"arr": [0, 1, 2, 3, 4, 5, 6, 7, 8]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Understand the first tuple component
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+`x.bit_count()` returns how many one bits occur in the absolute binary representation of integer `x`. All inputs are nonnegative, so this is simply the number of ones seen when `x` is written in base two.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Examples clarify what the method measures:
 
----
+- Zero has binary representation `0` and bit count zero.
+- One, two, four, and eight are powers of two. Each has exactly one set bit.
+- Three is binary `11`, five is `101`, and six is `110`. Each has two set bits.
+- Seven is `111` and has three set bits.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The decimal magnitude is not the primary criterion. Eight comes before three because one set bit is fewer than two, even though eight is numerically larger.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"arr": [0, 1, 2, 3, 4, 5, 6, 7, 8]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Use tuple ordering for the tie-break
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The key for each number is the pair `(bit count, numeric value)`. Python compares tuples lexicographically:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+1. Compare the first components.
+2. Only when they are equal, compare the second components.
+
+Thus a number with fewer one bits always comes first. Within one bit-count group, smaller numeric values come first. This exactly mirrors both clauses of the problem.
+
+For the input `[0, 1, 2, 3, 4, 5, 6, 7, 8]`, the keys begin as `(0, 0)` for zero; `(1, 1)`, `(1, 2)`, `(1, 4)`, and `(1, 8)` for the powers of two; then the two-bit and three-bit groups. Sorting those pairs yields `[0, 1, 2, 4, 8, 3, 5, 6, 7]`.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The key for each number is the pair `(bit count, numeric val... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why a key function is enough
+
+Every input number receives one deterministic pair. The ordering of these pairs is total: any two different numeric values either have different bit counts or are ordered by their values. Therefore, sorting by the pairs cannot leave an ambiguous tie between distinct numbers.
+
+Duplicate equal values receive identical keys and remain duplicate equal values in the result, which is correct. Their relative identities do not matter because they are indistinguishable integers.
+
+`sorted` creates and returns a new list. It does not rearrange `arr` in place. Python’s sorting machinery evaluates the key once per list element, stores the decorated information internally, orders the elements, and produces the requested values.
+
+The method relies on a built-in bit-count operation rather than manually scanning bits. That does not change the algorithmic idea: compute the Hamming weight, pair it with the value, and sort by the pair.
+
+Sort stability alone would not implement the numeric tie-break unless the original array had already been numerically ordered. Including `x` in the key makes the result correct for arbitrary input order. For example, `[6, 3, 5]` contains three two-bit values; the second key component reorders them to three, five, six rather than preserving the original sequence.
+
+The key is evaluated once for each occurrence, not on every pairwise comparison. This avoids repeatedly recomputing the bit count during Timsort’s comparisons and keeps the implementation both short and efficient.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[0, 1, 2, 4, 8, 3, 5, 6, 7]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"arr": [0, 1, 2, 3, 4, 5, 6, 7, 8]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[0, 1, 2, 4, 8, 3, 5, 6, 7]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Brian Kernighan bit counting:** Repeatedly set:** - **Brian Kernighan bit counting:** Repeatedly set `x = x & (x - 1)`. Each iteration clears one set bit, so the iteration count is the Hamming weight.
+- **Shift and inspect:** Repeatedly test `x & 1` and shift right. This is easy to derive but examines every represented bit rather than only set bits.
+- **Binary-string conversion:** `bin(x).count("1")` is readable but allocates a string and adds conversion overhead.
+- **Bucket by bit count:** Because values have few bits, group numbers by their count, sort each group numerically, and concatenate. It is more code and still needs sorting within groups.
+- **Zero:** It is the only possible value with no set bits and therefore belongs at the beginning.
+- **Powers of two:** They all have one set bit and are ordered among themselves by numeric value.
+- **Equal bit counts:** The second tuple component enforces ascending numeric order explicitly.
+- **Duplicate integers:** They remain repeated in the output; sorting does not deduplicate.
+- **Input preservation:** `sorted` returns a fresh list. Use `arr.sort` only if mutation is acceptable.
+- **Negative numbers outside the contract:** Python’s `bit_count` uses the absolute value’s ones, while signed fixed-width representations have different interpretations. The stated nonnegative domain avoids that issue.
+- **Unsorted equal-weight input:** Explicitly using the value as the second key is what turns an arbitrary original order into the required ascending tie order.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n\log n)$. Let $n$ be the number of integers and $w$ the maximum number of bits needed to represent an input value.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

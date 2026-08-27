@@ -1,104 +1,141 @@
 # Guided Example: Maximum Transactions Without Negative Balance
 
-We examine the step-by-step execution of the optimal Array, Greedy, Heap (Priority Queue) method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"transactions": [2, -5, 3, -1, -2]}`
 - **Required output:** `4`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Maximum Transactions Without Negative Balance** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer array `transactions`, where $\text{transactions}[i]$ represents the amount of the $$i^{\text{th}}$$ transaction:
+
+The objective is to compute `4` from `{"transactions": [2, -5, 3, -1, -2]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Tentatively selecting every transaction
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+For current amount `x`, the source performs:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+`s += x`
 
----
+`st.add(x)`.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+This preserves the original order conceptually: the current transaction is appended after every previously retained index. `st` sorts only the **values used for choosing a removal**; it does not reorder the actual subsequence.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+If `s >= 0`, the selected sequence remains feasible through the current position. Keeping `x` increases its cardinality by one, so there is no reason to skip it.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+Positive receipts and zero transactions can never cause the first violation. A negative outgoing transaction may.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"transactions": [2, -5, 3, -1, -2]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Repairing a negative balance
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+When `s < 0`, at least one currently selected amount is negative. The source removes:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`y = st.pop(0)`,
+
+the smallest value. Among all possible single removals, deleting the minimum increases the remaining sum the most.
+
+It updates:
+
+`s -= y`.
+
+Because `y` is negative, subtracting it raises the balance.
+
+The source uses a `while` loop, but after one newly added transaction causes a previously feasible selection to go negative, one removal is enough. Let the prior nonnegative balance be $S$ and current amount be $x$. The minimum selected value satisfies $y\le x$, so:
+
+$$
+S+x-y\ge S\ge0.
+$$
+
+The loop nevertheless expresses the general requirement directly and remains correct.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | When `s < 0`, at least one currently selected amount is nega... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why removing an earlier negative preserves prefix feasibility
+
+The removed minimum may be an earlier transaction rather than the current one.
+
+If the current transaction is removed, the selected sequence returns to the previously feasible sequence.
+
+If an earlier negative amount is removed, all selected-prefix balances before that transaction remain unchanged. Every balance at or after its old position increases by `-y`. Thus no earlier feasible prefix becomes negative, and the repaired final balance is nonnegative.
+
+The remaining indices still appear in original order, so they form a legal subsequence.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `4` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"transactions": [2, -5, 3, -1, -2]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `4` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Min-heap:** A standard heap supports insertion:** - **Min-heap:** A standard heap supports insertion and removal of the minimum in $O(\log n)$ and is sufficient because no other sorted operation is needed.
+- **Skip every transaction that immediately fails:** Rejecting only the current value can be suboptimal when an earlier, more negative transaction should be exchanged out instead.
+- **Dynamic programming by balance:** Balances span an enormous range, making a value-indexed DP infeasible.
+- **All negative transactions:** Each tentative selection is repaired by removing a negative value, and the final answer is zero.
+- **All transactions feasible:** No removal occurs and the method returns $n$.
+- **Zero transaction:** It neither helps nor hurts balance but increases cardinality, so it should always be kept.
+- **Repeated amounts:** `SortedList` preserves multiplicity; each occurrence represents a distinct transaction index.
+- **Removing an earlier item:** Deleting a negative earlier transaction only raises later prefix balances and preserves relative order of all retained indices.
+- **Several severe negatives:** The loop formulation can remove as many minima as needed, while each stored occurrence is popped at most once overall.
+- **Negative final total of all transactions:** A large feasible subsequence may still exist after discarding the most damaging negative amounts.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n log n)$. Let $n$ be the number of transactions.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

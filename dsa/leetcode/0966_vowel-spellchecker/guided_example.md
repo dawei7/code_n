@@ -1,104 +1,119 @@
 # Guided Example: Vowel Spellchecker
 
-We examine the step-by-step execution of the optimal Array, Hash Table, String method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"wordlist": ["KiTe", "kite", "hare", "Hare"], "queries": ["kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"]}`
-- **Required output:** `["kite", "KiTe", "KiTe", "Hare", "hare", "", "", "KiTe", "", "KiTe"]`
+- **Input:** `{"wordlist": ["yellow"], "queries": ["YellOw"]}`
+- **Required output:** `["yellow"]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Vowel Spellchecker** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given a `wordlist`, we want to implement a spellchecker that converts a query word into a correct word.
+
+The objective is to compute `["yellow"]` from `{"wordlist": ["yellow"], "queries": ["YellOw"]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Build one lookup level for each precedence rule
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+A query can match in three increasingly permissive ways: exact spelling, case-insensitive spelling, or case-insensitive spelling after treating every vowel as interchangeable.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The first successful rule must win. The solution preprocesses `wordlist` into one structure for each rule, then checks queries in that same order.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"wordlist": ["yellow"], "queries": ["YellOw"]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Exact matches
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Set `s = set(wordlist)` contains original spellings.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+For query `q`, `q in s` tests exact characters and capitalization. If present, the method appends `q` itself and immediately continues.
+
+Returning the query is correct because exact equality means it is identical to the wordlist spelling.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Set `s = set(wordlist)` contains original spellings.
+
+For qu... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Case-insensitive matches
+
+Dictionary `low` maps lowercase spelling to the first original word with that spelling.
+
+During preprocessing, `low.setdefault(t, w)` inserts `w` only when lowercase key `t` has not appeared. Later capitalization variants do not overwrite it, preserving the required first match.
+
+After exact matching fails, the query is lowercased. If it exists in `low`, the stored original spelling is returned.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `["yellow"]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"wordlist": ["yellow"], "queries": ["YellOw"]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `["yellow"]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Scan wordlist per query:** Direct but can requ:** - **Scan wordlist per query:** Direct but can require quadratic total content work.
+- **Regular expressions:** They add overhead; canonical pattern keys are simpler.
+- **Overwrite dictionary keys:** This would return the last match instead of the first. `setdefault` is essential.
+- **Exact match with a later spelling:** Exact membership returns the identical query.
+- **Capitalization tie:** The first wordlist spelling is retained.
+- **Vowel-pattern tie:** The first matching wordlist entry is retained.
+- **Different lengths:** Patterns differ and cannot match.
+- **Missing or extra vowel:** Positions are preserved, so insertions and deletions do not match.
+- **Uppercase vowels:** Lowercasing occurs before normalization.
+- **No match:** The output contains an empty string.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(S)$. Let `S` be total characters across `wordlist` and `queries`.
+- **Auxiliary Space Complexity:** $O(S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

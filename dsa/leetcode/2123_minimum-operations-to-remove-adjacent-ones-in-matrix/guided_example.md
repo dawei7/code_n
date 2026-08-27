@@ -1,104 +1,121 @@
 # Guided Example: Minimum Operations to Remove Adjacent Ones in Matrix
 
-We examine the step-by-step execution of the optimal Array, Depth-First Search, Graph Theory, Matrix method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"grid": [[1, 1, 0], [0, 1, 1], [1, 1, 1]]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Operations to Remove Adjacent Ones in Matrix** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a **0-indexed** binary matrix `grid`. In one operation, you can flip any `1` in `grid` to be `0`.
+
+The objective is to compute `3` from `{"grid": [[1, 1, 0], [0, 1, 1], [1, 1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Convert adjacent ones into edges that must be covered
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Create one graph vertex for every grid cell containing 1. Connect two vertices when their cells are horizontally or vertically adjacent.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+To make the grid well-isolated, every such adjacency edge must lose at least one endpoint: flipping either endpoint from 1 to 0 removes that conflict.
 
----
+Choosing the minimum cells to flip is therefore the minimum vertex cover problem on this adjacency graph.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"grid": [[1, 1, 0], [0, 1, 1], [1, 1, 1]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Use checkerboard parity to obtain a bipartite graph
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Every horizontal or vertical move changes the parity of `row + column`. Thus every adjacency connects an odd-parity cell to an even-parity cell.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The graph is bipartite. The source builds adjacency only from odd-parity 1-cells to neighboring even-parity 1-cells. Each conflict edge is represented once.
+
+Cell coordinates are flattened to `x = i * n + j`, giving compact integer vertex identifiers.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Every horizontal or vertical move changes the parity of `row... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Relate minimum flips to maximum matching
+
+Kőnig's theorem states that in a bipartite graph, the size of a minimum vertex cover equals the size of a maximum matching.
+
+Therefore, the method does not need to explicitly construct which cells form the cover. It only needs the maximum number of vertex-disjoint adjacency edges.
+
+That matching size is the minimum number of flips.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"grid": [[1, 1, 0], [0, 1, 1], [1, 1, 1]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Hopcroft–Karp:** BFS layers plus DFS augmentat:** - **Hopcroft–Karp:** BFS layers plus DFS augmentations achieve $O(E\sqrt V)$ and would match the manifest, but those layers are absent from the source.
+- **Flip every cell with a neighbor:** This covers all edges but can use far more flips than a minimum vertex cover.
+- **Greedy local flipping:** Choices interact across adjacent edges and need not be optimal.
+- **All-zero grid:** The graph is empty and the result is zero.
+- **Diagonal ones:** They are not 4-directionally adjacent, so no edge connects them.
+- **Single isolated one:** No operation is needed.
+- **Long chain of ones:** Matching captures alternating cells as the minimum cover size.
+- **Checkerboard parity:** Every valid adjacency crosses sides; no same-side edge exists.
+- **Visited reset:** It must be fresh per augmenting attempt, or valid rerouting paths may be blocked.
+- **Flattened identifiers:** `i * n + j` uniquely represents every cell.
+- **Recursion depth:** A long augmenting path can be a practical Python recursion concern.
+- **Manifest mismatch:** Exact worst-case time is $O(VE)$ for DFS augmentation, not Hopcroft–Karp's $O(E\sqrt V)$.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(E sqrt V)$. Let $V$ be the number of 1-cells and $E$ the number of horizontal/vertical adjacencies between them.
+- **Auxiliary Space Complexity:** $O(mn)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

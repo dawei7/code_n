@@ -1,104 +1,142 @@
 # Guided Example: Max Value of Equation
 
-We examine the step-by-step execution of the optimal Array, Queue, Sliding Window, Heap (Priority Queue), Monotonic Queue method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"points": [[1, 3], [2, 0], [5, 10], [6, -10]], "k": 1}`
 - **Required output:** `4`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Max Value of Equation** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an array `points` containing the coordinates of points on a 2D plane, sorted by the x-values, where $\text{points}[i] = [x_{i}, y_{i}]$ such that $x_{i} < x_{j}$ for all $1 \le i < j \le \text{points.length}$. You are also given an integer `k`.
+
+The objective is to compute `4` from `{"points": [[1, 3], [2, 0], [5, 10], [6, -10]], "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Removing the absolute value
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Points arrive in strictly increasing x-coordinate order. When an earlier point `i` is paired with the current point `j`, $x_i < x_j$, so
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+\lvert x_i-x_j\rvert = x_j-x_i.
+$$
+
+The equation can be rearranged as
+
+$$
+y_i+y_j+x_j-x_i
+=
+(y_i-x_i)+(x_j+y_j).
+$$
+
+For a fixed current point, `x + y` is constant. The best eligible earlier point is therefore the one maximizing `y_i - x_i`, subject to `x - x_i <= k`.
+
+The stored source represents the negative of that score in a min-heap. Each entry is `(x_i - y_i, x_i)`. The smallest first component corresponds to the largest `y_i - x_i`.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"points": [[1, 3], [2, 0], [5, 10], [6, -10]], "k": 1}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Maintaining eligibility
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+Before using the heap for current coordinates `x, y`, the loop checks its top entry. If `x - pq[0][1] > k`, that point is too far left and cannot form a valid pair now or with any later point. It is removed.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+The while loop repeats because several expired points may rise to the top one after another. Once the heap is empty or its top point is within distance `k`, evaluation can proceed.
+
+Expired entries that are not at the top may remain in the heap. This lazy deletion is safe. Only the top entry can influence the maximum calculation. If the top is valid, it already has the best score among every stored entry, so lower-priority expired entries are irrelevant. If an expired entry later becomes the top, the while loop removes it before use.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Before using the heap for current coordinates `x, y`, the lo... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Computing the current best pair
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+When the heap is nonempty after expiration, its top supplies the minimum `x_i - y_i`. The source computes
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`x + y - pq[0][0]`,
+
+which equals
+
+$$
+x_j+y_j-(x_i-y_i)
+=
+y_i+y_j+x_j-x_i.
+$$
+
+That is precisely the original equation for this ordered pair. The value updates `ans` if it is the largest seen across all current points.
+
+Only after evaluating pairs ending at the current point does the code push `(x - y, x)`. This order ensures that a point cannot pair with itself. It becomes a candidate only for later points, as required by $i<j$.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `4` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"points": [[1, 3], [2, 0], [5, 10], [6, -10]], "k": 1}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `4` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Monotonic deque:** Keep eligible points in dec:** - **Monotonic deque:** Keep eligible points in decreasing order of `y_i-x_i` and increasing x order. Each point enters and leaves once, achieving the manifest's $O(N)$ time and $O(N)$ space.
+- **Brute-force pairs:** Testing all earlier points for every current point costs $O(N^2)$ and ignores the rearranged separability.
+- **Balanced search structure:** It can maintain scores with logarithmic operations like the heap, but usually adds implementation complexity.
+- **Negative y-values:** Initializing with negative infinity is necessary because every valid equation value may be negative.
+- **Distance exactly k:** The expiration test uses greater than k, so equality remains valid.
+- **k equals zero:** Strictly increasing x-values allow no pair at distance zero; the existence guarantee therefore excludes such an effective test instance.
+- **Several equal scores:** Any heap top with the minimum `x-y` gives the same optimal contribution.
+- **Expired non-top entries:** They may remain temporarily but cannot affect the answer until reaching the top, when they are removed.
+- **Self-pairing:** Pushing the current point after evaluation prevents using the same point twice.
+- **Sorted input requirement:** Permanent expiration and the sign simplification rely on strictly increasing x-coordinates.
+- **Missing imports:** A standalone file must provide `heappush`, `heappop`, and `inf`.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(N \log N)$. Let $N$ be the number of points. Every point is pushed into the binary heap once. An entry is popped at most once. Each push or pop costs $O(\log N)$, and top inspection is constant time. Total time is therefore $O(N \log N)$.
+- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

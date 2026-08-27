@@ -1,104 +1,111 @@
 # Guided Example: Robot Room Cleaner
 
-We examine the step-by-step execution of the optimal Backtracking, Interactive method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"robot": {"room": [[1, 1, 1, 1, 1, 0, 1, 1], [1, 1, 1, 1, 1, 0, 1, 1], [1, 0, 1, 1, 1, 1, 1, 1], [0, 0, 0, 1, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 1, 1]], "row": 1, "col": 3, "direction": 0}}`
-- **Required output:** `30`
+- **Input:** `{"robot": {"room": [[1]], "row": 0, "col": 0, "direction": 0}}`
+- **Required output:** `1`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Robot Room Cleaner** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are controlling a robot that is located somewhere in a room. The room is modeled as an `m x n` binary grid where `0` represents a wall and `1` represents an empty slot.
+
+The objective is to compute `1` from `{"robot": {"room": [[1]], "row": 0, "col": 0, "direction": 0}}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Core Step 1
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The robot cannot inspect the room grid, learn its absolute row and column, or teleport back to an earlier cell. It can only sense whether a forward move succeeds. The solution nevertheless performs an ordinary depth-first search by creating its own coordinate system relative to the starting position.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"robot": {"room": [[1]], "row": 0, "col": 0, "direction": 0}}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Core Step 2
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The starting cell is called `(0, 0)`, regardless of its hidden grid coordinates. Direction numbers are
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The starting cell is called `(0, 0)`, regardless of its hidd... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Core Step 3
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+- `0` for up,
+- `1` for right,
+- `2` for down,
+- `3` for left.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `1` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"robot": {"room": [[1]], "row": 0, "col": 0, "direction": 0}}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `1` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Iterative DFS with an explicit stack:** It can:** - **Iterative DFS with an explicit stack:** It can avoid Python recursion depth, but each stack frame must preserve both exploration direction and the physical route needed to restore the robot. The recursive entry/exit contract expresses that bookkeeping naturally.
+- **Breadth-first search:** A queue can plan graph exploration, but the physical robot still has to travel between queued cells and cannot teleport. DFS matches physical backtracking much more directly.
+- **Wall-following alone:** Always turning at walls can traverse some boundaries but does not reliably explore every branch in an arbitrary connected room. The visited-coordinate DFS explicitly returns to branch points.
+- **Unknown absolute location:** Relative `(0, 0)` coordinates are sufficient. Translation of every coordinate by the hidden start position would describe the same adjacency graph.
+- **Unknown dimensions:** The algorithm stops by exhausting reachable neighbors, so it never needs `m` or `n`.
+- **Failed move:** The robot remains in place, exactly as the parent loop assumes before its unconditional right turn.
+- **Previously visited neighbor:** The algorithm does not physically enter it. It simply rotates to the next direction, avoiding cycles.
+- **Single-cell room:** The cell is cleaned once, four wall checks fail, and four right turns restore the initial orientation.
+- **Long corridor:** Recursion depth can be linear in the number of cells. The asymptotic space bound includes this stack depth, and a language recursion limit may motivate an explicit-stack implementation.
+- **Backtracking move must succeed:** It traverses the same open edge by which the child was entered; room geometry does not change, so no obstacle can appear on that return edge.
+- **Clean exactly once versus at least once:** `vis` ensures each cell's DFS call and `clean()` occur once. The requirement only needs every cell cleaned, but avoiding repeated cleaning also limits work.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(c)$. Let $c$ be the number of accessible cells. Each accessible cell enters `dfs` once because it is added to `vis` before neighbors are explored. Each call checks exactly four directions, and every check performs a constant number of robot operations apart from a recursive traversal charged to another cell. Total time is therefore $O(c)$.
+- **Auxiliary Space Complexity:** $O(c)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,129 @@
 # Guided Example: As Far from Land as Possible
 
-We examine the step-by-step execution of the optimal Array, Dynamic Programming, Breadth-First Search, Matrix method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"grid": [[1, 0, 1], [0, 0, 0], [1, 0, 1]]}`
 - **Required output:** `2`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **As Far from Land as Possible** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an `n x n` `grid` containing only values `0` and `1`, where `0` represents water and `1` represents land, find a water cell such that its distance to the nearest land cell is maximized, and return the distance. If no land or water exists in the grid, return `-1`.
+
+The objective is to compute `2` from `{"grid": [[1, 0, 1], [0, 0, 0], [1, 0, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Reverse the viewpoint: expand from every land cell
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+For each water cell, the desired value is its distance to the nearest land cell. Running a separate breadth-first search from every water cell would repeat most of the same exploration.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Instead, place all land cells into one queue before the search begins. This is multi-source breadth-first search. It behaves as if a new virtual source were connected to every land cell with zero-cost edges. The first search wave reaches all water cells at distance one, the next reaches distance two, and so on.
 
----
+Because the final wave contains the water cells with the greatest nearest-land distance, the number of completed waves gives the answer.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"grid": [[1, 0, 1], [0, 0, 0], [1, 0, 1]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Initialize every distance-zero source
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The deque comprehension scans all `n^2` coordinates and inserts `(i, j)` whenever `grid[i][j]` is one. These are exactly the land cells, and each has distance zero from the nearest land because it is land itself.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The early condition handles the two invalid result cases:
+
+- an empty queue means there is no land, so no water cell has a finite distance to land;
+- a queue of size `n * n` means every cell is land, so there is no water cell to choose.
+
+Both return the initial `ans = -1` as required.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The deque comprehension scans all `n^2` coordinates and inse... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Process one distance layer at a time
+
+At the beginning of a `while q` iteration, the queue contains all cells at one BFS distance layer. `range(len(q))` captures that layer's size before any new cells are appended.
+
+Every current cell explores its four orthogonal neighbors. The compact direction tuple
+
+`(-1, 0, 1, 0, -1)`
+
+combined with `pairwise` produces the offsets up `(-1, 0)`, right `(0, 1)`, down `(1, 0)`, and left `(0, -1)`. These are exactly the moves whose shortest-path length equals Manhattan distance.
+
+A neighbor is accepted only when it lies inside the grid and its current value is zero. The solution immediately changes it to one and appends it.
+
+Changing the grid at discovery time is the visited marker. Immediate marking is important: if two cells in the current frontier can both reach the same water cell, the first one marks it before the second examines it, so the cell enters the queue only once.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `2` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"grid": [[1, 0, 1], [0, 0, 0], [1, 0, 1]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `2` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **BFS from every water cell:** This repeats sear:** - **BFS from every water cell:** This repeats searches and can take `O(n^4)` time on an `n` by `n` grid.
+- **Dynamic programming in directional passes:** Distances can be propagated with forward and backward scans in `O(n^2)` time. Multi-source BFS more directly matches unweighted Manhattan layers.
+- **Use a separate visited set:** It preserves the input but adds another `O(n^2)` structure. The exact solution intentionally marks the grid.
+- **Mark cells when dequeued:** Several parents could enqueue the same water cell before its first dequeue. Marking at discovery prevents duplicates.
+- **No land:** The initial queue is empty and the answer is `-1` because nearest-land distance is undefined.
+- **No water:** Every cell is already in the source queue and the answer is `-1` because there is no candidate water cell.
+- **One land cell:** BFS radiates from that source, and the farthest grid position determines the result.
+- **Several land cells:** Their waves run simultaneously; the first wave to reach a water cell automatically represents its nearest source.
+- **One-cell grid:** It is either all land or all water, so the early condition returns `-1`.
+- **Input mutation:** Every visited water cell becomes one. A caller needing the original grid would have to pass a copy, adding `O(n^2)` space.
+- **Only orthogonal movement:** Diagonal steps are not explored because Manhattan distance counts horizontal and vertical moves only.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n^2)$. There are `n^2` cells. Initial source collection scans all of them once. Each water cell is marked and enqueued at most once, and each dequeued cell examines exactly four neighbors. Total time is `O(n^2)`.
+- **Auxiliary Space Complexity:** $O(n^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

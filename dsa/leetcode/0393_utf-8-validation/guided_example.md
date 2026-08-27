@@ -1,104 +1,117 @@
 # Guided Example: UTF-8 Validation
 
-We examine the step-by-step execution of the optimal Array, Bit Manipulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"data": [197, 130, 1]}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **UTF-8 Validation** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an integer array `data` representing the data, return whether it is a valid **UTF-8** encoding (i.e. it translates to a sequence of valid UTF-8 encoded characters).
+
+The objective is to compute `true` from `{"data": [197, 130, 1]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Read the array as a stream of characters, not one character
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The input may encode several UTF-8 characters back to back. A one-byte character can be followed by a three-byte character, which can be followed by another one-byte character. The validator must partition the complete sequence into legal character patterns and must finish exactly at a character boundary.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The exact solution is a small state machine. Its variable `cnt` is the number of continuation bytes still required for the current multi-byte character.
 
----
+- `cnt == 0` means the next byte must begin a new character;
+- `cnt > 0` means the next byte must have prefix `10`, after which the requirement decreases by one.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+No decoded Unicode value needs to be constructed. The task, as defined here, asks only whether byte prefixes fit the specified one-through-four-byte structure.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"data": [197, 130, 1]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Recognizing a continuation byte
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+When `cnt > 0`, the byte must have form `10xxxxxx`. Shifting an eight-bit value right by six removes the lower six payload bits and leaves only the two most significant bits. Therefore
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+
+
+is exactly the continuation-byte test.
+
+If it fails, the current character is incomplete or malformed, and the method returns `false` immediately. If it passes, `cnt -= 1` records that one required continuation byte has been consumed.
+
+While continuation bytes are expected, the code does not reinterpret a byte beginning with `0`, `110`, `1110`, or `11110` as a new character. A multi-byte character must receive all of its continuation bytes first; character boundaries cannot overlap.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | When `cnt > 0`, the byte must have form `10xxxxxx`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Recognizing a one-byte character
+
+When `cnt == 0`, the code checks possible leading-byte patterns from shortest to longest.
+
+The condition `v >> 7 == 0` examines the most significant bit. It is true exactly for `0xxxxxxx`, the required shape of a one-byte character. No continuation bytes follow, so `cnt` remains zero and the next array element starts another character.
+
+For example, decimal `1` is binary `00000001`. Shifting it right seven positions yields zero, so it is accepted as a complete one-byte character.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"data": [197, 130, 1]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Binary-string conversion:** Format each byte a:** - **Binary-string conversion:** Format each byte as eight bits and inspect textual prefixes. This can be easier to visualize but allocates temporary strings and performs unnecessary conversion. Bit shifts express the same fixed-prefix tests directly.
+- **- **Leading-one count:** Starting from mask `10000:** - **Leading-one count:** Starting from mask `10000000`, count consecutive leading one bits, reject one or more than four, then validate the required continuations. This is equivalent; the exact solution enumerates the only four legal leaders explicitly.
+- **- **Regular expression over a bit string:** A rege:** - **Regular expression over a bit string:** A regex can describe the patterns after conversion, but constructing the full bit string costs extra memory and obscures the simple streaming state.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let $n$ be the number of integers in `data`.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

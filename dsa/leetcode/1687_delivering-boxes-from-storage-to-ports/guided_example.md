@@ -1,104 +1,145 @@
 # Guided Example: Delivering Boxes from Storage to Ports
 
-We examine the step-by-step execution of the optimal Array, Dynamic Programming, Segment Tree, Queue, Heap (Priority Queue), Prefix Sum, Monotonic Queue method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"boxes": [[1, 1], [2, 1], [1, 1]], "portsCount": 2, "maxBoxes": 3, "maxWeight": 3}`
 - **Required output:** `4`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Delivering Boxes from Storage to Ports** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You have the task of delivering some boxes from storage to their ports using only one ship. However, this ship has a **limit** on the **number of boxes** and the **total weight** that it can carry.
+
+The objective is to compute `4` from `{"boxes": [[1, 1], [2, 1], [1, 1]], "portsCount": 2, "maxBoxes": 3, "maxWeight": 3}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: A voyage always takes a consecutive block
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Boxes must leave storage in their given order. Therefore one ship load is a consecutive block `j, j+1, ..., i-1`. It is feasible when:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+i-j\le\texttt{maxBoxes}
+$$
 
----
+and
 
-### Intermediate Phase: Invariant-Preserving Transitions
+$$
+\text{weight}(j\ldots i-1)\le\texttt{maxWeight}.
+$$
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The problem becomes choosing where each block begins so that all prefix boxes are delivered with minimum trips.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"boxes": [[1, 1], [2, 1], [1, 1]], "portsCount": 2, "maxBoxes": 3, "maxWeight": 3}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Precompute prefix weights
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+`ws` begins with zero and stores cumulative box weights. Thus
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`ws[i] - ws[j]`
+
+is the total weight of boxes `j` through `i-1`. This makes a load’s weight check constant time.
+
+`portsCount` does not appear in the algorithm because actual port labels matter only when deciding whether two consecutive boxes require a port-to-port trip. The supplied count validates labels but does not affect costs.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | `ws` begins with zero and stores cumulative box weights.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Count port changes with another prefix array
+
+For each adjacent box pair, `c` stores one when their port IDs differ and zero when they are equal. `cs` is the prefix sum of these change indicators.
+
+For a load containing boxes `j` through `i-1`, the ship:
+
+1. travels from storage to the first box’s port;
+2. travels once for every port change between consecutive loaded boxes;
+3. returns from the last port to storage.
+
+The number of internal port changes is
+
+`cs[i - 1] - cs[j]`.
+
+Therefore that load costs
+
+$$
+\texttt{cs}[i-1]-\texttt{cs}[j]+2.
+$$
+
+Boxes for the same consecutive port are delivered during one visit, so their zero change indicator adds no trip.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `4` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"boxes": [[1, 1], [2, 1], [1, 1]], "portsCount": 2, "maxBoxes": 3, "maxWeight": 3}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `4` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Quadratic prefix DP:** Evaluate every prior `j:** - **Quadratic prefix DP:** Evaluate every prior `j` for every endpoint `i`. It is easier to derive but costs $O(n^2)$ and fails the large constraint.
+- **Segment tree over DP keys:** It can query minimum feasible ranges, but weight and count define a sliding window that a monotonic deque handles more simply in linear time.
+- **Consecutive boxes for one port:** They add no internal port-change trip and can all be delivered during one port visit if capacity allows.
+- **Alternating ports:** Every adjacent change adds one trip inside a load, exactly as counted by `cs`.
+- **One box:** Its load costs storage-to-port plus port-to-storage, so the answer is two.
+- **Box-count limit one:** Every box forms its own load and costs two trips.
+- **Weight-bound eviction:** Positive weights ensure that advancing `i` never makes an old overweight window lighter.
+- **Both limits active:** A candidate is removed as soon as either count or weight fails; satisfying only one is insufficient.
+- **Dominated equal key:** The newer index is preferred because it expires no earlier under both monotone constraints.
+- **Return to storage:** The `+2` includes both the first outward trip and mandatory return for every load.
+- **Unused `portsCount`:** Equality of adjacent IDs fully determines route changes; the total number of possible labels does not change the optimum.
+- **Final candidate insertion:** Skipping `i == n` saves useless deque work because no later DP state exists.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let `n` be the number of boxes. Building `ws`, `c`, and `cs` takes $O(n)$ time. Each index is appended to the deque at most once, removed from its front at most once, and removed from its back at most once. The DP loop is therefore $O(n)$ amortized time.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

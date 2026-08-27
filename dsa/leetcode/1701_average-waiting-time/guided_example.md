@@ -1,104 +1,126 @@
 # Guided Example: Average Waiting Time
 
-We examine the step-by-step execution of the optimal Array, Simulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"customers": [[1, 2], [2, 5], [4, 3]]}`
 - **Required output:** `5.0`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Average Waiting Time** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+There is a restaurant with a single chef. You are given an array `customers`, where $\text{customers}[i] = [\text{arrival}_{i}, \text{time}_{i}]:$
+
+The objective is to compute `5.0` from `{"customers": [[1, 2], [2, 5], [4, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Track when the single chef becomes free
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Customers must be served in input order, and the chef can prepare only one order at a time. The entire state needed for the next customer is therefore one time value: `t`, the completion time of the most recently processed order. Before any customer, the source initializes `t = 0`.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+For a customer represented by `[a, b]`, `a` is the arrival time and `b` is the preparation duration. The chef cannot start before both conditions hold:
 
----
+- the customer has arrived, and
+- the previous order has finished.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The earliest valid start time is consequently `max(t, a)`. Adding `b` gives the current order's completion time:
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+`t = max(t, a) + b`.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+This one assignment handles both an idle restaurant and a waiting line.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"customers": [[1, 2], [2, 5], [4, 3]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Case one: the chef is still busy
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+If the old `t` is greater than `a`, the customer arrives while an earlier order is being prepared. The maximum chooses `t`, so the new completion time is `old_t + b`. The customer waits from arrival `a` through the remaining busy period and through preparation of their own order.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+For example, if the chef is free at time eight, a customer arrives at four, and preparation takes three, delivery happens at eleven. The total waiting time for that customer is `11 - 4 = 7`.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | If the old `t` is greater than `a`, the customer arrives whi... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Case two: the chef has been idle
+
+If `a` is at least the old `t`, no pending work delays this customer. The maximum chooses `a`, and completion becomes `a + b`. Any gap between the old completion time and this arrival is idle time; it must not be added to the customer's wait.
+
+The resulting waiting time is exactly `b`, because the problem's definition includes preparation time. This point is easy to misread: “waiting time” here runs until the food is finished, not merely until cooking begins.
+
+When `a == t`, either branch interpretation gives the same start time. The next order begins immediately when the previous one ends.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `5.0` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"customers": [[1, 2], [2, 5], [4, 3]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `5.0` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Store every completion time:** A DP-style arra:** - **Store every completion time:** A DP-style array can record each finish, but only the preceding finish is needed, so it wastes $O(n)$ space.
+- **Event simulation with a queue:** Explicit arrival and completion events reproduce the same process with unnecessary machinery because service order is fixed.
+- **Sort the customers:** Arrival order is already non-decreasing, and equal-arrival input order must be preserved; sorting is not needed.
+- **Average incrementally:** Updating a floating mean on every customer can introduce repeated rounding. Summing exact integer waits and dividing once is simpler.
+- **One customer:** `t` becomes arrival plus preparation, `tot` becomes the preparation duration, and the returned average is that duration.
+- **Long idle gap:** `max(t,a)` discards idle time and starts at arrival.
+- **Continuous backlog:** When every next arrival precedes `t`, completion simply advances by each preparation duration.
+- **Equal arrival times:** The first such customer starts when possible, and subsequent ones wait in their given order.
+- **Arrival exactly at completion:** The chef starts the new order immediately, with no extra idle or queue delay.
+- **Preparation time is included:** The contribution is completion minus arrival, not start minus arrival.
+- **Nonempty input:** The constraint guarantees at least one customer, so division by `len(customers)` cannot divide by zero.
+- **Output precision:** Python true division produces a float; the judge accepts answers within the stated tolerance.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let $n$ be the number of customers. The loop visits each input pair exactly once and performs a maximum, additions, and a subtraction, all constant-time under the usual fixed-width arithmetic model. Total time is $O(n)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

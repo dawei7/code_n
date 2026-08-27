@@ -1,104 +1,132 @@
 # Guided Example: Find Closest Number to Zero
 
-We examine the step-by-step execution of the optimal Array method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [-4, -2, 1, 4, 8]}`
 - **Required output:** `1`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Find Closest Number to Zero** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an integer array `nums` of size `n`, return *the number with the value **closest** to *`0`* in *`nums`. If there are multiple answers, return *the number with the **largest** value*.
+
+The objective is to compute `1` from `{"nums": [-4, -2, 1, 4, 8]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Measure closeness with absolute value
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The distance from an integer `x` to zero is `abs(x)`. Negative and positive values with the same magnitude are equally close, so distance alone does not always determine the answer. When distances tie, the larger numeric value must win; between `-a` and `a`, that is the positive value.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The solution scans once while storing:
 
----
+- `ans`, the best value seen so far;
+- `d`, its distance from zero.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+It initializes `ans = 0` and `d = inf`. Positive infinity is larger than every finite input distance, so the first array element always becomes a genuine candidate. The initial zero is only a placeholder used by the tie expression; it cannot prevent the first update because every finite distance is below infinity.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [-4, -2, 1, 4, 8]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Evaluate one candidate
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+For each `x`, the assignment expression `y := abs(x)` calculates its distance once and stores it in `y` for both comparisons.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The update condition is:
+
+`y < d or (y == d and x > ans)`.
+
+The first part accepts a strictly closer value. The second handles equal distance and accepts only a larger numeric value. If either is true, `ans, d = x, y` updates the value and its matching distance together.
+
+Keeping the two variables synchronized is important. After an update, `d` must describe the new `ans`, not the prior one.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For each `x`, the assignment expression `y := abs(x)` calcul... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: The maintained best-candidate rule
+
+After processing any prefix of `nums`, `ans` is the correct answer for that prefix: it has the smallest absolute value, and among values at that distance it is the largest.
+
+The statement holds after the first element because it replaces the infinite placeholder. For a later `x`:
+
+- if `x` is closer, every earlier candidate loses on the primary rule, so replacing `ans` is correct;
+- if it ties in distance but is larger, it wins the secondary rule;
+- otherwise, the existing `ans` remains at least as good.
+
+By induction, after the final element `ans` is the required answer for the entire array.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `1` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [-4, -2, 1, 4, 8]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `1` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Sort with a custom key:** Sorting by `(abs(x),:** - **Sort with a custom key:** Sorting by `(abs(x), -x)` and taking the first value works, but costs `O(n \log n)` time and extra storage or input mutation.
+- **Use `min` with a key:** `min(nums, key=lambda x: (abs(x), -x))` compactly expresses the same ordering, though the explicit scan makes the tie logic visible.
+- **Track only minimum absolute value:** Without storing the chosen signed value, the larger-value tie cannot be resolved.
+- **Return the first closest value:** This fails when `-a` appears before `a`.
+- **Zero present:** It is always the answer.
+- **All values positive:** The smallest positive value is closest.
+- **All values negative:** The negative value nearest zero is also the numerically largest among them.
+- **Both `-a` and `a`:** The positive `a` wins.
+- **Duplicate values:** They do not affect the returned number.
+- **Single element:** It replaces the infinite sentinel and is returned.
+- **Maximum magnitudes:** Absolute values within the constraints are represented safely.
+- **Input preservation:** The method never sorts or modifies `nums`.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let `n = len(nums)`. The loop examines every element exactly once and performs constant work per element. Time complexity is `O(n)`.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,116 @@
 # Guided Example: Guess the Word
 
-We examine the step-by-step execution of the optimal Array, Math, String, Interactive, Game Theory method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"words": ["acckzz", "ccbazz", "eiowzz", "abcczz"], "master": {"secret": "acckzz", "allowed_guesses": 10}}`
+- **Input:** `{"words": ["hamada", "khaled"], "master": {"secret": "hamada", "allowed_guesses": 10}}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Guess the Word** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an array of unique strings `words` where $\text{words}[i]$ is six letters long. One word of `words` was chosen as a secret word.
+
+The objective is to compute `true` from `{"words": ["hamada", "khaled"], "master": {"secret": "hamada", "allowed_guesses": 10}}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Each guess partitions the remaining candidates
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Every word has six positions. When `master.guess(guess)` returns a score from 0 through 6, it tells us how many positions the guess shares with the secret.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+For any remaining candidate, we can compute the score it would produce against the guess. Only candidates producing the returned score can still be the secret. Thus, a guess partitions the candidate set into at most seven buckets, one for each possible match count.
 
----
+After observing the actual score, we retain exactly one bucket.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"words": ["hamada", "khaled"], "master": {"secret": "hamada", "allowed_guesses": 10}}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Count matching positions
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Helper `matches(first, second)` zips the two six-letter strings and sums `left == right`.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Each equality is a Boolean, which contributes one for a positional match and zero otherwise. This is exactly the feedback definition; characters appearing at different positions do not count.
+
+All words have length six, so `zip` compares every position.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Helper `matches(first, second)` zips the two six-letter stri... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Maintain the candidate invariant
+
+`candidates` begins as a copy of `words`. Its invariant is:
+
+> Every word in `candidates` is consistent with all feedback received so far, and the secret is among them.
+
+The secret belongs initially because the contract says it appears in `words`.
+
+After guessing `guess` and receiving `score`, the filtering expression keeps candidate `candidate` only when:
+
+`matches(guess, candidate) == score`.
+
+The actual secret necessarily satisfies this equality because `score` came from comparing the guess with that secret. Every candidate with a different hypothetical score contradicts the observed feedback and is safely discarded. The invariant is preserved.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"words": ["hamada", "khaled"], "master": {"secret": "hamada", "allowed_guesses": 10}}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Guess candidates in arbitrary order:** It even:** - **Guess candidates in arbitrary order:** It eventually finds the secret but may exceed the limited call budget.
+- **- **Random guessing:** Often works on generated ca:** - **Random guessing:** Often works on generated cases but provides no deliberate worst-bucket control and makes behavior nondeterministic.
+- **- **Choose from all original words, not only candi:** - **Choose from all original words, not only candidates:** A noncandidate probe can sometimes partition better, but the exact source restricts guesses to current candidates and guarantees every guess remains valid.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(qg^2\ell)$. Let `g` be the initial number of candidates, let the fixed word length be six, and let `q` be the number of guess rounds.
+- **Auxiliary Space Complexity:** $O(g)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

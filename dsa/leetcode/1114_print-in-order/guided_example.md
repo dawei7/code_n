@@ -1,104 +1,122 @@
 # Guided Example: Print in Order
 
-We examine the step-by-step execution of the optimal Concurrency method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [1, 2, 3]}`
 - **Required output:** `"firstsecondthird"`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Print in Order** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Suppose we have a class:
+
+The objective is to compute `"firstsecondthird"` from `{"nums": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Turn ordering requirements into two closed gates
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Three threads may begin in any scheduler order, but the callbacks must complete in the sequence first, second, third. There are two dependencies:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+- `second` must wait until `first` has finished printing.
+- `third` must wait until `second` has finished printing.
 
----
+The class represents these dependencies with locks `l2` and `l3`. Both are acquired during construction, before worker methods run, so both later stages begin behind closed gates.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [1, 2, 3]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Let the first stage run immediately
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+`first` does not acquire a gate. Regardless of when its thread is scheduled, it can call `printFirst`.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Only after that callback returns does it call `l2.release()`. This placement is essential. Releasing before the callback would allow the second thread to print while the first callback had not completed, breaking the required output order.
+
+Releasing `l2` opens exactly the gate on which `second` waits.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | `first` does not acquire a gate.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Block the second stage until first completes
+
+`second` begins with `l2.acquire()`. Because the constructor already holds that lock, a second thread scheduled too early blocks rather than printing.
+
+After `first` releases the lock, the acquire succeeds. The second callback runs, and only after it returns does `second` release `l3`. This establishes the next happens-before relationship.
+
+The method does not release `l2` afterward. Each of the three methods is called exactly once, so that gate has no future consumer and does not need to be reusable.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `"firstsecondthird"` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [1, 2, 3]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `"firstsecondthird"` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Semaphores:** Initialize the second and third :** - **Semaphores:** Initialize the second and third stage permits to zero, then release them in sequence. This expresses the same two gates and does not rely on lock ownership semantics.
+- **Events:** One event can signal completion of first and another completion of second. Events are readable for one-way, one-use notifications.
+- **Condition variable with stage counter:** Wait until a shared stage reaches the required number, update it, and notify. It is more general but more code for three fixed stages.
+- **Busy waiting on flags:** Repeatedly checking shared booleans wastes CPU and still needs memory-visibility synchronization.
+- **Calling methods in apparent input order:** Incorrect because operating-system scheduling, not input presentation, determines actual execution.
+- **Third starts first:** It blocks on `l3` until both preceding callbacks finish.
+- **Second starts first:** It blocks on `l2` until first finishes.
+- **First starts last:** The other two wait safely; once first runs, the gates open in sequence.
+- **Release after callback:** Moving either release before its print callback would permit overlapping or reversed output.
+- **Exactly one call per method:** The locks are one-use gates and are not reset for repeated cycles.
+- **Callback exception:** It can prevent the next release and cause a wait; the contract assumes normal callbacks.
+- **No final unlock:** Nothing follows third, so leaving `l3` acquired after the successful wait is harmless.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(1)$. The repository classifies this package as bounded concurrency: exactly three calls and all six launch permutations form a fixed legal domain. Each method performs one callback and at most one acquire or release, so total algorithmic work is $O(1)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

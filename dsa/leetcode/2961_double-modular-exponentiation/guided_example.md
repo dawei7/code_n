@@ -1,104 +1,126 @@
 # Guided Example: Double Modular Exponentiation
 
-We examine the step-by-step execution of the optimal Array, Math, Simulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"variables": [[2, 3, 3, 10], [3, 3, 3, 1], [6, 1, 1, 4]], "target": 2}`
 - **Required output:** `[0, 2]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Double Modular Exponentiation** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a **0-indexed** 2D array `variables` where $\text{variables}[i] = [a_{i}, b_{i}, c_{i}, m_{i}]$, and an integer `target`.
+
+The objective is to compute `[0, 2]` from `{"variables": [[2, 3, 3, 10], [3, 3, 3, 1], [6, 1, 1, 4]], "target": 2}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Respect the two separate modular powers
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+For each row `[a, b, c, m]`, the required value has a nested definition: first compute $a^b$ modulo $10$, then raise that remainder to the power $c$ and take the result modulo $m$. The modulus $10$ belongs only to the inner exponentiation. It is not valid to combine the exponents into $a^{bc}$ and apply both moduli afterward, because modular reduction changes the base used by the outer power.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The implementation mirrors the mathematical order exactly:
 
----
+`pow(pow(a, b, 10), c, m)`
 
-### Intermediate Phase: Invariant-Preserving Transitions
+Python’s three-argument `pow(base, exponent, modulus)` calculates modular exponentiation without first constructing the enormous ordinary power. The inner call returns a value from zero through nine. The outer call uses that small remainder as its base and returns a value from zero through `m - 1`.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The list comprehension uses `enumerate(variables)` so that each row is processed together with its original zero-based index `i`. If the nested result equals `target`, that index is included in the returned list. Because `enumerate` scans in input order, the qualifying indices automatically appear in increasing order.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"variables": [[2, 3, 3, 10], [3, 3, 3, 1], [6, 1, 1, 4]], "target": 2}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Why modular exponentiation avoids huge integers
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+A direct evaluation of `a ** b` can have a number of digits proportional to $b$, even though only its last decimal digit is needed. Repeated-squaring modular exponentiation instead maintains a running result and a current base, reducing both modulo the requested modulus after every multiplication.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+At a conceptual level, write the exponent in binary. While exponent bits remain, if the current low bit is one, multiply the running result by the current base modulo the modulus. Square the base modulo the modulus and move to the next exponent bit. Each step halves the remaining exponent, so only logarithmically many steps are necessary. Python performs this internally in `pow`.
+
+The same reasoning applies to the outer power. Even though its base is already below ten, `base ** c` may still be astronomically large. The three-argument outer `pow` keeps only residues modulo `m` throughout.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | A direct evaluation of `a ** b` can have a number of digits ... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why the nested calculation is exact
+
+Modular arithmetic guarantees that replacing a base by its residue preserves the result under further multiplication with the same modulus: if $x \equiv y \pmod q$, then $x^e \equiv y^e \pmod q$. This is why the inner call can reduce after every multiplication and still produce exactly $a^b \bmod 10$. Applying the analogous argument to the outer call produces exactly
+
+$$
+\left(a^b \bmod 10\right)^c \bmod m.
+$$
+
+Notice that the outer modulus is generally different from ten. The inner result is an actual integer in $[0,9]$, and the outer exponentiation starts from that integer. One must not replace the inner calculation with `pow(a, b, m)`, because that asks a different modular question.
+
+For example, for `[3, 4, 2, 5]`, the inner value is `pow(3, 4, 10) = 1` because $3^4 = 81$. The outer value is then `pow(1, 2, 5) = 1`. Computing $3^{4\cdot2} \bmod 5$ happens to give one here, but that coincidence is not an identity and cannot justify exponent multiplication.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[0, 2]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"variables": [[2, 3, 3, 10], [3, 3, 3, 1], [6, 1, 1, 4]], "target": 2}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[0, 2]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Ordinary exponentiation first:** Computing `(a:** - **Ordinary exponentiation first:** Computing `(a ** b % 10) ** c % m` is mathematically correct but may allocate integers with an enormous number of digits before reducing them.
+- **Multiplying exponents:** Replacing the expression with `pow(a, b * c, m)` is generally wrong because the required inner reduction modulo ten occurs before the outer exponentiation.
+- **Cycle tables for last digits:** Powers modulo ten are periodic, so the inner stage can be implemented with cases. Built-in modular exponentiation is clearer and already logarithmic.
+- **Manual repeated squaring:** It gives the same asymptotic behavior and can be educational, but Python’s three-argument `pow` is optimized and expresses the intent directly.
+- **Inner result zero:** The outer power is still handled exactly by `pow`, including the exponent rules defined for the valid input domain.
+- **Modulus one:** Every outer result is zero because all integers are congruent to zero modulo one; only a zero target can match.
+- **Repeated qualifying rows:** Each row contributes its own index. Equal data does not cause deduplication.
+- **No qualifying rows:** The comprehension naturally returns an empty list.
+- **Index order:** Sorting variables or results by value would break the required original indices; `enumerate` preserves input order.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(V(\log B+\log C)$. Let $V$ be the number of rows. For a row `[a, b, c, m]`, repeated-squaring modular exponentiation uses $O(\log b)$ multiplication stages for the inner call and $O(\log c)$ stages for the outer call. Under the usual word-arithmetic model for bounded problem integers, the total time is
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

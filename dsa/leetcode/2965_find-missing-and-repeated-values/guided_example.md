@@ -1,104 +1,124 @@
 # Guided Example: Find Missing and Repeated Values
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Math, Matrix method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"grid": [[1, 3], [2, 2]]}`
 - **Required output:** `[2, 4]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Find Missing and Repeated Values** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a **0-indexed** 2D integer matrix `grid` of size $n * n$ with values in the range $[1, n^{2}]$. Each integer appears **exactly once** except `a` which appears **twice** and `b` which is **missing**. The task is to find the repeating and missing numbers `a` and `b`.
+
+The objective is to compute `[2, 4]` from `{"grid": [[1, 3], [2, 2]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Count the complete promised value range
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+An $n \times n$ grid contains values intended to be exactly the integers from $1$ through $n^2$, except that one value appears twice and one value is absent. The implementation creates a frequency array `cnt` of length `n * n + 1`. Index zero is unused, while `cnt[v]` records how many times value `v` occurs in the grid.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+It then scans every row and every value, incrementing the corresponding frequency. A second scan over `x = 1, 2, ..., n * n` finds the exceptional counts:
 
----
+- if `cnt[x] == 2`, `x` is assigned to `ans[0]` as the repeated value;
+- if `cnt[x] == 0`, `x` is assigned to `ans[1]` as the missing value.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The output order matters: repeated comes first and missing comes second. Initializing `ans = [0, 0]` supplies the two slots before the range scan fills them.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"grid": [[1, 3], [2, 2]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Why frequency counting exactly matches the guarantees
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Under a perfect grid containing every allowed value once, each frequency from one through $n^2$ would equal one. The problem changes that multiset by replacing one occurrence of the missing value with an extra occurrence of the repeated value. Therefore, exactly one frequency becomes zero, exactly one becomes two, and every other frequency remains one.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The grid scan records this multiset without depending on row or column position. Position is irrelevant to the requested result; only how often each allowed value appears matters. During the range scan, the unique frequency two identifies the repeated number and the unique frequency zero identifies the missing number. Frequencies equal to one are ordinary and require no action.
+
+For example, in a $2 \times 2$ grid containing `[[1, 3], [2, 2]]`, the frequency array over values one through four is `[1, 2, 1, 0]` when the unused zero slot is omitted. The second scan places two in the first result slot and four in the second, producing `[2, 4]`.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Under a perfect grid containing every allowed value once, ea... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why the unused zero slot is helpful
+
+Allowed values begin at one. Giving `cnt` a length of $n^2+1$ lets the value itself be used directly as an index, with no repeated subtraction or offset conversion. The unused `cnt[0]` does not participate in the final scan, so it cannot be mistaken for the missing value.
+
+This direct-address table is appropriate because the value domain is dense, known, and only as large as the number of grid cells. It also gives deterministic constant-time updates and lookups rather than expected-time hashing.
+
+
+After scanning any prefix of grid cells, `cnt[v]` equals the number of processed cells containing `v`, because it begins at zero and is incremented exactly once for every encountered occurrence. After all $n^2$ cells have been processed, this is the exact full-grid frequency for every allowed value.
+
+The problem’s guarantee then implies there is exactly one `a` with `cnt[a] == 2` and exactly one `b` with `cnt[b] == 0`. The second loop examines every allowed candidate. When it reaches `a` it writes `a` to the repeated slot, and when it reaches `b` it writes `b` to the missing slot. No other value can overwrite either slot because no other frequency has the corresponding exceptional count. The returned array is therefore exactly `[a, b]`.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[2, 4]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"grid": [[1, 3], [2, 2]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[2, 4]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Sum and squared-sum equations:** Comparing the:** - **Sum and squared-sum equations:** Comparing the actual sums with those of $1$ through $n^2$ can solve two equations for the repeated and missing values in $O(1)$ auxiliary space, but it requires careful arithmetic and is not the technique used by the exact solution.
+- **Sign marking in a flattened mutable grid:** Values can sometimes encode visited status in place, but a two-dimensional layout and input mutation make this less direct, and restoring the input may be required.
+- **Hash set detection:** A set can identify the repeated value while a total-sum difference identifies the missing one. It still uses $O(N^2)$ worst-case space and has expected rather than deterministic lookup behavior.
+- **Sorting all cells:** Flattening and sorting exposes a duplicate and gap in $O(N^2\log N)$ time and requires storage or input rearrangement, so it is slower.
+- **Smallest valid grid:** The guarantees still produce one repeated and one missing value; direct indexing needs no special boundary case.
+- **Repeated value before or after the missing value:** The output order is semantic, not numeric. The code writes by frequency type, so it works regardless of which value is larger.
+- **Unused index zero:** The final loop deliberately starts at one; including zero would falsely classify the unused counter as missing.
+- **Manifest mismatch:** Readers should use $O(N^2)$ auxiliary space for this exact implementation, despite any $O(1)$ space claim associated with an arithmetic variant.
+- **Input preservation:** Every grid cell is read only; all counts live in the separate list.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(C)$. Let $N$ denote the side length of the grid, so there are $N^2$ cells. The nested grid scan takes $O(N^2)$ time. The subsequent scan of values one through $N^2$ also takes $O(N^2)$ time. Their sum remains $O(N^2)$.
+- **Auxiliary Space Complexity:** $O(N^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

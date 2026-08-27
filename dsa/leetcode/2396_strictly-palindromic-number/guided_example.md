@@ -1,104 +1,145 @@
 # Guided Example: Strictly Palindromic Number
 
-We examine the step-by-step execution of the optimal Math, Two Pointers, Brainteaser method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"n": 9}`
+- **Input:** `{"n": 99991}`
 - **Required output:** `false`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Strictly Palindromic Number** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+An integer `n` is **strictly palindromic** if, for **every** base `b` between `2` and $n - 2$ (**inclusive**), the string representation of the integer `n` in base `b` is **palindromic**.
+
+The objective is to compute `false` from `{"n": 99991}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: The answer is false for every allowed input
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The exact solution returns `false` without examining `n` further. This is not a shortcut based on examples or probability. Under the constraint `n >= 4`, every possible input has at least one required base in which its representation is not a palindrome.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+To disprove “palindromic in every base,” finding one counterexample base is sufficient. There is no need to convert `n` into all bases from two through `n - 2`.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 99991}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Use base `n - 2` for every `n >= 5`
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Let:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+$$
+b=n-2.
+$$
+
+When $n\ge5$, $b\ge3$, so digit `2` is valid in base $b$. Rewrite $n$ as:
+
+$$
+n=(n-2)+2=1\cdot b+2.
+$$
+
+Therefore, the base-$b$ representation of $n$ is the two-digit string `"12"`. Its reverse is `"21"`, which is different. It is not palindromic.
+
+Base $b=n-2$ lies exactly at the upper endpoint of the bases the definition requires. Thus, this one legal base disproves strict palindromicity for every $n\ge5$.
+
+For example, if `n = 9`, use base seven:
+
+$$
+9=1\cdot7+2,
+$$
+
+so the representation is `12_7`, immediately disproving the property. The example also shows a failure in base three, but finding more than one counterexample is unnecessary.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Let:
+
+$$
+b=n-2.
+$$
+
+When $n\ge5$, $b\ge3$, so digit `2` is v... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Handle the boundary value `n = 4`
+
+The same selected base is `n - 2 = 2`, but digit two is not a valid base-two digit, so the two-digit `"12"` derivation cannot be used literally.
+
+Convert four to base two:
+
+$$
+4=1\cdot2^2+0\cdot2+0,
+$$
+
+giving `"100"`. Its reverse is `"001"`, so it is not a palindrome. Base two is the only base in the required interval `[2, n - 2]` for `n = 4`, and it already fails.
+
+This boundary case completes the proof for the full input domain.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `false` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 99991}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `false` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Convert in every required base:** It can verif:** - **Convert in every required base:** It can verify the definition directly but wastes substantial work; the single counterexample theorem already settles all inputs.
+- **Test only base two:** It is insufficient as a general proof because some numbers, such as nine, are palindromic in base two.
+- **Use base `n - 2` blindly as `"12"`:** The derivation needs `n >= 5` so base is at least three and digit two is valid.
+- **Boundary `n = 4`:** Base two representation `100` supplies the required separate counterexample.
+- **Universal versus existential logic:** One failing base is enough to return false, while one successful base is not enough to return true.
+- **Upper constraint:** The proof does not depend on `10^5` and works for every integer at least four.
+- **No true branch:** This is intentional and fully proved, not an omitted implementation.
+- **No base-conversion helper:** Runtime conversion would not improve correctness once the invariant is known.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(1)$. The function executes one constant return statement. Its time complexity is $O(1)$ and its auxiliary space complexity is $O(1)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

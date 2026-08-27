@@ -1,104 +1,106 @@
 # Guided Example: License Key Formatting
 
-We examine the step-by-step execution of the optimal String method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"s": "5F3Z-2e-9-w", "k": 4}`
 - **Required output:** `"5F3Z-2E9W"`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **License Key Formatting** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a license key represented as a string `s` that consists of only alphanumeric characters and dashes. The string is separated into $n + 1$ groups by `n` dashes. You are also given an integer `k`.
+
+The objective is to compute `"5F3Z-2E9W"` from `{"s": "5F3Z-2e-9-w", "k": 4}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Core Step 1
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The input dashes describe an old grouping that must be discarded. Only the alphanumeric characters, in their original order and converted to uppercase, belong to the reformatted key. After those characters are regrouped, every group except possibly the first must contain exactly `k` characters. The implementation scans from left to right, so it first computes how long that exceptional first group must be.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"s": "5F3Z-2e-9-w", "k": 4}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Core Step 2
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+**Determine the only valid first-group length.** Let `m` be the number of non-dash characters. The code obtains it as `n - s.count("-")`, where `n = len(s)`. If groups of size `k` are removed from the right, the number left for the first group is `m % k`. A zero remainder does not mean the first group is empty; it means every group, including the first, has exactly `k` characters. This is why the code uses
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | **Determine the only valid first-group length.** Let `m` be ... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Core Step 4
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Python's `or` returns `k` when the remainder is zero and otherwise keeps the positive remainder. Thus `cnt` begins as an integer from `1` through `k`: exactly the number of alphanumeric characters that must be placed in the first output group.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `"5F3Z-2E9W"` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"s": "5F3Z-2e-9-w", "k": 4}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `"5F3Z-2E9W"` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Traverse right to left:** Building fixed group:** - **Traverse right to left:** Building fixed groups from the end removes the need to precompute the first-group length. The collected characters and separators must then be reversed, and a provisional separator at the reverse end still needs cleanup. It has the same $O(n)$ time and space bounds.
+- **Clean first, then slice:** One can form an uppercase string with all old dashes removed, compute the first length, and slice it into groups. This is very readable but materializes an additional full cleaned string; the current scan combines cleaning and grouping into one construction pass after counting.
+- **Repeated string concatenation:** Adding one character at a time to an immutable Python string can repeatedly copy the existing prefix and become quadratic. Accumulating pieces in `ans` and calling `join` once avoids that risk.
+- **Remainder zero:** The first group must contain `k` characters, not zero. The `or k` portion of the initialization handles this exact case.
+- **`k` exceeds the cleaned length:** The remainder equals the cleaned length, so all characters form one valid first group and no separator remains.
+- **Old dashes at the beginning, middle, or end:** Every old dash is skipped and does not decrement `cnt`. Trailing old dashes are the reason for the final `rstrip("-")` safeguard.
+- **Digits and mixed case:** Digits remain unchanged under `upper()`, while lowercase letters become uppercase and existing uppercase letters remain uppercase.
+- **A group ends before trailing old dashes:** The scan may append a provisional dash because the current source index is not the last index. Joining and stripping removes it, ensuring the output never ends with a dash.
+- **Preserve character order:** Formatting is not sorting. The left-to-right scan appends every non-dash character exactly once in its original relative order.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n^2)$. Let $n$ be the length of the original string, including old dashes. `s.count("-")` performs one $O(n)$ pass. The main loop performs another $O(n)$ pass, doing constant work per character. Joining the accumulated pieces and stripping a possible trailing dash process an output of length $O(n)$. These consecutive passes sum to $O(n)$ time, not $O(n^2)$ time.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

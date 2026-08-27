@@ -1,104 +1,135 @@
 # Guided Example: Happy Number
 
-We examine the step-by-step execution of the optimal Hash Table, Math, Two Pointers method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"n": 19}`
+- **Input:** `{"n": 1000}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Happy Number** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Write an algorithm to determine if a number `n` is happy.
+
+The objective is to compute `true` from `{"n": 1000}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Follow a deterministic sequence of numbers
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Each positive integer has exactly one successor: the sum of the squares of its
+decimal digits. Repeatedly applying that rule creates one deterministic chain.
+The chain either reaches 1, after which the number is happy, or revisits an
+earlier value, after which the same cycle repeats forever.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The exact optimal source detects repetition with set `vis`. It does not use
+Floyd's two-pointer cycle detector, despite the manifest summary saying that it
+does.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 1000}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Remember states before transforming them
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The outer loop continues while `n != 1` and `n not in vis`. At the beginning of
+an iteration, current `n` has not previously been processed, so the method adds
+it to `vis` before calculating its successor.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Recording before transition is important. If a later transition returns to
+this value, membership is already present and the loop stops without following
+the same cycle again.
+
+If current `n` is 1, the first condition stops immediately and the final
+comparison returns true. If current `n` is a repeated non-1 value, the second
+condition stops and the final comparison returns false.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The outer loop continues while `n != 1` and `n not in vis`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Extract decimal digits numerically
+
+The inner loop initializes successor accumulator `x` to zero. `divmod(n, 10)`
+returns the quotient and remainder from division by ten. The remainder `v` is
+the current least significant decimal digit, and the quotient replaces `n`,
+discarding that digit.
+
+The update `x += v * v` adds its square. Repetition continues until the working
+`n` becomes zero. Every original digit has then been extracted exactly once,
+and `x` is the required digit-square sum. Assignment `n = x` advances the outer
+chain.
+
+Destroying the old numeric value during digit extraction is safe because it was
+already stored in `vis`, and only its computed successor is needed afterward.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 1000}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Floyd cycle detection:** Advance one value by :** - **Floyd cycle detection:** Advance one value by one transition and another by two; true constant auxiliary state and matches the manifest summary.
+- **Known-cycle sentinel:** Stop when reaching 1 or 4, relying on the proven unique non-happy cycle for decimal digit squares.
+- **Dictionary history:** Equivalent to the set but stores unnecessary values, as the competitive variant does.
+- **String digit conversion:** Easier to read but allocates text for each transition.
+- **Input 1:** Returns true without entering either loop.
+- **Single-digit unhappy number:** Transitions normally and eventually repeats in the non-happy cycle.
+- **Zeros inside a number:** Their square contributes zero and `divmod` handles them naturally.
+- **Positive guarantee:** Avoids defining digit extraction and happiness for zero or negatives.
+- **Fixed 32-bit domain:** Makes the reachable post-transition region a bounded constant.
+- **Set growth:** Exact code remembers history even though a two-pointer alternative need not.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(\log n)$. Processing the initial number's decimal digits costs $O(\log n)$. Its successor
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

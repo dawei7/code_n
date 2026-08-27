@@ -1,104 +1,149 @@
 # Guided Example: Count the Digits That Divide a Number
 
-We examine the step-by-step execution of the optimal Math method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"num": 7}`
-- **Required output:** `1`
+- **Input:** `{"num": 121}`
+- **Required output:** `2`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Count the Digits That Divide a Number** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an integer `num`, return *the number of digits in `num` that divide *`num`.
+
+The objective is to compute `2` from `{"num": 121}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Inspect every decimal digit as a separate occurrence
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The answer counts digit positions, not distinct digit values. If digit 1 appears twice and divides the number, both occurrences contribute.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The method repeatedly removes the last decimal digit from a working copy while testing that digit against the unchanged original number.
 
----
+Two variables keep these roles separate:
 
-### Intermediate Phase: Invariant-Preserving Transitions
+- `num` remains the original value used in every divisibility test;
+- `x` is progressively shortened to expose its digits.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+If the code divided `num` itself while extracting digits, later tests would use the wrong dividend.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"num": 121}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Use `divmod` to split quotient and last digit
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+For a positive integer `x`:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`divmod(x,10)`
+
+returns:
+
+- quotient $\lfloor x/10\rfloor$, which removes the final decimal digit;
+- remainder `x%10`, which is that final digit.
+
+The assignment
+
+`x,val = divmod(x,10)`
+
+updates the working number and names the extracted digit in one step.
+
+For `x=1248`, successive iterations extract 8, 4, 2, and 1, while `x` becomes 124, 12, 1, and finally 0.
+
+Digits are processed right to left, but their order does not affect a count.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For a positive integer `x`:
+
+`divmod(x,10)`
+
+returns:
+
+- quo... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Test the exact definition of divisibility
+
+A nonzero digit `val` divides `num` exactly when the remainder is zero:
+
+`num%val==0`.
+
+Python represents this comparison as a Boolean. `true` behaves numerically as one and `false` as zero, so
+
+`ans += num%val==0`
+
+increments the count exactly for a dividing digit.
+
+The constraint guarantees that no digit is zero. This matters because `num%0` would be undefined and raise an error. No zero guard is needed for valid inputs.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `2` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"num": 121}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `2` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **String iteration:** Convert `num` to text, con:** - **String iteration:** Convert `num` to text, convert each character back to an integer, and test divisibility; it is also $O(d)$ but allocates the string.
+- **Repeated digit:** Count every occurrence separately.
+- **Digit one:** It always divides the number.
+- **Digit equal to `num`:** This occurs for one-digit input and always contributes.
+- **Zero digit:** The contract excludes it; otherwise a guard would be mandatory before modulo.
+- **Right-to-left processing:** Order is irrelevant because only the count is returned.
+- **Preserve original `num`:** Divisibility must not be tested against the shrinking quotient.
+- **Boolean arithmetic:** true adds one and false adds zero.
+- **Largest input:** Ten extraction iterations suffice for $10^9$.
+- **No floating point:** Decimal digits are obtained exactly with integer arithmetic.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(d)$. Let $d$ be the number of decimal digits in `num`, so
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

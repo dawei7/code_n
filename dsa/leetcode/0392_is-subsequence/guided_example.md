@@ -1,104 +1,113 @@
 # Guided Example: Is Subsequence
 
-We examine the step-by-step execution of the optimal Two Pointers, String, Dynamic Programming method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"s": "abc", "t": "ahbgdc"}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Is Subsequence** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given two strings `s` and `t`, return `true`* if *`s`* is a **subsequence** of *`t`*, or *`false`* otherwise*.
+
+The objective is to compute `true` from `{"s": "abc", "t": "ahbgdc"}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: What must be preserved
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+A subsequence may delete any characters from `t`, but it may not reorder the characters that remain. Therefore the task is not to ask whether every character of `s` occurs somewhere in `t`; it is to ask whether those occurrences can be chosen at strictly increasing positions.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The exact solution uses two indices:
 
----
+- `i` is the index of the next character of `s` that still needs a match;
+- `j` is the current position being inspected in `t`.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+Both begin at zero. The algorithm scans `t` only from left to right. When `t[j]` matches `s[i]`, it accepts that occurrence and increments `i`. Whether it matches or not, it increments `j`, because the current source position has now been fully considered and can never be useful again.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"s": "abc", "t": "ahbgdc"}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Why the pointer into `t` always moves
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+If `s[i] != t[j]`, the current `t` character cannot satisfy the next required character. It may be deleted from the prospective subsequence, so moving `j` forward loses nothing.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+If `s[i] == t[j]`, the algorithm uses this occurrence. It advances `i` to the next requirement and advances `j` because one physical position in `t` cannot be reused for two positions of `s`. This preserves the strictly increasing order of selected indices.
+
+Thus every iteration consumes exactly one character from `t` and consumes either zero or one character from `s`.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | If `s[i] != t[j]`, the current `t` character cannot satisfy ... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: The greedy choice: accept the earliest available match
+
+When characters match, another strategy might skip this occurrence and hope to use a later equal character. The algorithm never does that; it greedily accepts the earliest possible occurrence.
+
+This choice is safe because an earlier match leaves at least as much of `t` available for the remaining characters as any later match would. Suppose some valid embedding matches `s[i]` at a later index `q`, while the algorithm finds the same character at earlier index `j < q`. Replacing `q` with `j` preserves order with all already chosen positions, and every position used for later characters remains after `j`. The rest of the valid embedding still works.
+
+Therefore accepting an early match cannot destroy a solution. It can only leave a longer suffix in which to find the remaining characters.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"s": "abc", "t": "ahbgdc"}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Recursive greedy scan:** Apply the same match-:** - **Recursive greedy scan:** Apply the same match-or-skip rule recursively. It is correct and linear but uses up to $O(T)$ call-stack space in Python, while the iterative form is constant space.
+- **- **Dynamic programming:** A table over prefixes o:** - **Dynamic programming:** A table over prefixes of `s` and `t` can determine subsequence membership in $O(ST)$ time and space. It solves a more general alignment problem than necessary; the greedy property makes the table wasteful here.
+- **- **Character counts:** Frequencies can reject som:** - **Character counts:** Frequencies can reject some impossible inputs but cannot prove subsequence order. Strings may have enough copies of every character in the wrong order.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(T)$. Let $S = \lvert s \rvert$ and $T = \lvert t \rvert$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

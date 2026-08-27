@@ -1,104 +1,122 @@
 # Guided Example: Find if Path Exists in Graph
 
-We examine the step-by-step execution of the optimal Depth-First Search, Breadth-First Search, Union-Find, Graph Theory method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"n": 3, "edges": [[0, 1], [1, 2], [2, 0]], "source": 0, "destination": 2}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Find if Path Exists in Graph** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+There is a **bi-directional** graph with `n` vertices, where each vertex is labeled from `0` to $n - 1$ (**inclusive**). The edges in the graph are represented as a 2D integer array `edges`, where each $\text{edges}[i] = [u_{i}, v_{i}]$ denotes a bi-directional edge between vertex $u_{i}$ and vertex $v_{i}$. Every vertex pair is connected by **at most one** edge, and no vertex has an edge to itself.
+
+The objective is to compute `true` from `{"n": 3, "edges": [[0, 1], [1, 2], [2, 0]], "source": 0, "destination": 2}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Represent the undirected graph with both directions
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The code creates one adjacency list per vertex. For every edge `[u, v]`, it appends `v` to `g[u]` and `u` to `g[v]`. A path can therefore traverse an edge in either direction.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The intended search is depth-first: starting from `source`, recursively search neighbors until `destination` is reached. `any(...)` short-circuits when a recursive call returns true.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 3, "edges": [[0, 1], [1, 2], [2, 0]], "source": 0, "destination": 2}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: The required visited invariant
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+In an undirected graph, every traversed edge immediately offers a route back to the parent. A correct DFS must mark a vertex visited before recursively exploring its neighbors. Revisiting a marked vertex should return false for that branch.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+With that invariant, each reachable vertex is processed once. Reaching `destination` proves a path; exhausting all source-component vertices proves none exists.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | In an undirected graph, every traversed edge immediately off... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: The exact source omits the marking operation
+
+The function creates `vis = set()` and checks:
+
+`if i in vis: return false`.
+
+However, it never executes `vis.add(i)`. The set remains empty forever. The visited check therefore cannot stop a back edge.
+
+For a simple edge `0 -- 1` with source zero and an unreachable destination elsewhere, `dfs(0)` calls `dfs(1)`, which calls `dfs(0)` again, and recursion repeats until Python raises `RecursionError`. A longer cycle has the same problem.
+
+Even an acyclic undirected graph has two-way adjacency, so parent-child backtracking is already a length-two recursion cycle unless the destination is found before that edge is followed.
+
+The exact implementation may return true in favorable cases—for example, when source equals destination or a neighbor path reaches destination before any failing backtrack—and it returns false for an isolated nondestination source. But it is not a correct general solution.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 3, "edges": [[0, 1], [1, 2], [2, 0]], "source": 0, "destination": 2}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Iterative DFS:** Use an explicit stack and mar:** - **Iterative DFS:** Use an explicit stack and mark vertices when pushed or popped. It avoids both the missing-mark bug and Python recursion limits.
+- **Breadth-first search:** A deque explores the same connected component in $O(V+E)$ time and can stop when destination is reached.
+- **Disjoint Set Union:** Union every edge, then compare representatives of source and destination. This is useful for repeated connectivity queries.
+- **Source equals destination:** The exact code returns true before needing visited state, which is correct.
+- **Isolated source:** If it is not the destination, `any` over an empty neighbor list returns false.
+- **Single undirected edge away from destination:** The missing visited insertion causes immediate parent-child recursion.
+- **Cycle:** The exact source can loop recursively around it until `RecursionError`.
+- **Favorable neighbor ordering:** Reaching destination early may hide the bug on some true cases, but correctness must hold for all inputs.
+- **No duplicate edges:** Adjacency still contains one entry in each direction, so visited marking remains essential.
+- **Minimal fix:** Add `vis.add(i)` before the recursive neighbor search.
+- **Recursion depth after fixing:** A chain can still exceed Python's call-stack limit; an explicit stack is production-safe.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(V+E)$. Building adjacency lists takes $O(V+E)$ time and space.
+- **Auxiliary Space Complexity:** $O(V+E)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

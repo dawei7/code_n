@@ -1,104 +1,163 @@
 # Guided Example: Minimum Operations to Transform Array
 
-We examine the step-by-step execution of the optimal Array, Greedy method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums1": [2, 8], "nums2": [1, 7, 3]}`
 - **Required output:** `4`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Operations to Transform Array** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given two integer arrays `nums1` of length `n` and `nums2` of length $n + 1$.
+
+The objective is to compute `4` from `{"nums1": [2, 8], "nums2": [1, 7, 3]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Separate the unavoidable work from the cost of creating the extra element
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The first `n` positions of `nums1` must end as the first `n` positions of `nums2`. Incrementing or decrementing one value by one means transforming `nums1[i]` into `nums2[i]` costs at least
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+\left|\texttt{nums1}[i]-\texttt{nums2}[i]\right|.
+$$
 
----
+That cost is also achievable by moving directly, one unit at a time, from the starting value to the target value. Summing over the original positions gives a mandatory baseline.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The target has one additional final element, `nums2[-1]`. Exactly one append operation is necessary to increase the array length from `n` to `n + 1`, so the source initializes `ans = 1` and then adds every mandatory absolute difference.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+What remains is to decide which original element to copy, and at what moment during its transformation. The appended value is whatever `nums1[i]` equals at that moment. If the desired extra value is encountered naturally while changing an original element to its own target, no additional increment or decrement is needed for the copy. Otherwise, some extra distance must be paid.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums1": [2, 8], "nums2": [1, 7, 3]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Each direct transformation visits an integer interval
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+For one paired position, let its original value be `a` and target value be `b`. A cheapest direct transformation walks through every integer between them:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+- If `a < b`, it visits `a, a + 1, ..., b`.
+- If `a > b`, it visits `a, a - 1, ..., b`.
+- If `a = b`, it visits only that value.
+
+The exact source locally swaps its variables when `x < y`, so afterward `x` is the larger endpoint and `y` is the smaller endpoint. It can then add `x - y` to the baseline and treat the naturally visited interval uniformly as
+
+$$
+[y,x].
+$$
+
+This swap affects only local variables from `zip(nums1, nums2)`. It does not reorder or mutate either input array.
+
+Let `z = nums2[-1]` be the required appended target. If
+
+$$
+y\le z\le x,
+$$
+
+the direct path for this original element reaches `z`. At that moment, append a copy. The original continues to `b` if necessary, while the copy already equals its final target `z`. The append costs the one operation already included in `ans`, and there is no extra numeric movement.
+
+The Boolean `ok` records whether at least one paired transformation interval contains `z`. Its update
+
+`ok = ok or y <= nums2[-1] <= x`
+
+preserves true once such an interval has been found.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For one paired position, let its original value be `a` and t... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: When the target lies outside every interval
+
+If `z` is below `y` or above `x`, the closest naturally visited value is one of the interval endpoints. The distance from `z` to this interval is
+
+$$
+\min(|x-z|,|y-z|).
+$$
+
+The source updates `d` with both endpoint distances for every pair, so after the loop `d` is the smallest distance from `z` to any transformation interval, provided none contains it.
+
+This distance is achievable. Choose the pair and endpoint that realizes `d`. If the closest endpoint is the original value, append before transforming that original. If it is the target value, first finish the original transformation and append afterward. Then move the appended copy from that endpoint to `z` in exactly `d` increments or decrements.
+
+The same cost can also be interpreted as a detour during the source element's path, but changing the appended copy after appending makes achievability especially clear.
+
+No smaller extra cost is possible. At the moment of appending, the copied value must be some integer `t`. If the source element follows only its mandatory shortest path, `t` lies in its endpoint interval, so the copy needs at least `|t-z|` further moves. The minimum over such `t` is the distance from `z` to the interval. If the source element leaves its interval to get closer to `z`, that departure itself adds movement; it cannot beat the interval distance. Taking the minimum across all original positions gives the lower bound `d`, which the construction above attains.
+
+Therefore, after the scan:
+
+- If `ok` is true, the baseline plus one append is already optimal.
+- If `ok` is false, exactly `d` extra moves are necessary and sufficient, so the code adds `d`.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `4` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums1": [2, 8], "nums2": [1, 7, 3]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `4` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Simulate all operation sequences:** The order :** - **Simulate all operation sequences:** The order of increments, decrements, and the append creates a huge branching search. The interval model summarizes every useful append time along a minimum path.
+- **Always append an original value immediately:** This considers only distance from `nums1[i]` to `z` and can miss a free copy obtained later while that element moves toward `nums2[i]`.
+- **Always append after all transformations:** This considers only target endpoints and can likewise miss an intermediate or original value. Both endpoints and the full interval matter.
+- **Add the closest endpoint distance even when `z` lies inside:** The interval distance is zero in that case. The `ok` flag prevents adding a positive endpoint distance when an intermediate value supplies an exact free copy.
+- **Choose the pair with smallest mandatory difference:** The best append source depends on distance from `z` to its interval, not on the cost of its required transformation. Mandatory differences are paid for every pair regardless.
+- **An unchanged original position:** When `nums1[i] == nums2[i]`, its interval is a single point. It can still be the optimal append source if that value is `z` or closest to it.
+- **`z` equals an interval endpoint:** The inclusive check marks `ok` true. Appending immediately or immediately after reaching the endpoint costs no extra movement.
+- **`z` lies between decreasing endpoints:** Swapping local `x` and `y` normalizes the interval, so the same inclusive comparison works whether the original transformation rises or falls.
+- **Only one original element:** The method still has one interval and one possible append source. It correctly handles transforming the source before or after copying it.
+- **Multiple intervals contain `z`:** Any one yields zero extra cost. `ok` remains true, and there is no need to remember which operation sequence realizes it.
+- **Extra target outside all intervals on the same side:** `d` finds the globally nearest endpoint. Moving an appended copy from that endpoint gives the optimal extra cost.
+- **Exactly one append:** The baseline begins at one, and no branch adds another append. Numeric adjustments to the copy are counted separately.
+- **Input mutation:** The local swap does not change `nums1` or `nums2`, which is useful because the endpoints' original positional meaning remains intact.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let `n` be the length of `nums1`. The loop processes each aligned pair once. Every iteration performs constant-time comparisons, absolute differences, additions, and minimum updates. The time complexity is $O(n)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

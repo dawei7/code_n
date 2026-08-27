@@ -1,104 +1,153 @@
 # Guided Example: Minimum Number of Operations to Reinitialize a Permutation
 
-We examine the step-by-step execution of the optimal Array, Math, Simulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"n": 2}`
-- **Required output:** `1`
+- **Input:** `{"n": 1000}`
+- **Required output:** `36`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Number of Operations to Reinitialize a Permutation** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an **even** integer `n`​​​​​​. You initially have a permutation `perm` of size `n`​​ where $\text{perm}[i] = i$​ **(0-indexed)**​​​​.
+
+The objective is to compute `36` from `{"n": 1000}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Track one original element instead of the whole permutation
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The operation always applies the same fixed rearrangement of positions. Repeating it means repeatedly applying one position mapping. The protected solution tracks only the current position `i` of the element that originally occupied position 1.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Initially that element is at `i = 1`. Each loop iteration applies one rearrangement to its position and increments `ans`. When it returns to position 1, the solution returns the number of operations.
 
----
+The key question is why the cycle length of this one element equals the period of the entire permutation. The structure of the mapping provides the answer.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 1000}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Derive the old-position to new-position mapping
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The statement describes `arr[new_position]` in terms of `perm[old_position]`. To track an existing element, invert that viewpoint and ask where an element at old position $i$ appears in `arr`.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+For an old position in the first half, $i<n/2$, it is read by the even new index $2i$. Therefore its new position is
+
+$$
+2i.
+$$
+
+For an old position in the second half, $i\geq n/2$, it is read by the odd new index
+
+$$
+2(i-n/2)+1.
+$$
+
+The code implements these cases with shifts:
+
+- `i <<= 1` multiplies by two;
+- `(i - (n >> 1)) << 1 | 1` subtracts $n/2$, doubles, and sets the low bit to one.
+
+Here `n >> 1` is integer division by two, valid because $n$ is even.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The statement describes `arr[new_position]` in terms of `per... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Connect the mapping to multiplication modulo `n - 1`
+
+Positions 0 and $n-1$ are fixed. For every interior position $1\leq i\leq n-2$, the two cases above are equivalent to
+
+$$
+i\longmapsto 2i\bmod(n-1).
+$$
+
+In the first half, $2i<n-1$ and no wrap occurs. In the second half, subtracting $n-1$ from $2i$ gives `2i - n + 1`, exactly the odd-position formula.
+
+Starting from position 1, after $k$ operations the tracked position is
+
+$$
+2^k\bmod(n-1).
+$$
+
+It returns to 1 precisely when
+
+$$
+2^k\equiv1\pmod{n-1}.
+$$
+
+The loop computes this cycle directly without explicitly performing modular exponentiation.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `36` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 1000}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `36` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Simulate the full permutation:** Rebuilding al:** - **Simulate the full permutation:** Rebuilding all $n$ positions per operation costs $O(nk)$ time and $O(n)$ space.
+- **Track every position:** It is unnecessary once multiplication modulo $n-1$ proves that the orbit of position 1 determines the full period.
+- **Compute multiplicative order by modular powers:** Repeatedly update `value = value * 2 % (n - 1)`; this is mathematically equivalent to the branch mapping.
+- **Number-theoretic factorization:** Factoring Euler-function candidates may find the order faster for huge $n$, but is excessive for $n\leq1000$.
+- **Minimum nonzero requirement:** Even though the initial permutation is already initialized, the answer must count at least one operation.
+- **`n = 2`:** The first operation leaves the permutation unchanged, so the answer is one.
+- **Fixed endpoints:** Positions 0 and $n-1$ never need tracking.
+- **Even `n`:** It makes the two halves and `n >> 1` exact.
+- **Second-half formula:** The bitwise OR with one marks the new position as odd.
+- **First-half formula:** Left shift produces the required even new position.
+- **Cycle return:** The loop checks `i == 1` only after applying an operation, enforcing a nonzero count.
+- **No overflow in Python:** Shifted positions remain within the mapping domain and integers are unbounded.
+- **Input preservation:** Only a derived position is updated; no input structure is mutated.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(k)$. Let $k$ be the returned number of operations. Each iteration performs a constant number of comparisons, shifts, arithmetic operations, and assignments, so time complexity is $O(k)$, matching the manifest. Since $k$ is a cycle length among at most $n-1$ relevant positions, it is also $O(n)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

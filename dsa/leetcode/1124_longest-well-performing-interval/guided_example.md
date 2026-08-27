@@ -1,104 +1,123 @@
 # Guided Example: Longest Well-Performing Interval
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Stack, Monotonic Stack, Prefix Sum method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"hours": [9, 9, 6, 0, 6, 6, 9]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Longest Well-Performing Interval** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+We are given `hours`, a list of the number of hours worked per day for a given employee.
+
+The objective is to compute `3` from `{"hours": [9, 9, 6, 0, 6, 6, 9]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Convert the condition into a positive-sum interval
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+A tiring day should contribute one and a non-tiring day should contribute negative one. Then an interval’s sum equals:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+`number of tiring days - number of non-tiring days`.
 
----
+The interval is well-performing exactly when this sum is strictly positive.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The loop maintains prefix sum `s` through the current day. Each hour value greater than eight adds one; every value at most eight subtracts one. The original scheduling story is now a standard longest positive-sum subarray problem.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"hours": [9, 9, 6, 0, 6, 6, 9]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Use prefix-sum differences
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Let the prefix sum through index `i` be $S_i$. An interval starting after earlier index `j` and ending at `i` has sum:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+$S_i-S_j$.
+
+It is positive when $S_j<S_i$. To maximize interval length for a fixed end, the algorithm wants the earliest earlier position whose prefix sum is smaller than the current sum.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Let the prefix sum through index `i` be $S_i$.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Handle a positive whole prefix
+
+If current `s > 0`, the interval from day zero through `i` is already well-performing. Its length is `i + 1`.
+
+No interval ending at `i` can be longer because this one begins at the first array position. Therefore, the code directly assigns `ans = i + 1`.
+
+The conceptual prefix before the array has sum zero at index negative one. This branch is equivalent to using that sentinel when current sum exceeds zero, without storing it in the dictionary.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"hours": [9, 9, 6, 0, 6, 6, 9]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Quadratic enumeration:** Compute every interva:** - **Quadratic enumeration:** Compute every interval sum, taking $O(n^2)$ time even with prefix sums.
+- **Monotonic-stack prefix method:** Build all prefixes, keep decreasing candidate indices, and scan from the right. It also achieves $O(n)$ but uses a more global proof.
+- **Store every prefix occurrence:** Correct but unnecessary; only the earliest can maximize length.
+- **All tiring days:** Every prefix is positive, so the answer grows to $n$.
+- **No tiring days:** Prefix sums only decrease and no `s - 1` was seen earlier, so the answer remains zero.
+- **Exactly balanced interval:** Sum zero is not sufficient because tiring days must be strictly more numerous.
+- **Eight hours:** It is non-tiring because the threshold is strictly greater than eight.
+- **Repeated prefix sum:** Later occurrences are ignored to preserve the longest future span.
+- **Positive prefix after earlier negatives:** The whole prefix branch still dominates every shorter candidate ending there.
+- **Single tiring day:** The answer is one.
+- **Single non-tiring day:** The answer is zero.
+- **Implicit prefix zero:** The `s > 0` branch replaces the need to store sum zero at index negative one.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let $n$ be the number of days. The loop processes every day once. Dictionary membership, lookup, and insertion take expected $O(1)$ time, so total expected time is $O(n)$.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

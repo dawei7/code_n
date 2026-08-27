@@ -1,104 +1,127 @@
 # Guided Example: Make Three Strings Equal
 
-We examine the step-by-step execution of the optimal String method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"s1": "abc", "s2": "abb", "s3": "ab"}`
 - **Required output:** `2`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Make Three Strings Equal** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given three strings: `s1`, `s2`, and `s3`. In one operation you can choose one of these strings and delete its **rightmost** character. Note that you **cannot** completely empty a string.
+
+The objective is to compute `2` from `{"s1": "abc", "s2": "abb", "s3": "ab"}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Total original length
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Variable `s` stores `len(s1) + len(s2) + len(s3)`. Once the common-prefix length is known, `s - 3 * L` computes the exact number of removed suffix characters.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Each deletion removes one character from exactly one string, so this arithmetic is both a lower bound and an achievable operation count.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"s1": "abc", "s2": "abb", "s3": "ab"}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Scan only while all three have characters
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+`n = min(len(s1), len(s2), len(s3))` is the greatest possible common-prefix length. The loop checks positions `0..n-1`.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+At index $i$, condition
+
+`s1[i] == s2[i] == s3[i]`
+
+tests whether all three prefixes can extend through this character.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | `n = min(len(s1), len(s2), len(s3))` is the greatest possibl... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: First mismatch determines the answer
+
+Suppose the first mismatch occurs at index $i$.
+
+- Characters at positions $0$ through $i-1$ match in all strings, so a common prefix of length $i$ exists.
+- Any prefix of length $i+1$ includes the mismatching characters, so no longer equal result is possible.
+
+Thus $L=i$. If $i>0$, the source returns `s - 3 * i`.
+
+If $i=0$, the strings share no first character. Their only common prefix is empty, but completely emptying a string is forbidden. The source returns `-1`.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `2` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"s1": "abc", "s2": "abb", "s3": "ab"}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `2` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Repeatedly delete from the longest string:** S:** - **Repeatedly delete from the longest string:** Simulation can eventually work but obscures the fact that the target must be a common prefix and may perform unnecessary string construction.
+- **Generate all prefixes:** Comparing prefix sets uses extra time and space; the first mismatch identifies the longest one directly.
+- **First characters differ:** Returning the empty string is illegal, so the correct answer is `-1`.
+- **All strings already equal:** $L$ equals every length and the formula returns zero.
+- **One string is a prefix of both others:** Keep it and delete the two remaining suffixes.
+- **Shortest string length one:** If all first characters agree, that single character is a valid target; otherwise equality is impossible.
+- **Mismatch after a long prefix:** Only suffix characters at and after the mismatch are deleted. Earlier matching characters remain.
+- **No left deletions:** A common substring that is not a prefix is unreachable and must not be considered.
+- **Operation count:** Deleting $q$ characters always costs exactly $q$ operations because each operation removes only one rightmost character.
+- **Lowercase alphabet:** Character comparisons need no normalization; case or Unicode equivalence is outside the contract.
+- **Deleting from only one string may be insufficient:** Equality requires all three final lengths and contents to match. The formula separately accounts for each suffix, even when two strings already have the same length.
+- **Why operations commute:** Deleting a suffix character from one string does not affect the available prefixes of the others. Once the target prefix is fixed, deletions may occur in any order and always total the same count.
+- **A mismatch cannot be repaired:** Rightmost deletion never changes characters before the new endpoint. If position $i$ differs while retained, deleting later characters cannot alter it; the common result must end before $i$.
+- **Different total lengths:** Total `s` may be much larger than $3L$, but every extra character is necessarily outside the shared prefix and must be removed exactly once.
+- **Impossible versus costly:** `-1` is used only when the shared prefix length is zero. Any positive common first character gives a valid result, even if nearly every other character must be deleted.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(L)$. Let $L=\min(|s_1|,|s_2|,|s_3|)$. At most $L$ positions are compared, with constant work per position. Time complexity is $O(L)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

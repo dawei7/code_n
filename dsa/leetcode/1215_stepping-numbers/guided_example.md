@@ -1,104 +1,123 @@
 # Guided Example: Stepping Numbers
 
-We examine the step-by-step execution of the optimal Math, Backtracking, Breadth-First Search method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"low": 0, "high": 21}`
 - **Required output:** `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 21]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Stepping Numbers** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+A **stepping number** is an integer such that all of its adjacent digits have an absolute difference of exactly `1`.
+
+The objective is to compute `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 21]` from `{"low": 0, "high": 21}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Seed every positive one-digit stepping number
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Every one-digit number is stepping because it has no adjacent digit pair that could violate the rule. The queue begins with `1` through `9` in increasing order.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+If `low == 0`, the method appends zero to the answer before starting the positive-number generation. If `low > 0`, zero must not appear.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"low": 0, "high": 21}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Generate exactly the legal children
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+After removing value `v`, the code takes its last digit with `x = v % 10`.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+When `x > 0`, appending `x - 1` creates `v * 10 + x - 1`. The new final digit differs from the old final digit by exactly one.
+
+When `x < 9`, appending `x + 1` creates the other legal child.
+
+At digit zero, only one is legal; at digit nine, only eight is legal. Every generated child remains a stepping number because all earlier adjacent pairs were already valid and the newly added pair is explicitly valid.
+
+Conversely, remove the final digit from any multi-digit positive stepping number. The remaining prefix is a positive stepping number, and the removed digit must be one of exactly these generated children. Therefore, every positive stepping number is eventually generated once.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | After removing value `v`, the code takes its last digit with... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why the queue is numerically sorted
+
+The seeds are increasing. Within one parent, the smaller legal child is enqueued before the larger child.
+
+More importantly, every child of a smaller same-length parent is smaller than every child of the next larger parent. If `u < v`, then the largest child of `u` is at most `10u + 9`, while the smallest child of `v` is at least `10v`. Since `v >= u + 1`, `10v >= 10u + 10`.
+
+Breadth-first processing also completes all shorter decimal lengths before longer ones, and every shorter positive integer is smaller than every longer positive integer. The queue therefore yields stepping numbers in increasing numeric order.
+
+This ordering justifies `if v > high: break`. Once one dequeued value exceeds `high`, every remaining queued value is at least as large, so none can belong to the range.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 21]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"low": 0, "high": 21}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 21]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Depth-first generation plus sorting:** DFS can:** - **Depth-first generation plus sorting:** DFS can generate the same tree, but its natural order is not globally numeric and would require a final sort.
+- **Scan every integer:** Testing all values from `low` through `high` wastes work when stepping numbers are sparse.
+- **Digit dynamic programming:** It can count stepping numbers efficiently over much larger string bounds, but listing every answer still requires output-proportional work.
+- **`low = 0`:** Zero is inserted once; it is never used as a leading-digit seed.
+- **`high < 9`:** Ordered seeds cause an early break at the first value above the bound.
+- **Last digit zero:** Only digit one may be appended, preventing a negative digit.
+- **Last digit nine:** Only digit eight may be appended, preventing digit ten.
+- **Inclusive endpoints:** Both `v >= low` and the pre-break `v <= high` logic include qualifying boundary values.
+- **Sorted output:** BFS numeric ordering removes the need for a separate sort.
+- **Unique generation:** Each number has exactly one parent formed by deleting its last decimal digit.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(S)$. Let $S$ be the number of stepping numbers from zero through `high`, inclusive.
+- **Auxiliary Space Complexity:** $O(S)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

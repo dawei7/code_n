@@ -1,104 +1,120 @@
 # Guided Example: Distance to a Cycle in Undirected Graph
 
-We examine the step-by-step execution of the optimal Depth-First Search, Breadth-First Search, Graph Theory, Topological Sort method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"n": 7, "edges": [[1, 2], [2, 4], [4, 3], [3, 1], [0, 1], [5, 2], [6, 5]]}`
 - **Required output:** `[1, 0, 0, 0, 0, 1, 2]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Distance to a Cycle in Undirected Graph** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a positive integer `n` representing the number of nodes in a **connected undirected graph** containing **exactly one** cycle. The nodes are numbered from `0` to $n - 1$ (**inclusive**).
+
+The objective is to compute `[1, 0, 0, 0, 0, 1, 2]` from `{"n": 7, "edges": [[1, 2], [2, 4], [4, 3], [3, 1], [0, 1], [5, 2], [6, 5]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Build mutable neighbor sets
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+For every undirected edge `a, b`, the code adds `b` to `g[a]` and `a` to `g[b]`.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Sets make it possible to remove a peeled neighbor from another node's current adjacency in expected constant time. Their current lengths represent degrees in the graph that remains after prior peeling.
 
----
+The initial queue contains every node whose degree is one.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 7, "edges": [[1, 2], [2, 4], [4, 3], [3, 1], [0, 1], [5, 2], [6, 5]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Peel leaves toward the unique cycle
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+When leaf `i` is popped, it is appended to `seq`. At that moment, its current set contains its one surviving neighbor `j`.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The code removes `i` from `g[j]` and records `f[i] = j`. This neighbor lies one edge closer to the unpeeled core.
+
+If `j`'s degree becomes one after removal, it is now a leaf and is enqueued. Finally `g[i].clear()` marks the removed node as absent from the remaining graph.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | When leaf `i` is popped, it is appended to `seq`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why cycle nodes are never peeled
+
+Every cycle node has two cycle neighbors. Tree branches attached to it may be removed, but those two cycle edges remain.
+
+Its residual degree therefore never drops below two during leaf peeling, so it never enters the degree-one queue.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[1, 0, 0, 0, 0, 1, 2]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 7, "edges": [[1, 2], [2, 4], [4, 3], [3, 1], [0, 1], [5, 2], [6, 5]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[1, 0, 0, 0, 0, 1, 2]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Multi-source BFS from cycle nodes:** After pee:** - **Multi-source BFS from cycle nodes:** After peeling, enqueue every residual cycle node at distance zero and expand outward. This matches the manifest and also runs in linear time.
+- **DFS cycle detection:** Find one back edge, mark the cycle path through parents, then traverse attached trees. It works but recursion depth may be large.
+- **All nodes on the cycle:** No degree-one node enters the queue, `seq` stays empty, and every answer correctly remains zero.
+- **Single long branch:** Peeling records nodes from farthest to nearest; reversal restores distances from nearest to farthest.
+- **Several trees on cycle nodes:** Each branch peels independently and uses its own inward parent chain.
+- **Degree changes:** A node is enqueued precisely when its residual degree becomes one.
+- **Unique-cycle guarantee:** It ensures the residual two-core is exactly one cycle rather than a more complex core.
+- **Connected guarantee:** Every peeled parent chain eventually reaches that cycle.
+- **Set mutation:** The code removes only currently present leaf edges, so `remove` is valid.
+- **Cycle nodes initialized implicitly:** Their zero values need no explicit assignment.
+- **No second graph traversal:** Reverse peel order replaces multi-source BFS in the exact source.
+- **Input preservation:** Edge descriptions are read into separate mutable sets.
+- **Manifest discrepancy:** The solution peels plus reverse-propagates; it does not run the summarized BFS.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. The graph has exactly $n$ edges. Building two adjacency entries per edge takes $O(n)$ expected time and space.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

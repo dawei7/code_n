@@ -1,104 +1,117 @@
 # Guided Example: Minimum Knight Moves
 
-We examine the step-by-step execution of the optimal Breadth-First Search method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"x": 2, "y": 1}`
 - **Required output:** `1`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Knight Moves** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+In an **infinite** chess board with coordinates from `-infinity` to `+infinity`, you have a **knight** at square `[0, 0]`.
+
+The objective is to compute `1` from `{"x": 2, "y": 1}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Represent the eight legal moves
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The tuple `dirs` contains every combination where one coordinate changes by two and the other by one, with all required signs and orientations. From `(i, j)`, adding `(a, b)` produces neighbor `(i + a, j + b)`.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The board is infinite, so there is no boundary check. Negative and positive coordinates are equally valid.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"x": 2, "y": 1}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Queue and visited set start at the origin
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The deque `q` initially contains `(0, 0)`. The set `vis` also contains the origin. Recording a position when it is enqueued, rather than later when it is removed, prevents several parents from inserting the same coordinate into the queue.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Without `vis`, the graph’s cycles would cause endless repeated exploration. A knight can revisit previously reached squares through many different paths.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The deque `q` initially contains `(0, 0)`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Process one distance layer at a time
+
+`ans` is the move count of every coordinate currently in the queue at the start of an outer iteration. The loop captures `len(q)` and removes exactly that many positions in the inner loop. Any neighbors appended during this processing are one move farther and remain for the next outer iteration.
+
+For each removed coordinate, the code first tests whether it equals the target. If so, it immediately returns `ans`. Otherwise, it generates all eight legal neighbors, inserts each unseen one into `vis`, and appends it to the queue.
+
+After the entire current layer is processed, `ans += 1` advances the distance associated with the next queue layer.
+
+Starting with `ans = 0` is important. The origin is reachable in zero moves. If the target is `(0, 0)`, it is detected in the first layer and zero is returned.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `1` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"x": 2, "y": 1}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `1` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Symmetry-reduced memoized recursion:** Reflect:** - **Symmetry-reduced memoized recursion:** Reflect the target into the first quadrant and recursively approach the origin with two move patterns plus small base cases. Memoization reduces repeated work.
+- **Bidirectional BFS:** Expand from both origin and target until the visited regions meet. It can reduce explored constants, though its asymptotic two-dimensional bound remains similar.
+- **Closed-form knight-distance formula:** A mathematical solution can run in $O(1)$ time but requires careful exceptions near the origin and is harder to derive safely.
+- **Target is the origin:** The first queue removal matches and returns zero.
+- **Negative coordinates:** All eight signed moves are present, so the BFS handles them without normalization.
+- **Coordinate symmetry:** Targets related by sign changes or swapping coordinates have equal answers, but this exact implementation does not exploit that fact.
+- **No board boundary:** Generating negative or overshooting coordinates is legal and sometimes necessary for shortest paths near the origin.
+- **Visited-on-enqueue:** Marking before append prevents duplicate queue entries from different parents in the same layer.
+- **Layer length capture:** `range(len(q))` evaluates the current size once, so newly appended neighbors wait for the next distance layer.
+- **Unreachable fallback:** `-1` should never occur under the guarantee; it exists only as a defensive final return.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(R^2)$. Let $R=\max(\lvert x\rvert,\lvert y\rvert)$, with a constant additive margin for the knight’s possible overshoot near the target.
+- **Auxiliary Space Complexity:** $O(R^2)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

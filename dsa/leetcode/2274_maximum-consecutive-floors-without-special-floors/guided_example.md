@@ -1,104 +1,136 @@
 # Guided Example: Maximum Consecutive Floors Without Special Floors
 
-We examine the step-by-step execution of the optimal Array, Sorting method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"bottom": 2, "top": 9, "special": [4, 6]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Maximum Consecutive Floors Without Special Floors** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Alice manages a company and has rented some floors of a building as office space. Alice has decided some of these floors should be **special floors**, used for relaxation only.
+
+The objective is to compute `3` from `{"bottom": 2, "top": 9, "special": [4, 6]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Special floors divide the rented range into gaps
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Every rented floor from `bottom` through `top` is either special or belongs to one maximal consecutive run of non-special floors. Once the special floor numbers are known in increasing order, those runs can occur only in three places:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+- before the first special floor;
+- between two consecutive special floors;
+- after the last special floor.
 
----
+The answer is the greatest length among these boundary and interior gaps. There is no need to inspect every floor individually, which would be impossible when floor numbers reach one billion.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"bottom": 2, "top": 9, "special": [4, 6]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Sort the special floors
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The input list may be in arbitrary order, so `special.sort()` arranges it from smallest to largest. The source guarantees that the values are unique and lie inside the rented range.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+After sorting, `special[0]` is the lowest special floor and `special[-1]` is the highest. Every adjacent pair generated by `pairwise(special)` has no other special floor between it.
+
+The method sorts in place. This is operationally important: after the call, the caller's `special` list is ordered even though the requested answer itself does not require returning that order.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The input list may be in arbitrary order, so `special.sort()... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Count the lower boundary gap
+
+Floors below the first special floor form the inclusive range
+
+$$
+[\texttt{bottom},\ \texttt{special}[0]-1].
+$$
+
+Its length is
+
+$$
+(\texttt{special}[0]-1)-\texttt{bottom}+1
+=
+\texttt{special}[0]-\texttt{bottom}.
+$$
+
+If the first special floor equals `bottom`, this difference is zero, correctly indicating that no non-special floor appears before it.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"bottom": 2, "top": 9, "special": [4, 6]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Add boundary sentinels:** Sorting `bottom - 1`:** - **Add boundary sentinels:** Sorting `bottom - 1` and `top + 1` with the special values makes every answer look like one adjacent gap, but it requires extra storage or input modification.
+- **Boolean array over floors:** It is impossible when the coordinate range approaches `10^9` and ignores that only special markers matter.
+- **Hash set plus coordinate scan:** Membership may be constant time, but scanning every rented floor is still proportional to the enormous coordinate span.
+- **Balanced ordered set:** It could support dynamic insertions, but the input is static and one sort is simpler.
+- **One special floor:** There are no interior pairs; the maximum of the two boundary gaps is the complete answer.
+- **Special at** `bottom`: The lower gap is zero.
+- **Special at** `top`: The upper gap is zero.
+- **Adjacent special floors:** Their interior contribution is zero.
+- **Every floor special:** Every evaluated gap is zero, so the answer is zero.
+- **Large coordinate gap:** Direct subtraction finds its length without iterating through its floors.
+- **Unsorted input:** In-place sorting restores the order required for adjacent-gap reasoning.
+- **Unique values:** No duplicate special floor needs to be removed.
+- **Inclusive rented range:** The boundary formulas differ from an interior formula because only one special endpoint borders each boundary.
+- **Inclusive interior endpoints:** Both `x` and `y` are special and excluded, giving `y - x - 1`.
+- **Input mutation:** `special.sort()` permanently reorders the caller's list; sort a copy if that is unacceptable.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(m)$. Let `m` be the number of special floors. Sorting takes `O(m \log m)` time. Initialization is constant time, and `pairwise` produces `m - 1` adjacent pairs for an `O(m)` scan. Total time is `O(m \log m)`.
+- **Auxiliary Space Complexity:** $O(log m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,110 @@
 # Guided Example: Substring Matching Pattern
 
-We examine the step-by-step execution of the optimal String, String Matching method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"s": "leetcode", "p": "ee*e"}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Substring Matching Pattern** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a string `s` and a pattern string `p`, where `p` contains **exactly one** `'*'` character.
+
+The objective is to compute `true` from `{"s": "leetcode", "p": "ee*e"}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Core Step 1
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+**Separate the fixed parts around the wildcard.** Because `p` contains exactly one `"*"`, it has the form
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"s": "leetcode", "p": "ee*e"}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Core Step 3
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+where $A$ is the fixed text before the star and $B$ is the fixed text after it. Either fixed part may be empty. Replacing the star with any sequence of zero or more characters means a matching substring must contain:
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | where $A$ is the fixed text before the star and $B$ is the f... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Core Step 4
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+1. an occurrence of $A$;
+2. later, without overlapping backward, an occurrence of $B$;
+3. any characters between the end of $A$ and the start of $B$, including no characters at all.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"s": "leetcode", "p": "ee*e"}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Manual scan:** One can locate $A$ and then $B$:** - **Manual scan:** One can locate $A$ and then $B$ with explicit loops. This avoids relying on `str.find` but requires careful substring-comparison code and offers no conceptual advantage here.
+- **Regular expression:** Converting `*` to something like `.*` can solve the task, but escaping, substring-versus-full-match semantics, and greedy behavior add avoidable complexity.
+- **Dynamic programming wildcard matcher:** General wildcard matching DP handles many stars and question marks, but it is excessive for exactly one star and usually costs $O(nm)$ time or substantial state.
+- **Empty prefix:** For a pattern such as `"*abc"`, `find("", 0)` succeeds at zero. The method then searches for `"abc"` anywhere in `s`, which is exactly the required meaning.
+- **Empty suffix:** For `"abc*"`, after locating `"abc"` the empty suffix succeeds at its end. The star may consume zero characters, so merely finding the prefix is sufficient.
+- **Only the star:** Although the stated pattern length permits `"*"`, both fixed parts are empty. Both searches succeed at index zero, correctly reporting that the empty replacement matches a substring position.
+- **Zero-character wildcard:** The update to the end of the first part and the inclusive `find` start allow the second part to begin immediately, so adjacent $A$ and $B$ are accepted.
+- **Overlapping fixed parts:** Overlap is not allowed because one wildcard replacement cannot move backward. Advancing by `len(t)` correctly rejects a suffix occurrence that begins inside the chosen prefix occurrence.
+- **Repeated prefix occurrences:** The earliest prefix is always safe; it ends no later than any later equal-length occurrence and therefore leaves the largest possible suffix of `s` for finding $B$.
+- **Pattern longer than the text:** A match can still exist only if the star's removal makes the fixed parts fit in order. The two searches test this directly without needing a separate length rule.
+- **Exactly one star:** The correctness proof uses exactly two fixed pieces. Inputs with no star or multiple stars are outside the contract and should not be used to reinterpret this implementation.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(m)$. Let $n=\lvert\texttt{s}\rvert$ and $m=\lvert\texttt{p}\rvert$. Splitting the pattern scans and copies $O(m)$ characters and creates two fixed-part strings, so it uses $O(m)$ time and $O(m)$ space.
+- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

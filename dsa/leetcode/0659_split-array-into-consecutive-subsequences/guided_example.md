@@ -1,104 +1,111 @@
 # Guided Example: Split Array into Consecutive Subsequences
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Greedy, Heap (Priority Queue) method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [1, 2, 3, 3, 4, 5]}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Split Array into Consecutive Subsequences** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer array `nums` that is **sorted in non-decreasing order**.
+
+The objective is to compute `true` from `{"nums": [1, 2, 3, 3, 4, 5]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Store only what future numbers need to know
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Every constructed subsequence is consecutive, so after processing some prefix of the sorted input, a future value needs only two facts about a subsequence:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+- the value at which it currently ends;
+- its current length.
 
----
+The earlier members are determined implicitly by those facts and are not needed to decide whether the next number can extend it.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The exact solution uses `d[end_value]` as a min-heap of the lengths of all subsequences currently ending at that value.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [1, 2, 3, 3, 4, 5]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Why heaps are grouped by ending value
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+A current number `v` can extend only a subsequence ending at `v - 1`. It cannot extend one ending at `v` because the next value must be exactly one larger, and it cannot extend a smaller ending value because that would create a gap.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Looking directly at `d[v - 1]` therefore finds exactly the eligible chains. Grouping by ending value avoids searching through unrelated subsequences.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | A current number `v` can extend only a subsequence ending at... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Extend the shortest eligible chain
+
+If `d[v - 1]` is nonempty, the solution removes its smallest length with `heappop`, adds one, and pushes the new length into `d[v]`. This moves that subsequence's endpoint from `v - 1` to `v`.
+
+Choosing the shortest eligible chain is the critical greedy rule. A short chain is in greater danger of ending below the required length three. A longer chain that is already valid, or closer to validity, can more safely be left unchanged.
+
+For example, suppose chains of lengths two and three both end at two, and the current value is three. Extending the length-three chain would leave the length-two chain invalid if no more threes appear. Extending the length-two chain makes both lengths three.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [1, 2, 3, 3, 4, 5]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Remaining-frequency and tails maps:** First co:** - **Remaining-frequency and tails maps:** First count unused values. For each number, extend an existing chain ending at the previous value if possible; otherwise reserve the next two values to start a valid length-three chain. This gives expected `O(N)` time and matches the manifest.
+- **- **Global heap of start/end pairs:** Store all su:** - **Global heap of start/end pairs:** Store all subsequences ordered by endpoint and length. It works but is more complicated than separate heaps keyed directly by endpoint.
+- **- **Store complete subsequence lists:** This uses :** - **Store complete subsequence lists:** This uses unnecessary memory and copying. Endpoint plus length is sufficient metadata for decisions and validation.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(N log N)$. Let `N` be the number of input elements.
+- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

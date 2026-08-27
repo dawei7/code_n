@@ -1,104 +1,127 @@
 # Guided Example: Find Array Given Subset Sums
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Sorting, Counting method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}`
 - **Required output:** `[1, 2, -3]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Find Array Given Subset Sums** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer `n` representing the length of an unknown array that you are trying to recover. You are also given an array `sums` containing the values of all $2^n$ **subset sums** of the unknown array (in no particular order).
+
+The objective is to compute `[1, 2, -3]` from `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Convert the signed problem into a nonnegative one
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The smallest subset sum is obtained by including every negative original element and no positive element. Let that minimum be `min(sums)` and define
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+`m = -min(sums)`.
 
----
+Thus $m$ is the sum of the absolute values of the original negative elements.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The source adds $m$ to every supplied subset sum and stores the shifted multiset in a `SortedList`. This shifted collection is exactly the subset-sum multiset of the unknown elements' absolute values.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+To see why, consider an original negative value $-x$. In a supplied subset, including it contributes $-x$; after adding the total $m$, that contribution is canceled, while excluding it leaves the corresponding $+x$ inside the shift. This complements the inclusion choice for every negative element. Positive elements keep their ordinary inclusion choice. Across all subsets, the shifted sums therefore enumerate all subsets of the nonnegative magnitudes.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Why a sorted multiset is required
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Subset sums can repeat, especially when elements are equal or zero. A plain set would lose multiplicities and make later removals incorrect. `SortedList` retains duplicates, supports finding the smallest remaining value at index zero, and removes one occurrence at a time.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The shifted multiset contains zero for the empty magnitude subset. The source removes exactly one zero before recovery begins.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Subset sums can repeat, especially when elements are equal o... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Recover magnitudes from smallest remaining sums
+
+After empty zero is removed, the smallest remaining subset sum must be the smallest element magnitude, so the source begins `ans = [sl[0]]`.
+
+The recovery invariant is: before selecting the next element, remove all nonempty subset sums that can be formed entirely from magnitudes already recovered. Once those known sums are removed, the smallest remaining value must be the next smallest unrecovered magnitude. Its singleton subset exists, and every subset containing an unrecovered magnitude is at least as large because all magnitudes are nonnegative.
+
+The loop implements removals by highest included index. At stage `i`, the newest known magnitude has index `i - 1`. It enumerates all masks over the first `i` known values but processes only masks whose bit `i - 1` is set. Those are exactly the known-element subsets containing the newest value. Subsets not containing it were removed in earlier stages.
+
+For each such mask, it recomputes the subset sum and removes one matching occurrence from `sl`. After all these removals, `sl[0]` is appended as the next magnitude.
+
+This scheme handles duplicates correctly because removal is by multiset occurrence, not unique numeric value.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[1, 2, -3]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[1, 2, -3]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Recursive partition by a candidate magnitude:*:** - **Recursive partition by a candidate magnitude:** Split sorted sums into pairs differing by that magnitude and recurse on the half containing zero; this is another standard $O(N2^N)$ strategy.
+- **Plain set:** Incorrect because repeated subset sums carry essential multiplicity.
+- **Recover signs during magnitude extraction:** Possible, but the shift cleanly separates magnitude recovery from one final subset-sum sign choice.
+- **All elements nonnegative:** The minimum sum is zero, $m=0$, and the empty sign subset succeeds without negating anything.
+- **All elements negative:** Their magnitudes sum to $m$, so the sign search can negate the full recovered array.
+- **Zero elements:** Repeated zero sums allow zero magnitudes to be recovered correctly.
+- **Duplicate magnitudes:** `SortedList` removes one occurrence at a time, preserving multiplicity.
+- **Several valid arrays:** Any recovered order and any sign subset totaling $m$ is accepted.
+- **Guaranteed solvability:** Every requested removal and the final sign subset exist for valid generated input.
+- **Exponential input size:** $O(2^N)$ space is unavoidable merely to receive all supplied sums.
+- **Imported data structure:** The exact source assumes `SortedList` is provided by the execution environment.
+- **Input preservation:** It creates shifted values rather than sorting or changing `sums` itself.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(\log Q)$. Let $N$ be the unknown array length and $Q=2^N$ the number of supplied sums. Sorting the initial values costs $O(Q\log Q)=O(N2^N)$. The recovery and sign-search loops enumerate $O(2^N)$ masks and compute each selected sum in up to $O(N)$ time. `SortedList.remove` also costs logarithmic time, $O(\log Q)=O(N)$.
+- **Auxiliary Space Complexity:** $O(2^N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,107 @@
 # Guided Example: Logger Rate Limiter
 
-We examine the step-by-step execution of the optimal Hash Table, Design, Data Stream method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"operations": [["shouldPrintMessage", 1, "foo"], ["shouldPrintMessage", 2, "bar"], ["shouldPrintMessage", 3, "foo"], ["shouldPrintMessage", 8, "bar"], ["shouldPrintMessage", 10, "foo"], ["shouldPrintMessage", 11, "foo"]]}`
-- **Required output:** `[true, true, false, false, false, true]`
+- **Input:** `{"operations": []}`
+- **Required output:** `[]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Logger Rate Limiter** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Design a logger system that receives a stream of messages along with their timestamps. Each **unique** message should only be printed **at most every 10 seconds** (i.e. a message printed at timestamp `t` will prevent other identical messages from being printed until timestamp $t + 10$).
+
+The objective is to compute `[]` from `{"operations": []}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Why storing the next allowed time is convenient.
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+One could store the most recent accepted timestamp and test whether `timestamp - last >= 10`. The source instead precomputes `last + 10` at acceptance time. This turns every later decision into a direct comparison:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+- If `next_allowed > timestamp`, the call is too early and returns false.
+- Otherwise, the message is eligible, so the method stores `timestamp + 10` and returns true.
 
----
+The strict `>` comparison is essential. A message accepted at time $t$ prevents another copy until time $t+10$, but the copy at exactly $t+10$ is allowed. Rejecting when the two values are equal would accidentally impose an eleven-second gap on integer timestamps.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"operations": []}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Handling a message never seen before.
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+`ts.get(message, 0)` returns the stored threshold when the message has an entry, or zero otherwise. Timestamps are guaranteed nonnegative, so any first occurrence has `timestamp >= 0`. The condition `t > timestamp` is false for the default threshold, and the message is accepted.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+This also handles a first message at timestamp `0`: the default is equal to the current time, equality is eligible, and the new threshold becomes `10`. No separate “message not in dictionary” branch is necessary.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | `ts.get(message, 0)` returns the stored threshold when the m... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Rejected calls do not change state.
+
+Suppose `"foo"` is printed at time `1`, setting its threshold to `11`. Calls at `3` and `10` both return false. Neither call writes to the dictionary, so the threshold remains `11`. The call at `11` is accepted.
+
+This is a crucial semantic point. If every rejected occurrence reset the threshold to ten seconds after itself, a frequent stream could postpone the message forever. The waiting window is measured from the most recent permitted print, not from the most recent attempted print.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"operations": []}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Store the last accepted timestamp:** Keep `las:** - **Store the last accepted timestamp:** Keep `last[message]` and accept when the message is absent or `timestamp - last[message] >= 10`. This is equivalent to storing the next threshold but expresses the comparison differently.
+- **- **Queue plus active-message set:** Store only ac:** - **Queue plus active-message set:** Store only accepted messages from the last ten seconds. Before each call, remove expired queue entries and their set memberships. Operations are amortized $O(1)$ and stale message keys are reclaimed, but the implementation has more moving parts.
+- **- **Priority queue for unordered timestamps:** If :** - **Priority queue for unordered timestamps:** If events were not chronological, expiration cleanup would require a structure ordered by expiry, though the semantics of processing past events after future ones would also need explicit definition.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(1)$. Let $m$ be the number of distinct message strings seen across all calls, and let $L$ be the length of the current message.
+- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

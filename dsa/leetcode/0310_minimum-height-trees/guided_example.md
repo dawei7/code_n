@@ -1,104 +1,127 @@
 # Guided Example: Minimum Height Trees
 
-We examine the step-by-step execution of the optimal Depth-First Search, Breadth-First Search, Graph Theory, Topological Sort method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}`
 - **Required output:** `[1]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Height Trees** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+A tree is an undirected graph in which any two vertices are connected by *exactly* one path. In other words, any connected graph without simple cycles is a tree.
+
+The objective is to compute `[1]` from `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Why leaves cannot be the best roots in a nontrivial tree
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+A leaf has only one neighbor. If the tree has more than two nodes, moving the root from that leaf to its neighbor decreases the distance to every node reached through that neighbor—which is every other node in the tree—by one. The maximum distance cannot improve by staying at the outer leaf.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+More generally, the nodes farthest from the center lie on the tree's periphery. Removing all peripheral leaves exposes the next inward layer without changing where the middle of the tree lies.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Connection to a longest path
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+A diameter is a longest simple path in the tree. If its length is $D$ edges, rooting at a node $r$ cannot make both diameter endpoints closer than the larger of their distances from $r$. Along the unique path between those endpoints, that larger distance is minimized at the middle.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+- If $D$ is even, the diameter has one middle node.
+- If $D$ is odd, it has two adjacent middle nodes.
+
+Those middle nodes minimize the greatest distance to all nodes and are precisely the minimum-height roots.
+
+When all current leaves are removed simultaneously, both ends of every longest surviving path move inward by one edge. The middle node or middle pair does not change. Repeating this symmetric trimming eventually leaves the diameter's middle as the final layer.
+
+This explains both why leaf peeling works and why there can be no more than two answers.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | A diameter is a longest simple path in the tree.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Building adjacency and degrees
+
+The source builds an adjacency list `g`. For every undirected edge `[a, b]`, it appends `b` to `g[a]` and `a` to `g[b]`.
+
+The parallel array `degree` initially stores the number of neighbors of every node. In a tree with at least two nodes, a current leaf is exactly a node with degree one. The initial queue contains all such nodes.
+
+The graph is guaranteed to be a tree, so it is connected and has $n-1$ edges. For $n\ge2$, at least two leaves exist, ensuring that the initial queue is nonempty.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[1]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 4, "edges": [[1, 0], [1, 2], [1, 3]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[1]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Run BFS or DFS from every possible root:** Mea:** - **Run BFS or DFS from every possible root:** Measuring every root's farthest distance is direct but costs $O(n^2)$ time on a tree, which is too slow for $n=2\cdot10^4$.
+- **Find a diameter, then take its middle:** Run BFS or DFS from any node to find a farthest endpoint, run again from that endpoint while recording parents, and return the middle one or two nodes of the resulting diameter. This is also $O(n)$ time and $O(n)$ space.
+- **Stop when at most two nodes remain:** Track a remaining-node count and halt before peeling the center layer. This is the common variant. The exact source instead processes all layers and preserves the last one in `ans`.
+- **Process newly enqueued leaves immediately:** That would mix distance layers and could erase the intended final-layer distinction. Snapshotting `len(q)` keeps rounds simultaneous.
+- **Use directed indegrees:** The input edges are undirected. Both adjacency directions and ordinary neighbor counts are required.
+- **One node:** Its degree is zero, not one, so the normal queue would be empty. The explicit `n == 1` case correctly returns `[0]`.
+- **Two nodes:** Both are leaves and both are valid minimum-height roots with height one.
+- **Path with an odd number of nodes:** Repeated endpoint peeling leaves one middle node.
+- **Path with an even number of nodes:** Peeling leaves two adjacent middle nodes.
+- **Star:** All outer nodes are removed in the first round, leaving the central node as the sole answer.
+- **Balanced tree:** Entire depth layers are peeled together until the central root or central edge remains.
+- **Arbitrary labels:** Labels are exactly 0 through $n-1$, so they index `g` and `degree` directly.
+- **Answer order:** The queue's discovery order determines output order, but any order is accepted.
+- **Tree guarantee:** Connectivity and acyclicity are essential. A general graph may have no degree-one node or may leave a cyclic core, so this leaf-peeling proof would not apply.
+- **No repeated edges:** Degree counts match actual distinct neighbors, and no duplicate adjacency entry can cause premature decrements.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. The tree has $n$ nodes and $n-1$ edges. Building the two-sided adjacency list processes every edge once and stores two neighbor entries, costing $O(n)$ time and space. Computing initial leaves scans the $n$ degrees once.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

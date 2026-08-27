@@ -1,104 +1,110 @@
 # Guided Example: Most Frequent Prime
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Math, Matrix, Counting, Enumeration, Number Theory method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"mat": [[1, 1], [9, 9], [1, 1]]}`
 - **Required output:** `19`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Most Frequent Prime** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a `m x n` **0-indexed **2D** **matrix `mat`. From every cell, you can create numbers in the following way:
+
+The objective is to compute `19` from `{"mat": [[1, 1], [9, 9], [1, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Core Step 1
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+**Enumerate every start and fixed direction.** From each matrix cell, the four nested loops choose direction components `a` and `b` from $-1,0,1$, excluding $(0,0)$. These are exactly the eight compass directions.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"mat": [[1, 1], [9, 9], [1, 1]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Core Step 2
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The source initializes `v` to the starting digit, then moves once before testing. Each while-loop step appends the new digit:
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The source initializes `v` to the starting digit, then moves... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Core Step 4
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Thus it generates every prefix of length at least two along that ray. Single-cell numbers are never tested, which is appropriate because every one-digit value is at most 9 and the result must be greater than 10.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `19` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"mat": [[1, 1], [9, 9], [1, 1]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `19` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Memoize primality by value:** Repeated generat:** - **Memoize primality by value:** Repeated generated numbers could reuse one result, improving practical speed. The manifest describes this, but the exact source does not implement it.
+- **Sieve:** The largest six-digit value is bounded, so a sieve is conceivable, but allocating through that entire range may be wasteful for few tested values.
+- **Skip even divisors after testing 2:** It halves trial checks but does not change asymptotic complexity.
+- **One-cell matrix:** No direction can take one step, the counter stays empty, and the result is $-1$ even if the digit itself is prime.
+- **Direction cannot turn:** Coordinates always add the same $(a,b)$, enforcing the rule.
+- **Repeated prime on many paths:** Every occurrence increments frequency.
+- **Frequency tie:** The larger prime wins.
+- **Composite values:** A divisor through the square root makes `all` false.
+- **No qualifying prime:** The initialized answer $-1$ is returned.
+- **Manifest mismatch:** There is no primality-result cache in this source.
+- **Path prefixes, not only maximal rays:** Primality is checked after every appended digit. A prime such as 19 is counted even when the same ray continues to form 191; testing only the final value would omit required numbers.
+- **Leading digit behavior:** Matrix digits range from 1 through 9, so generated decimal numbers never contain an artificial leading zero and numeric construction with multiplication by ten exactly matches digit concatenation.
+- **Counter iteration order:** The final answer does not depend on dictionary order because frequency comparisons and explicit `max` tie handling fully determine the winner.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(RCL\sqrt V)$. Let $R$ and $C$ be matrix dimensions, $L=\max(R,C)$ the maximum ray length, and $V$ the largest generated value. There are $8RC$ rays and at most $O(L)$ generated values per ray. Each trial-division test costs $O(\sqrt V)$ worst-case. Total time is
+- **Auxiliary Space Complexity:** $O(RCL)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

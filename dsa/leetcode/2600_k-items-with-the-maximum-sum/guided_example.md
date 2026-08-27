@@ -1,104 +1,128 @@
 # Guided Example: K Items With the Maximum Sum
 
-We examine the step-by-step execution of the optimal Math, Greedy method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"numOnes": 3, "numZeros": 2, "numNegOnes": 0, "k": 2}`
 - **Required output:** `2`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **K Items With the Maximum Sum** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+There is a bag that consists of items, each item has a number `1`, `0`, or `-1` written on it.
+
+The objective is to compute `2` from `{"numOnes": 3, "numZeros": 2, "numNegOnes": 0, "k": 2}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Always take larger item values first
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The bag contains only three possible values:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+1>0>-1.
+$$
 
----
+Every selected item consumes one of the exactly $k$ required slots. Replacing a selected smaller value with an available larger one strictly increases the sum. Therefore an optimal selection takes as many ones as possible, then zeros, and uses negative ones only when forced.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+No sorting or simulation is needed because the input already provides the count of each value.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"numOnes": 3, "numZeros": 2, "numNegOnes": 0, "k": 2}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Case one: enough ones
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+If `numOnes >= k`, choose $k$ one-valued items. Their sum is $k$.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+No selection can do better because each individual item is at most one, so $k$ selected items have total at most $k$. The function immediately returns `k`.
+
+Unused zeros and negative ones are irrelevant.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | If `numOnes >= k`, choose $k$ one-valued items.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Case two: ones plus zeros fill every slot
+
+If there are fewer than $k$ ones, every one should still be selected. This contributes `numOnes` to the sum and leaves
+
+$$
+k-\texttt{numOnes}
+$$
+
+slots.
+
+If `numZeros` is at least this remainder, fill all remaining slots with zeros. They neither increase nor decrease the sum, so the maximum stays `numOnes`.
+
+The second condition is written `numZeros >= k - numOnes` and returns `numOnes`.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `2` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"numOnes": 3, "numZeros": 2, "numNegOnes": 0, "k": 2}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `2` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Expand and sort the bag:** This gives the same:** - **Expand and sort the bag:** This gives the same top-$k$ choice but wastes time and space proportional to the number of items.
+- **Priority queue:** Repeatedly extracting the maximum is unnecessary when only three known values exist.
+- **Zero selections:** `k=0` returns zero immediately.
+- **No ones:** Zeros are taken first, followed by forced negative ones.
+- **No zeros:** After all available ones, every remaining slot costs one.
+- **Enough ones:** The theoretical upper bound $k$ is attained.
+- **Exactly enough nonnegative items:** All ones and required zeros are used, with no negative penalty.
+- **Negative result:** When forced negative ones outnumber selected ones, the optimal sum can legitimately be below zero.
+- **Unused `numNegOnes` in code:** Feasibility constraints guarantee its count covers the final deficit.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(1)$. The function performs a fixed number of comparisons and arithmetic operations. Its runtime is $O(1)$ and it uses $O(1)$ auxiliary space.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,135 @@
 # Guided Example: Number of Valid Words for Each Puzzle
 
-We examine the step-by-step execution of the optimal Array, Hash Table, String, Bit Manipulation, Trie method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"words": ["aaaa", "asas", "able", "ability", "actt", "actor", "access"], "puzzles": ["aboveyz", "abrodyz", "abslute", "absoryz", "actresz", "gaswxyz"]}`
-- **Required output:** `[1, 1, 3, 2, 4, 0]`
+- **Input:** `{"words": ["aaaa", "bbbb", "abab"], "puzzles": ["abcdefg"]}`
+- **Required output:** `[2]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Number of Valid Words for Each Puzzle** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+With respect to a given `puzzle` string, a `word` is *valid* if both the following conditions are satisfied:
+
+The objective is to compute `[2]` from `{"words": ["aaaa", "bbbb", "abab"], "puzzles": ["abcdefg"]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Encoding a set of letters as bits
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+There are 26 possible lowercase letters. Bit zero represents `"a"`, bit one represents `"b"`, and so forth. For a character `c`, the expression
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+`1 << (ord(c) - ord("a"))`
 
----
+creates an integer with only that character’s bit set. The code combines character bits using `|=`. Setting the same bit several times has no additional effect, which is exactly what is needed: the mask records presence, not frequency.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+During preprocessing, the solution computes a mask for every word and increments `cnt[mask]`. Here `cnt` is a `Counter`, so all words with the same distinct-letter set share one entry. This aggregation is important. When a puzzle accepts that set, the program can add the number of matching words in one lookup rather than checking those words individually. Duplicate input words are still counted separately because every occurrence increments the stored frequency.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The code does not discard word masks containing more than seven distinct letters. Such a mask can never be a submask of a seven-letter puzzle, so it will never be queried and can never create a false match. Filtering those masks could save some memory, but omitting that optimization does not affect correctness.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"words": ["aaaa", "bbbb", "abab"], "puzzles": ["abcdefg"]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Turning a puzzle into a small search space
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Every puzzle contains exactly seven distinct letters. A valid word’s mask must be a subset of the puzzle mask. Instead of comparing the puzzle with every word mask, the solution enumerates the puzzle’s own submasks and looks each one up in the counter.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+For a puzzle, the code first builds `mask` in the same way as for a word. It also stores
+
+`i = ord(p[0]) - ord("a")`,
+
+the bit position of the required first letter. The variable `j` starts as the complete puzzle mask. After examining one submask, the statement
+
+`j = (j - 1) & mask`
+
+moves to the next smaller submask. Subtracting one changes the low-order binary pattern, and the bitwise AND removes any bits that do not belong to the original puzzle. Repeating this operation visits every nonempty submask exactly once and eventually reaches zero.
+
+The loop is `while j`, so it stops at the empty submask. That omission is harmless because every valid word must contain the first puzzle letter and therefore cannot have an empty mask. For each visited `j`, `j >> i & 1` tests whether the required bit is present. Only then does the code add `cnt[j]` to the puzzle’s total.
+
+Although a seven-letter set has $2^7=128$ subsets, only half contain a specified letter. The exact code still walks through all 127 nonempty subsets and filters them with the bit test. This is a small fixed amount of work per puzzle. An alternative enumeration could force the first bit and enumerate only the other six letters, but the shipped loop remains easily fast enough.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Every puzzle contains exactly seven distinct letters.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why matching masks is equivalent to matching words
+
+If a word is valid, every bit in its mask also appears in the puzzle mask. Its mask is therefore one of the enumerated submasks. Because the word contains the puzzle’s first letter, that submask passes the required-bit test, and the word contributes through `cnt[j]`.
+
+In the other direction, a counted counter entry corresponds to a submask of the puzzle, so none of its letters can lie outside the puzzle. The explicit bit test proves that its letter set contains the first puzzle letter. Every word represented by that counter entry therefore satisfies both validity rules. A mask is enumerated only once, so its stored frequency is added exactly once. These two directions show that `x` becomes precisely the number of valid words for the current puzzle.
+
+For a concrete miniature example, suppose the word list contains `"aaaa"` once. Its mask has only the `"a"` bit. For puzzle `"aboveyz"`, the submask enumeration eventually reaches that one-bit mask. Since `"a"` is the puzzle’s required first letter, the test succeeds and the counter contributes one. A word using `"s"` would have a bit absent from this puzzle; its mask is never produced by the submask loop and cannot be counted.
+
+The answer list receives one completed total per puzzle, in the same order as the input puzzles. The counter is constructed once and reused, which is the main advantage for this many-query problem.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[2]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"words": ["aaaa", "bbbb", "abab"], "puzzles": ["abcdefg"]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[2]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Enumerate only the optional six puzzle letters:** - **Enumerate only the optional six puzzle letters:** Keep the first-letter bit permanently set and enumerate submasks of the other six bits. This performs 64 lookups rather than walking 127 nonempty submasks and filtering, but both approaches have the same asymptotic bound for fixed seven-letter puzzles.
+- **Compare every word with every puzzle:** Direct set tests are easy to understand, but up to $10^5$ words and $10^4$ puzzles create as many as $10^9$ pairs before character-checking costs are considered.
+- **Trie of distinct sorted letters:** A trie can share prefixes between normalized word sets and search along puzzle letters. It is more elaborate to implement and reason about than the compact mask-frequency table.
+- **Repeated letters inside a word:** Repetition sets an already-set bit again. The mask deliberately forgets multiplicity because validity depends only on which letters occur.
+- **Duplicate words or different words with the same letter set:** Every occurrence increments the same counter entry. A valid mask contributes the full stored frequency, so no word is lost.
+- **Words with more than seven distinct letters:** They cannot fit inside any seven-letter puzzle. The exact preprocessing stores them, but no puzzle submask can equal their masks, so they never contribute.
+- **The first puzzle letter is mandatory:** Being a subset is not sufficient. The explicit shifted-bit test prevents a word made only from the other six puzzle letters from being counted.
+- **The empty submask:** The `while j` loop does not process zero. No valid word can have an empty letter set or contain the required first letter with a zero mask, so skipping it is correct.
+- **Counter lookup for an absent mask:** Python’s `Counter` returns zero for a missing key. The loop can query every submask without separate membership checks.
+- **Input order:** Word preprocessing may combine masks freely, but puzzle results are appended one at a time, preserving the exact order requested by the contract.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O\left(W+m\left(L+2^L\right)$. Let $W$ be the sum of the lengths of all strings in `words`, let $m$ be the number of puzzles, and let each puzzle length be $L=7$.
+- **Auxiliary Space Complexity:** $O(u)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

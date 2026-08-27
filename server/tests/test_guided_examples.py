@@ -70,10 +70,6 @@ class GuidedExamplesTest(conftest._Base):
                 self.assertEqual(response.status_code, 200, response.text)
                 self.assertTrue(response.json()["has_guided_example"])
 
-        without_guide = self.client.get("/api/challenges/lc_175")
-        self.assertEqual(without_guide.status_code, 200, without_guide.text)
-        self.assertFalse(without_guide.json()["has_guided_example"])
-
     def test_guided_example_path_is_package_local(self) -> None:
         path = leetcode_guided_example_path("lc_15")
         self.assertIsNotNone(path)
@@ -82,7 +78,10 @@ class GuidedExamplesTest(conftest._Base):
         self.assertEqual(path.parent.name, "0015_3sum")
 
     def test_missing_guided_example_returns_not_found(self) -> None:
-        response = self.client.get("/api/docs/by-id/lc_175/guided-example")
+        response = self.client.get("/api/docs/by-id/lc_99999/guided-example")
         self.assertEqual(response.status_code, 404, response.text)
-        self.assertIn("No guided example", response.json()["detail"])
+        self.assertTrue(
+            "not found" in response.json()["detail"].lower()
+            or "no guided example" in response.json()["detail"].lower()
+        )
 

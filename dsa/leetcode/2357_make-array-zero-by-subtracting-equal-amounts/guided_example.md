@@ -1,104 +1,135 @@
 # Guided Example: Make Array Zero by Subtracting Equal Amounts
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Greedy, Sorting, Heap (Priority Queue), Simulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [1, 5, 0, 3, 5]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Make Array Zero by Subtracting Equal Amounts** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a non-negative integer array `nums`. In one operation, you must:
+
+The objective is to compute `3` from `{"nums": [1, 5, 0, 3, 5]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Looking past the individual operations
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+At first, the operation appears to require a simulation: find the current smallest positive number, choose a legal `x`, subtract it from every positive entry, and repeat. The key simplification is that the minimum number of operations depends only on how many *distinct positive values* occur initially. Their positions and frequencies do not matter.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Zeros can be ignored immediately. An operation changes only positive elements, so a zero stays zero forever and requires no work. If a positive value appears several times, all of those equal copies are changed by exactly the same amount in every operation. They remain equal throughout the process and reach zero together. Duplicate occurrences therefore never require separate operations.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [1, 5, 0, 3, 5]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Why one distinct level disappears at a time
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Let the distinct positive values in increasing order be
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+$$
+v_1 < v_2 < \cdots < v_k.
+$$
+
+The smallest positive value at the beginning is $v_1$. Choosing `x = v_1` is legal. This makes every occurrence of $v_1$ equal to zero, and changes every larger level $v_i$ into $v_i-v_1$. The remaining values are still separated into $k-1$ distinct positive levels because subtracting the same number preserves inequality:
+
+$$
+v_i < v_j \implies v_i-v_1 < v_j-v_1.
+$$
+
+The new smallest positive level is $v_2-v_1$. Subtracting that amount makes the original $v_2$ level zero. Repeating this reasoning removes exactly one level per operation. Thus, $k$ operations are sufficient.
+
+Could a cleverer choice remove multiple distinct positive levels at once? No. In any legal operation, `x` is at most the current smallest positive value. If `x` is smaller than that minimum, no positive entry reaches zero at all. If `x` equals the minimum, exactly the entries at that minimum become zero; every larger entry remains positive. Two unequal positive levels receive the same subtraction and therefore cannot both become zero in the same operation. At most one distinct positive level can disappear per operation.
+
+There are initially $k$ such levels, so at least $k$ operations are necessary. The constructive process above uses exactly $k$. The minimum is consequently the number of distinct positive values.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Let the distinct positive values in increasing order be
+
+$$
+... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: How the exact solution computes that number
+
+The implementation builds a Python set with:
+
+
+
+A set stores each value at most once, so duplicates automatically collapse. The filter `if x` uses Python's truth-value rule for integers: zero is false, and every nonzero integer is true. The problem guarantees that every number is non-negative, so “nonzero” and “positive” mean the same thing here. Under a contract that allowed negative numbers, `if x` would not be an adequate spelling of `x > 0`, but negatives are impossible in this problem.
+
+Finally, `len(...)` returns the number of elements in the set, which is exactly the number $k$ proven to be both necessary and sufficient.
+
+For `nums = [1, 5, 0, 3, 5]`, the comprehension produces `{1, 3, 5}`. Its length is `3`. Operationally, the original value levels disappear in increasing order: subtracting `1` removes the level `1`; subtracting `2` removes the shifted level that began as `3`; and subtracting another `2` removes the shifted level that began as `5`. The two copies of `5` always move together, and the original zero never moves.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [1, 5, 0, 3, 5]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Explicit simulation with the minimum:** Repeat:** - **Explicit simulation with the minimum:** Repeatedly finding the smallest positive value and subtracting it works, but it performs work that the distinct-level proof makes unnecessary. A naive implementation can take $O(nk)$ time.
+- **Sorting the positive values:** After sorting, one can count transitions between different positive numbers in $O(n \log n)$ time. This is correct but slower than expected-linear set construction.
+- **Boolean frequency array:** Because values lie between `0` and `100`, a fixed array can mark positive values and then count marks. This uses constant domain-sized storage and linear scanning, but the set is shorter and generalizes without relying on the bound.
+- **All entries are zero:** The comprehension produces the empty set, so its length is `0` and no operation is needed.
+- **Only one distinct positive value:** Regardless of how many times it appears, one legal subtraction equal to that value makes every positive entry zero.
+- **Many duplicates:** Duplicates occupy one set entry and reach zero simultaneously, so frequency does not increase the answer.
+- **Values with gaps:** For values such as `2` and `100`, the gaps change the chosen subtraction amounts but not the number of operations. There are still two levels.
+- **Input mutation:** The exact approach only reads `nums`. It returns the minimum count without changing the caller's array.
+- **Truth-value filter:** `if x` is safe specifically because inputs are non-negative. It excludes zero and includes every allowed positive integer.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let $n$ be the length of `nums` and let $k$ be its number of distinct positive values. The set comprehension examines every array element once. A Python hash-set membership check and insertion take expected $O(1)$ time, so constructing the set takes expected $O(n)$ time. Computing its length is $O(1)$. The total expected time complexity is therefore $O(n)$.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

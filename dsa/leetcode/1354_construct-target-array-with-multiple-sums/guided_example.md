@@ -1,104 +1,127 @@
 # Guided Example: Construct Target Array With Multiple Sums
 
-We examine the step-by-step execution of the optimal Array, Heap (Priority Queue) method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"target": [9, 3, 5]}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Construct Target Array With Multiple Sums** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an array `target` of n integers. From a starting array `arr` consisting of `n` 1's, you may perform the following procedure :
+
+The objective is to compute `true` from `{"target": [9, 3, 5]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Recover the previous value
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Let `mx` be the largest current value, let `s` be the total array sum, and let `t = s - mx` be the sum of all other values. Immediately before the last forward operation, the changed position held some positive value `prev`. The forward operation replaced it with the then-total sum:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+mx = prev + t.
+$$
 
----
+One reverse step would give `prev = mx - t`. The other values stay unchanged.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+If `t == 0`, the array has one element and its value exceeds one, so it can never have changed from the starting one. If `mx - t < 1`, even one reverse subtraction would produce a nonpositive value. Both cases are impossible, and the method returns false.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"target": [9, 3, 5]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Undo many identical subtractions with a modulus
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+When `mx` is much larger than `t`, it may remain the largest after one reverse step. Repeated reverse steps subtract the same unchanged sum `t`:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+$$
+mx,\ mx-t,\ mx-2t,\ldots
+$$
+
+Computing `mx % t` jumps over all those repeated steps at once. The source uses `x = (mx % t) or t`. A nonzero remainder is the last positive value after bulk subtraction. When the remainder is zero, `t` is used instead of zero so the reverse state remains positive. If that state is not actually viable, a later comparison where the maximum is no greater than the rest rejects it. When `t == 1`, choosing one is exactly the reachable end of repeatedly subtracting one.
+
+For example, if `mx = 43` and the other values sum to twenty-one, one reverse step produces twenty-two. Here the modulus is one because two subtractions would pass below positivity, and bulk reversal eventually reconstructs the forced chain.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | When `mx` is much larger than `t`, it may remain the largest... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Maintain a max-heap with negative values
+
+Python’s heap is a min-heap, so `pq = [-x for x in target]` stores negated values. The smallest negative value corresponds to the largest original value. `heapify` builds the heap, and `-pq[0]` reads the maximum.
+
+Each iteration pops that maximum, computes the earlier positive value `x`, pushes `-x`, and updates the total with `s = s - mx + x`. Updating the sum algebraically avoids rescanning the heap.
+
+The loop continues while the largest value exceeds one. All values are positive. Therefore, once the maximum is one, every value must be one, exactly the starting array, and the method returns true.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"target": [9, 3, 5]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Forward search:** It branches over the replace:** - **Forward search:** It branches over the replaced index at every step and is infeasible for large targets.
+- **Single subtraction per reverse step:** Correct in principle but pseudo-polynomial; an input such as one and one billion would require nearly one billion iterations.
+- **Sorted list instead of heap:** Repeatedly finding and replacing the maximum costs more than logarithmic time per step unless a suitable ordered structure is used.
+- **Single-element target:** Only `[1]` is reachable. A larger value gives `t == 0` and returns false.
+- **All ones:** The maximum is already one, so the loop is skipped and true is returned.
+- **Rest sum one:** Repeated subtraction can always reduce the maximum to one; the `or t` expression handles the zero remainder correctly.
+- **Maximum not larger than the rest:** The previous value would be nonpositive, so the target is impossible.
+- **Positive-value invariant:** Every forward sum and every unchanged entry is positive; a reverse value below one is decisive failure.
+- **Input preservation:** The method builds a separate negated heap and does not reorder or modify `target`.
+- **Tied maxima:** A valid nonterminal forward state cannot have an unchanged maximum large enough to make the forced predecessor nonpositive; the validation detects such impossible ties.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n \log n \log M)$. Let $n$ be the array length and $M$ its initial maximum value.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,129 @@
 # Guided Example: Most Visited Sector in  a Circular Track
 
-We examine the step-by-step execution of the optimal Array, Simulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"n": 4, "rounds": [1, 3, 1, 2]}`
 - **Required output:** `[1, 2]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Most Visited Sector in  a Circular Track** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an integer `n` and an integer array `rounds`. We have a circular track which consists of `n` sectors labeled from `1` to `n`. A marathon will be held on this track, the marathon consists of `m` rounds. The $$i^{\text{th}}$$ round starts at sector $rounds[i - 1]$ and ends at sector $\text{rounds}[i]$. For example, round 1 starts at sector $\text{rounds}[0]$ and ends at sector $\text{rounds}[1]$
+
+The objective is to compute `[1, 2]` from `{"n": 4, "rounds": [1, 3, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Collapse the whole marathon into its start and finish
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Movement always follows increasing sector labels, wrapping from sector `n` back to sector one. The round boundaries do not change that direction; they merely identify checkpoints along one continuous traversal.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Imagine writing the entire visited sequence from `rounds[0]` to `rounds[-1]`. Every complete lap visits every sector exactly once. Complete laps therefore add the same count to all sectors and cannot affect which sectors are most visited.
 
----
+After removing all complete laps, only the final partial traversal matters. It starts at the marathon's first sector and ends at its final sector, including both endpoints.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The exact source consequently reads only `rounds[0]` and `rounds[-1]`. Intermediate round endpoints determine how many full laps occurred, but those equal contributions do not change the winners.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"n": 4, "rounds": [1, 3, 1, 2]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Why the residual arc receives one extra visit
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The starting sector is visited before any movement. As the runner proceeds, each crossed sector is visited in ascending circular order.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Whenever a full lap is completed, every sector gains one visit. At the end, sectors along the residual arc from the initial sector through the final sector have been encountered one additional time compared with sectors outside that arc.
+
+Those residual-arc sectors are therefore exactly the most visited sectors.
+
+This conclusion remains true when several rounds stop and restart conceptually at the same checkpoint: the marathon's path is continuous, so a round endpoint that is also the next round's start represents the same visit rather than an extra stationary visit.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The starting sector is visited before any movement.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Case one: the residual arc does not wrap
+
+If `rounds[0] <= rounds[-1]`, the final partial traversal runs directly through:
+
+`rounds[0], rounds[0] + 1, ..., rounds[-1]`.
+
+The source returns `list(range(rounds[0], rounds[-1] + 1))`. Python's range excludes its upper endpoint, so adding one includes the final sector.
+
+This list is already in ascending numeric order, exactly as required.
+
+If start and finish are equal, this branch returns just that one sector. It has one extra visit after an integer number of complete laps.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[1, 2]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"n": 4, "rounds": [1, 3, 1, 2]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[1, 2]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Visit-count simulation:** Follow every round a:** - **Visit-count simulation:** Follow every round and count sectors. It is correct but does unnecessary work compared with the endpoint invariant.
+- **Difference array on the circle:** It can count interval coverage efficiently for more general movement, but is excessive here.
+- **Start below finish:** Return one contiguous inclusive numeric interval.
+- **Start above finish:** Return the low-label interval followed by the high-label interval to preserve ascending output.
+- **Start equals finish:** Exactly that sector has the residual extra visit.
+- **Many complete laps:** They add equally to every sector and do not change the answer.
+- **All sectors most visited:** This occurs when the residual arc covers the entire circle, as in a start of one and finish of `n`.
+- **Two-sector track:** The same endpoint branches remain valid.
+- **Round endpoints:** Intermediate values affect total laps but not which sectors receive the final extra visit.
+- **Inclusive finish:** The upper range bound adds one so the ending sector is present.
+- **Traversal order versus output order:** Wrapped traversal starts with high labels, but output must be numerically ascending.
+- **Output space:** The returned list can contain all $N$ sectors even though auxiliary computation is constant.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(K)$. Let $K$ be the number of returned sectors. Creating the output lists takes $O(K)$ time and $O(K)$ output space. Since $K \le N$, the manifest summarizes time as $O(N)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

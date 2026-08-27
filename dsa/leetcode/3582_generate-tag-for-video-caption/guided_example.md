@@ -1,104 +1,129 @@
 # Guided Example: Generate Tag for Video Caption
 
-We examine the step-by-step execution of the optimal String, Simulation method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"caption": "Leetcode daily streak achieved"}`
 - **Required output:** `"#leetcodeDailyStreakAchieved"`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Generate Tag for Video Caption** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a string `caption` representing the caption for a video.
+
+The objective is to compute `"#leetcodeDailyStreakAchieved"` from `{"caption": "Leetcode daily streak achieved"}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Splitting removes spaces
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+`caption.split()` separates on runs of whitespace and omits empty pieces. Under the constraints, the caption contains only English letters and spaces, so spaces are the only nonletter characters that need removal.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+Leading, trailing, and repeated spaces create no empty words in the output. Joining later without a separator removes all spaces.
 
----
+If broader punctuation were allowed, this source would not remove it from inside a word. Its correctness depends on the stated letters-and-spaces alphabet.
 
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"caption": "Leetcode daily streak achieved"}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Normalizing later words
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+For each word `s`, `s.capitalize()`:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+- uppercases its first character;
+- lowercases all remaining characters.
+
+Thus every word is normalized regardless of the caption’s original capitalization. Words after the first already have exactly the required camelCase form.
+
+For example, `"dAILY"` becomes `"Daily"`, not `"DAILY"`.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For each word `s`, `s.capitalize()`:
+
+- uppercases its first... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Normalizing the first word
+
+CamelCase requires the first word to begin lowercase. If at least one word exists, the source replaces `words[0]` with `words[0].lower()`.
+
+Lowercasing the entire first word is correct because all characters after its first must also be lowercase.
+
+The `if words` guard avoids indexing an empty list. Although typical captions contain letters, an input made only of spaces would consequently produce just `"#"`.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `"#leetcodeDailyStreakAchieved"` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"caption": "Leetcode daily streak achieved"}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `"#leetcodeDailyStreakAchieved"` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Streaming state machine:** Scan characters, de:** - **Streaming state machine:** Scan characters, detect word boundaries, normalize as characters are emitted, and stop at 99 body characters. This realizes `O(1)` extra space and the manifest summary.
+- **Regular-expression cleanup:** It can remove arbitrary nonletters, but the constraints contain only letters and spaces, so `split` is sufficient and simpler.
+- **Repeated spaces:** `split()` collapses them and creates no empty camelCase component.
+- **Leading or trailing spaces:** They are ignored automatically.
+- **Mixed original case:** `capitalize` and `lower` fully normalize every retained letter.
+- **One-letter later word:** Its single character is uppercase, as in the `I` example.
+- **One-letter first word:** It becomes lowercase.
+- **Body exactly 99 characters:** Adding hash produces exactly 100 characters with no truncation loss.
+- **Body longer than 99:** Only its prefix is retained, preserving the initial hash and length cap.
+- **Short caption:** The slice is harmless and the whole normalized body is returned.
+- **Spaces-only input:** The source returns `#`; no explicit statement example covers this boundary.
+- **Punctuation outside constraints:** It would survive inside split tokens, so the implementation would need explicit letter filtering if the input alphabet expanded.
+- **Hash placement:** Prefixing after slicing reserves exactly one character and prevents the hash from being truncated.
+- **Full-input processing:** Unlike the advertised streaming method, long discarded suffixes are still normalized before the slice.
+- **CamelCase word boundary after truncation:** Truncation may keep only a prefix of a later word, including just its capitalized first letter. That remains correct because truncation is applied after full camelCase construction; the algorithm is not required to keep or discard whole words at the length boundary.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let `n` be caption length. Splitting, normalizing all characters, joining, slicing, and forming the result each take linear total time, so time complexity is `O(n)`.
+- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

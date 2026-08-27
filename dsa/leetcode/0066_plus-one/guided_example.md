@@ -1,104 +1,121 @@
 # Guided Example: Plus One
 
-We examine the step-by-step execution of the optimal Array, Math method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"digits": [1, 2, 3]}`
 - **Required output:** `[1, 2, 4]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Plus One** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a **large integer** represented as an integer array `digits`, where each $\text{digits}[i]$ is the $$i^{\text{th}}$$ digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading `0`'s.
+
+The objective is to compute `[1, 2, 4]` from `{"digits": [1, 2, 3]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Addition begins at the least significant digit
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+The array stores the most significant digit first, so the units digit is at the final index. Adding one affects that digit first. Only when it overflows from 9 to 0 does a carry need to move left.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The loop therefore visits indices from `n - 1` down to 0. It stops as soon as a digit absorbs the increment without overflow. Digits farther left are then unchanged, exactly as in ordinary decimal addition.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"digits": [1, 2, 3]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: How three short statements encode carry propagation
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+For the current digit, the source performs:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+1. add one;
+2. reduce modulo 10;
+3. return if the result is not zero.
+
+Given the contract that every entry is from 0 through 9, there are only two cases. An original digit from 0 through 8 becomes 1 through 9 after modulo, which is nonzero. It absorbs the carry, so the complete answer is ready. An original 9 becomes 10 and then 0, which means one carry must be applied to the next position on the left.
+
+The test `digits[i] != 0` is therefore equivalent to “the carry has ended” for this exact operation. It would not be a general carry test for arbitrary added values, but it is exact when adding one to one decimal digit.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For the current digit, the source performs:
+
+1.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Trace without a long carry
+
+For `[1,2,3]`, the loop visits only the final digit. It becomes 4, remains nonzero, and the method returns `[1,2,4]`. The first two entries are never touched.
+
+For `[1,2,9]`, the final 9 becomes 0 and the loop continues. The 2 becomes 3, so the method returns `[1,3,0]`. The zero already written at the end is the correct result of the propagated carry.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[1, 2, 4]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"digits": [1, 2, 3]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[1, 2, 4]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Explicit carry variable:** Start `carry = 1`, :** - **Explicit carry variable:** Start `carry = 1`, use `divmod(digit + carry, 10)`, and stop when carry becomes zero. It generalizes more easily to adding other values.
+- **Check for 9 directly:** Set a 9 to zero; otherwise increment and return. This is the competitive branch's more verbal form of the same logic.
+- **Convert to an integer:** It is concise in Python but defeats the digit-array exercise and would overflow fixed-width types for long input.
+- **Final digit below 9:** Only one array entry changes, giving best-case constant time.
+- **Trailing run of nines:** Exactly that suffix becomes zero, and the first lower digit increments.
+- **All nines:** A new leading 1 is prepended to the zeroed original digits.
+- **Single zero:** It becomes `[1]`; zero is the one valid representation that may contain digit 0 alone.
+- **Single nine:** The original list becomes `[0]`, and the returned new list is `[1,0]`.
+- **No leading zeros:** The algorithm never needs to normalize or discard a prefix.
+- **Caller-visible mutation:** The input is modified even in the branch that ultimately returns a newly allocated list.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. In the worst case, every digit is 9 and the loop visits all $n$ entries. Constructing the longer result also copies $n$ zeros, so time is $O(n)$. When the last digit is below 9, the method returns after constant work.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

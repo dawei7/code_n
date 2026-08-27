@@ -1,104 +1,140 @@
 # Guided Example: Design Add and Search Words Data Structure
 
-We examine the step-by-step execution of the optimal String, Depth-First Search, Design, Trie method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
-- **Input:** `{"operations": [["addWord", "bad"], ["addWord", "dad"], ["addWord", "mad"], ["search", "pad"], ["search", "bad"], ["search", ".ad"], ["search", "b.."]]}`
-- **Required output:** `[false, true, true, true]`
+- **Input:** `{"operations": [["search", "."], ["search", "a"]]}`
+- **Required output:** `[false, false]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Design Add and Search Words Data Structure** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Design a data structure that supports adding new words and finding if a string matches any previously added string.
+
+The objective is to compute `[false, false]` from `{"operations": [["search", "."], ["search", "a"]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Why ordinary membership storage is not enough
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+`addWord` stores literal lowercase words, but `search` accepts patterns in
+which `.` can stand for any one lowercase letter. A hash set can answer an
+ordinary exact lookup efficiently, yet a pattern such as `.ad` represents up
+to 26 concrete strings. Generating all replacements and looking each one up
+would repeat prefix work and scale poorly as the number of wildcards grows.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+A trie stores words by their prefixes. Each edge consumes one character, so a
+literal query follows one edge while a dot can branch to every existing edge
+at that same depth. Crucially, it explores only prefixes that were actually
+inserted rather than blindly constructing every theoretical replacement.
 
----
-
-### Intermediate Phase: Invariant-Preserving Transitions
-
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"operations": [["search", "."], ["search", "a"]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: What one trie node records
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The exact solution defines a small `Trie` node class. Every node contains a
+26-element `children` list and an `is_end` boolean. Child position 0 represents
+`a`, position 1 represents `b`, and position 25 represents `z`; `null` means
+that no stored word continues through that letter. `is_end` distinguishes a
+complete inserted word from a path that exists only as a prefix of a longer
+word.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`WordDictionary` owns one root node in `trie`. The root represents the
+empty prefix. If `bad`, `bake`, and `dad` have been inserted, the first two
+words share the root's `b` child and the next `a` child, then diverge. The word
+beginning with `d` uses another root child. Prefix sharing is the reason the
+trie can avoid repeatedly storing and checking the same beginning.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The exact solution defines a small `Trie` node class.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Adding a word preserves all previously stored words
+
+`addWord` begins at the root. For every character `c`, it computes
+`ord(c) - ord('a')`, which is an index from 0 through 25 under the lowercase
+input guarantee. If the corresponding child is absent, the method creates a
+new `Trie` node there. It then moves into that child whether it was new or
+already present.
+
+After consuming the whole word, it sets `node.is_end = true`. The flag is set
+only at the final node. If `bad` is inserted, the nodes for `b` and `ba` exist,
+but neither becomes a stored word accidentally. Inserting `ba` later reuses
+those nodes and marks the `ba` node without damaging the longer `bad` route.
+Inserting an already stored word is idempotent: its path is reused and its
+already-true endpoint flag remains true.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[false, false]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"operations": [["search", "."], ["search", "a"]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[false, false]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Iterative frontier of nodes:** Keep every node:** - **Iterative frontier of nodes:** Keep every node that can match the current pattern prefix, replacing the frontier with matching literal children or all children for a dot. It avoids recursion and substring slices but can hold a broad set of nodes at once; it is the method described by the manifest summary, not by the exact source file.
+- **Nested dictionaries with an end sentinel:** A map stores only present character edges and naturally supports sparse alphabets. It may save empty child slots but adds hashing and per-entry overhead; the fixed array exploits the lowercase-only contract.
+- **Words grouped by length in hash sets:** Search only words of the pattern's length and compare characters with dot matching. It is simple, but a query can scan every stored word of that length, giving $O(NL)$ time for $N$ candidates.
+- **No dots:** Search follows exactly one route and never recurses, so a missing character fails immediately and a complete route still requires `is_end` at its endpoint.
+- **A dot at the first character:** The root's existing children are the complete set of possible first letters. Empty slots are skipped, so the search never explores letters absent from all stored words.
+- **Consecutive dots:** Each recursive level consumes exactly one dot and one edge. A pattern such as `b..` therefore matches only three-letter words beginning with `b`, not shorter or longer words.
+- **A prefix but not a word:** If the pattern is exhausted at an unmarked internal node, the helper returns false even if that node has children. Matching must consume an entire added word of the same length.
+- **An added word that prefixes another:** Both can be represented by marking the shorter endpoint while retaining its children. Searches for either length consult the appropriate endpoint flag.
+- **Duplicate additions:** Reusing a path and assigning `true` again does not create duplicate logical entries. The required structure records membership, not frequency.
+- **Maximum input sizes:** Words have length at most 25 and queries contain at most two dots, keeping recursion shallow. Up to $10^4$ operations can still build many nodes, so sharing prefixes remains valuable.
+- **Lowercase and dot preconditions:** `addWord` accepts only lowercase letters, and only search patterns may contain dots. The fixed-index calculation and wildcard branch assume those guarantees; other characters are outside the contract.
+- **Input preservation:** The implementation reads each supplied string and creates slices during wildcard recursion, but strings are immutable and the caller's values are never changed.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(L B^d)$. Let $L$ be the length of the added word or search pattern, let $d$ be the
+- **Auxiliary Space Complexity:** $O(L)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

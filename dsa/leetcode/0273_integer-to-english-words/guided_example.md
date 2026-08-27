@@ -1,104 +1,132 @@
 # Guided Example: Integer to English Words
 
-We examine the step-by-step execution of the optimal Math, String, Recursion method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"num": 123}`
 - **Required output:** `"One Hundred Twenty Three"`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Integer to English Words** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Convert a non-negative integer `num` to its English words representation.
+
+The objective is to compute `"One Hundred Twenty Three"` from `{"num": 123}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Exploit the three-digit rhythm of English number names
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Large English number names repeat the same pattern in groups of three decimal digits. Each group is a number from 0 through 999, followed by a scale name determined by its position:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Decimal group | Scale |
+|---:|---|
+| billions | `Billion` |
+| millions | `Million` |
+| thousands | `Thousand` |
+| final three digits | no scale word |
+
+For example,
+
+$$
+1{,}234{,}567
+=1\cdot 10^6+234\cdot 10^3+567.
+$$
+
+The same local converter can spell `1`, `234`, and `567`; the outer loop merely attaches `Million` and `Thousand` to the first two nonzero groups. This separation keeps the logic small: one part knows how to say a value below 1000, and another part knows where that group belongs in the complete number.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"num": 123}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Handle zero before grouping
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The ordinary group logic deliberately skips groups whose numeric value is zero. That is correct inside a larger number—`1,000,005` should not contain `Zero Thousand`—but it would produce no words at all for the number zero. The source therefore handles `num == 0` immediately and returns `"Zero"`.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+For every positive input, at least one three-digit group is nonzero, so the main loop will produce a nonempty result.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The ordinary group logic deliberately skips groups whose num... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Map the irregular words below twenty directly
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+English names from one through nineteen are not generated by one uniform tens-plus-ones rule. In particular, `Eleven`, `Twelve`, and the `-teen` names need individual spellings. The `lt20` table stores the exact word for each index from 1 through 19. Index zero contains the empty string as a convenient placeholder, although `transfer(0)` returns before indexing it.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The separate `tens` table stores `Twenty`, `Thirty`, through `Ninety` at indices 2 through 9. `Ten` appears at index 1 but is not used by the tens branch because every number below 20 is handled first by `lt20`.
+
+These lookup tables are preferable to trying to derive English spelling mechanically. They isolate the language's irregular vocabulary while the algorithm handles only numeric structure.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `"One Hundred Twenty Three"` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"num": 123}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `"One Hundred Twenty Three"` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Single fully recursive scale converter:** Recu:** - **Single fully recursive scale converter:** Recursively choose the largest applicable value among billion, million, thousand, hundred, tens, and ones. This can be elegant but mixes global scale selection with local three-digit spelling; base-1000 grouping makes the repetition explicit.
+- **Process groups from right to left:** Repeated `% 1000` and `// 1000` can extract units first, but each converted group must then be prepended or stored and reversed. The exact high-to-low divisor loop already produces final order.
+- **Large value-to-word table:** Greedily match pairs such as `(1000000000, "Billion")`, `(90, "Ninety")`, and `(1, "One")`. It works, but the group structure and special below-20 rule are easier to verify with dedicated tables.
+- **Zero:** It needs the explicit `"Zero"` branch because zero-valued groups are intentionally silent everywhere else.
+- **Exact multiple of a scale:** `1,000,000` emits `One Million`; all lower zero groups are skipped, so no trailing `Zero` words appear.
+- **Zero group in the middle:** `1,000,005` becomes `One Million Five`. The absent thousands group is not pronounced.
+- **Zero inside a group:** `105` becomes `One Hundred Five`, while `120` becomes `One Hundred Twenty`. The zero remainder contributes an empty string.
+- **Values from 10 through 19:** Direct lookup is mandatory because their names do not follow the ordinary tens-plus-ones construction.
+- **Multiples of ten:** A zero ones remainder is silent, producing `Forty` rather than `Forty Zero`.
+- **Maximum input:** `2,147,483,647` fits the four declared scales and begins with `Two Billion`; every extracted chunk stays below 1000 as required by `transfer`.
+- **Capitalization and punctuation:** Lookup entries are capitalized, words are separated by spaces, and the output uses neither commas nor hyphens nor the conjunction `and`, matching the expected format.
+- **Negative input outside the contract:** The method is designed only for non-negative integers. It has no `Negative` branch and callers must respect the stated range.
+- **Beyond billions outside the contract:** The fixed scale table ends at `Billion`. Supporting arbitrary-size integers would require extending scale names and adjusting the starting divisor rather than relying on this four-iteration loop.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(\log num)$. Let $d$ be the number of decimal digits in `num`, so $d=O(\log num)$ for positive `num`. A generalized base-1000 converter examines $O(d/3)$ groups, performs constant local decomposition per group, and emits $O(d)$ word characters. Its time is therefore $O(\log num)$, matching the manifest.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

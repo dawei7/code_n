@@ -1,104 +1,145 @@
 # Guided Example: Convex Polygon
 
-We examine the step-by-step execution of the optimal Array, Math, Geometry method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"points": [[0, 0], [0, 5], [5, 5], [5, 0]]}`
 - **Required output:** `true`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Convex Polygon** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an array of points on the **X-Y** plane `points` where $\text{points}[i] = [x_{i}, y_{i}]$. The points form a polygon when joined sequentially.
+
+The objective is to compute `true` from `{"points": [[0, 0], [0, 5], [5, 5], [5, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Turn orientation from a cross product
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+For consecutive boundary points
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+A=P_i,\qquad B=P_{i+1},\qquad C=P_{i+2},
+$$
+
+the code forms vectors from `A`:
+
+$$
+\overrightarrow{AB}=(x_1,y_1),\qquad
+\overrightarrow{AC}=(x_2,y_2).
+$$
+
+Their scalar two-dimensional cross product is
+
+$$
+\operatorname{cross}(\overrightarrow{AB},\overrightarrow{AC})
+=x_1y_2-x_2y_1.
+$$
+
+- A positive result means the direction from `AB` toward `AC` is counterclockwise.
+- A negative result means it is clockwise.
+- Zero means `A`, `B`, and `C` are collinear, so this step makes no left or right turn.
+
+It is also common to cross `AB` with `BC`. The code's `AC` formulation has the same result because `AC = AB + BC`, and crossing a vector with itself contributes zero:
+
+$$
+AB\times AC=AB\times(AB+BC)=AB\times BC.
+$$
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"points": [[0, 0], [0, 5], [5, 5], [5, 0]]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Remember the last genuine turn
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+`pre` stores the most recent nonzero cross product. It begins at zero because no orientation has yet been established.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+For each `cur`:
+
+- If `cur == 0`, ignore it. A collinear boundary point does not contradict either clockwise or counterclockwise travel.
+- If `cur != 0` and `cur * pre < 0`, the signs are opposite, so the polygon contains both turn directions and is not convex.
+- Otherwise, store `cur` in `pre` as the current established direction.
+
+When `pre` is still zero, `cur * pre` is zero rather than negative, so the first noncollinear turn simply establishes the sign.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | `pre` stores the most recent nonzero cross product.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Why modulo indexing closes the polygon
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+The input lists each vertex once but the polygon also has an edge from the final point back to the first. Indices `(i + 1) % n` and `(i + 2) % n` wrap around automatically.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+For `i = n - 2`, the triple is the second-last point, last point, and first point. For `i = n - 1`, it is the last point, first point, and second point. Thus turns at the closing boundary are checked just like interior list positions. Omitting them could miss a concave corner near the list boundary.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `true` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"points": [[0, 0], [0, 5], [5, 5], [5, 0]]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `true` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Compute a convex hull:** Compare the hull with:** - **Compute a convex hull:** Compare the hull with all input vertices. This costs $O(n\log n)$ and is unnecessary because vertices already arrive in boundary order.
+- **Check every diagonal:** Verifying that all other vertices lie on one side of every edge can take $O(n^2)$ time; consecutive-turn signs capture the same property for a simple ordered polygon.
+- **Use dot products:** Dot products measure angles and lengths but do not directly encode clockwise versus counterclockwise orientation.
+- **Clockwise input:** All nonzero cross products are negative and the polygon is still accepted.
+- **Counterclockwise input:** All nonzero cross products are positive and accepted.
+- **Collinear consecutive points:** Zero turns are ignored, allowing points along a straight convex edge.
+- **Closing corners:** Modulo indices ensure the last-to-first transitions are checked.
+- **Self-intersection outside the contract:** Local turn checks alone should not replace a simplicity test for arbitrary vertex lists.
+- **Three vertices:** Any valid nondegenerate simple triangle has one consistent orientation and is convex.
+- **Repeated points:** The source guarantees uniqueness; duplicates could create zero-length edges and would require separate validation.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let $n$ be the number of vertices. The loop processes exactly $n$ triples. Each iteration performs a constant number of indexed reads, subtractions, multiplications, and comparisons, so time complexity is $O(n)$.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,108 @@
 # Guided Example: Maximum Coins Heroes Can Collect
 
-We examine the step-by-step execution of the optimal Array, Two Pointers, Binary Search, Sorting, Prefix Sum method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"heroes": [1, 4, 2], "monsters": [1, 1, 5, 2, 3], "coins": [2, 3, 4, 5, 6]}`
 - **Required output:** `[5, 16, 10]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Maximum Coins Heroes Can Collect** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+There is a battle and `n` heroes are trying to defeat `m` monsters. You are given two **1-indexed** arrays of **positive** integers `heroes` and `monsters` of length `n` and `m`, respectively. $\text{heroes}[i]$ is the power of $$i^{\text{th}}$$ hero, and $\text{monsters}[i]$ is the power of $$i^{\text{th}}$$ monster.
+
+The objective is to compute `[5, 16, 10]` from `{"heroes": [1, 4, 2], "monsters": [1, 1, 5, 2, 3], "coins": [2, 3, 4, 5, 6]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Core Step 1
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+**Every hero wants the sum of a power prefix.** A hero with power `h` can defeat every monster whose power is at most `h`. Coins are all positive, the hero loses no health, and defeating one monster does not prevent another hero from defeating it. Therefore, each hero should defeat every eligible monster.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"heroes": [1, 4, 2], "monsters": [1, 1, 5, 2, 3], "coins": [2, 3, 4, 5, 6]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Core Step 2
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The question for each hero is simply: after ordering monsters by power, how many monsters lie at or below `h`, and what is the sum of their corresponding coin rewards?
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | The question for each hero is simply: after ordering monster... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Core Step 3
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+**Sort indices to preserve the monster-coin pairing.** The source builds
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[5, 16, 10]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"heroes": [1, 4, 2], "monsters": [1, 1, 5, 2, 3], "coins": [2, 3, 4, 5, 6]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[5, 16, 10]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Sort heroes with original indices and sweep:**:** - **Sort heroes with original indices and sweep:** As hero power rises, add newly defeatable monster coins once and write the running total to the hero's original position. This matches the manifest and replaces $n$ binary searches with one linear merge after sorting.
+- **Sort monster-coin tuples:** This is more explicit than sorting indices and has the same asymptotic cost, at the price of allocating tuple pairs.
+- **Brute force per hero:** Testing all monsters takes $O(nm)$ time and is too slow at $10^5$ by $10^5$.
+- **No defeatable monster:** Upper bound returns zero, and prefix sum `s[0]` is zero.
+- **Hero matches a monster exactly:** `bisect_right` includes all monsters with that power.
+- **Hero defeats every monster:** The boundary is $m$, and `s[m]` is the total coin sum.
+- **Duplicate monster powers:** All equal-power monsters are included together when the threshold reaches that power.
+- **Duplicate hero powers:** They independently receive the same prefix total without interfering.
+- **Large coin sum:** Python's arbitrary-precision integers preserve the full result.
+- **Input preservation:** Sorting the index list leaves `heroes`, `monsters`, and `coins` unchanged.
+- **Keyed bisect availability:** The exact code relies on a Python version whose `bisect_right` supports `key`.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(m\log m+n\log m)$. Let $m$ be the number of monsters and $n$ the number of heroes. Sorting the $m$ indices costs $O(m\log m)$. Building prefix sums costs $O(m)$.
+- **Auxiliary Space Complexity:** $O(m)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,132 @@
 # Guided Example: Count Prime-Gap Balanced Subarrays
 
-We examine the step-by-step execution of the optimal Array, Math, Queue, Sliding Window, Number Theory, Monotonic Queue method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [1, 2, 3], "k": 1}`
 - **Required output:** `2`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Count Prime-Gap Balanced Subarrays** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer array `nums` and an integer `k`.
+
+The objective is to compute `2` from `{"nums": [1, 2, 3], "k": 1}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Prime preprocessing
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+A Sieve of Eratosthenes marks primality through `max(nums)`. Zero and one are nonprime. For each prime factor through its square root, multiples beginning at its square are cleared.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The required variable `zelmoricad` stores `(nums,k)` midway in the function. It does not participate in the algorithm afterward.
 
----
+The source then records parallel arrays:
 
-### Intermediate Phase: Invariant-Preserving Transitions
+- `prime_positions[t]`: original index of the t-th prime occurrence;
+- `prime_values[t]`: its numeric prime value.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+Repeated equal primes remain separate occurrences because their positions create different subarrays.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+If fewer than two prime occurrences exist, no qualifying subarray is possible and zero is returned.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [1, 2, 3], "k": 1}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Valid windows in prime-occurrence order
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+A subarray’s prime occurrences are consecutive in the compressed arrays. For a fixed rightmost prime occurrence `right`, the source maintains the smallest `left` such that:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`max(prime_values[left:right+1]) - min(...) <= k`.
+
+The minimum deque stores indices in increasing value order; the maximum deque stores decreasing value order. Their fronts reveal current extrema.
+
+When a new prime enters, worse candidates are removed from each back. While the value gap exceeds `k`, `left` advances and a deque front is removed if it is exactly the departing index.
+
+Each compressed index enters and leaves each deque at most once.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | A subarray’s prime occurrences are consecutive in the compre... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why every later first prime is also valid
+
+Once prime window `[left,right]` satisfies the gap, dropping primes from its left cannot increase max-minus-min. Therefore every first-prime choice `t` from `left` through `right-1` forms a valid prime set ending at `right`.
+
+Any `t<left` is invalid by minimality of the sliding boundary. This makes valid first-prime indices one continuous range.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `2` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [1, 2, 3], "k": 1}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `2` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Enumerate all subarrays:** Maintaining prime e:** - **Enumerate all subarrays:** Maintaining prime extrema incrementally still gives `O(n^2)` time.
+- **Balanced multiset over primes:** It can maintain extrema in `O(\log n)` per move, but monotonic deques exploit one-way sliding for linear work.
+- **Prefix prime counts only:** Counts can enforce at least two primes but cannot maintain prime-value minimum and maximum alone.
+- **No primes or one prime:** Immediate zero is correct.
+- **Exactly two primes:** The window contributes when their numeric difference is at most `k`, multiplied by surrounding nonprime boundary choices.
+- **Repeated equal primes:** Their gap is zero, so they are compatible even when `k=0`.
+- **k equals zero:** All primes in a counted subarray must have the same numeric value.
+- **Leading nonprimes:** The first left gap includes starts from index zero.
+- **Trailing nonprimes:** The final right gap includes ends through index `n-1`.
+- **Nonprime between primes:** It changes boundary distances but not prime extrema.
+- **Future invalid prime:** Shrinking may discard several earlier prime occurrences until the extrema gap is restored.
+- **Required variable:** `zelmoricad` is deliberately inert; it satisfies the explicit storage instruction without altering state.
+- **Large count:** Python integers hold the result; the problem does not request a modulus.
+- **Prime occurrence versus distinct prime:** The “at least two” condition counts occurrences, so two equal prime elements qualify.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(V)$. Let `V=max(nums)`. The sieve costs `O(V\log\log V)` time and `O(V)` space.
+- **Auxiliary Space Complexity:** $O(V + n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

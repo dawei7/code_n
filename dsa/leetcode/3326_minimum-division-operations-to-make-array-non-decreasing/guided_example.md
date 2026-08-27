@@ -1,104 +1,110 @@
 # Guided Example: Minimum Division Operations to Make Array Non Decreasing
 
-We examine the step-by-step execution of the optimal Array, Math, Greedy, Number Theory method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [25, 7]}`
 - **Required output:** `1`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Division Operations to Make Array Non Decreasing** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer array `nums`.
+
+The objective is to compute `1` from `{"nums": [25, 7]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Core Step 1
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+**One operation replaces a number by its smallest prime factor.** Let $x$ be composite and let $p$ be its smallest prime factor. Its greatest proper divisor is $x/p$: any larger proper divisor would correspond to a smaller factor than $p$. Dividing $x$ by that greatest proper divisor therefore gives
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [25, 7]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Core Step 3
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+For a prime $x$, the greatest proper divisor is one, so the operation leaves $x$ unchanged. Thus each element has only two useful states: its original value or its smallest prime factor. Repeating the operation after reaching a prime cannot reduce it further.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For a prime $x$, the greatest proper divisor is one, so the ... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Core Step 4
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+**Precompute smallest prime factors.** Global array `lpf` is filled by a sieve. When an unmarked `i` is encountered, it is prime. The inner loop visits its multiples and writes `i` only into still-unmarked entries. Because primes are processed ascending, the first factor written is the smallest prime factor.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `1` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [25, 7]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `1` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Factor each violating value on demand:** Trial:** - **Factor each violating value on demand:** Trial division costs up to $O(\sqrt U)$ per changed element but avoids the large global sieve for few calls.
+- **Linear sieve:** It can compute smallest prime factors in $O(U)$ time with comparable storage.
+- **Process left to right:** Future right values are not finalized, making greedy decisions unclear. Right-to-left directly enforces each required upper bound.
+- **Prime violating value:** Its smallest prime factor equals itself, so it cannot be reduced and the answer is `-1`.
+- **Value one:** It never exceeds a positive right neighbor when that neighbor is at least one, so the zero `lpf[1]` entry is not used for a required reduction.
+- **Already non-decreasing:** No values change and the method returns zero.
+- **Composite becomes its smallest prime:** A second operation cannot reduce that prime, so at most one useful operation per index exists.
+- **Equal neighbors:** Equality is permitted and triggers no operation.
+- **Partial mutation on failure:** Earlier right-side reductions remain in `nums` when a later impossible pair returns `-1`.
+- **Global initialization:** Sieve cost is paid on module import even if the method is never called.
+- **Upper-bound dependency:** Access is safe only because all values are at most $10^6$.
+- **Minimum count:** Every performed operation repairs a pair that was otherwise invalid, so none of the counted operations can be omitted.
+- **Greatest-divisor wording:** The operation may look as though many divisors must be considered, but the quotient is forced to the smallest prime factor. Establishing this equivalence is what collapses repeated-operation search into one greedy check.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(U)$. Let $U=10^6$ be the supported maximum. The smallest-prime-factor sieve takes $O(U\log\log U)$ conventional sieve time and $O(U)$ space. Once initialized, one method call scans the array once in $O(n)$ time and uses $O(1)$ additional working space while mutating the input.
+- **Auxiliary Space Complexity:** $O(U + n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

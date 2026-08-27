@@ -1,104 +1,106 @@
 # Guided Example: Intersection of Two Arrays II
 
-We examine the step-by-step execution of the optimal Array, Hash Table, Two Pointers, Binary Search, Sorting method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}`
 - **Required output:** `[2, 2]`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Intersection of Two Arrays II** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must appear as many times as it shows in both arrays and you may return the result in **any order**.
+
+The objective is to compute `[2, 2]` from `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Why a set is no longer enough.
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+A set can answer whether a value occurs, but it cannot distinguish one occurrence from ten. For `nums1 = [2, 2]` and `nums2 = [2, 2]`, a set intersection would contain only one `2`, which is too few. The counter preserves the exact quantity available from one side, allowing the scan of the other side to match occurrences one by one.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Building the available supply.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+`Counter(nums1)` visits all values in `nums1`. For every distinct integer `x`, `cnt[x]` becomes the number of times `x` occurs in that array. The answer begins empty because no occurrences from `nums2` have yet been matched.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+The implementation always counts `nums1`. It does not compare the array lengths or swap the inputs. This detail differs from the variant manifest's summary, which says that the shorter array is counted. Counting the shorter input is a useful optimization, but it is not present in the checked-in source and must not be silently attributed to it.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | `Counter(nums1)` visits all values in `nums1`.... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Consuming matches while scanning the second array.
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+For each `x` in `nums2`, the condition `if cnt[x]` asks whether at least one unmatched copy of `x` remains from `nums1`. A `Counter` returns zero for a missing key, so values that never occurred in `nums1` fail the condition. Counts begin nonnegative, and the solution decrements only after a successful match, so a false condition means exactly that no available copy remains.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+When the condition is true, `ans.append(x)` records one common occurrence. The following `cnt[x] -= 1` is essential: that specific copy from `nums1` has now been paired with the current copy from `nums2` and cannot be reused. Without the decrement, every later duplicate in `nums2` would also pass whenever `nums1` contained the value at least once, potentially producing too many copies.
+
+For example, take `nums1 = [1, 2, 2, 1]` and `nums2 = [2, 2]`. The counter begins with two available `1`s and two available `2`s. The first scanned `2` is appended and reduces the remaining `2` count to one. The second is also appended and reduces it to zero. The returned answer is `[2, 2]`.
+
+Now change `nums2` to `[2, 2, 2, 2]`. The first two copies consume the two available copies from `nums1`. For the third and fourth copies, `cnt[2]` is zero, so neither is appended. This gives exactly the minimum of the two input frequencies.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `[2, 2]` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums1": [1, 2, 2, 1], "nums2": [2, 2]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `[2, 2]` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Count the shorter array:** Swap the inputs whe:** - **Count the shorter array:** Swap the inputs when `nums1` is longer, then run the same counter-and-consumption procedure. Time remains expected $O(n+m)$ while counter storage becomes $O(\min(n,m))$. This matches the manifest summary but is absent from the exact solution.
+- **- **Two pointers on sorted arrays:** When both arr:** - **Two pointers on sorted arrays:** When both arrays are already sorted, compare their current values. Advance the smaller side, and append then advance both sides when equal. This takes $O(n+m)$ time and $O(1)$ auxiliary space excluding output, directly answering the first follow-up.
+- **- **Sort unsorted inputs first:** Sorting and then:** - **Sort unsorted inputs first:** Sorting and then using two pointers costs $O(n\log n+m\log m)$ time. It can reduce hash storage, but in-place sorting mutates inputs and sorting implementations may use additional memory.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n+m)$. Let $n$ be `len(nums1)`, let $m$ be `len(nums2)`, let $u_1$ be the number of distinct values in `nums1`, and let $r$ be the total length of the returned multiset intersection.
+- **Auxiliary Space Complexity:** $O(\min(n, m))$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

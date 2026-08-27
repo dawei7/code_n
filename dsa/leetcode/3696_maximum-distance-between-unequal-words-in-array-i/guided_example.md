@@ -1,104 +1,157 @@
 # Guided Example: Maximum Distance Between Unequal Words in Array I
 
-We examine the step-by-step execution of the optimal Array, String method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"words": ["leetcode", "leetcode", "codeforces"]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Maximum Distance Between Unequal Words in Array I** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given a string array `words`.
+
+The objective is to compute `3` from `{"words": ["leetcode", "leetcode", "codeforces"]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Distances to the first boundary
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+At index `i`, if:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+`words[i] != words[0]`
 
----
+then indices zero and `i` form a valid unequal pair. Their inclusive distance is:
 
-### Intermediate Phase: Invariant-Preserving Transitions
+$$
+i-0+1=i+1.
+$$
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+The source updates `ans` with `i + 1`.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+This is why the expression is not merely `i`. The problem defines distance as $j-i+1$, which counts both endpoint positions.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"words": ["leetcode", "leetcode", "codeforces"]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: Distances to the last boundary
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+If:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+`words[i] != words[-1]`
+
+then indices `i` and $n-1$ form a valid unequal pair. Their distance is:
+
+$$
+(n-1)-i+1=n-i.
+$$
+
+The source updates `ans` with `n - i`.
+
+The two tests are independent rather than an `if/elif` pair. A middle word may differ from both endpoints, in which case both boundary distances are valid and the larger one should be considered.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | If:
+
+`words[i] != words[-1]`
+
+then indices `i` and $n-1$ for... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: Why checking boundary pairs is sufficient
+
+First consider the easiest case: `words[0] != words[-1]`. The two endpoints themselves form a valid pair with distance $n$, the largest possible distance in an array of length $n$. The loop discovers it—for example, at `i = 0` the comparison with the last word succeeds and contributes `n - 0 = n`. No other pair can improve on $n$.
+
+Now suppose the endpoint words are equal; call that common word $A$. Take any valid interior pair $i<j$ with `words[i] != words[j]`.
+
+There are two cases.
+
+If `words[i] != A`, then `words[i]` differs from the last boundary word. Pair $(i,n-1)$ is valid, and its distance is:
+
+$$
+n-i\ge j-i+1
+$$
+
+because $j\le n-1$.
+
+Otherwise, `words[i] = A`. Since the original pair is unequal, `words[j] != A`. Pair $(0,j)$ is valid, and its distance is:
+
+$$
+j+1\ge j-i+1
+$$
+
+because $i\ge0$.
+
+Thus every valid pair is dominated by an unequal boundary pair that the loop checks. The maximum over those boundary candidates must equal the maximum over all pairs.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"words": ["leetcode", "leetcode", "codeforces"]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Compare every pair:** The straightforward doub:** - **Compare every pair:** The straightforward double loop costs $O(n^2L)$ time. Boundary dominance reduces this to one scan.
+- **Scan outward from both ends:** One can find the farthest word unequal to each endpoint separately. The exact source combines both searches into one loop.
+- **Compare only the first endpoint:** This fails when the best pair uses a word equal to the first endpoint but unequal to the last, as can happen when the endpoint words differ.
+- **First and last words differ:** Distance $n$ is immediately attainable and is the absolute maximum.
+- **First and last words match:** Any unequal interior pair can be extended to one boundary as shown in the two-case argument.
+- **All words equal:** No valid pair exists, both conditions always fail, and zero is returned.
+- **One word:** Distinct indices are impossible, so zero is correct.
+- **Repeated words:** Equality is based on complete string content, not object identity or frequency.
+- **Inclusive distance:** Pair $(i,j)$ contributes $j-i+1$. Omitting the added one would undercount every valid answer.
+- **A middle word differs from both boundaries:** Both candidates are evaluated because the source uses two separate `if` statements.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(nL)$. Let $n$ be the number of words and let $L$ be the maximum word length.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

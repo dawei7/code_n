@@ -1,104 +1,130 @@
 # Guided Example: Minimum Number of Coins for Fruits II
 
-We examine the step-by-step execution of the optimal Array, Dynamic Programming, Queue, Heap (Priority Queue), Monotonic Queue method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"prices": [3, 1, 2]}`
 - **Required output:** `4`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Minimum Number of Coins for Fruits II** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are at a fruit market with different types of exotic fruits on display.
+
+The objective is to compute `4` from `{"prices": [3, 1, 2]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Define the suffix decision
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Number fruits from one through $N$. Paying `prices[i - 1]` for fruit $i$ makes the next $i$ fruits available for free, but it can still be useful to pay for a free fruit to extend coverage farther. Let `dp[i]` be the minimum additional cost needed when fruit $i$ is the next fruit deliberately purchased.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+After buying $i$, the next deliberate purchase can be any index
+
+$$
+j \in [i+1,\,2i+1].
+$$
+
+Choosing such a $j$ is enough to maintain coverage: fruit $i$ covers through $2i$, and buying $j$ no later than $2i+1$ continues the process. This gives
+
+$$
+dp[i]=\texttt{price}[i]+\min_{j=i+1}^{2i+1} dp[j].
+$$
+
+When $2i \ge N$, buying fruit $i$ already covers every later fruit, so `dp[i] = price[i]` with no future term.
+
+The exact implementation stores computed `dp[i]` back into `prices[i - 1]`, reusing the input array as the DP table.
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"prices": [3, 1, 2]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Process indices from right to left
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+Every state depends only on larger indices, so the loop runs `i` from $N$ down to one. By the time `dp[i]` is needed, all possible `dp[j]` values to its right have already been computed.
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+A direct scan of every interval $[i+1,2i+1]$ would lead to quadratic time. The solution instead keeps candidate indices in a monotonic deque `q`. At the beginning of iteration $i$, the deque represents useful future DP states.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | Every state depends only on larger indices, so the loop runs... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Maintain the valid index range
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+As `i` decreases, the recurrence’s right endpoint `2 * i + 1` also decreases. The code removes front indices while `q[0] > 2 * i + 1`. Those states are now too far right to be the next purchase for $i$ and will never become valid again for an even smaller $i$.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+Indices in the deque decrease from front to back because they were generated by a descending loop and appended at the right. Therefore, candidates that exceed the upper bound appear at the front and can be removed efficiently.
+
+If `i <= (n - 1) // 2`, then buying $i$ does not cover the rest of the array, so a future purchase is required. The smallest DP value in the valid interval is stored at `q[0]`, and the code adds `prices[q[0] - 1]` to the current price.
+
+For larger `i`, $2i \ge N$ and the current price alone is the base-case DP value.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `4` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"prices": [3, 1, 2]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `4` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Quadratic dynamic programming:** Evaluating ev:** - **Quadratic dynamic programming:** Evaluating every `j` in each recurrence interval is straightforward but takes $O(N^2)$ time.
+- **Segment tree:** Range-minimum queries can reduce the DP to $O(N\log N)$ time with $O(N)$ space, but the recurrence windows move monotonically and a deque achieves linear time.
+- **Separate DP array:** It preserves `prices` and may be easier to inspect, but adds an $O(N)$ allocation without changing the asymptotic bound.
+- **Buying a free fruit:** This can be optimal because paying for it extends future free coverage; the recurrence deliberately allows every $j$ in the coverage interval.
+- **Suffix base cases:** When $2i \ge N$, no future state should be added. Doing so would overpay after all remaining fruits are already covered.
+- **Equal DP costs:** The older right-side candidate is removed because the newer left-side index has the same cost and remains eligible at least as long.
+- **One fruit:** Buying the first fruit completes the process, the deque logic uses the base case, and the answer is its price.
+- **Input mutation:** The returned value is correct, but callers must not expect `prices` to retain its original contents.
+- **One-based versus zero-based indexing:** Recurrence indices are one-based, while list access uses `i - 1`; keeping that distinction avoids coverage-boundary errors.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(N)$. Let $N$ be the number of fruits. The reverse loop has $N$ iterations. Each index is appended to the deque once. It can be removed from the front once when it expires or from the back once when dominated. Hence all deque operations total $O(N)$, and the running time is $O(N)$.
+- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,154 @@
 # Guided Example: Maximum Sum of M Non-Overlapping Subarrays I
 
-We examine the step-by-step execution of the optimal Array, Binary Search, Dynamic Programming, Queue, Sliding Window, Prefix Sum, Monotonic Queue method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [4, 1, -5, 2], "m": 2, "l": 1, "r": 3}`
 - **Required output:** `7`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Maximum Sum of M Non-Overlapping Subarrays I** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+You are given an integer array `nums` of length `n`, and three integers `m`, `l`, and `r`.
+
+The objective is to compute `7` from `{"nums": [4, 1, -5, 2], "m": 2, "l": 1, "r": 3}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Prefix sums turn subarray sums into endpoint arithmetic
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+Define:
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+$$
+P[i]=\sum_{t=0}^{i-1}\texttt{nums}[t],
+\qquad P[0]=0.
+$$
+
+The sum of the half-open subarray `nums[start:end]` is:
+
+$$
+P[end]-P[start].
+$$
+
+Using half-open endpoints makes its length exactly `end - start`. The permitted length condition becomes:
+
+$$
+l\le end-start\le r,
+$$
+
+or equivalently:
+
+$$
+end-r\le start\le end-l.
+$$
+
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [4, 1, -5, 2], "m": 2, "l": 1, "r": 3}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Intermediate Phase: Invariant-Preserving Transitions
+### Step 2: Meaning of the DP layers
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
+For a fixed round $q$:
 
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+- `previous[i]` is the best total using exactly $q-1$ non-overlapping valid subarrays contained in the first `i` elements;
+- `current[i]` is the corresponding best total using exactly $q$ subarrays.
+
+Before the first round, selecting exactly zero subarrays has value zero for every prefix, so `previous` is initialized to all zeroes.
+
+Impossible states in later layers use negative infinity. This is important when array values are negative: zero must not masquerade as a valid solution with a positive number of selected subarrays.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For a fixed round $q$:
+
+- `previous[i]` is the best total us... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 3: Transition by choosing the final subarray
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+Suppose the $q$th and final selected subarray ends at exclusive endpoint `end` and begins at `start`. Earlier selected subarrays must fit completely in the prefix ending at `start`. Their best value is `previous[start]`.
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+The combined total is:
+
+$$
+\texttt{previous[start]}+P[end]-P[start]
+=P[end]+\bigl(\texttt{previous[start]}-P[start]\bigr).
+$$
+
+For a fixed `end`, $P[end]$ is constant. The transition only needs the maximum key
+
+`previous[start] - prefix[start]`
+
+over starts in the valid window `[end - r, end - l]`.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `7` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [4, 1, -5, 2], "m": 2, "l": 1, "r": 3}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `7` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Try every start for every end:** The direct tr:** - **Try every start for every end:** The direct transition costs $O(r-l+1)$ per state and can produce $O(mN^2)$ time. The deque maintains the range maximum.
+- **Use zero for impossible exact-count states:** This would allow nonexistent subarray sets to dominate negative valid sums. Negative infinity preserves feasibility.
+- **Compute exactly `m` only:** The statement permits fewer selections, and all-negative arrays are best served by one subarray.
+- **Allow zero selected subarrays in the answer:** That would incorrectly return zero when every valid subarray sum is negative.
+- **Forget `current[end - 1]`:** Then every state would force its last subarray to end at the current endpoint and miss earlier optima.
+- **Expire starts before adding the newest:** Either order can work carefully, but the source adds `end - l` and then removes values below `end - r`, leaving the exact inclusive window.
+- **Equal deque keys:** Keeping the newer start is safe because it gives the same value and remains valid longer.
+- **`l = r`:** The valid-start window has one index per end, and the deque reduces to fixed-length transitions.
+- **`m > n // l`:** Extra rounds are impossible and skipped.
+- **All values negative:** Exact layers remain negative; the maximum over positive layer counts chooses the least harmful valid selection.
+- **Adjacent selected subarrays:** Half-open intervals may end and start at the same index without sharing an element.
+- **Large sums:** Python integers safely hold prefix and DP totals beyond 32-bit limits.
+- **Off-by-one errors: verify loop termination conditi:** Off-by-one errors: verify loop termination conditions and inclusive/exclusive interval bounds.
+- **Degenerate inputs: handle minimum-sized inputs wit:** Degenerate inputs: handle minimum-sized inputs without null references or out-of-bounds access.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(QN)$. Let $N$ be the array length and
+- **Auxiliary Space Complexity:** $O(N)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.

@@ -1,104 +1,124 @@
 # Guided Example: Find Pivot Index
 
-We examine the step-by-step execution of the optimal Array, Prefix Sum method on a representative problem instance.
+We trace the step-by-step execution of the optimal approach on a representative problem instance:
 
 - **Input:** `{"nums": [1, 7, 3, 6, 5, 6]}`
 - **Required output:** `3`
 
-This instance is selected because it demonstrates state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
 
 ---
 
 ## 1. Instance & Teaching Goal
 
-The objective is to compute the requested result for **Find Pivot Index** while avoiding redundant re-evaluations.
-A naive brute-force traversal risks evaluating infeasible paths or recomputing identical sub-problems.
-The optimal method establishes a clear monotone order or invariant state accumulator that advances deterministically toward the solution.
+Given an array of integers `nums`, calculate the **pivot index** of this array.
+
+The objective is to compute `3` from `{"nums": [1, 7, 3, 6, 5, 6]}` while avoiding redundant calculations and unnecessary overhead.
+
+A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
 
 ---
 
 ## 2. Conceptual Foundation & Invariants
 
-We maintain the core data structures and state variables required by the algorithm.
+We maintain the core conceptual parameters and state variables:
 
-| State Component | Role & Definition |
-|---|---|
-| Primary Index / Cursor | Tracks current position in the input sequence |
-| Accumulator / Table | Maintains confirmed results and optimal sub-states |
-| Frontier / Window | Restricts candidate search space |
+| State Parameter | Role & Purpose | Initial State |
+|---|---|---|
+| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
+| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
 
-> **Invariant.** At each step $k$, all sub-instances preceding step $k$ have been correctly solved, and no feasible optimal candidate has been prematurely discarded.
+> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
 
 ---
 
 ## 3. Step-by-Step Worked Execution
 
-### Initial Phase: Setup & State Initialization
+### Step 1: Replace repeated range sums with a running balance
 
-- The initial state is initialized with baseline boundaries.
-- Invariants are verified before the first transition.
+An index `i` is a pivot when the sum of elements strictly to its left equals the sum of elements strictly to its right. Computing both sides from scratch for every index would repeat most additions and lead to quadratic time.
 
-| Step Parameter | Initial State |
-|---|---|
-| Traversal State | Initialized at boundary |
-| Active Accumulator | Base value |
-| Feasibility Status | Valid |
+The exact solution instead keeps two running sums:
 
----
+- `left` is the sum of elements strictly before the current index.
+- `right` is adjusted to become the sum of elements strictly after the current index.
 
-### Intermediate Phase: Invariant-Preserving Transitions
+The total array sum gives an efficient starting point. Initially `left = 0` because no element lies before index `0`, while `right = sum(nums)` still includes every element. During the iteration at value `x = nums[i]`, the code first executes `right -= x`. Only then does `right` represent the strictly-right side required by the pivot definition.
 
-- Each transition examines the current element and applies the optimal decision rule.
-- Suboptimal alternatives are eliminated by monotonicity or dominance criteria.
-
-| Step Parameter | Transition State |
-|---|---|
-| Traversal State | Advanced to next component |
-| Active Accumulator | Updated with optimal choice |
-| Feasibility Status | Maintained |
+| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+|---|---|---|---|
+| Input Slice | `{"nums": [1, 7, 3, 6, 5, 6]}` | Initial boundary validation | Setup completed |
+| Active State | Base configuration | Apply initial state rule | Initialized |
 
 ---
 
-### Final Phase: Termination & Result Extraction
+### Step 2: The order of updates is the algorithm
 
-- The algorithm terminates when all input elements or search boundaries are exhausted.
-- The final state represents the exact computed answer.
+For each index, the operations occur in this exact order:
 
-| Step Parameter | Final State |
-|---|---|
-| Traversal State | Boundary reached |
-| Final Accumulator | Target result |
-| Status | Terminated |
+1. Remove the current value from `right`.
+2. Compare `left` and `right`.
+3. If they differ, add the current value to `left` before advancing.
+
+Moving either update can create an off-by-one-side error. If the comparison happened before subtracting `x`, the right sum would incorrectly include the pivot candidate. If `x` were added to `left` before the comparison, the left sum would also incorrectly include it.
+
+The current element belongs to neither side. The update order makes that fact explicit.
+
+| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+|---|---|---|---|
+| Intermediate State | Subproblem evaluation | For each index, the operations occur in this exact order:
+
+1... | Invariant satisfied |
+| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+
+---
+
+### Step 3: The loop invariant
+
+Immediately after `right -= x` and before the equality test:
+
+- `left` equals `nums[0] + ... + nums[i - 1]`.
+- `right` equals `nums[i + 1] + ... + nums[n - 1]`.
+
+At the first index, `left` is correctly zero, and removing `nums[0]` from the total leaves exactly the suffix after index zero.
+
+If index `i` is not a pivot, `left += x` prepares the invariant for the next iteration: the next index’s left side includes the current element. At the start of the next iteration, subtracting its current value from `right` similarly removes that candidate from the remaining suffix.
+
+Thus the comparison at every index uses precisely the two sums named in the problem, not approximations or inclusive variants.
+
+| Parameter | State Before Finalization | Action | Final Value |
+|---|---|---|---|
+| Target Output | Accumulator state | Synthesize final result | `3` |
 
 ---
 
 ## 4. Complete Execution Trace
 
-| Phase | Examined State | Candidate Action | Invariant Maintained | Output State |
-|---|---|---|---|---|
-| 1 (Start) | Initial configuration | Initialize state structures | Base condition satisfied | Partial state initialized |
-| 2 (Iterate) | Intermediate elements | Apply decision / recurrence | Monotonic progress preserved | Accumulator updated |
-| 3 (Finish) | Terminal condition | Extract final result | Soundness & completeness verified | Final answer emitted |
+| Phase | Observed Component | Operation / Decision | Invariant Status |
+|---|---|---|---|
+| Initialization | Initial input `{"nums": [1, 7, 3, 6, 5, 6]}` | Set up baseline structures | Holds |
+| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
+| Finalization | Complete sequence processed | Extract `3` | Verified |
 
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** Every state transition follows the exact mathematical relations of the problem specification. No invalid intermediate state can produce an erroneous final answer.
+**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
 
-**Completeness.** Pruning decisions only eliminate choices that are mathematically guaranteed to be strictly suboptimal or redundant. Therefore, the optimal solution is guaranteed to be reached.
+**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
 
 ---
 
 ## 6. Traps This Instance Exposes
 
-- **Off-by-One Boundaries:** Careful handling of array indices and terminal conditions prevents out-of-bounds access or premature loop exits.
-- **Duplicate & Equal Values:** Ensuring correct comparison operators ($\le$ vs $<$) avoids infinite cycles or missing valid combinations.
-- **State Pollution:** Updating state variables only after verifying feasibility guarantees that backtrack operations or subsequent steps read uncorrupted values.
+- **- **Prefix-sum array:** Build cumulative sums, the:** - **Prefix-sum array:** Build cumulative sums, then compute each left and right side in constant time. This also takes `O(n)` time but uses `O(n)` additional storage. The two-running-sum method retains only the information needed at the current index.
+- **- **Recompute both sides for each index:** Summing:** - **Recompute both sides for each index:** Summing slices or loops around every candidate is easy to describe but costs `O(n^2)` time and may allocate temporary slices. Most additions are needlessly repeated.
+- **- **Use the equation `2 * left + nums[i] == total`:** - **Use the equation `2 * left + nums[i] == total`:** This algebraic form is equivalent because `right = total - left - nums[i]`. It can reduce the maintained state to a total and a left sum. The exact solution’s explicit right sum closely mirrors the problem definition.
 
 ---
 
 ## 7. Complexity Derivation
 
-- **Time Complexity:** The execution processes each element in bounded time per step, achieving the optimal asymptotic bound.
-- **Auxiliary Space Complexity:** Space is strictly bounded by the auxiliary state structures without redundant allocations.
+- **Time Complexity:** $O(n)$. Let `n` be the number of elements.
+- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
