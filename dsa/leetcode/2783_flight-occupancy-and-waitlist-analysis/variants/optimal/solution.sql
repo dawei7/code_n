@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     flight_id,
     LEAST(COUNT(passenger_id), capacity) AS booked_cnt,
@@ -6,5 +6,6 @@ SELECT
 FROM
     Flights
     LEFT JOIN Passengers USING (flight_id)
-GROUP BY 1
-ORDER BY 1;
+GROUP BY flight_id, capacity
+ORDER BY flight_id;
+

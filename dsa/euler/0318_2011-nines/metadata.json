@@ -8,7 +8,16 @@
   "euler_level": 13,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Asymptotics",
+      "slug": "asymptotics"
+    },
+    {
+      "name": "Square Root",
+      "slug": "square-root"
+    }
+  ],
   "url": "https://projecteuler.net/problem=318",
   "supported_languages": [
     "python"

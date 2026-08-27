@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countSubranges",
-  "verified_submission_id": "2073474228",
-  "verified_at": "2026-07-19T12:57:14.970729+00:00"
+  "verified_submission_id": "2116377515",
+  "verified_at": "2026-08-22T16:40:06.114591+00:00"
 }

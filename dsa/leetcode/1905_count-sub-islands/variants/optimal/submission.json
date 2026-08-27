@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countSubIslands",
-  "verified_submission_id": "2072056067",
-  "verified_at": "2026-07-18T09:49:32.193336+00:00"
+  "verified_submission_id": "2114820128",
+  "verified_at": "2026-08-21T08:07:31.649957+00:00"
 }

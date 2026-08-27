@@ -1,4 +1,4 @@
-### Nearly Isosceles $120$ Degree Triangles
+## Description
 
 Let $a, b$ and $c$ be the sides of an integer sided triangle with one angle of $120$ degrees, $a \le b \le c$ and $b-a \le 100$.
 

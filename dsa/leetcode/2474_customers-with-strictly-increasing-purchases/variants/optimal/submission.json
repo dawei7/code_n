@@ -6,9 +6,9 @@
   "frontend_id": "2474",
   "title_slug": "customers-with-strictly-increasing-purchases",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2075108768",
-  "verified_at": "2026-07-20T22:01:00+00:00"
+  "verified_submission_id": "2120593695",
+  "verified_at": "2026-08-26T08:53:39.697465+00:00"
 }

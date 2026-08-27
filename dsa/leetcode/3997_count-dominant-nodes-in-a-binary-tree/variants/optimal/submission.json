@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countDominantNodes",
-  "verified_submission_id": "2088171190",
-  "verified_at": "2026-07-31T02:54:00Z"
+  "verified_submission_id": "2122340873",
+  "verified_at": "2026-08-27T20:16:34.481130+00:00"
 }

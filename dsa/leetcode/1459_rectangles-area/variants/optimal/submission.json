@@ -6,9 +6,9 @@
   "frontend_id": "1459",
   "title_slug": "rectangles-area",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069173889",
-  "verified_at": "2026-07-15T23:39:23.482161+00:00"
+  "verified_submission_id": "2113301671",
+  "verified_at": "2026-08-20T00:07:50.584128+00:00"
 }

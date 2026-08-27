@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countOperationsToEmptyArray",
-  "verified_submission_id": "2076294936",
-  "verified_at": "2026-07-21T18:57:00+00:00"
+  "verified_submission_id": "2117849132",
+  "verified_at": "2026-08-23T22:22:11.863083+00:00"
 }

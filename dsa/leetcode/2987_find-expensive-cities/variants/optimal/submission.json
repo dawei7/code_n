@@ -6,9 +6,9 @@
   "frontend_id": "2987",
   "title_slug": "find-expensive-cities",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078568532",
-  "verified_at": "2026-07-23T15:26:03.205891+00:00"
+  "verified_submission_id": "2117867972",
+  "verified_at": "2026-08-23T23:27:28.798782+00:00"
 }

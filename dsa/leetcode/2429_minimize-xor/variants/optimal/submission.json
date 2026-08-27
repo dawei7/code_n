@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minimizeXor",
-  "verified_submission_id": "2074820058",
-  "verified_at": "2026-07-20T16:30:25.585815+00:00"
+  "verified_submission_id": "2117832759",
+  "verified_at": "2026-08-23T21:35:41.958015+00:00"
 }

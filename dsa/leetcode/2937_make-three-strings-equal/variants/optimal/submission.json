@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findMinimumOperations",
-  "verified_submission_id": "2078293338",
-  "verified_at": "2026-07-23T10:58:46.438692+00:00"
+  "verified_submission_id": "2117865210",
+  "verified_at": "2026-08-23T23:17:27.917508+00:00"
 }

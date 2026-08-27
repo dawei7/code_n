@@ -1,7 +1,7 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     request_at AS Day,
-    ROUND(AVG(status != 'completed'), 2) AS 'Cancellation Rate'
+    ROUND(AVG(CASE WHEN status != 'completed' THEN 1.0 ELSE 0.0 END), 2) AS "Cancellation Rate"
 FROM
     Trips AS t
     JOIN Users AS u1 ON (t.client_id = u1.users_id AND u1.banned = 'No')

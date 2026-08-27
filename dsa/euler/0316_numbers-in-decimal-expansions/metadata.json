@@ -8,7 +8,20 @@
   "euler_level": 26,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Decimal Representation",
+      "slug": "decimal-representation"
+    },
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    }
+  ],
   "url": "https://projecteuler.net/problem=316",
   "supported_languages": [
     "python"

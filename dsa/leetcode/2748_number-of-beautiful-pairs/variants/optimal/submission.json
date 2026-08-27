@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2851","frontend_id":"2748","title_slug":"number-of-beautiful-pairs","paid_only":false,"language":"python","source":"solutions/solution.py","native_entrypoint":"Solution.countBeautifulPairs","verified_submission_id":"2076497177","verified_at":"2026-07-22T02:48:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2851",
+  "frontend_id": "2748",
+  "title_slug": "number-of-beautiful-pairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.countBeautifulPairs",
+  "verified_submission_id": "2120597264",
+  "verified_at": "2026-08-26T08:57:59.033150+00:00"
+}

@@ -8,7 +8,16 @@
   "euler_level": 12,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    }
+  ],
   "url": "https://projecteuler.net/problem=196",
   "supported_languages": [
     "python"

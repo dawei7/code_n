@@ -8,7 +8,20 @@
   "euler_level": 17,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Sphere",
+      "slug": "sphere"
+    }
+  ],
   "url": "https://projecteuler.net/problem=154",
   "supported_languages": [
     "python"

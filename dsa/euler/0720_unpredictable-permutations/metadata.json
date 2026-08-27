@@ -8,7 +8,24 @@
   "euler_level": 22,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Arithmetic Progression",
+      "slug": "arithmetic-progression"
+    },
+    {
+      "name": "Lexicographic Ordering",
+      "slug": "lexicographic-ordering"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Permutation",
+      "slug": "permutation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=720",
   "supported_languages": [
     "python"

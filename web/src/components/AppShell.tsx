@@ -40,8 +40,8 @@ import { InfoModal } from './InfoModal';
 import { EloGuideModal } from './EloGuideModal';
 import { BrandWordmark } from './BrandWordmark';
 import { EulerWordmark } from './EulerWordmark';
-import { ALGORITHM_SETS, challengesForAlgorithmSet } from '../lib/algorithmSets';
-import { collectSetChallengeIds } from '../lib/customProblemSets';
+import { getAlgorithmSetsForMode, challengesForAlgorithmSet } from '../lib/algorithmSets';
+import { collectSetChallengeIds, filterCustomProblemSetsForMode } from '../lib/customProblemSets';
 import {
   ACCENT_PRESETS,
   DEFAULT_ACCENT_COLORS,
@@ -222,15 +222,25 @@ function TopHeader({
   const activeCustomSetId = useAppStore((s) => s.activeCustomSetId);
   const setActiveCustomSet = useAppStore((s) => s.setActiveCustomSet);
   const customProblemSets = useAppStore((s) => s.customProblemSets);
-  const selectedCustomSet = customProblemSets.find((set) => set.id === activeCustomSetId) ?? null;
+  const appMode = useAppStore((s) => s.appMode);
+  const setAppMode = useAppStore((s) => s.setAppMode);
+  const modeCustomSets = useMemo(
+    () => filterCustomProblemSetsForMode(customProblemSets, appMode),
+    [customProblemSets, appMode],
+  );
+  const selectedCustomSet = modeCustomSets.find((set) => set.id === activeCustomSetId) ?? null;
+  const modeChallenges = useMemo(
+    () => challenges.filter((c) => (appMode === 'euler' ? c.dataset === 'euler' || c.id.startsWith('euler_') : c.dataset !== 'euler' && !c.id.startsWith('euler_'))),
+    [challenges, appMode],
+  );
   const visibleChallengeCount = useMemo(
     () => {
       if (activeSet !== 'custom') return challengesForAlgorithmSet(challenges, activeSet).length;
       if (!selectedCustomSet) return 0;
       const challengeIds = collectSetChallengeIds(selectedCustomSet);
-      return challenges.filter((challenge) => challengeIds.has(challenge.id)).length;
+      return modeChallenges.filter((challenge) => challengeIds.has(challenge.id)).length;
     },
-    [challenges, activeSet, selectedCustomSet],
+    [challenges, activeSet, selectedCustomSet, modeChallenges],
   );
   const activeSetSelectorValue = activeSet === 'custom'
     ? activeCustomSetId ? `custom:${activeCustomSetId}` : 'custom'
@@ -254,9 +264,6 @@ function TopHeader({
       case 'error': return `Update error: ${updater.state.status.message ?? 'unknown'}`;
     }
   })();
-
-  const appMode = useAppStore((s) => s.appMode);
-  const setAppMode = useAppStore((s) => s.setAppMode);
 
   return (
     <header className="h-10 flex items-center justify-between gap-3 px-3 border-b border-coden-border bg-coden-surface shrink-0 select-none">
@@ -290,7 +297,13 @@ function TopHeader({
         {/* Subtle Android-style toggle switch without text */}
         <button
           type="button"
-          onClick={() => setAppMode(appMode === 'coden' ? 'euler' : 'coden')}
+          onClick={() => {
+            const nextMode = appMode === 'coden' ? 'euler' : 'coden';
+            setAppMode(nextMode);
+            if (activeSet !== 'custom') {
+              setActiveSet(nextMode === 'euler' ? 'euler_level' : 'leetcode');
+            }
+          }}
           className={`relative inline-flex h-4 w-7 shrink-0 cursor-pointer items-center rounded-full p-0.5 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-coden-accent ml-1.5 ${
             appMode === 'euler'
               ? 'bg-blue-600 dark:bg-blue-500'
@@ -333,7 +346,7 @@ function TopHeader({
             title="Select algorithm set"
             aria-label="Select algorithm set"
           >
-            {Array.from(new Set(ALGORITHM_SETS.map((s) => s.category)))
+            {Array.from(new Set(getAlgorithmSetsForMode(appMode).map((s) => s.category)))
               .filter((category) => category !== 'Personal')
               .map((category) => (
                 <optgroup
@@ -341,7 +354,7 @@ function TopHeader({
                   label={category}
                   className="bg-coden-surface text-coden-text font-bold"
                 >
-                  {ALGORITHM_SETS.filter((s) => s.category === category).map((setOption) => (
+                  {getAlgorithmSetsForMode(appMode).filter((s) => s.category === category).map((setOption) => (
                   <option
                     key={setOption.id}
                     value={setOption.id}
@@ -356,8 +369,8 @@ function TopHeader({
               label="Personal"
               className="bg-coden-surface text-coden-text font-bold"
             >
-              {customProblemSets.length > 0
-                ? customProblemSets.map((set) => (
+              {modeCustomSets.length > 0
+                ? modeCustomSets.map((set) => (
                   <option
                     key={set.id}
                     value={`custom:${set.id}`}
@@ -371,7 +384,7 @@ function TopHeader({
                     value="custom"
                     className="bg-coden-surface text-coden-text font-normal"
                   >
-                    Create a Personal root…
+                    {appMode === 'euler' ? 'Create a Euler Personal root…' : 'Create a Personal root…'}
                   </option>
                 )}
             </optgroup>

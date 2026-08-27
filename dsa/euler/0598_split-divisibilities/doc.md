@@ -1,6 +1,4 @@
-# Split Divisibilities
-
-### Split Divisibilities
+## Description
 
 Consider the number $48$.
 
@@ -10,17 +8,28 @@ It can be seen that both $6$ and $8$ have $4$ divisors.
 
 So of those five pairs one consists of two integers with the same number of divisors.
 
-
-
 In general:
 
 Let $C(n)$ be the number of pairs of positive integers $a \times b=n$, ($a \leq b$) such that $a$ and $b$ have the same number of divisors; 
 so $C(48)=1$.
 
-
-
-
 You are given $C(10!)=3$: $(1680, 2160)$, $(1800, 2016)$ and $(1890,1920)$.
 
  
 Find $C(100!)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

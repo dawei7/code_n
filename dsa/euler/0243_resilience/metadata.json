@@ -8,7 +8,16 @@
   "euler_level": 11,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=243",
   "supported_languages": [
     "python"

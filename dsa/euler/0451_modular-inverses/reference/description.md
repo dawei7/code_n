@@ -1,4 +1,4 @@
-### Modular Inverses
+## Description
 
 Consider the number $15$.
 
@@ -21,15 +21,10 @@ $11 \cdot 11=121 \bmod 15=1$
 $14 \cdot 14=196 \bmod 15=1
 $
 
-
-
 Let $I(n)$ be the largest positive number $m$ smaller than $n-1$ such that the modular inverse of $m$ modulo $n$ equals $m$ itself.
 
 So $I(15)=11$.
 
 Also $I(100)=51$ and $I(7)=1$.
-
-
-
 
 Find $\sum I(n)$ for $3 \le n \le 2 \times 10^7$.

@@ -6,9 +6,9 @@
   "frontend_id": "2893",
   "title_slug": "calculate-orders-within-each-interval",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2077960332",
-  "verified_at": "2026-07-23T06:00:23+00:00"
+  "verified_submission_id": "2117862785",
+  "verified_at": "2026-08-23T23:08:26.740468+00:00"
 }

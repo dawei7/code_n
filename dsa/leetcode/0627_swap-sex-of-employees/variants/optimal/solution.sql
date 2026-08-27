@@ -1,3 +1,3 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 UPDATE Salary
-SET sex = IF(sex = 'f', 'm', 'f');
+SET sex = (CASE WHEN sex = 'f' THEN 'm' ELSE 'f' END);

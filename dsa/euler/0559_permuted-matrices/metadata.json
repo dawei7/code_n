@@ -8,7 +8,28 @@
   "euler_level": 37,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Grid Pattern",
+      "slug": "grid-pattern"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Permutation",
+      "slug": "permutation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=559",
   "supported_languages": [
     "python"

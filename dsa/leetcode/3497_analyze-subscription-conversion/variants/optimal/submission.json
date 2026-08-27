@@ -6,9 +6,9 @@
   "frontend_id": "3497",
   "title_slug": "analyze-subscription-conversion",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2082417151",
-  "verified_at": "2026-07-26T17:57:00Z"
+  "verified_submission_id": "2120655101",
+  "verified_at": "2026-08-26T10:04:57.097420+00:00"
 }

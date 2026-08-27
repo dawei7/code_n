@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT book_id, COUNT(1) current_borrowers

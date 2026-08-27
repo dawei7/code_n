@@ -6,9 +6,9 @@
   "frontend_id": "1251",
   "title_slug": "average-selling-price",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068004258",
-  "verified_at": "2026-07-15T03:01:43.743263+00:00"
+  "verified_submission_id": "2113290009",
+  "verified_at": "2026-08-19T23:27:20.374678+00:00"
 }

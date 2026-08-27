@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getLonelyNodes",
-  "verified_submission_id": "2074749655",
-  "verified_at": "2026-07-20T15:36:24.973198+00:00"
+  "verified_submission_id": "2113302244",
+  "verified_at": "2026-08-20T00:09:48.569298+00:00"
 }

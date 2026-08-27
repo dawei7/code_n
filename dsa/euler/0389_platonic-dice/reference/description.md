@@ -1,4 +1,4 @@
-### Platonic Dice
+## Description
 
 An unbiased single $4$-sided die is thrown and its value, $T$, is noted.
 $T$ unbiased $6$-sided dice are thrown and their scores are added together. The sum, $C$, is noted.

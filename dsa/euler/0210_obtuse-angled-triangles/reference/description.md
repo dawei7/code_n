@@ -1,4 +1,4 @@
-### Obtuse Angled Triangles
+## Description
 
 Consider the set $S(r)$ of points $(x,y)$ with integer coordinates satisfying $|x| + |y| \le r$.
 

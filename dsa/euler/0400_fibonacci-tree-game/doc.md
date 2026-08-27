@@ -1,6 +1,4 @@
-# Fibonacci Tree Game
-
-### Fibonacci Tree Game
+## Description
 
 A Fibonacci tree is a binary tree recursively defined as:
 
@@ -12,28 +10,26 @@ On such a tree two players play a take-away game. On each turn a player selects 
 
 The player who is forced to take the root node of the entire tree loses.
 
-
-
-
-
-
 Here are the winning moves of the first player on the first turn for $T(k)$ from $k=1$ to $k=6$.
-
-
-
-
-
-
-
 
 Let $f(k)$ be the number of winning moves of the first player (i.e. the moves for which the second player has no winning strategy) on the first turn of the game when this game is played on $T(k)$.
 
-
-
 For example, $f(5) = 1$ and $f(10) = 17$.
 
-
-
-
-
 Find $f(10000)$. Give the last $18$ digits of your answer.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

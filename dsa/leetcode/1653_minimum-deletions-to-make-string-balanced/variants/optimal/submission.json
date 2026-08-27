@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minimumDeletions",
-  "verified_submission_id": "2070475312",
-  "verified_at": "2026-07-17T00:47:21.680070+00:00"
+  "verified_submission_id": "2114799721",
+  "verified_at": "2026-08-21T07:38:17.725937+00:00"
 }

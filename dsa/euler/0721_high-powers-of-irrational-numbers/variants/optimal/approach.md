@@ -4,6 +4,7 @@
 
 Define the function:
 $$f(a, n) = \lfloor (\lceil \sqrt{a} \rceil + \sqrt{a})^n \rfloor$$
+
 $$G(N) = \sum_{a=1}^N f(a, a^2)$$
 
 We are given:

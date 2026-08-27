@@ -6,9 +6,9 @@
   "frontend_id": "2252",
   "title_slug": "dynamic-pivoting-of-a-table",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "PivotProducts",
-  "verified_submission_id": "2073934916",
-  "verified_at": "2026-07-19T23:35:38.273491+00:00"
+  "verified_submission_id": "2116422444",
+  "verified_at": "2026-08-22T17:16:27.567034+00:00"
 }

@@ -1,22 +1,27 @@
-# The Incenter of a Triangle
-
-### The Incenter of a Triangle
+## Description
 
 $ABC$ is an integer sided triangle with incenter $I$ and perimeter $p$.
 
 The segments $IA$, $IB$ and $IC$ have integral length as well. 
 
-
-
-
 Let $L = p + |IA| + |IB| + |IC|$. 
-
-
-
 
 Let $S(P) = \sum L$ for all such triangles where $p \le P$. For example, $S(10^3) = 3619$.
 
-
-
-
 Find $S(10^7)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

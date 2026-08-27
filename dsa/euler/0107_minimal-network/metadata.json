@@ -8,7 +8,24 @@
   "euler_level": 4,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Connectivity",
+      "slug": "connectivity"
+    },
+    {
+      "name": "Graph",
+      "slug": "graph"
+    },
+    {
+      "name": "Spanning Tree",
+      "slug": "spanning-tree"
+    },
+    {
+      "name": "Tree",
+      "slug": "tree"
+    }
+  ],
   "url": "https://projecteuler.net/problem=107",
   "supported_languages": [
     "python"

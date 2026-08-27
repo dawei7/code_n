@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countMaxOrSubsets",
-  "verified_submission_id": "2072870552",
-  "verified_at": "2026-07-19T01:21:28.023572+00:00"
+  "verified_submission_id": "2116363775",
+  "verified_at": "2026-08-22T16:28:35.812423+00:00"
 }

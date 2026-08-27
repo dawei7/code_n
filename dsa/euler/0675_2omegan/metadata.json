@@ -8,7 +8,24 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisor Count",
+      "slug": "divisor-count"
+    },
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=675",
   "supported_languages": [
     "python"

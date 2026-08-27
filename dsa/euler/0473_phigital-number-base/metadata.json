@@ -8,7 +8,20 @@
   "euler_level": 12,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Golden Ratio",
+      "slug": "golden-ratio"
+    },
+    {
+      "name": "Number Base",
+      "slug": "number-base"
+    },
+    {
+      "name": "Palindrome",
+      "slug": "palindrome"
+    }
+  ],
   "url": "https://projecteuler.net/problem=473",
   "supported_languages": [
     "python"

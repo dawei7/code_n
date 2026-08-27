@@ -48,6 +48,7 @@ By the Principle of Inclusion-Exclusion:
 $$C(e_i, N) = (e_i + 1)^N - 2 e_i^N + (e_i - 1)^N$$
 Because choices across different prime factors are completely independent:
 $$H(k, N) = \prod_{i=1}^m C(e_i, N)$$
+
 $H(k, N)$ is a **strictly multiplicative arithmetic function**!
 1. The maximum ratio is $k_{\max} = \lfloor L / G \rfloor = 10^{12} / 10^6 = 10^6$.
 2. We compute $H(k, N) \bmod 101^4$ for all $k \le 10^6$ using a linear sieve in $\mathcal{O}(k_{\max})$ time.

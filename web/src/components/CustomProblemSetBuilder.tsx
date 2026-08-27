@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { ApiError } from '../api/client';
+import { useAppStore } from '../store/useAppStore';
 import {
   MAX_CUSTOM_GROUP_DEPTH,
   MAX_CUSTOM_ROOT_SETS,
@@ -13,6 +14,8 @@ import {
   countSetProblems,
   createCustomId,
   createCustomSetFromTemplate,
+  filterCustomProblemSetsForMode,
+  getCustomSetTargetMode,
   moveCustomNode,
   removeCustomNode,
   unwrapCustomGroup,
@@ -191,9 +194,27 @@ export function CustomProblemSetBuilder({
   onClose,
   onSave,
 }: CustomProblemSetBuilderProps) {
-  const [draft, setDraft] = useState(() => cloneCustomProblemSets(savedSets));
+  const appMode = useAppStore((s) => s.appMode);
+  const modeSavedSets = useMemo(
+    () => filterCustomProblemSetsForMode(savedSets, appMode),
+    [savedSets, appMode],
+  );
+  const otherModeSavedSets = useMemo(
+    () => savedSets.filter((s) => getCustomSetTargetMode(s) !== appMode),
+    [savedSets, appMode],
+  );
+  const modeChallenges = useMemo(
+    () => challenges.filter((c) => (
+      appMode === 'euler'
+        ? (c.dataset === 'euler' || c.id.startsWith('euler_'))
+        : (!c.dataset || c.dataset === 'leetcode' || c.id.startsWith('lc_'))
+    )),
+    [challenges, appMode],
+  );
+
+  const [draft, setDraft] = useState(() => cloneCustomProblemSets(modeSavedSets));
   const [selectedSetId, setSelectedSetId] = useState<string | null>(
-    savedSets[0]?.id ?? null,
+    modeSavedSets[0]?.id ?? null,
   );
   const [libraryQuery, setLibraryQuery] = useState('');
   const [libraryDifficulty, setLibraryDifficulty] = useState('all');
@@ -218,12 +239,12 @@ export function CustomProblemSetBuilder({
   const [dragOverTarget, setDragOverTarget] = useState<string | null>(null);
 
   const selectedSet = draft.find((set) => set.id === selectedSetId) ?? null;
-  const savedHash = JSON.stringify(savedSets);
+  const savedHash = JSON.stringify(modeSavedSets);
   const draftHash = JSON.stringify(draft);
   const hasUnsavedChanges = savedHash !== draftHash;
   const challengeById = useMemo(
-    () => new Map(challenges.map((challenge) => [challenge.id, challenge])),
-    [challenges],
+    () => new Map(modeChallenges.map((challenge) => [challenge.id, challenge])),
+    [modeChallenges],
   );
   const destinationOptions = useMemo(() => {
     const result: Destination[] = [];
@@ -263,14 +284,14 @@ export function CustomProblemSetBuilder({
   );
   const topicOptions = useMemo(() => {
     const topics = new Set<string>();
-    for (const challenge of challenges) {
+    for (const challenge of modeChallenges) {
       for (const topic of challenge.leetcode_topics) {
         const name = String(topic.name || '').trim();
         if (name) topics.add(name);
       }
     }
     return [...topics].sort((left, right) => left.localeCompare(right));
-  }, [challenges]);
+  }, [modeChallenges]);
   const filteredLibraryChallenges = useMemo(() => {
     const query = libraryQuery.trim().toLowerCase();
     const minElo = libraryMinElo.trim() === '' ? null : Number(libraryMinElo);
@@ -278,7 +299,7 @@ export function CustomProblemSetBuilder({
     const minFrequency = libraryMinFrequency.trim() === ''
       ? null
       : Number(libraryMinFrequency);
-    const result = [...challenges]
+    const result = [...modeChallenges]
       .filter((challenge) => (
         (libraryDifficulty === 'all' || challenge.difficulty_label === libraryDifficulty)
         && (
@@ -399,16 +420,17 @@ export function CustomProblemSetBuilder({
       return;
     }
     let suffix = draft.length + 1;
-    let name = `My problem set ${suffix}`;
+    let name = appMode === 'euler' ? `Euler problem set ${suffix}` : `My problem set ${suffix}`;
     while (draft.some((set) => set.name === name)) {
       suffix += 1;
-      name = `My problem set ${suffix}`;
+      name = appMode === 'euler' ? `Euler problem set ${suffix}` : `My problem set ${suffix}`;
     }
     const next: CustomProblemSet = {
       id: createCustomId('set'),
       name,
       description: '',
       career_mode: false,
+      target_mode: appMode,
       nodes: [],
     };
     setDraft((sets) => [...sets, next]);
@@ -757,7 +779,9 @@ export function CustomProblemSetBuilder({
     }
     setSaveError(null);
     try {
-      await onSave(clean);
+      const modeClean = clean.map((set) => ({ ...set, target_mode: appMode }));
+      const merged = [...otherModeSavedSets, ...modeClean];
+      await onSave(merged);
       onClose();
     } catch (error) {
       setSaveError(errorMessage(error));
@@ -881,12 +905,17 @@ export function CustomProblemSetBuilder({
               {challenge?.name ?? node.challenge_id}
             </div>
             <div className="mt-0.5 truncate font-mono text-[10px] text-coden-muted">
-              LC {challenge?.leetcode_frontend_id || node.challenge_id.replace('lc_', '')}
+              {challenge?.dataset === 'euler' || node.challenge_id.startsWith('euler_') ? 'euler ' : 'LC '}
+              {challenge?.leetcode_frontend_id || node.challenge_id.replace(/^(lc_|euler_)/, '')}
               {challenge ? ` · ${challenge.difficulty_label}` : ''}
-              {elo ? ` · ${elo.estimated ? 'Est. ' : ''}Elo ${Math.round(elo.value)}` : ' · Elo —'}
-              {challenge?.frequency !== null && challenge?.frequency !== undefined
-                ? ` · Freq ${challenge.frequency.toFixed(1)}%`
-                : ' · Freq —'}
+              {challenge?.dataset !== 'euler' && !node.challenge_id.startsWith('euler_') && (
+                <>
+                  {elo ? ` · ${elo.estimated ? 'Est. ' : ''}Elo ${Math.round(elo.value)}` : ' · Elo —'}
+                  {challenge?.frequency !== null && challenge?.frequency !== undefined
+                    ? ` · Freq ${challenge.frequency.toFixed(1)}%`
+                    : ' · Freq —'}
+                </>
+              )}
             </div>
           </div>
           <button
@@ -1048,7 +1077,8 @@ export function CustomProblemSetBuilder({
                   {challenge?.name ?? node.challenge_id}
                 </div>
                 <div className="font-mono text-[9px] text-coden-muted">
-                  LC {challenge?.leetcode_frontend_id || node.challenge_id.replace(/^lc_/, '')}
+                  {challenge?.dataset === 'euler' || node.challenge_id.startsWith('euler_') ? 'euler ' : 'LC '}
+                  {challenge?.leetcode_frontend_id || node.challenge_id.replace(/^(lc_|euler_)/, '')}
                 </div>
               </div>
               <button
@@ -1761,19 +1791,24 @@ export function CustomProblemSetBuilder({
                         </div>
                         <div className="mt-1 flex flex-wrap items-center gap-1 font-mono text-[9px]">
                           <span className="rounded border border-coden-border px-1.5 py-0.5 text-coden-muted">
-                            LC {challenge.leetcode_frontend_id}
+                            {challenge.dataset === 'euler' || challenge.id.startsWith('euler_') ? 'euler ' : 'LC '}
+                            {challenge.leetcode_frontend_id}
                           </span>
                           <span className={`rounded border px-1.5 py-0.5 ${difficultyClass}`}>
                             {challenge.difficulty_label}
                           </span>
-                          <span className="rounded border border-coden-border px-1.5 py-0.5 text-coden-muted">
-                            {elo
-                              ? `${elo.estimated ? 'Est. ' : ''}Elo ${Math.round(elo.value)}`
-                              : 'Elo —'}
-                          </span>
-                          <span className="rounded border border-coden-border px-1.5 py-0.5 text-coden-muted">
-                            Freq {challenge.frequency === null ? '—' : `${challenge.frequency.toFixed(1)}%`}
-                          </span>
+                          {challenge.dataset !== 'euler' && !challenge.id.startsWith('euler_') && (
+                            <>
+                              <span className="rounded border border-coden-border px-1.5 py-0.5 text-coden-muted">
+                                {elo
+                                  ? `${elo.estimated ? 'Est. ' : ''}Elo ${Math.round(elo.value)}`
+                                  : 'Elo —'}
+                              </span>
+                              <span className="rounded border border-coden-border px-1.5 py-0.5 text-coden-muted">
+                                Freq {challenge.frequency === null ? '—' : `${challenge.frequency.toFixed(1)}%`}
+                              </span>
+                            </>
+                          )}
                           <span className="rounded border border-coden-border px-1.5 py-0.5 text-coden-muted">
                             Accept {challenge.acceptance_rate === null ? '—' : `${challenge.acceptance_rate.toFixed(1)}%`}
                           </span>

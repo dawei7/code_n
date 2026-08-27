@@ -8,7 +8,16 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Lattice Point Counting",
+      "slug": "lattice-point-counting"
+    },
+    {
+      "name": "Volume",
+      "slug": "volume"
+    }
+  ],
   "url": "https://projecteuler.net/problem=212",
   "supported_languages": [
     "python"

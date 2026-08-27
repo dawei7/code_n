@@ -1,8 +1,12 @@
-CREATE PROCEDURE getUserIDs(startDate DATE, endDate DATE, minAmount INT)
+CREATE OR REPLACE FUNCTION getUserIDs(startDate DATE, endDate DATE, minAmount INT)
+RETURNS TABLE (user_id INT) AS $$
 BEGIN
-    # Write your MySQL query statement below.
-    SELECT DISTINCT user_id
-    FROM Purchases
-    WHERE amount >= minAmount AND time_stamp BETWEEN startDate AND endDate
-    ORDER BY user_id;
+    RETURN QUERY
+    SELECT DISTINCT p.user_id
+    FROM Purchases p
+    WHERE p.amount >= minAmount 
+      AND p.time_stamp >= startDate 
+      AND p.time_stamp <= endDate
+    ORDER BY p.user_id;
 END;
+$$ LANGUAGE plpgsql;

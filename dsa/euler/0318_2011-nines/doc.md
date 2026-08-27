@@ -1,6 +1,4 @@
-# 2011 Nines
-
-### 2011 Nines
+## Description
 
 Consider the real number $\sqrt 2 + \sqrt 3$.
 
@@ -23,30 +21,31 @@ $(\sqrt 2 + \sqrt 3)^{14} = 9313929.99999989263 \cdots $
 
 $(\sqrt 2 + \sqrt 3)^{16} = 92198401.99999998915 \cdots $
 
-
-
-
 It looks as if the number of consecutive nines at the beginning of the fractional part of these powers is non-decreasing.
 
 In fact it can be proven that the fractional part of $(\sqrt 2 + \sqrt 3)^{2 n}$ approaches $1$ for large $n$.
 
-
-
-
-Consider all real numbers of the form $\sqrt p + \sqrt q$ with $p$ and $q$ positive integers and $p &lt; q$, such that the fractional part 
+Consider all real numbers of the form $\sqrt p + \sqrt q$ with $p$ and $q$ positive integers and $p < q$, such that the fractional part 
 of $(\sqrt p + \sqrt q)^{ 2 n}$ approaches $1$ for large $n$.
-
-
-
 
 Let $C(p,q,n)$ be the number of consecutive nines at the beginning of the fractional part of $(\sqrt p + \sqrt q)^{ 2 n}$.
 
-
-
-
 Let $N(p,q)$ be the minimal value of $n$ such that $C(p,q,n) \ge 2011$.
 
-
-
-
 Find $\displaystyle \sum N(p,q) \,\, \text{ for } p+q \le 2011$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -1,6 +1,4 @@
-# High Powers of Irrational Numbers
-
-### High Powers of Irrational Numbers
+## Description
 
 Given is the function $f(a,n)=\lfloor (\lceil \sqrt a \rceil + \sqrt a)^n \rfloor$.
 
@@ -8,11 +6,24 @@ $\lfloor \cdot \rfloor$ denotes the floor function and $\lceil \cdot \rceil$ den
 
 $f(5,2)=27$ and $f(5,5)=3935$.
 
-
-
-
 $G(n) = \displaystyle \sum_{a=1}^n f(a, a^2).$
 
 $G(1000) \bmod 999\,999\,937=163861845. $
 
 Find $G(5\,000\,000).$ Give your answer modulo $999\,999\,937$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

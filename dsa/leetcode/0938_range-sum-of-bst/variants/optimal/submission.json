@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.rangeSumBST",
-  "verified_submission_id": "2067024162",
-  "verified_at": "2026-07-14T06:55:30.135186+00:00"
+  "verified_submission_id": "2113254129",
+  "verified_at": "2026-08-19T21:37:13.936687+00:00"
 }

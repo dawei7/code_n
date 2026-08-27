@@ -6,9 +6,9 @@
   "frontend_id": "2238",
   "title_slug": "number-of-times-a-driver-was-a-passenger",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073918047",
-  "verified_at": "2026-07-19T22:25:32.753352+00:00"
+  "verified_submission_id": "2116406958",
+  "verified_at": "2026-08-22T17:04:06.995259+00:00"
 }

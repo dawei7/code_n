@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT a.symbol AS metal, b.symbol AS nonmetal
 FROM
     Elements AS a,

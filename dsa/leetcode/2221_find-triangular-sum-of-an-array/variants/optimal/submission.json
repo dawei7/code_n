@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "class Solution.triangularSum",
-  "verified_submission_id": "2073894964",
-  "verified_at": "2026-07-19T20:52:29.529985+00:00"
+  "verified_submission_id": "2116402612",
+  "verified_at": "2026-08-22T17:00:36.664733+00:00"
 }

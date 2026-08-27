@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.smallestMissingValueSubtree",
-  "verified_submission_id": "2072826404",
-  "verified_at": "2026-07-18T22:26:49.677925+00:00"
+  "verified_submission_id": "2116357451",
+  "verified_at": "2026-08-22T16:23:05.276884+00:00"
 }

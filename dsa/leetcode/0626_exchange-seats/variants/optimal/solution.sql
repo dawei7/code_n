@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT s1.id, COALESCE(s2.student, s1.student) AS student
 FROM
     Seat AS s1

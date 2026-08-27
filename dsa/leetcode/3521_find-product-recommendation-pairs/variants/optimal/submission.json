@@ -6,9 +6,9 @@
   "frontend_id": "3521",
   "title_slug": "find-product-recommendation-pairs",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2082589479",
-  "verified_at": "2026-07-26T21:50:00Z"
+  "verified_submission_id": "2120651797",
+  "verified_at": "2026-08-26T10:01:19.487318+00:00"
 }

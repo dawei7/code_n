@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT book_id, title, author, published_year
 FROM books
 WHERE rating IS NULL

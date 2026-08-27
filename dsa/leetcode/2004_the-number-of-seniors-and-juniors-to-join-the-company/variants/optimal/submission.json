@@ -6,9 +6,9 @@
   "frontend_id": "2004",
   "title_slug": "the-number-of-seniors-and-juniors-to-join-the-company",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072827483",
-  "verified_at": "2026-07-18T22:30:45.707434+00:00"
+  "verified_submission_id": "2116362865",
+  "verified_at": "2026-08-22T16:27:51.283154+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findMaximumScore",
-  "verified_submission_id": "2080494396",
-  "verified_at": "2026-07-25T08:28:21.464825+00:00"
+  "verified_submission_id": "2120612591",
+  "verified_at": "2026-08-26T09:16:08.349608+00:00"
 }

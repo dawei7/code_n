@@ -6,8 +6,8 @@
   "frontend_id": "586",
   "title_slug": "customer-placing-the-largest-number-of-orders",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065437633",
-  "verified_at": "2026-07-12T20:44:16.800509+00:00"
+  "verified_submission_id": "2113227823",
+  "verified_at": "2026-08-19T20:40:50.356277+00:00"
 }

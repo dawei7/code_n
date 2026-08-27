@@ -6,9 +6,9 @@
   "frontend_id": "2990",
   "title_slug": "loan-types",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078582845",
-  "verified_at": "2026-07-23T15:37:59.003910+00:00"
+  "verified_submission_id": "2117868126",
+  "verified_at": "2026-08-23T23:28:02.863505+00:00"
 }

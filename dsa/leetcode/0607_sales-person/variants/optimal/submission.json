@@ -6,8 +6,8 @@
   "frontend_id": "607",
   "title_slug": "sales-person",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065465430",
-  "verified_at": "2026-07-12T21:57:00.963285+00:00"
+  "verified_submission_id": "2113229633",
+  "verified_at": "2026-08-19T20:44:09.416779+00:00"
 }

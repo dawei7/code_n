@@ -1,7 +1,7 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
-        SELECT user_id, activity_type, ROUND(SUM(activity_duration) / COUNT(1), 2) duration
+        SELECT user_id, activity_type, ROUND(AVG(activity_duration)::numeric, 2) AS duration
         FROM UserActivity
         WHERE activity_type != 'cancelled'
         GROUP BY user_id, activity_type

@@ -8,7 +8,28 @@
   "euler_level": 15,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Area",
+      "slug": "area"
+    },
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Packing",
+      "slug": "packing"
+    },
+    {
+      "name": "Tangency",
+      "slug": "tangency"
+    }
+  ],
   "url": "https://projecteuler.net/problem=199",
   "supported_languages": [
     "python"

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countBalanced",
-  "verified_submission_id": "2085413647",
-  "verified_at": "2026-07-29T00:25:25.411119+00:00"
+  "verified_submission_id": "2122319228",
+  "verified_at": "2026-08-27T19:40:25.617445+00:00"
 }

@@ -8,7 +8,20 @@
   "euler_level": 34,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    },
+    {
+      "name": "Subset",
+      "slug": "subset"
+    }
+  ],
   "url": "https://projecteuler.net/problem=848",
   "supported_languages": [
     "python"

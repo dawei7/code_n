@@ -8,7 +8,12 @@
   "euler_level": 6,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Tree",
+      "slug": "tree"
+    }
+  ],
   "url": "https://projecteuler.net/problem=872",
   "supported_languages": [
     "python"

@@ -41,7 +41,9 @@ $$C = x B \oplus A$$
 ### Linear Recurrence of Solutions
 All non-negative solutions $(a, b)$ form an infinite chain of polynomial pairs $(B_{n-1}, B_n)$:
 $$B_0 = 0$$
+
 $$B_1 = 3 \quad (x + 1)$$
+
 $$B_{n+1} = (2 \otimes B_n) \oplus B_{n-1} = (B_n \ll 1) \oplus B_{n-1}$$
 
 For $N = 10^{18} < 2^{60}$, there are only 58 terms in the sequence.

@@ -6,9 +6,9 @@
   "frontend_id": "1741",
   "title_slug": "find-total-time-spent-by-each-employee",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070908204",
-  "verified_at": "2026-07-17T09:09:32.223882+00:00"
+  "verified_submission_id": "2114806967",
+  "verified_at": "2026-08-21T07:48:34.054780+00:00"
 }

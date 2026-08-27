@@ -1,7 +1,7 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     P AS (
-        SELECT product_id, YEAR(purchase_date) AS y, COUNT(1) >= 3 AS mark
+        SELECT product_id, EXTRACT(YEAR FROM purchase_date)::int AS y, COUNT(1) >= 3 AS mark
         FROM Orders
         GROUP BY 1, 2
     )

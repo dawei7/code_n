@@ -1,9 +1,6 @@
-# Maximal Perimeter
-
-### Maximal Perimeter
+## Description
 
 Construct triangle $ABC$ such that:
-
 
 Vertices $A$, $B$ and $C$ are lattice points inside or on the circle of radius $r$ centered at the origin;
 the triangle contains no other lattice point inside or on its edges;
@@ -14,6 +11,20 @@ For $r = 5$, one possible triangle has vertices $(-4,-3)$, $(4,2)$ and $(1,0)$ w
 
 You are given $T(10) \approx 97.26729$ and $T(100) \approx 9157.64707$.
 
-
-
 Find $T(10^7)$. Give your answer rounded to the nearest integer.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

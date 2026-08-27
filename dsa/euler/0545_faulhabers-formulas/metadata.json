@@ -8,7 +8,20 @@
   "euler_level": 12,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    },
+    {
+      "name": "Sum Of Powers",
+      "slug": "sum-of-powers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=545",
   "supported_languages": [
     "python"

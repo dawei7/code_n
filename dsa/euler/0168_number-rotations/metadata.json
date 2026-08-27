@@ -8,7 +8,20 @@
   "euler_level": 23,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=168",
   "supported_languages": [
     "python"

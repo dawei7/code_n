@@ -5,6 +5,7 @@
 For four positive integers $1 \le a \le b \le c \le d \le n$, their mean is $\bar{x} = \frac{a+b+c+d}{4}$ and their sample variance is $V = \frac{1}{4} \sum_{i=1}^4 (x_i - \bar{x})^2$.
 The condition $\bar{x} = 2V$ is equivalent to:
 $$2(a+b+c+d) = \sum_{i=1}^4 (4x_i - (a+b+c+d))^2$$
+
 $S(n)$ is the sum of $a + b + c + d$ over all such quadruples with $d \le n$.
 
 We are given:

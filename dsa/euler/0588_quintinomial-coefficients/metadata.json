@@ -8,7 +8,16 @@
   "euler_level": 23,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    }
+  ],
   "url": "https://projecteuler.net/problem=588",
   "supported_languages": [
     "python"

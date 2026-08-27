@@ -1,7 +1,13 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
-        SELECT *
+        SELECT
+            Transactions.transaction_id,
+            Transactions.customer_id,
+            Transactions.transaction_date,
+            Transactions.amount,
+            Products.product_id,
+            Products.category
         FROM
             Transactions
             JOIN Products USING (product_id)
@@ -10,10 +16,10 @@ WITH
         SELECT
             customer_id,
             category,
-            COUNT(1) cnt,
-            MAX(transaction_date) max_date
+            COUNT(*) AS cnt,
+            MAX(transaction_date) AS max_date
         FROM T
-        GROUP BY 1, 2
+        GROUP BY customer_id, category
     ),
     R AS (
         SELECT
@@ -22,19 +28,20 @@ WITH
             RANK() OVER (
                 PARTITION BY customer_id
                 ORDER BY cnt DESC, max_date DESC
-            ) rk
+            ) AS rk
         FROM P
     )
 SELECT
     t.customer_id,
-    ROUND(SUM(amount), 2) total_amount,
-    COUNT(1) transaction_count,
-    COUNT(DISTINCT t.category) unique_categories,
-    ROUND(AVG(amount), 2) avg_transaction_amount,
-    r.category top_category,
-    ROUND(COUNT(1) * 10 + SUM(amount) / 100, 2) loyalty_score
+    ROUND(SUM(t.amount), 2) AS total_amount,
+    COUNT(1) AS transaction_count,
+    COUNT(DISTINCT t.category) AS unique_categories,
+    ROUND(AVG(t.amount), 2) AS avg_transaction_amount,
+    r.category AS top_category,
+    ROUND(COUNT(1) * 10 + SUM(t.amount)::numeric / 100, 2) AS loyalty_score
 FROM
     T t
     JOIN R r ON t.customer_id = r.customer_id AND r.rk = 1
-GROUP BY 1
-ORDER BY 7 DESC, 1;
+GROUP BY t.customer_id, r.category
+ORDER BY loyalty_score DESC, t.customer_id ASC;
+

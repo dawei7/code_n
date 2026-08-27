@@ -1,25 +1,25 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     t AS (
         SELECT
             user_id,
             reaction,
-            COUNT(1) cnt
+            COUNT(1) AS cnt
         FROM reactions
-        GROUP BY 1, 2
+        GROUP BY user_id, reaction
     ),
     s AS (
         SELECT
             user_id,
-            MAX(cnt) mx_cnt,
-            ROUND(MAX(cnt) / SUM(cnt), 2) reaction_ratio
+            MAX(cnt) AS mx_cnt,
+            ROUND(MAX(cnt)::numeric / SUM(cnt), 2) AS reaction_ratio
         FROM t
-        GROUP BY 1
-        HAVING reaction_ratio >= 0.60 AND SUM(cnt) >= 5
+        GROUP BY user_id
+        HAVING MAX(cnt)::numeric / SUM(cnt) >= 0.60 AND SUM(cnt) >= 5
     )
-SELECT user_id, reaction dominant_reaction, reaction_ratio
+SELECT user_id, reaction AS dominant_reaction, reaction_ratio
 FROM
     s
     JOIN t USING (user_id)
 WHERE cnt = mx_cnt
-ORDER BY 3 DESC, 1;
+ORDER BY reaction_ratio DESC, user_id ASC;

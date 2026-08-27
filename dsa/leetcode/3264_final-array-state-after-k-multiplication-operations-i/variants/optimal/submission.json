@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getFinalState",
-  "verified_submission_id": "2080380500",
-  "verified_at": "2026-07-25T06:36:42.501402+00:00"
+  "verified_submission_id": "2120609888",
+  "verified_at": "2026-08-26T09:13:01.485353+00:00"
 }

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     country_name,
     CASE
@@ -9,5 +9,5 @@ SELECT
 FROM
     Weather AS w
     JOIN Countries USING (country_id)
-WHERE DATE_FORMAT(day, '%Y-%m') = '2019-11'
+WHERE TO_CHAR(day, 'YYYY-MM') = '2019-11'
 GROUP BY 1;

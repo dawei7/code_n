@@ -6,8 +6,8 @@
   "frontend_id": "626",
   "title_slug": "exchange-seats",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065488731",
-  "verified_at": "2026-07-12T23:13:16.227438+00:00"
+  "verified_submission_id": "2113231330",
+  "verified_at": "2026-08-19T20:47:14.363523+00:00"
 }

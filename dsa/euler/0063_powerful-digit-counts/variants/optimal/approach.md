@@ -53,6 +53,7 @@ def naive_powerful_digit_counts():
 ### Closed-Form Analytical Sum
 Summing the maximum exponents across all 9 possible bases:
 $$N_{\text{powers}} = \sum_{a=1}^9 \left\lfloor \frac{1}{1 - \log_{10} a} \right\rfloor$$
+
 $$N_{\text{powers}} = 1 + 1 + 1 + 2 + 3 + 4 + 6 + 10 + 21 = \mathbf{49}$$
 
 Evaluating this directly via integer length loops takes $< 0.0001$ seconds.

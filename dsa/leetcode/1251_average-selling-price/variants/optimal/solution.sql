@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     p.product_id,
     COALESCE(ROUND(SUM(price * units) / SUM(units), 2), 0) AS average_price

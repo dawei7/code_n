@@ -44,6 +44,7 @@ Therefore, the entire sum over all 50 million triples reduces to:
 $$\mathbf{\sum f(p, q, r) = 2 e_3 - (m - 2) e_2}$$
 where $e_1, e_2, e_3$ are evaluated in $\mathcal{O}(m)$ operations via standard Newton-Girard power sum identities:
 $$p_1 = \sum p_i, \quad p_2 = \sum p_i^2, \quad p_3 = \sum p_i^3$$
+
 $$e_1 = p_1, \quad e_2 = \frac{e_1 p_1 - p_2}{2}, \quad e_3 = \frac{e_2 p_1 - e_1 p_2 + p_3}{3}$$
 
 ---

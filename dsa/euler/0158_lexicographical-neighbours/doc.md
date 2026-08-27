@@ -1,6 +1,4 @@
-# Lexicographical Neighbours
-
-### Lexicographical Neighbours
+## Description
 
 Taking three different letters from the $26$ letters of the alphabet, character strings of length three can be formed.
 
@@ -12,10 +10,25 @@ For 'hat' there is exactly one character that comes lexicographically after its 
 
 In all there are $10400$ strings of length $3$ for which exactly one character comes lexicographically after its neighbour to the left.
 
-
 We now consider strings of $n \le 26$ different characters from the alphabet.
  
 For every $n$, $p(n)$ is the number of strings of length $n$ for which exactly one character comes lexicographically after its neighbour to the left.
 
  
 What is the maximum value of $p(n)$?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

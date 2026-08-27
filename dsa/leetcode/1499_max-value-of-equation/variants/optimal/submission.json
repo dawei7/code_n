@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findMaxValueOfEquation",
-  "verified_submission_id": "2069359603",
-  "verified_at": "2026-07-16T05:06:39.206487+00:00"
+  "verified_submission_id": "2114786002",
+  "verified_at": "2026-08-21T07:20:38.009496+00:00"
 }

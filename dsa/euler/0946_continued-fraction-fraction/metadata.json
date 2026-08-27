@@ -8,7 +8,12 @@
   "euler_level": 11,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Continued Fraction",
+      "slug": "continued-fraction"
+    }
+  ],
   "url": "https://projecteuler.net/problem=946",
   "supported_languages": [
     "python"

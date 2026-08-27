@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT dept_name, COUNT(student_id) AS student_number
 FROM
     Department

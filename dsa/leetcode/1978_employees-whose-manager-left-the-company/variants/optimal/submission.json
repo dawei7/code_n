@@ -6,9 +6,9 @@
   "frontend_id": "1978",
   "title_slug": "employees-whose-manager-left-the-company",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072777909",
-  "verified_at": "2026-07-18T20:19:36.791155+00:00"
+  "verified_submission_id": "2114826446",
+  "verified_at": "2026-08-21T08:16:31.270575+00:00"
 }

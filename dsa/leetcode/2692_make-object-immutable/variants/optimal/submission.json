@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2764","frontend_id":"2692","title_slug":"make-object-immutable","paid_only":false,"language":"javascript","source":"solutions/solution.js","native_entrypoint":"makeImmutable","verified_submission_id":"2076400034","verified_at":"2026-07-21T22:04:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2764",
+  "frontend_id": "2692",
+  "title_slug": "make-object-immutable",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solution.js",
+  "native_entrypoint": "makeImmutable",
+  "verified_submission_id": "2117851122",
+  "verified_at": "2026-08-23T22:28:34.835996+00:00"
+}

@@ -1,9 +1,6 @@
-# Geometric Progression with Maximum Sum
-
-### Geometric Progression with Maximum Sum
+## Description
 
 Let $S(k)$ be the sum of three or more distinct positive integers having the following properties:
-
 
 No value exceeds $k$.
 The values form a geometric progression.
@@ -17,12 +14,24 @@ $S(12) = 12 + 6 + 3 = 21$
 
 $S(1000) = 1000 + 900 + 810 + 729 = 3439$
 
-
-
 Let $T(n) = \sum_{k=4}^n (-1)^k S(k)$.
 
 $T(1000) = 2268$
 
-
-
 Find $T(10^{17})$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

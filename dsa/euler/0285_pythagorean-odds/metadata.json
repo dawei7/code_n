@@ -8,7 +8,20 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    },
+    {
+      "name": "Square Root",
+      "slug": "square-root"
+    }
+  ],
   "url": "https://projecteuler.net/problem=285",
   "supported_languages": [
     "python"

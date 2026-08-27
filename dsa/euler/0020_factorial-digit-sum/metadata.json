@@ -8,7 +8,20 @@
   "euler_level": 0,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Sum",
+      "slug": "digit-sum"
+    },
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=20",
   "supported_languages": [
     "python"

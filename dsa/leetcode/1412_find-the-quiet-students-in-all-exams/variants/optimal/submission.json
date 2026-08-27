@@ -6,9 +6,9 @@
   "frontend_id": "1412",
   "title_slug": "find-the-quiet-students-in-all-exams",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069002090",
-  "verified_at": "2026-07-15T18:08:23.790812+00:00"
+  "verified_submission_id": "2113299026",
+  "verified_at": "2026-08-19T23:58:33.541456+00:00"
 }

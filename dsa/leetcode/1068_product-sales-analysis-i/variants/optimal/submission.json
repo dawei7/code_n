@@ -6,9 +6,9 @@
   "frontend_id": "1068",
   "title_slug": "product-sales-analysis-i",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067485954",
-  "verified_at": "2026-07-14T14:44:51.919558+00:00"
+  "verified_submission_id": "2113279738",
+  "verified_at": "2026-08-19T22:51:34.484814+00:00"
 }

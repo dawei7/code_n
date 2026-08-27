@@ -8,7 +8,16 @@
   "euler_level": 15,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Squarefree Number",
+      "slug": "squarefree-number"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=193",
   "supported_languages": [
     "python"

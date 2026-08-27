@@ -6,9 +6,9 @@
   "frontend_id": "3057",
   "title_slug": "employees-project-allocation",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078966181",
-  "verified_at": "2026-07-24T03:48:00+02:00"
+  "verified_submission_id": "2117871711",
+  "verified_at": "2026-08-23T23:41:20.050862+00:00"
 }

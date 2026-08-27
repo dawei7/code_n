@@ -6,9 +6,9 @@
   "frontend_id": "3056",
   "title_slug": "snaps-analysis",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078964637",
-  "verified_at": "2026-07-24T03:44:00+02:00"
+  "verified_submission_id": "2117871662",
+  "verified_at": "2026-08-23T23:41:07.630736+00:00"
 }

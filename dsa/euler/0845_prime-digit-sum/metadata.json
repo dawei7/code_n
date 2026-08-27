@@ -8,7 +8,16 @@
   "euler_level": 6,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Sum",
+      "slug": "digit-sum"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=845",
   "supported_languages": [
     "python"

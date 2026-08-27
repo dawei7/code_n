@@ -1,19 +1,29 @@
-# Order Modulo Factorial
-
-### Order Modulo Factorial
+## Description
 
 Given a prime $p$ and a positive integer $n \lt p$, let $R(p, n)$ be the multiplicative order of $p$ modulo $n!$.
 
 In other words, $R(p, n)$ is the minimal positive integer $r$ such that
 
-
-
-$$p^r \equiv 1 \pmod{n!}$$
-
+$$
+p^r \equiv 1 \pmod{n!}
+$$
 
 For example, $R(7, 4) = 2$ and $R(10^9 + 7, 12) = 17280$.
 
-
-
-
 Find $R(10^9 + 7, 10^7)$. Give your answer modulo $10^9 + 7$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -8,7 +8,24 @@
   "euler_level": 39,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "P Adic Number",
+      "slug": "p-adic-number"
+    },
+    {
+      "name": "Sequence Summation",
+      "slug": "sequence-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=792",
   "supported_languages": [
     "python"

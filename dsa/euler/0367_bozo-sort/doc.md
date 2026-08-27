@@ -1,18 +1,10 @@
-# Bozo Sort
-
-### Bozo Sort
+## Description
 
 Bozo sort, not to be confused with the slightly less efficient bogo sort, consists out of checking if the input sequence is sorted and if not swapping randomly two elements. This is repeated until eventually the sequence is sorted.
-
-
-
 
 If we consider all permutations of the first $4$ natural numbers as input the expectation value of the number of swaps, averaged over all $4!$ input sequences is $24.75$.
 
 The already sorted sequence takes $0$ steps. 
-
-
-
 
 In this problem we consider the following variant on bozo sort.
 
@@ -28,7 +20,20 @@ Consider as input sequences the permutations of the first $11$ natural numbers.
 
 Averaged over all $11!$ input sequences, what is the expected number of shuffles this sorting algorithm will perform?
 
-
-
-
 Give your answer rounded to the nearest integer.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

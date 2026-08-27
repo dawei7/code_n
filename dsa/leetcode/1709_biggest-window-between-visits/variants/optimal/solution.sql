@@ -1,10 +1,9 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
             user_id,
-            DATEDIFF(
-                LEAD(visit_date, 1, '2021-1-1') OVER (
+            (LEAD(visit_date::date - 1, '2021-1-1'::date) OVER (
                     PARTITION BY user_id
                     ORDER BY visit_date
                 ),

@@ -4,6 +4,7 @@
 
 An infinite sequence of real numbers $a(n)$ is defined by:
 $$a(0) = 0$$
+
 $$a(n) = \sum_{k=1}^{\infty} \frac{(k - 1)!}{(k + n)!} + \sum_{k=1}^n \frac{a(n - k)}{k!} \quad \text{for } n > 0$$
 For each integer $n$, $a(n)$ can be written in the form:
 $$a(n) = \frac{A(n) \cdot e + B(n)}{n!}$$

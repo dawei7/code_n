@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minDominoRotations",
-  "verified_submission_id": "2067274159",
-  "verified_at": "2026-07-14T11:07:57.176048+00:00"
+  "verified_submission_id": "2113276141",
+  "verified_at": "2026-08-19T22:39:44.535758+00:00"
 }

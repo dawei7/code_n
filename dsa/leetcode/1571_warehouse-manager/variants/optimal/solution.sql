@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     name AS warehouse_name,
     SUM(width * length * height * units) AS volume

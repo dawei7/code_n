@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.shortestMatchingSubstring",
-  "verified_submission_id": "2081962331",
-  "verified_at": "2026-07-26T11:37:34Z"
+  "verified_submission_id": "2120641391",
+  "verified_at": "2026-08-26T09:49:37.046069+00:00"
 }

@@ -8,7 +8,24 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Asymptotics",
+      "slug": "asymptotics"
+    },
+    {
+      "name": "Divisor Sum",
+      "slug": "divisor-sum"
+    },
+    {
+      "name": "Geometric Progression",
+      "slug": "geometric-progression"
+    },
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    }
+  ],
   "url": "https://projecteuler.net/problem=722",
   "supported_languages": [
     "python"

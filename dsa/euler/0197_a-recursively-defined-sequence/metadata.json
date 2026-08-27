@@ -8,7 +8,20 @@
   "euler_level": 11,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Power",
+      "slug": "power"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=197",
   "supported_languages": [
     "python"

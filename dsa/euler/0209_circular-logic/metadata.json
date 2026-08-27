@@ -8,7 +8,20 @@
   "euler_level": 14,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binary Equation",
+      "slug": "binary-equation"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Xor",
+      "slug": "xor"
+    }
+  ],
   "url": "https://projecteuler.net/problem=209",
   "supported_languages": [
     "python"

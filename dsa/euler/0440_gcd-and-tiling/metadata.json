@@ -8,7 +8,20 @@
   "euler_level": 25,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Packing",
+      "slug": "packing"
+    }
+  ],
   "url": "https://projecteuler.net/problem=440",
   "supported_languages": [
     "python"

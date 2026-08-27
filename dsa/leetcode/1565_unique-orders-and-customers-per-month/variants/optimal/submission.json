@@ -6,9 +6,9 @@
   "frontend_id": "1565",
   "title_slug": "unique-orders-and-customers-per-month",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069823481",
-  "verified_at": "2026-07-16T12:03:03.360478+00:00"
+  "verified_submission_id": "2114791879",
+  "verified_at": "2026-08-21T07:28:05.726784+00:00"
 }

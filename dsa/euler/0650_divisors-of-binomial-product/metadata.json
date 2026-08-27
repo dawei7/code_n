@@ -8,7 +8,20 @@
   "euler_level": 10,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Divisor Sum",
+      "slug": "divisor-sum"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=650",
   "supported_languages": [
     "python"

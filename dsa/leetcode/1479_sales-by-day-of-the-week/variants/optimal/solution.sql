@@ -1,15 +1,16 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
-    item_category AS category,
-    SUM(IF(DAYOFWEEK(order_date) = '2', quantity, 0)) AS Monday,
-    SUM(IF(DAYOFWEEK(order_date) = '3', quantity, 0)) AS Tuesday,
-    SUM(IF(DAYOFWEEK(order_date) = '4', quantity, 0)) AS Wednesday,
-    SUM(IF(DAYOFWEEK(order_date) = '5', quantity, 0)) AS Thursday,
-    SUM(IF(DAYOFWEEK(order_date) = '6', quantity, 0)) AS Friday,
-    SUM(IF(DAYOFWEEK(order_date) = '7', quantity, 0)) AS Saturday,
-    SUM(IF(DAYOFWEEK(order_date) = '1', quantity, 0)) AS Sunday
+    i.item_category AS category,
+    SUM(CASE WHEN EXTRACT(ISODOW FROM o.order_date) = 1 THEN o.quantity ELSE 0 END) AS "Monday",
+    SUM(CASE WHEN EXTRACT(ISODOW FROM o.order_date) = 2 THEN o.quantity ELSE 0 END) AS "Tuesday",
+    SUM(CASE WHEN EXTRACT(ISODOW FROM o.order_date) = 3 THEN o.quantity ELSE 0 END) AS "Wednesday",
+    SUM(CASE WHEN EXTRACT(ISODOW FROM o.order_date) = 4 THEN o.quantity ELSE 0 END) AS "Thursday",
+    SUM(CASE WHEN EXTRACT(ISODOW FROM o.order_date) = 5 THEN o.quantity ELSE 0 END) AS "Friday",
+    SUM(CASE WHEN EXTRACT(ISODOW FROM o.order_date) = 6 THEN o.quantity ELSE 0 END) AS "Saturday",
+    SUM(CASE WHEN EXTRACT(ISODOW FROM o.order_date) = 7 THEN o.quantity ELSE 0 END) AS "Sunday"
 FROM
-    Orders AS o
-    RIGHT JOIN Items AS i ON o.item_id = i.item_id
-GROUP BY category
+    Items AS i
+    LEFT JOIN Orders AS o ON i.item_id = o.item_id
+GROUP BY i.item_category
 ORDER BY category;
+

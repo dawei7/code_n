@@ -8,7 +8,12 @@
   "euler_level": 33,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Game",
+      "slug": "game"
+    }
+  ],
   "url": "https://projecteuler.net/problem=986",
   "supported_languages": [
     "python"

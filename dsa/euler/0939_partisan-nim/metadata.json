@@ -8,7 +8,20 @@
   "euler_level": 29,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Nim",
+      "slug": "nim"
+    },
+    {
+      "name": "Partisan Game",
+      "slug": "partisan-game"
+    },
+    {
+      "name": "Partition",
+      "slug": "partition"
+    }
+  ],
   "url": "https://projecteuler.net/problem=939",
   "supported_languages": [
     "python"

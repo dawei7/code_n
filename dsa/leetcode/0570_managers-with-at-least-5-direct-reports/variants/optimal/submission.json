@@ -6,8 +6,8 @@
   "frontend_id": "570",
   "title_slug": "managers-with-at-least-5-direct-reports",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065409422",
-  "verified_at": "2026-07-12T19:50:42.550151+00:00"
+  "verified_submission_id": "2113226561",
+  "verified_at": "2026-08-19T20:38:29.764734+00:00"
 }

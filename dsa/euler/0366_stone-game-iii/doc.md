@@ -1,6 +1,4 @@
-# Stone Game III
-
-### Stone Game III
+## Description
 
 Two players, Anton and Bernhard, are playing the following game.
 
@@ -11,9 +9,6 @@ The first player may remove any positive number of stones, but not the whole pil
 Thereafter, each player may remove at most twice the number of stones his opponent took on the previous move.
 
 The player who removes the last stone wins.
-
-
-
 
 E.g. $n=5$.
 
@@ -29,18 +24,25 @@ For some winning positions there is more than one possible move for the first pl
 
 E.g. when $n=17$ the first player can remove one or four stones.
 
-
-
-
 Let $M(n)$ be the maximum number of stones the first player can take from a winning position at his first turn and $M(n)=0$ for any other position.
-
-
-
 
 $\sum M(n)$ for $n \le 100$ is $728$.
 
-
-
-
 Find $\sum M(n)$ for $n \le 10^{18}$.
 Give your answer modulo $10^8$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

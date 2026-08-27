@@ -1,28 +1,29 @@
-class matrix3D:
+class Matrix3D:
     def __init__(self, n: int):
-        self.g = [[[0] * n for _ in range(n)] for _ in range(n)]
+        self.n = n
+        self.ones = set()
         self.cnt = [0] * n
-        self.sl = SortedList(key=lambda x: (-x[0], -x[1]))
 
     def setCell(self, x: int, y: int, z: int) -> None:
-        if self.g[x][y][z]:
-            return
-        self.g[x][y][z] = 1
-        self.sl.discard((self.cnt[x], x))
-        self.cnt[x] += 1
-        self.sl.add((self.cnt[x], x))
+        cell = (x, y, z)
+        if cell not in self.ones:
+            self.ones.add(cell)
+            self.cnt[x] += 1
 
     def unsetCell(self, x: int, y: int, z: int) -> None:
-        if self.g[x][y][z] == 0:
-            return
-        self.g[x][y][z] = 0
-        self.sl.discard((self.cnt[x], x))
-        self.cnt[x] -= 1
-        if self.cnt[x]:
-            self.sl.add((self.cnt[x], x))
+        cell = (x, y, z)
+        if cell in self.ones:
+            self.ones.remove(cell)
+            self.cnt[x] -= 1
 
     def largestMatrix(self) -> int:
-        return self.sl[0][1] if self.sl else len(self.g) - 1
+        best_x = self.n - 1
+        best_cnt = self.cnt[best_x]
+        for x in range(self.n - 2, -1, -1):
+            if self.cnt[x] > best_cnt:
+                best_cnt = self.cnt[x]
+                best_x = x
+        return best_x
 
 
 # Your matrix3D object will be instantiated and called as such:

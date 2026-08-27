@@ -6,9 +6,9 @@
   "frontend_id": "1633",
   "title_slug": "percentage-of-users-attended-a-contest",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070448300",
-  "verified_at": "2026-07-16T23:07:44.361327+00:00"
+  "verified_submission_id": "2114797887",
+  "verified_at": "2026-08-21T07:35:56.286379+00:00"
 }

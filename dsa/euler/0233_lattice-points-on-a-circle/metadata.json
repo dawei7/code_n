@@ -8,7 +8,16 @@
   "euler_level": 32,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Lattice Point Counting",
+      "slug": "lattice-point-counting"
+    }
+  ],
   "url": "https://projecteuler.net/problem=233",
   "supported_languages": [
     "python"

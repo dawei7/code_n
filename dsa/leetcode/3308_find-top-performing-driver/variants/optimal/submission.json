@@ -6,9 +6,9 @@
   "frontend_id": "3308",
   "title_slug": "find-top-performing-driver",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2080829933",
-  "verified_at": "2026-07-25T14:18:32.8293014Z"
+  "verified_submission_id": "2120617651",
+  "verified_at": "2026-08-26T09:22:12.100254+00:00"
 }

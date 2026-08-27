@@ -8,7 +8,20 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "Pythagorean Triple",
+      "slug": "pythagorean-triple"
+    }
+  ],
   "url": "https://projecteuler.net/problem=748",
   "supported_languages": [
     "python"

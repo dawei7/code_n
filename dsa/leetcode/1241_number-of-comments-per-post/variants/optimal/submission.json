@@ -6,9 +6,9 @@
   "frontend_id": "1241",
   "title_slug": "number-of-comments-per-post",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067983498",
-  "verified_at": "2026-07-15T02:22:34.009533+00:00"
+  "verified_submission_id": "2113289504",
+  "verified_at": "2026-08-19T23:25:23.800786+00:00"
 }

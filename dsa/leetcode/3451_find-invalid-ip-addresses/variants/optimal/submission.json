@@ -6,9 +6,9 @@
   "frontend_id": "3451",
   "title_slug": "find-invalid-ip-addresses",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2081925776",
-  "verified_at": "2026-07-26T11:03:36Z"
+  "verified_submission_id": "2120645242",
+  "verified_at": "2026-08-26T09:53:58.043796+00:00"
 }

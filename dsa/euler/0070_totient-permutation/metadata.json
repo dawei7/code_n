@@ -8,7 +8,20 @@
   "euler_level": 3,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Coprime Numbers",
+      "slug": "coprime-numbers"
+    },
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Totient Function",
+      "slug": "totient-function"
+    }
+  ],
   "url": "https://projecteuler.net/problem=70",
   "supported_languages": [
     "python"

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.shortestCommonSupersequence",
-  "verified_submission_id": "2067589578",
-  "verified_at": "2026-07-14T16:13:58.067947+00:00"
+  "verified_submission_id": "2113281212",
+  "verified_at": "2026-08-19T22:56:23.044002+00:00"
 }

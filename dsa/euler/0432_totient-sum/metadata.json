@@ -8,7 +8,16 @@
   "euler_level": 29,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    },
+    {
+      "name": "Totient Function",
+      "slug": "totient-function"
+    }
+  ],
   "url": "https://projecteuler.net/problem=432",
   "supported_languages": [
     "python"

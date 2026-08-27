@@ -1,10 +1,6 @@
-# Large Sum
-
-### Large Sum
+## Description
 
 Work out the first ten digits of the sum of the following one-hundred $50$-digit numbers.
-
-
 
 37107287533902102798797998220837590246510135740250
 
@@ -205,3 +201,19 @@ Work out the first ten digits of the sum of the following one-hundred $50$-digit
 20849603980134001723930671666823555245252804609722
 
 53503534226472524250874054075591789781264330331690
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

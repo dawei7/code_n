@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     top_students AS (
         SELECT user_id
@@ -18,9 +18,10 @@ WITH
             JOIN course_completions USING (user_id)
     )
 SELECT
-    *,
-    COUNT(1) transition_count
+    first_course,
+    second_course,
+    COUNT(1) AS transition_count
 FROM course_pairs
 WHERE second_course IS NOT NULL
-GROUP BY 1, 2
-ORDER BY 3 DESC, 1, 2;
+GROUP BY first_course, second_course
+ORDER BY transition_count DESC, LOWER(first_course) ASC, LOWER(second_course) ASC;

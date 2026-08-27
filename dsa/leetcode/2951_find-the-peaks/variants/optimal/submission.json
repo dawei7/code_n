@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findPeaks",
-  "verified_submission_id": "2078358928",
-  "verified_at": "2026-07-23T12:13:02.502194+00:00"
+  "verified_submission_id": "2117865974",
+  "verified_at": "2026-08-23T23:20:14.905473+00:00"
 }

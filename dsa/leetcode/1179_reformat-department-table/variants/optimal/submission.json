@@ -6,9 +6,9 @@
   "frontend_id": "1179",
   "title_slug": "reformat-department-table",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067897425",
-  "verified_at": "2026-07-14T22:07:35.004513+00:00"
+  "verified_submission_id": "2113286053",
+  "verified_at": "2026-08-19T23:13:09.351485+00:00"
 }

@@ -60,7 +60,9 @@ Setting $F_n \ge 10^{K - 1}$:
 $$\frac{\phi^n}{\sqrt{5}} \ge 10^{K - 1}$$
 Taking $\log_{10}$ on both sides:
 $$n \log_{10} \phi - \log_{10} \sqrt{5} \ge K - 1$$
+
 $$n \log_{10} \phi \ge K - 1 + \frac{1}{2} \log_{10} 5$$
+
 $$n \ge \frac{K - 1 + \frac{1}{2} \log_{10} 5}{\log_{10} \phi}$$
 
 Applying the ceiling function $\lceil \cdot \rceil$:

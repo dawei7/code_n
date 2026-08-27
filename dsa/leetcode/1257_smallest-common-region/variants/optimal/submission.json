@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findSmallestRegion",
-  "verified_submission_id": "2068017542",
-  "verified_at": "2026-07-15T03:23:38.592009+00:00"
+  "verified_submission_id": "2113290374",
+  "verified_at": "2026-08-19T23:28:30.513125+00:00"
 }

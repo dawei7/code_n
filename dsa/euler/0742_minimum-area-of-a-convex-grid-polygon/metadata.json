@@ -8,7 +8,24 @@
   "euler_level": 35,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Convexity",
+      "slug": "convexity"
+    },
+    {
+      "name": "Lattice",
+      "slug": "lattice"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Polygon",
+      "slug": "polygon"
+    }
+  ],
   "url": "https://projecteuler.net/problem=742",
   "supported_languages": [
     "python"

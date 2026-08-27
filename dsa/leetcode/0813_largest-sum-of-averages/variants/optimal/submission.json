@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.largestSumOfAverages",
-  "verified_submission_id": "2066283701",
-  "verified_at": "2026-07-13T15:11:07.649036+00:00"
+  "verified_submission_id": "2113244860",
+  "verified_at": "2026-08-19T21:15:19.189455+00:00"
 }

@@ -8,7 +8,20 @@
   "euler_level": 33,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Periodicity",
+      "slug": "periodicity"
+    },
+    {
+      "name": "Square",
+      "slug": "square"
+    }
+  ],
   "url": "https://projecteuler.net/problem=935",
   "supported_languages": [
     "python"

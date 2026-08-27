@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findPrefixScore",
-  "verified_submission_id": "2076178668",
-  "verified_at": "2026-07-21T17:28:00+00:00"
+  "verified_submission_id": "2117847839",
+  "verified_at": "2026-08-23T22:18:24.901226+00:00"
 }

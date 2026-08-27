@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.subarraysDivByK",
-  "verified_submission_id": "2067156354",
-  "verified_at": "2026-07-14T09:11:39.404082+00:00"
+  "verified_submission_id": "2113256938",
+  "verified_at": "2026-08-19T21:44:11.622508+00:00"
 }

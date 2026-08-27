@@ -8,7 +8,24 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Pythagorean Triple",
+      "slug": "pythagorean-triple"
+    },
+    {
+      "name": "Square",
+      "slug": "square"
+    },
+    {
+      "name": "Tiling",
+      "slug": "tiling"
+    }
+  ],
   "url": "https://projecteuler.net/problem=139",
   "supported_languages": [
     "python"

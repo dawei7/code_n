@@ -6,9 +6,9 @@
   "frontend_id": "3390",
   "title_slug": "longest-team-pass-streak",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2081315095",
-  "verified_at": "2026-07-26T01:32:00Z"
+  "verified_submission_id": "2120630032",
+  "verified_at": "2026-08-26T09:36:50.175291+00:00"
 }

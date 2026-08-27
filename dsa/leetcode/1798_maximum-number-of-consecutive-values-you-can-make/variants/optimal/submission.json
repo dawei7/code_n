@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getMaximumConsecutive",
-  "verified_submission_id": "2071232759",
-  "verified_at": "2026-07-17T14:51:34.078830+00:00"
+  "verified_submission_id": "2114811526",
+  "verified_at": "2026-08-21T07:55:09.535883+00:00"
 }

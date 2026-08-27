@@ -6,10 +6,9 @@
   "frontend_id": "3182",
   "title_slug": "find-top-scoring-students",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2080075547",
-  "verified_at": "2026-07-24T23:08:00+02:00"
+  "verified_submission_id": "2117878770",
+  "verified_at": "2026-08-24T00:06:40.216796+00:00"
 }
-

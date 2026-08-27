@@ -1,6 +1,4 @@
-# Look and Say Sequence
-
-### Look and Say Sequence
+## Description
 
 The look and say sequence goes 1, 11, 21, 1211, 111221, 312211, 13112221, 1113213211, ...
 
@@ -20,18 +18,28 @@ It helps to do this out loud:
 
 ...
 
-
-
-
 Define $A(n)$, $B(n)$ and $C(n)$ as the number of ones, twos and threes in the $n$'th element of the sequence respectively.
 
 One can verify that $A(40) = 31254$, $B(40) = 20259$ and $C(40) = 11625$.
-
-
-
 
 Find $A(n)$, $B(n)$ and $C(n)$ for $n = 10^{12}$.
 
 Give your answer modulo $2^{30}$ and separate your values for $A$, $B$ and $C$ by a comma.
 
 E.g. for $n = 40$ the answer would be 31254,20259,11625
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.reinitializePermutation",
-  "verified_submission_id": "2071483819",
-  "verified_at": "2026-07-17T18:31:06.933375+00:00"
+  "verified_submission_id": "2114812121",
+  "verified_at": "2026-08-21T07:56:01.800623+00:00"
 }

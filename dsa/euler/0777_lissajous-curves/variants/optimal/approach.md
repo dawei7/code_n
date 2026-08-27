@@ -4,6 +4,7 @@
 
 For coprime integers $a, b \ge 2$, consider the parametric Lissajous curve $C_{a, b}$:
 $$x(t) = \cos(at), \quad y(t) = \cos\left(b\left(t - \frac{\pi}{10}\right)\right), \quad t \in [0, 2\pi)$$
+
 $d(a, b) = \sum (x^2 + y^2)$ is the sum of squared coordinates over all self-intersection points of $C_{a, b}$.
 We define:
 $$s(m) = \sum_{\substack{2 \le a, b \le m \\ \gcd(a, b) = 1}} d(a, b)$$

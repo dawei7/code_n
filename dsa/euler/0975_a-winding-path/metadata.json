@@ -8,7 +8,20 @@
   "euler_level": 29,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    },
+    {
+      "name": "Trigonometry",
+      "slug": "trigonometry"
+    }
+  ],
   "url": "https://projecteuler.net/problem=975",
   "supported_languages": [
     "python"

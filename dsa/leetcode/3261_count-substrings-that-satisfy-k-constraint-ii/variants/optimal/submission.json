@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countKConstraintSubstrings",
-  "verified_submission_id": "2080354795",
-  "verified_at": "2026-07-25T06:16:52.374345+00:00"
+  "verified_submission_id": "2120609474",
+  "verified_at": "2026-08-26T09:12:32.361138+00:00"
 }

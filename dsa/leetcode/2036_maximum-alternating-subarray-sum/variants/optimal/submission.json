@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maximumAlternatingSubarraySum",
-  "verified_submission_id": "2072863061",
-  "verified_at": "2026-07-19T00:51:39.576455+00:00"
+  "verified_submission_id": "2116361319",
+  "verified_at": "2026-08-22T16:26:29.863073+00:00"
 }

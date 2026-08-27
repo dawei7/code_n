@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minimumLengthEncoding",
-  "verified_submission_id": "2066596479",
-  "verified_at": "2026-07-13T19:21:17.997409+00:00"
+  "verified_submission_id": "2113245305",
+  "verified_at": "2026-08-19T21:16:16.455493+00:00"
 }

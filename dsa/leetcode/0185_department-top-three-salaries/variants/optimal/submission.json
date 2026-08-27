@@ -6,8 +6,8 @@
   "frontend_id": "185",
   "title_slug": "department-top-three-salaries",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064194789",
-  "verified_at": "2026-07-11T18:26:01.303749+00:00"
+  "verified_submission_id": "2108900608",
+  "verified_at": "2026-08-16T11:21:19.462714+00:00"
 }

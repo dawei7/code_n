@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH RECURSIVE
     T(task_id, subtask_id) AS (
         SELECT

@@ -6,9 +6,9 @@
   "frontend_id": "1783",
   "title_slug": "grand-slam-titles",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2071137876",
-  "verified_at": "2026-07-17T13:16:58.492753+00:00"
+  "verified_submission_id": "2114810326",
+  "verified_at": "2026-08-21T07:53:26.529249+00:00"
 }

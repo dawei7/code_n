@@ -6,9 +6,9 @@
   "frontend_id": "1613",
   "title_slug": "find-the-missing-ids",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070158984",
-  "verified_at": "2026-07-16T16:46:23.704607+00:00"
+  "verified_submission_id": "2114796144",
+  "verified_at": "2026-08-21T07:33:35.547004+00:00"
 }

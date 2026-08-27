@@ -1,19 +1,27 @@
-# Circle and Tangent Line
-
-### Circle and Tangent Line
+## Description
 
 Let $C$ be the circle with radius $r$, $x^2 + y^2 = r^2$. We choose two points $P(a, b)$ and $Q(-a, c)$ so that the line passing through $P$ and $Q$ is tangent to $C$.
 
-
-
 For example, the quadruplet $(r, a, b, c) = (2, 6, 2, -7)$ satisfies this property.
 
-
-
 Let $F(R, X)$ be the number of the integer quadruplets $(r, a, b, c)$ with this property, and with $0 \lt r \leq R$ and $0 \lt a \leq X$.
-
-
 
 We can verify that $F(1, 5) = 10$, $F(2, 10) = 52$ and $F(10, 100) = 3384$.
 
 Find $F(10^8, 10^9) + F(10^9, 10^8)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

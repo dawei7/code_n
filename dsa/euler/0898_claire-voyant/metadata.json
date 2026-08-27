@@ -8,7 +8,24 @@
   "euler_level": 28,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Bisection",
+      "slug": "bisection"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    }
+  ],
   "url": "https://projecteuler.net/problem=898",
   "supported_languages": [
     "python"

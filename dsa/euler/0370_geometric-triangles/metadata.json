@@ -8,7 +8,16 @@
   "euler_level": 21,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Geometric Progression",
+      "slug": "geometric-progression"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    }
+  ],
   "url": "https://projecteuler.net/problem=370",
   "supported_languages": [
     "python"

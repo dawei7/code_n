@@ -1,19 +1,27 @@
-# Expected Minimal Fractional Value
-
-### Expected Minimal Fractional Value
+## Description
 
 Let $\{x\}$ denote the fractional part of a real number $x$.
 
-
-
-Define $f_N(x)$ to be the minimal value of $\{nx\}$ for integer $n$ satisfying $0 &lt; n \le N$.
+Define $f_N(x)$ to be the minimal value of $\{nx\}$ for integer $n$ satisfying $0 < n \le N$.
 
 Further define $F(N)$ to be the expected value of $f_N(x)$ when $x$ is sampled uniformly in $[0, 1]$.
 
-
-
 You are given $F(1) = \frac{1}{2}$, $F(4) = \frac{1}{4}$ and $F(10) \approx 0.1319444444444$.
 
-
-
 Find $F(10^4)$ and give your answer rounded to 13 digits after the decimal point.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

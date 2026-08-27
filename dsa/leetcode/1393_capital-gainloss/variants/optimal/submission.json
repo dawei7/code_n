@@ -6,9 +6,9 @@
   "frontend_id": "1393",
   "title_slug": "capital-gainloss",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068851797",
-  "verified_at": "2026-07-15T16:21:38.449799+00:00"
+  "verified_submission_id": "2113297972",
+  "verified_at": "2026-08-19T23:54:53.696193+00:00"
 }

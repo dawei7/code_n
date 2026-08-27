@@ -51,6 +51,7 @@ The first moment of this configuration is:
 $$\mu = \sum_{x=K}^{K+N} x - g = (N + 1) K + \frac{N(N + 1)}{2} - g$$
 Since $K \le g \le K + N$:
 $$K = \left\lfloor \frac{\mu - N(N - 1)/2}{N} \right\rfloor$$
+
 $$g = (N + 1) K + \frac{N(N + 1)}{2} - \mu$$
 
 The final second moment is computed in $\mathcal{O}(1)$ via sum-of-squares:

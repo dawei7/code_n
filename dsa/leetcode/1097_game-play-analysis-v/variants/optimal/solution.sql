@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
@@ -11,7 +11,7 @@ SELECT
     install_dt,
     COUNT(DISTINCT player_id) AS installs,
     ROUND(
-        SUM(DATEDIFF(event_date, install_dt) = 1) / COUNT(DISTINCT player_id),
+        SUM((event_date::date - install_dt::date) = 1) / COUNT(DISTINCT player_id),
         2
     ) AS day1_retention
 FROM T

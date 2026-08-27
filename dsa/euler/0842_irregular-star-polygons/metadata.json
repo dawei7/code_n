@@ -8,7 +8,16 @@
   "euler_level": 26,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Polygon",
+      "slug": "polygon"
+    }
+  ],
   "url": "https://projecteuler.net/problem=842",
   "supported_languages": [
     "python"

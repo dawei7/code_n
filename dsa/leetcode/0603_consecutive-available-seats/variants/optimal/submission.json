@@ -6,10 +6,10 @@
   "frontend_id": "603",
   "title_slug": "consecutive-available-seats",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065459815",
-  "verified_at": "2026-07-12T21:40:27.265123+00:00",
+  "verified_submission_id": "2113229299",
+  "verified_at": "2026-08-19T20:43:32.623432+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T07:03:00.000000+00:00"

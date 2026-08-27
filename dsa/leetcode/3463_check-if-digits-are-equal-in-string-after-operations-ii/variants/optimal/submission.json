@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.hasSameDigits",
-  "verified_submission_id": "2082024826",
-  "verified_at": "2026-07-26T12:40:59Z"
+  "verified_submission_id": "2120642576",
+  "verified_at": "2026-08-26T09:50:59.023036+00:00"
 }

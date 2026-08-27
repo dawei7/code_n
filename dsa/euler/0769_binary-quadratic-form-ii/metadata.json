@@ -8,7 +8,24 @@
   "euler_level": 33,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Parametrisation",
+      "slug": "parametrisation"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=769",
   "supported_languages": [
     "python"

@@ -6,9 +6,9 @@
   "frontend_id": "2991",
   "title_slug": "top-three-wineries",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078587669",
-  "verified_at": "2026-07-23T15:41:59.592460+00:00"
+  "verified_submission_id": "2117868175",
+  "verified_at": "2026-08-23T23:28:14.239603+00:00"
 }

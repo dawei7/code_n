@@ -8,7 +8,32 @@
   "euler_level": 16,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Cryptography",
+      "slug": "cryptography"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    },
+    {
+      "name": "Totient Function",
+      "slug": "totient-function"
+    }
+  ],
   "url": "https://projecteuler.net/problem=182",
   "supported_languages": [
     "python"

@@ -1,1 +1,14 @@
-{"schema_version": 1, "provider": "leetcode.com", "status": "verified", "question_id": "2625", "frontend_id": "2534", "title_slug": "time-taken-to-cross-the-door", "paid_only": false, "language": "python3", "source": "solution.py", "native_entrypoint": "Solution.timeTaken", "verified_submission_id": "2075287301", "verified_at": "2026-07-21T04:35:17+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2625",
+  "frontend_id": "2534",
+  "title_slug": "time-taken-to-cross-the-door",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.timeTaken",
+  "verified_submission_id": "2117840658",
+  "verified_at": "2026-08-23T21:57:26.423983+00:00"
+}

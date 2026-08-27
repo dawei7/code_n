@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countBalancedPermutations",
-  "verified_submission_id": "2081126665",
-  "verified_at": "2026-07-25T18:28:08Z"
+  "verified_submission_id": "2120623098",
+  "verified_at": "2026-08-26T09:28:37.219485+00:00"
 }

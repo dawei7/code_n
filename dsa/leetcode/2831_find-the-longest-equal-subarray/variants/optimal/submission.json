@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.longestEqualSubarray",
-  "verified_submission_id": "2077336889",
-  "verified_at": "2026-07-22T15:57:00+00:00"
+  "verified_submission_id": "2117859229",
+  "verified_at": "2026-08-23T22:56:18.788310+00:00"
 }

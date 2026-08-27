@@ -8,7 +8,24 @@
   "euler_level": 4,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Cards",
+      "slug": "cards"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Markov Chain",
+      "slug": "markov-chain"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    }
+  ],
   "url": "https://projecteuler.net/problem=84",
   "supported_languages": [
     "python"

@@ -6,9 +6,9 @@
   "frontend_id": "1501",
   "title_slug": "countries-you-can-safely-invest-in",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069382920",
-  "verified_at": "2026-07-16T05:24:12.652570+00:00"
+  "verified_submission_id": "2114786185",
+  "verified_at": "2026-08-21T07:20:52.136230+00:00"
 }

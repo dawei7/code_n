@@ -8,7 +8,24 @@
   "euler_level": 16,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Pythagorean Triple",
+      "slug": "pythagorean-triple"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    }
+  ],
   "url": "https://projecteuler.net/problem=176",
   "supported_languages": [
     "python"

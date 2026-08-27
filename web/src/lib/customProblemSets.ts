@@ -60,6 +60,30 @@ export function collectSetChallengeIds(set: CustomProblemSet): Set<string> {
   return collectCustomChallengeIds([set]);
 }
 
+export function getCustomSetTargetMode(set: CustomProblemSet): 'coden' | 'euler' {
+  if (set.target_mode === 'euler' || set.target_mode === 'coden') {
+    return set.target_mode;
+  }
+  const ids = collectSetChallengeIds(set);
+  let eulerCount = 0;
+  let leetcodeCount = 0;
+  for (const id of ids) {
+    if (id.startsWith('euler_')) eulerCount++;
+    else leetcodeCount++;
+  }
+  if (eulerCount > 0 && leetcodeCount === 0) return 'euler';
+  if (leetcodeCount > 0 && eulerCount === 0) return 'coden';
+  if (set.name.toLowerCase().includes('euler')) return 'euler';
+  return 'coden';
+}
+
+export function filterCustomProblemSetsForMode(
+  sets: CustomProblemSet[],
+  mode: 'coden' | 'euler',
+): CustomProblemSet[] {
+  return sets.filter((set) => getCustomSetTargetMode(set) === mode);
+}
+
 export function countSetProblems(set: CustomProblemSet): number {
   const countNodes = (nodes: CustomProblemTreeNode[]): number => nodes.reduce(
     (total, node) => total + (

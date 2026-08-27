@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.equalToDescendants",
-  "verified_submission_id": "2072765683",
-  "verified_at": "2026-07-18T19:58:33.683684+00:00"
+  "verified_submission_id": "2114826010",
+  "verified_at": "2026-08-21T08:15:51.802327+00:00"
 }

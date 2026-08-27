@@ -1,7 +1,5 @@
-### Sphere Packing
+## Description
 
-What is the length of the shortest pipe, of internal radius $\pu{50 mm}$, that can fully contain $21$ balls of radii $\pu{30 mm}, \pu{31 mm}, \dots, \pu{50 mm}$?
+What is the length of the shortest pipe, of internal radius $50\text{ mm}$, that can fully contain $21$ balls of radii $30\text{ mm}, 31\text{ mm}, \dots, 50\text{ mm}$?
 
-
-
-Give your answer in micrometres ($\pu{10^{-6} m}$) rounded to the nearest integer.
+Give your answer in micrometres ($10^{-6}\text{ m}$) rounded to the nearest integer.

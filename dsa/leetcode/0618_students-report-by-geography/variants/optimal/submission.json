@@ -6,10 +6,10 @@
   "frontend_id": "618",
   "title_slug": "students-report-by-geography",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065457811",
-  "verified_at": "2026-07-12T20:57:11.800026+00:00",
+  "verified_submission_id": "2113230600",
+  "verified_at": "2026-08-19T20:45:54.561744+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T14:28:00.000000+00:00"

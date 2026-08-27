@@ -6,9 +6,9 @@
   "frontend_id": "1934",
   "title_slug": "confirmation-rate",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072563434",
-  "verified_at": "2026-07-18T16:38:08.360565+00:00"
+  "verified_submission_id": "2114822633",
+  "verified_at": "2026-08-21T08:11:04.586563+00:00"
 }

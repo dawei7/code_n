@@ -8,7 +8,24 @@
   "euler_level": 25,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    },
+    {
+      "name": "Prime Counting",
+      "slug": "prime-counting"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=712",
   "supported_languages": [
     "python"

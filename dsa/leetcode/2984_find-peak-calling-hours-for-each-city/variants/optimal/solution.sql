@@ -1,8 +1,10 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
-            *,
+            city,
+            h,
+            cnt,
             RANK() OVER (
                 PARTITION BY city
                 ORDER BY cnt DESC
@@ -11,13 +13,14 @@ WITH
             (
                 SELECT
                     city,
-                    HOUR(call_time) AS h,
+                    EXTRACT(HOUR FROM call_time)::int AS h,
                     COUNT(1) AS cnt
                 FROM Calls
-                GROUP BY 1, 2
+                GROUP BY city, EXTRACT(HOUR FROM call_time)
             ) AS t
     )
 SELECT city, h AS peak_calling_hour, cnt AS number_of_calls
 FROM T
 WHERE rk = 1
-ORDER BY 2 DESC, 1 DESC;
+ORDER BY peak_calling_hour DESC, city DESC;
+

@@ -189,23 +189,39 @@ def _solution_variant_details(
             ]
         else:
             native_submission = verified_native_submission_source(variant.submission_path)
-            if native_submission is None:
+            if native_submission is not None:
+                language, native_source = native_submission
+                coden_path = variant.solution_paths.get(language)
+                if coden_path is None or not coden_path.is_file():
+                    continue
+                coden_source = coden_path.read_text(encoding="utf-8")
+                sources = {language: coden_source}
+                leetcode_sources = {language: native_source}
+                implementations = [
+                    SolutionImplementationDetail(
+                        id="solution-1",
+                        label="Verified LeetCode submission",
+                        sources=sources,
+                        leetcode_sources=leetcode_sources,
+                    )
+                ]
+            elif variant.solution_paths:
+                language, coden_path = next(iter(variant.solution_paths.items()))
+                if not coden_path.is_file():
+                    continue
+                coden_source = coden_path.read_text(encoding="utf-8")
+                sources = {language: coden_source}
+                leetcode_sources = {}
+                implementations = [
+                    SolutionImplementationDetail(
+                        id="solution-1",
+                        label="Verified solution",
+                        sources=sources,
+                        leetcode_sources={},
+                    )
+                ]
+            else:
                 continue
-            language, native_source = native_submission
-            coden_path = variant.solution_paths.get(language)
-            if coden_path is None or not coden_path.is_file():
-                continue
-            coden_source = coden_path.read_text(encoding="utf-8")
-            sources = {language: coden_source}
-            leetcode_sources = {language: native_source}
-            implementations = [
-                SolutionImplementationDetail(
-                    id="solution-1",
-                    label="Verified LeetCode submission",
-                    sources=sources,
-                    leetcode_sources=leetcode_sources,
-                )
-            ]
         variants.append(SolutionVariantDetail(
             id=variant.id,
             label=variant.label,

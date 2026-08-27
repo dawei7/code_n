@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.copyRandomBinaryTree",
-  "verified_submission_id": "2074761861",
-  "verified_at": "2026-07-20T15:46:11.257681+00:00"
+  "verified_submission_id": "2113303141",
+  "verified_at": "2026-08-20T00:12:57.063410+00:00"
 }

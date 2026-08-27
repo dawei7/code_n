@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT name, COALESCE(SUM(distance), 0) AS travelled_distance
 FROM
     Users AS u

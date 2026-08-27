@@ -8,7 +8,24 @@
   "euler_level": 38,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Harmonic Number",
+      "slug": "harmonic-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=541",
   "supported_languages": [
     "python"

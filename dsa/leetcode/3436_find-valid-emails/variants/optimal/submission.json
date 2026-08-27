@@ -6,9 +6,9 @@
   "frontend_id": "3436",
   "title_slug": "find-valid-emails",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2081797631",
-  "verified_at": "2026-07-26T08:55:00Z"
+  "verified_submission_id": "2120638201",
+  "verified_at": "2026-08-26T09:46:02.956607+00:00"
 }

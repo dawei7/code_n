@@ -8,7 +8,20 @@
   "euler_level": 25,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Cube Number",
+      "slug": "cube-number"
+    },
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    }
+  ],
   "url": "https://projecteuler.net/problem=753",
   "supported_languages": [
     "python"

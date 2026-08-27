@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     S AS (
         SELECT
@@ -14,14 +14,10 @@ WITH
     T AS (
         SELECT
             *,
-            IF(
-                start_day <= LAG(cur_max_end_day) OVER (
+            (CASE WHEN start_day <= LAG(cur_max_end_day) OVER (
                     PARTITION BY hall_id
                     ORDER BY start_day
-                ),
-                0,
-                1
-            ) AS start
+                ) THEN 0 ELSE 1 END) AS start
         FROM S
     ),
     P AS (

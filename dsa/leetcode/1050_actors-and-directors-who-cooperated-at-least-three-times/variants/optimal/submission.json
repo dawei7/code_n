@@ -6,8 +6,8 @@
   "frontend_id": "1050",
   "title_slug": "actors-and-directors-who-cooperated-at-least-three-times",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2067411298",
-  "verified_at": "2026-07-14T13:36:50.168017+00:00"
+  "verified_submission_id": "2113278711",
+  "verified_at": "2026-08-19T22:48:04.317852+00:00"
 }

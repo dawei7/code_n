@@ -1,1 +1,14 @@
-{"schema_version": 1, "provider": "leetcode.com", "status": "verified", "question_id": "2615", "frontend_id": "2524", "title_slug": "maximum-frequency-score-of-a-subarray", "paid_only": false, "language": "python3", "source": "solution.py", "native_entrypoint": "Solution.maxFrequencyScore", "verified_submission_id": "2075240740", "verified_at": "2026-07-21T03:47:58+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2615",
+  "frontend_id": "2524",
+  "title_slug": "maximum-frequency-score-of-a-subarray",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.maxFrequencyScore",
+  "verified_submission_id": "2117840009",
+  "verified_at": "2026-08-23T21:55:30.954072+00:00"
+}

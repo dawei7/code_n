@@ -6,9 +6,9 @@
   "frontend_id": "2228",
   "title_slug": "users-with-two-purchases-within-seven-days",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073905525",
-  "verified_at": "2026-07-19T21:30:39.629322+00:00"
+  "verified_submission_id": "2116404438",
+  "verified_at": "2026-08-22T17:01:59.850199+00:00"
 }

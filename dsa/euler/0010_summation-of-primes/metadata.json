@@ -8,7 +8,12 @@
   "euler_level": 0,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=10",
   "supported_languages": [
     "python"

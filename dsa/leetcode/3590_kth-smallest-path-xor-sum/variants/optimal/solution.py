@@ -1,51 +1,4 @@
-class BinarySumTrie:
-    def __init__(self):
-        self.count = 0
-        self.children = [None, None]
-
-    def add(self, num: int, delta: int, bit=17):
-        self.count += delta
-        if bit < 0:
-            return
-        b = (num >> bit) & 1
-        if not self.children[b]:
-            self.children[b] = BinarySumTrie()
-        self.children[b].add(num, delta, bit - 1)
-
-    def collect(self, prefix=0, bit=17, output=None):
-        if output is None:
-            output = []
-        if self.count == 0:
-            return output
-        if bit < 0:
-            output.append(prefix)
-            return output
-        if self.children[0]:
-            self.children[0].collect(prefix, bit - 1, output)
-        if self.children[1]:
-            self.children[1].collect(prefix | (1 << bit), bit - 1, output)
-        return output
-
-    def exists(self, num: int, bit=17):
-        if self.count == 0:
-            return False
-        if bit < 0:
-            return True
-        b = (num >> bit) & 1
-        return self.children[b].exists(num, bit - 1) if self.children[b] else False
-
-    def find_kth(self, k: int, bit=17):
-        if k > self.count:
-            return -1
-        if bit < 0:
-            return 0
-        left_count = self.children[0].count if self.children[0] else 0
-        if k <= left_count:
-            return self.children[0].find_kth(k, bit - 1)
-        elif self.children[1]:
-            return (1 << bit) + self.children[1].find_kth(k - left_count, bit - 1)
-        else:
-            return -1
+from typing import List
 
 
 class Solution:
@@ -57,41 +10,111 @@ class Solution:
         for i in range(1, n):
             tree[par[i]].append(i)
 
-        path_xor = vals[:]
+        path_xor = [0] * n
+        path_xor[0] = vals[0]
+
+        bfs = [0]
+        for u in bfs:
+            for v in tree[u]:
+                path_xor[v] = path_xor[u] ^ vals[v]
+                bfs.append(v)
+
         narvetholi = path_xor
 
-        def compute_xor(node, acc):
-            path_xor[node] ^= acc
-            for child in tree[node]:
-                compute_xor(child, path_xor[node])
+        sz = [1] * n
+        heavy = [-1] * n
+        for u in reversed(bfs):
+            max_c = 0
+            for v in tree[u]:
+                sz[u] += sz[v]
+                if sz[v] > max_c:
+                    max_c = sz[v]
+                    heavy[u] = v
 
-        compute_xor(0, 0)
+        tin = [0] * n
+        tout = [0] * n
+        flat = [0] * n
+        timer = 0
 
-        node_queries = defaultdict(list)
+        for u in range(n):
+            if heavy[u] != -1:
+                tree[u].remove(heavy[u])
+                tree[u].append(heavy[u])
+
+        stack = [0]
+        while stack:
+            u = stack.pop()
+            tin[u] = timer
+            flat[timer] = u
+            timer += 1
+            for v in reversed(tree[u]):
+                stack.append(v)
+        for u in range(n):
+            tout[u] = tin[u] + sz[u] - 1
+
+        MAX_V = 262144
+        BIT_MASK = 1 << 18
+        bit_tree = [0] * (MAX_V + 1)
+        counts = [0] * MAX_V
+        total_distinct = 0
+
+        def bit_add(val: int, delta: int) -> None:
+            nonlocal total_distinct
+            if delta == 1:
+                counts[val] += 1
+                if counts[val] == 1:
+                    total_distinct += 1
+                    i = val + 1
+                    while i <= MAX_V:
+                        bit_tree[i] += 1
+                        i += i & (-i)
+            else:
+                counts[val] -= 1
+                if counts[val] == 0:
+                    total_distinct -= 1
+                    i = val + 1
+                    while i <= MAX_V:
+                        bit_tree[i] -= 1
+                        i += i & (-i)
+
+        def find_kth(k: int) -> int:
+            if k > total_distinct:
+                return -1
+            idx = 0
+            current_sum = 0
+            m = BIT_MASK
+            while m > 0:
+                next_idx = idx + m
+                if next_idx <= MAX_V and current_sum + bit_tree[next_idx] < k:
+                    idx = next_idx
+                    current_sum += bit_tree[idx]
+                m >>= 1
+            return idx
+
+        node_queries = [[] for _ in range(n)]
         for idx, (u, k) in enumerate(queries):
             node_queries[u].append((k, idx))
 
-        trie_pool = {}
-        result = [0] * len(queries)
+        ans = [-1] * len(queries)
 
-        def dfs(node):
-            trie_pool[node] = BinarySumTrie()
-            trie_pool[node].add(path_xor[node], 1)
-            for child in tree[node]:
-                dfs(child)
-                if trie_pool[node].count < trie_pool[child].count:
-                    trie_pool[node], trie_pool[child] = (
-                        trie_pool[child],
-                        trie_pool[node],
-                    )
-                for val in trie_pool[child].collect():
-                    if not trie_pool[node].exists(val):
-                        trie_pool[node].add(val, 1)
-            for k, idx in node_queries[node]:
-                if trie_pool[node].count < k:
-                    result[idx] = -1
-                else:
-                    result[idx] = trie_pool[node].find_kth(k)
+        dsu_stack = [(0, 0, 1)]
+        while dsu_stack:
+            u, stage, keep = dsu_stack.pop()
+            if stage == 0:
+                dsu_stack.append((u, 1, keep))
+                if heavy[u] != -1:
+                    dsu_stack.append((heavy[u], 0, 1))
+                for v in tree[u][:-1] if heavy[u] != -1 else tree[u]:
+                    dsu_stack.append((v, 0, 0))
+            else:
+                for v in tree[u][:-1] if heavy[u] != -1 else []:
+                    for p in range(tin[v], tout[v] + 1):
+                        bit_add(path_xor[flat[p]], 1)
+                bit_add(path_xor[u], 1)
+                for k, q_idx in node_queries[u]:
+                    ans[q_idx] = find_kth(k)
+                if not keep:
+                    for p in range(tin[u], tout[u] + 1):
+                        bit_add(path_xor[flat[p]], -1)
 
-        dfs(0)
-        return result
+        return ans

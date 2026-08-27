@@ -1,3 +1,4 @@
+-- Write your PostgreSQL query statement below
 WITH
     user_with_last_event AS (
         SELECT
@@ -37,7 +38,7 @@ SELECT
     l.current_plan,
     l.current_monthly_amount,
     h.max_historical_amount,
-    DATEDIFF(h.last_event_date, h.start_date) AS days_as_subscriber
+    (h.last_event_date::date - h.start_date::date) AS days_as_subscriber
 FROM
     latest_event l
     JOIN user_history h ON l.user_id = h.user_id
@@ -45,5 +46,5 @@ WHERE
     l.last_event_type <> 'cancel'
     AND h.downgrade_count >= 1
     AND l.current_monthly_amount < 0.5 * h.max_historical_amount
-    AND DATEDIFF(h.last_event_date, h.start_date) >= 60
+    AND (h.last_event_date::date - h.start_date::date) >= 60
 ORDER BY days_as_subscriber DESC, l.user_id ASC;

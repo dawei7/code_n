@@ -1,6 +1,4 @@
-# Common Factors Between Two Sequences
-
-### Common Factors Between Two Sequences
+## Description
 
 Let $G(a, b)$ be the smallest non-negative integer $n$ for which $\operatorname{\mathbf{gcd}}$Greatest common divisor$(n^3 + b, (n + a)^3 + b)$ is maximized.
 
@@ -10,5 +8,20 @@ Let $H(m, n) = \sum G(a, b)$ for $1 \le a \le m$, $1 \le b \le n$.
 
 You are given $H(5, 5) = 128878$ and $H(10, 10) = 32936544$.
 
-
 Find $H(18, 1900)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -8,7 +8,20 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Squarefree Number",
+      "slug": "squarefree-number"
+    },
+    {
+      "name": "Sum Of Squares",
+      "slug": "sum-of-squares"
+    }
+  ],
   "url": "https://projecteuler.net/problem=273",
   "supported_languages": [
     "python"

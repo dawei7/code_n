@@ -6,8 +6,8 @@
   "frontend_id": "184",
   "title_slug": "department-highest-salary",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064194507",
-  "verified_at": "2026-07-11T18:25:45.347934+00:00"
+  "verified_submission_id": "2108888550",
+  "verified_at": "2026-08-16T11:08:47.513290+00:00"
 }

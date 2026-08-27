@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH RECURSIVE
     Month AS (
         SELECT 1 AS month

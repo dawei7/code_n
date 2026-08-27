@@ -4,6 +4,7 @@
 
 Let $E(x_0, y_0)$ be the number of division steps in Euclid's algorithm to compute $\gcd(x_0, y_0)$:
 $$x_n = y_{n-1}, \quad y_n = x_{n-1} \bmod y_{n-1}$$
+
 $E(x_0, y_0)$ is the smallest $n$ such that $y_n = 0$.
 
 Define $S(N) = \sum_{x=1}^N \sum_{y=1}^N E(x, y)$.

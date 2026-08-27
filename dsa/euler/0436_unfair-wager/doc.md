@@ -1,6 +1,4 @@
-# Unfair Wager
-
-### Unfair Wager
+## Description
 
 Julie proposes the following wager to her sister Louise.
 
@@ -16,17 +14,29 @@ The second player, Julie, continues adding to $S$ different random numbers from 
 
 The player with the highest number wins and the loser washes the dishes, i.e. if $y \gt x$ the second player wins.
 
-
-
 For example, if the first player draws $0.62$ and $0.44$, the first player turn ends since $0.62+0.44 \gt 1$ and $x = 0.44$.
 
 If the second players draws $0.1$, $0.27$ and $0.91$, the second player turn ends since $0.62+0.44+0.1+0.27+0.91 \gt 2$ and $y = 0.91$.
 Since $y \gt x$, the second player wins.
-
-
 
 Louise thinks about it for a second, and objects: "That's not fair".
 
 What is the probability that the second player wins?
 
 Give your answer rounded to $10$ places behind the decimal point in the form 0.abcdefghij.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

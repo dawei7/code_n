@@ -6,9 +6,9 @@
   "frontend_id": "2339",
   "title_slug": "all-the-matches-of-the-league",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2080715586",
-  "verified_at": "2026-07-25T12:21:56.6901711Z"
+  "verified_submission_id": "2116422852",
+  "verified_at": "2026-08-22T17:16:46.541180+00:00"
 }

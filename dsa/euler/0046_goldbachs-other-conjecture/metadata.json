@@ -8,7 +8,16 @@
   "euler_level": 1,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=46",
   "supported_languages": [
     "python"

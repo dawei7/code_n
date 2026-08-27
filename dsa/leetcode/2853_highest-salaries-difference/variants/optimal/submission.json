@@ -6,9 +6,9 @@
   "frontend_id": "2853",
   "title_slug": "highest-salaries-difference",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2077578833",
-  "verified_at": "2026-07-22T18:51:00+00:00"
+  "verified_submission_id": "2120598532",
+  "verified_at": "2026-08-26T08:59:27.079914+00:00"
 }

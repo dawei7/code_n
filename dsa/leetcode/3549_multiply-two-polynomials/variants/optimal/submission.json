@@ -1,14 +1,14 @@
 {
-    "schema_version":  1,
-    "provider":  "leetcode.com",
-    "status":  "verified",
-    "question_id":  "3883",
-    "frontend_id":  "3549",
-    "title_slug":  "multiply-two-polynomials",
-    "paid_only":  false,
-    "language":  "python3",
-    "source":  "solutions/solution.py",
-    "native_entrypoint":  "Solution.multiply",
-    "verified_submission_id":  "2089300333",
-    "verified_at":  "2026-07-31T21:22:20.423+00:00"
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3883",
+  "frontend_id": "3549",
+  "title_slug": "multiply-two-polynomials",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.multiply",
+  "verified_submission_id": "2120656247",
+  "verified_at": "2026-08-26T10:06:17.335813+00:00"
 }

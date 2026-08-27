@@ -42,7 +42,7 @@ import * as solutionsApi from '../api/solutions';
 import * as profilesApi from '../api/profiles';
 import * as customProblemSetsApi from '../api/customProblemSets';
 import type { AlgorithmSetId } from '../lib/algorithmSets';
-import { getAlgorithmSetOption, normalizeAlgorithmSet } from '../lib/algorithmSets';
+import { getAlgorithmSetOption, normalizeAlgorithmSet, isEulerSet } from '../lib/algorithmSets';
 import { DEFAULT_ACCENT_COLORS, normalizeAccentColors } from '../lib/accentColors';
 import { CHEATER_MODE_STORAGE_KEY } from '../lib/cheaterMode';
 
@@ -239,10 +239,27 @@ export const useAppStore = create<AppState>((set, get) => ({
   }),
 
   appMode: (localStorage.getItem('coden-app-mode') as 'coden' | 'euler') || 'coden',
-  setAppMode: (mode) => set(() => {
+  setAppMode: (mode) => {
     localStorage.setItem('coden-app-mode', mode);
-    return { appMode: mode };
-  }),
+    const currentSet = get().activeSet;
+    const isCurrentEuler = isEulerSet(currentSet);
+    let nextSet = currentSet;
+    if (mode === 'euler' && (!isCurrentEuler && currentSet !== 'custom')) {
+      nextSet = 'euler_level';
+    } else if (mode === 'coden' && (isCurrentEuler && currentSet !== 'custom')) {
+      nextSet = 'leetcode';
+    }
+    set({
+      appMode: mode,
+      activeSet: nextSet,
+      currentDetail: null,
+      openChallengeIds: [],
+      source: '',
+      runResult: null,
+      error: null,
+    });
+    void progressApi.updateProgressSettings({ active_set: nextSet });
+  },
 
 
   cheaterMode: localStorage.getItem(CHEATER_MODE_STORAGE_KEY) === 'true',
@@ -647,9 +664,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   async loadProgress() {
     try {
       const p = await progressApi.getProgress();
+      const currentMode = get().appMode;
       set({ 
         progress: p,
-        activeSet: normalizeAlgorithmSet(p.active_set),
+        activeSet: normalizeAlgorithmSet(p.active_set, currentMode),
         activeCustomSetId: p.active_custom_set_id || null,
         paneFontScales: p.pane_font_scales ?? {},
         paneSizes: p.pane_sizes ?? {},
@@ -836,6 +854,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   async setActiveSet(setVal: AlgorithmSetId) {
+    const currentMode = get().appMode;
     const previousSet = get().activeSet;
     const updates: Partial<AppState> = {
       activeSet: setVal,
@@ -845,7 +864,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       runResult: null,
       error: null,
     };
-    const setOption = getAlgorithmSetOption(setVal);
+    const setOption = getAlgorithmSetOption(setVal, currentMode);
     if (!setOption.hasCareerPath && get().activeTopic === 'career_path') {
       updates.activeTopic = 'reference';
     }
@@ -854,7 +873,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       const p = await progressApi.updateProgressSettings({ active_set: setVal });
       set({ 
         progress: p,
-        activeSet: normalizeAlgorithmSet(p.active_set),
+        activeSet: normalizeAlgorithmSet(p.active_set, currentMode),
         activeCustomSetId: p.active_custom_set_id || get().activeCustomSetId,
       });
     } catch (e) {

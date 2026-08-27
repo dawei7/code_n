@@ -25,6 +25,7 @@ A naive approach samples fractions $f$ randomly or numerically integrates probab
 ### Monotonicity & Discrete Minimal Heads Threshold
 For a fixed fraction $f \in (0, 1)$, the final wealth $W(H, f)$ is strictly increasing in $H$:
 $$W(H, f) \ge 10^9 \iff H \ln(1 + 2f) + (N - H) \ln(1 - f) \ge 9 \ln(10)$$
+
 $$H \ge \frac{9 \ln(10) - N \ln(1 - f)}{\ln(1 + 2f) - \ln(1 - f)}$$
 To maximize the probability:
 $$P(W \ge 10^9) = \sum_{k = H_{\min}(f)}^{N} \binom{N}{k} 2^{-N}$$

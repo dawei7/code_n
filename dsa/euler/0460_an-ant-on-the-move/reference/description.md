@@ -1,12 +1,8 @@
-### An Ant on the Move
+## Description
 
 On the Euclidean plane, an ant travels from point $A(0, 1)$ to point $B(d, 1)$ for an integer $d$.
 
-
-
-
 In each step, the ant at point $(x_0, y_0)$ chooses one of the lattice points $(x_1, y_1)$ which satisfy $x_1 \ge 0$ and $y_1 \ge 1$ and goes straight to $(x_1, y_1)$ at a constant velocity $v$. The value of $v$ depends on $y_0$ and $y_1$ as follows:
-
 
  If $y_0 = y_1$, the value of $v$ equals $y_0$.
  If $y_0 \ne y_1$, the value of $v$ equals $(y_1 - y_0) / (\ln(y_1) - \ln(y_0))$.
@@ -17,22 +13,10 @@ From $P_1(1, 3)$ to $P_2(3, 3)$ the ant travels at velocity $3$ so the required 
 
 Thus the total required time is $1.2283 + 0.6667 + 1.2283 = 3.1233$.
 
-
-
-
 The right image is another path. The total required time is calculated as $0.98026 + 1 + 0.98026 = 2.96052$. It can be shown that this is the quickest path for $d = 4$.
-
-
-
-
-
-
 
 Let $F(d)$ be the total required time if the ant chooses the quickest path. For example, $F(4) \approx 2.960516287$.
 
 We can verify that $F(10) \approx 4.668187834$ and $F(100) \approx 9.217221972$.
-
-
-
 
 Find $F(10000)$. Give your answer rounded to nine decimal places.

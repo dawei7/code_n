@@ -8,7 +8,12 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Cards",
+      "slug": "cards"
+    }
+  ],
   "url": "https://projecteuler.net/problem=928",
   "supported_languages": [
     "python"

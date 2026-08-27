@@ -8,7 +8,20 @@
   "euler_level": 30,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Arithmetic Operator",
+      "slug": "arithmetic-operator"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=484",
   "supported_languages": [
     "python"

@@ -1,14 +1,14 @@
 {
-    "schema_version":  1,
-    "provider":  "leetcode.com",
-    "status":  "verified",
-    "question_id":  "3890",
-    "frontend_id":  "3555",
-    "title_slug":  "smallest-subarray-to-sort-in-every-sliding-window",
-    "paid_only":  false,
-    "language":  "python3",
-    "source":  "solutions/solution.py",
-    "native_entrypoint":  "Solution.minSubarraySort",
-    "verified_submission_id":  "2089300687",
-    "verified_at":  "2026-07-31T21:22:20.423+00:00"
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3890",
+  "frontend_id": "3555",
+  "title_slug": "smallest-subarray-to-sort-in-every-sliding-window",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.minSubarraySort",
+  "verified_submission_id": "2120657326",
+  "verified_at": "2026-08-26T10:07:25.372339+00:00"
 }

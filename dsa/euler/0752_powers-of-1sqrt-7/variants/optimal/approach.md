@@ -4,6 +4,7 @@
 
 For positive integer $n$, let:
 $$(1 + \sqrt{7})^n = \alpha(n) + \beta(n)\sqrt{7}$$
+
 $g(x)$ is the smallest positive integer $n$ such that $\alpha(n) \equiv 1 \pmod x$ and $\beta(n) \equiv 0 \pmod x$ (or 0 if no such $n$ exists).
 Define:
 $$G(N) = \sum_{x=2}^N g(x)$$

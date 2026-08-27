@@ -6,8 +6,8 @@
   "frontend_id": "596",
   "title_slug": "classes-with-at-least-5-students",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065451873",
-  "verified_at": "2026-07-12T21:18:28.641294+00:00"
+  "verified_submission_id": "2113228633",
+  "verified_at": "2026-08-19T20:42:23.227441+00:00"
 }

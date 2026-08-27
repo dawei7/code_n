@@ -8,7 +8,20 @@
   "euler_level": 38,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Lattice",
+      "slug": "lattice"
+    },
+    {
+      "name": "Polygon",
+      "slug": "polygon"
+    }
+  ],
   "url": "https://projecteuler.net/problem=453",
   "supported_languages": [
     "python"

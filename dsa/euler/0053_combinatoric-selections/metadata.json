@@ -8,7 +8,20 @@
   "euler_level": 0,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    }
+  ],
   "url": "https://projecteuler.net/problem=53",
   "supported_languages": [
     "python"

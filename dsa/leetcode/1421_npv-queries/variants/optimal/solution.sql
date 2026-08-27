@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT q.*, COALESCE(npv, 0) AS npv
 FROM
     Queries AS q

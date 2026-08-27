@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findPermutationDifference",
-  "verified_submission_id": "2079738730",
-  "verified_at": "2026-07-24T17:24:00+02:00"
+  "verified_submission_id": "2117876606",
+  "verified_at": "2026-08-23T23:59:15.721796+00:00"
 }

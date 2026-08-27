@@ -1,26 +1,28 @@
-# Random Connected Area
-
-### Random Connected Area
+## Description
 
 Consider a rectangle made up of $W \times H$ square cells each with area $1$.
  Each cell is independently coloured black with probability $0.5$ otherwise white. Black cells sharing an edge are assumed to be connected.
 Consider the maximum area of connected cells.
 
-
-
-
 Define $E(W,H)$ to be the expected value of this maximum area.
 For example, $E(2,2)=1.875$, as illustrated below.
 
-
-
-
-
-
-
 You are also given $E(4, 4) = 5.76487732$, rounded to $8$ decimal places.
 
-
-
-
 Find $E(7, 7)$, rounded to $8$ decimal places.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

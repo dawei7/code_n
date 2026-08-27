@@ -4,6 +4,7 @@
 
 Given is the recursively defined sequence:
 $$u_0 = -1$$
+
 $$u_{n+1} = f(u_n) = \lfloor 2^{30.403243784 - u_n^2} \rfloor \cdot 10^{-9}$$
 
 The objective is to find the value of **$u_n + u_{n+1}$ for $n = 10^{12}$**, formatted to $9$ decimal places:

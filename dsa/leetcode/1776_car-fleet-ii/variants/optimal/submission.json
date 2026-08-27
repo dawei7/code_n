@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getCollisionTimes",
-  "verified_submission_id": "2071101584",
-  "verified_at": "2026-07-17T12:36:00.013010+00:00"
+  "verified_submission_id": "2114809709",
+  "verified_at": "2026-08-21T07:52:32.352719+00:00"
 }

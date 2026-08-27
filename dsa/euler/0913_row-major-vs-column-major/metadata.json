@@ -8,7 +8,16 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Permutation",
+      "slug": "permutation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=913",
   "supported_languages": [
     "python"

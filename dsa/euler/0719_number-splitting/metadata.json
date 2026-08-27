@@ -8,7 +8,20 @@
   "euler_level": 5,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    },
+    {
+      "name": "Square Root",
+      "slug": "square-root"
+    }
+  ],
   "url": "https://projecteuler.net/problem=719",
   "supported_languages": [
     "python"

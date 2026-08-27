@@ -8,7 +8,16 @@
   "euler_level": 28,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Geometric Progression",
+      "slug": "geometric-progression"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    }
+  ],
   "url": "https://projecteuler.net/problem=771",
   "supported_languages": [
     "python"

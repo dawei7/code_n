@@ -8,7 +8,20 @@
   "euler_level": 8,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Decimal Representation",
+      "slug": "decimal-representation"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Recurring Decimal",
+      "slug": "recurring-decimal"
+    }
+  ],
   "url": "https://projecteuler.net/problem=183",
   "supported_languages": [
     "python"

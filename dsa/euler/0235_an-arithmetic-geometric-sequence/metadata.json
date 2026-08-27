@@ -8,7 +8,12 @@
   "euler_level": 10,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Geometric Progression",
+      "slug": "geometric-progression"
+    }
+  ],
   "url": "https://projecteuler.net/problem=235",
   "supported_languages": [
     "python"

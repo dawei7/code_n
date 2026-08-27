@@ -8,7 +8,16 @@
   "euler_level": 13,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Modular Inverse",
+      "slug": "modular-inverse"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=451",
   "supported_languages": [
     "python"

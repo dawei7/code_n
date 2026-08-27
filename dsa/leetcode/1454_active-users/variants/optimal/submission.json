@@ -6,9 +6,9 @@
   "frontend_id": "1454",
   "title_slug": "active-users",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069166953",
-  "verified_at": "2026-07-15T23:11:24.762223+00:00"
+  "verified_submission_id": "2113301399",
+  "verified_at": "2026-08-20T00:06:52.028023+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.checkPrimeFrequency",
-  "verified_submission_id": "2083387576",
-  "verified_at": "2026-07-27T13:18:00Z"
+  "verified_submission_id": "2120663690",
+  "verified_at": "2026-08-26T10:14:19.798479+00:00"
 }

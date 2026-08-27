@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.largestSumAfterKNegations",
-  "verified_submission_id": "2067268599",
-  "verified_at": "2026-07-14T11:01:46.614241+00:00"
+  "verified_submission_id": "2113276043",
+  "verified_at": "2026-08-19T22:39:21.338796+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.longestArithSeqLength",
-  "verified_submission_id": "2067328551",
-  "verified_at": "2026-07-14T12:11:29.616851+00:00"
+  "verified_submission_id": "2113277316",
+  "verified_at": "2026-08-19T22:43:34.858020+00:00"
 }

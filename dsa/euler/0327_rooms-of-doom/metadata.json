@@ -8,7 +8,12 @@
   "euler_level": 8,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
   "url": "https://projecteuler.net/problem=327",
   "supported_languages": [
     "python"

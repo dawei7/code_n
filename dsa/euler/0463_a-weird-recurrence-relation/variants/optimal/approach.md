@@ -34,6 +34,7 @@ Let $g(k) = f(2k + 1)$. We define the 2D state vector:
 $$v(k) = \begin{pmatrix} f(k) \\ g(k) \end{pmatrix}$$
 Appending a binary digit to $k$ transforms $v(k)$ linearly:
 $$v(2k) = M_0 v(k) = \begin{pmatrix} 1 & 0 \\ -1 & 2 \end{pmatrix} v(k)$$
+
 $$v(2k+1) = M_1 v(k) = \begin{pmatrix} 0 & 1 \\ -2 & 3 \end{pmatrix} v(k)$$
 
 ---

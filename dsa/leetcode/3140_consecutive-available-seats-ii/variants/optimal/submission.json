@@ -6,9 +6,9 @@
   "frontend_id": "3140",
   "title_slug": "consecutive-available-seats-ii",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2079679629",
-  "verified_at": "2026-07-24T16:29:00+02:00"
+  "verified_submission_id": "2117876277",
+  "verified_at": "2026-08-23T23:58:02.754102+00:00"
 }

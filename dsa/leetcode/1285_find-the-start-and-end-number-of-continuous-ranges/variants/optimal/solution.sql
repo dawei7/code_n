@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
@@ -8,7 +8,7 @@ WITH
             (
                 SELECT
                     log_id,
-                    IF((log_id - LAG(log_id) OVER (ORDER BY log_id)) = 1, 0, 1) AS delta
+                    (CASE WHEN (log_id - LAG(log_id) OVER (ORDER BY log_id)) = 1 THEN 0 ELSE 1 END) AS delta
                 FROM Logs
             ) AS t
     )

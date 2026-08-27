@@ -8,7 +8,20 @@
   "euler_level": 23,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Grid Pattern",
+      "slug": "grid-pattern"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=790",
   "supported_languages": [
     "python"

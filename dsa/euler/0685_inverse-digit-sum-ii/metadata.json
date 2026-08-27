@@ -8,7 +8,12 @@
   "euler_level": 29,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Sum",
+      "slug": "digit-sum"
+    }
+  ],
   "url": "https://projecteuler.net/problem=685",
   "supported_languages": [
     "python"

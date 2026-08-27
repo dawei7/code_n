@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxAncestorDiff",
-  "verified_submission_id": "2067325739",
-  "verified_at": "2026-07-14T12:08:04.831845+00:00"
+  "verified_submission_id": "2113277273",
+  "verified_at": "2026-08-19T22:43:22.486961+00:00"
 }

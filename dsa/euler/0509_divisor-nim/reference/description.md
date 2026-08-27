@@ -1,4 +1,4 @@
-### Divisor Nim
+## Description
 
 Anton and Bertrand love to play three pile Nim.
 
@@ -13,13 +13,9 @@ The first player that can't make a valid move loses the game.
 
 Of course both Anton and Bertrand play optimally.
 
-
-
 The triple $(a, b, c)$ indicates the number of stones in the three piles.
 
 Let $S(n)$ be the number of winning positions for the next player for $1 \le a, b, c \le n$.
 $S(10) = 692$ and $S(100) = 735494$.
-
-
 
 Find $S(123456787654321)$ modulo $1234567890$.

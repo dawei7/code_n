@@ -8,7 +8,16 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fibonacci Number",
+      "slug": "fibonacci-number"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    }
+  ],
   "url": "https://projecteuler.net/problem=258",
   "supported_languages": [
     "python"

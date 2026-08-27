@@ -1,9 +1,10 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
-    CONCAT('#', SUBSTRING_INDEX(SUBSTRING_INDEX(tweet, '#', -1), ' ', 1)) AS hashtag,
-    COUNT(1) AS hashtag_count
+    (REGEXP_MATCH(tweet, '#[A-Za-z0-9_]+'))[1] AS hashtag,
+    COUNT(*) AS hashtag_count
 FROM Tweets
-WHERE DATE_FORMAT(tweet_date, '%Y%m') = '202402'
-GROUP BY 1
-ORDER BY 2 DESC, 1 DESC
+WHERE TO_CHAR(tweet_date, 'YYYYMM') = '202402'
+GROUP BY (REGEXP_MATCH(tweet, '#[A-Za-z0-9_]+'))[1]
+ORDER BY hashtag_count DESC, hashtag DESC
 LIMIT 3;
+

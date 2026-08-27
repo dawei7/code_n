@@ -8,7 +8,20 @@
   "euler_level": 20,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Sum Of Squares",
+      "slug": "sum-of-squares"
+    }
+  ],
   "url": "https://projecteuler.net/problem=875",
   "supported_languages": [
     "python"

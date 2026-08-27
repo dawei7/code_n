@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numberOfSubmatrices",
-  "verified_submission_id": "2080145942",
-  "verified_at": "2026-07-25T01:26:38.582004+00:00"
+  "verified_submission_id": "2117880568",
+  "verified_at": "2026-08-24T00:12:48.284623+00:00"
 }

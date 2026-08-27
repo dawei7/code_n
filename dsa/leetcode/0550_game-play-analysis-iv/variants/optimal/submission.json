@@ -6,8 +6,8 @@
   "frontend_id": "550",
   "title_slug": "game-play-analysis-iv",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065353976",
-  "verified_at": "2026-07-12T18:36:18.299248+00:00"
+  "verified_submission_id": "2113224716",
+  "verified_at": "2026-08-19T20:35:15.589497+00:00"
 }

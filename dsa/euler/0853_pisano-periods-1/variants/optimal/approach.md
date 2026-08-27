@@ -32,6 +32,7 @@ $$n \mid G_L = \gcd(F_L, F_{L+1} - 1)$$
 ### Exact Period Identification
 For $L = 120$:
 $$G_{120} = \gcd(F_{120}, F_{121} - 1) = 1548008755920 = 2^4 \cdot 3^2 \cdot 5 \cdot 11 \cdot 31 \cdot 41 \cdot 61 \cdot 2521$$
+
 $G_{120}$ has exactly $(4+1)(2+1)(2)(2)(2)(2)(2)(2) = 960$ divisors.
 
 A divisor $n \mid G_{120}$ has period **exactly** 120 (and not a proper divisor of 120) if and only if:

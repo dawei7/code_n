@@ -44,13 +44,17 @@ Simulating the elimination process for each $k \le 10^{18}$ requires $> 10^{18}$
 ### Exact Base-4 Block Recurrence in $O(\log n)$
 Unrolling two steps of the recurrence gives algebraic relations on residues modulo 4:
 $$P(4m) = 4P(m) - 2$$
+
 $$P(4m + 1) = 4P(m) - 2$$
+
 $$P(4m + 2) = 4P(m)$$
+
 $$P(4m + 3) = 4P(m)$$
 Summing over a full block of 4 elements:
 $$\sum_{r=0}^3 P(4m + r) = 16 P(m) - 4$$
 Thus, the summatory function satisfies:
 $$S(4m + \text{rem}) = S(3) + \sum_{k=1}^{m-1} (16 P(k) - 4) + \sum_{r=0}^{\text{rem}} P(4m + r)$$
+
 $$S(n) = 5 + 16 S(m - 1) - 4(m - 1) + \text{PartialBlock}(m, \text{rem})$$
 
 This evaluates $S(10^{18})$ in **$< 0.001$ seconds**!

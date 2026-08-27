@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxEqualRowsAfterFlips",
-  "verified_submission_id": "2067499790",
-  "verified_at": "2026-07-14T14:57:33.721292+00:00"
+  "verified_submission_id": "2113279987",
+  "verified_at": "2026-08-19T22:52:23.639011+00:00"
 }

@@ -8,7 +8,16 @@
   "euler_level": 13,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Subset",
+      "slug": "subset"
+    }
+  ],
   "url": "https://projecteuler.net/problem=249",
   "supported_languages": [
     "python"

@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2636","frontend_id":"2542","title_slug":"maximum-subsequence-score","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.maxScore","verified_submission_id":"2075341483","verified_at":"2026-07-21T05:21:38+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2636",
+  "frontend_id": "2542",
+  "title_slug": "maximum-subsequence-score",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.maxScore",
+  "verified_submission_id": "2117841228",
+  "verified_at": "2026-08-23T21:58:57.500508+00:00"
+}

@@ -6,8 +6,8 @@
   "frontend_id": "183",
   "title_slug": "customers-who-never-order",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064194184",
-  "verified_at": "2026-07-11T18:25:29.406707+00:00"
+  "verified_submission_id": "2108900544",
+  "verified_at": "2026-08-16T11:21:14.954195+00:00"
 }

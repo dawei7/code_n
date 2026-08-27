@@ -6,8 +6,8 @@
   "frontend_id": "3262",
   "title_slug": "find-overlapping-shifts",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2080369495",
-  "verified_at": "2026-07-25T06:28:01.814577+00:00"
+  "verified_submission_id": "2120614927",
+  "verified_at": "2026-08-26T09:18:58.424716+00:00"
 }

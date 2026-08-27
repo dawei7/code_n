@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getMinDistance",
-  "verified_submission_id": "2071670407",
-  "verified_at": "2026-07-18T02:30:13.609550+00:00"
+  "verified_submission_id": "2114815483",
+  "verified_at": "2026-08-21T08:00:50.912755+00:00"
 }

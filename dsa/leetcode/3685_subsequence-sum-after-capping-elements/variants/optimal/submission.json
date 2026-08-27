@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.subsequenceSumAfterCapping",
-  "verified_submission_id": "2084017911",
-  "verified_at": "2026-07-28T00:45:31.405374+00:00"
+  "verified_submission_id": "2122306775",
+  "verified_at": "2026-08-27T19:22:02.181736+00:00"
 }

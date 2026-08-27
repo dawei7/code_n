@@ -6,9 +6,9 @@
   "frontend_id": "1988",
   "title_slug": "find-cutoff-score-for-each-school",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072802899",
-  "verified_at": "2026-07-18T21:13:07.287034+00:00"
+  "verified_submission_id": "2116355631",
+  "verified_at": "2026-08-22T16:21:31.365544+00:00"
 }

@@ -1,18 +1,10 @@
-# Prize Strings
-
-### Prize Strings
+## Description
 
 A particular school offers cash rewards to children with good attendance and punctuality. If they are absent for three consecutive days or late on more than one occasion then they forfeit their prize.
 
-
-
 During an n-day period a trinary string is formed for each child consisting of L's (late), O's (on time), and A's (absent).
 
-
-
 Although there are eighty-one trinary strings for a 4-day period that can be formed, exactly forty-three strings would lead to a prize:
-
-
 
 OOOO OOOA OOOL OOAO OOAA OOAL OOLO OOLA OAOO OAOA
 
@@ -24,6 +16,20 @@ AALO AALA ALOO ALOA ALAO ALAA LOOO LOOA LOAO LOAA
 
 LAOO LAOA LAAO
 
-
-
 How many "prize" strings exist over a 30-day period?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

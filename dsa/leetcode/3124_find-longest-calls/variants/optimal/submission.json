@@ -6,9 +6,9 @@
   "frontend_id": "3124",
   "title_slug": "find-longest-calls",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2079533289",
-  "verified_at": "2026-07-24T13:59:00+02:00"
+  "verified_submission_id": "2120604860",
+  "verified_at": "2026-08-26T09:07:07.647690+00:00"
 }

@@ -8,7 +8,20 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    }
+  ],
   "url": "https://projecteuler.net/problem=180",
   "supported_languages": [
     "python"

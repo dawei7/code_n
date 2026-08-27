@@ -8,7 +8,20 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    },
+    {
+      "name": "Random Walk",
+      "slug": "random-walk"
+    }
+  ],
   "url": "https://projecteuler.net/problem=978",
   "supported_languages": [
     "python"

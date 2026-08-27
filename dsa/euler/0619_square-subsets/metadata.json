@@ -8,7 +8,20 @@
   "euler_level": 21,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    },
+    {
+      "name": "Subset",
+      "slug": "subset"
+    }
+  ],
   "url": "https://projecteuler.net/problem=619",
   "supported_languages": [
     "python"

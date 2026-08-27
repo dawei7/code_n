@@ -8,7 +8,16 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=893",
   "supported_languages": [
     "python"

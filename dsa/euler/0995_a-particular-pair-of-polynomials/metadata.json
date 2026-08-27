@@ -8,7 +8,20 @@
   "euler_level": 38,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=995",
   "supported_languages": [
     "python"

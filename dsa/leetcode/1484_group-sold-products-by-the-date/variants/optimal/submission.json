@@ -6,9 +6,9 @@
   "frontend_id": "1484",
   "title_slug": "group-sold-products-by-the-date",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2074761242",
-  "verified_at": "2026-07-20T15:45:43.003987+00:00"
+  "verified_submission_id": "2114785422",
+  "verified_at": "2026-08-21T07:20:01.263893+00:00"
 }

@@ -1,15 +1,13 @@
-# XOR-Equation B
-
-### XOR-Equation B
+## Description
 
 We use $x\oplus y$ for the bitwise XOR of $x$ and $y$.
 
 Define the XOR-product of $x$ and $y$, denoted by $x \otimes y$, similar to a long multiplication in base $2$, except that the intermediate results are XORed instead of the usual integer addition.
 
-
 For example, $7 \otimes 3 = 9$, or in base $2$, $111_2 \otimes 11_2 = 1001_2$:
 
-$$\begin{align*}
+$$
+\begin{aligned}
 \phantom{\otimes 111} 111_2 \\
 \otimes \phantom{1111} 11_2 \\
 \hline
@@ -17,27 +15,37 @@ $$\begin{align*}
 \oplus \phantom{11} 111_2  \phantom{9} \\
 \hline
 \phantom{\otimes 11} 1001_2 \\
-\end{align*}$$
-
+\end{aligned}
+$$
 
 We consider the equation:
 
-$$\begin{align}
+$$
+\begin{aligned}
 (a \otimes a) \oplus (2 \otimes a \otimes b) \oplus (b \otimes b) = k.
-\end{align}$$
-
+\end{aligned}
+$$
 
 For example, $(a, b) = (3, 6)$ is a solution to this equation for $k=5$.
 
-
-
-
 Let $G(N,m)$ be the number of solutions to those equations with $k \le m$ and $0 \le a \le b \le N$.
-
-
 
 You are given $G(1000,100)=398$.
 
-
-
 Find $G(10^{17},1\,000\,000).$
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

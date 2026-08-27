@@ -1,3 +1,4 @@
+-- Write your PostgreSQL query statement below
 WITH
     recent AS (
         SELECT
@@ -23,6 +24,6 @@ FROM
     recent
     JOIN employees USING (employee_id)
 WHERE rn > 1 AND rn <= 3
-GROUP BY 1
+GROUP BY employee_id, name
 HAVING COUNT(*) = 2 AND MIN(delta) > 0
-ORDER BY 3 DESC, 2;
+ORDER BY improvement_score DESC, name ASC;

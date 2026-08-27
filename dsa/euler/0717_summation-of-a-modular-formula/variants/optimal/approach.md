@@ -4,7 +4,9 @@
 
 For an odd prime $p$, define:
 $$f(p) = \left\lfloor \frac{2^{2^p}}{p} \right\rfloor \bmod 2^p$$
+
 $$g(p) = f(p) \bmod p$$
+
 $$G(N) = \sum_{3 \le p < N, p \text{ prime}} g(p)$$
 
 We are given:

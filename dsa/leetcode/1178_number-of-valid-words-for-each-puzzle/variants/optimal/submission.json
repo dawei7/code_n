@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findNumOfValidWords",
-  "verified_submission_id": "2067896242",
-  "verified_at": "2026-07-14T22:03:52.979125+00:00"
+  "verified_submission_id": "2113286001",
+  "verified_at": "2026-08-19T23:12:57.998071+00:00"
 }

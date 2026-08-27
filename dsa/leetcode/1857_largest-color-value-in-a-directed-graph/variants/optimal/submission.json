@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.largestPathValue",
-  "verified_submission_id": "2071733896",
-  "verified_at": "2026-07-18T04:25:50.866990+00:00"
+  "verified_submission_id": "2114816241",
+  "verified_at": "2026-08-21T08:01:52.855040+00:00"
 }

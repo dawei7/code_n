@@ -8,7 +8,16 @@
   "euler_level": 16,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "State Machine",
+      "slug": "state-machine"
+    }
+  ],
   "url": "https://projecteuler.net/problem=993",
   "supported_languages": [
     "python"

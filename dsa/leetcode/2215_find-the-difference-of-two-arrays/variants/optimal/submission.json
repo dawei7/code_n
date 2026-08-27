@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "class Solution.findDifference",
-  "verified_submission_id": "2073885480",
-  "verified_at": "2026-07-19T20:25:21.680926+00:00"
+  "verified_submission_id": "2116401092",
+  "verified_at": "2026-08-22T16:59:20.529566+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.subtreeInversionSum",
-  "verified_submission_id": "2082641676",
-  "verified_at": "2026-07-27T00:38:00Z"
+  "verified_submission_id": "2120655533",
+  "verified_at": "2026-08-26T10:05:24.833047+00:00"
 }

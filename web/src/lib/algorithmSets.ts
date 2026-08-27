@@ -12,6 +12,8 @@ export type AlgorithmSetId =
   | 'leetcode_quest'
   | 'neetcode'
   | 'algomaster'
+  | 'euler_level'
+  | 'euler_category'
   | 'custom';
 
 export interface AlgorithmSetOption {
@@ -23,7 +25,7 @@ export interface AlgorithmSetOption {
   hasCareerPath: boolean;
 }
 
-export const ALGORITHM_SETS: AlgorithmSetOption[] = [
+export const LEETCODE_SETS: AlgorithmSetOption[] = [
   {
     id: 'leetcode',
     label: 'All Problems by Topics',
@@ -122,19 +124,72 @@ export const ALGORITHM_SETS: AlgorithmSetOption[] = [
   },
 ];
 
-export function normalizeAlgorithmSet(value: string | null | undefined): AlgorithmSetId {
-  return ALGORITHM_SETS.some((set) => set.id === value)
-    ? (value as AlgorithmSetId)
-    : 'leetcode';
+export const EULER_SETS: AlgorithmSetOption[] = [
+  {
+    id: 'euler_level',
+    label: 'Problems by Level',
+    shortLabel: 'By Level',
+    category: 'Project Euler',
+    description: 'Project Euler problems grouped by difficulty level and ordered by Euler ID.',
+    hasCareerPath: false,
+  },
+  {
+    id: 'euler_category',
+    label: 'Problems by Category',
+    shortLabel: 'By Category',
+    category: 'Project Euler',
+    description: 'Project Euler problems grouped by category, ordered by Level, then by Euler ID.',
+    hasCareerPath: false,
+  },
+  {
+    id: 'custom',
+    label: 'Personal',
+    shortLabel: 'Personal',
+    category: 'Personal',
+    description: 'Your profile-specific top-level problem sets and learning paths.',
+    hasCareerPath: false,
+  },
+];
+
+export const ALGORITHM_SETS: AlgorithmSetOption[] = [
+  ...LEETCODE_SETS.filter((s) => s.id !== 'custom'),
+  ...EULER_SETS,
+];
+
+export function getAlgorithmSetsForMode(appMode: 'coden' | 'euler'): AlgorithmSetOption[] {
+  return appMode === 'euler' ? EULER_SETS : LEETCODE_SETS;
 }
 
-export function getAlgorithmSetLabel(value: string | null | undefined): string {
-  return ALGORITHM_SETS.find((set) => set.id === normalizeAlgorithmSet(value))?.label
-    ?? 'All Problems by Topics';
+export function isEulerSet(setId: string | null | undefined): boolean {
+  return setId === 'euler_level' || setId === 'euler_category';
 }
 
-export function getAlgorithmSetOption(value: string | null | undefined): AlgorithmSetOption {
-  return ALGORITHM_SETS.find((set) => set.id === normalizeAlgorithmSet(value)) ?? ALGORITHM_SETS[0]!;
+export function normalizeAlgorithmSet(
+  value: string | null | undefined,
+  appMode: 'coden' | 'euler' = 'coden',
+): AlgorithmSetId {
+  const sets = getAlgorithmSetsForMode(appMode);
+  if (sets.some((set) => set.id === value)) {
+    return value as AlgorithmSetId;
+  }
+  return appMode === 'euler' ? 'euler_level' : 'leetcode';
+}
+
+export function getAlgorithmSetLabel(
+  value: string | null | undefined,
+  appMode: 'coden' | 'euler' = 'coden',
+): string {
+  const normalized = normalizeAlgorithmSet(value, appMode);
+  return ALGORITHM_SETS.find((set) => set.id === normalized)?.label
+    ?? (appMode === 'euler' ? 'Problems by Level' : 'All Problems by Topics');
+}
+
+export function getAlgorithmSetOption(
+  value: string | null | undefined,
+  appMode: 'coden' | 'euler' = 'coden',
+): AlgorithmSetOption {
+  const normalized = normalizeAlgorithmSet(value, appMode);
+  return ALGORITHM_SETS.find((set) => set.id === normalized) ?? (appMode === 'euler' ? EULER_SETS[0]! : LEETCODE_SETS[0]!);
 }
 
 function hasExternalMembership(challenge: ChallengeSummary, kind: string): boolean {
@@ -145,7 +200,14 @@ export function challengeIsInAlgorithmSet(
   challenge: ChallengeSummary,
   value: string | null | undefined,
 ): boolean {
-  switch (normalizeAlgorithmSet(value)) {
+  const isEuler = challenge.dataset === 'euler' || challenge.id.startsWith('euler_');
+  if (value === 'euler_level' || value === 'euler_category') {
+    return isEuler;
+  }
+  if (isEuler) {
+    return false;
+  }
+  switch (value) {
     case 'elo':
     case 'elo_buckets':
       return challenge.elo_rating !== null || challenge.estimated_elo_rating !== null;
@@ -165,7 +227,7 @@ export function challengeIsInAlgorithmSet(
     case 'custom':
       return false;
     default:
-      return true;
+      return !isEuler;
   }
 }
 
@@ -173,7 +235,5 @@ export function challengesForAlgorithmSet(
   challenges: ChallengeSummary[],
   value: string | null | undefined,
 ): ChallengeSummary[] {
-  const activeSet = normalizeAlgorithmSet(value);
-  if (activeSet === 'leetcode' || activeSet === 'leetcode_id') return challenges;
-  return challenges.filter((challenge) => challengeIsInAlgorithmSet(challenge, activeSet));
+  return challenges.filter((challenge) => challengeIsInAlgorithmSet(challenge, value));
 }

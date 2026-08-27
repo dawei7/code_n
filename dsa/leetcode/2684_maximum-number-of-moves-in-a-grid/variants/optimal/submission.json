@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2756","frontend_id":"2684","title_slug":"maximum-number-of-moves-in-a-grid","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.maxMoves","verified_submission_id":"2076384230","verified_at":"2026-07-21T21:20:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2756",
+  "frontend_id": "2684",
+  "title_slug": "maximum-number-of-moves-in-a-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.maxMoves",
+  "verified_submission_id": "2117850639",
+  "verified_at": "2026-08-23T22:27:03.434351+00:00"
+}

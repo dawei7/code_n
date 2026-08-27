@@ -8,7 +8,16 @@
   "euler_level": 2,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Path Finding",
+      "slug": "path-finding"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
   "url": "https://projecteuler.net/problem=81",
   "supported_languages": [
     "python"

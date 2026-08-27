@@ -6,9 +6,9 @@
   "frontend_id": "1303",
   "title_slug": "find-the-team-size",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068423014",
-  "verified_at": "2026-07-15T09:38:11.613820+00:00"
+  "verified_submission_id": "2113292839",
+  "verified_at": "2026-08-19T23:37:28.917199+00:00"
 }

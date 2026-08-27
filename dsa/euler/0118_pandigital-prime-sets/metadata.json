@@ -8,7 +8,16 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Partition",
+      "slug": "partition"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=118",
   "supported_languages": [
     "python"

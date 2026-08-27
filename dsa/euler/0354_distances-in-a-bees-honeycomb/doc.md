@@ -1,15 +1,6 @@
-# Distances in a Bee's Honeycomb
-
-### Distances in a Bee's Honeycomb
+## Description
 
 Consider a honey bee's honeycomb where each cell is a perfect regular hexagon with side length $1$.
-
-
-
-
-
-
-
 
 One particular cell is occupied by the queen bee.
 
@@ -17,6 +8,20 @@ For a positive real number $L$, let $\text{B}(L)$ count the cells with distance 
 
 For example, $\text{B}(\sqrt 3)=6$, $\text{B}(\sqrt {21}) = 12$ and $\text{B}(111\,111\,111) = 54$.
 
-
-
 Find the number of $L \le 5 \times 10^{11}$ such that $\text{B}(L) = 450$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

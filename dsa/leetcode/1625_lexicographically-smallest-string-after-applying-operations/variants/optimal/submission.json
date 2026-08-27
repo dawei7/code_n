@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findLexSmallestString",
-  "verified_submission_id": "2070437243",
-  "verified_at": "2026-07-16T22:27:40.922780+00:00"
+  "verified_submission_id": "2114797254",
+  "verified_at": "2026-08-21T07:35:03.235261+00:00"
 }

@@ -8,7 +8,16 @@
   "euler_level": 3,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Sequence Summation",
+      "slug": "sequence-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=50",
   "supported_languages": [
     "python"

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minCostClimbingStairs",
-  "verified_submission_id": "2065889229",
-  "verified_at": "2026-07-13T08:40:02.341707+00:00"
+  "verified_submission_id": "2113240405",
+  "verified_at": "2026-08-19T21:05:39.525466+00:00"
 }

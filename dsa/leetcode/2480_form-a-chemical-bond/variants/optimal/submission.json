@@ -6,9 +6,9 @@
   "frontend_id": "2480",
   "title_slug": "form-a-chemical-bond",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2075119391",
-  "verified_at": "2026-07-20T22:33:00+00:00"
+  "verified_submission_id": "2117836576",
+  "verified_at": "2026-08-23T21:45:55.942683+00:00"
 }

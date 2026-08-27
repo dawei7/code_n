@@ -8,7 +8,24 @@
   "euler_level": 12,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Ellipse",
+      "slug": "ellipse"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Non Discrete",
+      "slug": "non-discrete"
+    },
+    {
+      "name": "Volume",
+      "slug": "volume"
+    }
+  ],
   "url": "https://projecteuler.net/problem=449",
   "supported_languages": [
     "python"

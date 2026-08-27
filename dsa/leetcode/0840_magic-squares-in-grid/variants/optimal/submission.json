@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numMagicSquaresInside",
-  "verified_submission_id": "2066699119",
-  "verified_at": "2026-07-13T23:02:00.972877+00:00"
+  "verified_submission_id": "2108895313",
+  "verified_at": "2026-08-16T11:15:55.663248+00:00"
 }

@@ -1,11 +1,9 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     t AS (
         SELECT
             user_id,
-            DATEDIFF(
-                purchase_date,
-                LAG(purchase_date, 1) OVER (
+            (purchase_date::date - LAG(purchase_date::date, 1) OVER (
                     PARTITION BY user_id
                     ORDER BY purchase_date
                 )

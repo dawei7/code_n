@@ -8,7 +8,16 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Iterative Method",
+      "slug": "iterative-method"
+    },
+    {
+      "name": "Square Root",
+      "slug": "square-root"
+    }
+  ],
   "url": "https://projecteuler.net/problem=255",
   "supported_languages": [
     "python"

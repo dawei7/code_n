@@ -8,7 +8,20 @@
   "euler_level": 4,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Factorisation",
+      "slug": "factorisation"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Smooth Number",
+      "slug": "smooth-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=204",
   "supported_languages": [
     "python"

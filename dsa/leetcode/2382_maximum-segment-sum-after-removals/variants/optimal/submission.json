@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maximumSegmentSum",
-  "verified_submission_id": "2074509052",
-  "verified_at": "2026-07-20T11:43:02.920041+00:00"
+  "verified_submission_id": "2117829349",
+  "verified_at": "2026-08-23T21:26:34.459983+00:00"
 }

@@ -6,8 +6,8 @@
   "frontend_id": "176",
   "title_slug": "second-highest-salary",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064191910",
-  "verified_at": "2026-07-11T18:23:31.883720+00:00"
+  "verified_submission_id": "2108900184",
+  "verified_at": "2026-08-16T11:20:52.830304+00:00"
 }

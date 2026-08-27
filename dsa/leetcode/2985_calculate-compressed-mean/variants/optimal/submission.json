@@ -6,9 +6,9 @@
   "frontend_id": "2985",
   "title_slug": "calculate-compressed-mean",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078558891",
-  "verified_at": "2026-07-23T15:17:50.043840+00:00"
+  "verified_submission_id": "2120600934",
+  "verified_at": "2026-08-26T09:02:23.417611+00:00"
 }

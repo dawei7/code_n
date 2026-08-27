@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.longestBalanced",
-  "verified_submission_id": "2085051110",
-  "verified_at": "2026-07-28T16:31:55.225114+00:00"
+  "verified_submission_id": "2122311126",
+  "verified_at": "2026-08-27T19:28:27.382816+00:00"
 }

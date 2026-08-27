@@ -1,6 +1,4 @@
-# Obtuse Angled Triangles
-
-### Obtuse Angled Triangles
+## Description
 
 Consider the set $S(r)$ of points $(x,y)$ with integer coordinates satisfying $|x| + |y| \le r$.
 
@@ -11,3 +9,19 @@ Let $N(r)$ be the number of points $B$ in $S(r)$, so that the triangle $OBC$ has
 So, for example, $N(4)=24$ and $N(8)=100$.
 
 What is $N(1\,000\,000\,000)$?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -6,9 +6,9 @@
   "frontend_id": "1667",
   "title_slug": "fix-names-in-a-table",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070502521",
-  "verified_at": "2026-07-17T02:05:13.367381+00:00"
+  "verified_submission_id": "2114800920",
+  "verified_at": "2026-08-21T07:39:55.595909+00:00"
 }

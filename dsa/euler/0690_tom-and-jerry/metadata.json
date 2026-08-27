@@ -8,7 +8,20 @@
   "euler_level": 36,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Graph",
+      "slug": "graph"
+    }
+  ],
   "url": "https://projecteuler.net/problem=690",
   "supported_languages": [
     "python"

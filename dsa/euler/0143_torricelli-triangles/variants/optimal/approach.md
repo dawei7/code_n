@@ -10,7 +10,9 @@ $$\angle ATB = \angle BTC = \angle CTA = 120^{\circ}$$
 
 By applying the Law of Cosines to $\triangle ATB, \triangle BTC,$ and $\triangle CTA$ with $\cos(120^{\circ}) = -\frac{1}{2}$:
 $$c^2 = p^2 + q^2 - 2pq \cos(120^{\circ}) = p^2 + pq + q^2$$
+
 $$a^2 = q^2 + qr + r^2$$
+
 $$b^2 = r^2 + rp + p^2$$
 
 A triangle is a **Torricelli triangle** if $p, q, r$ and $a, b, c$ are all positive integers. For example, with $p = 195, q = 264,$ and $r = 325$, we get integer side lengths $a = 511, b = 455, c = 399$, giving $p + q + r = 784$.

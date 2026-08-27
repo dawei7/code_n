@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2842","frontend_id":"2739","title_slug":"total-distance-traveled","paid_only":false,"language":"python","source":"solutions/solution.py","native_entrypoint":"Solution.distanceTraveled","verified_submission_id":"2076478288","verified_at":"2026-07-22T02:07:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2842",
+  "frontend_id": "2739",
+  "title_slug": "total-distance-traveled",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.distanceTraveled",
+  "verified_submission_id": "2120595947",
+  "verified_at": "2026-08-26T08:56:23.054259+00:00"
+}

@@ -6,9 +6,9 @@
   "frontend_id": "3475",
   "title_slug": "dna-pattern-recognition",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2082156962",
-  "verified_at": "2026-07-26T14:34:00Z"
+  "verified_submission_id": "2120644447",
+  "verified_at": "2026-08-26T09:53:02.347914+00:00"
 }

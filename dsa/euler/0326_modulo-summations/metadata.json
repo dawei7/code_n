@@ -8,7 +8,16 @@
   "euler_level": 20,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    }
+  ],
   "url": "https://projecteuler.net/problem=326",
   "supported_languages": [
     "python"

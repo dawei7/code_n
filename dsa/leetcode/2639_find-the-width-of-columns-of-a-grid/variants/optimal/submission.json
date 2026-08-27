@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findColumnWidth",
-  "verified_submission_id": "2076171509",
-  "verified_at": "2026-07-21T17:23:00+00:00"
+  "verified_submission_id": "2117847778",
+  "verified_at": "2026-08-23T22:18:13.307824+00:00"
 }

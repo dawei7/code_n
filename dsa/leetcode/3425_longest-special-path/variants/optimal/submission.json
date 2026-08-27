@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.longestSpecialPath",
-  "verified_submission_id": "2081727299",
-  "verified_at": "2026-07-26T07:42:00Z"
+  "verified_submission_id": "2120636514",
+  "verified_at": "2026-08-26T09:44:09.093824+00:00"
 }

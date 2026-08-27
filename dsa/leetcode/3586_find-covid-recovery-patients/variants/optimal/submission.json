@@ -6,9 +6,9 @@
   "frontend_id": "3586",
   "title_slug": "find-covid-recovery-patients",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2083328035",
-  "verified_at": "2026-07-27T12:23:00Z"
+  "verified_submission_id": "2120662624",
+  "verified_at": "2026-08-26T10:13:13.622734+00:00"
 }

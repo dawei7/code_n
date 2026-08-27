@@ -1,4 +1,4 @@
-### Look and Say Sequence
+## Description
 
 The look and say sequence goes 1, 11, 21, 1211, 111221, 312211, 13112221, 1113213211, ...
 
@@ -18,15 +18,9 @@ It helps to do this out loud:
 
 ...
 
-
-
-
 Define $A(n)$, $B(n)$ and $C(n)$ as the number of ones, twos and threes in the $n$'th element of the sequence respectively.
 
 One can verify that $A(40) = 31254$, $B(40) = 20259$ and $C(40) = 11625$.
-
-
-
 
 Find $A(n)$, $B(n)$ and $C(n)$ for $n = 10^{12}$.
 

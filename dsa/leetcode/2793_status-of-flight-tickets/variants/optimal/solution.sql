@@ -1,16 +1,12 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     passenger_id,
-    IF(
-        (
+    (CASE WHEN (
             RANK() OVER (
                 PARTITION BY flight_id
                 ORDER BY booking_time
             )
-        ) <= capacity,
-        'Confirmed',
-        'Waitlist'
-    ) AS Status
+        ) <= capacity THEN 'Confirmed' ELSE 'Waitlist' END) AS Status
 FROM
     Passengers
     JOIN Flights USING (flight_id)

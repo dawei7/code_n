@@ -8,7 +8,20 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Chess",
+      "slug": "chess"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Path Finding",
+      "slug": "path-finding"
+    }
+  ],
   "url": "https://projecteuler.net/problem=628",
   "supported_languages": [
     "python"

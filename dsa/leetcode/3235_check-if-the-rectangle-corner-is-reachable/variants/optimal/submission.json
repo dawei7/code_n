@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.canReachCorner",
-  "verified_submission_id": "2080198708",
-  "verified_at": "2026-07-25T03:40:53.147780+00:00"
+  "verified_submission_id": "2120605573",
+  "verified_at": "2026-08-26T09:07:55.974421+00:00"
 }

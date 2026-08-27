@@ -8,7 +8,28 @@
   "euler_level": 6,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Area",
+      "slug": "area"
+    },
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Convexity",
+      "slug": "convexity"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=587",
   "supported_languages": [
     "python"

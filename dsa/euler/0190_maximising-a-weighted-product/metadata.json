@@ -8,7 +8,16 @@
   "euler_level": 8,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    }
+  ],
   "url": "https://projecteuler.net/problem=190",
   "supported_languages": [
     "python"

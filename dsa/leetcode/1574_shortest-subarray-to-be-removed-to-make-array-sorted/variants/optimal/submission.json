@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findLengthOfShortestSubarray",
-  "verified_submission_id": "2069870124",
-  "verified_at": "2026-07-16T12:52:44.955432+00:00"
+  "verified_submission_id": "2114792737",
+  "verified_at": "2026-08-21T07:29:08.873671+00:00"
 }

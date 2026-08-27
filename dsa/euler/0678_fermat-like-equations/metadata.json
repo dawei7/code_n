@@ -8,7 +8,28 @@
   "euler_level": 25,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    },
+    {
+      "name": "Pythagorean Triple",
+      "slug": "pythagorean-triple"
+    },
+    {
+      "name": "Sum Of Powers",
+      "slug": "sum-of-powers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=678",
   "supported_languages": [
     "python"

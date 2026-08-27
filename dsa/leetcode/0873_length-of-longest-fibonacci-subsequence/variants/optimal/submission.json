@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.lenLongestFibSubseq",
-  "verified_submission_id": "2066742545",
-  "verified_at": "2026-07-14T01:27:14.823103+00:00"
+  "verified_submission_id": "2113248912",
+  "verified_at": "2026-08-19T21:24:36.094069+00:00"
 }

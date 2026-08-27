@@ -1,20 +1,28 @@
-# Prime Triples and Geometric Sequences
-
-### Prime Triples and Geometric Sequences
+## Description
 
 Let $S(n) = \sum a + b + c$ over all triples $(a, b, c)$ such that:
-
-
 
 $a$, $b$ and $c$ are prime numbers.
 $a \lt b \lt c \lt n$.
 $a+1$, $b+1$, and $c+1$ form a geometric sequence.
 For example, $S(100) = 1035$ with the following triples: 
 
-
-
 $(2, 5, 11)$, $(2, 11, 47)$, $(5, 11, 23)$, $(5, 17, 53)$, $(7, 11, 17)$, $(7, 23, 71)$, $(11, 23, 47)$, $(17, 23, 31)$, $(17, 41, 97)$, $(31, 47, 71)$, $(71, 83, 97)$
 
-
-
 Find $S(10^8)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

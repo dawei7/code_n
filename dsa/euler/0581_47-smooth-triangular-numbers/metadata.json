@@ -8,7 +8,20 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Factorisation",
+      "slug": "factorisation"
+    },
+    {
+      "name": "Smooth Number",
+      "slug": "smooth-number"
+    },
+    {
+      "name": "Triangle Number",
+      "slug": "triangle-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=581",
   "supported_languages": [
     "python"

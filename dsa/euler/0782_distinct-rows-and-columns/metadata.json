@@ -8,7 +8,24 @@
   "euler_level": 22,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Grid Pattern",
+      "slug": "grid-pattern"
+    },
+    {
+      "name": "Matrix",
+      "slug": "matrix"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Popcount",
+      "slug": "popcount"
+    }
+  ],
   "url": "https://projecteuler.net/problem=782",
   "supported_languages": [
     "python"

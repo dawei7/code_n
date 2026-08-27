@@ -8,7 +8,24 @@
   "euler_level": 26,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fibonacci Number",
+      "slug": "fibonacci-number"
+    },
+    {
+      "name": "Golden Ratio",
+      "slug": "golden-ratio"
+    },
+    {
+      "name": "Iterated Polynomial",
+      "slug": "iterated-polynomial"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    }
+  ],
   "url": "https://projecteuler.net/problem=921",
   "supported_languages": [
     "python"

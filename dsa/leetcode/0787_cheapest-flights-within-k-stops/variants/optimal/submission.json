@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findCheapestPrice",
-  "verified_submission_id": "2066142524",
-  "verified_at": "2026-07-13T12:59:17.259184+00:00"
+  "verified_submission_id": "2113243236",
+  "verified_at": "2026-08-19T21:11:51.403379+00:00"
 }

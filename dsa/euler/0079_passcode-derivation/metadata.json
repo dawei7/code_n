@@ -8,7 +8,16 @@
   "euler_level": 2,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Pattern Matching",
+      "slug": "pattern-matching"
+    },
+    {
+      "name": "Permutation",
+      "slug": "permutation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=79",
   "supported_languages": [
     "python"

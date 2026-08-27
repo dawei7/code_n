@@ -8,7 +8,16 @@
   "euler_level": 21,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Number Base",
+      "slug": "number-base"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=396",
   "supported_languages": [
     "python"

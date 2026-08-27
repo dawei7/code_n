@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT customer_id, name
 FROM
     Orders
@@ -7,5 +7,5 @@ FROM
 WHERE YEAR(order_date) = 2020
 GROUP BY 1
 HAVING
-    SUM(IF(MONTH(order_date) = 6, quantity * price, 0)) >= 100
-    AND SUM(IF(MONTH(order_date) = 7, quantity * price, 0)) >= 100;
+    SUM((CASE WHEN MONTH(order_date) = 6 THEN quantity * price ELSE 0 END)) >= 100
+    AND SUM((CASE WHEN MONTH(order_date) = 7 THEN quantity * price ELSE 0 END)) >= 100;

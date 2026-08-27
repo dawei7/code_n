@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numFactoredBinaryTrees",
-  "verified_submission_id": "2066667507",
-  "verified_at": "2026-07-13T21:25:46.216023+00:00"
+  "verified_submission_id": "2108895112",
+  "verified_at": "2026-08-16T11:15:43.712184+00:00"
 }

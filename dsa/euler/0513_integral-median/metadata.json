@@ -8,7 +8,24 @@
   "euler_level": 31,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    },
+    {
+      "name": "Triangle Median",
+      "slug": "triangle-median"
+    }
+  ],
   "url": "https://projecteuler.net/problem=513",
   "supported_languages": [
     "python"

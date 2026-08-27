@@ -6,9 +6,9 @@
   "frontend_id": "1890",
   "title_slug": "the-latest-login-in-2020",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2071926706",
-  "verified_at": "2026-07-18T07:31:51.478206+00:00"
+  "verified_submission_id": "2114818959",
+  "verified_at": "2026-08-21T08:05:47.508662+00:00"
 }

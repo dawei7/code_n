@@ -6,10 +6,10 @@
   "frontend_id": "512",
   "title_slug": "game-play-analysis-ii",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065173739",
-  "verified_at": "2026-07-12T15:58:03.403016+00:00",
+  "verified_submission_id": "2113221275",
+  "verified_at": "2026-08-19T20:29:12.827742+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T06:47:00.000000+00:00"

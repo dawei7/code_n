@@ -8,7 +8,20 @@
   "euler_level": 21,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Lattice Point Counting",
+      "slug": "lattice-point-counting"
+    },
+    {
+      "name": "Sphere",
+      "slug": "sphere"
+    },
+    {
+      "name": "Sum Of Squares",
+      "slug": "sum-of-squares"
+    }
+  ],
   "url": "https://projecteuler.net/problem=596",
   "supported_languages": [
     "python"

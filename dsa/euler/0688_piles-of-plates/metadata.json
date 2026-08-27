@@ -8,7 +8,24 @@
   "euler_level": 8,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Partition",
+      "slug": "partition"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=688",
   "supported_languages": [
     "python"

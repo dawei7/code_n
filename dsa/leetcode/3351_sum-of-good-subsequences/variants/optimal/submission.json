@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.sumOfGoodSubsequences",
-  "verified_submission_id": "2081188732",
-  "verified_at": "2026-07-25T19:40:03Z"
+  "verified_submission_id": "2120624185",
+  "verified_at": "2026-08-26T09:29:57.007064+00:00"
 }

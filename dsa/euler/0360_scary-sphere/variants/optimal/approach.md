@@ -49,7 +49,9 @@ Every integer point on the sphere $x^2 + y^2 + z^2 = (5^n)^2$ corresponds to the
 The prime $5$ splits into $24$ Hurwitz prime quaternions. Under the adjoint action $v \mapsto w \cdot v \cdot \bar{w} / N(w)$, these generate $6$ elementary integer rotation matrices in $\mathrm{SO}(3, \mathbb{Z}[1/5])$ (scaling by $5$):
 
 $$\mathbf{A}_{x, +} = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 3 & -4 \\ 0 & 4 & 3 \end{pmatrix}, \quad \mathbf{A}_{x, -} = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 3 & 4 \\ 0 & -4 & 3 \end{pmatrix}$$
+
 $$\mathbf{A}_{y, +} = \begin{pmatrix} 3 & 0 & 4 \\ 0 & 5 & 0 \\ -4 & 0 & 3 \end{pmatrix}, \quad \mathbf{A}_{y, -} = \begin{pmatrix} 3 & 0 & -4 \\ 0 & 5 & 0 \\ 4 & 0 & 3 \end{pmatrix}$$
+
 $$\mathbf{A}_{z, +} = \begin{pmatrix} 3 & -4 & 0 \\ 4 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}, \quad \mathbf{A}_{z, -} = \begin{pmatrix} 3 & 4 & 0 \\ -4 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}$$
 
 Starting from the unit pole vector $\mathbf{v}_0 = (1, 0, 0)^T$, applying these $6$ transformations for $n = 10$ steps directly generates every integer point $\mathbf{v} \in I(5^{10})$ as a 5-regular tree without backtracking!

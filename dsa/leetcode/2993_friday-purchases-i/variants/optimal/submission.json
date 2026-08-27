@@ -6,9 +6,9 @@
   "frontend_id": "2993",
   "title_slug": "friday-purchases-i",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078599845",
-  "verified_at": "2026-07-23T15:51:55.324141+00:00"
+  "verified_submission_id": "2120601217",
+  "verified_at": "2026-08-26T09:02:43.796237+00:00"
 }

@@ -1,6 +1,8 @@
 class Solution:
+    def winningPlayer(self, x: int, y: int) -> str:
+        k = min(x, y // 4)
+        return "Alice" if k % 2 == 1 else "Bob"
+
     def losingPlayer(self, x: int, y: int) -> str:
-        k = min(x // 2, y // 8)
-        x -= k * 2
-        y -= k * 8
-        return "Alice" if x and y >= 4 else "Bob"
+        return self.winningPlayer(x, y)
+

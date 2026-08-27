@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2765","frontend_id":"2693","title_slug":"call-function-with-custom-context","paid_only":false,"language":"javascript","source":"solutions/solution.js","native_entrypoint":"Function.prototype.callPolyfill","verified_submission_id":"2076401573","verified_at":"2026-07-21T22:09:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2765",
+  "frontend_id": "2693",
+  "title_slug": "call-function-with-custom-context",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solution.js",
+  "native_entrypoint": "Function.prototype.callPolyfill",
+  "verified_submission_id": "2117851184",
+  "verified_at": "2026-08-23T22:28:46.170262+00:00"
+}

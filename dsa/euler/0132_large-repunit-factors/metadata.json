@@ -8,7 +8,12 @@
   "euler_level": 5,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    }
+  ],
   "url": "https://projecteuler.net/problem=132",
   "supported_languages": [
     "python"

@@ -8,7 +8,20 @@
   "euler_level": 22,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "Sum Of Squares",
+      "slug": "sum-of-squares"
+    }
+  ],
   "url": "https://projecteuler.net/problem=152",
   "supported_languages": [
     "python"

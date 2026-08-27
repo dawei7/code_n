@@ -8,7 +8,16 @@
   "euler_level": 37,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=489",
   "supported_languages": [
     "python"

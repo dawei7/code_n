@@ -1,6 +1,4 @@
-# Divisor Pairs
-
-### Divisor Pairs
+## Description
 
 Let $S(n)$ be the number of pairs $(a,b)$ of distinct divisors of $n$ such that $a$ divides $b$.
 
@@ -16,7 +14,20 @@ Let $Q(n)=\sum_{i=1}^{n} E(904961, i)$
 
 $Q(8)=2714886$.
 
-
-
-
 Evaluate $Q(10^{12})$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

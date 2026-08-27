@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findGCD",
-  "verified_submission_id": "2072779834",
-  "verified_at": "2026-07-18T20:23:19.706764+00:00"
+  "verified_submission_id": "2114826572",
+  "verified_at": "2026-08-21T08:16:38.005981+00:00"
 }

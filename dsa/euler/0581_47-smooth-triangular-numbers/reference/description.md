@@ -1,4 +1,4 @@
-### $47$-smooth Triangular Numbers
+## Description
 
 A number is $p$-smooth if it has no prime factors larger than $p$.
 

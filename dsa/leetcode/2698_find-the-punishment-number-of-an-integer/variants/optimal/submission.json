@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2802","frontend_id":"2698","title_slug":"find-the-punishment-number-of-an-integer","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.punishmentNumber","verified_submission_id":"2076412916","verified_at":"2026-07-21T22:46:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2802",
+  "frontend_id": "2698",
+  "title_slug": "find-the-punishment-number-of-an-integer",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.punishmentNumber",
+  "verified_submission_id": "2117851482",
+  "verified_at": "2026-08-23T22:29:43.062558+00:00"
+}

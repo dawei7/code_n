@@ -1,8 +1,21 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
+WITH Matched AS (
+    SELECT DISTINCT
+        p.post_id,
+        k.topic_id
+    FROM
+        Posts p
+        JOIN Keywords k ON CONCAT(' ', LOWER(p.content), ' ') LIKE CONCAT('% ', LOWER(k.word), ' %')
+)
 SELECT
-    post_id,
-    COALESCE(STRING_AGG(DISTINCT topic_id, ','), 'Ambiguous!') AS topic
+    p.post_id,
+    COALESCE(
+        (
+            SELECT STRING_AGG(m.topic_id::text, ',' ORDER BY m.topic_id)
+            FROM Matched m
+            WHERE m.post_id = p.post_id
+        ),
+        'Ambiguous!'
+    ) AS topic
 FROM
-    Posts
-    LEFT JOIN Keywords ON INSTR(CONCAT(' ', content, ' '), CONCAT(' ', word, ' ')) > 0
-GROUP BY post_id;
+    Posts p;

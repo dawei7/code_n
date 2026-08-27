@@ -8,7 +8,16 @@
   "euler_level": 21,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Lambda Calculus",
+      "slug": "lambda-calculus"
+    }
+  ],
   "url": "https://projecteuler.net/problem=623",
   "supported_languages": [
     "python"

@@ -1,1 +1,14 @@
-{"schema_version": 1, "provider": "leetcode.com", "status": "verified", "question_id": "2623", "frontend_id": "2532", "title_slug": "time-to-cross-a-bridge", "paid_only": false, "language": "python3", "source": "solution.py", "native_entrypoint": "Solution.findCrossingTime", "verified_submission_id": "2075275445", "verified_at": "2026-07-21T04:23:59+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2623",
+  "frontend_id": "2532",
+  "title_slug": "time-to-cross-a-bridge",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.findCrossingTime",
+  "verified_submission_id": "2117840543",
+  "verified_at": "2026-08-23T21:57:03.647016+00:00"
+}

@@ -6,8 +6,8 @@
   "frontend_id": "2298",
   "title_slug": "tasks-count-in-the-weekend",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2080689220",
-  "verified_at": "2026-07-25T11:53:05.9417566Z"
+  "verified_submission_id": "2116422733",
+  "verified_at": "2026-08-22T17:16:40.061430+00:00"
 }

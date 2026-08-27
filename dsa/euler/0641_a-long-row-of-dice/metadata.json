@@ -8,7 +8,12 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Iterative Method",
+      "slug": "iterative-method"
+    }
+  ],
   "url": "https://projecteuler.net/problem=641",
   "supported_languages": [
     "python"

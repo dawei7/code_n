@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.removeDigit",
-  "verified_submission_id": "2073943724",
-  "verified_at": "2026-07-20T00:10:38.166316+00:00"
+  "verified_submission_id": "2116414912",
+  "verified_at": "2026-08-22T17:10:24.298476+00:00"
 }

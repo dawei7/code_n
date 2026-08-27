@@ -1,4 +1,4 @@
-### Divisor Pairs
+## Description
 
 Let $S(n)$ be the number of pairs $(a,b)$ of distinct divisors of $n$ such that $a$ divides $b$.
 
@@ -13,8 +13,5 @@ $E(2,1) = 0$ since $2^0$ is the highest power of 2 that divides S(6)=5.
 Let $Q(n)=\sum_{i=1}^{n} E(904961, i)$
 
 $Q(8)=2714886$.
-
-
-
 
 Evaluate $Q(10^{12})$.

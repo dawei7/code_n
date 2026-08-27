@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2625","frontend_id":"2536","title_slug":"increment-submatrices-by-one","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.rangeAddQueries","verified_submission_id":"2075302092","verified_at":"2026-07-21T04:48:54+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2625",
+  "frontend_id": "2536",
+  "title_slug": "increment-submatrices-by-one",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.rangeAddQueries",
+  "verified_submission_id": "2117840822",
+  "verified_at": "2026-08-23T21:57:49.192365+00:00"
+}

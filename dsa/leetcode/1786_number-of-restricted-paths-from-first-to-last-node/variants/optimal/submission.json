@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countRestrictedPaths",
-  "verified_submission_id": "2071152926",
-  "verified_at": "2026-07-17T13:32:37.442151+00:00"
+  "verified_submission_id": "2114810551",
+  "verified_at": "2026-08-21T07:53:46.495606+00:00"
 }

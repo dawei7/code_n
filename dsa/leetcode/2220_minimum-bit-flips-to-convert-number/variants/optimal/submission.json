@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "class Solution.minBitFlips",
-  "verified_submission_id": "2073893590",
-  "verified_at": "2026-07-19T20:48:16.007109+00:00"
+  "verified_submission_id": "2116402348",
+  "verified_at": "2026-08-22T17:00:25.092381+00:00"
 }

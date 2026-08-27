@@ -8,7 +8,20 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    }
+  ],
   "url": "https://projecteuler.net/problem=568",
   "supported_languages": [
     "python"

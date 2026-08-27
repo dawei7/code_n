@@ -8,7 +8,16 @@
   "euler_level": 29,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    }
+  ],
   "url": "https://projecteuler.net/problem=861",
   "supported_languages": [
     "python"

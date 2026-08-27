@@ -8,7 +8,24 @@
   "euler_level": 22,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Non Discrete",
+      "slug": "non-discrete"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    }
+  ],
   "url": "https://projecteuler.net/problem=394",
   "supported_languages": [
     "python"

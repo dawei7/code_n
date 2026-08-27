@@ -6,9 +6,9 @@
   "frontend_id": "3166",
   "title_slug": "calculate-parking-fees-and-duration",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2079981325",
-  "verified_at": "2026-07-24T20:39:00+02:00"
+  "verified_submission_id": "2120603474",
+  "verified_at": "2026-08-26T09:05:24.931451+00:00"
 }

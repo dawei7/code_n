@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.divisorSubstrings",
-  "verified_submission_id": "2073958421",
-  "verified_at": "2026-07-20T01:01:19.518972+00:00"
+  "verified_submission_id": "2116420019",
+  "verified_at": "2026-08-22T17:14:26.252295+00:00"
 }

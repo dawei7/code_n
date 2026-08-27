@@ -1,4 +1,4 @@
-### Largest Prime
+## Description
 
 Consider the sequence  $n^2+3$ with $n \ge 1$. 
  
@@ -10,12 +10,6 @@ We see that the terms for $n=6$ and $n=7$ ($39$ and $52$) are both divisible by 
 
 In fact $13$ is the largest prime dividing any two successive terms of this sequence.
 
-
-
-
 Let $P(k)$ be the largest prime  that divides any two successive terms of the sequence $n^2+k^2$.
-
-
-
 
 Find the last $18$ digits of $\displaystyle \sum_{k=1}^{10\,000\,000} P(k)$.

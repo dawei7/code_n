@@ -6,9 +6,9 @@
   "frontend_id": "3059",
   "title_slug": "find-all-unique-email-domains",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2078971966",
-  "verified_at": "2026-07-24T04:03:00+02:00"
+  "verified_submission_id": "2120601879",
+  "verified_at": "2026-08-26T09:03:33.849322+00:00"
 }

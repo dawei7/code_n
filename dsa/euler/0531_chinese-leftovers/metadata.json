@@ -8,7 +8,20 @@
   "euler_level": 7,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Chinese Remainder Theorem",
+      "slug": "chinese-remainder-theorem"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Totient Function",
+      "slug": "totient-function"
+    }
+  ],
   "url": "https://projecteuler.net/problem=531",
   "supported_languages": [
     "python"

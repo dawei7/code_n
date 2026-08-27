@@ -8,7 +8,20 @@
   "euler_level": 15,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Xor",
+      "slug": "xor"
+    }
+  ],
   "url": "https://projecteuler.net/problem=810",
   "supported_languages": [
     "python"

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
@@ -18,5 +18,5 @@ FROM
     T
     JOIN Student USING (student_id)
 GROUP BY 1
-HAVING SUM(rk1 = 1) = 0 AND SUM(rk2 = 1) = 0
+HAVING SUM(CASE WHEN rk1 = 1 THEN 1 ELSE 0 END) = 0 AND SUM(CASE WHEN rk2 = 1 THEN 1 ELSE 0 END) = 0
 ORDER BY 1;

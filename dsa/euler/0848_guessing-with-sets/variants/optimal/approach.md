@@ -35,6 +35,7 @@ Let $W(m, n) = m \cdot n \cdot p(m, n)$.
 In the asymptotic regime where $m \gg n$, Player 1's search space is much larger than Player 2's.
 The integer function $C(n) = \lim_{m \to \infty} W(m, n)$ satisfies an exact divide-and-conquer recurrence:
 $$C(1) = 1, \quad C(2) = 3, \quad C(3) = 6$$
+
 $$C(n) = 2 \cdot \left( C(\lfloor n/2 \rfloor) + C(\lceil n/2 \rceil) \right) \quad \text{for } n \ge 4$$
 
 ---

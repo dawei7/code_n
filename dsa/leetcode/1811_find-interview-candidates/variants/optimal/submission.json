@@ -6,9 +6,9 @@
   "frontend_id": "1811",
   "title_slug": "find-interview-candidates",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2071623712",
-  "verified_at": "2026-07-17T23:45:38.080969+00:00"
+  "verified_submission_id": "2114812490",
+  "verified_at": "2026-08-21T07:56:37.851133+00:00"
 }

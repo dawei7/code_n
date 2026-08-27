@@ -8,7 +8,12 @@
   "euler_level": 2,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Power",
+      "slug": "power"
+    }
+  ],
   "url": "https://projecteuler.net/problem=63",
   "supported_languages": [
     "python"

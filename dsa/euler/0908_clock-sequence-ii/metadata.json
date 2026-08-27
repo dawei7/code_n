@@ -8,7 +8,12 @@
   "euler_level": 28,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Periodicity",
+      "slug": "periodicity"
+    }
+  ],
   "url": "https://projecteuler.net/problem=908",
   "supported_languages": [
     "python"

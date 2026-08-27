@@ -47,6 +47,7 @@ $$q(p^e) = p^{7e} + (p - 1) p^{7e - 4} + (p - 1) \sum_{a=0}^{e-2} p^{4e + 3a - 1
 #### Power of 2:
 For $p = 2$:
 $$q(2^1) = 128 = 2^7$$
+
 $$q(2^e) = 2^7 \cdot q(2^{e-1}) + 2^{4e + 3} \quad \text{for all } e \ge 2$$
 
 ### Linear Sieve for $Q(N)$

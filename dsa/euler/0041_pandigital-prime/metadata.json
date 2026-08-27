@@ -8,7 +8,16 @@
   "euler_level": 1,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Pandigital",
+      "slug": "pandigital"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=41",
   "supported_languages": [
     "python"

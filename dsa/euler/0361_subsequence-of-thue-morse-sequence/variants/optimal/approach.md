@@ -32,7 +32,9 @@ The Thue-Morse sequence is the fixed point of the morphism $\mu$:
 $$\mu(0) = 01, \quad \mu(1) = 10$$
 By Cassaigne and Brlek's theorems, the number of factors of length $L$ starting with $1$, denoted $C_1(L)$, satisfies the exact recurrence:
 $$C_1(1) = 1, \quad C_1(2) = 2, \quad C_1(3) = 3$$
+
 $$C_1(2m) = C_1(m) + C_1(m + 1)$$
+
 $$C_1(2m + 1) = 2 C_1(m + 1)$$
 
 The prefix sum $S(L) = \sum_{\ell=1}^L C_1(\ell)$ gives the exact index range for words of length $L$.

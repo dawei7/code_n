@@ -1,3 +1,6 @@
+from typing import List
+
+
 class BinaryIndexedTree:
     __slots__ = ["n", "c"]
 
@@ -19,7 +22,7 @@ class BinaryIndexedTree:
 
 
 class Solution:
-    def subarraysWithMoreZerosThanOnes(self, nums: List[int]) -> int:
+    def subarraysWithMoreOnesThanZeroes(self, nums: List[int]) -> int:
         n = len(nums)
         base = n + 1
         tree = BinaryIndexedTree(n + base)
@@ -27,7 +30,7 @@ class Solution:
         mod = 10**9 + 7
         ans = s = 0
         for x in nums:
-            s += x or -1
+            s += x if x == 1 else -1
             ans += tree.query(s - 1 + base)
             ans %= mod
             tree.update(s + base, 1)

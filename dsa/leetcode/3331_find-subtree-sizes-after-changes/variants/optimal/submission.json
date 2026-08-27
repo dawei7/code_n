@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findSubtreeSizes",
-  "verified_submission_id": "2081011182",
-  "verified_at": "2026-07-25T16:58:00Z"
+  "verified_submission_id": "2120621186",
+  "verified_at": "2026-08-26T09:26:19.142059+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.constructDistancedSequence",
-  "verified_submission_id": "2070730501",
-  "verified_at": "2026-07-17T06:18:10.887539+00:00"
+  "verified_submission_id": "2114805148",
+  "verified_at": "2026-08-21T07:46:00.868791+00:00"
 }

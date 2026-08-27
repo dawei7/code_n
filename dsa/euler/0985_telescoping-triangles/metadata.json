@@ -8,7 +8,24 @@
   "euler_level": 11,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    }
+  ],
   "url": "https://projecteuler.net/problem=985",
   "supported_languages": [
     "python"

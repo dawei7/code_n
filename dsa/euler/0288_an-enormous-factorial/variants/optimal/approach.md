@@ -31,6 +31,7 @@ Substituting the base-$p$ expansion $N(p, q) = \sum_{n=0}^q T_n p^n$:
 $$\left\lfloor \frac{N(p, q)}{p^k} \right\rfloor = \sum_{n=k}^q T_n p^{n - k}$$
 Summing over all $k \ge 1$:
 $$v_p(N(p, q)!) = \sum_{k=1}^q \sum_{n=k}^q T_n p^{n - k} = \sum_{n=1}^q T_n \left( \sum_{k=1}^n p^{n - k} \right) = \sum_{n=1}^q T_n \left( \frac{p^n - 1}{p - 1} \right)$$
+
 $$v_p(N(p, q)!) = \sum_{n=1}^q T_n \cdot \left( 1 + p + p^2 + \dots + p^{n-1} \right)$$
 
 ---

@@ -1,6 +1,4 @@
-# Smallest Prime Factor
-
-### Smallest Prime Factor
+## Description
 
 Let $\operatorname{smpf}(n)$ be the smallest prime factor of $n$.
 
@@ -10,8 +8,20 @@ Let $S(n)$ be the sum of $\operatorname{smpf}(i)$ for $2 \le i \le n$.
 
 E.g. $S(100)=1257$.
 
-
-
-
-
 Find $S(10^{12}) \bmod 10^9$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

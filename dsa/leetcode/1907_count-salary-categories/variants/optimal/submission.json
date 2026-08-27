@@ -6,9 +6,9 @@
   "frontend_id": "1907",
   "title_slug": "count-salary-categories",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072065520",
-  "verified_at": "2026-07-18T09:58:57.205609+00:00"
+  "verified_submission_id": "2114820325",
+  "verified_at": "2026-08-21T08:07:49.394620+00:00"
 }

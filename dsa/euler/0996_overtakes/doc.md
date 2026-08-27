@@ -1,24 +1,12 @@
-# Overtakes
-
-### Overtakes
+## Description
 
 There are $n$ tennis players on a leader board, from rank $1$ (highest) to rank $n$ (lowest).
 
-
-
 Every day, a match is held between a pair of players with adjacent ranks. When the higher rank player wins, nothing happens; otherwise, their ranks are exchanged, and we call that match an overtake by the winning player.
-
-
 
 After $k$ days, the players find that all of them are back to their initial ranks. They then count the number of overtakes by each player.
 
-
-
 Here is an example with $3$ players, named $A, B, C$ from highest to lowest initial rank.
-
-
-
-
 
 Match
 Winner
@@ -27,11 +15,9 @@ Rank $1, 2, 3$
 after match
 Overtake counts
 
-
 $A$
 $B$
 $C$
-
 
 $1*$
 $C$
@@ -41,7 +27,6 @@ $0$
 $0$
 $1$
 
-
 $2$
 $C$
 $B$
@@ -49,7 +34,6 @@ $A, C, B$
 $0$
 $0$
 $1$
-
 
 $3*$
 $C$
@@ -59,7 +43,6 @@ $0$
 $0$
 $2$
 
-
 $4$
 $A$
 $B$
@@ -67,7 +50,6 @@ $C, A, B$
 $0$
 $0$
 $2$
-
 
 $5*$
 $A$
@@ -77,7 +59,6 @@ $1$
 $0$
 $2$
 
-
 $6*$
 $B$
 $C$
@@ -86,18 +67,28 @@ $1$
 $1$
 $2$
 
-
-
 The matches marked with $*$ are overtakes.
 
 After $6$ days, all players are back to initial ranks with overtake counts $1, 1, 2$.
-
-
 
 Let $F(n, k)$ be the number of possible $n$-tuples of overtake counts after $k$ days, assuming that all players are back to initial ranks.
 
 You are given $F(3, 4) = 8$ and $F(12, 34) = 2457178250$.
 
-
-
 Find $F(123, 4567891) \bmod 1234567891$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

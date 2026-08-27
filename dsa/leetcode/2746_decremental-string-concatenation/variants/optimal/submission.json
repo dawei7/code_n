@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2849","frontend_id":"2746","title_slug":"decremental-string-concatenation","paid_only":false,"language":"python","source":"solutions/solution.py","native_entrypoint":"Solution.minimizeConcatenatedLength","verified_submission_id":"2076492143","verified_at":"2026-07-22T02:37:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2849",
+  "frontend_id": "2746",
+  "title_slug": "decremental-string-concatenation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.minimizeConcatenatedLength",
+  "verified_submission_id": "2120597004",
+  "verified_at": "2026-08-26T08:57:39.936737+00:00"
+}

@@ -1,16 +1,16 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
-        SELECT candidate, SUM(vote) AS tot
+        SELECT candidate, ROUND(SUM(vote), 4) AS tot
         FROM
             (
                 SELECT
                     candidate,
-                    1 / (COUNT(candidate) OVER (PARTITION BY voter)) AS vote
+                    1.0 / (COUNT(candidate) OVER (PARTITION BY voter)) AS vote
                 FROM Votes
                 WHERE candidate IS NOT NULL
             ) AS t
-        GROUP BY 1
+        GROUP BY candidate
     ),
     P AS (
         SELECT
@@ -21,4 +21,5 @@ WITH
 SELECT candidate
 FROM P
 WHERE rk = 1
-ORDER BY 1;
+ORDER BY candidate;
+

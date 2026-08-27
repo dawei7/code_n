@@ -1,27 +1,12 @@
-# GCD and Tiling
-
-### GCD and Tiling
+## Description
 
 We want to tile a board of length $n$ and height $1$ completely, with either $1 \times 2$ blocks or $1 \times 1$ blocks with a single decimal digit on top:
 
-
-
-
-
 For example, here are some of the ways to tile a board of length $n = 8$:
-
-
-
-
-
 
 Let $T(n)$ be the number of ways to tile a board of length $n$ as described above.
 
-
-
 For example, $T(1) = 10$ and $T(2) = 101$.
-
-
 
 Let $S(L)$ be the triple sum $\sum_{a, b, c}\gcd(T(c^a), T(c^b))$ for $1 \leq a, b, c \leq L$.
 
@@ -33,6 +18,20 @@ $S(3) = 1292115238446807016106539989$
 
 $S(4) \bmod 987\,898\,789 = 670616280$.
 
-
-
 Find $S(2000) \bmod 987\,898\,789$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 (
     SELECT name AS results
     FROM
@@ -14,7 +14,7 @@ UNION ALL
     FROM
         MovieRating
         JOIN Movies USING (movie_id)
-    WHERE DATE_FORMAT(created_at, '%Y-%m') = '2020-02'
+    WHERE TO_CHAR(created_at, 'YYYY-MM') = '2020-02'
     GROUP BY movie_id
     ORDER BY AVG(rating) DESC, title
     LIMIT 1

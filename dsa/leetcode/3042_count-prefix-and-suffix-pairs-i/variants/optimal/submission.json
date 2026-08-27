@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countPrefixSuffixPairs",
-  "verified_submission_id": "2078928111",
-  "verified_at": "2026-07-23T23:47:52Z"
+  "verified_submission_id": "2117870871",
+  "verified_at": "2026-08-23T23:38:22.897948+00:00"
 }

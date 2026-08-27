@@ -8,7 +8,16 @@
   "euler_level": 22,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    },
+    {
+      "name": "Totient Function",
+      "slug": "totient-function"
+    }
+  ],
   "url": "https://projecteuler.net/problem=248",
   "supported_languages": [
     "python"

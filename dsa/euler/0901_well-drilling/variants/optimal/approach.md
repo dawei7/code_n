@@ -28,6 +28,7 @@ $$\mathbb{E}[T] = \sum_{k=1}^\infty D_k e^{-D_{k-1}}, \quad \text{with } D_0 = 0
 ### Euler-Lagrange Exponential Recurrence
 Setting the gradient with respect to $D_k$ to zero:
 $$\frac{\partial}{\partial D_k} \left( D_k e^{-D_{k-1}} + D_{k+1} e^{-D_k} \right) = e^{-D_{k-1}} - D_{k+1} e^{-D_k} = 0$$
+
 $$\implies D_{k+1} = e^{D_k - D_{k-1}}$$
 
 This nonlinear recurrence has a unique critical initial value $D_1 = d_1 \approx 0.746542014027$ separating solutions that diverge to $-\infty$ from those that explode too quickly.

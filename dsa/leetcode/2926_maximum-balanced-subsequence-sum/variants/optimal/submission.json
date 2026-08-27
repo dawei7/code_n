@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxBalancedSubsequenceSum",
-  "verified_submission_id": "2078223447",
-  "verified_at": "2026-07-23T09:53:44.607270+00:00"
+  "verified_submission_id": "2117864611",
+  "verified_at": "2026-08-23T23:15:12.166561+00:00"
 }

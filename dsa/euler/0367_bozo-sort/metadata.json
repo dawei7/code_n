@@ -8,7 +8,28 @@
   "euler_level": 34,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Markov Chain",
+      "slug": "markov-chain"
+    },
+    {
+      "name": "Permutation",
+      "slug": "permutation"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
   "url": "https://projecteuler.net/problem=367",
   "supported_languages": [
     "python"

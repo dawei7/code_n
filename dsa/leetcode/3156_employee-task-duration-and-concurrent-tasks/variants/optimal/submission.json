@@ -6,10 +6,9 @@
   "frontend_id": "3156",
   "title_slug": "employee-task-duration-and-concurrent-tasks",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2079850771",
-  "verified_at": "2026-07-24T18:57:00+02:00"
+  "verified_submission_id": "2120603336",
+  "verified_at": "2026-08-26T09:05:15.121069+00:00"
 }
-

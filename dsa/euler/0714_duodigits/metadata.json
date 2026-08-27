@@ -8,7 +8,16 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    }
+  ],
   "url": "https://projecteuler.net/problem=714",
   "supported_languages": [
     "python"

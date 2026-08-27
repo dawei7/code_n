@@ -42,6 +42,7 @@ For a fixed odd integer $k$:
 Let $\alpha = \sqrt{k}$ and $\beta = \sqrt{k + 1}$.
 The bounds on $y$ for a given $x$ are:
 $$y_{\max}(x) = \min(N, \lfloor \beta x \rfloor - I_{\beta \in \mathbb{Z}})$$
+
 $$y_{\min}(x) = \max(M + 1, \lfloor \alpha x \rfloor + I_{\alpha \notin \mathbb{Z}})$$
 
 The range of $x$ where $y_{\min}(x) \le y_{\max}(x)$ is partitioned by critical transition points:

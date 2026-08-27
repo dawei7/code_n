@@ -8,7 +8,20 @@
   "euler_level": 37,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Hexagon",
+      "slug": "hexagon"
+    },
+    {
+      "name": "Hexagonal Lattice",
+      "slug": "hexagonal-lattice"
+    }
+  ],
   "url": "https://projecteuler.net/problem=702",
   "supported_languages": [
     "python"

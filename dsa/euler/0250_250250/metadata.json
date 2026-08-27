@@ -8,7 +8,20 @@
   "euler_level": 13,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Subset",
+      "slug": "subset"
+    }
+  ],
   "url": "https://projecteuler.net/problem=250",
   "supported_languages": [
     "python"

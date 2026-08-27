@@ -1,13 +1,14 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     state,
-    STRING_AGG(city ORDER BY city SEPARATOR ', ') AS cities,
+    STRING_AGG(city, ', ' ORDER BY city) AS cities,
     COUNT(
         CASE
             WHEN LEFT(city, 1) = LEFT(state, 1) THEN 1
         END
     ) AS matching_letter_count
 FROM cities
-GROUP BY 1
-HAVING COUNT(city) >= 3 AND matching_letter_count > 0
-ORDER BY 3 DESC, 1;
+GROUP BY state
+HAVING COUNT(city) >= 3 AND COUNT(CASE WHEN LEFT(city, 1) = LEFT(state, 1) THEN 1 END) > 0
+ORDER BY matching_letter_count DESC, state;
+

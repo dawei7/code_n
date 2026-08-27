@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.lexSmallestNegatedPerm",
-  "verified_submission_id": "2085306444",
-  "verified_at": "2026-07-28T19:47:16.611088+00:00"
+  "verified_submission_id": "2122314865",
+  "verified_at": "2026-08-27T19:33:51.469666+00:00"
 }

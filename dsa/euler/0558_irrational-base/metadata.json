@@ -8,7 +8,16 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Complex Number",
+      "slug": "complex-number"
+    },
+    {
+      "name": "Sum Of Powers",
+      "slug": "sum-of-powers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=558",
   "supported_languages": [
     "python"

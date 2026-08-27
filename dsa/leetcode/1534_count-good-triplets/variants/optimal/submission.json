@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countGoodTriplets",
-  "verified_submission_id": "2069620174",
-  "verified_at": "2026-07-16T08:50:58.983266+00:00"
+  "verified_submission_id": "2114789185",
+  "verified_at": "2026-08-21T07:24:37.531484+00:00"
 }

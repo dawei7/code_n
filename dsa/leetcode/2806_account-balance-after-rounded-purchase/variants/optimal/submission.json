@@ -6,9 +6,9 @@
   "frontend_id": "2806",
   "title_slug": "account-balance-after-rounded-purchase",
   "paid_only": false,
-  "language": "python",
+  "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.accountBalanceAfterPurchase",
-  "verified_submission_id": "2077138788",
-  "verified_at": "2026-07-22T13:15:00+00:00"
+  "verified_submission_id": "2120598127",
+  "verified_at": "2026-08-26T08:58:57.626488+00:00"
 }

@@ -6,8 +6,8 @@
   "frontend_id": "619",
   "title_slug": "biggest-single-number",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065480282",
-  "verified_at": "2026-07-12T22:44:07.547070+00:00"
+  "verified_submission_id": "2113230702",
+  "verified_at": "2026-08-19T20:46:06.126007+00:00"
 }

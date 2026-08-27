@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2852","frontend_id":"2749","title_slug":"minimum-operations-to-make-the-integer-zero","paid_only":false,"language":"python","source":"solutions/solution.py","native_entrypoint":"Solution.makeTheIntegerZero","verified_submission_id":"2076499308","verified_at":"2026-07-22T02:52:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2852",
+  "frontend_id": "2749",
+  "title_slug": "minimum-operations-to-make-the-integer-zero",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.makeTheIntegerZero",
+  "verified_submission_id": "2120597388",
+  "verified_at": "2026-08-26T08:58:08.424214+00:00"
+}

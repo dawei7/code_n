@@ -8,7 +8,28 @@
   "euler_level": 12,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    },
+    {
+      "name": "Random Walk",
+      "slug": "random-walk"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
   "url": "https://projecteuler.net/problem=497",
   "supported_languages": [
     "python"

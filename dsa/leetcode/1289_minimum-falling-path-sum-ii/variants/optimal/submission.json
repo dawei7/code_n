@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minFallingPathSum",
-  "verified_submission_id": "2068345447",
-  "verified_at": "2026-07-15T08:28:37.585801+00:00"
+  "verified_submission_id": "2113292108",
+  "verified_at": "2026-08-19T23:34:47.500235+00:00"
 }

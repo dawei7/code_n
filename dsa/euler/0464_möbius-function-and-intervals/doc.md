@@ -1,9 +1,6 @@
-# Möbius Function and Intervals
-
-### Möbius Function and Intervals
+## Description
 
 The Möbius function, denoted $\mu(n)$, is defined as:
-
 
 $\mu(n) = (-1)^{\omega(n)}$ if $n$ is squarefree (where $\omega(n)$ is the number of distinct prime factors of $n$)
 $\mu(n) = 0$ if $n$ is not squarefree.
@@ -14,12 +11,7 @@ Let $N(a, b)$ be the number of integers $n$ in the interval $[a, b]$ such that $
 
 For example, $P(2,10) = 2$ and $N(2,10) = 4$.
 
-
-
-
-
 Let $C(n)$ be the number of integer pairs $(a, b)$ such that:
-
 
  $1\le a \le b \le n$,
  $99 \cdot N(a, b) \le 100 \cdot P(a, b)$, and
@@ -27,8 +19,20 @@ Let $C(n)$ be the number of integer pairs $(a, b)$ such that:
 
 For example, $C(10) = 13$, $C(500) = 16676$ and $C(10\,000) = 20155319$.
 
-
-
-
-
 Find $C(20\,000\,000)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

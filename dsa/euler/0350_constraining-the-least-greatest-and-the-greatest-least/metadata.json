@@ -8,7 +8,24 @@
   "euler_level": 22,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Lcm",
+      "slug": "lcm"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    }
+  ],
   "url": "https://projecteuler.net/problem=350",
   "supported_languages": [
     "python"

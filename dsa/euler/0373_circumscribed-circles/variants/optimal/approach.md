@@ -44,7 +44,9 @@ The number of non-degenerate integer-sided triangles with circumradius $R$ is:
 $$N(R) = \frac{1}{6} \left( 2 A(R) - 3 B(R) + 3 C(R) - 2 \right)$$
 where $A, B, C$ are **purely multiplicative functions**:
 $$A(p^e) = \begin{cases} 3e^2 + 3e + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}$$
+
 $$B(p^e) = \begin{cases} 2e + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}$$
+
 $$C(p^e) = \begin{cases} 2 \lfloor e / 2 \rfloor + 1 & \text{if } p \equiv 1 \pmod 4 \\ 1 & \text{if } p \not\equiv 1 \pmod 4 \end{cases}$$
 
 ### Linear Sieve Convolution

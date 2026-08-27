@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2627","frontend_id":"2538","title_slug":"difference-between-maximum-and-minimum-price-sum","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.maxOutput","verified_submission_id":"2075318516","verified_at":"2026-07-21T05:02:14+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2627",
+  "frontend_id": "2538",
+  "title_slug": "difference-between-maximum-and-minimum-price-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.maxOutput",
+  "verified_submission_id": "2117840966",
+  "verified_at": "2026-08-23T21:58:12.021287+00:00"
+}

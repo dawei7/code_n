@@ -1,8 +1,21 @@
-# Common Cathetus Right-angled Triangles
-
-### Common Cathetus Right-angled Triangles
+## Description
 
 The four right-angled triangles with sides $(9,12,15)$, $(12,16,20)$, $(5,12,13)$ and $(12,35,37)$ all have one of the shorter sides (catheti) equal to $12$. It can be shown that no other integer sided right-angled triangle exists with one of the catheti equal to $12$.
 
-
 Find the smallest integer that can be the length of a cathetus of exactly $47547$ different integer sided right-angled triangles.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

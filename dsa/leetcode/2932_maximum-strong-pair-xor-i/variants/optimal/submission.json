@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maximumStrongPairXor",
-  "verified_submission_id": "2078265006",
-  "verified_at": "2026-07-23T10:29:40.003540+00:00"
+  "verified_submission_id": "2117864911",
+  "verified_at": "2026-08-23T23:16:21.689620+00:00"
 }

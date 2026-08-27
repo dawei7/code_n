@@ -1,12 +1,12 @@
-### Pivotal Square Sums
+## Description
 
 Let us call a positive integer $k$ a square-pivot, if there is a pair of integers $m \gt 0$ and $n \ge k$, such that the sum of the $(m+1)$ consecutive squares up to $k$ equals the sum of the $m$ consecutive squares from $(n+1)$ on:
 
-
-$$(k - m)^2 + \cdots + k^2 = (n + 1)^2 + \cdots + (n + m)^2.$$
+$$
+(k - m)^2 + \cdots + k^2 = (n + 1)^2 + \cdots + (n + m)^2.
+$$
 
 Some small square-pivots are
-
 
 $\mathbf 4$: $3^2 + \mathbf 4^2 = 5^2$
 $\mathbf{21}$: $20^2 + \mathbf{21}^2 = 29^2$

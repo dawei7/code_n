@@ -6,9 +6,9 @@
   "frontend_id": "1747",
   "title_slug": "leetflex-banned-accounts",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070948346",
-  "verified_at": "2026-07-17T09:45:29.144390+00:00"
+  "verified_submission_id": "2114807428",
+  "verified_at": "2026-08-21T07:49:13.533854+00:00"
 }

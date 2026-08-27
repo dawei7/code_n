@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numMatchingSubseq",
-  "verified_submission_id": "2066165726",
-  "verified_at": "2026-07-13T13:22:42.252948+00:00"
+  "verified_submission_id": "2108894703",
+  "verified_at": "2026-08-16T11:15:16.715816+00:00"
 }

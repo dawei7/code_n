@@ -8,7 +8,20 @@
   "euler_level": 11,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=142",
   "supported_languages": [
     "python"

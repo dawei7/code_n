@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countDigitOccurrences",
-  "verified_submission_id": "2086741437",
-  "verified_at": "2026-07-29T22:50:06.381885+00:00"
+  "verified_submission_id": "2122330470",
+  "verified_at": "2026-08-27T19:58:24.428855+00:00"
 }

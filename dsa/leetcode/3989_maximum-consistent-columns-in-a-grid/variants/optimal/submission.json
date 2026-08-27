@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxConsistentColumns",
-  "verified_submission_id": "2088119644",
-  "verified_at": "2026-07-31T00:47:06.6836225Z"
+  "verified_submission_id": "2122340159",
+  "verified_at": "2026-08-27T20:15:16.608432+00:00"
 }

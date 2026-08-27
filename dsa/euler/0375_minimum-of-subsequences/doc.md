@@ -1,15 +1,13 @@
-# Minimum of Subsequences
-
-### Minimum of Subsequences
+## Description
 
 Let $S_n$ be an integer sequence produced with the following pseudo-random number generator:
 
-
-$$\begin{align}
-S_0 &amp; = 290797 \\
-S_{n+1} &amp; = S_n^2 \bmod 50515093
-\end{align}$$
-
+$$
+\begin{aligned}
+S_0 & = 290797 \\
+S_{n+1} & = S_n^2 \bmod 50515093
+\end{aligned}
+$$
 
 Let $A(i, j)$ be the minimum of the numbers $S_i, S_{i+1}, \dots, S_j$ for $i\le j$.
 
@@ -17,7 +15,20 @@ Let $M(N) = \sum A(i, j)$ for $1 \le i \le j \le N$.
 
 We can verify that $M(10) = 432256955$ and $M(10\,000) = 3264567774119$.
 
-
-
-
 Find $M(2\,000\,000\,000)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

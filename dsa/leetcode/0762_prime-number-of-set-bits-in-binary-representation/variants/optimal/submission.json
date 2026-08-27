@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countPrimeSetBits",
-  "verified_submission_id": "2066004638",
-  "verified_at": "2026-07-13T10:27:00.673641+00:00"
+  "verified_submission_id": "2108894369",
+  "verified_at": "2026-08-16T11:14:55.526357+00:00"
 }

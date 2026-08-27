@@ -8,7 +8,12 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Huffman Code",
+      "slug": "huffman-code"
+    }
+  ],
   "url": "https://projecteuler.net/problem=219",
   "supported_languages": [
     "python"

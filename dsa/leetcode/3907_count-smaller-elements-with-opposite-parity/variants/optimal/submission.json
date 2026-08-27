@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countSmallerOppositeParity",
-  "verified_submission_id": "2086803311",
-  "verified_at": "2026-07-30T01:58:06.241735+00:00"
+  "verified_submission_id": "2122331793",
+  "verified_at": "2026-08-27T20:00:34.495276+00:00"
 }

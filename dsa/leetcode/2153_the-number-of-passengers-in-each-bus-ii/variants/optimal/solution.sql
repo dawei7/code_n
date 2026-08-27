@@ -1,21 +1,49 @@
-# Write your MySQL query statement below
-WITH
-    T AS (
+-- Write your PostgreSQL query statement below
+WITH RECURSIVE
+    NumberedBuses AS (
         SELECT
-            *,
-            SUM(cnt) OVER (ORDER BY dt, bus_id) AS cur,
-            IF(@t > 0, @t := cnt, @t := @t + cnt) AS cur_sum
-        FROM
-            (
-                SELECT bus_id, arrival_time AS dt, capacity AS cnt FROM Buses
-                UNION ALL
-                SELECT -1, arrival_time AS dt, -1 FROM Passengers
-            ) AS a
-            JOIN (SELECT @t := 0 AS x) AS b
+            bus_id,
+            arrival_time,
+            capacity,
+            ROW_NUMBER() OVER (ORDER BY arrival_time) AS rn
+        FROM Buses
+    ),
+    Boarding AS (
+        SELECT
+            nb.rn,
+            nb.bus_id,
+            nb.capacity,
+            LEAST(
+                nb.capacity,
+                (SELECT COUNT(*) FROM Passengers WHERE arrival_time <= nb.arrival_time)
+            ) AS passengers_cnt,
+            LEAST(
+                nb.capacity,
+                (SELECT COUNT(*) FROM Passengers WHERE arrival_time <= nb.arrival_time)
+            ) AS accumulated_boarded
+        FROM NumberedBuses nb
+        WHERE nb.rn = 1
+
+        UNION ALL
+
+        SELECT
+            nb.rn,
+            nb.bus_id,
+            nb.capacity,
+            LEAST(
+                nb.capacity,
+                (SELECT COUNT(*) FROM Passengers WHERE arrival_time <= nb.arrival_time) - b.accumulated_boarded
+            ) AS passengers_cnt,
+            b.accumulated_boarded + LEAST(
+                nb.capacity,
+                (SELECT COUNT(*) FROM Passengers WHERE arrival_time <= nb.arrival_time) - b.accumulated_boarded
+            ) AS accumulated_boarded
+        FROM NumberedBuses nb
+        JOIN Boarding b ON nb.rn = b.rn + 1
     )
 SELECT
     bus_id,
-    IF(cur_sum > 0, cnt - cur_sum, cnt) AS passengers_cnt
-FROM T
-WHERE bus_id > 0
+    passengers_cnt
+FROM Boarding
 ORDER BY bus_id;
+

@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2767","frontend_id":"2695","title_slug":"array-wrapper","paid_only":false,"language":"javascript","source":"solutions/solution.js","native_entrypoint":"ArrayWrapper","verified_submission_id":"2076405617","verified_at":"2026-07-21T22:22:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2767",
+  "frontend_id": "2695",
+  "title_slug": "array-wrapper",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solution.js",
+  "native_entrypoint": "ArrayWrapper",
+  "verified_submission_id": "2117851288",
+  "verified_at": "2026-08-23T22:29:08.915449+00:00"
+}

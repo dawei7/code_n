@@ -48,6 +48,7 @@ A naive approach uses floating-point division `a / b == c / e`:
 ### Product Reduction to Lowest Terms
 Multiplying all four non-trivial fractions together:
 $$\prod_{i=1}^4 \frac{a_i}{b_i} = \frac{16}{64} \times \frac{19}{95} \times \frac{26}{65} \times \frac{49}{98} = \frac{1}{4} \times \frac{1}{5} \times \frac{2}{5} \times \frac{1}{2}$$
+
 $$= \frac{1 \times 1 \times 2 \times 1}{4 \times 5 \times 5 \times 2} = \frac{2}{200} = \mathbf{\frac{1}{100}}$$
 
 The greatest common divisor is $\gcd(2, 200) = 2$.

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.filterOccupiedIntervals",
-  "verified_submission_id": "2088022515",
-  "verified_at": "2026-07-30T20:02:47.9448026+00:00"
+  "verified_submission_id": "2122338915",
+  "verified_at": "2026-08-27T20:12:59.377780+00:00"
 }

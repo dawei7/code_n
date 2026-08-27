@@ -8,7 +8,16 @@
   "euler_level": 25,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Prime Counting",
+      "slug": "prime-counting"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=268",
   "supported_languages": [
     "python"

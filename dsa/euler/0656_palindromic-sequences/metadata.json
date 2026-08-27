@@ -8,7 +8,16 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Palindrome",
+      "slug": "palindrome"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    }
+  ],
   "url": "https://projecteuler.net/problem=656",
   "supported_languages": [
     "python"

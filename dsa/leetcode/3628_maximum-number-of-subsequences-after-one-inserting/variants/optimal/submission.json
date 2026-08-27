@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numOfSubsequences",
-  "verified_submission_id": "2083872566",
-  "verified_at": "2026-07-27T19:10:00Z"
+  "verified_submission_id": "2120670611",
+  "verified_at": "2026-08-26T10:22:04.031048+00:00"
 }

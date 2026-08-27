@@ -32,7 +32,9 @@ Because each pile can only be acted upon by one specific player:
 - An even pile $2m + 2$ offers $\emptyset$ to Left and $\{2g(m)\}$ to Right.
 By Conway's simplicity rule in Combinatorial Game Theory, every single pile has a canonical **integer number value** $g(n)$:
 $$g(0) = 0$$
+
 $$g(2m + 1) = \max(0, 2g(m) + 1)$$
+
 $$g(2m + 2) = \min(0, 2g(m) - 1)$$
 
 ### Winning Condition for Second Player (Even)

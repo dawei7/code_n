@@ -6,10 +6,10 @@
   "frontend_id": "1083",
   "title_slug": "sales-analysis-ii",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065549810",
-  "verified_at": "2026-07-12T22:32:11.800026+00:00",
+  "verified_submission_id": "2113280692",
+  "verified_at": "2026-08-19T22:54:36.569490+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T15:54:00.000000+00:00"

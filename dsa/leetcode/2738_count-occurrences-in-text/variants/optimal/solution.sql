@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT 'bull' AS word, COUNT(*) AS count
 FROM Files
 WHERE content LIKE '% bull %'

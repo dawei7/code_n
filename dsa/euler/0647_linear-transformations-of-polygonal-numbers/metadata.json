@@ -8,7 +8,12 @@
   "euler_level": 11,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Figurate Number",
+      "slug": "figurate-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=647",
   "supported_languages": [
     "python"

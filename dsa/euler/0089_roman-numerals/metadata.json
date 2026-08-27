@@ -8,7 +8,12 @@
   "euler_level": 3,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Roman Numeral",
+      "slug": "roman-numeral"
+    }
+  ],
   "url": "https://projecteuler.net/problem=89",
   "supported_languages": [
     "python"

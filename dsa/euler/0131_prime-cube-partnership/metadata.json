@@ -8,7 +8,16 @@
   "euler_level": 5,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Cube Number",
+      "slug": "cube-number"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=131",
   "supported_languages": [
     "python"

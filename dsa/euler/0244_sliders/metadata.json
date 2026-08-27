@@ -8,7 +8,16 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Grid Pattern",
+      "slug": "grid-pattern"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
   "url": "https://projecteuler.net/problem=244",
   "supported_languages": [
     "python"

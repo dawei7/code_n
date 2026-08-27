@@ -6,9 +6,9 @@
   "frontend_id": "2066",
   "title_slug": "account-balance",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072969345",
-  "verified_at": "2026-07-19T03:19:29.531028+00:00"
+  "verified_submission_id": "2116366276",
+  "verified_at": "2026-08-22T16:30:50.147087+00:00"
 }

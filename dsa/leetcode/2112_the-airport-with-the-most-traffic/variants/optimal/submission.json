@@ -6,9 +6,9 @@
   "frontend_id": "2112",
   "title_slug": "the-airport-with-the-most-traffic",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073322412",
-  "verified_at": "2026-07-19T09:59:34.936712+00:00"
+  "verified_submission_id": "2116372087",
+  "verified_at": "2026-08-22T16:35:41.818511+00:00"
 }

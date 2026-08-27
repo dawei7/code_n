@@ -8,7 +8,24 @@
   "euler_level": 30,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Smooth Number",
+      "slug": "smooth-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=468",
   "supported_languages": [
     "python"

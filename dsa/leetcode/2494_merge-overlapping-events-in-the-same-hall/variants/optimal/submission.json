@@ -6,9 +6,9 @@
   "frontend_id": "2494",
   "title_slug": "merge-overlapping-events-in-the-same-hall",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2075148698",
-  "verified_at": "2026-07-21T00:21:00+00:00"
+  "verified_submission_id": "2117837963",
+  "verified_at": "2026-08-23T21:49:41.509229+00:00"
 }

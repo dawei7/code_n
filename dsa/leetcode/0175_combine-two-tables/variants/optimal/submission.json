@@ -6,8 +6,8 @@
   "frontend_id": "175",
   "title_slug": "combine-two-tables",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064190315",
-  "verified_at": "2026-07-11T18:22:08.067177+00:00"
+  "verified_submission_id": "2108900110",
+  "verified_at": "2026-08-16T11:20:49.470913+00:00"
 }

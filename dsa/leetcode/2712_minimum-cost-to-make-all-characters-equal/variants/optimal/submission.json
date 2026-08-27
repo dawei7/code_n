@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2817","frontend_id":"2712","title_slug":"minimum-cost-to-make-all-characters-equal","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.minimumCost","verified_submission_id":"2076431998","verified_at":"2026-07-21T23:54:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2817",
+  "frontend_id": "2712",
+  "title_slug": "minimum-cost-to-make-all-characters-equal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.minimumCost",
+  "verified_submission_id": "2117852346",
+  "verified_at": "2026-08-23T22:32:41.728565+00:00"
+}

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxLengthBetweenEqualCharacters",
-  "verified_submission_id": "2070436094",
-  "verified_at": "2026-07-16T22:23:52.143519+00:00"
+  "verified_submission_id": "2114797152",
+  "verified_at": "2026-08-21T07:34:56.691864+00:00"
 }

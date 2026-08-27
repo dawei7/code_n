@@ -6,9 +6,9 @@
   "frontend_id": "1204",
   "title_slug": "last-person-to-fit-in-the-bus",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067928105",
-  "verified_at": "2026-07-14T23:57:13.153994+00:00"
+  "verified_submission_id": "2113287350",
+  "verified_at": "2026-08-19T23:18:00.786437+00:00"
 }

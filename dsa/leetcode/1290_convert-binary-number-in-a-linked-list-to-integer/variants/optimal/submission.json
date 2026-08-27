@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getDecimalValue",
-  "verified_submission_id": "2068348444",
-  "verified_at": "2026-07-15T08:31:39.143161+00:00"
+  "verified_submission_id": "2113292166",
+  "verified_at": "2026-08-19T23:34:59.126491+00:00"
 }

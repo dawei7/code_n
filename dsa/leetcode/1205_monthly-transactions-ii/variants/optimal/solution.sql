@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT * FROM Transactions
@@ -9,12 +9,12 @@ WITH
             JOIN Chargebacks AS c ON t.id = c.trans_id
     )
 SELECT
-    DATE_FORMAT(trans_date, '%Y-%m') AS month,
+    TO_CHAR(trans_date, 'YYYY-MM') AS month,
     country,
-    SUM(state = 'approved') AS approved_count,
-    SUM(IF(state = 'approved', amount, 0)) AS approved_amount,
-    SUM(state = 'chargeback') AS chargeback_count,
-    SUM(IF(state = 'chargeback', amount, 0)) AS chargeback_amount
+    SUM(CASE WHEN state = 'approved' THEN 1 ELSE 0 END) AS approved_count,
+    SUM((CASE WHEN state = 'approved' THEN amount ELSE 0 END)) AS approved_amount,
+    SUM(CASE WHEN state = 'chargeback' THEN 1 ELSE 0 END) AS chargeback_count,
+    SUM((CASE WHEN state = 'chargeback' THEN amount ELSE 0 END)) AS chargeback_amount
 FROM T
 GROUP BY 1, 2
 HAVING approved_amount OR chargeback_amount;

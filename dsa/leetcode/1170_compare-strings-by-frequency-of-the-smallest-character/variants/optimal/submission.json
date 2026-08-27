@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numSmallerByFrequency",
-  "verified_submission_id": "2067884786",
-  "verified_at": "2026-07-14T21:30:08.833820+00:00"
+  "verified_submission_id": "2113285547",
+  "verified_at": "2026-08-19T23:11:25.832121+00:00"
 }

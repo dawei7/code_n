@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT user_id, SUM(quantity * price) AS spending
 FROM
     Sales

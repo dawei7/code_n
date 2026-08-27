@@ -8,7 +8,24 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binary Equation",
+      "slug": "binary-equation"
+    },
+    {
+      "name": "Binary Operator",
+      "slug": "binary-operator"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=734",
   "supported_languages": [
     "python"

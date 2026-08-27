@@ -8,7 +8,16 @@
   "euler_level": 5,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Palindrome",
+      "slug": "palindrome"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=348",
   "supported_languages": [
     "python"

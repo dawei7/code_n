@@ -1,4 +1,4 @@
-### Irrational Base
+## Description
 
 Let $r$ be the real root of the equation $x^3 = x^2 + 1$.
 
@@ -10,11 +10,7 @@ For example, $3 = r^{-10} + r^{-5} + r^{-1} + r^2$ and $10 = r^{-10} + r^{-7} + 
 
 Interestingly, the relation holds for the complex roots of the equation.
 
-
-
 Let $w(n)$ be the number of terms in this unique representation of $n$. Thus $w(3) = 4$ and $w(10) = 3$.
-
-
 
 More formally, for all positive integers $n$, we have:
 
@@ -28,12 +24,8 @@ $b_k + b_{k + 1} + b_{k + 2} \le 1$ for all $k$;
 
 $w(n) = \displaystyle \sum_{k=-\infty}^\infty b_k$ is finite.
 
-
-
 Let $S(m) = \displaystyle \sum_{j=1}^m w(j^2)$.
 
 You are given $S(10) = 61$ and $S(1000) = 19403$.
-
-
 
 Find $S(5\,000\,000)$.

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     a.student_name AS member_A,
     b.student_name AS member_B,

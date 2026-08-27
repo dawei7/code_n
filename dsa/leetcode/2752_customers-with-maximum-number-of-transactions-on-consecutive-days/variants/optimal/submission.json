@@ -6,10 +6,9 @@
   "frontend_id": "2752",
   "title_slug": "customers-with-maximum-number-of-transactions-on-consecutive-days",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2076506353",
-  "verified_at": "2026-07-22T03:05:00+00:00"
+  "verified_submission_id": "2120597649",
+  "verified_at": "2026-08-26T08:58:28.057504+00:00"
 }
-

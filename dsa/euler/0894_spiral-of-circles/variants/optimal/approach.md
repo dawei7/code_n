@@ -5,6 +5,7 @@
 Let $C_0$ be a unit circle ($r_0 = 1$) centered at $(R, 0)$.
 For $k \ge 1$, circle $C_k$ is obtained by scaling by factor $s \in (0, 1)$ and rotating by $\theta$:
 $$z_k = R s^k e^{i k \theta}, \quad r_k = s^k$$
+
 $C_0$ is externally tangent to $C_1$, $C_7$, and $C_8$.
 Find the total area of all circular triangles between the tangent circles, rounded to $10$ decimal places.
 

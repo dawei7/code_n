@@ -8,7 +8,12 @@
   "euler_level": 0,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    }
+  ],
   "url": "https://projecteuler.net/problem=33",
   "supported_languages": [
     "python"

@@ -8,7 +8,20 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Median Number",
+      "slug": "median-number"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
   "url": "https://projecteuler.net/problem=593",
   "supported_languages": [
     "python"

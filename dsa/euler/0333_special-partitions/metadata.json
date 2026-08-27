@@ -8,7 +8,16 @@
   "euler_level": 8,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Partition",
+      "slug": "partition"
+    }
+  ],
   "url": "https://projecteuler.net/problem=333",
   "supported_languages": [
     "python"

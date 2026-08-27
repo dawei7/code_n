@@ -8,7 +8,20 @@
   "euler_level": 34,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Area",
+      "slug": "area"
+    },
+    {
+      "name": "Square Root",
+      "slug": "square-root"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    }
+  ],
   "url": "https://projecteuler.net/problem=390",
   "supported_languages": [
     "python"

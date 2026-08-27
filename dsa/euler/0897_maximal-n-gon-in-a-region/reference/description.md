@@ -1,4 +1,4 @@
-### Maximal $n$-gon in a region
+## Description
 
 Let $G(n)$ denote the largest possible area of an $n$-gona polygon with $n$ sides contained in the region $\{(x, y) \in \Bbb R^2: x^4 \leq y \leq 1\}$.
 

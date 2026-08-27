@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.sumSubseqWidths",
-  "verified_submission_id": "2066774131",
-  "verified_at": "2026-07-14T02:41:34.020124+00:00"
+  "verified_submission_id": "2113250324",
+  "verified_at": "2026-08-19T21:28:04.593733+00:00"
 }

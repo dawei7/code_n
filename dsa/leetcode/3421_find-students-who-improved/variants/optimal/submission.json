@@ -6,9 +6,9 @@
   "frontend_id": "3421",
   "title_slug": "find-students-who-improved",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2081699472",
-  "verified_at": "2026-07-26T07:15:00Z"
+  "verified_submission_id": "2120635859",
+  "verified_at": "2026-08-26T09:43:24.736217+00:00"
 }

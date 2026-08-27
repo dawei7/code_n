@@ -7,7 +7,7 @@ import type {
   CustomProblemTreeNode,
 } from '../types/api';
 import { challengesForAlgorithmSet, getAlgorithmSetLabel } from '../lib/algorithmSets';
-import { collectSetChallengeIds } from '../lib/customProblemSets';
+import { collectSetChallengeIds, filterCustomProblemSetsForMode } from '../lib/customProblemSets';
 import {
   buildCustomCareerUnlockMap,
   buildUnlockedCareerSequence,
@@ -401,6 +401,36 @@ function leetcodeProblemOrder(challenge: ChallengeSummary): number {
   return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
 }
 
+function eulerProblemOrder(challenge: ChallengeSummary): number {
+  const fromField = Number(challenge.leetcode_frontend_id);
+  if (Number.isFinite(fromField) && fromField > 0) return fromField;
+  const match = /^euler_(\d+)$/.exec(challenge.id);
+  return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
+}
+
+function eulerLevelOrder(challenge: ChallengeSummary): number {
+  const match = /Level\s+(\d+)/i.exec(challenge.difficulty_label);
+  return match ? Number(match[1]) : 0;
+}
+
+function sortByEulerId(items: ChallengeSummary[]): ChallengeSummary[] {
+  return [...items].sort((left, right) => {
+    const byId = eulerProblemOrder(left) - eulerProblemOrder(right);
+    if (byId !== 0) return byId;
+    return left.name.localeCompare(right.name);
+  });
+}
+
+function sortByEulerLevelThenId(items: ChallengeSummary[]): ChallengeSummary[] {
+  return [...items].sort((left, right) => {
+    const byLevel = eulerLevelOrder(left) - eulerLevelOrder(right);
+    if (byLevel !== 0) return byLevel;
+    const byId = eulerProblemOrder(left) - eulerProblemOrder(right);
+    if (byId !== 0) return byId;
+    return left.name.localeCompare(right.name);
+  });
+}
+
 function sortByLeetcodeId(items: ChallengeSummary[]): ChallengeSummary[] {
   return [...items].sort((left, right) => {
     const byId = leetcodeProblemOrder(left) - leetcodeProblemOrder(right);
@@ -456,7 +486,8 @@ function formatChallengeTitle(
   challenge: ChallengeSummary,
   number?: ChallengeNumber,
 ): string {
-  return number ? `${number.display}. ${challenge.name}` : challenge.name;
+  const cleanName = challenge.name.replace(/^\d+\.\s*/, '');
+  return number ? `${number.display}. ${cleanName}` : cleanName;
 }
 
 function eloHeatColor(value: number): string {
@@ -522,6 +553,26 @@ function isFullySolved(challenges: ChallengeSummary[], completed: Set<string>): 
   return ids.size > 0 && Array.from(ids).every((id) => completed.has(id));
 }
 
+function calculateEulerLevelAverage(challenges: ChallengeSummary[]): number | null {
+  const levels: number[] = [];
+  for (const c of challenges) {
+    const match = /Level\s+(\d+)/i.exec(c.difficulty_label);
+    if (match) {
+      levels.push(Number(match[1]));
+    }
+  }
+  if (levels.length === 0) return null;
+  return levels.reduce((a, b) => a + b, 0) / levels.length;
+}
+
+function eulerLevelHeatColor(level: number): string {
+  if (level <= 5) return '#4ade80'; // soft green
+  if (level <= 10) return '#38bdf8'; // sky blue
+  if (level <= 18) return '#facc15'; // amber/yellow
+  if (level <= 28) return '#fb923c'; // orange
+  return '#c084fc'; // purple
+}
+
 function progressHeading(
   label: string,
   challenges: ChallengeSummary[],
@@ -535,6 +586,9 @@ function progressHeading(
   const started = !solved && solvedCount(challenges, completed) > 0;
   const solvedProgress = progressLabel(challenges, completed);
   const submittedProgress = submissionProgressLabel(challenges, submitted);
+  const isEuler = challenges.length > 0 && (challenges[0]?.dataset === 'euler' || challenges[0]?.id.startsWith('euler_'));
+  const eulerLevelAvg = isEuler ? calculateEulerLevelAverage(challenges) : null;
+
   return (
     <span className="flex min-w-0 flex-1 flex-col items-start text-left">
       <span className="flex w-full min-w-0 items-center gap-1">
@@ -550,7 +604,7 @@ function progressHeading(
           · {solvedProgress} solved
         </span>
         <span className="shrink-0 font-mono text-[10px] font-normal text-coden-accent opacity-80">
-          · LC {submittedProgress}
+          · {isEuler ? 'euler ' : 'LC '}{submittedProgress}
         </span>
         {careerMode && (
           <span className="shrink-0 rounded border border-coden-accent/40 px-1 py-0.5 font-mono text-[9px] text-coden-accent">
@@ -559,28 +613,40 @@ function progressHeading(
         )}
       </span>
       <span className="mt-0.5 flex min-h-4 items-center gap-1 pl-4 font-mono text-[10px] font-normal">
-        {eloAverage !== null && (
+        {isEuler && eulerLevelAvg !== null ? (
           <span
-            className="shrink-0"
-            style={{ color: eloHeatColor(eloAverage.value) }}
-            title={eloAverageTitle(eloAverage)}
+            className="shrink-0 font-semibold"
+            style={{ color: eulerLevelHeatColor(eulerLevelAvg) }}
+            title={`Average Difficulty: Level ${eulerLevelAvg.toFixed(1)} across ${challenges.length} Project Euler problem${challenges.length === 1 ? '' : 's'}`}
           >
-            Avg Elo{eloAverage.estimatedCount > 0 ? ' ~' : ' '}{Math.round(eloAverage.value)}
+            Avg Level {eulerLevelAvg % 1 === 0 ? eulerLevelAvg.toFixed(0) : eulerLevelAvg.toFixed(1)}
           </span>
-        )}
-        {eloAverage !== null && frequencyAverage !== null && (
-          <span className="text-coden-muted opacity-60" aria-hidden="true">·</span>
-        )}
-        {frequencyAverage !== null && (
-          <span
-            className="shrink-0 text-coden-accent"
-            title={frequencyAverageTitle(frequencyAverage)}
-          >
-            Avg Freq {frequencyAverage.value.toFixed(1)}%
-          </span>
-        )}
-        {eloAverage === null && frequencyAverage === null && (
-          <span className="text-coden-muted">Average metrics unavailable</span>
+        ) : (
+          <>
+            {eloAverage !== null && (
+              <span
+                className="shrink-0"
+                style={{ color: eloHeatColor(eloAverage.value) }}
+                title={eloAverageTitle(eloAverage)}
+              >
+                Avg Elo{eloAverage.estimatedCount > 0 ? ' ~' : ' '}{Math.round(eloAverage.value)}
+              </span>
+            )}
+            {eloAverage !== null && frequencyAverage !== null && (
+              <span className="text-coden-muted opacity-60" aria-hidden="true">·</span>
+            )}
+            {frequencyAverage !== null && (
+              <span
+                className="shrink-0 text-coden-accent"
+                title={frequencyAverageTitle(frequencyAverage)}
+              >
+                Avg Freq {frequencyAverage.value.toFixed(1)}%
+              </span>
+            )}
+            {eloAverage === null && frequencyAverage === null && (
+              <span className="text-coden-muted">Average metrics unavailable</span>
+            )}
+          </>
         )}
       </span>
     </span>
@@ -1170,11 +1236,86 @@ function buildCareerUnlockMap(
   return result;
 }
 
+function buildEulerLevelGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  const grouped = new Map<string, ChallengeSummary[]>();
+  for (const c of challenges) {
+    const level = c.difficulty_label || 'Level 0';
+    const list = grouped.get(level) ?? [];
+    list.push(c);
+    grouped.set(level, list);
+  }
+  const sortedLevels = Array.from(grouped.keys()).sort((a, b) => {
+    const matchA = /Level\s+(\d+)/i.exec(a);
+    const matchB = /Level\s+(\d+)/i.exec(b);
+    const numA = matchA ? Number(matchA[1]) : 0;
+    const numB = matchB ? Number(matchB[1]) : 0;
+    return numA - numB;
+  });
+  return sortedLevels.map((level) => {
+    const list = sortByEulerId(grouped.get(level) ?? []);
+    return {
+      id: `euler_level_${level.toLowerCase().replace(/\s+/g, '_')}`,
+      label: level,
+      challenges: list,
+      children: [],
+      careerMode: false,
+    };
+  });
+}
+
+function buildEulerCategoryGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  const grouped = new Map<string, ChallengeSummary[]>();
+  for (const c of challenges) {
+    const topics = c.leetcode_topics.map((t) => (t as { name?: string }).name).filter(Boolean) as string[];
+    const categories = topics.length > 0 ? topics : [c.leetcode_category_title || formatCategory(c.category) || 'General Math'];
+    for (const cat of categories) {
+      const list = grouped.get(cat) ?? [];
+      list.push(c);
+      grouped.set(cat, list);
+    }
+  }
+  const sortedCategories = Array.from(grouped.keys()).sort((a, b) => {
+    const itemsA = grouped.get(a) ?? [];
+    const itemsB = grouped.get(b) ?? [];
+    const avgA = calculateEulerLevelAverage(itemsA) ?? 0;
+    const avgB = calculateEulerLevelAverage(itemsB) ?? 0;
+    if (avgA !== avgB) return avgA - avgB;
+    return a.localeCompare(b);
+  });
+  return sortedCategories.map((cat) => {
+    const list = sortByEulerLevelThenId(grouped.get(cat) ?? []);
+    return {
+      id: `euler_cat_${cat.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
+      label: cat,
+      challenges: list,
+      children: [],
+      careerMode: false,
+    };
+  });
+}
+
 function buildNavigationGroups(
   challenges: ChallengeSummary[],
   activeSet: string,
   customSets: CustomProblemSet[] = [],
 ): NavigationGroup[] {
+  const isEuler = challenges.length > 0 && (challenges[0]?.dataset === 'euler' || challenges[0]?.id.startsWith('euler_'));
+  if (isEuler) {
+    if (activeSet === 'euler_category') {
+      return buildEulerCategoryGroups(challenges);
+    }
+    if (activeSet === 'custom') {
+      return buildCustomGroups(challenges, customSets);
+    }
+    return buildEulerLevelGroups(challenges);
+  }
+
+  if (activeSet === 'euler_level') {
+    return buildEulerLevelGroups(challenges);
+  }
+  if (activeSet === 'euler_category') {
+    return buildEulerCategoryGroups(challenges);
+  }
   if (activeSet === 'leetcode') {
     return buildCategoryGroups(challenges);
   }
@@ -2024,10 +2165,11 @@ export function ChallengeList() {
   const completedSet = useMemo(() => new Set(completed), [completed]);
   const submittedSet = useMemo(() => new Set(Object.keys(leetcodeSubmissions)), [leetcodeSubmissions]);
   const activeCustomProblemSets = useMemo(() => {
-    if (activeSet !== 'custom') return customProblemSets;
-    const selected = customProblemSets.find((set) => set.id === activeCustomSetId);
-    return selected ? [selected] : [];
-  }, [activeCustomSetId, activeSet, customProblemSets]);
+    const modeSets = filterCustomProblemSetsForMode(customProblemSets, appMode);
+    if (activeSet !== 'custom') return modeSets;
+    const selected = modeSets.find((set) => set.id === activeCustomSetId);
+    return selected ? [selected] : (modeSets[0] ? [modeSets[0]] : []);
+  }, [activeCustomSetId, activeSet, customProblemSets, appMode]);
   const activeSetLabel = activeSet === 'custom'
     ? activeCustomProblemSets[0]?.name || 'Personal'
     : getAlgorithmSetLabel(activeSet);
@@ -2102,6 +2244,11 @@ export function ChallengeList() {
   const filteredFrequencyAverage = useMemo(
     () => calculateDirectFrequencyAverage(filteredChallenges),
     [filteredChallenges],
+  );
+
+  const filteredEulerLevelAverage = useMemo(
+    () => (appMode === 'euler' ? calculateEulerLevelAverage(filteredChallenges) : null),
+    [filteredChallenges, appMode],
   );
 
   const navigationGroups = useMemo(
@@ -2410,19 +2557,27 @@ export function ChallengeList() {
     const isSubmitted = Boolean(leetcodeSubmissions[c.id]);
     const isSubmitting = submittingChallengeId === c.id;
     const hasVerifiedSubmission = c.leetcode_submission_status === 'verified';
-    const submitTitle = isSubmitted
-      ? `Accepted on LeetCode · submission ${leetcodeSubmissions[c.id].submission_id}`
-      : !isDone
-        ? 'Complete the full cOde(n) judge before submitting to LeetCode'
-        : !hasVerifiedSubmission
-          ? 'Submission blocked: no remotely verified LeetCode artifact is packaged for this problem'
-          : `Send the reviewed ${c.leetcode_submission_language || 'platform-native'} solution to LeetCode`;
+    const isEuler = c.dataset === 'euler' || c.id.startsWith('euler_');
+    const eulerId = c.leetcode_frontend_id || c.id.replace(/^euler_/, '');
+    const submitTitle = isEuler
+      ? isSubmitted
+        ? `Accepted on Project Euler`
+        : !isDone
+          ? 'Complete the mathematical solution before submitting'
+          : `Submit answer to Project Euler`
+      : isSubmitted
+        ? `Accepted on LeetCode · submission ${leetcodeSubmissions[c.id]?.submission_id}`
+        : !isDone
+          ? 'Complete the full cOde(n) judge before submitting to LeetCode'
+          : !hasVerifiedSubmission
+            ? 'Submission blocked: no remotely verified LeetCode artifact is packaged for this problem'
+            : `Send the reviewed ${c.leetcode_submission_language || 'platform-native'} solution to LeetCode`;
     const contextUnlocked = groupId ? careerUnlocks.get(groupId)?.has(c.id) : undefined;
     const isLocked = contextUnlocked === undefined ? !c.unlocked : !contextUnlocked;
     const canSelect = canPreviewChallenge(isLocked, cheaterMode);
     const displayTitle = formatChallengeTitle(c, numberForChallenge(c, categoryContext));
     const leetcodeId = numericLeetcodeId(c);
-    const eloDisplay = isLeetcodeUniverse(activeSet)
+    const eloDisplay = !isEuler && isLeetcodeUniverse(activeSet)
       ? eloDisplayForChallenge(c)
       : null;
     const ratingTitle = eloDisplay === null
@@ -2434,6 +2589,9 @@ export function ChallengeList() {
       ? 'LeetCode Frequency is unavailable until the authenticated Premium metadata updater succeeds.'
       : `LeetCode Frequency ${c.frequency.toFixed(1)} / 100. This is LeetCode's mutable relative-frequency attribute, not the acceptance rate or a guaranteed interview probability.`;
     const metricTitle = `${ratingTitle} ${frequencyTitle}`;
+    const displayPlatformTitle = isEuler
+      ? `Euler ${eulerId} - ${c.name.replace(/^\d+\.\s*/, '')}`
+      : `LeetCode ${c.leetcode_frontend_id || c.id.replace(/^lc_/, '')} - ${c.name}`;
 
     return (
       <li key={c.id} className="flex items-stretch gap-1">
@@ -2441,7 +2599,7 @@ export function ChallengeList() {
           <span title={isDone ? 'Completed in cOde(n) by at least one version' : 'Not yet completed in cOde(n)'}>
             <StatusTick complete={isDone} color="#4ade80" />
           </span>
-          <span title={isSubmitted ? submitTitle : 'Not yet Accepted on LeetCode'}>
+          <span title={isSubmitted ? submitTitle : isEuler ? 'Not yet Accepted on Project Euler' : 'Not yet Accepted on LeetCode'}>
             <StatusTick complete={isSubmitted} color="var(--coden-accent)" />
           </span>
         </div>
@@ -2477,11 +2635,21 @@ export function ChallengeList() {
                   ? 'text-slate-600 dark:text-coden-muted'
                   : 'text-coden-muted',
               ].join(' ')}
-              title={isLeetcodeUniverse(activeSet)
+              title={isEuler ? `Project Euler ${eulerId} · ${c.difficulty_label}` : isLeetcodeUniverse(activeSet)
                 ? metricTitle
                 : c.required_complexity}
             >
-              {isLeetcodeUniverse(activeSet) ? (
+              {isEuler ? (
+                <>
+                  <span className="opacity-80 font-semibold text-sky-400">euler {eulerId}</span>
+                  {c.difficulty_label && (
+                    <>
+                      <span className="opacity-60" aria-hidden="true"> · </span>
+                      <span className="opacity-80">{c.difficulty_label}</span>
+                    </>
+                  )}
+                </>
+              ) : isLeetcodeUniverse(activeSet) ? (
                 <>
                   {leetcodeId !== null && (
                     <>
@@ -2543,7 +2711,7 @@ export function ChallengeList() {
           ariaLabel={`Save PDF for ${c.name}`}
           onSelect={(content) => void handlePdfBundle(
             [c],
-            `LeetCode ${c.leetcode_frontend_id || c.id.replace(/^lc_/, '')} - ${c.name}`,
+            displayPlatformTitle,
             [pdfTocProblem(c)],
             content,
           )}
@@ -2556,7 +2724,7 @@ export function ChallengeList() {
           onSelect={(scope) => requestProgressReset(
             scope,
             [c],
-            `LeetCode ${c.leetcode_frontend_id || c.id.replace(/^lc_/, '')} - ${c.name}`,
+            displayPlatformTitle,
           )}
         />
       </li>
@@ -2715,9 +2883,21 @@ export function ChallengeList() {
         <div className="mt-2 text-[11px] font-mono text-coden-muted">
           {challengesLoading && challenges.length === 0
             ? 'Preparing challenge library...'
-            : `${progressLabel(filteredChallenges, completedSet)} solved · ${submissionProgressLabel(filteredChallenges, submittedSet)} LeetCode accepted`}
+            : `${progressLabel(filteredChallenges, completedSet)} solved · ${submissionProgressLabel(filteredChallenges, submittedSet)} ${appMode === 'euler' ? 'Project Euler accepted' : 'LeetCode accepted'}`}
           {filteredChallenges.length !== challenges.length && (
             <> · {filteredChallenges.length} of {challenges.length} shown</>
+          )}
+          {filteredEulerLevelAverage !== null && (
+            <>
+              {' · '}
+              <span
+                className="font-semibold"
+                style={{ color: eulerLevelHeatColor(filteredEulerLevelAverage) }}
+                title={`Average Difficulty: Level ${filteredEulerLevelAverage.toFixed(1)}`}
+              >
+                Avg Level {filteredEulerLevelAverage % 1 === 0 ? filteredEulerLevelAverage.toFixed(0) : filteredEulerLevelAverage.toFixed(1)}
+              </span>
+            </>
           )}
           {filteredEloAverage !== null && (
             <>

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
@@ -10,8 +10,8 @@ WITH
         FROM Student
     )
 SELECT
-    MAX(IF(continent = 'America', name, NULL)) AS 'America',
-    MAX(IF(continent = 'Asia', name, NULL)) AS 'Asia',
-    MAX(IF(continent = 'Europe', name, NULL)) AS 'Europe'
+    MAX((CASE WHEN continent = 'America' THEN name ELSE NULL END)) AS "America",
+    MAX((CASE WHEN continent = 'Asia' THEN name ELSE NULL END)) AS "Asia",
+    MAX((CASE WHEN continent = 'Europe' THEN name ELSE NULL END)) AS "Europe"
 FROM T
 GROUP BY rk;

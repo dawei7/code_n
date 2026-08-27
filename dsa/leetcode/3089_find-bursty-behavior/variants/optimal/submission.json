@@ -6,9 +6,9 @@
   "frontend_id": "3089",
   "title_slug": "find-bursty-behavior",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2079179027",
-  "verified_at": "2026-07-24T08:11:00+02:00"
+  "verified_submission_id": "2120602432",
+  "verified_at": "2026-08-26T09:04:14.577019+00:00"
 }

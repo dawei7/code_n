@@ -8,7 +8,20 @@
   "euler_level": 23,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisor Count",
+      "slug": "divisor-count"
+    },
+    {
+      "name": "Mobius Function",
+      "slug": "mobius-function"
+    },
+    {
+      "name": "Squarefree Number",
+      "slug": "squarefree-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=464",
   "supported_languages": [
     "python"

@@ -1,10 +1,21 @@
-# Lattice Paths
-
-### Lattice Paths
+## Description
 
 Starting in the top left corner of a $2 \times 2$ grid, and only being able to move to the right and down, there are exactly $6$ routes to the bottom right corner.
 
-
-
-
 How many such routes are there through a $20 \times 20$ grid?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

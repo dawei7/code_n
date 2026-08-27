@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxKDistinct",
-  "verified_submission_id": "2084015362",
-  "verified_at": "2026-07-28T00:38:17.129586+00:00"
+  "verified_submission_id": "2122306655",
+  "verified_at": "2026-08-27T19:21:52.729979+00:00"
 }

@@ -8,7 +8,20 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Sum",
+      "slug": "digit-sum"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "Substring",
+      "slug": "substring"
+    }
+  ],
   "url": "https://projecteuler.net/problem=238",
   "supported_languages": [
     "python"

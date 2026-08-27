@@ -8,7 +8,24 @@
   "euler_level": 10,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Ellipse",
+      "slug": "ellipse"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Physics",
+      "slug": "physics"
+    },
+    {
+      "name": "Tangency",
+      "slug": "tangency"
+    }
+  ],
   "url": "https://projecteuler.net/problem=144",
   "supported_languages": [
     "python"

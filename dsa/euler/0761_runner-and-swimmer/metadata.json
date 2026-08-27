@@ -8,7 +8,36 @@
   "euler_level": 39,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Hexagon",
+      "slug": "hexagon"
+    },
+    {
+      "name": "Non Discrete",
+      "slug": "non-discrete"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Square",
+      "slug": "square"
+    }
+  ],
   "url": "https://projecteuler.net/problem=761",
   "supported_languages": [
     "python"

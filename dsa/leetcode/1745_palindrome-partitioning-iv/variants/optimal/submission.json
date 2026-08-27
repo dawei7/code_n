@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.checkPartitioning",
-  "verified_submission_id": "2070934343",
-  "verified_at": "2026-07-17T09:32:32.108956+00:00"
+  "verified_submission_id": "2114807268",
+  "verified_at": "2026-08-21T07:49:00.796559+00:00"
 }

@@ -6,9 +6,9 @@
   "frontend_id": "3617",
   "title_slug": "find-students-with-study-spiral-pattern",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2083683252",
-  "verified_at": "2026-07-27T16:55:15.010742+00:00"
+  "verified_submission_id": "2122299721",
+  "verified_at": "2026-08-27T19:12:18.600562+00:00"
 }

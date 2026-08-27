@@ -8,7 +8,20 @@
   "euler_level": 14,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Coordinate System",
+      "slug": "coordinate-system"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    },
+    {
+      "name": "Sphere",
+      "slug": "sphere"
+    }
+  ],
   "url": "https://projecteuler.net/problem=353",
   "supported_languages": [
     "python"

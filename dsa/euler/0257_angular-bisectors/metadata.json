@@ -8,7 +8,24 @@
   "euler_level": 36,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Area",
+      "slug": "area"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Parametrisation",
+      "slug": "parametrisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=257",
   "supported_languages": [
     "python"

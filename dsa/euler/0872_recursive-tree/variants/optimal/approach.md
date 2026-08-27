@@ -40,9 +40,13 @@ $$D = 2^{b_m} + 2^{b_{m-1}} + \dots + 2^{b_1}, \quad \text{where } b_m > b_{m-1}
 
 By induction on $n$, the unique path from $k$ to the root $n$ in $T_n$ passes through the sequence of nodes:
 $$v_0 = k$$
+
 $$v_1 = v_0 + 2^{b_m}$$
+
 $$v_2 = v_1 + 2^{b_{m-1}}$$
+
 $$\dots$$
+
 $$v_m = v_{m-1} + 2^{b_1} = n$$
 
 Thus, the exact path sum is given in closed form by:

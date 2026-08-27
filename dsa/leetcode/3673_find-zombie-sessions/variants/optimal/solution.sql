@@ -1,14 +1,15 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     session_id,
     user_id,
-    TIMESTAMPDIFF(MINUTE, MIN(event_timestamp), MAX(event_timestamp)) session_duration_minutes,
-    SUM(event_type = 'scroll') scroll_count
+    FLOOR(EXTRACT(EPOCH FROM (MAX(event_timestamp) - MIN(event_timestamp))) / 60)::int AS session_duration_minutes,
+    SUM(CASE WHEN event_type = 'scroll' THEN 1 ELSE 0 END) AS scroll_count
 FROM app_events
-GROUP BY session_id
+GROUP BY session_id, user_id
 HAVING
-    session_duration_minutes >= 30
-    AND SUM(event_type = 'click') / SUM(event_type = 'scroll') < 0.2
-    AND SUM(event_type = 'purchase') = 0
-    AND SUM(event_type = 'scroll') >= 5
-ORDER BY scroll_count DESC, session_id;
+    EXTRACT(EPOCH FROM (MAX(event_timestamp) - MIN(event_timestamp))) / 60 >= 30
+    AND SUM(CASE WHEN event_type = 'click' THEN 1.0 ELSE 0 END) / SUM(CASE WHEN event_type = 'scroll' THEN 1 ELSE 0 END) < 0.2
+    AND SUM(CASE WHEN event_type = 'purchase' THEN 1 ELSE 0 END) = 0
+    AND SUM(CASE WHEN event_type = 'scroll' THEN 1 ELSE 0 END) >= 5
+ORDER BY scroll_count DESC, session_id ASC;
+

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     CASE
         WHEN n1.cnt > n2.cnt THEN 'New York University'

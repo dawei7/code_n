@@ -8,7 +8,16 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Digit Sum",
+      "slug": "digit-sum"
+    }
+  ],
   "url": "https://projecteuler.net/problem=290",
   "supported_languages": [
     "python"

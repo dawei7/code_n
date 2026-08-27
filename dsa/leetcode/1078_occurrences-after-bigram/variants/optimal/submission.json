@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findOcurrences",
-  "verified_submission_id": "2067524166",
-  "verified_at": "2026-07-14T15:19:26.009652+00:00"
+  "verified_submission_id": "2113280346",
+  "verified_at": "2026-08-19T22:53:32.953187+00:00"
 }

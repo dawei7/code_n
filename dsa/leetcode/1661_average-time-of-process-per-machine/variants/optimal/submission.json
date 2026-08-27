@@ -6,9 +6,9 @@
   "frontend_id": "1661",
   "title_slug": "average-time-of-process-per-machine",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070490709",
-  "verified_at": "2026-07-17T01:34:09.366340+00:00"
+  "verified_submission_id": "2114800385",
+  "verified_at": "2026-08-21T07:39:14.216705+00:00"
 }

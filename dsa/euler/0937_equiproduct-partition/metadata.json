@@ -8,7 +8,24 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Complex Number",
+      "slug": "complex-number"
+    },
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    },
+    {
+      "name": "Subset",
+      "slug": "subset"
+    }
+  ],
   "url": "https://projecteuler.net/problem=937",
   "supported_languages": [
     "python"

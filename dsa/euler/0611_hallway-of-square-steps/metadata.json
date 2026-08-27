@@ -8,7 +8,20 @@
   "euler_level": 28,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Iterative Method",
+      "slug": "iterative-method"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    },
+    {
+      "name": "Sum Of Squares",
+      "slug": "sum-of-squares"
+    }
+  ],
   "url": "https://projecteuler.net/problem=611",
   "supported_languages": [
     "python"

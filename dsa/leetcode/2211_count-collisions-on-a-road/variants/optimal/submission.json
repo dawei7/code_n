@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "class Solution.countCollisions",
-  "verified_submission_id": "2073876389",
-  "verified_at": "2026-07-19T20:04:13.381844+00:00"
+  "verified_submission_id": "2116400030",
+  "verified_at": "2026-08-22T16:58:28.595118+00:00"
 }

@@ -6,9 +6,9 @@
   "frontend_id": "1892",
   "title_slug": "page-recommendations-ii",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2071937587",
-  "verified_at": "2026-07-18T07:44:18.207812+00:00"
+  "verified_submission_id": "2114819107",
+  "verified_at": "2026-08-21T08:06:01.658901+00:00"
 }

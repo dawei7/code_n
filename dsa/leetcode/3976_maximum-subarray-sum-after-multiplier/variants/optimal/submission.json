@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxSubarraySum",
-  "verified_submission_id": "2088032931",
-  "verified_at": "2026-07-30T20:22:06.6050595+00:00"
+  "verified_submission_id": "2122338990",
+  "verified_at": "2026-08-27T20:13:09.791418+00:00"
 }

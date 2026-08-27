@@ -1,6 +1,4 @@
-# Gozinta Chains
-
-### Gozinta Chains
+## Description
 
 A gozinta chain for $n$ is a sequence $\{1,a,b,\dots,n\}$ where each element properly divides the next.
 
@@ -12,7 +10,20 @@ Let $g(n)$ be the number of gozinta chains for $n$, so $g(12)=8$.
 
 $g(48)=48$ and $g(120)=132$.
 
-
-
-
 Find the sum of the numbers $n$  not exceeding $10^{16}$ for which $g(n)=n$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

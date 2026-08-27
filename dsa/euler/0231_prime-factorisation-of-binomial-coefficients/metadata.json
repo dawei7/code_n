@@ -8,7 +8,20 @@
   "euler_level": 4,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Factorisation",
+      "slug": "factorisation"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=231",
   "supported_languages": [
     "python"

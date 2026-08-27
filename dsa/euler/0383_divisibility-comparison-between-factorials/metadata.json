@@ -8,7 +8,20 @@
   "euler_level": 14,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    },
+    {
+      "name": "P Adic Valuation",
+      "slug": "p-adic-valuation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=383",
   "supported_languages": [
     "python"

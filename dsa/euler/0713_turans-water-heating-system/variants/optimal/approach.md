@@ -82,7 +82,7 @@ This evaluates $L(10^7)$ as **`788626351539895`**!
 
 ### Complexity Analysis
 - **Domain Size**: $N = 10^7$.
-- **Time Complexity**: $O(N) pprox 0.02\text{ seconds}$ compiled C execution.
+- **Time Complexity**: $O(N) \approx 0.02\text{ seconds}$ compiled C execution.
 - **Space Complexity**: $O(1)$ scalar integer variables.
 
 ### Invariants Handled

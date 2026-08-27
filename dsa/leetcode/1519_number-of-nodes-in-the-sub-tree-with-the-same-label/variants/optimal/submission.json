@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countSubTrees",
-  "verified_submission_id": "2069527776",
-  "verified_at": "2026-07-16T07:16:12.474795+00:00"
+  "verified_submission_id": "2114787784",
+  "verified_at": "2026-08-21T07:22:54.476051+00:00"
 }

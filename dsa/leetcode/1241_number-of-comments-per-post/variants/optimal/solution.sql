@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     t AS (
         SELECT DISTINCT s1.sub_id AS post_id, s2.sub_id AS sub_id

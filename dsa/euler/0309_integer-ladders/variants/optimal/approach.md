@@ -39,6 +39,7 @@ By grouping all generated Pythagorean legs by their common width $w$, we obtain 
 For each street width $w$ with associated height list $A_w$:
 For each pair of heights $(a, b) \in A_w$ with $a < b$:
 $$h = \frac{ab}{a + b}$$
+
 $h$ is an integer if and only if:
 $$(a + b) \mid ab$$
 Because $\gcd(a, a + b) = \gcd(a, b)$:

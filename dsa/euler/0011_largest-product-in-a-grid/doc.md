@@ -1,10 +1,6 @@
-# Largest Product in a Grid
-
-### Largest Product in a Grid
+## Description
 
 In the $20 \times 20$ grid below, four numbers along a diagonal line have been marked in red.
-
-
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 
@@ -46,9 +42,22 @@ In the $20 \times 20$ grid below, four numbers along a diagonal line have been m
 
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 
-
-
 The product of these numbers is $26 \times 63 \times 78 \times 14 = 1788696$.
 
-
 What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the $20 \times 20$ grid?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

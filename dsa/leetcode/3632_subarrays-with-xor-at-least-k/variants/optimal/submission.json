@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countXorSubarrays",
-  "verified_submission_id": "2083904559",
-  "verified_at": "2026-07-27T19:51:34.425905+00:00"
+  "verified_submission_id": "2122300016",
+  "verified_at": "2026-08-27T19:12:50.690181+00:00"
 }

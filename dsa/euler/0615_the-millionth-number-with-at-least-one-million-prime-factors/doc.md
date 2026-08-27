@@ -1,11 +1,7 @@
-# The Millionth Number with at Least One Million Prime Factors
-
-### The Millionth Number with at Least One Million Prime Factors
+## Description
 
 Consider the natural numbers having at least $5$ prime factors, which don't have to be distinct.
  Sorting these numbers by size gives a list which starts with:
-
-
 
 $32=2 \cdot 2 \cdot 2 \cdot 2 \cdot 2$
 $48=2 \cdot 2 \cdot 2 \cdot 2 \cdot 3$
@@ -17,8 +13,21 @@ $\cdots$
 
 So, for example, the fifth number with at least $5$ prime factors is $80$.
 
-
-
-
 Find the millionth number with at least one million prime factors.
   Give your answer modulo $123454321$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

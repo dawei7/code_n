@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxGcdSum",
-  "verified_submission_id": "2078315407",
-  "verified_at": "2026-07-23T11:23:05.366151+00:00"
+  "verified_submission_id": "2117865428",
+  "verified_at": "2026-08-23T23:18:15.715278+00:00"
 }

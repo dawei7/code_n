@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.largestSubmatrix",
-  "verified_submission_id": "2070801266",
-  "verified_at": "2026-07-17T07:17:24.175827+00:00"
+  "verified_submission_id": "2114805897",
+  "verified_at": "2026-08-21T07:47:02.674455+00:00"
 }

@@ -6,9 +6,9 @@
   "frontend_id": "1211",
   "title_slug": "queries-quality-and-percentage",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067937725",
-  "verified_at": "2026-07-15T00:27:08.174732+00:00"
+  "verified_submission_id": "2113287758",
+  "verified_at": "2026-08-19T23:19:27.525392+00:00"
 }

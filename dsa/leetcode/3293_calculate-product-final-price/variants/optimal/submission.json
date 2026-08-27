@@ -6,9 +6,9 @@
   "frontend_id": "3293",
   "title_slug": "calculate-product-final-price",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2080760531",
-  "verified_at": "2026-07-25T13:10:48.3036289Z"
+  "verified_submission_id": "2120624284",
+  "verified_at": "2026-08-26T09:30:03.953601+00:00"
 }

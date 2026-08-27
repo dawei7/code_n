@@ -8,7 +8,16 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
   "url": "https://projecteuler.net/problem=809",
   "supported_languages": [
     "python"

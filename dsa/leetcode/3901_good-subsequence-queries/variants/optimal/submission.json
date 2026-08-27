@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countGoodSubseq",
-  "verified_submission_id": "2086767531",
-  "verified_at": "2026-07-30T00:22:50.783804+00:00"
+  "verified_submission_id": "2122331110",
+  "verified_at": "2026-08-27T19:59:32.331441+00:00"
 }

@@ -8,7 +8,12 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Convexity",
+      "slug": "convexity"
+    }
+  ],
   "url": "https://projecteuler.net/problem=604",
   "supported_languages": [
     "python"

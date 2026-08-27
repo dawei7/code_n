@@ -8,7 +8,24 @@
   "euler_level": 33,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
   "url": "https://projecteuler.net/problem=445",
   "supported_languages": [
     "python"

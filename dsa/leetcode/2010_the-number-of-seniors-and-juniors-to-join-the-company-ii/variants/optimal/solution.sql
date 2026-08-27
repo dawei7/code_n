@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     s AS (
         SELECT
@@ -11,10 +11,12 @@ WITH
         SELECT
             employee_id,
             COALESCE(
-                SELECT
-                    MAX(cur)
-                FROM s
-                WHERE cur <= 70000,
+                (
+                    SELECT
+                        MAX(cur)
+                    FROM s
+                    WHERE cur <= 70000
+                ),
                 0
             ) + SUM(salary) OVER (ORDER BY salary) AS cur
         FROM Candidates

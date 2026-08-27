@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.kthLargestPerfectSubtree",
-  "verified_submission_id": "2080896522",
-  "verified_at": "2026-07-25T15:25:00Z"
+  "verified_submission_id": "2120619343",
+  "verified_at": "2026-08-26T09:24:10.354550+00:00"
 }

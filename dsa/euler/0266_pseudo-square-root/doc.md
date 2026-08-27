@@ -1,6 +1,4 @@
-# Pseudo Square Root
-
-### Pseudo Square Root
+## Description
 
 The divisors of $12$ are: $1,2,3,4,6$ and $12$.
 
@@ -10,9 +8,22 @@ We shall call the largest divisor of an integer $n$ that does not exceed the squ
 
 It can be seen that $\operatorname{PSR}(3102)=47$.
 
-
-
-
 Let $p$ be the product of the primes below $190$.
 
 Find $\operatorname{PSR}(p) \bmod 10^{16}$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

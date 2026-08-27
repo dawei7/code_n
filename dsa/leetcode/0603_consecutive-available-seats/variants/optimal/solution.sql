@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT DISTINCT a.seat_id
 FROM
     Cinema AS a

@@ -1,14 +1,24 @@
-# Larger Digit Permutation II
-
-### Larger Digit Permutation II
+## Description
 
 Let $B(n)$ be the smallest number larger than $n$ that can be formed by rearranging digits of $n$, or $0$ if no such number exists. For example, $B(245) = 254$ and $B(542) = 0$.
 
-
-
-Define $a_0 = 0$ and $a_n = a_{n - 1}^2 + 2$ for $n&gt;0$.
+Define $a_0 = 0$ and $a_n = a_{n - 1}^2 + 2$ for $n>0$.
 Let $\displaystyle U(N) = \sum_{n = 1}^N B(a_n)$. You are given $U(10) \equiv 543870437 \pmod{10^9+7}$.
 
-
-
 Find $U(10^{16})$. Give your answer modulo $10^9 + 7$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.compareBitonicSums",
-  "verified_submission_id": "2086812421",
-  "verified_at": "2026-07-30T02:18:48.927371+00:00"
+  "verified_submission_id": "2122331985",
+  "verified_at": "2026-08-27T20:00:53.605207+00:00"
 }

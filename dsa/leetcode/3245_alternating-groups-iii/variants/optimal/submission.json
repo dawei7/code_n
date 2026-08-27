@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numberOfAlternatingGroups",
-  "verified_submission_id": "2080253897",
-  "verified_at": "2026-07-25T04:47:48.891541+00:00"
+  "verified_submission_id": "2120607104",
+  "verified_at": "2026-08-26T09:09:49.003902+00:00"
 }

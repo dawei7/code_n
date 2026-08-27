@@ -1,6 +1,4 @@
-# Fractional Sequences
-
-### Fractional Sequences
+## Description
 
 For any positive integer $k$, a finite sequence $a_i$ of fractions $x_i/y_i$ is defined by:
 
@@ -14,26 +12,26 @@ Define $f(k) = n$.
 
 For example, for $k = 20$:
 
-
-
-
-
 $1/20 \to 2/19 \to 3/18 = 1/6 \to 2/5 \to 3/4 \to 4/3 \to 5/2 \to 6/1 = 6$
-
-
-
-
 
 So $f(20) = 6$.
 
-
-
-
-
 Also $f(1) = 1$, $f(2) = 2$, $f(3) = 1$ and $\sum f(k^3) = 118937$ for $1 \le k \le 100$.
 
-
-
-
-
 Find $\sum f(k^3)$ for $1 \le k \le 2 \times 10^6$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

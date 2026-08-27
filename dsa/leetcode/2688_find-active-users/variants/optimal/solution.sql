@@ -1,4 +1,4 @@
-# Write your MySQL query statement
+-- Write your PostgreSQL query statement below
 SELECT DISTINCT
     user_id
 FROM Users
@@ -17,5 +17,5 @@ WHERE
                     ) AS prev_created_at
                 FROM Users
             ) AS t
-        WHERE DATEDIFF(created_at, prev_created_at) <= 7
+        WHERE (created_at::date - prev_created_at::date) <= 7
     );

@@ -34,6 +34,7 @@ $$\text{Sliver}(a, b) = \frac{b - a}{2} (a^4 + b^4) - \frac{b^5 - a^5}{5}$$
 ### Euler-Lagrange Optimality Condition
 Differentiating the total sliver loss with respect to interior vertex coordinate $x_i$:
 $$\frac{\partial}{\partial x_i} (\text{Sliver}(x_{i-1}, x_i) + \text{Sliver}(x_i, x_{i+1})) = 0$$
+
 $$\implies 4 x_i^3 = x_{i-1}^3 + x_{i-1}^2 x_{i+1} + x_{i-1} x_{i+1}^2 + x_{i+1}^3$$
 
 Solving this non-linear boundary recurrence for $n = 101$ yields $G(101) = \mathbf{1.599827123}$.

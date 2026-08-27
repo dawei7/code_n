@@ -8,7 +8,12 @@
   "euler_level": 14,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Probability",
+      "slug": "probability"
+    }
+  ],
   "url": "https://projecteuler.net/problem=389",
   "supported_languages": [
     "python"

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "class Solution.maximumSumScore",
-  "verified_submission_id": "2073892417",
-  "verified_at": "2026-07-19T20:44:39.463951+00:00"
+  "verified_submission_id": "2116402125",
+  "verified_at": "2026-08-22T17:00:10.823332+00:00"
 }

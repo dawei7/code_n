@@ -8,7 +8,12 @@
   "euler_level": 12,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Exponentiation By Squaring",
+      "slug": "exponentiation-by-squaring"
+    }
+  ],
   "url": "https://projecteuler.net/problem=122",
   "supported_languages": [
     "python"

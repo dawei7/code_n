@@ -1,6 +1,4 @@
-# Incenter and Circumcenter of Triangle
-
-### Incenter and Circumcenter of Triangle
+## Description
 
 Given an integer sided triangle $ABC$:
 
@@ -8,14 +6,24 @@ Let $I$ be the incenter of $ABC$.
 
 Let $D$ be the intersection between the line $AI$ and the circumcircle of $ABC$ ($A \ne D$).
 
-
-
 We define $F(L)$ as the sum of $BC$ for the triangles $ABC$ that satisfy $AC = DI$ and $BC \le L$.
-
-
 
 For example, $F(15) = 45$ because the triangles $ABC$ with $(BC,AC,AB) = (6,4,5), (12,8,10), (12,9,7), (15,9,16)$ satisfy the conditions.
 
-
-
 Find $F(10^9)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

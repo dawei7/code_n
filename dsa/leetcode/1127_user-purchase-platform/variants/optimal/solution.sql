@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     P AS (
         SELECT DISTINCT spend_date, 'desktop' AS platform FROM Spending
@@ -12,7 +12,7 @@ WITH
             user_id,
             spend_date,
             SUM(amount) AS amount,
-            IF(COUNT(platform) = 1, platform, 'both') AS platform
+            (CASE WHEN COUNT(platform) = 1 THEN platform ELSE 'both' END) AS platform
         FROM Spending
         GROUP BY 1, 2
     )

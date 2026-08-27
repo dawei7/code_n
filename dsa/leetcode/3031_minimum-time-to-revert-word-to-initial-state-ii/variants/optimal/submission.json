@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minimumTimeToInitialState",
-  "verified_submission_id": "2078898375",
-  "verified_at": "2026-07-23T21:57:00Z"
+  "verified_submission_id": "2117870322",
+  "verified_at": "2026-08-23T23:36:13.508746+00:00"
 }

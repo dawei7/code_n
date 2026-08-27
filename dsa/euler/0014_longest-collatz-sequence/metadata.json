@@ -8,7 +8,20 @@
   "euler_level": 1,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Collatz Sequence",
+      "slug": "collatz-sequence"
+    },
+    {
+      "name": "Longest Path",
+      "slug": "longest-path"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
   "url": "https://projecteuler.net/problem=14",
   "supported_languages": [
     "python"

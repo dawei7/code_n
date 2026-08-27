@@ -8,7 +8,24 @@
   "euler_level": 38,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Tangency",
+      "slug": "tangency"
+    }
+  ],
   "url": "https://projecteuler.net/problem=620",
   "supported_languages": [
     "python"

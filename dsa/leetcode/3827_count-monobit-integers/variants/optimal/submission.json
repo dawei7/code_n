@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countMonobit",
-  "verified_submission_id": "2085695217",
-  "verified_at": "2026-07-29T06:24:14.367993+00:00"
+  "verified_submission_id": "2122323252",
+  "verified_at": "2026-08-27T19:46:44.463816+00:00"
 }

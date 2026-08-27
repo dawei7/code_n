@@ -8,7 +8,24 @@
   "euler_level": 0,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    },
+    {
+      "name": "Sequence Summation",
+      "slug": "sequence-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=48",
   "supported_languages": [
     "python"

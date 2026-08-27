@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2741","frontend_id":"2669","title_slug":"count-artist-occurrences-on-spotify-ranking-list","paid_only":true,"language":"mysql","source":"solutions/solution.sql","native_entrypoint":"SQL query","verified_submission_id":"2076338736","verified_at":"2026-07-21T19:52:59+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2741",
+  "frontend_id": "2669",
+  "title_slug": "count-artist-occurrences-on-spotify-ranking-list",
+  "paid_only": true,
+  "language": "postgresql",
+  "source": "solution.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2117849713",
+  "verified_at": "2026-08-23T22:24:08.558734+00:00"
+}

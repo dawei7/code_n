@@ -8,7 +8,24 @@
   "euler_level": 23,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Multiset",
+      "slug": "multiset"
+    },
+    {
+      "name": "Path Finding",
+      "slug": "path-finding"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    }
+  ],
   "url": "https://projecteuler.net/problem=616",
   "supported_languages": [
     "python"

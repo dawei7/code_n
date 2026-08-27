@@ -8,7 +8,24 @@
   "euler_level": 15,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Grid Pattern",
+      "slug": "grid-pattern"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    },
+    {
+      "name": "Random Walk",
+      "slug": "random-walk"
+    }
+  ],
   "url": "https://projecteuler.net/problem=280",
   "supported_languages": [
     "python"

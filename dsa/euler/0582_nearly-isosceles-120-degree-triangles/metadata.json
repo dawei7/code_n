@@ -8,7 +8,20 @@
   "euler_level": 29,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    }
+  ],
   "url": "https://projecteuler.net/problem=582",
   "supported_languages": [
     "python"

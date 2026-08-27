@@ -8,7 +8,20 @@
   "euler_level": 13,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    },
+    {
+      "name": "Square Root",
+      "slug": "square-root"
+    }
+  ],
   "url": "https://projecteuler.net/problem=721",
   "supported_languages": [
     "python"

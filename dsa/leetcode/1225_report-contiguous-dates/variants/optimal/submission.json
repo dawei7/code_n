@@ -6,9 +6,9 @@
   "frontend_id": "1225",
   "title_slug": "report-contiguous-dates",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067955881",
-  "verified_at": "2026-07-15T01:19:51.485886+00:00"
+  "verified_submission_id": "2113288561",
+  "verified_at": "2026-08-19T23:22:15.081594+00:00"
 }

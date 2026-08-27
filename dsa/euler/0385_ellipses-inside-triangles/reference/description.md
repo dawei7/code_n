@@ -1,12 +1,6 @@
-### Ellipses Inside Triangles
+## Description
 
 For any triangle $T$ in the plane, it can be shown that there is a unique ellipse with largest area that is completely inside $T$.
-
-
-
-
-
-
 
 For a given $n$, consider triangles $T$ such that:
 
@@ -16,23 +10,10 @@ For a given $n$, consider triangles $T$ such that:
 
 Let $A(n)$ be the sum of the areas of all such triangles.
 
-
-
-
 For example, if $n = 8$, there are two such triangles. Their vertices are $(-4,-3),(-4,3),(8,0)$ and $(4,3),(4,-3),(-8,0)$, and the area of each triangle is $36$. Thus $A(8) = 36 + 36 = 72$.
-
-
-
 
 It can be verified that $A(10) = 252$, $A(100) = 34632$ and $A(1000) = 3529008$.
 
-
-
-
 Find $A(1\,000\,000\,000)$.
-
-
-
-
 
 1The foci (plural of focus) of an ellipse are two points $A$ and $B$ such that for every point $P$ on the boundary of the ellipse, $AP + PB$ is constant.

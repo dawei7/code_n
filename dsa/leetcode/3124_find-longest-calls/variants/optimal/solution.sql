@@ -1,9 +1,10 @@
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
             first_name,
             type,
-            DATE_FORMAT(SEC_TO_TIME(duration), "%H:%i:%s") AS duration_formatted,
+            TO_CHAR(duration * INTERVAL '1 second', 'HH24:MI:SS') AS duration_formatted,
             RANK() OVER (
                 PARTITION BY type
                 ORDER BY duration DESC
@@ -18,4 +19,5 @@ SELECT
     duration_formatted
 FROM T
 WHERE rk <= 3
-ORDER BY 2, 3 DESC, 1 DESC;
+ORDER BY type DESC, duration_formatted DESC, first_name DESC;
+

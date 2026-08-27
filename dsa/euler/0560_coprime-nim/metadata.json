@@ -8,7 +8,24 @@
   "euler_level": 26,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Coprime Numbers",
+      "slug": "coprime-numbers"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Nim",
+      "slug": "nim"
+    }
+  ],
   "url": "https://projecteuler.net/problem=560",
   "supported_languages": [
     "python"

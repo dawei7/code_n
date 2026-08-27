@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.decodeAtIndex",
-  "verified_submission_id": "2066752446",
-  "verified_at": "2026-07-14T01:52:46.813930+00:00"
+  "verified_submission_id": "2113249466",
+  "verified_at": "2026-08-19T21:25:57.932887+00:00"
 }

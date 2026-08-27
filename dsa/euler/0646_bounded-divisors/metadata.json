@@ -8,7 +8,20 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisor Sum",
+      "slug": "divisor-sum"
+    },
+    {
+      "name": "Factorisation",
+      "slug": "factorisation"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    }
+  ],
   "url": "https://projecteuler.net/problem=646",
   "supported_languages": [
     "python"

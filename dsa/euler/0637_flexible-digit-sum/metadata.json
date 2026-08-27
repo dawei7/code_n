@@ -8,7 +8,20 @@
   "euler_level": 14,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Digit Sum",
+      "slug": "digit-sum"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    }
+  ],
   "url": "https://projecteuler.net/problem=637",
   "supported_languages": [
     "python"

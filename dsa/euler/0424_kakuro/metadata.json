@@ -8,7 +8,16 @@
   "euler_level": 23,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Grid Pattern",
+      "slug": "grid-pattern"
+    }
+  ],
   "url": "https://projecteuler.net/problem=424",
   "supported_languages": [
     "python"

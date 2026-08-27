@@ -8,7 +8,12 @@
   "euler_level": 3,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Partition",
+      "slug": "partition"
+    }
+  ],
   "url": "https://projecteuler.net/problem=76",
   "supported_languages": [
     "python"

@@ -6,9 +6,9 @@
   "frontend_id": "1789",
   "title_slug": "primary-department-for-each-employee",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2071174477",
-  "verified_at": "2026-07-17T13:54:28.449698+00:00"
+  "verified_submission_id": "2114810832",
+  "verified_at": "2026-08-21T07:54:08.462546+00:00"
 }

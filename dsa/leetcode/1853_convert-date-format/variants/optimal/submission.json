@@ -6,9 +6,9 @@
   "frontend_id": "1853",
   "title_slug": "convert-date-format",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2071722028",
-  "verified_at": "2026-07-18T04:11:01.198960+00:00"
+  "verified_submission_id": "2114815899",
+  "verified_at": "2026-08-21T08:01:25.953244+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numEnclaves",
-  "verified_submission_id": "2067309409",
-  "verified_at": "2026-07-14T11:49:22.836211+00:00"
+  "verified_submission_id": "2113276909",
+  "verified_at": "2026-08-19T22:42:13.935024+00:00"
 }

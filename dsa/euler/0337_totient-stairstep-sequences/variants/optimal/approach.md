@@ -60,7 +60,9 @@ When evaluating $dp[y]$ in increasing order of $y = 7, 8, \dots, N$:
 ### The 1D Fenwick Reduction Formula
 For each $y \in [7, N]$:
 $$dp[y] \equiv \Big( \text{FenwickQuery}(\phi(y) - 1) - \text{pref\_dp}[\phi(y)] \Big) \pmod{10^8}$$
+
 $$\text{pref\_dp}[y] = (\text{pref\_dp}[y - 1] + dp[y]) \pmod{10^8}$$
+
 $$\text{FenwickAdd}(\phi(y), dp[y])$$
 
 The cumulative sum of all valid sequences is given by:

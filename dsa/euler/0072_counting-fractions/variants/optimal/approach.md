@@ -62,6 +62,7 @@ def naive_counting_fractions(limit):
 
 ### Example 1: Trace for $N = 8$
 $$\sum_{d=2}^8 \phi(d) = \phi(2) + \phi(3) + \phi(4) + \phi(5) + \phi(6) + \phi(7) + \phi(8)$$
+
 $$S = 1 + 2 + 2 + 4 + 2 + 6 + 4 = \mathbf{21}$$
 Matches problem statement sample! $\checkmark$
 

@@ -6,9 +6,9 @@
   "frontend_id": "1587",
   "title_slug": "bank-account-summary-ii",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069967098",
-  "verified_at": "2026-07-16T14:20:18.944316+00:00"
+  "verified_submission_id": "2114793849",
+  "verified_at": "2026-08-21T07:30:37.723685+00:00"
 }

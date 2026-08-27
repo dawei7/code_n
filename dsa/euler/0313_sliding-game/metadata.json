@@ -8,7 +8,28 @@
   "euler_level": 6,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Shortest Path",
+      "slug": "shortest-path"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=313",
   "supported_languages": [
     "python"

@@ -8,7 +8,16 @@
   "euler_level": 20,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    }
+  ],
   "url": "https://projecteuler.net/problem=972",
   "supported_languages": [
     "python"

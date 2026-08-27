@@ -6,9 +6,9 @@
   "frontend_id": "3103",
   "title_slug": "find-trending-hashtags-ii",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2079321890",
-  "verified_at": "2026-07-24T10:26:00+02:00"
+  "verified_submission_id": "2120602600",
+  "verified_at": "2026-08-26T09:04:24.993085+00:00"
 }

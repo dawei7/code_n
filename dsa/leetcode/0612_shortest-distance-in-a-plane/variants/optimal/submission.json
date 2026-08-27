@@ -6,10 +6,10 @@
   "frontend_id": "612",
   "title_slug": "shortest-distance-in-a-plane",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065451998",
-  "verified_at": "2026-07-12T20:51:24.112423+00:00",
+  "verified_submission_id": "2108892918",
+  "verified_at": "2026-08-16T11:13:22.654070+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T14:20:00.000000+00:00"

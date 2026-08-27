@@ -8,7 +8,16 @@
   "euler_level": 3,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Palindrome",
+      "slug": "palindrome"
+    },
+    {
+      "name": "Sum Of Squares",
+      "slug": "sum-of-squares"
+    }
+  ],
   "url": "https://projecteuler.net/problem=125",
   "supported_languages": [
     "python"

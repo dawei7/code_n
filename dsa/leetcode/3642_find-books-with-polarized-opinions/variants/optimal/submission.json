@@ -6,9 +6,9 @@
   "frontend_id": "3642",
   "title_slug": "find-books-with-polarized-opinions",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2083934710",
-  "verified_at": "2026-07-27T20:42:09.346027+00:00"
+  "verified_submission_id": "2122301265",
+  "verified_at": "2026-08-27T19:14:29.396467+00:00"
 }

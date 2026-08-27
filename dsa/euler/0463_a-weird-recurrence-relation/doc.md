@@ -1,9 +1,6 @@
-# A Weird Recurrence Relation
-
-### A Weird Recurrence Relation
+## Description
 
 The function $f$ is defined for all positive integers as follows:
-
 
 $f(1)=1$
 $f(3)=3$
@@ -13,8 +10,22 @@ $f(4n + 3)=3f(2n + 1) - 2f(n)$
 
 The function $S(n)$ is defined as $\sum_{i=1}^{n}f(i)$.
 
-
 $S(8)=22$ and $S(100)=3604$.
 
-
 Find $S(3^{37})$. Give the last $9$ digits of your answer.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

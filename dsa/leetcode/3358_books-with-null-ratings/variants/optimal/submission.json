@@ -6,9 +6,9 @@
   "frontend_id": "3358",
   "title_slug": "books-with-null-ratings",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2081225749",
-  "verified_at": "2026-07-25T20:43:00Z"
+  "verified_submission_id": "2120625157",
+  "verified_at": "2026-08-26T09:31:08.680970+00:00"
 }

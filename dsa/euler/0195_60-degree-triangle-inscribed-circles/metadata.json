@@ -8,7 +8,28 @@
   "euler_level": 15,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Incircle",
+      "slug": "incircle"
+    },
+    {
+      "name": "Parametrisation",
+      "slug": "parametrisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=195",
   "supported_languages": [
     "python"

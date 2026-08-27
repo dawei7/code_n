@@ -1,6 +1,4 @@
-# Squarefree Factors
-
-### Squarefree Factors
+## Description
 
 Consider the number $54$.
 
@@ -10,23 +8,27 @@ $54$, $2 \times 27$, $3 \times 18$, $6 \times 9$, $3 \times 3 \times 6$, $2 \tim
 
 If we require that the factors are all squarefree only two ways remain: $3 \times 3 \times 6$ and $2 \times 3 \times 3 \times 3$.
 
-
-
-
 Let's call $\operatorname{Fsf}(n)$ the number of ways $n$ can be factored into one or more squarefree factors larger than $1$, so
 $\operatorname{Fsf}(54)=2$.
 
-
-
-
 Let $S(n)$ be $\sum \operatorname{Fsf}(k)$ for $k=2$ to $n$.
-
-
-
 
 $S(100)=193$.
 
-
-
-
 Find $S(10\,000\,000\,000)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

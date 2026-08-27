@@ -8,7 +8,20 @@
   "euler_level": 31,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    },
+    {
+      "name": "Multiplicative Order",
+      "slug": "multiplicative-order"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    }
+  ],
   "url": "https://projecteuler.net/problem=952",
   "supported_languages": [
     "python"

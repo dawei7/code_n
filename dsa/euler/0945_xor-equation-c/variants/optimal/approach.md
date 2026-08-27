@@ -8,6 +8,7 @@ In the polynomial ring $\mathbb{F}_2[t]$, binary integers represent polynomials.
 
 Consider the equation:
 $$(a \otimes a) \oplus (2 \otimes a \otimes b) \oplus (b \otimes b) = c \otimes c$$
+
 $F(N)$ is the number of integer solutions with $0 \le a \le b \le N$.
 Given:
 - $F(10) = 21$.

@@ -1,4 +1,4 @@
-### Fibonacci Primitive Roots
+## Description
 
 When we calculate $8^n$ modulo $11$ for $n=0$ to $9$ we get: $1, 8, 9, 6, 4, 10, 3, 2, 5, 7$.
 
@@ -25,8 +25,6 @@ $3+2=5$
 $2+5=7$
 
 $5+7=12 \equiv 1 \bmod 11$.
-
-
 
 So the powers of $8 \bmod 11$ are cyclic with period $10$, and $8^n + 8^{n+1} \equiv 8^{n+2} \pmod{11}$.
 

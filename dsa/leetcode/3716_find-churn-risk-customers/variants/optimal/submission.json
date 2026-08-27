@@ -6,9 +6,9 @@
   "frontend_id": "3716",
   "title_slug": "find-churn-risk-customers",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2084997236",
-  "verified_at": "2026-07-28T15:55:31.647222+00:00"
+  "verified_submission_id": "2122310591",
+  "verified_at": "2026-08-27T19:27:27.976831+00:00"
 }

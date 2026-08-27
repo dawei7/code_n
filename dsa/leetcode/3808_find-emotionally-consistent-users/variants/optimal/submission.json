@@ -6,9 +6,9 @@
   "frontend_id": "3808",
   "title_slug": "find-emotionally-consistent-users",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2085469144",
-  "verified_at": "2026-07-29T02:44:00+00:00"
+  "verified_submission_id": "2122321171",
+  "verified_at": "2026-08-27T19:43:28.731512+00:00"
 }

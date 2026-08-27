@@ -8,7 +8,24 @@
   "euler_level": 29,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Asymptotics",
+      "slug": "asymptotics"
+    },
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Fraction",
+      "slug": "fraction"
+    },
+    {
+      "name": "Harmonic Number",
+      "slug": "harmonic-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=368",
   "supported_languages": [
     "python"

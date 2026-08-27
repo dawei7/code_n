@@ -6,9 +6,9 @@
   "frontend_id": "2372",
   "title_slug": "calculate-the-influence-of-each-salesperson",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2074463077",
-  "verified_at": "2026-07-20T10:49:46.317319+00:00"
+  "verified_submission_id": "2120593159",
+  "verified_at": "2026-08-26T08:52:59.660996+00:00"
 }

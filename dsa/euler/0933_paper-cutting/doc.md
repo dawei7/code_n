@@ -1,6 +1,4 @@
-# Paper Cutting
-
-### Paper Cutting
+## Description
 
 Starting with one piece of integer-sized rectangle paper, two players make moves in turn.
 
@@ -8,17 +6,24 @@ A valid move consists of choosing one piece of paper and cutting it both horizon
 
 The player that does not have a valid move loses the game.
 
-
-
-
 Let $C(w, h)$ be the number of winning moves for the first player, when the original paper has size $w \times h$. For example, $C(5,3)=4$, with the four winning moves shown below.
-
-
-
 
 Also write $\displaystyle D(W, H) = \sum_{w = 2}^W\sum_{h = 2}^H C(w, h)$. You are given that $D(12, 123) = 327398$.
 
-
-
-
 Find $D(123, 1234567)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

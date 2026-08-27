@@ -5,7 +5,7 @@ WITH
             p.pass_to,
             t1.team_name AS team_from,
             t2.team_name AS team_to,
-            IF(t1.team_name = t2.team_name, 1, 0) same_team_flag,
+            (CASE WHEN t1.team_name = t2.team_name THEN 1 ELSE 0 END) same_team_flag,
             p.time_stamp
         FROM
             Passes p

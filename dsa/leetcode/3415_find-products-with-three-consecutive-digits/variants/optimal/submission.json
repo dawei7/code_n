@@ -6,9 +6,9 @@
   "frontend_id": "3415",
   "title_slug": "find-products-with-three-consecutive-digits",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2081561177",
-  "verified_at": "2026-07-26T05:17:24Z"
+  "verified_submission_id": "2120635529",
+  "verified_at": "2026-08-26T09:43:06.020773+00:00"
 }

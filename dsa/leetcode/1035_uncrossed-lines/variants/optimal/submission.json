@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxUncrossedLines",
-  "verified_submission_id": "2067351345",
-  "verified_at": "2026-07-14T12:37:05.981932+00:00"
+  "verified_submission_id": "2113277803",
+  "verified_at": "2026-08-19T22:45:09.824445+00:00"
 }

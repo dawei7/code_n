@@ -8,7 +8,16 @@
   "euler_level": 17,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=625",
   "supported_languages": [
     "python"

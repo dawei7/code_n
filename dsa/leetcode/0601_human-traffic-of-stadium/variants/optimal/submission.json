@@ -6,8 +6,8 @@
   "frontend_id": "601",
   "title_slug": "human-traffic-of-stadium",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065457817",
-  "verified_at": "2026-07-12T21:34:47.092260+00:00"
+  "verified_submission_id": "2113229073",
+  "verified_at": "2026-08-19T20:43:09.898337+00:00"
 }

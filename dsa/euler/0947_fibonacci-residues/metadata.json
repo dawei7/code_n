@@ -8,7 +8,20 @@
   "euler_level": 34,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fibonacci Number",
+      "slug": "fibonacci-number"
+    },
+    {
+      "name": "Periodicity",
+      "slug": "periodicity"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=947",
   "supported_languages": [
     "python"

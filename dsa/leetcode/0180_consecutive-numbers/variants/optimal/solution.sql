@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT DISTINCT l2.num AS ConsecutiveNums
 FROM
     Logs AS l1

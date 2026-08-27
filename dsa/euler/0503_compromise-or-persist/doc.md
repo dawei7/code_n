@@ -1,10 +1,6 @@
-# Compromise or Persist
-
-### Compromise or Persist
+## Description
 
 Alice is playing a game with $n$ cards numbered $1$ to $n$.
-
-
 
 A game consists of iterations of the following steps.
 
@@ -14,19 +10,26 @@ A game consists of iterations of the following steps.
 
 (3) Alice can end or continue the game. If she decides to end, the number becomes her score. If she decides to continue, the card is removed from the game and she returns to (1). If there is no card left, she is forced to end the game.
 
-
-
-
 Let $F(n)$ be Alice's expected score if she takes the optimized strategy to minimize her score.
-
-
 
 For example, $F(3) = 5/3$. At the first iteration, she should continue the game. At the second iteration, she should end the game if Bob says that one previously-seen number is bigger than the number which he is seeing, otherwise she should continue the game.
 
-
-
 We can also verify that $F(4) = 15/8$ and $F(10) \approx 2.5579365079$.
 
-
-
 Find $F(10^6)$. Give your answer rounded to $10$ decimal places behind the decimal point.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -6,9 +6,9 @@
   "frontend_id": "1699",
   "title_slug": "number-of-calls-between-two-persons",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070610422",
-  "verified_at": "2026-07-17T04:40:29.840457+00:00"
+  "verified_submission_id": "2114803543",
+  "verified_at": "2026-08-21T07:43:43.050715+00:00"
 }

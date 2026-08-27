@@ -6,9 +6,9 @@
   "frontend_id": "1407",
   "title_slug": "top-travellers",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068911553",
-  "verified_at": "2026-07-15T17:04:17.392275+00:00"
+  "verified_submission_id": "2113298731",
+  "verified_at": "2026-08-19T23:57:34.910344+00:00"
 }

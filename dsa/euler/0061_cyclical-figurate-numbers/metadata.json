@@ -8,7 +8,20 @@
   "euler_level": 2,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Figurate Number",
+      "slug": "figurate-number"
+    },
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    },
+    {
+      "name": "Triangle Number",
+      "slug": "triangle-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=61",
   "supported_languages": [
     "python"

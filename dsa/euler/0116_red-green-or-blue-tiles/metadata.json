@@ -8,7 +8,12 @@
   "euler_level": 4,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    }
+  ],
   "url": "https://projecteuler.net/problem=116",
   "supported_languages": [
     "python"

@@ -1,19 +1,27 @@
-# Factorisation Triples
-
-### Factorisation Triples
+## Description
 
 Let $n$ be a positive integer. An integer triple $(a, b, c)$ is called a factorisation triple of $n$ if:
 
-$1 \leq a \leq b \leq c$$a \cdot b \cdot c = n$.
+$1 \le a \le b \le c, \quad a \cdot b \cdot c = n$.
 
 Define $f(n)$ to be $a + b + c$ for the factorisation triple $(a, b, c)$ of $n$ which minimises $c / a$. One can show that this triple is unique.
 
-
-
-
 For example, $f(165) = 19$, $f(100100) = 142$ and $f(20!) = 4034872$.
 
-
-
-
 Find $f(43!)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -1,16 +1,12 @@
-### Prime Factors of $n^{15}+1$
+## Description
 
 Numbers of the form $n^{15}+1$ are composite for every integer $n \gt 1$.
 
 For positive integers $n$ and $m$ let $s(n,m)$ be defined as the sum of the distinct prime factors of $n^{15}+1$ not exceeding $m$.
 
-
-
 E.g. $2^{15}+1 = 3 \times 3 \times 11 \times 331$.
 
 So $s(2,10) = 3$ and $s(2,1000) = 3+11+331 = 345$.
-
-
 
 Also $10^{15}+1 = 7 \times 11 \times 13 \times 211 \times 241 \times 2161 \times 9091$.
 

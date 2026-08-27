@@ -6,9 +6,9 @@
   "frontend_id": "1321",
   "title_slug": "restaurant-growth",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068493367",
-  "verified_at": "2026-07-15T10:42:35.011041+00:00"
+  "verified_submission_id": "2113293826",
+  "verified_at": "2026-08-19T23:40:56.942497+00:00"
 }

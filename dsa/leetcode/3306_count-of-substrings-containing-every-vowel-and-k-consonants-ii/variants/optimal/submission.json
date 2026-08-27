@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countOfSubstrings",
-  "verified_submission_id": "2080818616",
-  "verified_at": "2026-07-25T14:08:35.2052554Z"
+  "verified_submission_id": "2120616516",
+  "verified_at": "2026-08-26T09:20:52.634027+00:00"
 }

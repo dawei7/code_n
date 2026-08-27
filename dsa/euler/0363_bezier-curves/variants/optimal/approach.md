@@ -9,6 +9,7 @@ The explicit Bernstein polynomial parameterization is:
 $$B(t) = (1-t)^3 P_0 + 3(1-t)^2 t P_1 + 3(1-t) t^2 P_2 + t^3 P_3$$
 Separating coordinates:
 $$x(t) = (1-t)^3 + 3(1-t)^2 t + 3v(1-t) t^2$$
+
 $$y(t) = 3v(1-t)^2 t + 3(1-t) t^2 + t^3 = x(1-t)$$
 
 The parameter $v > 0$ is uniquely determined by setting the area enclosed by $O P_0$, $O P_3$, and the curve equal to the area of the quarter circle $\frac{\pi}{4}$.
@@ -33,6 +34,7 @@ Using Green's Theorem, the area enclosed by the curve and coordinate axes is:
 $$\text{Area}(v) = \int_0^1 y(t) (-x'(t)) \, dt$$
 Expanding the polynomials:
 $$x'(t) = 3t[(2 - 3v)t + 2v - 2]$$
+
 $$y(t) = 3vt(1-t)^2 + 3t^2(1-t) + t^3$$
 Integrating analytically yields the exact quadratic:
 $$\text{Area}(v) = \frac{10 + 12v - 3v^2}{20}$$

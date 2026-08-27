@@ -1,14 +1,14 @@
 {
-    "schema_version":  1,
-    "provider":  "leetcode.com",
-    "status":  "verified",
-    "question_id":  "3878",
-    "frontend_id":  "3569",
-    "title_slug":  "maximize-count-of-distinct-primes-after-split",
-    "paid_only":  false,
-    "language":  "python3",
-    "source":  "solutions/solution.py",
-    "native_entrypoint":  "Solution.maximumCount",
-    "verified_submission_id":  "2089301861",
-    "verified_at":  "2026-07-31T21:22:20.423+00:00"
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3878",
+  "frontend_id": "3569",
+  "title_slug": "maximize-count-of-distinct-primes-after-split",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.maximumCount",
+  "verified_submission_id": "2120659804",
+  "verified_at": "2026-08-26T10:10:12.002245+00:00"
 }

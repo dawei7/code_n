@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT *
 FROM Cinema
 WHERE description != 'boring' AND id & 1 = 1

@@ -6,10 +6,10 @@
   "frontend_id": "574",
   "title_slug": "winning-candidate",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065421528",
-  "verified_at": "2026-07-12T20:10:49.208466+00:00",
+  "verified_submission_id": "2113226862",
+  "verified_at": "2026-08-19T20:39:04.850786+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T13:12:00.000000+00:00"

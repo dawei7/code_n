@@ -6,9 +6,9 @@
   "frontend_id": "2175",
   "title_slug": "the-change-in-global-rankings",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073696394",
-  "verified_at": "2026-07-19T16:41:06.283952+00:00"
+  "verified_submission_id": "2116397145",
+  "verified_at": "2026-08-22T16:56:06.322043+00:00"
 }

@@ -8,7 +8,16 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Arithmetic Progression",
+      "slug": "arithmetic-progression"
+    },
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=136",
   "supported_languages": [
     "python"

@@ -1,5 +1,19 @@
-# Consecutive Positive Divisors
-
-### Consecutive Positive Divisors
+## Description
 
 Find the number of integers $1 \lt n \lt 10^7$, for which $n$ and $n + 1$ have the same number of positive divisors. For example, $14$ has the positive divisors $1, 2, 7, 14$ while $15$ has $1, 3, 5, 15$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

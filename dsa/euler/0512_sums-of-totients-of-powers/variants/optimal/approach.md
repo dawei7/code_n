@@ -5,6 +5,7 @@
 Let $\varphi(n)$ be Euler's totient function.
 Define:
 $$f(n) = \left( \sum_{i=1}^n \varphi(n^i) \right) \bmod (n + 1)$$
+
 $$g(n) = \sum_{i=1}^n f(i)$$
 
 We are given:

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getGoodIndices",
-  "verified_submission_id": "2078409785",
-  "verified_at": "2026-07-23T13:06:40.609553+00:00"
+  "verified_submission_id": "2117866507",
+  "verified_at": "2026-08-23T23:22:17.860953+00:00"
 }

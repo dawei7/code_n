@@ -6,9 +6,9 @@
   "frontend_id": "3230",
   "title_slug": "customer-purchasing-behavior-analysis",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2080181323",
-  "verified_at": "2026-07-25T03:07:15.274810+00:00"
+  "verified_submission_id": "2120603990",
+  "verified_at": "2026-08-26T09:06:06.172380+00:00"
 }

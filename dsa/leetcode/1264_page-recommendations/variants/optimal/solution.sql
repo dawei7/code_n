@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT user1_id AS user_id FROM Friendship WHERE user2_id = 1

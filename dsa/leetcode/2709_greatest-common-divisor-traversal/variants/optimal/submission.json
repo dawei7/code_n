@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2827","frontend_id":"2709","title_slug":"greatest-common-divisor-traversal","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.canTraverseAllPairs","verified_submission_id":"2076427650","verified_at":"2026-07-21T23:39:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2827",
+  "frontend_id": "2709",
+  "title_slug": "greatest-common-divisor-traversal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.canTraverseAllPairs",
+  "verified_submission_id": "2117852147",
+  "verified_at": "2026-08-23T22:32:05.393778+00:00"
+}

@@ -8,7 +8,12 @@
   "euler_level": 20,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=358",
   "supported_languages": [
     "python"

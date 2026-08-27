@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findShortestPath",
-  "verified_submission_id": "2071622591",
-  "verified_at": "2026-07-17T23:40:43.183425+00:00"
+  "verified_submission_id": "2114812418",
+  "verified_at": "2026-08-21T07:56:29.439270+00:00"
 }

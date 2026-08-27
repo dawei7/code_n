@@ -6,9 +6,9 @@
   "frontend_id": "2159",
   "title_slug": "order-two-columns-independently",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073567644",
-  "verified_at": "2026-07-19T14:35:33.421279+00:00"
+  "verified_submission_id": "2116379821",
+  "verified_at": "2026-08-22T16:41:55.480137+00:00"
 }

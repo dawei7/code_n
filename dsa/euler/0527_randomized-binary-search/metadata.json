@@ -8,7 +8,16 @@
   "euler_level": 9,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Bisection",
+      "slug": "bisection"
+    },
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=527",
   "supported_languages": [
     "python"

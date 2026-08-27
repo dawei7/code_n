@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     first_positive AS (
         SELECT
@@ -23,7 +23,7 @@ SELECT
     p.patient_id,
     p.patient_name,
     p.age,
-    DATEDIFF(n.first_negative_date, f.first_positive_date) AS recovery_time
+    (n.first_negative_date::date - f.first_positive_date::date) AS recovery_time
 FROM
     first_positive f
     JOIN first_negative_after_positive n ON f.patient_id = n.patient_id

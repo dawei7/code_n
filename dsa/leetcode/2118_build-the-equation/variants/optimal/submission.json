@@ -6,9 +6,9 @@
   "frontend_id": "2118",
   "title_slug": "build-the-equation",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073354221",
-  "verified_at": "2026-07-19T10:37:35.673107+00:00"
+  "verified_submission_id": "2116377458",
+  "verified_at": "2026-08-22T16:40:02.547802+00:00"
 }

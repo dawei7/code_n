@@ -6,9 +6,9 @@
   "frontend_id": "1965",
   "title_slug": "employees-with-missing-information",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072738593",
-  "verified_at": "2026-07-18T19:17:48.681888+00:00"
+  "verified_submission_id": "2114825285",
+  "verified_at": "2026-08-21T08:14:48.502194+00:00"
 }

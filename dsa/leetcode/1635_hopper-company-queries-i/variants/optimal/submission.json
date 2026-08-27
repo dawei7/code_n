@@ -6,9 +6,9 @@
   "frontend_id": "1635",
   "title_slug": "hopper-company-queries-i",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070451890",
-  "verified_at": "2026-07-16T23:21:17.462071+00:00"
+  "verified_submission_id": "2114798071",
+  "verified_at": "2026-08-21T07:36:12.364808+00:00"
 }

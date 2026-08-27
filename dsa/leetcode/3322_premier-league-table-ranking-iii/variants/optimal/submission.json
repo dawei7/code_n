@@ -6,9 +6,9 @@
   "frontend_id": "3322",
   "title_slug": "premier-league-table-ranking-iii",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2080924740",
-  "verified_at": "2026-07-25T15:46:00Z"
+  "verified_submission_id": "2120619904",
+  "verified_at": "2026-08-26T09:24:49.192657+00:00"
 }

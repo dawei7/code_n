@@ -6,8 +6,8 @@
   "frontend_id": "595",
   "title_slug": "big-countries",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065450859",
-  "verified_at": "2026-07-12T21:15:35.584657+00:00"
+  "verified_submission_id": "2108892764",
+  "verified_at": "2026-08-16T11:13:13.761539+00:00"
 }

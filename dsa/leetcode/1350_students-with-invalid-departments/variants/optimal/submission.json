@@ -6,9 +6,9 @@
   "frontend_id": "1350",
   "title_slug": "students-with-invalid-departments",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068665038",
-  "verified_at": "2026-07-15T13:41:53.818951+00:00"
+  "verified_submission_id": "2113295521",
+  "verified_at": "2026-08-19T23:46:36.145646+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getKth",
-  "verified_submission_id": "2068821263",
-  "verified_at": "2026-07-15T15:58:08.086314+00:00"
+  "verified_submission_id": "2113297594",
+  "verified_at": "2026-08-19T23:53:43.559989+00:00"
 }

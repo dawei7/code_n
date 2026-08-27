@@ -446,6 +446,46 @@ function buildExternalSubsets(
   }
 }
 
+function buildEulerLevel(
+  root: MutableFolder,
+  challenges: ChallengeSummary[],
+): void {
+  const eulerChallenges = challenges.filter(
+    (c) => c.dataset === 'euler' || c.id.startsWith('euler_'),
+  );
+  for (const challenge of eulerChallenges) {
+    const level = challenge.difficulty_label || 'Level 0';
+    const match = /Level\s+(\d+)/i.exec(level);
+    const levelNum = match ? Number(match[1]) : 0;
+    const folder = ensurePath(root, [level], [levelNum]);
+    const numId = Number(challenge.leetcode_frontend_id) || 0;
+    addProblem(folder, challenge, numId);
+  }
+}
+
+function buildEulerCategory(
+  root: MutableFolder,
+  challenges: ChallengeSummary[],
+): void {
+  const eulerChallenges = challenges.filter(
+    (c) => c.dataset === 'euler' || c.id.startsWith('euler_'),
+  );
+  for (const challenge of eulerChallenges) {
+    const topics = challenge.leetcode_topics
+      .map((t) => (t as { name?: string }).name)
+      .filter(Boolean) as string[];
+    const categories = topics.length > 0 ? topics : [challenge.leetcode_category_title || 'General Math'];
+    const levelMatch = /Level\s+(\d+)/i.exec(challenge.difficulty_label || '');
+    const levelNum = levelMatch ? Number(levelMatch[1]) : 0;
+    const numId = Number(challenge.leetcode_frontend_id) || 0;
+    const order = levelNum * 10000 + numId;
+    for (const cat of categories) {
+      const folder = ensurePath(root, [cat], [0]);
+      addProblem(folder, challenge, order);
+    }
+  }
+}
+
 export function buildStandardProblemHierarchy(
   setId: StandardHierarchySetId,
   challenges: ChallengeSummary[],
@@ -464,6 +504,8 @@ export function buildStandardProblemHierarchy(
   else if (setId === 'leetcode_quest') buildExternalSubsets(root, challenges, 'leetcode_quest');
   else if (setId === 'neetcode') buildExternalSubsets(root, challenges, 'neetcode');
   else if (setId === 'algomaster') buildExternalSubsets(root, challenges, 'algomaster');
+  else if (setId === 'euler_level') buildEulerLevel(root, challenges);
+  else if (setId === 'euler_category') buildEulerCategory(root, challenges);
   return {
     key: root.key,
     name: option.label,

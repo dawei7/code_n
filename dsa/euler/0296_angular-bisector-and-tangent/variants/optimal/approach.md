@@ -31,6 +31,7 @@ In $\triangle BCE$ and $\triangle CAE$:
 - Therefore, $\triangle BCE \sim \triangle CAE$ (similar triangles)!
 From similarity ratios:
 $$\frac{BE}{CE} = \frac{BC}{AC} = \frac{a}{b} \implies CE = \frac{b}{a} BE$$
+
 $$\frac{CE}{AE} = \frac{BC}{AC} = \frac{a}{b} \implies AE = \frac{b}{a} CE = \frac{b^2}{a^2} BE$$
 Since $AE = AB + BE = c + BE$:
 $$\frac{b^2}{a^2} BE = c + BE \iff \left( \frac{b^2 - a^2}{a^2} \right) BE = c \iff \mathbf{BE = \frac{a^2 c}{b^2 - a^2} = \frac{a^2 c}{(b - a)(b + a)}}$$

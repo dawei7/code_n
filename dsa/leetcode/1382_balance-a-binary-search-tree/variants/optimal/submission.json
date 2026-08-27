@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.balanceBST",
-  "verified_submission_id": "2068800587",
-  "verified_at": "2026-07-15T15:41:22.477426+00:00"
+  "verified_submission_id": "2113297315",
+  "verified_at": "2026-08-19T23:52:46.679643+00:00"
 }

@@ -8,7 +8,20 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    },
+    {
+      "name": "Number Base",
+      "slug": "number-base"
+    }
+  ],
   "url": "https://projecteuler.net/problem=592",
   "supported_languages": [
     "python"

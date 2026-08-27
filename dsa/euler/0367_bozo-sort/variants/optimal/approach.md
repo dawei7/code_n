@@ -37,6 +37,7 @@ This collapses the $39.9\text{M}$-state Markov chain into an exact **$56$-state 
 ### Linear System for Expected Hitting Times
 Let $\lambda$ be an integer partition of $N$. Let $E[\lambda]$ be the expected number of steps to reach $(1^{11})$ starting from any permutation of cycle type $\lambda$:
 $$E[(1^{11})] = 0$$
+
 $$E[\lambda] = 1 + \sum_{\mu \vdash N} P(\lambda \to \mu) E[\mu] \quad (\lambda \ne 1^{11})$$
 
 To compute the transition probabilities $P(\lambda \to \mu)$:

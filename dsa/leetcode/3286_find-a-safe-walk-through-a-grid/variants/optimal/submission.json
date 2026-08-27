@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findSafeWalk",
-  "verified_submission_id": "2080731047",
-  "verified_at": "2026-07-25T12:39:32.4307179Z"
+  "verified_submission_id": "2120613257",
+  "verified_at": "2026-08-26T09:17:00.399297+00:00"
 }

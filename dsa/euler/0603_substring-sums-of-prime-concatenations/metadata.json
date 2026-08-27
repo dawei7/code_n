@@ -8,7 +8,24 @@
   "euler_level": 32,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Substring",
+      "slug": "substring"
+    }
+  ],
   "url": "https://projecteuler.net/problem=603",
   "supported_languages": [
     "python"

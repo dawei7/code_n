@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.deepestLeavesSum",
-  "verified_submission_id": "2068419488",
-  "verified_at": "2026-07-15T09:35:00.916366+00:00"
+  "verified_submission_id": "2113292789",
+  "verified_at": "2026-08-19T23:37:17.586060+00:00"
 }

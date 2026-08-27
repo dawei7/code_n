@@ -1,11 +1,11 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     sample_id,
     dna_sequence,
     species,
-    dna_sequence LIKE 'ATG%' AS has_start,
-    dna_sequence REGEXP 'TAA$|TAG$|TGA$' AS has_stop,
-    dna_sequence LIKE '%ATAT%' AS has_atat,
-    dna_sequence REGEXP 'GGG+' AS has_ggg
+    CASE WHEN dna_sequence LIKE 'ATG%' THEN 1 ELSE 0 END AS has_start,
+    CASE WHEN dna_sequence ~ '(TAA|TAG|TGA)$' THEN 1 ELSE 0 END AS has_stop,
+    CASE WHEN dna_sequence LIKE '%ATAT%' THEN 1 ELSE 0 END AS has_atat,
+    CASE WHEN dna_sequence ~ 'GGG' THEN 1 ELSE 0 END AS has_ggg
 FROM Samples
-ORDER BY 1;
+ORDER BY sample_id ASC;

@@ -5,6 +5,7 @@
 Let $g(n, m) = v_2\left(\binom{n}{m}\right)$ denote the 2-adic valuation (highest power of 2 dividing $\binom{n}{m}$).
 Define:
 $$F(n) = \max_{0 \le m \le n} g(n, m)$$
+
 $$S(N) = \sum_{n=1}^N F(n)$$
 
 We are given:

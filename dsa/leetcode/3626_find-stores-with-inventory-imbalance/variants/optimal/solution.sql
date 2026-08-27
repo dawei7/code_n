@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
@@ -7,13 +7,13 @@ WITH
             quantity,
             RANK() OVER (
                 PARTITION BY store_id
-                ORDER BY price DESC, quantity DESC
-            ) rk1,
+                ORDER BY price DESC
+            ) AS rk1,
             RANK() OVER (
                 PARTITION BY store_id
-                ORDER BY price, quantity DESC
-            ) rk2,
-            COUNT(1) OVER (PARTITION BY store_id) cnt
+                ORDER BY price ASC
+            ) AS rk2,
+            COUNT(1) OVER (PARTITION BY store_id) AS cnt
         FROM inventory
     ),
     P1 AS (
@@ -27,14 +27,14 @@ WITH
         WHERE rk2 = 1
     )
 SELECT
-    s.store_id store_id,
-    store_name,
-    location,
-    p1.product_name most_exp_product,
-    p2.product_name cheapest_product,
-    ROUND(p2.quantity / p1.quantity, 2) imbalance_ratio
+    s.store_id,
+    s.store_name,
+    s.location,
+    p1.product_name AS most_exp_product,
+    p2.product_name AS cheapest_product,
+    ROUND(p2.quantity::numeric / p1.quantity, 2) AS imbalance_ratio
 FROM
     P1 p1
     JOIN P2 p2 ON p1.store_id = p2.store_id AND p1.quantity < p2.quantity
     JOIN stores s ON p1.store_id = s.store_id
-ORDER BY imbalance_ratio DESC, store_name;
+ORDER BY imbalance_ratio DESC, store_name ASC;

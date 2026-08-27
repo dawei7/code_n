@@ -6,9 +6,9 @@
   "frontend_id": "2072",
   "title_slug": "the-winner-university",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073006005",
-  "verified_at": "2026-07-19T03:46:54.189070+00:00"
+  "verified_submission_id": "2116366930",
+  "verified_at": "2026-08-22T16:31:25.110383+00:00"
 }

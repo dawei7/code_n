@@ -4,6 +4,7 @@
 
 Define the sequences:
 $$S(k) = (p_k)^k \pmod{10007}$$
+
 $$S_2(k) = S(k) + S\left(\lfloor k/10000 \rfloor + 1\right)$$
 where $p_k$ is the $k$-th prime number.
 Let $M(i, j)$ be the median of $S_2(i), \dots, S_2(j)$.

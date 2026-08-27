@@ -6,9 +6,9 @@
   "frontend_id": "2051",
   "title_slug": "the-category-of-each-member-in-the-store",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2072880228",
-  "verified_at": "2026-07-19T01:56:42.985706+00:00"
+  "verified_submission_id": "2116372961",
+  "verified_at": "2026-08-22T16:36:26.586152+00:00"
 }

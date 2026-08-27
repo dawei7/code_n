@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getLengthOfOptimalCompression",
-  "verified_submission_id": "2069589037",
-  "verified_at": "2026-07-16T08:22:36.185533+00:00"
+  "verified_submission_id": "2114788814",
+  "verified_at": "2026-08-21T07:24:13.592405+00:00"
 }

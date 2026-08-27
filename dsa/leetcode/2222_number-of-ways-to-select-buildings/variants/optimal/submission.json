@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "class Solution.numberOfWays",
-  "verified_submission_id": "2073896846",
-  "verified_at": "2026-07-19T20:58:49.088388+00:00"
+  "verified_submission_id": "2116402871",
+  "verified_at": "2026-08-22T17:00:48.251923+00:00"
 }

@@ -1,13 +1,28 @@
-# Special Pythagorean Triplet
-
-### Special Pythagorean Triplet
+## Description
 
 A Pythagorean triplet is a set of three natural numbers, $a \lt b \lt c$, for which,
-$$a^2 + b^2 = c^2.$$
 
+$$
+a^2 + b^2 = c^2.
+$$
 
 For example, $3^2 + 4^2 = 9 + 16 = 25 = 5^2$.
 
-
 There exists exactly one Pythagorean triplet for which $a + b + c = 1000$.
 Find the product $abc$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

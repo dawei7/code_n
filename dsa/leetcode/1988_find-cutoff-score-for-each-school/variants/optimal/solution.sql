@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT school_id, MIN(COALESCE(score, -1)) AS score
 FROM
     Schools AS s

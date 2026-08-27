@@ -19,6 +19,8 @@ AlgorithmSetId = Literal[
     "leetcode_quest",
     "neetcode",
     "algomaster",
+    "euler_level",
+    "euler_category",
     "custom",
 ]
 ResolvedAlgorithmSetId = AlgorithmSetId
@@ -35,6 +37,8 @@ KNOWN_ALGORITHM_SETS: set[str] = {
     "leetcode_quest",
     "neetcode",
     "algomaster",
+    "euler_level",
+    "euler_category",
     "custom",
 }
 LEETCODE_VIEW_SETS: set[str] = {
@@ -47,6 +51,10 @@ LEETCODE_VIEW_SETS: set[str] = {
     "leetcode_company",
     "leetcode_studyplan",
     "leetcode_quest",
+}
+EULER_VIEW_SETS: set[str] = {
+    "euler_level",
+    "euler_category",
 }
 
 ALGOMASTER_MANIFEST_PATH = LEETCODE_ROOT / "_meta" / "algomaster-subsets.json"
@@ -235,6 +243,8 @@ def is_challenge_in_set(challenge_id: str, active_set: ResolvedAlgorithmSetId) -
         return is_leetcode_challenge(challenge_id) and is_leetcode_quest_challenge(challenge_id)
     if active_set in LEETCODE_VIEW_SETS:
         return is_leetcode_challenge(challenge_id)
+    if active_set in EULER_VIEW_SETS:
+        return challenge_id.startswith("euler_")
     return False
 
 
@@ -251,6 +261,8 @@ def challenge_set_label(set_id: str) -> str:
         "leetcode_quest": "LeetCode Quests",
         "neetcode": "NeetCode Subsets",
         "algomaster": "AlgoMaster Subsets",
+        "euler_level": "Problems by Level",
+        "euler_category": "Problems by Category",
         "custom": "Personal",
     }
     return labels.get(set_id, set_id)

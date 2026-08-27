@@ -6,9 +6,9 @@
   "frontend_id": "3204",
   "title_slug": "bitwise-user-permissions-analysis",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2080135152",
-  "verified_at": "2026-07-25T00:46:00.620570+00:00"
+  "verified_submission_id": "2117880085",
+  "verified_at": "2026-08-24T00:11:08.715078+00:00"
 }

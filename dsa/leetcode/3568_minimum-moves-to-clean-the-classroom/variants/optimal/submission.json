@@ -1,14 +1,14 @@
 {
-    "schema_version":  1,
-    "provider":  "leetcode.com",
-    "status":  "verified",
-    "question_id":  "3870",
-    "frontend_id":  "3568",
-    "title_slug":  "minimum-moves-to-clean-the-classroom",
-    "paid_only":  false,
-    "language":  "python3",
-    "source":  "solutions/solution.py",
-    "native_entrypoint":  "Solution.minMoves",
-    "verified_submission_id":  "2089301754",
-    "verified_at":  "2026-07-31T21:22:20.423+00:00"
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3870",
+  "frontend_id": "3568",
+  "title_slug": "minimum-moves-to-clean-the-classroom",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.minMoves",
+  "verified_submission_id": "2120659572",
+  "verified_at": "2026-08-26T10:09:56.502658+00:00"
 }

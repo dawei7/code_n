@@ -1,17 +1,29 @@
-# Fruit Salad
+## Description
 
-### Fruit Salad
+Find the sum of $🍎 + 🍌 + 🍍$ for all triples of positive integers $🍎, 🍌, 🍍$ which satisfy
 
-Find the sum of $\unicode{x1F34E} + \unicode{x1F34C} + \unicode{x1F34D}$ for all triples of positive integers $\unicode{x1F34E}, \unicode{x1F34C}, \unicode{x1F34D}$ which satisfy
+$$
+\frac {🍎} {🍌 + 🍍} +
+\frac {🍌} {🍍 + 🍎} +
+\frac {🍍} {🍎 + 🍍} = 4
+$$
 
-
-
-$$\frac {\unicode{x1F34E}} {\unicode{x1F34C} + \unicode{x1F34D}} +
-\frac {\unicode{x1F34C}} {\unicode{x1F34D} + \unicode{x1F34E}} +
-\frac {\unicode{x1F34D}} {\unicode{x1F34E} + \unicode{x1F34D}} = 4$$
-
-and $\unicode{x1F34E} + \unicode{x1F34C} + \unicode{x1F34D} \le 10^7$.
-
-
+and $🍎 + 🍌 + 🍍 \le 10^7$.
 
 In case your device cannot display emoji properly, here is a rendered image of the problem statement.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

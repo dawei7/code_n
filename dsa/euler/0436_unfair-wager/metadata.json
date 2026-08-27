@@ -8,7 +8,20 @@
   "euler_level": 33,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Game",
+      "slug": "game"
+    },
+    {
+      "name": "Non Discrete",
+      "slug": "non-discrete"
+    },
+    {
+      "name": "Probability",
+      "slug": "probability"
+    }
+  ],
   "url": "https://projecteuler.net/problem=436",
   "supported_languages": [
     "python"

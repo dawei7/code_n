@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH RECURSIVE
     level_cte AS (
         SELECT employee_id, manager_id, 1 AS level, salary FROM Employees

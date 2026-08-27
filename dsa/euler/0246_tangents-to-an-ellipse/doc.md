@@ -1,18 +1,10 @@
-# Tangents to an Ellipse
-
-### Tangents to an Ellipse
+## Description
 
 A definition for an ellipse is:
 
 Given a circle $c$ with centre $M$ and radius $r$ and a point $G$ such that $d(G,M) \lt r$, the locus of the points that are equidistant from $c$ and $G$ form an ellipse.
 
-
-
 The construction of the points of the ellipse is shown below.
-
-
-
-
 
 Given are the points $M(-2000,1500)$ and $G(8000,1500)$.
  
@@ -24,9 +16,20 @@ From a point $P$ outside $e$ the two tangents $t_1$ and $t_2$ to the ellipse are
 
 Let the points where $t_1$ and $t_2$ touch the ellipse be $R$ and $S$.
 
-
-
-
-
-
 For how many lattice points $P$ is angle $RPS$ greater than $45$ degrees?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countGoodIntegersOnPath",
-  "verified_submission_id": "2086797641",
-  "verified_at": "2026-07-30T01:44:31.759673+00:00"
+  "verified_submission_id": "2122331690",
+  "verified_at": "2026-08-27T20:00:24.261350+00:00"
 }

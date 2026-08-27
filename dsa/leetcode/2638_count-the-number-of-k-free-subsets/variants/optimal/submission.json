@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countTheNumOfKFreeSubsets",
-  "verified_submission_id": "2076163733",
-  "verified_at": "2026-07-21T17:18:00+00:00"
+  "verified_submission_id": "2117847717",
+  "verified_at": "2026-08-23T22:18:01.794762+00:00"
 }

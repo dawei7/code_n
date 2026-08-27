@@ -8,7 +8,16 @@
   "euler_level": 17,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Path Finding",
+      "slug": "path-finding"
+    }
+  ],
   "url": "https://projecteuler.net/problem=718",
   "supported_languages": [
     "python"

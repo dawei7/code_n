@@ -1,7 +1,7 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     state,
-    STRING_AGG(city ORDER BY city SEPARATOR ', ') cities
+    STRING_AGG(city, ', ' ORDER BY city) AS cities
 FROM cities
-GROUP BY 1
-ORDER BY 1;
+GROUP BY state
+ORDER BY state;

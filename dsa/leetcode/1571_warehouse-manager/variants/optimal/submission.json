@@ -6,9 +6,9 @@
   "frontend_id": "1571",
   "title_slug": "warehouse-manager",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069854873",
-  "verified_at": "2026-07-16T12:36:33.647998+00:00"
+  "verified_submission_id": "2114792458",
+  "verified_at": "2026-08-21T07:28:49.332873+00:00"
 }

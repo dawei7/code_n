@@ -4,6 +4,7 @@
 
 Let $a_0 = \phi = \frac{\sqrt{5} + 1}{2}$.
 $$a_{n+1} = \frac{a_n(a_n^4 + 10a_n^2 + 5)}{5a_n^4 + 10a_n^2 + 1}$$
+
 $a_n = \frac{p_n\sqrt{5} + 1}{q_n}$ for positive integers $p_n, q_n$.
 $s(n) = p_n^5 + q_n^5$.
 Given:

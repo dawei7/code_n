@@ -5,6 +5,7 @@
 Let $ABC$ be an integer-sided triangle with incenter $I$, perimeter $p$, and integer segment lengths $IA, IB, IC$.
 Define:
 $$L = p + |IA| + |IB| + |IC|$$
+
 $$S(P) = \sum_{p \le P} L$$
 
 We are given:

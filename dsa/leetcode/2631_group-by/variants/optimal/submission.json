@@ -9,6 +9,6 @@
   "language": "javascript",
   "source": "solution.js",
   "native_entrypoint": "Array.prototype.groupBy",
-  "verified_submission_id": "2076106539",
-  "verified_at": "2026-07-21T16:40:00+00:00"
+  "verified_submission_id": "2117847234",
+  "verified_at": "2026-08-23T22:16:36.828873+00:00"
 }

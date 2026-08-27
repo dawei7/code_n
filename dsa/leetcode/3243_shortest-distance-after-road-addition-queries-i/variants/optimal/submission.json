@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.shortestDistanceAfterQueries",
-  "verified_submission_id": "2080238555",
-  "verified_at": "2026-07-25T04:31:50.066944+00:00"
+  "verified_submission_id": "2120606637",
+  "verified_at": "2026-08-26T09:09:15.011645+00:00"
 }

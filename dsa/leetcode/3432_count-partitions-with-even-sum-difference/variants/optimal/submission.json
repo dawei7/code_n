@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countPartitions",
-  "verified_submission_id": "2081770941",
-  "verified_at": "2026-07-26T08:27:00Z"
+  "verified_submission_id": "2120637553",
+  "verified_at": "2026-08-26T09:45:19.606489+00:00"
 }

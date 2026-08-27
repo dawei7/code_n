@@ -6,9 +6,9 @@
   "frontend_id": "3601",
   "title_slug": "find-drivers-with-improved-fuel-efficiency",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2083506167",
-  "verified_at": "2026-07-27T14:49:00Z"
+  "verified_submission_id": "2120666570",
+  "verified_at": "2026-08-26T10:17:25.796053+00:00"
 }

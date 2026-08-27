@@ -1,17 +1,26 @@
-# Modular Cubes, Part 2
-
-### Modular Cubes, Part 2
+## Description
 
 For a positive number $n$, define $C(n)$ as the number of the integers $x$, for which $1 \lt x \lt n$ and
 $x^3 \equiv 1 \bmod n$.
-
-
-
 
 When $n=91$, there are $8$ possible values for $x$, namely: $9, 16, 22, 29, 53, 74, 79, 81$.
 
 Thus, $C(91)=8$.
 
-
-
 Find the sum of the positive numbers $n \le 10^{11}$ for which $C(n)=242$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

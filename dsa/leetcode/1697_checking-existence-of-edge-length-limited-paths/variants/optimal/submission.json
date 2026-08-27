@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.distanceLimitedPathsExist",
-  "verified_submission_id": "2070601591",
-  "verified_at": "2026-07-17T04:32:18.758682+00:00"
+  "verified_submission_id": "2114803391",
+  "verified_at": "2026-08-21T07:43:28.891750+00:00"
 }

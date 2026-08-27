@@ -6,8 +6,8 @@
   "frontend_id": "584",
   "title_slug": "find-customer-referee",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065434804",
-  "verified_at": "2026-07-12T20:38:19.776396+00:00"
+  "verified_submission_id": "2108892626",
+  "verified_at": "2026-08-16T11:13:06.965269+00:00"
 }

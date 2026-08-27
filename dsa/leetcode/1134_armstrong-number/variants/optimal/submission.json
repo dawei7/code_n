@@ -9,8 +9,8 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.isArmstrong",
-  "verified_submission_id": "2067809543",
-  "verified_at": "2026-07-14T19:04:00.786992+00:00",
+  "verified_submission_id": "2113283605",
+  "verified_at": "2026-08-19T23:04:28.690893+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T08:15:00.000000+00:00"

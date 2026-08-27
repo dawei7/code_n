@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.smallestStringWithSwaps",
-  "verified_submission_id": "2067925591",
-  "verified_at": "2026-07-14T23:48:02.296640+00:00"
+  "verified_submission_id": "2113287244",
+  "verified_at": "2026-08-19T23:17:37.086838+00:00"
 }

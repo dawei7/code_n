@@ -6,9 +6,9 @@
   "frontend_id": "3793",
   "title_slug": "find-users-with-high-token-usage",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2085419307",
-  "verified_at": "2026-07-29T00:43:39.755239+00:00"
+  "verified_submission_id": "2122319543",
+  "verified_at": "2026-08-27T19:40:53.718698+00:00"
 }

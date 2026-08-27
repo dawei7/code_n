@@ -6,9 +6,9 @@
   "frontend_id": "2793",
   "title_slug": "status-of-flight-tickets",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2076924106",
-  "verified_at": "2026-07-22T09:36:00+00:00"
+  "verified_submission_id": "2117857030",
+  "verified_at": "2026-08-23T22:48:41.667324+00:00"
 }

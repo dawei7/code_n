@@ -6,9 +6,9 @@
   "frontend_id": "1607",
   "title_slug": "sellers-with-no-sales",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070113289",
-  "verified_at": "2026-07-16T16:14:02.183460+00:00"
+  "verified_submission_id": "2114795619",
+  "verified_at": "2026-08-21T07:32:56.297577+00:00"
 }

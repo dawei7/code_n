@@ -1,6 +1,4 @@
-# Squarefree Fibonacci Numbers
-
-### Squarefree Fibonacci Numbers
+## Description
 
 The first $15$ Fibonacci numbers are:
 
@@ -12,16 +10,10 @@ So the first $13$ squarefree Fibonacci numbers are:
 
 $1,1,2,3,5,13,21,34,55,89,233,377$ and $610$.
 
-
-
-
 The $200$th squarefree Fibonacci number is:
 $971183874599339129547649988289594072811608739584170445$.
 
 The last sixteen digits of this number are: $1608739584170445$ and in scientific notation this number can be written as $9.7\mathrm e53$.
-
-
-
 
 Find the $100\,000\,000$th squarefree Fibonacci number.
 
@@ -29,13 +21,24 @@ Give as your answer its last sixteen digits followed by a comma followed by the 
 
 For the $200$th squarefree number the answer would have been: 1608739584170445,9.7e53
 
-
-
-
-
 Note:
  
 For this problem, assume that for every prime $p$, the first fibonacci number divisible by $p$ is not divisible by $p^2$ (this is part of Wall's conjecture). This has been verified for primes $\le 3 \cdot 10^{15}$, but has not been proven in general.
 
-
 If it happens that the conjecture is false, then the accepted answer to this problem isn't guaranteed to be the $100\,000\,000$th squarefree Fibonacci number, rather it represents only a lower bound for that number.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

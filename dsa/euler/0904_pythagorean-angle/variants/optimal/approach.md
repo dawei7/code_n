@@ -4,6 +4,7 @@
 
 In a right-angled triangle with integer sides $(a, b, c)$ where $a^2 + b^2 = c^2 \le L$, the angle $\theta$ between the medians to the perpendicular sides satisfies:
 $$\cos(\theta) = \frac{2(1 + t^2)}{\sqrt{(1 + 4t^2)(4 + t^2)}}, \quad \text{where } t = \frac{\min(a, b)}{\max(a, b)} \in (0, 1]$$
+
 $f(\alpha, L)$ is the perimeter $a + b + c$ of the triangle minimizing $|\theta - \alpha|$ with $c \le L$ (tie-breaking by maximum area).
 $F(N, L) = \sum_{n=1}^N f(n^{1/3}, L)$.
 

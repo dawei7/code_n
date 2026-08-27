@@ -1,1 +1,14 @@
-{"schema_version": 1, "provider": "leetcode.com", "status": "verified", "question_id": "2620", "frontend_id": "2529", "title_slug": "maximum-count-of-positive-integer-and-negative-integer", "paid_only": false, "language": "python3", "source": "solution.py", "native_entrypoint": "Solution.maximumCount", "verified_submission_id": "2075261997", "verified_at": "2026-07-21T04:10:58+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2620",
+  "frontend_id": "2529",
+  "title_slug": "maximum-count-of-positive-integer-and-negative-integer",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.maximumCount",
+  "verified_submission_id": "2117840343",
+  "verified_at": "2026-08-23T21:56:29.303254+00:00"
+}

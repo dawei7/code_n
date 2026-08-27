@@ -1,18 +1,15 @@
-WITH RECURSIVE
-    T AS (
-        SELECT '2023-11-01' AS purchase_date
-        UNION
-        SELECT purchase_date + INTERVAL 1 DAY
-        FROM T
-        WHERE purchase_date < '2023-11-30'
-    )
+-- Write your PostgreSQL query statement below
+WITH T AS (
+    SELECT generate_series('2023-11-01'::date, '2023-11-30'::date, '1 day'::interval)::date AS purchase_date
+)
 SELECT
-    CEIL(DAYOFMONTH(purchase_date) / 7) AS week_of_month,
-    purchase_date,
-    COALESCE(SUM(amount_spend), 0) AS total_amount
+    CEIL(EXTRACT(DAY FROM T.purchase_date) / 7.0)::int AS week_of_month,
+    T.purchase_date,
+    COALESCE(SUM(Purchases.amount_spend), 0) AS total_amount
 FROM
     T
-    LEFT JOIN Purchases USING (purchase_date)
-WHERE DAYOFWEEK(purchase_date) = 6
-GROUP BY 2
-ORDER BY 1;
+    LEFT JOIN Purchases ON T.purchase_date = Purchases.purchase_date
+WHERE EXTRACT(DOW FROM T.purchase_date) = 5
+GROUP BY T.purchase_date
+ORDER BY week_of_month;
+

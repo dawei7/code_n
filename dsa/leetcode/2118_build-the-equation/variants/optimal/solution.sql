@@ -1,16 +1,16 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
             power,
-            CASE power
-                WHEN 0 THEN IF(factor > 0, CONCAT('+', factor), factor)
-                WHEN 1 THEN CONCAT(
-                    IF(factor > 0, CONCAT('+', factor), factor),
+            CASE
+                WHEN power = 0 THEN (CASE WHEN factor > 0 THEN CONCAT('+', factor) ELSE CAST(factor AS VARCHAR) END)
+                WHEN power = 1 THEN CONCAT(
+                    (CASE WHEN factor > 0 THEN CONCAT('+', factor) ELSE CAST(factor AS VARCHAR) END),
                     'X'
                 )
                 ELSE CONCAT(
-                    IF(factor > 0, CONCAT('+', factor), factor),
+                    (CASE WHEN factor > 0 THEN CONCAT('+', factor) ELSE CAST(factor AS VARCHAR) END),
                     'X^',
                     power
                 )
@@ -18,5 +18,5 @@ WITH
         FROM Terms
     )
 SELECT
-    CONCAT(STRING_AGG(it ORDER BY power DESC SEPARATOR "", ','), '=0') AS equation
+    CONCAT(STRING_AGG(it, '' ORDER BY power DESC), '=0') AS equation
 FROM T;

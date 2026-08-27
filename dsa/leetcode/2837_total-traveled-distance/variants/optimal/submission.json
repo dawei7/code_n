@@ -6,9 +6,9 @@
   "frontend_id": "2837",
   "title_slug": "total-traveled-distance",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2077405047",
-  "verified_at": "2026-07-22T16:46:00+00:00"
+  "verified_submission_id": "2120598380",
+  "verified_at": "2026-08-26T08:59:16.534103+00:00"
 }

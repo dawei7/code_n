@@ -274,6 +274,7 @@ export interface CustomProblemSet {
   name: string;
   description: string;
   career_mode: boolean;
+  target_mode?: 'coden' | 'euler';
   nodes: CustomProblemTreeNode[];
 }
 

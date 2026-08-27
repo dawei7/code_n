@@ -1,10 +1,6 @@
-# Super Pandigital Numbers
-
-### Super Pandigital Numbers
+## Description
 
 A positive number is pandigital in base $b$ if it contains all digits from $0$ to $b - 1$ at least once when written in base $b$.
-
-
 
 An $n$-super-pandigital number is a number that is simultaneously pandigital in all bases from $2$ to $n$ inclusively.
 
@@ -14,6 +10,20 @@ Similarly, $1093265784$ is the smallest $10$-super-pandigital number.
 
 The sum of the $10$ smallest $10$-super-pandigital numbers is $20319792309$.
 
-
-
 What is the sum of the $10$ smallest $12$-super-pandigital numbers?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

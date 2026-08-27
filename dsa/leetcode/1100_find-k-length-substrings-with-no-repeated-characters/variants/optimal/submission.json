@@ -9,8 +9,8 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numKLenSubstrNoRepeats",
-  "verified_submission_id": "2067632196",
-  "verified_at": "2026-07-14T16:46:04.350499+00:00",
+  "verified_submission_id": "2113281662",
+  "verified_at": "2026-08-19T22:57:55.740621+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T08:04:00.000000+00:00"

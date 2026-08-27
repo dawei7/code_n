@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.shortestBeautifulSubstring",
-  "verified_submission_id": "2078058949",
-  "verified_at": "2026-07-23T07:16:51.076570+00:00"
+  "verified_submission_id": "2117863383",
+  "verified_at": "2026-08-23T23:10:41.861268+00:00"
 }

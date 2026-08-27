@@ -1,6 +1,6 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT user_id
 FROM Loans
 GROUP BY 1
-HAVING SUM(loan_type = 'Refinance') > 0 AND SUM(loan_type = 'Mortgage') > 0
+HAVING SUM(CASE WHEN loan_type = 'Refinance' THEN 1 ELSE 0 END) > 0 AND SUM(CASE WHEN loan_type = 'Mortgage' THEN 1 ELSE 0 END) > 0
 ORDER BY 1;

@@ -8,7 +8,16 @@
   "euler_level": 7,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisor Count",
+      "slug": "divisor-count"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=485",
   "supported_languages": [
     "python"

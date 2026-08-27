@@ -6,9 +6,9 @@
   "frontend_id": "3626",
   "title_slug": "find-stores-with-inventory-imbalance",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2083859626",
-  "verified_at": "2026-07-27T18:56:00Z"
+  "verified_submission_id": "2122299848",
+  "verified_at": "2026-08-27T19:12:28.204862+00:00"
 }

@@ -4,6 +4,7 @@
 
 A sequence $(a_1, a_2, \dots, a_n)$ of integers with $1 \le a_i \le b$ is called conjunctive if:
 $$a_i \ \& \ a_{i+1} \neq 0 \quad \text{for all } 1 \le i \le n-1$$
+
 $c(n, b)$ is the total number of conjunctive sequences of length $n$ with maximum term $\le b$.
 
 We are given:

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.eliminateMaximum",
-  "verified_submission_id": "2072365872",
-  "verified_at": "2026-07-18T14:49:13.117094+00:00"
+  "verified_submission_id": "2114821556",
+  "verified_at": "2026-08-21T08:09:30.854337+00:00"
 }

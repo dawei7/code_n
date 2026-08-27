@@ -8,7 +8,20 @@
   "euler_level": 17,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Colouring",
+      "slug": "colouring"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    }
+  ],
   "url": "https://projecteuler.net/problem=281",
   "supported_languages": [
     "python"

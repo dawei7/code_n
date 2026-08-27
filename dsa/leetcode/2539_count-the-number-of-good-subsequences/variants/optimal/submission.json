@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2683","frontend_id":"2539","title_slug":"count-the-number-of-good-subsequences","paid_only":false,"language":"python3","source":"solutions/solution.py","native_entrypoint":"Solution.countGoodSubsequences","verified_submission_id":"2075324421","verified_at":"2026-07-21T05:07:13+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2683",
+  "frontend_id": "2539",
+  "title_slug": "count-the-number-of-good-subsequences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.countGoodSubsequences",
+  "verified_submission_id": "2117841031",
+  "verified_at": "2026-08-23T21:58:23.399706+00:00"
+}

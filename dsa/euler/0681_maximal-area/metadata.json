@@ -8,7 +8,20 @@
   "euler_level": 16,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Area",
+      "slug": "area"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Polygon",
+      "slug": "polygon"
+    }
+  ],
   "url": "https://projecteuler.net/problem=681",
   "supported_languages": [
     "python"

@@ -8,7 +8,20 @@
   "euler_level": 31,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
   "url": "https://projecteuler.net/problem=570",
   "supported_languages": [
     "python"

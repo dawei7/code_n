@@ -1,3 +1,3 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 DELETE FROM Person
 WHERE id NOT IN (SELECT MIN(id) FROM (SELECT * FROM Person) AS p GROUP BY email);

@@ -6,9 +6,9 @@
   "frontend_id": "1378",
   "title_slug": "replace-employee-id-with-the-unique-identifier",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068779941",
-  "verified_at": "2026-07-15T15:23:46.878356+00:00"
+  "verified_submission_id": "2113297108",
+  "verified_at": "2026-08-19T23:52:01.087551+00:00"
 }

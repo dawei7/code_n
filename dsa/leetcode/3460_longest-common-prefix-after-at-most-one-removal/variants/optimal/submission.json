@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.longestCommonPrefix",
-  "verified_submission_id": "2082002652",
-  "verified_at": "2026-07-26T12:18:38Z"
+  "verified_submission_id": "2120642172",
+  "verified_at": "2026-08-26T09:50:29.588340+00:00"
 }

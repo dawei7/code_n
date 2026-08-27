@@ -8,7 +8,28 @@
   "euler_level": 16,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Coprime Numbers",
+      "slug": "coprime-numbers"
+    },
+    {
+      "name": "GCD",
+      "slug": "gcd"
+    },
+    {
+      "name": "Iterated Polynomial",
+      "slug": "iterated-polynomial"
+    },
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    }
+  ],
   "url": "https://projecteuler.net/problem=915",
   "supported_languages": [
     "python"

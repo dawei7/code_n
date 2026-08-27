@@ -5,6 +5,7 @@
 For an integer $n > 0$ and prime $p$, let $\nu_p(n)$ denote the $p$-adic valuation of $n$.
 Define:
 $$D(n, m) = \sum_{p \text{ prime}} |\nu_p(n) - \nu_p(m)|$$
+
 $$S(N) = \sum_{1 \le n, m \le N} D(n, m)$$
 
 We are given:

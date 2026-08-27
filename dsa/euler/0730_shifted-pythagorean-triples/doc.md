@@ -1,28 +1,38 @@
-# Shifted Pythagorean Triples
+## Description
 
-### Shifted Pythagorean Triples
+For a non-negative integer $k$, the triple $(p,q,r)$ of positive integers is called a $k$-shifted Pythagorean triple if 
 
-For a non-negative integer $k$, the triple $(p,q,r)$ of positive integers is called a $k$-shifted Pythagorean triple if $$p^2 + q^2 + k = r^2$$
-
-
-
+$$
+p^2 + q^2 + k = r^2
+$$
 
 $(p, q, r)$ is said to be primitive if $\gcd(p, q, r)=1$.
-
-
-
 
 Let $P_k(n)$ be the number of primitive $k$-shifted Pythagorean triples such that $1 \le p \le q \le r$ and $p + q + r \le n$. 
  For example, $P_0(10^4) = 703$ and $P_{20}(10^4) = 1979$. 
 
-
-
-
 Define 
-$$\displaystyle S(m,n)=\sum_{k=0}^{m}P_k(n).$$
+
+$$
+\displaystyle S(m,n)=\sum_{k=0}^{m}P_k(n).
+$$
+
 You are given that $S(10,10^4) = 10956$. 
 
-
-
-
 Find $S(10^2,10^8)$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

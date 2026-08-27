@@ -6,9 +6,9 @@
   "frontend_id": "3384",
   "title_slug": "team-dominance-by-pass-success",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2081300156",
-  "verified_at": "2026-07-26T00:38:00Z"
+  "verified_submission_id": "2120629086",
+  "verified_at": "2026-08-26T09:35:41.312529+00:00"
 }

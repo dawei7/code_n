@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.smallestBalancedIndex",
-  "verified_submission_id": "2086275014",
-  "verified_at": "2026-07-29T14:55:52.502236+00:00"
+  "verified_submission_id": "2122326974",
+  "verified_at": "2026-08-27T19:52:43.345137+00:00"
 }

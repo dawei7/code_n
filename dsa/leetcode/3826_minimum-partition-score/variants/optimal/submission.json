@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minPartitionScore",
-  "verified_submission_id": "2085664015",
-  "verified_at": "2026-07-29T06:02:54.606563+00:00"
+  "verified_submission_id": "2122323111",
+  "verified_at": "2026-08-27T19:46:33.832955+00:00"
 }

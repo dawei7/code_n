@@ -1,6 +1,4 @@
-# Bounded Divisors
-
-### Bounded Divisors
+## Description
 
 Let $n$ be a natural number and  $p_1^{\alpha_1}\cdot p_2^{\alpha_2}\cdots p_k^{\alpha_k}$ its prime factorisation.
 
@@ -10,15 +8,26 @@ Define the Liouville function $\lambda(n)$ as $\lambda(n) = (-1)^{\sum\limits_{i
 
 Let $S(n,L,H)$  be the sum $\lambda(d) \cdot d$ over all divisors $d$ of $n$ for which $L \leq d \leq H$.
 
-
-
-
 You are given:
-
-
 
 $S(10! , 100, 1000) = 1457$
 $S(15!,  10^3, 10^5) = -107974$
 $S(30!,10^8, 10^{12}) = 9766732243224$.
 
 Find $S(70!,10^{20}, 10^{60})$ and give your answer modulo $1\,000\,000\,007$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

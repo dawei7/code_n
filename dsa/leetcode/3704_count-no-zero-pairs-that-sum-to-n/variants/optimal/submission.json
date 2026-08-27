@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countNoZeroPairs",
-  "verified_submission_id": "2084874534",
-  "verified_at": "2026-07-28T14:22:59.520408+00:00"
+  "verified_submission_id": "2122309041",
+  "verified_at": "2026-08-27T19:25:17.761561+00:00"
 }

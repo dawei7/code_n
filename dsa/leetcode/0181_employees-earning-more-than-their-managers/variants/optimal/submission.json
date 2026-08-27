@@ -6,8 +6,8 @@
   "frontend_id": "181",
   "title_slug": "employees-earning-more-than-their-managers",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064193553",
-  "verified_at": "2026-07-11T18:24:58.544196+00:00"
+  "verified_submission_id": "2108900436",
+  "verified_at": "2026-08-16T11:21:07.820592+00:00"
 }

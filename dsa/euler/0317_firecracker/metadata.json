@@ -8,7 +8,24 @@
   "euler_level": 15,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Non Discrete",
+      "slug": "non-discrete"
+    },
+    {
+      "name": "Physics",
+      "slug": "physics"
+    },
+    {
+      "name": "Volume",
+      "slug": "volume"
+    }
+  ],
   "url": "https://projecteuler.net/problem=317",
   "supported_languages": [
     "python"

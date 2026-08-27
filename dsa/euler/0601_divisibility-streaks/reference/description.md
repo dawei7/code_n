@@ -1,4 +1,4 @@
-### Divisibility Streaks
+## Description
 
 For every positive number $n$ we define the function $\mathop{streak}(n)=k$ as the smallest positive integer $k$ such that $n+k$ is not divisible by $k+1$.
 
@@ -24,14 +24,8 @@ $121$ is NOT divisible by $2$
 
 So $\mathop{streak}(120) = 1$.
 
-
-
-
 Define $P(s, N)$ to be the number of integers $n$, $1 \lt n \lt N$, for which $\mathop{streak}(n) = s$.
 
 So $P(3, 14) = 1$ and $P(6, 10^6) = 14286$.
-
-
-
 
 Find the sum, as $i$ ranges from $1$ to $31$, of $P(i, 4^i)$.

@@ -6,9 +6,9 @@
   "frontend_id": "1075",
   "title_slug": "project-employees-i",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067511466",
-  "verified_at": "2026-07-14T15:08:03.259117+00:00"
+  "verified_submission_id": "2113280166",
+  "verified_at": "2026-08-19T22:52:57.822739+00:00"
 }

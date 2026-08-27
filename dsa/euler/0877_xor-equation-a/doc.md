@@ -1,19 +1,13 @@
-# XOR-Equation A
-
-### XOR-Equation A
+## Description
 
 We use $x\oplus y$ for the bitwise XOR of $x$ and $y$.
 
 Define the XOR-product of $x$ and $y$, denoted by $x \otimes y$, similar to a long multiplication in base $2$, except that the intermediate results are XORed instead of the usual integer addition.
 
-
-
-
 For example, $7 \otimes 3 = 9$, or in base $2$, $111_2 \otimes 11_2 = 1001_2$:
 
-
-
-$$\begin{align*}
+$$
+\begin{aligned}
 \phantom{\otimes 111} 111_2 \\
 \otimes \phantom{1111} 11_2 \\
 \hline
@@ -21,22 +15,36 @@ $$\begin{align*}
 \oplus \phantom{11} 111_2  \phantom{9} \\
 \hline
 \phantom{\otimes 11} 1001_2 \\
-\end{align*}$$
+\end{aligned}
+$$
 
 We consider the equation:
 
-$$\begin{align}
+$$
+\begin{aligned}
 (a \otimes a) \oplus (2 \otimes a \otimes b) \oplus (b \otimes b) = 5
-\end{align}$$
-
+\end{aligned}
+$$
 
 For example, $(a, b) = (3, 6)$ is a solution.
-
 
 Let $X(N)$ be the XOR of the $b$ values for all solutions to this equation satisfying $0 \le a \le b \le N$.
  You are given $X(10)=5$.
 
-
-
-
 Find $X(10^{18})$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

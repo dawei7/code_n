@@ -8,7 +8,12 @@
   "euler_level": 14,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Sum Of Powers",
+      "slug": "sum-of-powers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=487",
   "supported_languages": [
     "python"

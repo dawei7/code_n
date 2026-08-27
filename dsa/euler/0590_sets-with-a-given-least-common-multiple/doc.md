@@ -1,6 +1,4 @@
-# Sets with a Given Least Common Multiple
-
-### Sets with a Given Least Common Multiple
+## Description
 
 Let $H(n)$ denote the number of sets of positive integers such that the least common multiple of the integers in the set equals $n$.
 
@@ -12,21 +10,28 @@ $\{2,3\}$, $\{1,2,3\}$, $\{6\}$, $\{1,6\}$, $\{2,6\}$, $\{1,2,6\}$, $\{3,6\}$, $
 
 Thus $H(6)=10$.
 
-
-
-
 Let $L(n)$ denote the least common multiple of the numbers $1$ through $n$.
 
 E.g. $L(6)$ is the least common multiple of the numbers $1,2,3,4,5,6$ and $L(6)$ equals $60$.
-
-
-
 
 Let $HL(n)$ denote $H(L(n))$.
 
 You are given $HL(4)=H(12)=44$.
 
-
-
-
 Find $HL(50000)$. Give your answer modulo $10^9$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

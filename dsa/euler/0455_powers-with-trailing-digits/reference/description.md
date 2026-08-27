@@ -1,12 +1,8 @@
-### Powers with Trailing Digits
+## Description
 
 Let $f(n)$ be the largest positive integer $x$ less than $10^9$ such that the last $9$ digits of $n^x$ form the number $x$ (including leading zeros), or zero if no such integer exists.
 
-
-
 For example:
-
-
 
 $f(4) = 411728896$ ($4^{411728896} = \cdots 490\underline{411728896}$) 
 $f(10) = 0$

@@ -8,7 +8,24 @@
   "euler_level": 38,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Dirichlet Convolution",
+      "slug": "dirichlet-convolution"
+    },
+    {
+      "name": "Divisor Count",
+      "slug": "divisor-count"
+    },
+    {
+      "name": "Divisor Sum",
+      "slug": "divisor-sum"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=608",
   "supported_languages": [
     "python"

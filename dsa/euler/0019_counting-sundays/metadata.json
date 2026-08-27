@@ -8,7 +8,16 @@
   "euler_level": 2,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Calendar",
+      "slug": "calendar"
+    },
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    }
+  ],
   "url": "https://projecteuler.net/problem=19",
   "supported_languages": [
     "python"

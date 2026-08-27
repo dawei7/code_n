@@ -6,9 +6,9 @@
   "frontend_id": "1174",
   "title_slug": "immediate-food-delivery-ii",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067891555",
-  "verified_at": "2026-07-14T21:48:57.417283+00:00"
+  "verified_submission_id": "2113285754",
+  "verified_at": "2026-08-19T23:12:11.338953+00:00"
 }

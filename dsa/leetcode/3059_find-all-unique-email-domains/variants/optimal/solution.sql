@@ -1,6 +1,9 @@
-# Write your MySQL query statement below
-SELECT SUBSTRING_INDEX(email, '@', -1) AS email_domain, COUNT(1) AS count
+-- Write your PostgreSQL query statement below
+SELECT
+    SPLIT_PART(email, '@', 2) AS email_domain,
+    COUNT(*) AS count
 FROM Emails
 WHERE email LIKE '%.com'
-GROUP BY 1
-ORDER BY 1;
+GROUP BY SPLIT_PART(email, '@', 2)
+ORDER BY email_domain ASC;
+

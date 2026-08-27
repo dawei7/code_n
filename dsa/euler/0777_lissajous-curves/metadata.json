@@ -8,7 +8,20 @@
   "euler_level": 31,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Coprime Numbers",
+      "slug": "coprime-numbers"
+    },
+    {
+      "name": "Periodicity",
+      "slug": "periodicity"
+    },
+    {
+      "name": "Trigonometry",
+      "slug": "trigonometry"
+    }
+  ],
   "url": "https://projecteuler.net/problem=777",
   "supported_languages": [
     "python"

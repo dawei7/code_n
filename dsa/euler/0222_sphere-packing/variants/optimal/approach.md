@@ -62,10 +62,12 @@ def naive_sphere_packing():
 
 ### Master Bitonic Length Formula
 $$\text{Order} = \text{radii}[::-2] + \text{radii}[1::2]$$
+
 $$L = \text{Order}[0] + \sum_{i=1}^{N-1} \sqrt{200(\text{Order}[i] + \text{Order}[i+1] - 50)} + \text{Order}[-1]$$
 
 Evaluating for $N = 21$ spheres of radii $30 \dots 50$:
 $$L \approx 1590.932822\text{ mm}$$
+
 $$L_{\mu\text{m}} = \operatorname{round}(1590.932822 \times 1000) = \mathbf{1\,590\,933}$$
 
 ---

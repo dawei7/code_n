@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.longestPalindromicSubsequence",
-  "verified_submission_id": "2082123980",
-  "verified_at": "2026-07-26T14:06:00Z"
+  "verified_submission_id": "2120643902",
+  "verified_at": "2026-08-26T09:52:32.315653+00:00"
 }

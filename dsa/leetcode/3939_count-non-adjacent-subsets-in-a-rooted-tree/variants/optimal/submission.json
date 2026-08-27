@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countValidSubsets",
-  "verified_submission_id": "2087380027",
-  "verified_at": "2026-07-30T10:44:34.318096+00:00"
+  "verified_submission_id": "2122335191",
+  "verified_at": "2026-08-27T20:06:22.910638+00:00"
 }

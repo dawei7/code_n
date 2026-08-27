@@ -8,7 +8,16 @@
   "euler_level": 7,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    },
+    {
+      "name": "Factorial",
+      "slug": "factorial"
+    }
+  ],
   "url": "https://projecteuler.net/problem=549",
   "supported_languages": [
     "python"

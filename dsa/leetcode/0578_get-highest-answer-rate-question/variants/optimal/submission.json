@@ -6,10 +6,10 @@
   "frontend_id": "578",
   "title_slug": "get-highest-answer-rate-question",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065426173",
-  "verified_at": "2026-07-12T20:17:41.205791+00:00",
+  "verified_submission_id": "2113227309",
+  "verified_at": "2026-08-19T20:39:52.409038+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T13:15:00.000000+00:00"

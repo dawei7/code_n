@@ -8,7 +8,12 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Cube Number",
+      "slug": "cube-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=884",
   "supported_languages": [
     "python"

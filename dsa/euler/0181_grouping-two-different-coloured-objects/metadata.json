@@ -8,7 +8,16 @@
   "euler_level": 17,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Partition",
+      "slug": "partition"
+    }
+  ],
   "url": "https://projecteuler.net/problem=181",
   "supported_languages": [
     "python"

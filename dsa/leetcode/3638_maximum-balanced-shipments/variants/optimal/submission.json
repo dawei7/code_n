@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxBalancedShipments",
-  "verified_submission_id": "2083923581",
-  "verified_at": "2026-07-27T20:21:46.892273+00:00"
+  "verified_submission_id": "2122300839",
+  "verified_at": "2026-08-27T19:13:50.174345+00:00"
 }

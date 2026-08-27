@@ -8,7 +8,16 @@
   "euler_level": 21,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fibonacci Number",
+      "slug": "fibonacci-number"
+    },
+    {
+      "name": "Periodicity",
+      "slug": "periodicity"
+    }
+  ],
   "url": "https://projecteuler.net/problem=854",
   "supported_languages": [
     "python"

@@ -6,6 +6,7 @@ Let $p \in \mathbb{P}$ with $p > 7$ and decimal representation $p = d_{k-1} d_{k
 
 Define the left-truncation set $\mathcal{T}_L(p)$ and right-truncation set $\mathcal{T}_R(p)$:
 $$\mathcal{T}_L(p) = \left\{ \sum_{j=0}^{i-1} d_j 10^j \;\middle|\; i \in \{1, 2, \dots, k\} \right\}$$
+
 $$\mathcal{T}_R(p) = \left\{ \sum_{j=0}^{i-1} d_{k-i+j} 10^j \;\middle|\; i \in \{1, 2, \dots, k\} \right\}$$
 
 A prime $p > 7$ is defined as a **truncatable prime** if all its left and right truncations are themselves prime numbers:

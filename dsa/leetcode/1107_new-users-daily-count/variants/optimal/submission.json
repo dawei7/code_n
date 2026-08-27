@@ -6,10 +6,10 @@
   "frontend_id": "1107",
   "title_slug": "new-users-daily-count",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065563810",
-  "verified_at": "2026-07-12T22:46:11.800026+00:00",
+  "verified_submission_id": "2114784468",
+  "verified_at": "2026-08-21T07:18:54.717046+00:00",
   "review_scope": "solution_only",
   "review_status": "current",
   "review_at": "2026-08-06T16:08:00.000000+00:00"

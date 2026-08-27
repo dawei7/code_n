@@ -1,7 +1,7 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
-    IF(from_id < to_id, from_id, to_id) AS person1,
-    IF(from_id < to_id, to_id, from_id) AS person2,
+    (CASE WHEN from_id < to_id THEN from_id ELSE to_id END) AS person1,
+    (CASE WHEN from_id < to_id THEN to_id ELSE from_id END) AS person2,
     COUNT(1) AS call_count,
     SUM(duration) AS total_duration
 FROM Calls

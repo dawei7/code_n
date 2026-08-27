@@ -8,7 +8,20 @@
   "euler_level": 36,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Periodicity",
+      "slug": "periodicity"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=729",
   "supported_languages": [
     "python"

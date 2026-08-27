@@ -8,7 +8,16 @@
   "euler_level": 30,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Factorisation",
+      "slug": "factorisation"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=418",
   "supported_languages": [
     "python"

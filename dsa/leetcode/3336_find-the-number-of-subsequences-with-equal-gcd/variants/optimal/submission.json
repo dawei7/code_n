@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.subsequencePairCount",
-  "verified_submission_id": "2081061760",
-  "verified_at": "2026-07-25T17:37:00Z"
+  "verified_submission_id": "2120622044",
+  "verified_at": "2026-08-26T09:27:24.851493+00:00"
 }

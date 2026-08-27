@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findXSum",
-  "verified_submission_id": "2080892550",
-  "verified_at": "2026-07-25T15:19:00Z"
+  "verified_submission_id": "2120619207",
+  "verified_at": "2026-08-26T09:24:00.883559+00:00"
 }

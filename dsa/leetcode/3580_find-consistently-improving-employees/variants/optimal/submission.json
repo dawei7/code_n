@@ -6,9 +6,9 @@
   "frontend_id": "3580",
   "title_slug": "find-consistently-improving-employees",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2083275960",
-  "verified_at": "2026-07-27T11:28:00Z"
+  "verified_submission_id": "2120665851",
+  "verified_at": "2026-08-26T10:16:39.093056+00:00"
 }

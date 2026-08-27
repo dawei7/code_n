@@ -8,7 +8,28 @@
   "euler_level": 30,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Complex Number",
+      "slug": "complex-number"
+    },
+    {
+      "name": "Gaussian Integer",
+      "slug": "gaussian-integer"
+    },
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "Squarefree Number",
+      "slug": "squarefree-number"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=556",
   "supported_languages": [
     "python"

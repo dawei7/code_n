@@ -1,8 +1,8 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     t AS (
         SELECT
-            DATE_FORMAT(pay_date, '%Y-%m') AS pay_month,
+            TO_CHAR(pay_date, 'YYYY-MM') AS pay_month,
             department_id,
             AVG(amount) OVER (PARTITION BY pay_date) AS company_avg_amount,
             AVG(amount) OVER (PARTITION BY pay_date, department_id) AS department_avg_amount

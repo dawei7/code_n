@@ -1,6 +1,4 @@
-# The Primality of $2n^2 - 1$
-
-### The Primality of $2n^2 - 1$
+## Description
 
 Consider numbers $t(n)$ of the form $t(n) = 2n^2 - 1$ with $n \gt 1$.
 
@@ -10,6 +8,20 @@ It turns out that only $49 = 7 \cdot 7$ and $161 = 7 \cdot 23$ are not prime.
 
 For $n \le 10000$ there are $2202$ numbers $t(n)$ that are prime.
 
-
-
 How many numbers $t(n)$ are prime for $n \le 50\,000\,000$?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

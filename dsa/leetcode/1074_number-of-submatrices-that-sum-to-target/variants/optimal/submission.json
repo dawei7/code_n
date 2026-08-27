@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numSubmatrixSumTarget",
-  "verified_submission_id": "2067507743",
-  "verified_at": "2026-07-14T15:04:45.756989+00:00"
+  "verified_submission_id": "2113280108",
+  "verified_at": "2026-08-19T22:52:46.461576+00:00"
 }

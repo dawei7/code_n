@@ -8,7 +8,24 @@
   "euler_level": 17,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Convexity",
+      "slug": "convexity"
+    },
+    {
+      "name": "Hexagon",
+      "slug": "hexagon"
+    },
+    {
+      "name": "Polygon",
+      "slug": "polygon"
+    }
+  ],
   "url": "https://projecteuler.net/problem=600",
   "supported_languages": [
     "python"

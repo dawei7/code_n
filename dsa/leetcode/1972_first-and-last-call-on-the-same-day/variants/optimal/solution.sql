@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     s AS (
         SELECT
@@ -15,11 +15,11 @@ WITH
         SELECT
             caller_id AS user_id,
             FIRST_VALUE(recipient_id) OVER (
-                PARTITION BY DATE_FORMAT(call_time, '%Y-%m-%d'), caller_id
+                PARTITION BY TO_CHAR(call_time, 'YYYY-MM-DD'), caller_id
                 ORDER BY call_time ASC
             ) AS first,
             FIRST_VALUE(recipient_id) OVER (
-                PARTITION BY DATE_FORMAT(call_time, '%Y-%m-%d'), caller_id
+                PARTITION BY TO_CHAR(call_time, 'YYYY-MM-DD'), caller_id
                 ORDER BY call_time DESC
             ) AS last
         FROM s

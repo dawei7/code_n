@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.longestNiceSubstring",
-  "verified_submission_id": "2071042376",
-  "verified_at": "2026-07-17T11:21:47.505925+00:00"
+  "verified_submission_id": "2114808690",
+  "verified_at": "2026-08-21T07:51:03.603344+00:00"
 }

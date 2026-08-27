@@ -8,7 +8,28 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Partition",
+      "slug": "partition"
+    },
+    {
+      "name": "Power",
+      "slug": "power"
+    },
+    {
+      "name": "Sum Of Powers",
+      "slug": "sum-of-powers"
+    }
+  ],
   "url": "https://projecteuler.net/problem=890",
   "supported_languages": [
     "python"

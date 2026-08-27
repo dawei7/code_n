@@ -8,7 +8,16 @@
   "euler_level": 38,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Complex Number",
+      "slug": "complex-number"
+    },
+    {
+      "name": "Gaussian Integer",
+      "slug": "gaussian-integer"
+    }
+  ],
   "url": "https://projecteuler.net/problem=508",
   "supported_languages": [
     "python"

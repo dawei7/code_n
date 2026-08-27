@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "class Solution.maximumSubsequenceCount",
-  "verified_submission_id": "2073866372",
-  "verified_at": "2026-07-19T19:42:12.784395+00:00"
+  "verified_submission_id": "2116398865",
+  "verified_at": "2026-08-22T16:57:32.257804+00:00"
 }

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     T AS (
         SELECT
@@ -12,12 +12,10 @@ WITH
                 ),
                 2
             ) AS rolling_average,
-            DATEDIFF(
-                steps_date,
-                LAG(steps_date, 2) OVER (
+            (steps_date::date - (LAG(steps_date, 2) OVER (
                     PARTITION BY user_id
                     ORDER BY steps_date
-                )
+                ))::date
             ) = 2 AS st
         FROM Steps
     )
@@ -26,5 +24,6 @@ SELECT
     steps_date,
     rolling_average
 FROM T
-WHERE st = 1
-ORDER BY 1, 2;
+WHERE st
+ORDER BY user_id, steps_date;
+

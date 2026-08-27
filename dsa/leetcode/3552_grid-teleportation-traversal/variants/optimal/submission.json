@@ -1,14 +1,14 @@
 {
-    "schema_version":  1,
-    "provider":  "leetcode.com",
-    "status":  "verified",
-    "question_id":  "3837",
-    "frontend_id":  "3552",
-    "title_slug":  "grid-teleportation-traversal",
-    "paid_only":  false,
-    "language":  "python3",
-    "source":  "solutions/solution.py",
-    "native_entrypoint":  "Solution.minMoves",
-    "verified_submission_id":  "2089300447",
-    "verified_at":  "2026-07-31T21:22:20.423+00:00"
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3837",
+  "frontend_id": "3552",
+  "title_slug": "grid-teleportation-traversal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.minMoves",
+  "verified_submission_id": "2120656816",
+  "verified_at": "2026-08-26T10:06:53.707532+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findMinimumTime",
-  "verified_submission_id": "2081302048",
-  "verified_at": "2026-07-26T00:45:00Z"
+  "verified_submission_id": "2120629220",
+  "verified_at": "2026-08-26T09:35:52.337091+00:00"
 }

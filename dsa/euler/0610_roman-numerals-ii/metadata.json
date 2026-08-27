@@ -8,7 +8,16 @@
   "euler_level": 14,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Roman Numeral",
+      "slug": "roman-numeral"
+    }
+  ],
   "url": "https://projecteuler.net/problem=610",
   "supported_languages": [
     "python"

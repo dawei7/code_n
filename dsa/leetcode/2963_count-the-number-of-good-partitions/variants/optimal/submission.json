@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numberOfGoodPartitions",
-  "verified_submission_id": "2078420096",
-  "verified_at": "2026-07-23T13:16:31.904038+00:00"
+  "verified_submission_id": "2117866608",
+  "verified_at": "2026-08-23T23:22:40.884453+00:00"
 }

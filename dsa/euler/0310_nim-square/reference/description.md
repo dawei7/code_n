@@ -1,4 +1,4 @@
-### Nim Square
+## Description
 
 Alice and Bob play the game Nim Square.
 
@@ -7,8 +7,5 @@ Nim Square is just like ordinary three-heap normal play Nim, but the players may
 The number of stones in the three heaps is represented by the ordered triple $(a,b,c)$.
 
 If $0 \le a \le b \le c \le 29$ then the number of losing positions for the next player is $1160$.
-
-
-
 
 Find the number of losing positions for the next player if $0 \le a \le b \le c \le 100\,000$.

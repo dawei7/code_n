@@ -4,6 +4,7 @@
 
 A pseudo-geometric sequence is a finite sequence $0 < a_0 < a_1 < \dots < a_n \le N$ with $n \ge 4$ (at least 5 terms) such that:
 $$|a_i^2 - a_{i-1} a_{i+1}| \le 2 \quad \text{for all } 1 \le i \le n-1$$
+
 $G(N)$ is the total number of different pseudo-geometric sequences whose terms do not exceed $N$.
 
 We are given:

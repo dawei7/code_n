@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.aggregateTimeSeries",
-  "verified_submission_id": "2088210451",
-  "verified_at": "2026-07-31T03:55:00Z"
+  "verified_submission_id": "2122341202",
+  "verified_at": "2026-08-27T20:17:13.192060+00:00"
 }

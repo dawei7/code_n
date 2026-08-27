@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2836","frontend_id":"2733","title_slug":"neither-minimum-nor-maximum","paid_only":false,"language":"python","source":"solutions/solution.py","native_entrypoint":"Solution.findNonMinOrMax","verified_submission_id":"2076464579","verified_at":"2026-07-22T01:34:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2836",
+  "frontend_id": "2733",
+  "title_slug": "neither-minimum-nor-maximum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.findNonMinOrMax",
+  "verified_submission_id": "2120595253",
+  "verified_at": "2026-08-26T08:55:31.415306+00:00"
+}

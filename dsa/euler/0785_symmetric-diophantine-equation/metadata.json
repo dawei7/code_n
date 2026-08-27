@@ -8,7 +8,24 @@
   "euler_level": 34,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Coprime Numbers",
+      "slug": "coprime-numbers"
+    },
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Parametrisation",
+      "slug": "parametrisation"
+    },
+    {
+      "name": "Sublinear Number Theoretic Summation",
+      "slug": "sublinear-number-theoretic-summation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=785",
   "supported_languages": [
     "python"

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     S AS (
         SELECT
@@ -13,7 +13,7 @@ WITH
         FROM Matches
     ),
     T AS (
-        SELECT player_id, SUM(result = 'Win') AS s
+        SELECT player_id, SUM(CASE WHEN result = 'Win' THEN 1 ELSE 0 END) AS s
         FROM S
         GROUP BY player_id, rk
     )

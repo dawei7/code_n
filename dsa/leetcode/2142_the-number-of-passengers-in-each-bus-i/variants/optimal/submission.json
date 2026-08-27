@@ -6,9 +6,9 @@
   "frontend_id": "2142",
   "title_slug": "the-number-of-passengers-in-each-bus-i",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2073470481",
-  "verified_at": "2026-07-19T12:53:04.785706+00:00"
+  "verified_submission_id": "2116380358",
+  "verified_at": "2026-08-22T16:42:21.841971+00:00"
 }

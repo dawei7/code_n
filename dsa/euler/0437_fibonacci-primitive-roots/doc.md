@@ -1,6 +1,4 @@
-# Fibonacci Primitive Roots
-
-### Fibonacci Primitive Roots
+## Description
 
 When we calculate $8^n$ modulo $11$ for $n=0$ to $9$ we get: $1, 8, 9, 6, 4, 10, 3, 2, 5, 7$.
 
@@ -28,8 +26,6 @@ $2+5=7$
 
 $5+7=12 \equiv 1 \bmod 11$.
 
-
-
 So the powers of $8 \bmod 11$ are cyclic with period $10$, and $8^n + 8^{n+1} \equiv 8^{n+2} \pmod{11}$.
 
 $8$ is called a Fibonacci primitive root of $11$.
@@ -39,3 +35,19 @@ Not every prime has a Fibonacci primitive root.
 There are $323$ primes less than $10000$ with one or more Fibonacci primitive roots and the sum of these primes is $1480491$.
 
 Find the sum of the primes less than $100\,000\,000$ with at least one Fibonacci primitive root.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -6,9 +6,9 @@
   "frontend_id": "3554",
   "title_slug": "find-category-recommendation-pairs",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2082993338",
-  "verified_at": "2026-07-27T07:13:00Z"
+  "verified_submission_id": "2120665538",
+  "verified_at": "2026-08-26T10:16:17.994263+00:00"
 }

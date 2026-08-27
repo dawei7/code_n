@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findSpecialInteger",
-  "verified_submission_id": "2068337962",
-  "verified_at": "2026-07-15T08:20:49.654541+00:00"
+  "verified_submission_id": "2113292009",
+  "verified_at": "2026-08-19T23:34:23.754985+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.removeLeafNodes",
-  "verified_submission_id": "2068502569",
-  "verified_at": "2026-07-15T10:51:59.341264+00:00"
+  "verified_submission_id": "2113294035",
+  "verified_at": "2026-08-19T23:41:43.397753+00:00"
 }

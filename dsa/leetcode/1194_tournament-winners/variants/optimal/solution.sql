@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     s AS (
         SELECT first_player AS player_id, first_score AS score, group_id

@@ -390,12 +390,25 @@ def leetcode_editorial_markdown(challenge_id: str) -> str:
     if package_dir is None:
         return ""
     editorial = package_dir / "reference" / "editorial.md"
-    if not editorial.is_file():
-        return ""
-    try:
-        return editorial.read_text(encoding="utf-8")
-    except OSError:
-        return ""
+    if editorial.is_file():
+        try:
+            return editorial.read_text(encoding="utf-8")
+        except OSError:
+            pass
+
+    optimal_dir = package_dir / "variants" / "optimal"
+    approach = optimal_dir / "approach.md"
+    if approach.is_file():
+        try:
+            text = approach.read_text(encoding="utf-8")
+            sol_py = optimal_dir / "solutions" / "solution.py"
+            if sol_py.is_file():
+                text += "\n\n## Reference Implementation\n\n```python\n" + sol_py.read_text(encoding="utf-8") + "\n```\n"
+            return text
+        except OSError:
+            pass
+
+    return ""
 
 
 def leetcode_solution_variants_manifest_path(challenge_id: str) -> Path | None:

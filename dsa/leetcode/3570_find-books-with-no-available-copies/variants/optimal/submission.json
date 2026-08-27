@@ -6,9 +6,9 @@
   "frontend_id": "3570",
   "title_slug": "find-books-with-no-available-copies",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2083162803",
-  "verified_at": "2026-07-27T09:45:38Z"
+  "verified_submission_id": "2120660047",
+  "verified_at": "2026-08-26T10:10:24.445189+00:00"
 }

@@ -6,9 +6,9 @@
   "frontend_id": "1355",
   "title_slug": "activity-participants",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068682973",
-  "verified_at": "2026-07-15T13:57:54.377462+00:00"
+  "verified_submission_id": "2113295802",
+  "verified_at": "2026-08-19T23:47:34.938276+00:00"
 }

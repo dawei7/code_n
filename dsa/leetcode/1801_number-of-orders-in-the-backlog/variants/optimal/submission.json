@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getNumberOfBacklogOrders",
-  "verified_submission_id": "2071251303",
-  "verified_at": "2026-07-17T15:09:37.610480+00:00"
+  "verified_submission_id": "2114811742",
+  "verified_at": "2026-08-21T07:55:28.829326+00:00"
 }

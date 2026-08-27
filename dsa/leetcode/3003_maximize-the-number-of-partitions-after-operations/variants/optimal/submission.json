@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxPartitionsAfterOperations",
-  "verified_submission_id": "2078670669",
-  "verified_at": "2026-07-23T16:45:01.894329+00:00"
+  "verified_submission_id": "2117868784",
+  "verified_at": "2026-08-23T23:30:33.169738+00:00"
 }

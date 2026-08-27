@@ -6,8 +6,8 @@
   "frontend_id": "3278",
   "title_slug": "find-candidates-for-data-scientist-position-ii",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2080474026",
-  "verified_at": "2026-07-25T08:06:19.778444+00:00"
+  "verified_submission_id": "2120612011",
+  "verified_at": "2026-08-26T09:15:27.478676+00:00"
 }

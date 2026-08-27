@@ -8,7 +8,20 @@
   "euler_level": 22,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Square Number",
+      "slug": "square-number"
+    },
+    {
+      "name": "Square Root",
+      "slug": "square-root"
+    },
+    {
+      "name": "Triangle Number",
+      "slug": "triangle-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=833",
   "supported_languages": [
     "python"

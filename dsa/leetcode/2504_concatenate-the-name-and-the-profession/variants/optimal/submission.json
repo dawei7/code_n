@@ -6,9 +6,9 @@
   "frontend_id": "2504",
   "title_slug": "concatenate-the-name-and-the-profession",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2075167880",
-  "verified_at": "2026-07-21T01:19:00+00:00"
+  "verified_submission_id": "2120593827",
+  "verified_at": "2026-08-26T08:53:50.382692+00:00"
 }

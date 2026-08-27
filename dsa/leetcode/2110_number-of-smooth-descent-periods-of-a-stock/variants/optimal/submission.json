@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getDescentPeriods",
-  "verified_submission_id": "2073312572",
-  "verified_at": "2026-07-19T09:47:49.305903+00:00"
+  "verified_submission_id": "2116371855",
+  "verified_at": "2026-08-22T16:35:30.240909+00:00"
 }

@@ -6,9 +6,9 @@
   "frontend_id": "1164",
   "title_slug": "product-price-at-a-given-date",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "MySQL query",
-  "verified_submission_id": "2067876945",
-  "verified_at": "2026-07-14T21:08:18.393244+00:00"
+  "verified_submission_id": "2113285209",
+  "verified_at": "2026-08-19T23:10:15.682182+00:00"
 }

@@ -1,7 +1,7 @@
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
   RETURN (
-      # Write your MySQL query statement below.
+      -- Write your PostgreSQL query statement below.
 
   );
 END

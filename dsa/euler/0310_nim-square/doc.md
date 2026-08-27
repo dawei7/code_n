@@ -1,6 +1,4 @@
-# Nim Square
-
-### Nim Square
+## Description
 
 Alice and Bob play the game Nim Square.
 
@@ -10,7 +8,20 @@ The number of stones in the three heaps is represented by the ordered triple $(a
 
 If $0 \le a \le b \le c \le 29$ then the number of losing positions for the next player is $1160$.
 
-
-
-
 Find the number of losing positions for the next player if $0 \le a \le b \le c \le 100\,000$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -6,9 +6,9 @@
   "frontend_id": "1683",
   "title_slug": "invalid-tweets",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070546526",
-  "verified_at": "2026-07-17T03:34:26.093727+00:00"
+  "verified_submission_id": "2114802211",
+  "verified_at": "2026-08-21T07:41:50.667457+00:00"
 }

@@ -66,7 +66,9 @@ def naive_obtuse_triangles():
 
 ### Master Obtuse Lattice Formula
 $$c_1 + c_2 = 96k^2 + 6k$$
+
 $$c_3 = 1 + 4\lfloor \sqrt{R^2} \rfloor + 4(k - 1) + 8\left(\frac{k(k-1)}{2} + \sum_{u=k+1}^{\lfloor \sqrt{R^2} \rfloor} \lfloor \sqrt{R^2 - u^2} \rfloor\right)$$
+
 $$N(r) = c_1 + c_2 + c_3 - (8k - 1)$$
 where $k = r / 8 = 125\,000\,000$ and $R^2 = 2k^2 - 1$.
 

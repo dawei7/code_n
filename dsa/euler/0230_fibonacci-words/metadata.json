@@ -8,7 +8,24 @@
   "euler_level": 12,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Digit Manipulation",
+      "slug": "digit-manipulation"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=230",
   "supported_languages": [
     "python"

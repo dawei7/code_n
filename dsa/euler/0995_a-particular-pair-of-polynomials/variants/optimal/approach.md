@@ -11,6 +11,7 @@ For positive integer $n$, define:
 $$
 g_n(x) = 1 + \sum_{d \mid n} x^d
 $$
+
 $S(p)$ is the smallest positive integer $s$ such that $\Phi_p(x)$ divides $g_s(x)$ in $\mathbb{Z}[x]$.
 
 ---

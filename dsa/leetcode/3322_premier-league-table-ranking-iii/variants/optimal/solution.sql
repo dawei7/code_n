@@ -1,12 +1,13 @@
+-- Write your PostgreSQL query statement below
 SELECT
     season_id,
     team_id,
     team_name,
-    wins * 3 + draws points,
-    goals_for - goals_against goal_difference,
+    wins * 3 + draws AS points,
+    goals_for - goals_against AS goal_difference,
     RANK() OVER (
         PARTITION BY season_id
-        ORDER BY wins * 3 + draws DESC, goals_for - goals_against DESC, team_name
-    ) position
+        ORDER BY wins * 3 + draws DESC, goals_for - goals_against DESC, team_name ASC
+    ) AS position
 FROM SeasonStats
-ORDER BY 1, 6, 3;
+ORDER BY season_id ASC, position ASC, team_name ASC;

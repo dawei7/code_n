@@ -8,7 +8,20 @@
   "euler_level": 10,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Modular Arithmetic",
+      "slug": "modular-arithmetic"
+    },
+    {
+      "name": "Number Base",
+      "slug": "number-base"
+    }
+  ],
   "url": "https://projecteuler.net/problem=778",
   "supported_languages": [
     "python"

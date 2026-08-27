@@ -9,6 +9,6 @@
   "language": "javascript",
   "source": "solution.js",
   "native_entrypoint": "Array.prototype.last",
-  "verified_submission_id": "2075906287",
-  "verified_at": "2026-07-21T14:08:00+00:00"
+  "verified_submission_id": "2117846427",
+  "verified_at": "2026-08-23T22:14:09.957740+00:00"
 }

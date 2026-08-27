@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.reverseEvenLengthGroups",
-  "verified_submission_id": "2073017270",
-  "verified_at": "2026-07-19T03:56:03.350454+00:00"
+  "verified_submission_id": "2116367170",
+  "verified_at": "2026-08-22T16:31:36.258487+00:00"
 }

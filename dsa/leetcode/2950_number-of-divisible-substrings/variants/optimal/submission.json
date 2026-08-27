@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countDivisibleSubstrings",
-  "verified_submission_id": "2078355719",
-  "verified_at": "2026-07-23T12:09:24.214148+00:00"
+  "verified_submission_id": "2117865905",
+  "verified_at": "2026-08-23T23:20:03.515078+00:00"
 }

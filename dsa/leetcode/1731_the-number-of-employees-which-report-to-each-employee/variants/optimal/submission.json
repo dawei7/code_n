@@ -6,9 +6,9 @@
   "frontend_id": "1731",
   "title_slug": "the-number-of-employees-which-report-to-each-employee",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2070852487",
-  "verified_at": "2026-07-17T08:16:27.883756+00:00"
+  "verified_submission_id": "2114806187",
+  "verified_at": "2026-08-21T07:47:28.220660+00:00"
 }

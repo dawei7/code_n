@@ -1,12 +1,6 @@
-# Nontransitive Sets of Dice
-
-### Nontransitive Sets of Dice
+## Description
 
 Consider the following set of dice with nonstandard pips:
-
-
-
-
 
 Die $A$: $1$ $4$ $4$ $4$ $4$ $4$
 
@@ -14,44 +8,23 @@ Die $B$: $2$ $2$ $2$ $5$ $5$ $5$
 
 Die $C$: $3$ $3$ $3$ $3$ $3$ $6$
 
-
-
-
-
 A game is played by two players picking a die in turn and rolling it. The player who rolls the highest value wins.
-
-
-
-
 
 If the first player picks die $A$ and the second player picks die $B$ we get
 
 $P(\text{second player wins}) = 7/12 \gt 1/2$.
 
-
-
-
 If the first player picks die $B$ and the second player picks die $C$ we get
 
 $P(\text{second player wins}) = 7/12 \gt 1/2$.
-
-
-
 
 If the first player picks die $C$ and the second player picks die $A$ we get
 
 $P(\text{second player wins}) = 25/36 \gt 1/2$.
 
-
-
-
 So whatever die the first player picks, the second player can pick another die and have a larger than $50\%$ chance of winning.
 
 A set of dice having this property is called a nontransitive set of dice.
-
-
-
-
 
 We wish to investigate how many sets of nontransitive dice exist. We will assume the following conditions:
 
@@ -63,3 +36,19 @@ The sets of dice $\{A,B,C\}$, $\{B,C,A\}$ and $\{C,A,B\}$ are the same set.
 For $N = 7$ we find there are $9780$ such sets.
 
 How many are there for $N = 30$?
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

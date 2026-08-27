@@ -4,6 +4,7 @@
 
 The **hyperexponentiation** or **tetration** of a number $a$ by a positive integer $b$, denoted by $a \uparrow\uparrow b$ or ${}^b a$, is defined recursively by:
 $$a \uparrow\uparrow 1 = a$$
+
 $$a \uparrow\uparrow k = a^{(a \uparrow\uparrow (k - 1))}$$
 
 Thus we have e.g. $3 \uparrow\uparrow 2 = 3^3 = 27$, $3 \uparrow\uparrow 3 = 3^{27} = 7\,625\,597\,484\,987$, and $3 \uparrow\uparrow 4 \approx 3^{7.6 \times 10^{12}}$.

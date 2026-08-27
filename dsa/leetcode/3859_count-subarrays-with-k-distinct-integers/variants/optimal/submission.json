@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.countSubarrays",
-  "verified_submission_id": "2086227262",
-  "verified_at": "2026-07-29T14:16:53.195442+00:00"
+  "verified_submission_id": "2122326685",
+  "verified_at": "2026-08-27T19:52:14.583902+00:00"
 }

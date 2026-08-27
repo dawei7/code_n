@@ -1,14 +1,14 @@
 {
-  "schema_version":1,
-  "provider":"leetcode.com",
-  "status":"verified",
-  "question_id":"3570",
-  "frontend_id":"3305",
-  "title_slug":"count-of-substrings-containing-every-vowel-and-k-consonants-i",
-  "paid_only":false,
-  "language":"python3",
-  "source":"solutions/solution.py",
-  "native_entrypoint":"Solution.countOfSubstrings",
-  "verified_submission_id":"2080813298",
-  "verified_at":"2026-07-25T14:01:51.0965884Z"
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3570",
+  "frontend_id": "3305",
+  "title_slug": "count-of-substrings-containing-every-vowel-and-k-consonants-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solution.py",
+  "native_entrypoint": "Solution.countOfSubstrings",
+  "verified_submission_id": "2120616387",
+  "verified_at": "2026-08-26T09:20:41.549202+00:00"
 }

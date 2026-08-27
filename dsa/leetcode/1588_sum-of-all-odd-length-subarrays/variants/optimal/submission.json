@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.sumOddLengthSubarrays",
-  "verified_submission_id": "2069973851",
-  "verified_at": "2026-07-16T14:25:46.670736+00:00"
+  "verified_submission_id": "2114793937",
+  "verified_at": "2026-08-21T07:30:44.127566+00:00"
 }

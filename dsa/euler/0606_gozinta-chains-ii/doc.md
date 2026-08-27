@@ -1,6 +1,4 @@
-# Gozinta Chains II
-
-### Gozinta Chains II
+## Description
 
 A gozinta chain for $n$ is a sequence $\{1,a,b,\dots,n\}$ where each element properly divides the next. 
 
@@ -8,14 +6,24 @@ For example, there are eight distinct gozinta chains for $12$:
 
 $\{1,12\}$, $\{1,2,12\}$, $\{1,2,4,12\}$, $\{1,2,6,12\}$, $\{1,3,12\}$, $\{1,3,6,12\}$, $\{1,4,12\}$ and $\{1,6,12\}$.
 
-
-
-
 Let $S(n)$ be the sum of all numbers, $k$, not exceeding $n$, which have $252$ distinct gozinta chains. 
 
 You are given $S(10^6)=8462952$ and $S(10^{12})=623291998881978$.
 
-
-
-
 Find $S(10^{36})$, giving the last nine digits of your answer.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

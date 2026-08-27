@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findNearestRightNode",
-  "verified_submission_id": "2070072807",
-  "verified_at": "2026-07-16T15:44:27.844453+00:00"
+  "verified_submission_id": "2114795247",
+  "verified_at": "2026-08-21T07:32:22.961314+00:00"
 }

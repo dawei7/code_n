@@ -8,7 +8,16 @@
   "euler_level": 27,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Parametrisation",
+      "slug": "parametrisation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=791",
   "supported_languages": [
     "python"

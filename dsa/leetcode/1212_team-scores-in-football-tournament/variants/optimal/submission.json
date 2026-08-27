@@ -6,9 +6,9 @@
   "frontend_id": "1212",
   "title_slug": "team-scores-in-football-tournament",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2067938783",
-  "verified_at": "2026-07-15T00:30:38.561037+00:00"
+  "verified_submission_id": "2113287807",
+  "verified_at": "2026-08-19T23:19:40.145703+00:00"
 }

@@ -8,7 +8,24 @@
   "euler_level": 5,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Decimal Representation",
+      "slug": "decimal-representation"
+    },
+    {
+      "name": "Recursion",
+      "slug": "recursion"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=751",
   "supported_languages": [
     "python"

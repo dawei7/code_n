@@ -6,8 +6,8 @@
   "frontend_id": "608",
   "title_slug": "tree-node",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065466348",
-  "verified_at": "2026-07-12T21:59:48.925125+00:00"
+  "verified_submission_id": "2113229740",
+  "verified_at": "2026-08-19T20:44:21.345443+00:00"
 }

@@ -6,8 +6,8 @@
   "frontend_id": "182",
   "title_slug": "duplicate-emails",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064193880",
-  "verified_at": "2026-07-11T18:25:13.719895+00:00"
+  "verified_submission_id": "2108900484",
+  "verified_at": "2026-08-16T11:21:10.998114+00:00"
 }

@@ -6,9 +6,9 @@
   "frontend_id": "1327",
   "title_slug": "list-the-products-ordered-in-a-period",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2068507227",
-  "verified_at": "2026-07-15T10:56:42.847920+00:00"
+  "verified_submission_id": "2113294142",
+  "verified_at": "2026-08-19T23:42:07.212403+00:00"
 }

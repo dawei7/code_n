@@ -6,9 +6,9 @@
   "frontend_id": "1843",
   "title_slug": "suspicious-bank-accounts",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2071663508",
-  "verified_at": "2026-07-18T02:11:17.730943+00:00"
+  "verified_submission_id": "2114815068",
+  "verified_at": "2026-08-21T08:00:18.483379+00:00"
 }

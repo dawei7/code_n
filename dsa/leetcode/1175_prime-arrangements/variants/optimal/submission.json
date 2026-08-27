@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.numPrimeArrangements",
-  "verified_submission_id": "2067892817",
-  "verified_at": "2026-07-14T21:52:33.126383+00:00"
+  "verified_submission_id": "2113285825",
+  "verified_at": "2026-08-19T23:12:23.850592+00:00"
 }

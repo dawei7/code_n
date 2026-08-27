@@ -73,6 +73,7 @@ To find the $k$-th digit $d_k$:
 
 ### Product Evaluation
 $$P = d_1 \times d_{10} \times d_{100} \times d_{1000} \times d_{10000} \times d_{100000} \times d_{1000000}$$
+
 $$P = 1 \times 1 \times 5 \times 3 \times 7 \times 2 \times 1 = \mathbf{210}$$
 
 ---

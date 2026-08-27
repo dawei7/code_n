@@ -8,7 +8,20 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Fibonacci Number",
+      "slug": "fibonacci-number"
+    },
+    {
+      "name": "Optimisation",
+      "slug": "optimisation"
+    },
+    {
+      "name": "Permutation",
+      "slug": "permutation"
+    }
+  ],
   "url": "https://projecteuler.net/problem=669",
   "supported_languages": [
     "python"

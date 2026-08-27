@@ -8,7 +8,20 @@
   "euler_level": 28,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Diophantine Equation",
+      "slug": "diophantine-equation"
+    },
+    {
+      "name": "Large Numbers",
+      "slug": "large-numbers"
+    },
+    {
+      "name": "Pythagorean Triple",
+      "slug": "pythagorean-triple"
+    }
+  ],
   "url": "https://projecteuler.net/problem=835",
   "supported_languages": [
     "python"

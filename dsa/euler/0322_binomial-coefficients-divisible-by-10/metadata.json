@@ -8,7 +8,16 @@
   "euler_level": 26,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Binomial Coefficient",
+      "slug": "binomial-coefficient"
+    },
+    {
+      "name": "Divisibility",
+      "slug": "divisibility"
+    }
+  ],
   "url": "https://projecteuler.net/problem=322",
   "supported_languages": [
     "python"

@@ -8,7 +8,20 @@
   "euler_level": 7,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Permutation",
+      "slug": "permutation"
+    },
+    {
+      "name": "Sorting",
+      "slug": "sorting"
+    }
+  ],
   "url": "https://projecteuler.net/problem=523",
   "supported_languages": [
     "python"

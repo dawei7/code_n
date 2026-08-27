@@ -8,7 +8,16 @@
   "euler_level": 28,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Prime Number",
+      "slug": "prime-number"
+    },
+    {
+      "name": "State Machine",
+      "slug": "state-machine"
+    }
+  ],
   "url": "https://projecteuler.net/problem=308",
   "supported_languages": [
     "python"

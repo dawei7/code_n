@@ -1,6 +1,4 @@
-# Harshad Numbers
-
-### Harshad Numbers
+## Description
 
 A Harshad or Niven number is a number that is divisible by the sum of its digits.
 
@@ -20,18 +18,28 @@ $201/3=67$ which is prime.
 
 Let's call a Harshad number that, when divided by the sum of its digits, results in a prime a strong Harshad number.
 
-
-
 Now take the number $2011$ which is prime.
 
 When we truncate the last digit from it we get $201$, a strong Harshad number that is also right truncatable.
 
 Let's call such primes strong, right truncatable Harshad primes.
 
-
-
 You are given that the sum of the strong, right truncatable Harshad primes less than $10000$ is $90619$.
 
-
-
 Find the sum of the strong, right truncatable Harshad primes less than $10^{14}$.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -6,8 +6,8 @@
   "frontend_id": "1045",
   "title_slug": "customers-who-bought-all-products",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2067391005",
-  "verified_at": "2026-07-14T13:17:41.537352+00:00"
+  "verified_submission_id": "2113278397",
+  "verified_at": "2026-08-19T22:47:06.695135+00:00"
 }

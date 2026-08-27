@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH T AS (SELECT DISTINCT driver_id FROM Rides)
 SELECT t.driver_id, COUNT(passenger_id) AS cnt
 FROM

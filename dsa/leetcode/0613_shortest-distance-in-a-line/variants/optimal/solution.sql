@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT MIN(p2.x - p1.x) AS shortest
 FROM
     Point AS p1

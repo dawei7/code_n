@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH RECURSIVE
     T AS (
         SELECT
@@ -32,6 +32,6 @@ SELECT
     t.salary - p.salary salary_difference
 FROM
     T t
-    JOIN P p
+    CROSS JOIN P p
 WHERE hierarchy_level != 0
-ORDER BY 3, 1;
+ORDER BY hierarchy_level, subordinate_id;

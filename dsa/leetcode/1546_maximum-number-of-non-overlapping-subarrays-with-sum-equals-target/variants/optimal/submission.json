@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.maxNonOverlapping",
-  "verified_submission_id": "2069713462",
-  "verified_at": "2026-07-16T10:10:36.900618+00:00"
+  "verified_submission_id": "2114790226",
+  "verified_at": "2026-08-21T07:25:54.425638+00:00"
 }

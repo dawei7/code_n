@@ -4,6 +4,7 @@
 
 A hypocycloid with large radius $R$ and small radius $r$ is parameterized by:
 $$x(t) = (R - r)\cos(t) + r\cos\left(\frac{R - r}{r} t\right)$$
+
 $$y(t) = (R - r)\sin(t) - r\sin\left(\frac{R - r}{r} t\right)$$
 Let $C(R, r)$ be the set of distinct points $(x, y) \in \mathbb{Z}^2$ occurring at parameter values $t$ with $\sin(t), \cos(t) \in \mathbb{Q}$.
 Let $S(R, r) = \sum_{(x, y) \in C(R, r)} (|x| + |y|)$.

@@ -8,7 +8,16 @@
   "euler_level": 25,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Polynomial",
+      "slug": "polynomial"
+    },
+    {
+      "name": "Xor",
+      "slug": "xor"
+    }
+  ],
   "url": "https://projecteuler.net/problem=878",
   "supported_languages": [
     "python"

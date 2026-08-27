@@ -8,7 +8,28 @@
   "euler_level": 21,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Circle",
+      "slug": "circle"
+    },
+    {
+      "name": "Circumcircle",
+      "slug": "circumcircle"
+    },
+    {
+      "name": "Incircle",
+      "slug": "incircle"
+    },
+    {
+      "name": "Parametrisation",
+      "slug": "parametrisation"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    }
+  ],
   "url": "https://projecteuler.net/problem=496",
   "supported_languages": [
     "python"

@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     S AS (
         SELECT contest_id, gold_medal AS user_id, 1 AS type

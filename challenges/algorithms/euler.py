@@ -48,7 +48,7 @@ def _build_euler_spec_from_dict(meta: dict[str, Any]) -> AlgorithmSpec:
 
     return AlgorithmSpec(
         id=challenge_id,
-        name=f"{frontend_id}. {title}",
+        name=title,
         category="euler_math",
         required_complexity=ComplexityClass.UNKNOWN,
         description=description,

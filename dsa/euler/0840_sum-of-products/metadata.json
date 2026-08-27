@@ -8,7 +8,20 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Factorisation",
+      "slug": "factorisation"
+    },
+    {
+      "name": "Partition",
+      "slug": "partition"
+    }
+  ],
   "url": "https://projecteuler.net/problem=840",
   "supported_languages": [
     "python"

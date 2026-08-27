@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.networkDelayTime",
-  "verified_submission_id": "2065865179",
-  "verified_at": "2026-07-13T08:15:04.684171+00:00"
+  "verified_submission_id": "2113240129",
+  "verified_at": "2026-08-19T21:05:04.369123+00:00"
 }

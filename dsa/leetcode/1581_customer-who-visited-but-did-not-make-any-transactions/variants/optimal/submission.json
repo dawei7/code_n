@@ -6,9 +6,9 @@
   "frontend_id": "1581",
   "title_slug": "customer-who-visited-but-did-not-make-any-transactions",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069914477",
-  "verified_at": "2026-07-16T13:35:36.302995+00:00"
+  "verified_submission_id": "2114793340",
+  "verified_at": "2026-08-21T07:29:57.172330+00:00"
 }

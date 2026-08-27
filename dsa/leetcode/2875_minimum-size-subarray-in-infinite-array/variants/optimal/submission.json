@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minSizeSubarray",
-  "verified_submission_id": "2077824632",
-  "verified_at": "2026-07-23T03:58:00+00:00"
+  "verified_submission_id": "2117861822",
+  "verified_at": "2026-08-23T23:04:58.667216+00:00"
 }

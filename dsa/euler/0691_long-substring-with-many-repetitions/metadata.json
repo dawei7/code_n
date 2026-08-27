@@ -8,7 +8,16 @@
   "euler_level": 24,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Golden Ratio",
+      "slug": "golden-ratio"
+    },
+    {
+      "name": "Substring",
+      "slug": "substring"
+    }
+  ],
   "url": "https://projecteuler.net/problem=691",
   "supported_languages": [
     "python"

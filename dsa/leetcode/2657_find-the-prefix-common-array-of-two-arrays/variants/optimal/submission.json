@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findThePrefixCommonArray",
-  "verified_submission_id": "2076286278",
-  "verified_at": "2026-07-21T18:48:00+00:00"
+  "verified_submission_id": "2117849003",
+  "verified_at": "2026-08-23T22:21:48.739496+00:00"
 }

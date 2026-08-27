@@ -6,9 +6,9 @@
   "frontend_id": "1517",
   "title_slug": "find-users-with-valid-e-mails",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "query",
-  "verified_submission_id": "2069514846",
-  "verified_at": "2026-07-16T07:04:41.801007+00:00"
+  "verified_submission_id": "2114787610",
+  "verified_at": "2026-08-21T07:22:41.734048+00:00"
 }

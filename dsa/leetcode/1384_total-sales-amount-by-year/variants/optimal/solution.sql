@@ -1,13 +1,10 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 SELECT
     s.product_id,
     p.product_name,
     y.YEAR AS report_year,
     s.average_daily_sales * (
-        IF(YEAR(s.period_end) > y.YEAR, y.days_of_year, DAYOFYEAR(s.period_end)) - IF(
-            YEAR(s.period_start) < y.YEAR,
-            1,
-            DAYOFYEAR(s.period_start)
+        (CASE WHEN YEAR(s.period_end) > y.YEAR THEN y.days_of_year ELSE DAYOFYEAR(s.period_end END)) - (CASE WHEN YEAR(s.period_start) < y.YEAR THEN 1 ELSE DAYOFYEAR(s.period_start END)
         ) + 1
     ) AS total_amount
 FROM

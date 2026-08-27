@@ -6,9 +6,9 @@
   "frontend_id": "1141",
   "title_slug": "user-activity-for-the-past-30-days-i",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2067829093",
-  "verified_at": "2026-07-14T19:31:47.783741+00:00"
+  "verified_submission_id": "2113283995",
+  "verified_at": "2026-08-19T23:05:49.290253+00:00"
 }

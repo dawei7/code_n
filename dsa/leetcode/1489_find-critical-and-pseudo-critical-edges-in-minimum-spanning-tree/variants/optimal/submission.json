@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.findCriticalAndPseudoCriticalEdges",
-  "verified_submission_id": "2074764556",
-  "verified_at": "2026-07-20T15:48:22.456476+00:00"
+  "verified_submission_id": "2113303358",
+  "verified_at": "2026-08-20T00:13:44.690480+00:00"
 }

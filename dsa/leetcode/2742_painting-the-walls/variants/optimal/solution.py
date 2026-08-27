@@ -1,12 +1,15 @@
+from typing import List
+
+
 class Solution:
     def paintWalls(self, cost: List[int], time: List[int]) -> int:
-        @cache
-        def dfs(i: int, j: int) -> int:
-            if n - i <= j:
-                return 0
-            if i >= n:
-                return inf
-            return min(dfs(i + 1, j + time[i]) + cost[i], dfs(i + 1, j - 1))
-
         n = len(cost)
-        return dfs(0, 0)
+        dp = [float('inf')] * (n + 1)
+        dp[0] = 0
+        for c, t in zip(cost, time):
+            vol = t + 1
+            for j in range(n, -1, -1):
+                prev = max(0, j - vol)
+                if dp[prev] + c < dp[j]:
+                    dp[j] = dp[prev] + c
+        return int(dp[n])

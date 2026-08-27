@@ -8,7 +8,24 @@
   "euler_level": 19,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Geometry",
+      "slug": "geometry"
+    },
+    {
+      "name": "Incircle",
+      "slug": "incircle"
+    },
+    {
+      "name": "Orthocentre",
+      "slug": "orthocentre"
+    },
+    {
+      "name": "Triangle",
+      "slug": "triangle"
+    }
+  ],
   "url": "https://projecteuler.net/problem=919",
   "supported_languages": [
     "python"

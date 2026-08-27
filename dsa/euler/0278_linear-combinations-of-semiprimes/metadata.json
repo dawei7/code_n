@@ -8,7 +8,12 @@
   "euler_level": 10,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Packing",
+      "slug": "packing"
+    }
+  ],
   "url": "https://projecteuler.net/problem=278",
   "supported_languages": [
     "python"

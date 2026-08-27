@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.decompressRLElist",
-  "verified_submission_id": "2068464551",
-  "verified_at": "2026-07-15T10:15:01.655935+00:00"
+  "verified_submission_id": "2113293407",
+  "verified_at": "2026-08-19T23:39:23.173635+00:00"
 }

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.possibleBipartition",
-  "verified_submission_id": "2066764046",
-  "verified_at": "2026-07-14T02:19:45.547481+00:00"
+  "verified_submission_id": "2113249919",
+  "verified_at": "2026-08-19T21:27:06.454449+00:00"
 }

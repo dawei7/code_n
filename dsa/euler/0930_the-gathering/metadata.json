@@ -8,7 +8,24 @@
   "euler_level": 39,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Cycle",
+      "slug": "cycle"
+    },
+    {
+      "name": "Expectation",
+      "slug": "expectation"
+    },
+    {
+      "name": "Sequence",
+      "slug": "sequence"
+    },
+    {
+      "name": "Sequence Generator",
+      "slug": "sequence-generator"
+    }
+  ],
   "url": "https://projecteuler.net/problem=930",
   "supported_languages": [
     "python"

@@ -8,7 +8,20 @@
   "euler_level": 18,
   "category": "math",
   "category_title": "Math",
-  "topics": [],
+  "topics": [
+    {
+      "name": "Combinatorics",
+      "slug": "combinatorics"
+    },
+    {
+      "name": "Divisor Count",
+      "slug": "divisor-count"
+    },
+    {
+      "name": "Triangle Number",
+      "slug": "triangle-number"
+    }
+  ],
   "url": "https://projecteuler.net/problem=378",
   "supported_languages": [
     "python"

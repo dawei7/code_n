@@ -1,1 +1,14 @@
-{"schema_version":1,"provider":"leetcode.com","status":"verified","question_id":"2774","frontend_id":"2700","title_slug":"differences-between-two-objects","paid_only":true,"language":"javascript","source":"solutions/solution.js","native_entrypoint":"objDiff","verified_submission_id":"2076416913","verified_at":"2026-07-21T23:01:00+00:00"}
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2774",
+  "frontend_id": "2700",
+  "title_slug": "differences-between-two-objects",
+  "paid_only": true,
+  "language": "javascript",
+  "source": "solution.js",
+  "native_entrypoint": "objDiff",
+  "verified_submission_id": "2117851655",
+  "verified_at": "2026-08-23T22:30:19.114695+00:00"
+}

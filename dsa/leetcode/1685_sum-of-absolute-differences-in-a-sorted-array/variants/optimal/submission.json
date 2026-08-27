@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.getSumAbsoluteDifferences",
-  "verified_submission_id": "2070552558",
-  "verified_at": "2026-07-17T03:43:04.741771+00:00"
+  "verified_submission_id": "2114802397",
+  "verified_at": "2026-08-21T07:42:03.576452+00:00"
 }

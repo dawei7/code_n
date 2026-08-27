@@ -1,4 +1,4 @@
-# Write your MySQL query statement below
+-- Write your PostgreSQL query statement below
 WITH
     user_category AS (
         SELECT DISTINCT
@@ -19,6 +19,6 @@ WITH
     )
 SELECT category1, category2, COUNT(DISTINCT user_id) AS customer_count
 FROM pair_per_user
-GROUP BY 1, 2
-HAVING customer_count >= 3
-ORDER BY 3 DESC, 1, 2;
+GROUP BY category1, category2
+HAVING COUNT(DISTINCT user_id) >= 3
+ORDER BY customer_count DESC, category1 ASC, category2 ASC;

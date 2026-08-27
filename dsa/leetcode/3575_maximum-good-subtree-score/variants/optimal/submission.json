@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.goodSubtreeSum",
-  "verified_submission_id": "2083221135",
-  "verified_at": "2026-07-27T10:33:00Z"
+  "verified_submission_id": "2120660950",
+  "verified_at": "2026-08-26T10:11:23.853608+00:00"
 }

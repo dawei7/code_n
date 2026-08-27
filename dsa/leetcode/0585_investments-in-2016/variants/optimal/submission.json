@@ -6,8 +6,8 @@
   "frontend_id": "585",
   "title_slug": "investments-in-2016",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2065436384",
-  "verified_at": "2026-07-12T20:41:36.827288+00:00"
+  "verified_submission_id": "2108892672",
+  "verified_at": "2026-08-16T11:13:08.440980+00:00"
 }

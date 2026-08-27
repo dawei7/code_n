@@ -6,8 +6,8 @@
   "frontend_id": "262",
   "title_slug": "trips-and-users",
   "paid_only": false,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
-  "verified_submission_id": "2064285477",
-  "verified_at": "2026-07-11T20:35:26.366778+00:00"
+  "verified_submission_id": "2108904389",
+  "verified_at": "2026-08-16T11:25:19.973100+00:00"
 }

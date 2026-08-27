@@ -1,15 +1,23 @@
-# Trillionaire
-
-### Trillionaire
+## Description
 
 Starting with $1$ gram of gold you play a game. Each round you bet a certain amount of your gold: if you have $x$ grams you can bet $b$ grams for any $0 \le b \le x$. You then toss an unfair coin: with a probability of $0.6$ you double your bet (so you now have $x+b$), otherwise you lose your bet (so you now have $x-b$).
 
-
-
-
 Choosing your bets to maximize your probability of having at least a trillion ($10^{12}$) grams of gold after $1000$ rounds, what is the probability that you become a trillionaire?
 
-
-
-
 All computations are assumed to be exact (no rounding), but give your answer rounded to $10$ digits behind the decimal point.
+
+
+## Function Contract
+
+- `solve() -> int`
+
+
+## Examples
+
+- Illustrative small inputs that demonstrate problem rules without spoiling the final target solution.
+
+
+## Constraints
+
+- Execution time MUST be strictly under 1 minute.
+

@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.closedIsland",
-  "verified_submission_id": "2068010494",
-  "verified_at": "2026-07-15T03:12:30.258084+00:00"
+  "verified_submission_id": "2113290187",
+  "verified_at": "2026-08-19T23:27:54.688394+00:00"
 }

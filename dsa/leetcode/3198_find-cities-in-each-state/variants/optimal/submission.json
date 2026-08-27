@@ -6,9 +6,9 @@
   "frontend_id": "3198",
   "title_slug": "find-cities-in-each-state",
   "paid_only": true,
-  "language": "mysql",
+  "language": "postgresql",
   "source": "solution.sql",
   "native_entrypoint": "SQL query",
-  "verified_submission_id": "2080125821",
-  "verified_at": "2026-07-25T00:08:42.686953+00:00"
+  "verified_submission_id": "2117879762",
+  "verified_at": "2026-08-24T00:09:58.171993+00:00"
 }

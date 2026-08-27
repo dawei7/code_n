@@ -1,6 +1,6 @@
 CREATE PROCEDURE UnpivotProducts()
 BEGIN
-    # Write your MySQL query statement below.
+    -- Write your PostgreSQL query statement below.
     SET group_concat_max_len = 5000;
     WITH
         t AS (
@@ -12,16 +12,15 @@ BEGIN
                 AND column_name != 'product_id'
         )
     SELECT
-        STRING_AGG(
-            'SELECT product_id, \'',
+        STRING_AGG('SELECT product_id, \'',
             column_name,
             '\' store, ',
             column_name,
             ' price FROM Products WHERE ',
             column_name,
-            ' IS NOT NULL' SEPARATOR ' UNION '
-        ) INTO @sql from t;
+            ' IS NOT NULL', ' UNION ') INTO @sql from t;
     PREPARE stmt FROM @sql;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
 END;
+

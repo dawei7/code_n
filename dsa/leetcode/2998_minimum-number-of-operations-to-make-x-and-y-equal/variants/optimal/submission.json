@@ -9,6 +9,6 @@
   "language": "python3",
   "source": "solution.py",
   "native_entrypoint": "Solution.minimumOperationsToMakeEqual",
-  "verified_submission_id": "2078634451",
-  "verified_at": "2026-07-23T16:18:34.229311+00:00"
+  "verified_submission_id": "2117868528",
+  "verified_at": "2026-08-23T23:29:35.321881+00:00"
 }
