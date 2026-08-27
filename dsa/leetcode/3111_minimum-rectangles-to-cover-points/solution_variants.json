@@ -11,15 +11,6 @@
       "summary": "Sorts points by x-coordinate and greedily starts a maximum-width rectangle at each leftmost uncovered point.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

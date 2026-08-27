@@ -11,15 +11,6 @@
       "summary": "Precomputes every interval's XOR score and maximum contained score with coupled dynamic-programming recurrences.",
       "time_complexity": "O(n^2 + q)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 + q)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

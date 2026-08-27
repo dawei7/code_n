@@ -11,15 +11,6 @@
       "summary": "Builds the fixed Friday-membership grid, left-joins users and same-day purchases, and aggregates every required pair including zeros.",
       "time_complexity": "O(u + p)",
       "space_complexity": "O(u + p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(u + p)",
-      "space_complexity": "O(u + p)"
     }
   ]
 }

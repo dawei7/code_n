@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Swap Sex of Employees and meets the required complexity bound.",
       "time_complexity": "O(R)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Tracks the length of the increasing suffix ending at each position and adds that many newly completed subarrays.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses one odd element to pair every even-sum subsequence with a unique odd-sum subsequence.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

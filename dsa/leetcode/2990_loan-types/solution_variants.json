@@ -11,15 +11,6 @@
       "summary": "Groups loans by user and requires both target loan categories through a filtered distinct count.",
       "time_complexity": "O(R log R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

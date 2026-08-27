@@ -11,15 +11,6 @@
       "summary": "Groups offers by inclusive end house and advances a maximum-profit dynamic program across house prefixes.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

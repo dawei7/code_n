@@ -11,15 +11,6 @@
       "summary": "Tracks counts of every signed sum difference for ranges ending at the current index.",
       "time_complexity": "O(n * S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n * S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

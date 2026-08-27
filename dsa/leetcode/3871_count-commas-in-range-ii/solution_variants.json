@@ -11,15 +11,6 @@
       "summary": "Adds one contribution for every comma threshold reached by the range.",
       "time_complexity": "O(log n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

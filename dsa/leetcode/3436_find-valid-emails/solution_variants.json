@@ -11,15 +11,6 @@
       "summary": "Applies one anchored regular expression and orders the qualifying rows by user id.",
       "time_complexity": "O(S + r log r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + r log r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

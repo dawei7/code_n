@@ -11,15 +11,6 @@
       "summary": "Binary-searches the minimum power and checks each target with a rightmost-placement greedy sweep and difference array.",
       "time_complexity": "O(n log(k + 1))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log(k + 1))",
-      "space_complexity": "O(n)"
     }
   ]
 }

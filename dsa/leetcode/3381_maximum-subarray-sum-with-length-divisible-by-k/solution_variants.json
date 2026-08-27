@@ -11,15 +11,6 @@
       "summary": "Tracks the minimum earlier prefix sum for each prefix-index remainder modulo k.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(k)"
     }
   ]
 }

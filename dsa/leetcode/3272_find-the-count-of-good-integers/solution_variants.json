@@ -11,15 +11,6 @@
       "summary": "Enumerates divisible palindromes by their first half, deduplicates digit multisets, and counts their legal permutations combinatorially.",
       "time_complexity": "O(p n log n)",
       "space_complexity": "O(pn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(p n log n)",
-      "space_complexity": "O(pn)"
     }
   ]
 }

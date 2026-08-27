@@ -11,15 +11,6 @@
       "summary": "Leaves only the top row and final column free, forcing one right-then-down route.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

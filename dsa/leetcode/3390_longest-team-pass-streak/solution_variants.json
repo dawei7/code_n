@@ -11,15 +11,6 @@
       "summary": "Labels interceptions with a cumulative window sum, aggregates each successful island, and selects the largest island per team.",
       "time_complexity": "O(p log p + p log t)",
       "space_complexity": "O(p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(p log p + p log t)",
-      "space_complexity": "O(p)"
     }
   ]
 }

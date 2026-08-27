@@ -11,15 +11,6 @@
       "summary": "Build a bidirectional conversion tree, assign every unit a factor relative to unit 0, and answer each query as a ratio of two factors.",
       "time_complexity": "O(n + Q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + Q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

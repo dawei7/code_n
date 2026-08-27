@@ -11,15 +11,6 @@
       "summary": "Sorts the side lengths and tracks the greatest prefix whose longest side is smaller than the sum of all preceding sides.",
       "time_complexity": "O(N log N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

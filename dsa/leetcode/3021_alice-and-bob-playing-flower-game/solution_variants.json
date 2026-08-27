@@ -11,15 +11,6 @@
       "summary": "Counts opposite-parity lane sizes through the closed form floor(n*m/2).",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(1)"
     }
   ]
 }

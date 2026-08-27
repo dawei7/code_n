@@ -11,15 +11,6 @@
       "summary": "Track every pair of exactly reachable bag weights and update both capacities backward for each item.",
       "time_complexity": "O(n * w1 * w2)",
       "space_complexity": "O(w1 * w2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n * w1 * w2)",
-      "space_complexity": "O(w1 * w2)"
     }
   ]
 }

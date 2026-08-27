@@ -11,15 +11,6 @@
       "summary": "Traverses the original tree once while tracking the closest active ancestor for each character and accumulating final subtree sizes in postorder.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

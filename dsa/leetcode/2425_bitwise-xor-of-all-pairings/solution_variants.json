@@ -11,15 +11,6 @@
       "summary": "Uses the opposite array's length parity to include or cancel each source array's XOR.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

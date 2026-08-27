@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Maximum Side Length of a Square with Sum Less than or Equal to Threshold and meets the required complexity bound.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

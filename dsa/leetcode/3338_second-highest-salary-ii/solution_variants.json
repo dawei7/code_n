@@ -11,15 +11,6 @@
       "summary": "Dense-ranks distinct salaries inside each department and selects every employee at rank two.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Derives affine operation counts for an unknown target while maintaining rolling square coverage.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(k(n-k+1))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(k(n-k+1))"
     }
   ]
 }

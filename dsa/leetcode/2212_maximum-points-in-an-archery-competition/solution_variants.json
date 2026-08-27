@@ -11,15 +11,6 @@
       "summary": "Enumerates every subset of the twelve sections, treating each section as a fixed-cost, fixed-value choice.",
       "time_complexity": "O(2^s s)",
       "space_complexity": "O(s)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^s s)",
-      "space_complexity": "O(s)"
     }
   ]
 }

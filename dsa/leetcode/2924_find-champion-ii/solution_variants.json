@@ -11,15 +11,6 @@
       "summary": "Marks every team with an incoming stronger-team edge and returns the sole unmarked team, if one exists.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Traverses levels in breadth-first order and counts permutation cycles against each level's sorted order.",
       "time_complexity": "O(n log W)",
       "space_complexity": "O(W)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log W)",
-      "space_complexity": "O(W)"
     }
   ]
 }

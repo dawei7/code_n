@@ -11,15 +11,6 @@
       "summary": "Binary-searches the repair threshold and uses breadth-first search to enforce the edge limit.",
       "time_complexity": "O((N + M) log M)",
       "space_complexity": "O(N + M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((N + M) log M)",
-      "space_complexity": "O(N + M)"
     }
   ]
 }

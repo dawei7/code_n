@@ -11,15 +11,6 @@
       "summary": "Groups nodes by horizontal coordinate during one left-before-right breadth-first traversal.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

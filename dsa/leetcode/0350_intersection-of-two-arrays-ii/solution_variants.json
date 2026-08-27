@@ -11,15 +11,6 @@
       "summary": "Counts occurrences from the shorter array and consumes one remaining count for each match in the other.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(\\min(n, m))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(\\min(n, m))"
     }
   ]
 }

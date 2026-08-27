@@ -11,15 +11,6 @@
       "summary": "Uses forward and backward aggregate passes to add the distance contribution from equal values on each side.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

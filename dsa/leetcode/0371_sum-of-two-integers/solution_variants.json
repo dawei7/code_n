@@ -11,15 +11,6 @@
       "summary": "Propagates XOR partial sums and shifted AND carries inside a masked 32-bit two's-complement word.",
       "time_complexity": "O(w)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(w)",
-      "space_complexity": "O(1)"
     }
   ]
 }

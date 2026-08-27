@@ -11,15 +11,6 @@
       "summary": "Builds one word trie and backtracks board paths only while they remain dictionary prefixes.",
       "time_complexity": "O(mn4^L)",
       "space_complexity": "O(T + L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn4^L)",
-      "space_complexity": "O(T + L)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Sequentially Ordinal Rank Tracker and meets the required complexity bound.",
       "time_complexity": "O(\\log m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\log m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Label the consecutive components separated by oversized adjacent value gaps, then answer each query by comparing labels.",
       "time_complexity": "O(n + Q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + Q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

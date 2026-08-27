@@ -11,15 +11,6 @@
       "summary": "Scores each candidate once and tracks the smallest divisor attaining the greatest score.",
       "time_complexity": "O(nd)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nd)",
-      "space_complexity": "O(1)"
     }
   ]
 }

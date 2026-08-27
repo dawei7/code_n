@@ -11,15 +11,6 @@
       "summary": "Carries only distinct running AND states for every target position and merges equivalent states by minimum completed endpoint cost.",
       "time_complexity": "O(n m log V)",
       "space_complexity": "O(m log V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n m log V)",
-      "space_complexity": "O(m log V)"
     }
   ]
 }

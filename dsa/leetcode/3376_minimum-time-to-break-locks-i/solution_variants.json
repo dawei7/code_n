@@ -11,15 +11,6 @@
       "summary": "Uses subset dynamic programming to choose the next lock under the factor determined by the number already broken.",
       "time_complexity": "O(n 2^n)",
       "space_complexity": "O(2^n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n 2^n)",
-      "space_complexity": "O(2^n)"
     }
   ]
 }

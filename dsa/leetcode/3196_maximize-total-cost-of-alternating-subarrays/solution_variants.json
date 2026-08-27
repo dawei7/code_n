@@ -11,15 +11,6 @@
       "summary": "Tracks the best prefix total when the current value is added or subtracted, using two constant-space DP states.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

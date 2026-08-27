@@ -11,15 +11,6 @@
       "summary": "Maintains one frequency-counted window and shrinks its left edge only while distinctness exceeds k.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(k)"
     }
   ]
 }

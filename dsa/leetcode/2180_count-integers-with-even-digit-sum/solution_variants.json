@@ -11,15 +11,6 @@
       "summary": "Uses the upper endpoint's digit-sum parity to select the balanced-prefix count.",
       "time_complexity": "O(log num)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log num)",
-      "space_complexity": "O(1)"
     }
   ]
 }

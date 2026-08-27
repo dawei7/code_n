@@ -11,15 +11,6 @@
       "summary": "Adds the number of zero-filled subarrays ending at each position while maintaining the current zero-run length.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

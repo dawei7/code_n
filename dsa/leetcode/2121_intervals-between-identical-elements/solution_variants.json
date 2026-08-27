@@ -11,15 +11,6 @@
       "summary": "Combines per-value occurrence counts and index sums to evaluate every left and right distance contribution in constant time.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

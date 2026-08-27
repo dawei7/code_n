@@ -11,15 +11,6 @@
       "summary": "Aggregates product-year totals once, uses a partitioned lag for previous spend, and computes rounded growth.",
       "time_complexity": "O(t log t)",
       "space_complexity": "O(t)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(t log t)",
-      "space_complexity": "O(t)"
     }
   ]
 }

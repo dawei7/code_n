@@ -11,15 +11,6 @@
       "summary": "Builds the prefix-derived GCD values with a running maximum, sorts them, and pairs opposite extremes.",
       "time_complexity": "O(N log N + N log V)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N + N log V)",
-      "space_complexity": "O(N)"
     }
   ]
 }

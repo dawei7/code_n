@@ -11,15 +11,6 @@
       "summary": "Scans only the two diagonals and tests each improving candidate for primality by trial division through its square root.",
       "time_complexity": "O(n\\sqrt{m})",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n\\sqrt{m})",
-      "space_complexity": "O(1)"
     }
   ]
 }

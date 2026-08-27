@@ -11,15 +11,6 @@
       "summary": "Maintains the exposed workers in one indexed min-heap and replenishes only the side selected.",
       "time_complexity": "O((c + k) log c)",
       "space_complexity": "O(c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((c + k) log c)",
-      "space_complexity": "O(c)"
     }
   ]
 }

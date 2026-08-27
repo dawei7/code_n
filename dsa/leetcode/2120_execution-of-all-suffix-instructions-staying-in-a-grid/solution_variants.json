@@ -11,15 +11,6 @@
       "summary": "Resets the robot for each suffix and simulates its instructions until the first boundary violation.",
       "time_complexity": "O(m^2)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m^2)",
-      "space_complexity": "O(m)"
     }
   ]
 }

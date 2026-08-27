@@ -11,15 +11,6 @@
       "summary": "Sorts the values and forms consecutive triples, rejecting exactly when one triple's maximum-minus-minimum exceeds k.",
       "time_complexity": "O(N log N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

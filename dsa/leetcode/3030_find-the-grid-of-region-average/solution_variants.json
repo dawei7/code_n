@@ -11,15 +11,6 @@
       "summary": "Validates every 3 x 3 window and accumulates its rounded average into the pixels it covers.",
       "time_complexity": "O(MN)",
       "space_complexity": "O(MN)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(MN)",
-      "space_complexity": "O(MN)"
     }
   ]
 }

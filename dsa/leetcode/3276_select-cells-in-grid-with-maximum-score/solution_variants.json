@@ -11,15 +11,6 @@
       "summary": "Memoizes decisions by distinct value and a row bitmask that enforces both selection restrictions.",
       "time_complexity": "O(V m 2^m)",
       "space_complexity": "O(V 2^m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V m 2^m)",
-      "space_complexity": "O(V 2^m)"
     }
   ]
 }

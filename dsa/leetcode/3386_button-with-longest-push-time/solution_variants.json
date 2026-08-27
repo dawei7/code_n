@@ -11,15 +11,6 @@
       "summary": "Scans consecutive timestamps once while tracking the longest duration and smallest tied button index.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

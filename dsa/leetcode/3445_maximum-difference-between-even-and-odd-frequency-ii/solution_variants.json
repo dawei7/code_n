@@ -11,15 +11,6 @@
       "summary": "Enumerates ordered digit pairs and maintains the best eligible prefix difference for each parity state.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

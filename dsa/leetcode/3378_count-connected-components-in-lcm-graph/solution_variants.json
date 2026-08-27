@@ -11,15 +11,6 @@
       "summary": "Unites input values that divide a shared multiple at most the threshold using disjoint-set union.",
       "time_complexity": "O(n + T log T)",
       "space_complexity": "O(T)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + T log T)",
-      "space_complexity": "O(T)"
     }
   ]
 }

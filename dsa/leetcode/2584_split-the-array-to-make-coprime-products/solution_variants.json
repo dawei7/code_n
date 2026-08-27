@@ -11,15 +11,6 @@
       "summary": "Factors every value with a smallest-prime-factor sieve and tracks the furthest occurrence reached by each prefix prime.",
       "time_complexity": "O(M log log M + n log M)",
       "space_complexity": "O(M + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M log log M + n log M)",
-      "space_complexity": "O(M + n)"
     }
   ]
 }

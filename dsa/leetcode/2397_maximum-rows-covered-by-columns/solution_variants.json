@@ -11,15 +11,6 @@
       "summary": "Encodes each row as a bitmask and evaluates every exact-size column combination with a subset test.",
       "time_complexity": "O(mn + (m + k) C(n,k))",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn + (m + k) C(n,k))",
-      "space_complexity": "O(m)"
     }
   ]
 }

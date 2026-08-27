@@ -11,15 +11,6 @@
       "summary": "Tracks the minimum prefix sum preceding each endpoint value and evaluates both values exactly k away in one pass.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

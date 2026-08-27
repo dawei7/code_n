@@ -11,15 +11,6 @@
       "summary": "Checks each orientation and larger-side direction with prefix sums, seen values, and explicit one-dimensional endpoint rules.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

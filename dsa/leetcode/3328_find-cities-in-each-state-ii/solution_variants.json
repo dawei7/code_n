@@ -11,15 +11,6 @@
       "summary": "Groups once by state while producing the ordered city list and conditional initial-letter count.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

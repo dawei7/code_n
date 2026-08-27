@@ -11,15 +11,6 @@
       "summary": "Sweeps half-open segment-height intervals on doubled coordinates so shared vertices count once.",
       "time_complexity": "O(N log N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

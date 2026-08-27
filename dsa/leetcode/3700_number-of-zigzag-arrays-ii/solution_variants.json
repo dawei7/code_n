@@ -11,15 +11,6 @@
       "summary": "Exponentiates the reflected endpoint-state transition matrix by repeated squaring.",
       "time_complexity": "O(m^3 log n)",
       "space_complexity": "O(m^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m^3 log n)",
-      "space_complexity": "O(m^2)"
     }
   ]
 }

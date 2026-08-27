@@ -11,15 +11,6 @@
       "summary": "Streams the values while counting each decimal digit previously seen at every position.",
       "time_complexity": "O(nD)",
       "space_complexity": "O(D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nD)",
-      "space_complexity": "O(D)"
     }
   ]
 }

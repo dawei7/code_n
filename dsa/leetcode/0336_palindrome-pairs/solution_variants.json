@@ -11,15 +11,6 @@
       "summary": "Queries a reverse trie whose nodes record words with palindromic unmatched remainders.",
       "time_complexity": "O(S + P)",
       "space_complexity": "O(S + P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + P)",
-      "space_complexity": "O(S + P)"
     }
   ]
 }

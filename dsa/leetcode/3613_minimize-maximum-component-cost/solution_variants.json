@@ -11,15 +11,6 @@
       "summary": "Run Kruskal in increasing weight order and stop when the forest first has exactly k components.",
       "time_complexity": "O(m log m + (n + m) alpha(n))",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log m + (n + m) alpha(n))",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Builds minimum coin counts bottom-up by trying each denomination as the final coin for every total.",
       "time_complexity": "O(cA)",
       "space_complexity": "O(A)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(cA)",
-      "space_complexity": "O(A)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Precomputes every index containing the target, then answers each occurrence-number query by direct lookup.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

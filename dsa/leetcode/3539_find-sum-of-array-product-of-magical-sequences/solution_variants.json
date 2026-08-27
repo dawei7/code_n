@@ -11,15 +11,6 @@
       "summary": "Group ordered sequences by index multiplicities and use digit DP to propagate binary carries while retaining multinomial weights.",
       "time_complexity": "O(N * m^3 * k)",
       "space_complexity": "O(N * m^2 * k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N * m^3 * k)",
-      "space_complexity": "O(N * m^2 * k)"
     }
   ]
 }

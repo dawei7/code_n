@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Kth Ancestor of a Tree Node and meets the required complexity bound.",
       "time_complexity": "O((n + Q) \\log n)",
       "space_complexity": "O(n \\log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + Q) \\log n)",
-      "space_complexity": "O(n \\log n)"
     }
   ]
 }

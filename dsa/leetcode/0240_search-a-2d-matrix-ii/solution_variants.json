@@ -11,15 +11,6 @@
       "summary": "Walks from the top-right corner, eliminating one row or column after every comparison.",
       "time_complexity": "O(m + n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m + n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

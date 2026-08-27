@@ -11,15 +11,6 @@
       "summary": "Sorts by growth rate and uses one-dimensional knapsack DP to maximize the reduction achievable with each reset count.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n)"
     }
   ]
 }

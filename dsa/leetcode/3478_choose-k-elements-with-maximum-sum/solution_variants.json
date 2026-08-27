@@ -11,15 +11,6 @@
       "summary": "Sweeps equal-value groups in sorted nums1 order while maintaining the largest k eligible nums2 values and their sum.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

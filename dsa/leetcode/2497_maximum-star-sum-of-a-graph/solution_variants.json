@@ -11,15 +11,6 @@
       "summary": "Keeps each node's best positive neighbor values in a size-k min-heap, then evaluates every possible center.",
       "time_complexity": "O(n + m log(k + 1))",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m log(k + 1))",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

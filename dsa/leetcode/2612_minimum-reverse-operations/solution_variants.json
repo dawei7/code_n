@@ -11,15 +11,6 @@
       "summary": "Runs BFS while successor disjoint sets enumerate each still-unvisited reachable index of the required parity only once.",
       "time_complexity": "O(n\\alpha(n))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n\\alpha(n))",
-      "space_complexity": "O(n)"
     }
   ]
 }

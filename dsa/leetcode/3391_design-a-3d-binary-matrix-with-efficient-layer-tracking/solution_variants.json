@@ -11,15 +11,6 @@
       "summary": "Tracks active cells and layer counts directly while a lazy heap returns the greatest count and largest tied index.",
       "time_complexity": "O(n + m log(n + m))",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m log(n + m))",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

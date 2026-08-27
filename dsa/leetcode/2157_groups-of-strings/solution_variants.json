@@ -11,15 +11,6 @@
       "summary": "Uses weighted bitmask nodes and disjoint-set unions for additions, deletions, and replacements.",
       "time_complexity": "O(n \\alpha(n))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\alpha(n))",
-      "space_complexity": "O(n)"
     }
   ]
 }

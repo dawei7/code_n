@@ -11,15 +11,6 @@
       "summary": "Traverses each nonblocked component once and combines its size and value sum with the global sum.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

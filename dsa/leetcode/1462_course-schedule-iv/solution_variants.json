@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Course Schedule IV and meets the required complexity bound.",
       "time_complexity": "O(C E + C + Q)",
       "space_complexity": "O(C^2 + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(C E + C + Q)",
-      "space_complexity": "O(C^2 + E)"
     }
   ]
 }

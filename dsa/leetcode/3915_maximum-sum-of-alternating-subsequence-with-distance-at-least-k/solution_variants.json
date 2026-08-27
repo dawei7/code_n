@@ -11,15 +11,6 @@
       "summary": "Delays DP states until their indices satisfy the gap, then uses two max-Fenwick trees for strict smaller/larger opposite-direction transitions.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Satisfiability of Equality Equations and meets the required complexity bound.",
       "time_complexity": "O(Q\\alpha(26))",
       "space_complexity": "O(26)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(Q\\alpha(26))",
-      "space_complexity": "O(26)"
     }
   ]
 }

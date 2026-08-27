@@ -11,15 +11,6 @@
       "summary": "Builds a KMP prefix table for the pattern and carries its match state forward as each stream bit is consumed once.",
       "time_complexity": "O(S + M)",
       "space_complexity": "O(M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + M)",
-      "space_complexity": "O(M)"
     }
   ]
 }

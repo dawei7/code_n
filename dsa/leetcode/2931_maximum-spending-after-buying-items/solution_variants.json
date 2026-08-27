@@ -11,15 +11,6 @@
       "summary": "Merges the shops from their rightmost ends with a min-heap so item values receive day multipliers in ascending order.",
       "time_complexity": "O(m n log(m))",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m n log(m))",
-      "space_complexity": "O(m)"
     }
   ]
 }

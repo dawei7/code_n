@@ -11,15 +11,6 @@
       "summary": "Traverses the tree level by level and retains only the k largest level sums in a min-heap.",
       "time_complexity": "O(n log k)",
       "space_complexity": "O(n + k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log k)",
-      "space_complexity": "O(n + k)"
     }
   ]
 }

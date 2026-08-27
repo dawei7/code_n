@@ -11,15 +11,6 @@
       "summary": "Constructs the lexicographically smallest bounded decimal string with exactly half even digits.",
       "time_complexity": "O(d^2)",
       "space_complexity": "O(d^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(d^2)",
-      "space_complexity": "O(d^2)"
     }
   ]
 }

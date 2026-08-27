@@ -11,15 +11,6 @@
       "summary": "Joins orders to seller and item brands, counts distinct mismatched items per seller, and retains every maximum-count tie.",
       "time_complexity": "O(U + I + O + W log(W))",
       "space_complexity": "O(U + I + O)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(U + I + O + W log(W))",
-      "space_complexity": "O(U + I + O)"
     }
   ]
 }

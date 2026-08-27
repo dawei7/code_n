@@ -11,15 +11,6 @@
       "summary": "Ranks each city's records by descending degree and ascending day, then retains the first row.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r log r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

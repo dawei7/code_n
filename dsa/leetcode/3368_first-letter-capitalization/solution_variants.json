@@ -11,15 +11,6 @@
       "summary": "Recursively scans every character, changes case from its exact word-boundary context, and preserves spaces verbatim.",
       "time_complexity": "O(S + n log n)",
       "space_complexity": "O(S + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + n log n)",
-      "space_complexity": "O(S + n)"
     }
   ]
 }

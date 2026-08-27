@@ -11,15 +11,6 @@
       "summary": "Uses breadth-first search for shortest distances, then sorts eligible cells by the complete ranking tuple.",
       "time_complexity": "O(mn log(mn))",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn log(mn))",
-      "space_complexity": "O(mn)"
     }
   ]
 }

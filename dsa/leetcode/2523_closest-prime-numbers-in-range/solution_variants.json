@@ -11,15 +11,6 @@
       "summary": "Builds a Sieve of Eratosthenes through the right endpoint, then scans consecutive primes in ascending order.",
       "time_complexity": "O(R log log R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log log R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

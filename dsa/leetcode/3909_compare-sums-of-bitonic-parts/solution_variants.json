@@ -11,15 +11,6 @@
       "summary": "Tracks the prefix at each new maximum and derives the inclusive descending sum from the total and peak value.",
       "time_complexity": "O(N)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(1)"
     }
   ]
 }

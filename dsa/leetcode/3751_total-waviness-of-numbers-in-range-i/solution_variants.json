@@ -11,15 +11,6 @@
       "summary": "Enumerates the legal range and tests every interior decimal digit against its two neighbors.",
       "time_complexity": "O(RD)",
       "space_complexity": "O(D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(RD)",
-      "space_complexity": "O(D)"
     }
   ]
 }

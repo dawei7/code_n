@@ -11,15 +11,6 @@
       "summary": "Counts devices in each row and multiplies each nonempty row by the preceding nonempty row.",
       "time_complexity": "O(S)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(1)"
     }
   ]
 }

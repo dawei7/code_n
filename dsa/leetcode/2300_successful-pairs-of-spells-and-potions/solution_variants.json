@@ -11,15 +11,6 @@
       "summary": "Sorts potion strengths and binary-searches the first potion meeting each spell's exact threshold.",
       "time_complexity": "O(m log m + n log m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log m + n log m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

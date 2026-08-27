@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Strings Differ by One Character and meets the required complexity bound.",
       "time_complexity": "O(q\\ell)",
       "space_complexity": "O(q\\ell)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q\\ell)",
-      "space_complexity": "O(q\\ell)"
     }
   ]
 }

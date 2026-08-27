@@ -11,15 +11,6 @@
       "summary": "Streams the adjacent comparisons through KMP so every possible starting position is checked in linear time.",
       "time_complexity": "O(n+m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n+m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

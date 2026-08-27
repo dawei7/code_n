@@ -11,15 +11,6 @@
       "summary": "Maps each index to its current number and lazily discards stale indices from one min-heap per number.",
       "time_complexity": "O(q log q)",
       "space_complexity": "O(q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q log q)",
-      "space_complexity": "O(q)"
     }
   ]
 }

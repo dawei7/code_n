@@ -11,15 +11,6 @@
       "summary": "Maintains balanced max- and min-heaps so each insertion is logarithmic and each median query is constant-time.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

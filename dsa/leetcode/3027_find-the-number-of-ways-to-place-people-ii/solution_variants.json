@@ -11,15 +11,6 @@
       "summary": "Sorts by horizontal position and maintains the highest visible lower boundary for each possible upper-left endpoint.",
       "time_complexity": "O(N^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Checks every row against its effective modular shift without constructing the shifted matrix.",
       "time_complexity": "O(RC)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(RC)",
-      "space_complexity": "O(1)"
     }
   ]
 }

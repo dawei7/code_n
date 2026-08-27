@@ -11,15 +11,6 @@
       "summary": "Builds every substring value incrementally, tests divisors only through its square root, and deduplicates prime values before selecting the largest three.",
       "time_complexity": "O(n^2 sqrt(M))",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 sqrt(M))",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

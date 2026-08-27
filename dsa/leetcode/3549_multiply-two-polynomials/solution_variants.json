@@ -11,15 +11,6 @@
       "summary": "Packs both real coefficient arrays into one complex FFT, multiplies their recovered spectra, and applies one inverse FFT.",
       "time_complexity": "O(L log L)",
       "space_complexity": "O(L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L log L)",
-      "space_complexity": "O(L)"
     }
   ]
 }

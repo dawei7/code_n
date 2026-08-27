@@ -11,15 +11,6 @@
       "summary": "Converts nonzero base-1000 chunks locally, attaches scale names, and joins them from largest to smallest.",
       "time_complexity": "O(\\log num)",
       "space_complexity": "O(\\log num)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\log num)",
-      "space_complexity": "O(\\log num)"
     }
   ]
 }

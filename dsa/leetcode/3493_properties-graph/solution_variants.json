@@ -11,15 +11,6 @@
       "summary": "Encodes each row's distinct values as a bounded bit mask and unions every pair whose word-level intersection reaches the threshold.",
       "time_complexity": "O(nm+n^2\\alpha(n))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm+n^2\\alpha(n))",
-      "space_complexity": "O(n)"
     }
   ]
 }

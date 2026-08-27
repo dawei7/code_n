@@ -11,15 +11,6 @@
       "summary": "Backtracks left to right while pruning adjacent ones and any branch whose accumulated index cost exceeds k.",
       "time_complexity": "O(n * R)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n * R)",
-      "space_complexity": "O(n)"
     }
   ]
 }

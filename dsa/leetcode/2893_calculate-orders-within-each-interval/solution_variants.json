@@ -11,15 +11,6 @@
       "summary": "Maps each minute directly to its one-based six-minute bucket, aggregates once, and orders the bucket totals.",
       "time_complexity": "O(M + I log I)",
       "space_complexity": "O(I)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M + I log I)",
-      "space_complexity": "O(I)"
     }
   ]
 }

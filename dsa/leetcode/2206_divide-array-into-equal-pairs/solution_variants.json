@@ -11,15 +11,6 @@
       "summary": "Counts each value once and accepts exactly when every frequency is even.",
       "time_complexity": "O(m)",
       "space_complexity": "O(v)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m)",
-      "space_complexity": "O(v)"
     }
   ]
 }

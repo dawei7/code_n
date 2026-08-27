@@ -11,15 +11,6 @@
       "summary": "Reduces all target values to their gcd, finds the smallest input divisor of that gcd, and counts values below it.",
       "time_complexity": "O((n + m) log V)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + m) log V)",
-      "space_complexity": "O(1)"
     }
   ]
 }

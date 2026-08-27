@@ -11,15 +11,6 @@
       "summary": "Translates each direction directly into its row-major index displacement and accumulates the moves.",
       "time_complexity": "O(c)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(c)",
-      "space_complexity": "O(1)"
     }
   ]
 }

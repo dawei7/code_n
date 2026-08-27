@@ -11,15 +11,6 @@
       "summary": "Uses the permutation-invariant digit-factorial sum and compares its digit multiset with the input's.",
       "time_complexity": "O(D)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D)",
-      "space_complexity": "O(1)"
     }
   ]
 }

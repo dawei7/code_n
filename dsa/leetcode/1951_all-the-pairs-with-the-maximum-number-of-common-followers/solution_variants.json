@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for All the Pairs With the Maximum Number of Common Followers and meets the required complexity bound.",
       "time_complexity": "O(R+J\\log J)",
       "space_complexity": "O(J)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R+J\\log J)",
-      "space_complexity": "O(J)"
     }
   ]
 }

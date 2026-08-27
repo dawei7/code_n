@@ -11,15 +11,6 @@
       "summary": "Maintains all pile sizes in a max-heap so each richest pile can be replaced by its integer square root efficiently.",
       "time_complexity": "O(n + k log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + k log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

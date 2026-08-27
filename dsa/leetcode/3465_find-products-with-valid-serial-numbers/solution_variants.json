@@ -11,15 +11,6 @@
       "summary": "Scans each description for a case-sensitive, word-bounded SNdddd-dddd token and orders the qualifying rows by product id.",
       "time_complexity": "O(S + r log r)",
       "space_complexity": "O(S + r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + r log r)",
-      "space_complexity": "O(S + r)"
     }
   ]
 }

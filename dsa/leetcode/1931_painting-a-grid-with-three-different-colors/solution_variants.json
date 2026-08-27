@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Painting a Grid With Three Different Colors and meets the required complexity bound.",
       "time_complexity": "O(NS^2)",
       "space_complexity": "O(S^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(NS^2)",
-      "space_complexity": "O(S^2)"
     }
   ]
 }

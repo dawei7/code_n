@@ -11,15 +11,6 @@
       "summary": "Builds one membership set per array, then counts every index whose value occurs in the other set.",
       "time_complexity": "O(N + M)",
       "space_complexity": "O(N + M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N + M)",
-      "space_complexity": "O(N + M)"
     }
   ]
 }

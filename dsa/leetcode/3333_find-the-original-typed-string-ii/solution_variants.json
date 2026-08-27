@@ -11,15 +11,6 @@
       "summary": "Counts all run-length choices, then subtracts choices shorter than k with a sliding-window dynamic program.",
       "time_complexity": "O(n + k^2)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + k^2)",
-      "space_complexity": "O(k)"
     }
   ]
 }

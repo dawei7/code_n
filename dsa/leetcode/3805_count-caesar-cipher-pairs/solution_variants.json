@@ -11,15 +11,6 @@
       "summary": "Normalizes every word by its cyclic offsets from the first letter and counts earlier equal keys.",
       "time_complexity": "O(S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

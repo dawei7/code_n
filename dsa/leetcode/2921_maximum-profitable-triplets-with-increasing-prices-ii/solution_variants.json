@@ -11,15 +11,6 @@
       "summary": "Uses forward and reverse Fenwick maximum sweeps to find the best strictly cheaper item on each side of every middle index.",
       "time_complexity": "O(n log(P))",
       "space_complexity": "O(n + P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log(P))",
-      "space_complexity": "O(n + P)"
     }
   ]
 }

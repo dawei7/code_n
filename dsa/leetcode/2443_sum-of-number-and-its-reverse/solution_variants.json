@@ -11,15 +11,6 @@
       "summary": "Enumerates every possible first addend and tests its decimal digit reversal.",
       "time_complexity": "O(num log num)",
       "space_complexity": "O(log num)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(num log num)",
-      "space_complexity": "O(log num)"
     }
   ]
 }

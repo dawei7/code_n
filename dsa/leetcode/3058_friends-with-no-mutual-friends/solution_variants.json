@@ -11,15 +11,6 @@
       "summary": "Expands each friendship into bidirectional adjacency and retains an original pair only when no common neighbor exists.",
       "time_complexity": "O(m d + m log m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m d + m log m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

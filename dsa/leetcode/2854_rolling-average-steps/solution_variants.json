@@ -11,15 +11,6 @@
       "summary": "Uses partitioned calendar-aware window calculations to produce every complete three-day rolling average.",
       "time_complexity": "O(S log S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S log S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

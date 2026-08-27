@@ -11,15 +11,6 @@
       "summary": "Tests every word directly against the beginning of the target and counts all matching occurrences.",
       "time_complexity": "O(S)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(1)"
     }
   ]
 }

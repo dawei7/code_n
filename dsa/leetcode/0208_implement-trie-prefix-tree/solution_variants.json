@@ -11,15 +11,6 @@
       "summary": "Stores one hash-map edge per character and a terminal sentinel at complete-word endpoints.",
       "time_complexity": "O(L)",
       "space_complexity": "O(T)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L)",
-      "space_complexity": "O(T)"
     }
   ]
 }

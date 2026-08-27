@@ -11,15 +11,6 @@
       "summary": "Encode each row as a bit mask and find either one zero mask or two present disjoint masks.",
       "time_complexity": "O(m(n + 2^n))",
       "space_complexity": "O(2^n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m(n + 2^n))",
-      "space_complexity": "O(2^n)"
     }
   ]
 }

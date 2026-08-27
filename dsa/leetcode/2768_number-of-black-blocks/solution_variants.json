@@ -11,15 +11,6 @@
       "summary": "Counts only the blocks touched by a black cell, then derives the untouched-block total.",
       "time_complexity": "O(k)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k)",
-      "space_complexity": "O(k)"
     }
   ]
 }

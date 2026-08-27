@@ -11,15 +11,6 @@
       "summary": "Composes doubled pass blocks while advancing every possible start according to the set bits of k.",
       "time_complexity": "O(n log k)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log k)",
-      "space_complexity": "O(n)"
     }
   ]
 }

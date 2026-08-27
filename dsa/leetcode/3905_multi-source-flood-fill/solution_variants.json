@@ -11,15 +11,6 @@
       "summary": "Processes one multi-source BFS layer at a time and aggregates the maximum color proposed to each next-layer cell before committing simultaneous arrivals.",
       "time_complexity": "O(nm)",
       "space_complexity": "O(nm)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm)",
-      "space_complexity": "O(nm)"
     }
   ]
 }

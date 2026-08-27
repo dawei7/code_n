@@ -11,15 +11,6 @@
       "summary": "Checks the mandatory total product, then uses a divisibility-pruned include/exclude search for one target-product subset.",
       "time_complexity": "O(2^n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

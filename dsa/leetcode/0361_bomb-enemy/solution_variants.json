@@ -11,15 +11,6 @@
       "summary": "Caches enemy totals for each wall-delimited row and column segment while evaluating every empty cell.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(n)"
     }
   ]
 }

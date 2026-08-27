@@ -11,15 +11,6 @@
       "summary": "Precomputes every parity-to-residue adjustment cost and combines each even target with the cheapest distinct odd target.",
       "time_complexity": "O(NK)",
       "space_complexity": "O(K)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(NK)",
-      "space_complexity": "O(K)"
     }
   ]
 }

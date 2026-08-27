@@ -11,15 +11,6 @@
       "summary": "Groups equal values and applies a sliding-window bounded-knapsack transition for each positive value.",
       "time_complexity": "O(n + Dr)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + Dr)",
-      "space_complexity": "O(r)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Deduplicate each day with a set, count day-level occurrences, then apply the required tie-break.",
       "time_complexity": "O(S)",
       "space_complexity": "O(U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(U)"
     }
   ]
 }

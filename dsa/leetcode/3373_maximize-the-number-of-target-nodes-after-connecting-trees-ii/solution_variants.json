@@ -11,15 +11,6 @@
       "summary": "Two-colors both trees and combines the relevant bipartition-class sizes for every first-tree node.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

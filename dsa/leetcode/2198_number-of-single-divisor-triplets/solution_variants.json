@@ -11,15 +11,6 @@
       "summary": "Counts each value, enumerates sorted value triples from the bounded domain, and converts their multiplicities into ordered index triplets.",
       "time_complexity": "O(n + U^3)",
       "space_complexity": "O(U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + U^3)",
-      "space_complexity": "O(U)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Retains the three largest values in each residue class and evaluates every valid three-remainder pattern.",
       "time_complexity": "O(N)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(1)"
     }
   ]
 }

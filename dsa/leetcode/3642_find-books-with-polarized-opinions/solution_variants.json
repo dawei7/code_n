@@ -11,15 +11,6 @@
       "summary": "Aggregate every book's session count, rating extrema, and extreme-rating count once, then join the qualifying groups to their book details.",
       "time_complexity": "O(R + B log B)",
       "space_complexity": "O(B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R + B log B)",
-      "space_complexity": "O(B)"
     }
   ]
 }

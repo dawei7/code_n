@@ -11,15 +11,6 @@
       "summary": "Scans each device for its two smallest capacities and concentrates all transferred minima in one destination.",
       "time_complexity": "O(U)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(U)",
-      "space_complexity": "O(1)"
     }
   ]
 }

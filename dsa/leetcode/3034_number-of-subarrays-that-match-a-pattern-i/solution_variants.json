@@ -11,15 +11,6 @@
       "summary": "Checks each candidate start against the pattern and stops at its first mismatching adjacent relation.",
       "time_complexity": "O((n-m)m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n-m)m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

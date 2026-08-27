@@ -11,15 +11,6 @@
       "summary": "Maps the zero-based position to its accumulated shifts using the set-bit count.",
       "time_complexity": "O(log k)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log k)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Counts base-4 reduction depths by power-of-four bands and answers each interval with two prefix totals.",
       "time_complexity": "O(q\\log R)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q\\log R)",
-      "space_complexity": "O(1)"
     }
   ]
 }

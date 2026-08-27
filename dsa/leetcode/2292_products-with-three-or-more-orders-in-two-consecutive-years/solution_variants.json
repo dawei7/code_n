@@ -11,15 +11,6 @@
       "summary": "Counts orders per product and calendar year, then joins qualifying groups from adjacent years.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(g)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r log r)",
-      "space_complexity": "O(g)"
     }
   ]
 }

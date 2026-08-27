@@ -11,15 +11,6 @@
       "summary": "Tracks the uniform decrement caused by earlier successful tests and counts an original battery only when it exceeds that offset.",
       "time_complexity": "O(N)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(1)"
     }
   ]
 }

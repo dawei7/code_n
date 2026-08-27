@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Cheapest Flights Within K Stops and meets the required complexity bound.",
       "time_complexity": "O((k + 1) \\cdot E)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((k + 1) \\cdot E)",
-      "space_complexity": "O(V)"
     }
   ]
 }

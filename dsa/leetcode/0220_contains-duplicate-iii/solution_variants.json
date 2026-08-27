@@ -11,15 +11,6 @@
       "summary": "Uses valueDiff+1 buckets over the active index window and checks only the same or adjacent buckets.",
       "time_complexity": "O(n)",
       "space_complexity": "O(\\min(n,indexDiff))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(\\min(n,indexDiff))"
     }
   ]
 }

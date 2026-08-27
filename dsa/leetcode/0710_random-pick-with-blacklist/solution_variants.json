@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Random Pick with Blacklist and meets the required complexity bound.",
       "time_complexity": "O(b + p)",
       "space_complexity": "O(b)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(b + p)",
-      "space_complexity": "O(b)"
     }
   ]
 }

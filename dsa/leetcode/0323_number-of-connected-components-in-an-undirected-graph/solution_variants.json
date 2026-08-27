@@ -11,15 +11,6 @@
       "summary": "Starts with one component per vertex and decrements the count after each successful union by size.",
       "time_complexity": "O(n + e \\alpha(n))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + e \\alpha(n))",
-      "space_complexity": "O(n)"
     }
   ]
 }

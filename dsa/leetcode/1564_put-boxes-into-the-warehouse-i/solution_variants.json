@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Put Boxes Into the Warehouse I and meets the required complexity bound.",
       "time_complexity": "O(B \\log B + W)",
       "space_complexity": "O(B + W)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(B \\log B + W)",
-      "space_complexity": "O(B + W)"
     }
   ]
 }

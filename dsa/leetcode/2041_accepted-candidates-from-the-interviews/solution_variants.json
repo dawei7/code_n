@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Accepted Candidates From the Interviews and meets the required complexity bound.",
       "time_complexity": "O(C+R+C\\log C)",
       "space_complexity": "O(C+R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(C+R+C\\log C)",
-      "space_complexity": "O(C+R)"
     }
   ]
 }

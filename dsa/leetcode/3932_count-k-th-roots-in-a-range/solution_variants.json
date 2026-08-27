@@ -11,15 +11,6 @@
       "summary": "Counts two prefixes by finding their exact integer k-th roots with binary search.",
       "time_complexity": "O(log R log K)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log R log K)",
-      "space_complexity": "O(1)"
     }
   ]
 }

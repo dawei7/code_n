@@ -11,15 +11,6 @@
       "summary": "Counts each value inside and outside the Y, then evaluates all six distinct target assignments.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

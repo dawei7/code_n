@@ -11,15 +11,6 @@
       "summary": "Updates only the two adjacency relationships incident to the recolored position.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q)",
-      "space_complexity": "O(n + q)"
     }
   ]
 }

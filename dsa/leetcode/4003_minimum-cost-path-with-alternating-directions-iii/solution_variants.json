@@ -11,15 +11,6 @@
       "summary": "Runs Dijkstra's algorithm on cell-and-parity states so every move, wait, entrance cost, and direction penalty is represented exactly.",
       "time_complexity": "O(mn log(mn))",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn log(mn))",
-      "space_complexity": "O(mn)"
     }
   ]
 }

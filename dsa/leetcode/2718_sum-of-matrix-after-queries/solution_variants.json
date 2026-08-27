@@ -11,15 +11,6 @@
       "summary": "Processes queries backward and counts only cells whose final row or column assignment has not already been fixed.",
       "time_complexity": "O(q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

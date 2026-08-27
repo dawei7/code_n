@@ -11,15 +11,6 @@
       "summary": "Maintains the number of one bits under lazy range flips and updates the aggregate nums2 sum in constant time.",
       "time_complexity": "O(n + q log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

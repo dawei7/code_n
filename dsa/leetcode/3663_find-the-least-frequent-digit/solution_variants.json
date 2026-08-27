@@ -11,15 +11,6 @@
       "summary": "Count only digits present in the decimal representation, then minimize frequency first and digit value second.",
       "time_complexity": "O(d)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(d)",
-      "space_complexity": "O(1)"
     }
   ]
 }

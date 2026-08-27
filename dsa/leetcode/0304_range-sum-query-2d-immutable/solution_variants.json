@@ -11,15 +11,6 @@
       "summary": "Precomputes a zero-bordered 2D prefix matrix for constant-time inclusion-exclusion queries.",
       "time_complexity": "O(mn + q)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn + q)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

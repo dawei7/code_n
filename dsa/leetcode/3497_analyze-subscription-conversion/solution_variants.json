@@ -11,15 +11,6 @@
       "summary": "Filters relevant stages, conditionally aggregates both averages in one grouped pass, and retains groups containing both stages.",
       "time_complexity": "O(A\\log A)",
       "space_complexity": "O(U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(A\\log A)",
-      "space_complexity": "O(U)"
     }
   ]
 }

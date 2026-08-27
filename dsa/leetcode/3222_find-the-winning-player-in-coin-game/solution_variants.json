@@ -11,15 +11,6 @@
       "summary": "Counts the forced one-75-plus-four-10 turns and uses the parity of that count.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Peels local maxima from the implicit increasing DAG; the number of topological layers is the longest path.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

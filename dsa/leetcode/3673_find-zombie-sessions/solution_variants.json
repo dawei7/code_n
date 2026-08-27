@@ -11,15 +11,6 @@
       "summary": "Aggregate each session's duration and event counts once, filter all four zombie criteria with exact integer comparisons, then apply the required ordering.",
       "time_complexity": "O(N log N + S log S)",
       "space_complexity": "O(N + S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N + S log S)",
-      "space_complexity": "O(N + S)"
     }
   ]
 }

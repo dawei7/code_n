@@ -11,15 +11,6 @@
       "summary": "Lazily traverses nested lists with a stack of suspended iterators and one cached lookahead value.",
       "time_complexity": "O(N)",
       "space_complexity": "O(D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(D)"
     }
   ]
 }

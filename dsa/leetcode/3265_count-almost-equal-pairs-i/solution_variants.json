@@ -11,15 +11,6 @@
       "summary": "Sorts the values, enumerates every zero-or-one-swap result, and counts matching earlier values with a frequency map.",
       "time_complexity": "O(n log n + n d^3)",
       "space_complexity": "O(n + d^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + n d^3)",
-      "space_complexity": "O(n + d^2)"
     }
   ]
 }

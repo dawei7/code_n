@@ -11,15 +11,6 @@
       "summary": "Counts the distinct original values occurring at mismatched positions; selecting each such value once fixes every position that requires it.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

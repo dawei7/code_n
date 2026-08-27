@@ -11,15 +11,6 @@
       "summary": "Counts each digit's symmetric contribution at every place value and evaluates the resulting geometric series modulo 1,000,000,007.",
       "time_complexity": "O(log K)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log K)",
-      "space_complexity": "O(1)"
     }
   ]
 }

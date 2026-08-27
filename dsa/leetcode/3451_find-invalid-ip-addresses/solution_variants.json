@@ -11,15 +11,6 @@
       "summary": "Parses each IP once, filters the three invalidity conditions, groups invalid rows, and applies the required descending order.",
       "time_complexity": "O(S + k log k)",
       "space_complexity": "O(S + k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + k log k)",
-      "space_complexity": "O(S + k)"
     }
   ]
 }

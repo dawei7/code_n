@@ -11,15 +11,6 @@
       "summary": "Enumerates each row's seam mask, precomputes compatible row transitions, and applies height-wise dynamic programming.",
       "time_complexity": "O(R^2 + hE)",
       "space_complexity": "O(R^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R^2 + hE)",
-      "space_complexity": "O(R^2)"
     }
   ]
 }

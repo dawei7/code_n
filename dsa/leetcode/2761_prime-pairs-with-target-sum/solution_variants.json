@@ -11,15 +11,6 @@
       "summary": "Builds a bytearray Sieve of Eratosthenes and checks each complement through the halfway point.",
       "time_complexity": "O(n log log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

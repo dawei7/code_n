@@ -11,15 +11,6 @@
       "summary": "Maintains the current noncrossing shortest path as successor links and removes each bypassed city at most once.",
       "time_complexity": "O(n+q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n+q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

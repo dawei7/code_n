@@ -11,15 +11,6 @@
       "summary": "Expands every start position while maintaining digit frequencies and paired rolling hashes for qualifying substring identities.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

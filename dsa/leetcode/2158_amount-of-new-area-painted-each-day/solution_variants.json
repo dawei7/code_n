@@ -11,15 +11,6 @@
       "summary": "Uses path-compressed successor links to visit each newly painted unit segment only once.",
       "time_complexity": "O((n + p) \\alpha(p))",
       "space_complexity": "O(p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + p) \\alpha(p))",
-      "space_complexity": "O(p)"
     }
   ]
 }

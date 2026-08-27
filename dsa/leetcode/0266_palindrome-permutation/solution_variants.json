@@ -11,15 +11,6 @@
       "summary": "Toggles each character in an odd-frequency set, then accepts when at most one character remains.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(k)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Precomputes bounded-board knight distances, then solves the alternating capture game with bitmask minimax.",
       "time_complexity": "O(p B + p^2 2^p)",
       "space_complexity": "O(B + p 2^p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(p B + p^2 2^p)",
-      "space_complexity": "O(B + p 2^p)"
     }
   ]
 }

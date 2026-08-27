@@ -11,15 +11,6 @@
       "summary": "Folds all permission masks once to retain universally set bits and collect bits present for at least one user.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r log r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

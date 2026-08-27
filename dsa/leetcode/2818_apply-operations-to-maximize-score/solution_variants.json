@@ -11,15 +11,6 @@
       "summary": "Counts each index's selectable subarrays with asymmetric monotonic-stack boundaries, then greedily spends those multiplicities on values from largest to smallest.",
       "time_complexity": "O(V \\log \\log V + n \\log n)",
       "space_complexity": "O(V + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V \\log \\log V + n \\log n)",
-      "space_complexity": "O(V + n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Counts multiplicities and follows every repeated-square chain, using pairs around one available center.",
       "time_complexity": "O(N log log M)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log log M)",
-      "space_complexity": "O(N)"
     }
   ]
 }

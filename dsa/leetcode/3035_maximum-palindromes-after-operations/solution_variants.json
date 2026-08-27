@@ -11,15 +11,6 @@
       "summary": "Counts the global supply of equal letter pairs and spends it on words in ascending length order.",
       "time_complexity": "O(S+nlogn)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S+nlogn)",
-      "space_complexity": "O(n)"
     }
   ]
 }

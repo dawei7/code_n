@@ -11,15 +11,6 @@
       "summary": "Performs iterative inorder traversal and stops as soon as the requested rank is reached.",
       "time_complexity": "O(h + k)",
       "space_complexity": "O(h)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(h + k)",
-      "space_complexity": "O(h)"
     }
   ]
 }

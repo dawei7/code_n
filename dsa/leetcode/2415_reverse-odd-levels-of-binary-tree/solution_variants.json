@@ -11,15 +11,6 @@
       "summary": "Traverses mirrored node pairs and swaps their values exactly when their shared level is odd.",
       "time_complexity": "O(n)",
       "space_complexity": "O(log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(log n)"
     }
   ]
 }

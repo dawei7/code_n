@@ -11,15 +11,6 @@
       "summary": "Checks every unordered pair with repetition and keeps the largest XOR among pairs satisfying the strong-pair inequality.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

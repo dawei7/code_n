@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Minimum Jumps to Reach Home and meets the required complexity bound.",
       "time_complexity": "O(f+L)",
       "space_complexity": "O(f+L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(f+L)",
-      "space_complexity": "O(f+L)"
     }
   ]
 }

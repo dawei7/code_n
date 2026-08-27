@@ -11,15 +11,6 @@
       "summary": "Traverses the reporting tree with a recursive CTE while carrying the CEO salary and hierarchy depth.",
       "time_complexity": "O(e log e)",
       "space_complexity": "O(e)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(e log e)",
-      "space_complexity": "O(e)"
     }
   ]
 }

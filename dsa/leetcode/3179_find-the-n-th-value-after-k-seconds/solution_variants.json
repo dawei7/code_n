@@ -11,15 +11,6 @@
       "summary": "Identifies the final value as one binomial coefficient and evaluates it modulo the prime with a single modular inverse.",
       "time_complexity": "O(min(n, k) + log M)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(min(n, k) + log M)",
-      "space_complexity": "O(1)"
     }
   ]
 }

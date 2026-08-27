@@ -11,15 +11,6 @@
       "summary": "Counts eligible length-k prefixes and counts each frequency of at least two as one group.",
       "time_complexity": "O(N K)",
       "space_complexity": "O(N K)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N K)",
-      "space_complexity": "O(N K)"
     }
   ]
 }

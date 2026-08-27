@@ -11,15 +11,6 @@
       "summary": "Enumerate the number of rotations while incrementally maintaining the cheapest source seen for every target type.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n)"
     }
   ]
 }

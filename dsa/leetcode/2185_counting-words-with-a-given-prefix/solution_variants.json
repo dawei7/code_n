@@ -11,15 +11,6 @@
       "summary": "Checks the leading characters of each word directly and counts successful matches.",
       "time_complexity": "O(C)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(C)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses a visited-city bitmask and current endpoint to merge trips with the same future possibilities.",
       "time_complexity": "O(2^n n^2)",
       "space_complexity": "O(2^n n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^n n^2)",
-      "space_complexity": "O(2^n n)"
     }
   ]
 }

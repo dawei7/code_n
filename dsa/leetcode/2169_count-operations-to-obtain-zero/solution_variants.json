@@ -11,15 +11,6 @@
       "summary": "Batches consecutive forced subtractions into Euclidean quotient-and-remainder steps.",
       "time_complexity": "O(log M)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log M)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Number of Ways to Wear Different Hats to Each Other and meets the required complexity bound.",
       "time_complexity": "O(40p2^p)",
       "space_complexity": "O(2^p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(40p2^p)",
-      "space_complexity": "O(2^p)"
     }
   ]
 }

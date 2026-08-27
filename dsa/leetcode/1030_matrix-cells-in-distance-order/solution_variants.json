@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Matrix Cells in Distance Order and meets the required complexity bound.",
       "time_complexity": "O(M)",
       "space_complexity": "O(M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M)",
-      "space_complexity": "O(M)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Precomputes a prefix count of equal-parity adjacent pairs and answers every range by one prefix difference.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

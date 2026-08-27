@@ -11,15 +11,6 @@
       "summary": "Checks bipartiteness component by component and uses all-source BFS to measure each component's maximum layer count.",
       "time_complexity": "O(n(n+m))",
       "space_complexity": "O(n+m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n(n+m))",
-      "space_complexity": "O(n+m)"
     }
   ]
 }

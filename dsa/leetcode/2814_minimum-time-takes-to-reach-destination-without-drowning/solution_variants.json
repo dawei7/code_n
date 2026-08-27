@@ -11,15 +11,6 @@
       "summary": "Computes every flood-arrival time first, then breadth-first searches traveler states that arrive strictly before water.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

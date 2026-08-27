@@ -11,15 +11,6 @@
       "summary": "Prefixes every payload with its decimal character length and a separator, enabling one-pass decoding.",
       "time_complexity": "O(c)",
       "space_complexity": "O(c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(c)",
-      "space_complexity": "O(c)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Counts every value against the sole candidate determined by the input length.",
       "time_complexity": "O(m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

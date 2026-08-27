@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Image Smoother and meets the required complexity bound.",
       "time_complexity": "O(R \\cdot C)",
       "space_complexity": "O(R \\cdot C)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R \\cdot C)",
-      "space_complexity": "O(R \\cdot C)"
     }
   ]
 }

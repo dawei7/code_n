@@ -11,15 +11,6 @@
       "summary": "Interprets the suffix of the binary representation of k + 1 as the lucky number, mapping zero to 4 and one to 7.",
       "time_complexity": "O(log k)",
       "space_complexity": "O(log k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log k)",
-      "space_complexity": "O(log k)"
     }
   ]
 }

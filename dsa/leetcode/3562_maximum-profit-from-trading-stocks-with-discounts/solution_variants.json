@@ -11,15 +11,6 @@
       "summary": "Runs a two-state tree knapsack whose exact-spend tables distinguish whether each subtree root receives its direct-boss discount.",
       "time_complexity": "O(n B^2)",
       "space_complexity": "O(n B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n B^2)",
-      "space_complexity": "O(n B)"
     }
   ]
 }

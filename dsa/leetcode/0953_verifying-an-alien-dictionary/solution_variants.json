@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Verifying an Alien Dictionary and meets the required complexity bound.",
       "time_complexity": "O(S)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(1)"
     }
   ]
 }

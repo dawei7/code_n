@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Dice Roll Simulation and meets the required complexity bound.",
       "time_complexity": "O(nR)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nR)",
-      "space_complexity": "O(R)"
     }
   ]
 }

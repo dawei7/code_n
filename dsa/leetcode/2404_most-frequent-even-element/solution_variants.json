@@ -11,15 +11,6 @@
       "summary": "Counts even values once and selects by descending frequency followed by ascending value.",
       "time_complexity": "O(n)",
       "space_complexity": "O(u)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(u)"
     }
   ]
 }

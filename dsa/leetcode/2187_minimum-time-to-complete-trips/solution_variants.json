@@ -11,15 +11,6 @@
       "summary": "Binary-searches the first time whose summed per-bus trip counts reach the target.",
       "time_complexity": "O(n log U)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log U)",
-      "space_complexity": "O(1)"
     }
   ]
 }

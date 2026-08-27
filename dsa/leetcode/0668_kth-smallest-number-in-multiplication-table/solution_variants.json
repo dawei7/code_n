@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Kth Smallest Number in Multiplication Table and meets the required complexity bound.",
       "time_complexity": "O(\\min(M, N) \\log(MN))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\min(M, N) \\log(MN))",
-      "space_complexity": "O(1)"
     }
   ]
 }

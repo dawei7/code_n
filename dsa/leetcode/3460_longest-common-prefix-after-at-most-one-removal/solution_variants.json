@@ -11,15 +11,6 @@
       "summary": "Scans both prefixes together and spends the single deletion exactly at the first mismatch in s.",
       "time_complexity": "O(min(n, m))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(min(n, m))",
-      "space_complexity": "O(1)"
     }
   ]
 }

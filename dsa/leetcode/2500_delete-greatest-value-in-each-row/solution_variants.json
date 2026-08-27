@@ -11,15 +11,6 @@
       "summary": "Sorts every row so values removed in the same round align by column, then sums the largest aligned value for each round.",
       "time_complexity": "O(m n log n)",
       "space_complexity": "O(log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m n log n)",
-      "space_complexity": "O(log n)"
     }
   ]
 }

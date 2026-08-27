@@ -11,15 +11,6 @@
       "summary": "Enumerates every canonical cube pair once and counts equal sums.",
       "time_complexity": "O(B^2 + G log G)",
       "space_complexity": "O(B^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(B^2 + G log G)",
-      "space_complexity": "O(B^2)"
     }
   ]
 }

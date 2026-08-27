@@ -11,15 +11,6 @@
       "summary": "Combines bounded OR states for exactly k selections on every valid prefix-suffix split.",
       "time_complexity": "O(n(kB + B^2))",
       "space_complexity": "O((n + k)B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n(kB + B^2))",
-      "space_complexity": "O((n + k)B)"
     }
   ]
 }

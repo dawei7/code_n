@@ -11,15 +11,6 @@
       "summary": "Returns a closure that marks itself used before forwarding the first invocation and suppresses every later call.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Backtracks over self-avoiding grid paths, rejecting a branch immediately whenever its next numbered cell is not the required checkpoint.",
       "time_complexity": "O(V * 3^V)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V * 3^V)",
-      "space_complexity": "O(V)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses digit DP to count valid positive integers at most each endpoint, then subtracts the prefix counts.",
       "time_complexity": "O(d)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(d)",
-      "space_complexity": "O(d)"
     }
   ]
 }

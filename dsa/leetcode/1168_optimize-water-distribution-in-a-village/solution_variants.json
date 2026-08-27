@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Optimize Water Distribution in a Village and meets the required complexity bound.",
       "time_complexity": "O(e \\log e)",
       "space_complexity": "O(e)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(e \\log e)",
-      "space_complexity": "O(e)"
     }
   ]
 }

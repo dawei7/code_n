@@ -11,15 +11,6 @@
       "summary": "Uses a stack to perform every forced leftmost cascade as soon as its right value arrives.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

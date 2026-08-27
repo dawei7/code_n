@@ -11,15 +11,6 @@
       "summary": "Precomputes useful single-tire stints, then composes them with dynamic programming over completed laps.",
       "time_complexity": "O(TL + NL)",
       "space_complexity": "O(N + L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(TL + NL)",
-      "space_complexity": "O(N + L)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Aggregates each patient's earliest positive once, then joins and aggregates the earliest strictly later negative before ordering recovered patients.",
       "time_complexity": "O(T log T + P log P)",
       "space_complexity": "O(T + P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(T log T + P log P)",
-      "space_complexity": "O(T + P)"
     }
   ]
 }

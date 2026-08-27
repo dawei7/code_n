@@ -11,15 +11,6 @@
       "summary": "Combines a digit DP for good digit sums with the finite set of strictly monotone numbers and removes their overlap.",
       "time_complexity": "O(D^2)",
       "space_complexity": "O(D^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D^2)",
-      "space_complexity": "O(D^2)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Keeps the first word from each consecutive run with the same 26-letter frequency signature.",
       "time_complexity": "O(S)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Extracts each nonzero decimal digit as its unique place-value component.",
       "time_complexity": "O(log n)",
       "space_complexity": "O(log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log n)",
-      "space_complexity": "O(log n)"
     }
   ]
 }

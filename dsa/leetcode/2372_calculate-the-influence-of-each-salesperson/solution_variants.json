@@ -11,15 +11,6 @@
       "summary": "Left-joins every salesperson through customers to sales and aggregates each resulting group once.",
       "time_complexity": "O((S+C+R) log(S+C+R))",
       "space_complexity": "O(S+C+R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((S+C+R) log(S+C+R))",
-      "space_complexity": "O(S+C+R)"
     }
   ]
 }

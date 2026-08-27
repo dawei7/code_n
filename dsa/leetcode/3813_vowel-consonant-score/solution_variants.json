@@ -11,15 +11,6 @@
       "summary": "Scans the string once, counting the five vowels and the remaining lowercase letters separately while ignoring spaces and digits.",
       "time_complexity": "O(N)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(1)"
     }
   ]
 }

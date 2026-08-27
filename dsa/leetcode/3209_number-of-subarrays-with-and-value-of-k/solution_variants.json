@@ -11,15 +11,6 @@
       "summary": "Compresses subarrays ending at each index by their distinct AND value and accumulated frequency.",
       "time_complexity": "O(n log M)",
       "space_complexity": "O(log M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log M)",
-      "space_complexity": "O(log M)"
     }
   ]
 }

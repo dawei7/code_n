@@ -11,15 +11,6 @@
       "summary": "Counts ordered sequences by subtotal, appending each input value as the final element of a transition.",
       "time_complexity": "O(n \\cdot target)",
       "space_complexity": "O(target)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\cdot target)",
-      "space_complexity": "O(target)"
     }
   ]
 }

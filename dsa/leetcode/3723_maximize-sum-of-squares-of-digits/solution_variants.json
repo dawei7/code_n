@@ -11,15 +11,6 @@
       "summary": "Concentrates the digit sum into descending nines, one remainder, and trailing zeros.",
       "time_complexity": "O(num)",
       "space_complexity": "O(num)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(num)",
-      "space_complexity": "O(num)"
     }
   ]
 }

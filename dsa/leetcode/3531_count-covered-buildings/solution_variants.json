@@ -11,15 +11,6 @@
       "summary": "Record the extreme occupied coordinate in every row and column, then test each building against those four bounds.",
       "time_complexity": "O(B)",
       "space_complexity": "O(B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(B)",
-      "space_complexity": "O(B)"
     }
   ]
 }

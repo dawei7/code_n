@@ -11,15 +11,6 @@
       "summary": "Uses Kahn's indegree queue to remove every course unlocked by completed prerequisites.",
       "time_complexity": "O(V + E)",
       "space_complexity": "O(V + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V + E)",
-      "space_complexity": "O(V + E)"
     }
   ]
 }

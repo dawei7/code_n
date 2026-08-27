@@ -11,15 +11,6 @@
       "summary": "Represent every original edge by its normal arc and a doubled-cost reverse-traversal arc, then run Dijkstra's algorithm.",
       "time_complexity": "O((V + E) log V)",
       "space_complexity": "O(V + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((V + E) log V)",
-      "space_complexity": "O(V + E)"
     }
   ]
 }

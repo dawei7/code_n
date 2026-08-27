@@ -11,15 +11,6 @@
       "summary": "Counts each digit by column and uses a ten-state dynamic program to maximize cells left unchanged under adjacent-column inequality.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(1)"
     }
   ]
 }

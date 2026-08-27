@@ -11,15 +11,6 @@
       "summary": "Filters active loans once, joins them to the catalog, groups by book, and retains groups whose active count consumes every owned copy.",
       "time_complexity": "O(B log B + R log R)",
       "space_complexity": "O(B + R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(B log B + R log R)",
-      "space_complexity": "O(B + R)"
     }
   ]
 }

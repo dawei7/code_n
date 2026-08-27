@@ -11,15 +11,6 @@
       "summary": "Enumerates attainable positive powers and uses a two-pointer dynamic program to count subsequences meeting each minimum-gap threshold.",
       "time_complexity": "O(k n^3)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k n^3)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses one postorder traversal to return each subtree maximum and count its dominant root.",
       "time_complexity": "O(n)",
       "space_complexity": "O(log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(log n)"
     }
   ]
 }

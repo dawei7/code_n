@@ -11,15 +11,6 @@
       "summary": "Computes diagonal alternating suffixes, then adds the best optional clockwise turn with a second directional dynamic program.",
       "time_complexity": "O(nm)",
       "space_complexity": "O(nm)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm)",
-      "space_complexity": "O(nm)"
     }
   ]
 }

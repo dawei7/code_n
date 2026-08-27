@@ -11,15 +11,6 @@
       "summary": "Marks every method reachable from k, then rejects removal if any edge enters that suspicious set from outside.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

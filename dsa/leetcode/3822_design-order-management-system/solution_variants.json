@@ -11,15 +11,6 @@
       "summary": "Maintains an authoritative order map and a set of active IDs for every order-type/price pair.",
       "time_complexity": "O(Q + T)",
       "space_complexity": "O(A)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(Q + T)",
-      "space_complexity": "O(A)"
     }
   ]
 }

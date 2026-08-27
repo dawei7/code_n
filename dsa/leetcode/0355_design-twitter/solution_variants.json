@@ -11,15 +11,6 @@
       "summary": "Retains ten posts per user and heap-merges the newest entries from the requested feed sources.",
       "time_complexity": "O(1) / O(F + 10 \\log F)",
       "space_complexity": "O(U + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(1) / O(F + 10 \\log F)",
-      "space_complexity": "O(U + E)"
     }
   ]
 }

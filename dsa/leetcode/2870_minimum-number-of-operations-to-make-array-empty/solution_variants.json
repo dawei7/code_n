@@ -11,15 +11,6 @@
       "summary": "Counts each value and greedily removes as many equal triples as possible without leaving a singleton.",
       "time_complexity": "O(n)",
       "space_complexity": "O(u)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(u)"
     }
   ]
 }

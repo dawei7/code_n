@@ -11,15 +11,6 @@
       "summary": "For each teleport allowance, sweep cells by descending value to obtain every legal zero-cost transition, then close right/down moves in grid order.",
       "time_complexity": "O(P log P + kP)",
       "space_complexity": "O(P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(P log P + kP)",
-      "space_complexity": "O(P)"
     }
   ]
 }

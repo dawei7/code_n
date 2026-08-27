@@ -11,15 +11,6 @@
       "summary": "Enumerates every remaining-branch subset and runs all-pairs shortest paths using only roads whose endpoints remain open.",
       "time_complexity": "O(2^N(N^3 + R))",
       "space_complexity": "O(N^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^N(N^3 + R))",
-      "space_complexity": "O(N^2)"
     }
   ]
 }

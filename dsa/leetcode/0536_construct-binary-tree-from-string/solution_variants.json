@@ -11,15 +11,6 @@
       "summary": "Parses signed values once while stack frames attach child expressions in exact left-to-right order.",
       "time_complexity": "O(n)",
       "space_complexity": "O(h)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(h)"
     }
   ]
 }

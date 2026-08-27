@@ -11,15 +11,6 @@
       "summary": "Propagates weighted counts between legal (visited-mask, current-key) states for every requested length.",
       "time_complexity": "O(K^2 \\cdot 2^K)",
       "space_complexity": "O(K \\cdot 2^K)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(K^2 \\cdot 2^K)",
-      "space_complexity": "O(K \\cdot 2^K)"
     }
   ]
 }

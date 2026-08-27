@@ -11,15 +11,6 @@
       "summary": "Matches each surplus stone to an empty cell with subset dynamic programming over destination masks.",
       "time_complexity": "O(k \\cdot 2^k)",
       "space_complexity": "O(2^k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k \\cdot 2^k)",
-      "space_complexity": "O(2^k)"
     }
   ]
 }

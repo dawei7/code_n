@@ -11,15 +11,6 @@
       "summary": "Aggregates calls by city and hour, then retains every per-city maximum with a window rank.",
       "time_complexity": "O(R log R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

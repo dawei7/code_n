@@ -11,15 +11,6 @@
       "summary": "Uses rolling dynamic-programming sets to retain every reachable count of ones at each cell.",
       "time_complexity": "O(rc(r + c))",
       "space_complexity": "O(c(r + c))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(rc(r + c))",
-      "space_complexity": "O(c(r + c))"
     }
   ]
 }

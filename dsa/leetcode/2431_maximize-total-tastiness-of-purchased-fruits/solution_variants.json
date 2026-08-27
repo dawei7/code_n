@@ -11,15 +11,6 @@
       "summary": "Runs a descending 0/1 knapsack over coupon count and available budget.",
       "time_complexity": "O(nkB)",
       "space_complexity": "O(kB)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nkB)",
-      "space_complexity": "O(kB)"
     }
   ]
 }

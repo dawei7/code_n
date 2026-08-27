@@ -11,15 +11,6 @@
       "summary": "Matches a three-digit run bounded by non-digits or the ends of the product name, then orders matching rows.",
       "time_complexity": "O(S + n log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + n log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

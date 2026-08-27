@@ -11,15 +11,6 @@
       "summary": "Sorts every row once, then sums the maximum aligned order statistic in each column.",
       "time_complexity": "O(mn log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

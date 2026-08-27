@@ -11,15 +11,6 @@
       "summary": "Filters candidates by the necessary modulo-9 condition, then recursively chooses every possible nonempty decimal suffix while tracking the remaining target sum.",
       "time_complexity": "O(n d 2^d)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n d 2^d)",
-      "space_complexity": "O(d)"
     }
   ]
 }

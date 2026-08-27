@@ -11,15 +11,6 @@
       "summary": "Aggregates counts and element sums for increasing and decreasing subsequences by their final value.",
       "time_complexity": "O(n + V)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + V)",
-      "space_complexity": "O(V)"
     }
   ]
 }

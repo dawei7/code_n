@@ -11,15 +11,6 @@
       "summary": "Compresses all suffixes ending at each position by their distinct GCD and retains the dominant earliest start.",
       "time_complexity": "O(N log^2 V)",
       "space_complexity": "O(log V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log^2 V)",
-      "space_complexity": "O(log V)"
     }
   ]
 }

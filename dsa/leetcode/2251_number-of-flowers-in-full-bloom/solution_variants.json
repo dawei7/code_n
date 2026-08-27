@@ -11,15 +11,6 @@
       "summary": "Sorts all bloom starts and ends separately, then answers each arrival with two binary searches.",
       "time_complexity": "O((F + P) log F)",
       "space_complexity": "O(F)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((F + P) log F)",
-      "space_complexity": "O(F)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Indexes the best prefix split by prime factors shared with each possible ending value.",
       "time_complexity": "O(M\\log\\log M+n\\log M)",
       "space_complexity": "O(M+n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M\\log\\log M+n\\log M)",
-      "space_complexity": "O(M+n)"
     }
   ]
 }

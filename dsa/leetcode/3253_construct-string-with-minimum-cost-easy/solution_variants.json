@@ -11,15 +11,6 @@
       "summary": "Relaxes minimum costs between reachable target-prefix boundaries.",
       "time_complexity": "O(nS)",
       "space_complexity": "O(n+S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nS)",
-      "space_complexity": "O(n+S)"
     }
   ]
 }

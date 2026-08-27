@@ -11,15 +11,6 @@
       "summary": "Starts with the k largest profits, then exchanges the cheapest duplicate-category choices for profitable new categories.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

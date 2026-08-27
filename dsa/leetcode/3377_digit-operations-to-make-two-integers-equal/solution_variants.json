@@ -11,15 +11,6 @@
       "summary": "Runs Dijkstra's algorithm over legal fixed-width integers after classifying primes with a sieve.",
       "time_complexity": "O(d U log U)",
       "space_complexity": "O(U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(d U log U)",
-      "space_complexity": "O(U)"
     }
   ]
 }

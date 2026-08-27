@@ -11,15 +11,6 @@
       "summary": "Aggregates purchases by customer and year, compares adjacent totals with a window function, and rejects year gaps.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r log r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

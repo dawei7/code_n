@@ -11,15 +11,6 @@
       "summary": "Binary-searches the first feasible k using the summed ceiling-division operation count.",
       "time_complexity": "O(N log H)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log H)",
-      "space_complexity": "O(1)"
     }
   ]
 }

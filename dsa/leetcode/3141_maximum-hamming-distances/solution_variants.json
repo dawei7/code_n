@@ -11,15 +11,6 @@
       "summary": "Runs a multi-source BFS over the m-dimensional bit hypercube, then queries each value's fixed-width complement.",
       "time_complexity": "O(m * 2^m + n)",
       "space_complexity": "O(2^m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m * 2^m + n)",
-      "space_complexity": "O(2^m)"
     }
   ]
 }

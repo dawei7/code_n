@@ -11,15 +11,6 @@
       "summary": "Enumerates every realizable horizontal and vertical span, then selects the largest length shared by both orientations.",
       "time_complexity": "O(H^2 + V^2)",
       "space_complexity": "O(H^2 + V^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(H^2 + V^2)",
-      "space_complexity": "O(H^2 + V^2)"
     }
   ]
 }

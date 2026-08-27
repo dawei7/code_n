@@ -11,15 +11,6 @@
       "summary": "Extracts the non-negative subsequence, applies one modulo-normalized left rotation, and reinserts it at the movable indices.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

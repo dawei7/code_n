@@ -11,15 +11,6 @@
       "summary": "Rank each store's price extremes once, count distinct products, and filter and order the joined extreme rows.",
       "time_complexity": "O(R log R + S log S)",
       "space_complexity": "O(R + S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R + S log S)",
-      "space_complexity": "O(R + S)"
     }
   ]
 }

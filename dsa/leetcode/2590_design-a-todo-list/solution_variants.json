@@ -11,15 +11,6 @@
       "summary": "Stores tasks by sequential ID and filters unfinished records for each ordered query.",
       "time_complexity": "O(q^2 log q)",
       "space_complexity": "O(q + S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q^2 log q)",
-      "space_complexity": "O(q + S)"
     }
   ]
 }

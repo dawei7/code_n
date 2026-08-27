@@ -11,15 +11,6 @@
       "summary": "Sweeps removal times in reverse and uses union-find to add equal-time edge groups until fewer than k components remain.",
       "time_complexity": "O(m log m + (n + m) \\alpha(n))",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log m + (n + m) \\alpha(n))",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

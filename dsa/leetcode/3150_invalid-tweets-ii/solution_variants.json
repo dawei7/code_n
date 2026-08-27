@@ -11,15 +11,6 @@
       "summary": "Scans each tweet once, counts marker characters through replacement-length differences, and orders the qualifying identifiers.",
       "time_complexity": "O(S + R log R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + R log R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

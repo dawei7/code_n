@@ -11,15 +11,6 @@
       "summary": "Uses descending 0/1 knapsack updates to retain the greatest subsequence length for every reachable sum through the target.",
       "time_complexity": "O(n target)",
       "space_complexity": "O(target)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n target)",
-      "space_complexity": "O(target)"
     }
   ]
 }

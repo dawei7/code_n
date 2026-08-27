@@ -11,15 +11,6 @@
       "summary": "Combines every pile prefix with a rolling exact-count knapsack state.",
       "time_complexity": "O(k * C)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k * C)",
-      "space_complexity": "O(k)"
     }
   ]
 }

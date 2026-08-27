@@ -11,15 +11,6 @@
       "summary": "Precomputes roll endpoints and uses lexicographically keyed Dijkstra search to find the required route.",
       "time_complexity": "O(rows \\cdot cols \\cdot p \\log(rows \\cdot cols))",
       "space_complexity": "O(rows \\cdot cols \\cdot p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(rows \\cdot cols \\cdot p \\log(rows \\cdot cols))",
-      "space_complexity": "O(rows \\cdot cols \\cdot p)"
     }
   ]
 }

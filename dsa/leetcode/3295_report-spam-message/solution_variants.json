@@ -11,15 +11,6 @@
       "summary": "Builds a banned-word set and stops as soon as the second matching message position is found.",
       "time_complexity": "O(m + b)",
       "space_complexity": "O(b)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m + b)",
-      "space_complexity": "O(b)"
     }
   ]
 }

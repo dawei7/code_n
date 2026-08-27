@@ -11,15 +11,6 @@
       "summary": "Enumerates the number of complete gardens and uses prefix sums plus binary search to maximize the remaining minimum.",
       "time_complexity": "O(n log n + n log target)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + n log target)",
-      "space_complexity": "O(n)"
     }
   ]
 }

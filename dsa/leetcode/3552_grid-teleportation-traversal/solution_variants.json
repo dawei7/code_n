@@ -11,15 +11,6 @@
       "summary": "Runs 0-1 BFS, expanding each zero-cost portal group only when its earliest cell is finalized.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

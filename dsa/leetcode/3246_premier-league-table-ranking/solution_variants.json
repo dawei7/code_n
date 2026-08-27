@@ -11,15 +11,6 @@
       "summary": "Computes points once, applies competition ranking over descending totals, and orders tied teams by name.",
       "time_complexity": "O(t log t)",
       "space_complexity": "O(t)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(t log t)",
-      "space_complexity": "O(t)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Sieves all relevant primes and greedily minimizes each value above its finalized predecessor.",
       "time_complexity": "O(M log log M + n log M)",
       "space_complexity": "O(M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M log log M + n log M)",
-      "space_complexity": "O(M)"
     }
   ]
 }

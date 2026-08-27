@@ -11,15 +11,6 @@
       "summary": "Inserts every phone number into a trie and detects shorter, longer, and duplicate prefix conflicts during insertion.",
       "time_complexity": "O(S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

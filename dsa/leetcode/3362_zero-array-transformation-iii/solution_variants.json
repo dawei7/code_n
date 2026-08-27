@@ -11,15 +11,6 @@
       "summary": "Sweeps indices left to right and selects the available query with the farthest right endpoint whenever coverage is deficient.",
       "time_complexity": "O(n + q log q)",
       "space_complexity": "O(n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q log q)",
-      "space_complexity": "O(n + q)"
     }
   ]
 }

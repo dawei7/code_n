@@ -11,15 +11,6 @@
       "summary": "Counts black pixels per row and column, then tests both uniqueness conditions in one final scan.",
       "time_complexity": "O(rows \\cdot cols)",
       "space_complexity": "O(rows + cols)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(rows \\cdot cols)",
-      "space_complexity": "O(rows + cols)"
     }
   ]
 }

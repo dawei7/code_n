@@ -11,15 +11,6 @@
       "summary": "Sends every deficit unit through a sparse circular minimum-cost-flow network using potentials and heap-based shortest augmenting paths.",
       "time_complexity": "O(n^2 log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

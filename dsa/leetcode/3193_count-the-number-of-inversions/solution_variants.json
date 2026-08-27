@@ -11,15 +11,6 @@
       "summary": "Counts each prefix by inversion total and evaluates every insertion transition with a sliding window.",
       "time_complexity": "O(nC)",
       "space_complexity": "O(n + C)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nC)",
-      "space_complexity": "O(n + C)"
     }
   ]
 }

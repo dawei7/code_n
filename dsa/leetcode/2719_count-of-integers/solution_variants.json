@@ -11,15 +11,6 @@
       "summary": "Uses memoized digit DP to count valid decimal prefixes at or below each interval endpoint.",
       "time_complexity": "O(L*S)",
       "space_complexity": "O(L*S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L*S)",
-      "space_complexity": "O(L*S)"
     }
   ]
 }

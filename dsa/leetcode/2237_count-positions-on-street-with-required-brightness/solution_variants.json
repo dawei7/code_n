@@ -11,15 +11,6 @@
       "summary": "Uses interval difference events and one prefix scan to recover every position's brightness.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(n)"
     }
   ]
 }

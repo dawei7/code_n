@@ -11,15 +11,6 @@
       "summary": "Extracts first-difference edges from adjacent words, rejects invalid prefixes, then runs Kahn's algorithm.",
       "time_complexity": "O(c + e)",
       "space_complexity": "O(a + e)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(c + e)",
-      "space_complexity": "O(a + e)"
     }
   ]
 }

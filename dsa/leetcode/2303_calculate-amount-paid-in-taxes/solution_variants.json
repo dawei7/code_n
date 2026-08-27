@@ -11,15 +11,6 @@
       "summary": "Traverses the progressive brackets once and taxes only the income slice belonging to each bracket.",
       "time_complexity": "O(b)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(b)",
-      "space_complexity": "O(1)"
     }
   ]
 }

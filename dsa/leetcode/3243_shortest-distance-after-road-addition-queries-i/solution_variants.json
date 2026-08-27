@@ -11,15 +11,6 @@
       "summary": "Adds each directed road to the persistent graph and runs an unweighted shortest-path traversal from city zero.",
       "time_complexity": "O(q(n+q))",
       "space_complexity": "O(n+q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q(n+q))",
-      "space_complexity": "O(n+q)"
     }
   ]
 }

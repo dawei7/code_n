@@ -11,15 +11,6 @@
       "summary": "Uses maximum-bottleneck Dijkstra with improving relaxations and an endpoint-bound shortcut.",
       "time_complexity": "O(V \\log V)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V \\log V)",
-      "space_complexity": "O(V)"
     }
   ]
 }

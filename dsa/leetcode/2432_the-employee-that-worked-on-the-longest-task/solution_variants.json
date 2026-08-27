@@ -11,15 +11,6 @@
       "summary": "Scans chronological end times while retaining the best duration and tie-breaking employee.",
       "time_complexity": "O(m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Normalizes every local-domain pair into a canonical key and counts unique keys with a set.",
       "time_complexity": "O(S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

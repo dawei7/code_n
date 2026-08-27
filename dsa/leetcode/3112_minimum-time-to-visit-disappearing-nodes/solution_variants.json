@@ -11,15 +11,6 @@
       "summary": "Runs Dijkstra's algorithm while discarding every relaxation that reaches a node at or after its disappearance time.",
       "time_complexity": "O((n + m) log n)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + m) log n)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

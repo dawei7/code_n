@@ -11,15 +11,6 @@
       "summary": "Runs breadth-first search from every vertex and detects non-tree edges to obtain the shortest cycle.",
       "time_complexity": "O(n(n + m))",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n(n + m))",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

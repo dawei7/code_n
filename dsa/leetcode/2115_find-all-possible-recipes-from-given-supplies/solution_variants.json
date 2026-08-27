@@ -11,15 +11,6 @@
       "summary": "Propagates available supplies through a reverse dependency graph and releases each recipe when its final requirement is met.",
       "time_complexity": "O(V + E)",
       "space_complexity": "O(V + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V + E)",
-      "space_complexity": "O(V + E)"
     }
   ]
 }

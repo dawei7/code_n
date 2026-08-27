@@ -11,15 +11,6 @@
       "summary": "Binary-searches the distinct-count threshold and counts qualifying subarrays with a sliding window.",
       "time_complexity": "O(n log D)",
       "space_complexity": "O(D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log D)",
-      "space_complexity": "O(D)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Maintains continuous obtainable coverage and greedily adds the first missing value whenever the next sorted coin leaves a gap.",
       "time_complexity": "O(N log N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

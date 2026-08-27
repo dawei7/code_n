@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Get Highest Answer Rate Question and meets the required complexity bound.",
       "time_complexity": "O(R \\log Q)",
       "space_complexity": "O(Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R \\log Q)",
-      "space_complexity": "O(Q)"
     }
   ]
 }

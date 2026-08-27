@@ -11,15 +11,6 @@
       "summary": "Advances two pointers through the sorted arrays until their smallest unexamined values match.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

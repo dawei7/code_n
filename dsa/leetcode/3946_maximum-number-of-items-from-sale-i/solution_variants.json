@@ -11,15 +11,6 @@
       "summary": "Precomputes each factor's activation reward with a multiples sieve, then combines one special first copy and unlimited ordinary copies in a capacity DP.",
       "time_complexity": "O(F log(F) + nB)",
       "space_complexity": "O(F + B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(F log(F) + nB)",
-      "space_complexity": "O(F + B)"
     }
   ]
 }

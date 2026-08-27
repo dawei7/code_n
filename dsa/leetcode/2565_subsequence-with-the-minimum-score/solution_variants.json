@@ -11,15 +11,6 @@
       "summary": "Combines greedy prefix matches with right-to-left suffix positions to minimize the removable middle span.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

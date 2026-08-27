@@ -11,15 +11,6 @@
       "summary": "Left joins a four-row November Friday calendar to purchases so missing weeks receive zero totals.",
       "time_complexity": "O(R log R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

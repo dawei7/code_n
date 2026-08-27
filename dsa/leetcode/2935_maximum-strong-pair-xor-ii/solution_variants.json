@@ -11,15 +11,6 @@
       "summary": "Sorts the values, maintains the strong-pair range in a sliding window, and queries a counted binary trie for maximum XOR.",
       "time_complexity": "O(n log(n))",
       "space_complexity": "O(n log(V))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log(n))",
-      "space_complexity": "O(n log(V))"
     }
   ]
 }

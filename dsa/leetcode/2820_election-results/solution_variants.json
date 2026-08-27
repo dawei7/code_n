@@ -11,15 +11,6 @@
       "summary": "Allocates each vote with a voter-partitioned window count, totals candidates, and retains every top-ranked candidate.",
       "time_complexity": "O(R log R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

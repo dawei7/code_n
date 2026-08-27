@@ -11,15 +11,6 @@
       "summary": "Sorts buses and passengers, simulates boarding with one passenger pointer, then retreats from the final feasible time through occupied arrivals.",
       "time_complexity": "O(b log b + p log p)",
       "space_complexity": "O(b + p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(b log b + p log p)",
-      "space_complexity": "O(b + p)"
     }
   ]
 }

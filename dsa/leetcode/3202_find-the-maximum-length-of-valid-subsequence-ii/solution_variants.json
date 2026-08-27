@@ -11,15 +11,6 @@
       "summary": "Tracks the longest alternating remainder sequence for every ordered pair of remainders while scanning the array once.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(k^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(k^2)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Models adjacent ones as a checkerboard bipartite graph and obtains its minimum vertex cover size through Hopcroft-Karp matching.",
       "time_complexity": "O(E sqrt V)",
       "space_complexity": "O(V + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(E sqrt V)",
-      "space_complexity": "O(V + E)"
     }
   ]
 }

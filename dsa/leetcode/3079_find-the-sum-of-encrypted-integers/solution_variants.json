@@ -11,15 +11,6 @@
       "summary": "Scans each decimal digit once while building a matching repeated-ones place-value multiplier.",
       "time_complexity": "O(D)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D)",
-      "space_complexity": "O(1)"
     }
   ]
 }

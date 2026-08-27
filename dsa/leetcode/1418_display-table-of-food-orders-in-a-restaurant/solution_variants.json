@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Display Table of Food Orders in a Restaurant and meets the required complexity bound.",
       "time_complexity": "O(N + F\\log F + T\\log T + TF)",
       "space_complexity": "O(N + TF)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N + F\\log F + T\\log T + TF)",
-      "space_complexity": "O(N + TF)"
     }
   ]
 }

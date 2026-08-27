@@ -11,15 +11,6 @@
       "summary": "Fixes the cycle at zero, memoizes the minimum completion cost for each visited mask and last value, then reconstructs ties greedily.",
       "time_complexity": "O(n^2 2^n)",
       "space_complexity": "O(n 2^n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 2^n)",
-      "space_complexity": "O(n 2^n)"
     }
   ]
 }

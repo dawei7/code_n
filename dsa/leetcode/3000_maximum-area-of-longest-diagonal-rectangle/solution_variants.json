@@ -11,15 +11,6 @@
       "summary": "Scans rectangles once and compares squared diagonal first, then area as the tie-breaker.",
       "time_complexity": "O(N)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(1)"
     }
   ]
 }

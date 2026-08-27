@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Jewels and Stones and meets the required complexity bound.",
       "time_complexity": "O(j+s)",
       "space_complexity": "O(j)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(j+s)",
-      "space_complexity": "O(j)"
     }
   ]
 }

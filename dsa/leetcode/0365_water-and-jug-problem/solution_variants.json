@@ -11,15 +11,6 @@
       "summary": "Applies the total-capacity bound and B\u00e9zout's gcd divisibility criterion, computing the gcd with Euclid's algorithm.",
       "time_complexity": "O(\\log \\min(x,y))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\log \\min(x,y))",
-      "space_complexity": "O(1)"
     }
   ]
 }

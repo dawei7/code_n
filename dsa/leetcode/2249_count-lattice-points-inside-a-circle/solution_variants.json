@@ -11,15 +11,6 @@
       "summary": "Enumerates each circle's integer bounding square and inserts exactly its covered lattice points into a union set.",
       "time_complexity": "O(sum r_i^2)",
       "space_complexity": "O(P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(sum r_i^2)",
-      "space_complexity": "O(P)"
     }
   ]
 }

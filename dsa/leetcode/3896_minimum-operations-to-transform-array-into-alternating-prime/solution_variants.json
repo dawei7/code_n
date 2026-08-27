@@ -11,15 +11,6 @@
       "summary": "Builds one prime sieve, binary-searches the next prime for even indices, and directly repairs prime odd indices.",
       "time_complexity": "O(M log log M + N log M)",
       "space_complexity": "O(M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M log log M + N log M)",
-      "space_complexity": "O(M)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Slides one fixed-length window while maintaining its sum and exact value frequencies.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(k)"
     }
   ]
 }

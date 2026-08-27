@@ -11,15 +11,6 @@
       "summary": "Unranks the requested 50-bit string from most significant to least significant bit using binomial block counts.",
       "time_complexity": "O(B)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(B)",
-      "space_complexity": "O(1)"
     }
   ]
 }

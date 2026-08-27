@@ -11,15 +11,6 @@
       "summary": "Counts the bounded values and consumes k occurrences from each end of the domain.",
       "time_complexity": "O(N + V)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N + V)",
-      "space_complexity": "O(V)"
     }
   ]
 }

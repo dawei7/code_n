@@ -11,15 +11,6 @@
       "summary": "Enumerates node masks, filters by value parity, and checks induced connectivity with bitmask graph traversal.",
       "time_complexity": "O(n 2^n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n 2^n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

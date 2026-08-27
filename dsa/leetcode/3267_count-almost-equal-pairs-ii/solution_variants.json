@@ -11,15 +11,6 @@
       "summary": "Sorts values, enumerates every result reachable by up to two digit swaps, and counts exact earlier matches.",
       "time_complexity": "O(n log n + n d^5)",
       "space_complexity": "O(n + d^4)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + n d^5)",
-      "space_complexity": "O(n + d^4)"
     }
   ]
 }

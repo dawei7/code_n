@@ -11,15 +11,6 @@
       "summary": "Sorts the unique banned values, treats the allowed values as consecutive gaps, and uses arithmetic-series sums plus binary search to take the cheapest prefix of each gap.",
       "time_complexity": "O(m log m + m log n)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log m + m log n)",
-      "space_complexity": "O(m)"
     }
   ]
 }

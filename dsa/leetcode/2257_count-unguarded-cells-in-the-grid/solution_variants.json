@@ -11,15 +11,6 @@
       "summary": "Sweeps every row and column in both directions, carrying visibility until a wall or guard resets it.",
       "time_complexity": "O(m n + G + W)",
       "space_complexity": "O(m n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m n + G + W)",
-      "space_complexity": "O(m n)"
     }
   ]
 }

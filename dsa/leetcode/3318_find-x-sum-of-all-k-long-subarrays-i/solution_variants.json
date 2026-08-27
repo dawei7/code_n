@@ -11,15 +11,6 @@
       "summary": "Counts and ranks the distinct values independently in every small constrained window.",
       "time_complexity": "O((n - k + 1) k log k)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n - k + 1) k log k)",
-      "space_complexity": "O(k)"
     }
   ]
 }

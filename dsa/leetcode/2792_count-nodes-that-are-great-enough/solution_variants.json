@@ -11,15 +11,6 @@
       "summary": "Merges bounded sorted summaries of each subtree's k smallest values in iterative postorder.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(nk)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(nk)"
     }
   ]
 }

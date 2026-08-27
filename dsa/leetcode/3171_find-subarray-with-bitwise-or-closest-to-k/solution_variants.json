@@ -11,15 +11,6 @@
       "summary": "Carries forward only the distinct OR values of subarrays ending at the previous position.",
       "time_complexity": "O(n log M)",
       "space_complexity": "O(log M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log M)",
-      "space_complexity": "O(log M)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Tracks tail-to-head order in a deque and live body occupancy in a set for constant-time moves.",
       "time_complexity": "O(q)",
       "space_complexity": "O(f)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q)",
-      "space_complexity": "O(f)"
     }
   ]
 }

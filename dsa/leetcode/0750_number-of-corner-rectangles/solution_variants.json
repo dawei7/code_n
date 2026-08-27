@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Number Of Corner Rectangles and meets the required complexity bound.",
       "time_complexity": "O(mn \\min(m,n))",
       "space_complexity": "O(\\min(m,n)^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn \\min(m,n))",
-      "space_complexity": "O(\\min(m,n)^2)"
     }
   ]
 }

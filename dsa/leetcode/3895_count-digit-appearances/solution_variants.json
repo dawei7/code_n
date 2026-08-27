@@ -11,15 +11,6 @@
       "summary": "Extracts every decimal position once and accumulates matches with the requested digit.",
       "time_complexity": "O(S)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(1)"
     }
   ]
 }

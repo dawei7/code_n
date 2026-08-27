@@ -11,15 +11,6 @@
       "summary": "Temporarily installs the function under a collision-free Symbol key so method invocation supplies the requested context.",
       "time_complexity": "O(a)",
       "space_complexity": "O(a)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(a)",
-      "space_complexity": "O(a)"
     }
   ]
 }

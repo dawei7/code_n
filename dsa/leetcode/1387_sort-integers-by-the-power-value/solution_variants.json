@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Sort Integers by The Power Value and meets the required complexity bound.",
       "time_complexity": "O(U + R log R)",
       "space_complexity": "O(U + R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(U + R log R)",
-      "space_complexity": "O(U + R)"
     }
   ]
 }

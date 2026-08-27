@@ -11,15 +11,6 @@
       "summary": "Uses stored subtree lengths to descend only into the child containing the requested position.",
       "time_complexity": "O(h)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(h)",
-      "space_complexity": "O(1)"
     }
   ]
 }

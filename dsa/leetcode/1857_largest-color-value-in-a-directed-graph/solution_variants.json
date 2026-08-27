@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Largest Color Value in a Directed Graph and meets the required complexity bound.",
       "time_complexity": "O(26(n+m))",
       "space_complexity": "O(26n+m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(26(n+m))",
-      "space_complexity": "O(26n+m)"
     }
   ]
 }

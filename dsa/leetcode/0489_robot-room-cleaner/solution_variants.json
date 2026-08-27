@@ -11,15 +11,6 @@
       "summary": "Uses an explicit coordinate-DFS stack while physically restoring the robot after each branch.",
       "time_complexity": "O(c)",
       "space_complexity": "O(c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(c)",
-      "space_complexity": "O(c)"
     }
   ]
 }

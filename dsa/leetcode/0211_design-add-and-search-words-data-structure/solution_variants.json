@@ -11,15 +11,6 @@
       "summary": "Stores words in a trie and advances an iterative frontier across literal and wildcard query positions.",
       "time_complexity": "O(L B^d)",
       "space_complexity": "O(T)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L B^d)",
-      "space_complexity": "O(T)"
     }
   ]
 }

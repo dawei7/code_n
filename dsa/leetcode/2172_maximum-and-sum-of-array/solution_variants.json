@@ -11,15 +11,6 @@
       "summary": "Memoizes assignments by a base-three mask whose digits record each slot's occupancy.",
       "time_complexity": "O(m 3^m)",
       "space_complexity": "O(3^m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m 3^m)",
-      "space_complexity": "O(3^m)"
     }
   ]
 }

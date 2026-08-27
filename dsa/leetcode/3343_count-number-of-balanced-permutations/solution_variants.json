@@ -11,15 +11,6 @@
       "summary": "Allocates each digit multiplicity between even and odd positions with factorial-weighted dynamic programming.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^3)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

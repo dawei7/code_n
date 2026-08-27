@@ -11,15 +11,6 @@
       "summary": "Collapses each possible first category to its earliest completion, then scans the other category for the best second ride.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

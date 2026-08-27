@@ -11,15 +11,6 @@
       "summary": "Joins prices to sales, sums line spending per user, and applies the required two-key ordering.",
       "time_complexity": "O((s + p) log s)",
       "space_complexity": "O(s + p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((s + p) log s)",
-      "space_complexity": "O(s + p)"
     }
   ]
 }

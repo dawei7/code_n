@@ -11,15 +11,6 @@
       "summary": "Sort the line, count each adjacent gap's left, right, and union coverage with binary search, then optimize robot directions using a two-state chain DP.",
       "time_complexity": "O((R + W) log(R + W))",
       "space_complexity": "O(R + W)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((R + W) log(R + W))",
-      "space_complexity": "O(R + W)"
     }
   ]
 }

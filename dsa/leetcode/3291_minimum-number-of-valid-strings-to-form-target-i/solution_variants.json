@@ -11,15 +11,6 @@
       "summary": "Stores all word prefixes in a trie and relaxes every matching target segment from each reachable position.",
       "time_complexity": "O(S + T^2)",
       "space_complexity": "O(S + T)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + T^2)",
-      "space_complexity": "O(S + T)"
     }
   ]
 }

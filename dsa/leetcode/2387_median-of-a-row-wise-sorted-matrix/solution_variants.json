@@ -11,15 +11,6 @@
       "summary": "Binary-searches the answer value and counts entries at or below each probe with one upper-bound search per row.",
       "time_complexity": "O(m log n log V)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log n log V)",
-      "space_complexity": "O(1)"
     }
   ]
 }

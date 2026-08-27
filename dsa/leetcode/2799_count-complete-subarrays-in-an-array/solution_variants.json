@@ -11,15 +11,6 @@
       "summary": "Uses a frequency-map sliding window and counts all valid right extensions at once.",
       "time_complexity": "O(n)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(k)"
     }
   ]
 }

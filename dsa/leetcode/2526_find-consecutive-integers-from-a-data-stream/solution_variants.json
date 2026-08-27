@@ -11,15 +11,6 @@
       "summary": "Tracks the length of the current trailing run of the target value, resetting it on every mismatch.",
       "time_complexity": "O(q)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q)",
-      "space_complexity": "O(1)"
     }
   ]
 }

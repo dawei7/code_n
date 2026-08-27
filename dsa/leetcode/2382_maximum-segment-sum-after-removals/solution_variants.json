@@ -11,15 +11,6 @@
       "summary": "Processes removals backward, activating positions and merging adjacent active segments with a disjoint-set structure.",
       "time_complexity": "O(n alpha(n))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n alpha(n))",
-      "space_complexity": "O(n)"
     }
   ]
 }

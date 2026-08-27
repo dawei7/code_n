@@ -11,15 +11,6 @@
       "summary": "Count parallel segment pairs on distinct supporting lines, then remove the duplicate contribution of each parallelogram through equal diagonal midpoints.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

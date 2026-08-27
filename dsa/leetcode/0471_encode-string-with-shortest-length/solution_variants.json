@@ -11,15 +11,6 @@
       "summary": "Uses interval dynamic programming over encoded lengths and reconstructs one shortest representation.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^3)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

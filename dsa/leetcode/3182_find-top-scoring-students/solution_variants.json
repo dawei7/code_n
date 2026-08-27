@@ -11,15 +11,6 @@
       "summary": "Builds each student's major-course roster, attaches A enrollments, and compares distinct required and completed course counts.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r log r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Erases one boundary path with DFS, restores the fixed endpoints, and tests whether an internally disjoint path remains.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(m + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(m + n)"
     }
   ]
 }

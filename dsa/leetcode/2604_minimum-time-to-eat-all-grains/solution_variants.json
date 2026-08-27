@@ -11,15 +11,6 @@
       "summary": "Binary-searches the minimum time and greedily assigns each sorted hen a consecutive prefix of the remaining grains.",
       "time_complexity": "O(n log n + m log m + (n + m) log C)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + m log m + (n + m) log C)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

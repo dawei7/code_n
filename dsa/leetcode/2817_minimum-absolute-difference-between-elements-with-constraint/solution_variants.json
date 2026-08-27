@@ -11,15 +11,6 @@
       "summary": "Sweeps the right index, activates exactly the values far enough to its left, and uses Fenwick order statistics to inspect the closest predecessor and successor.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

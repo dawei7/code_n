@@ -11,15 +11,6 @@
       "summary": "Computes all subtree sums, then queries a binary trie containing only sums from branches already completed by the depth-first traversal.",
       "time_complexity": "O(n log S)",
       "space_complexity": "O(n log S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log S)",
-      "space_complexity": "O(n log S)"
     }
   ]
 }

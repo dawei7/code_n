@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Least Number of Unique Integers after K Removals and meets the required complexity bound.",
       "time_complexity": "O(N \\log U)",
       "space_complexity": "O(U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N \\log U)",
-      "space_complexity": "O(U)"
     }
   ]
 }

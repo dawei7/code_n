@@ -11,15 +11,6 @@
       "summary": "Rejects values below the target and counts the distinct value levels that must be removed above it.",
       "time_complexity": "O(n)",
       "space_complexity": "O(u)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(u)"
     }
   ]
 }

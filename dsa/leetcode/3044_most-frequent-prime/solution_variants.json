@@ -11,15 +11,6 @@
       "summary": "Enumerates every fixed-direction path once, caches primality results, and counts qualifying primes.",
       "time_complexity": "O(m n l sqrt(V))",
       "space_complexity": "O(m n l)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m n l sqrt(V))",
-      "space_complexity": "O(m n l)"
     }
   ]
 }

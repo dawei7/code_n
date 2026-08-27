@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Largest Component Size by Common Factor and meets the required complexity bound.",
       "time_complexity": "O(N\\sqrt{M}\\,\\alpha(N))",
       "space_complexity": "O(N+M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N\\sqrt{M}\\,\\alpha(N))",
-      "space_complexity": "O(N+M)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Matches subsequences block by block and fast-forwards repeated target-position states.",
       "time_complexity": "O(|s1| \\cdot |s2|)",
       "space_complexity": "O(|s2|)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(|s1| \\cdot |s2|)",
-      "space_complexity": "O(|s2|)"
     }
   ]
 }

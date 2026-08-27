@@ -11,15 +11,6 @@
       "summary": "Maintains the best subsequence ending at each value for every allowed change budget, updating budgets in descending order.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(nk)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(nk)"
     }
   ]
 }

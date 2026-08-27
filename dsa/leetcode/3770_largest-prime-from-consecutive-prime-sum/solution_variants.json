@@ -11,15 +11,6 @@
       "summary": "Sieves all primes through n, then tests the increasing prefix sums of that prime sequence.",
       "time_complexity": "O(N log log N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log log N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

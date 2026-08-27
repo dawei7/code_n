@@ -11,15 +11,6 @@
       "summary": "Uses each prior row's smallest total, its color, and the second-smallest total for O(1) transitions.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(k)"
     }
   ]
 }

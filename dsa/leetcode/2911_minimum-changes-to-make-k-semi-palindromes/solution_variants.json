@@ -11,15 +11,6 @@
       "summary": "Precomputes every substring's best divisor-pattern repair cost, then partitions prefixes with dynamic programming.",
       "time_complexity": "O(n^3 log(n) + k n^2)",
       "space_complexity": "O(n^2 + k n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^3 log(n) + k n^2)",
-      "space_complexity": "O(n^2 + k n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Keeps the first index of each distinct element value and propagates those indices to divisible group values with a multiples sieve.",
       "time_complexity": "O(G + E + V log V)",
       "space_complexity": "O(E + V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(G + E + V log V)",
-      "space_complexity": "O(E + V)"
     }
   ]
 }

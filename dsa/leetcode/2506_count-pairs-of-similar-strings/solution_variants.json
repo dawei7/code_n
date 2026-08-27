@@ -11,15 +11,6 @@
       "summary": "Encodes each word's distinct lowercase letters as a 26-bit mask and counts matching earlier masks online.",
       "time_complexity": "O(S)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(n)"
     }
   ]
 }

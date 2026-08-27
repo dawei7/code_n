@@ -11,15 +11,6 @@
       "summary": "Counts values, counts how many distinct values share each frequency, then preserves the array's left-to-right order.",
       "time_complexity": "O(N)",
       "space_complexity": "O(D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(D)"
     }
   ]
 }

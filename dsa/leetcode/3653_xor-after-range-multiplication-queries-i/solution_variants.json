@@ -11,15 +11,6 @@
       "summary": "Apply each query directly to its arithmetic progression, then XOR the final values once.",
       "time_complexity": "O(n + U)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + U)",
-      "space_complexity": "O(1)"
     }
   ]
 }

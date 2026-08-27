@@ -11,15 +11,6 @@
       "summary": "Precomputes each pair-defined line mask and memoizes the minimum lines for every covered-point mask.",
       "time_complexity": "O(n^3 + n * 2^n)",
       "space_complexity": "O(n^2 + 2^n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^3 + n * 2^n)",
-      "space_complexity": "O(n^2 + 2^n)"
     }
   ]
 }

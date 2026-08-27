@@ -11,15 +11,6 @@
       "summary": "Combines FIFO storage and a running sum with lazy dual median heaps and a lazy frequency heap for the mode.",
       "time_complexity": "O(q log q)",
       "space_complexity": "O(q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q log q)",
-      "space_complexity": "O(q)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Enumerates the six possible geometric partition families and measures each piece with cached prefix-assisted bounding boxes.",
       "time_complexity": "O((R + C)(R^2 + RC + C^2))",
       "space_complexity": "O(RC + R^2 + C^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((R + C)(R^2 + RC + C^2))",
-      "space_complexity": "O(RC + R^2 + C^2)"
     }
   ]
 }

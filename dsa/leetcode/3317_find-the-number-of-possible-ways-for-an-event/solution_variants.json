@@ -11,15 +11,6 @@
       "summary": "Counts performer partitions with Stirling numbers, then labels and scores every nonempty band.",
       "time_complexity": "O(n min(n, x))",
       "space_complexity": "O(min(n, x))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n min(n, x))",
-      "space_complexity": "O(min(n, x))"
     }
   ]
 }

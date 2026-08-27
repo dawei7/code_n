@@ -11,15 +11,6 @@
       "summary": "Conditionally aggregates per-trip efficiency once per driver, filters strict improvement, joins names, and orders the qualifying rows.",
       "time_complexity": "O(T log T + D log D)",
       "space_complexity": "O(T + D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(T log T + D log D)",
-      "space_complexity": "O(T + D)"
     }
   ]
 }

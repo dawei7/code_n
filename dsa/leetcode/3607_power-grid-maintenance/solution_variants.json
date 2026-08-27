@@ -11,15 +11,6 @@
       "summary": "Builds static grid components with union-find and maintains each component's smallest online station through a lazy min-heap.",
       "time_complexity": "O((c + m) \\alpha(c) + q + c log c)",
       "space_complexity": "O(c + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((c + m) \\alpha(c) + q + c log c)",
-      "space_complexity": "O(c + q)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Binary-searches the monotone integer square function and returns true only on an exact midpoint square.",
       "time_complexity": "O(\\log num)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\log num)",
-      "space_complexity": "O(1)"
     }
   ]
 }

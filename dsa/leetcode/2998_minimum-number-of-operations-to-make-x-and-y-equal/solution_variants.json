@@ -11,15 +11,6 @@
       "summary": "Memoizes the best cost after adjusting the current value to a multiple of 5 or 11 and dividing.",
       "time_complexity": "O(log^2 X)",
       "space_complexity": "O(log^2 X)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log^2 X)",
-      "space_complexity": "O(log^2 X)"
     }
   ]
 }

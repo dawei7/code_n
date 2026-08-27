@@ -11,15 +11,6 @@
       "summary": "Tokenizes the concatenated text once, counts maximal valid words, and answers every query by hash lookup.",
       "time_complexity": "O(C + Q)",
       "space_complexity": "O(C + Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(C + Q)",
-      "space_complexity": "O(C + Q)"
     }
   ]
 }

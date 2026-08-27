@@ -11,15 +11,6 @@
       "summary": "Sweeps buildings left to right while a min-heap tracks deferred queries by required height.",
       "time_complexity": "O(N + Q log Q)",
       "space_complexity": "O(N + Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N + Q log Q)",
-      "space_complexity": "O(N + Q)"
     }
   ]
 }

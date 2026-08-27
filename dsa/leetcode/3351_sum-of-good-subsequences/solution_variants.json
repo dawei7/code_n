@@ -11,15 +11,6 @@
       "summary": "Aggregates the counts and element-sum totals of good subsequences by their ending value, extending only states one value away.",
       "time_complexity": "O(n)",
       "space_complexity": "O(u)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(u)"
     }
   ]
 }

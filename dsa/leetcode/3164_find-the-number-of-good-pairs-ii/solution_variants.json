@@ -11,15 +11,6 @@
       "summary": "Normalizes eligible first-array values by k, then counts matching second-array divisors through harmonic multiple enumeration.",
       "time_complexity": "O(n + m + V log V)",
       "space_complexity": "O(V + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m + V log V)",
-      "space_complexity": "O(V + m)"
     }
   ]
 }

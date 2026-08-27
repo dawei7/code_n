@@ -11,15 +11,6 @@
       "summary": "Converts every range product into a difference of prefix exponent sums found with periodic bit counts and binary search.",
       "time_complexity": "O(q * log^2 U)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q * log^2 U)",
-      "space_complexity": "O(1)"
     }
   ]
 }

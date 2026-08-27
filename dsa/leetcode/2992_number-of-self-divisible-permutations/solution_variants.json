@@ -11,15 +11,6 @@
       "summary": "Counts valid assignments with a subset DP whose mask determines the next position.",
       "time_complexity": "O(N 2^N)",
       "space_complexity": "O(2^N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N 2^N)",
-      "space_complexity": "O(2^N)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Compresses every possible value and maintains the growing multiset in a Fenwick tree for logarithmic order-statistic queries.",
       "time_complexity": "O((N + Q) log (N + Q) + Q log V)",
       "space_complexity": "O(N + Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((N + Q) log (N + Q) + Q log V)",
-      "space_complexity": "O(N + Q)"
     }
   ]
 }

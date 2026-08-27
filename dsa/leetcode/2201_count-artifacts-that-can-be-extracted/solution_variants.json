@@ -11,15 +11,6 @@
       "summary": "Hashes every dug coordinate and checks the at-most-four cells of each artifact rectangle.",
       "time_complexity": "O(a + d)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(a + d)",
-      "space_complexity": "O(d)"
     }
   ]
 }

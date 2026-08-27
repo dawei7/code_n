@@ -11,15 +11,6 @@
       "summary": "Counts the union of denomination-multiple streams by inclusion-exclusion and binary-searches the first amount whose prefix contains k values.",
       "time_complexity": "O(2^m (m + log U))",
       "space_complexity": "O(2^m + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^m (m + log U))",
-      "space_complexity": "O(2^m + m)"
     }
   ]
 }

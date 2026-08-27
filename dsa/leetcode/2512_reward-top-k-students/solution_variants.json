@@ -11,15 +11,6 @@
       "summary": "Scores every report with a feedback lookup table, then sorts score-and-ID ranking keys.",
       "time_complexity": "O(F + n log n)",
       "space_complexity": "O(F + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(F + n log n)",
-      "space_complexity": "O(F + n)"
     }
   ]
 }

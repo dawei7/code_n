@@ -11,15 +11,6 @@
       "summary": "Counts each difficulty and adds the minimum number of pairs and triples required by that independent frequency.",
       "time_complexity": "O(n)",
       "space_complexity": "O(u)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(u)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Extends one stable least-significant-digit radix order and answers all queries when their requested trim length is reached.",
       "time_complexity": "O(nL + q)",
       "space_complexity": "O(n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nL + q)",
-      "space_complexity": "O(n + q)"
     }
   ]
 }

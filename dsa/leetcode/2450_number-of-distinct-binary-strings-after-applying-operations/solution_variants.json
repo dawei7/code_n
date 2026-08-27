@@ -11,15 +11,6 @@
       "summary": "Counts independent length-k flip windows and computes the resulting power of two with modular exponentiation.",
       "time_complexity": "O(log(n - k + 1))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log(n - k + 1))",
-      "space_complexity": "O(1)"
     }
   ]
 }

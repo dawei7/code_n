@@ -11,15 +11,6 @@
       "summary": "Retains each argument batch as an immutable linked chunk and flattens the chunks once when the original arity is reached.",
       "time_complexity": "O(n + p)",
       "space_complexity": "O(n + p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + p)",
-      "space_complexity": "O(n + p)"
     }
   ]
 }

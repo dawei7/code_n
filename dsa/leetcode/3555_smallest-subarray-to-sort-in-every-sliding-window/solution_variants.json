@@ -11,15 +11,6 @@
       "summary": "Finds each window's inversion core, measures its extrema, and expands only across values that cannot remain outside the sorted segment.",
       "time_complexity": "O((n-k+1)k)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n-k+1)k)",
-      "space_complexity": "O(k)"
     }
   ]
 }

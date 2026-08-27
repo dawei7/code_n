@@ -11,15 +11,6 @@
       "summary": "Maps each message to its next eligible timestamp and updates that threshold only after acceptance.",
       "time_complexity": "O(1)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(m)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Recursively expands every hashtag occurrence, aggregates complete tokens once, and applies the required two-key ranking.",
       "time_complexity": "O(S + h + g log g)",
       "space_complexity": "O(S + h + g)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + h + g log g)",
-      "space_complexity": "O(S + h + g)"
     }
   ]
 }

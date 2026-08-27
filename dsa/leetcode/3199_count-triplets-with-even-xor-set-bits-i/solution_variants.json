@@ -11,15 +11,6 @@
       "summary": "Counts even- and odd-popcount values in each array, then combines the four parity patterns whose XOR has even parity.",
       "time_complexity": "O(A + B + C)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(A + B + C)",
-      "space_complexity": "O(1)"
     }
   ]
 }

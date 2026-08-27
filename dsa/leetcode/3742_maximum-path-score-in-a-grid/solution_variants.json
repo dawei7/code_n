@@ -11,15 +11,6 @@
       "summary": "Carries the maximum reachable score for every cell and exact cost up to the useful path-length cap.",
       "time_complexity": "O(mnL)",
       "space_complexity": "O(nL)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mnL)",
-      "space_complexity": "O(nL)"
     }
   ]
 }

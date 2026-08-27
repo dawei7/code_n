@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Smallest Sufficient Team and meets the required complexity bound.",
       "time_complexity": "O(p2^s)",
       "space_complexity": "O(p2^s)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(p2^s)",
-      "space_complexity": "O(p2^s)"
     }
   ]
 }

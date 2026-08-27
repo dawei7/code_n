@@ -11,15 +11,6 @@
       "summary": "Fills an interval minimax table by choosing the first guess that minimizes the worse remaining branch.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^3)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

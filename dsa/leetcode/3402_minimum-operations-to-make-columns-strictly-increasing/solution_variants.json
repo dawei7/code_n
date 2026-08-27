@@ -11,15 +11,6 @@
       "summary": "Scans each column from top to bottom and raises every cell to the smallest value that is strictly greater than its adjusted predecessor.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(1)"
     }
   ]
 }

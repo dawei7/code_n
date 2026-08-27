@@ -11,15 +11,6 @@
       "summary": "Scans every character once, accumulating one modulo-26 alphabet sum per fixed-size group.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n/k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(n/k)"
     }
   ]
 }

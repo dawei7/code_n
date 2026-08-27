@@ -11,15 +11,6 @@
       "summary": "Enumerates every decimal prefix and suffix and tests primality by trial division through the square root.",
       "time_complexity": "O(sqrt(n))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(sqrt(n))",
-      "space_complexity": "O(1)"
     }
   ]
 }

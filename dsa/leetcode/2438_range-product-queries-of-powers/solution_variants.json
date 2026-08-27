@@ -11,15 +11,6 @@
       "summary": "Stores prefix sums of set-bit indices so every range product becomes one power of two.",
       "time_complexity": "O(log n + q)",
       "space_complexity": "O(log n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log n + q)",
-      "space_complexity": "O(log n + q)"
     }
   ]
 }

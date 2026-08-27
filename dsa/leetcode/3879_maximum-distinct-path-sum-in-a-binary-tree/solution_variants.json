@@ -11,15 +11,6 @@
       "summary": "Starts at every node and backtracks one shared distinct-value set along each unique tree route.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n)"
     }
   ]
 }

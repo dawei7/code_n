@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Shortest Path with Alternating Colors and meets the required complexity bound.",
       "time_complexity": "O(n + r + b)",
       "space_complexity": "O(n + r + b)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + r + b)",
-      "space_complexity": "O(n + r + b)"
     }
   ]
 }

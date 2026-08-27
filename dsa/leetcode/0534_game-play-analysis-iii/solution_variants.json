@@ -11,15 +11,6 @@
       "summary": "Uses a player-partitioned chronological window sum to retain every login and add its running total.",
       "time_complexity": "O(A \\log A)",
       "space_complexity": "O(A)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(A \\log A)",
-      "space_complexity": "O(A)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Merges one monotonically increasing product stream per allowed prime while removing duplicate heads.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(n + k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(n + k)"
     }
   ]
 }

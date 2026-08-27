@@ -11,15 +11,6 @@
       "summary": "Indexes words by their boundary letters, then enumerates distinct top, left, and right choices and retrieves only compatible bottom words.",
       "time_complexity": "O(W^3 + A)",
       "space_complexity": "O(W + A)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(W^3 + A)",
-      "space_complexity": "O(W + A)"
     }
   ]
 }

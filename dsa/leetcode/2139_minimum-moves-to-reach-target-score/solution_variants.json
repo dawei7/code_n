@@ -11,15 +11,6 @@
       "summary": "Works backward, greedily undoing every usable double before paying the remaining distance with increments.",
       "time_complexity": "O(log target)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log target)",
-      "space_complexity": "O(1)"
     }
   ]
 }

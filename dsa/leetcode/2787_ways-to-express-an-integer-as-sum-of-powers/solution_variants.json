@@ -11,15 +11,6 @@
       "summary": "Counts distinct powered subsets with descending one-dimensional subset-sum dynamic programming.",
       "time_complexity": "O(nm)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm)",
-      "space_complexity": "O(n)"
     }
   ]
 }

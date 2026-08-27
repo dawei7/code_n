@@ -11,15 +11,6 @@
       "summary": "Combines binary-lifting LCA queries with root-to-node edge-weight frequencies.",
       "time_complexity": "O((n + m) log n)",
       "space_complexity": "O(n log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + m) log n)",
-      "space_complexity": "O(n log n)"
     }
   ]
 }

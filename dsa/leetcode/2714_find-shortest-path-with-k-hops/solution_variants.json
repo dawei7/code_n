@@ -11,15 +11,6 @@
       "summary": "Runs Dijkstra implicitly over graph nodes paired with the number of free hops already used.",
       "time_complexity": "O(E*(K+1)*log(n*(K+1)))",
       "space_complexity": "O((n+E)*(K+1))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(E*(K+1)*log(n*(K+1)))",
-      "space_complexity": "O((n+E)*(K+1))"
     }
   ]
 }

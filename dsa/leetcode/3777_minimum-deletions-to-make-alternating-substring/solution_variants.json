@@ -11,15 +11,6 @@
       "summary": "Maintains equal-adjacent edge indicators under flips and answers each deletion query as a dynamic range sum.",
       "time_complexity": "O((N + Q) log N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((N + Q) log N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

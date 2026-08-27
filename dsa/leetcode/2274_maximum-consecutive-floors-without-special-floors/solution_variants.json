@@ -11,15 +11,6 @@
       "summary": "Sorts the special floors and measures the boundary and interior gaps.",
       "time_complexity": "O(m log m)",
       "space_complexity": "O(log m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log m)",
-      "space_complexity": "O(log m)"
     }
   ]
 }

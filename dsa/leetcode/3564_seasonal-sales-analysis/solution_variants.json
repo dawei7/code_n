@@ -11,15 +11,6 @@
       "summary": "Classifies each sale once, aggregates every season-category group, then ranks the compact group relation with the specified tie-breakers.",
       "time_complexity": "O(S log S + P log P + G log G)",
       "space_complexity": "O(S + P + G)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S log S + P log P + G log G)",
-      "space_complexity": "O(S + P + G)"
     }
   ]
 }

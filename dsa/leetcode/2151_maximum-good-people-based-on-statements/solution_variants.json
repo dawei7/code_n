@@ -11,15 +11,6 @@
       "summary": "Enumerates every good-person bitmask and validates all statements made by selected people.",
       "time_complexity": "O(2^n * n^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^n * n^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

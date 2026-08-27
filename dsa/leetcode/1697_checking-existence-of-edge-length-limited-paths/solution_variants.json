@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Checking Existence of Edge Length Limited Paths and meets the required complexity bound.",
       "time_complexity": "O((E+Q)log(E+Q))",
       "space_complexity": "O(n+E+Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((E+Q)log(E+Q))",
-      "space_complexity": "O(n+E+Q)"
     }
   ]
 }

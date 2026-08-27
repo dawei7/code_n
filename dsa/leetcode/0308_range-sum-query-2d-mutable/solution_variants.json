@@ -11,15 +11,6 @@
       "summary": "Maintains point assignments and rectangle sums with a two-dimensional Fenwick tree.",
       "time_complexity": "O((mn + q) \\log m \\log n)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((mn + q) \\log m \\log n)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

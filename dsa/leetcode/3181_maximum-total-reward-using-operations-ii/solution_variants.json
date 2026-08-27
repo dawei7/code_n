@@ -11,15 +11,6 @@
       "summary": "Sorts distinct rewards and updates the bounded set of reachable totals using bulk integer-bitset operations.",
       "time_complexity": "O(n log n + nV / w)",
       "space_complexity": "O(n + V / w)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + nV / w)",
-      "space_complexity": "O(n + V / w)"
     }
   ]
 }

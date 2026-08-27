@@ -11,15 +11,6 @@
       "summary": "Backtracks over bags with load-bound pruning and skips symmetric child states.",
       "time_complexity": "O(k^n)",
       "space_complexity": "O(nk)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k^n)",
-      "space_complexity": "O(nk)"
     }
   ]
 }

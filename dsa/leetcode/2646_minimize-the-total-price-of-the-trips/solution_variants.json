@@ -11,15 +11,6 @@
       "summary": "Aggregates trip-path usage and applies two-state independent-set DP on the tree.",
       "time_complexity": "O(nt)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nt)",
-      "space_complexity": "O(n)"
     }
   ]
 }

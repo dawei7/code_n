@@ -11,15 +11,6 @@
       "summary": "Ranks departments by employee count and joins every largest department to its manager row.",
       "time_complexity": "O(R log R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

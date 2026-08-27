@@ -11,15 +11,6 @@
       "summary": "Finds both pattern-occurrence lists with KMP and merges them with a monotone proximity pointer.",
       "time_complexity": "O(N+A+B)",
       "space_complexity": "O(N+A+B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N+A+B)",
-      "space_complexity": "O(N+A+B)"
     }
   ]
 }

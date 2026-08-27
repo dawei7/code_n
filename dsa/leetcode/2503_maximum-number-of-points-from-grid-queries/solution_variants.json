@@ -11,15 +11,6 @@
       "summary": "Sorts queries and incrementally expands the reachable region through a minimum-value boundary heap.",
       "time_complexity": "O(m n log(m n) + k log k)",
       "space_complexity": "O(m n + k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m n log(m n) + k log k)",
-      "space_complexity": "O(m n + k)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Number of Atoms and meets the required complexity bound.",
       "time_complexity": "O(n + A \\log A)",
       "space_complexity": "O(A + d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + A \\log A)",
-      "space_complexity": "O(A + d)"
     }
   ]
 }

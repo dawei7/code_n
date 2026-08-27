@@ -11,15 +11,6 @@
       "summary": "Merges timestamps from right to left while carrying each series' next available value.",
       "time_complexity": "O(n+m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n+m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

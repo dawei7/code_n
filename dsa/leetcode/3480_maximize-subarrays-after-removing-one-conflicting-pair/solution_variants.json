@@ -11,15 +11,6 @@
       "summary": "Sweeps right endpoints while tracking the two strongest active left boundaries and credits each conflict with its exact removal gain.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

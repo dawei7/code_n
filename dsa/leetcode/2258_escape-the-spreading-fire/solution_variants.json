@@ -11,15 +11,6 @@
       "summary": "Precomputes fire-arrival times, then binary-searches the monotone set of feasible initial waits with a person BFS.",
       "time_complexity": "O(m n log 10^9)",
       "space_complexity": "O(m n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m n log 10^9)",
-      "space_complexity": "O(m n)"
     }
   ]
 }

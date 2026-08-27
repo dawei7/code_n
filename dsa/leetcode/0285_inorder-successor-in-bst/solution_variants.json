@@ -11,15 +11,6 @@
       "summary": "Follows one BST search path while retaining the smallest visited node greater than the target.",
       "time_complexity": "O(h)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(h)",
-      "space_complexity": "O(1)"
     }
   ]
 }

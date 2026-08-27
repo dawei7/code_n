@@ -11,15 +11,6 @@
       "summary": "Reduces each time modulo the cycle length and directly maps the visible suffix or restored prefix to the original array.",
       "time_complexity": "O(q)",
       "space_complexity": "O(q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q)",
-      "space_complexity": "O(q)"
     }
   ]
 }

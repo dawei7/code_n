@@ -11,15 +11,6 @@
       "summary": "Builds one trie and skips only prefix depths that become uniquely invalid for each removed word.",
       "time_complexity": "O(S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

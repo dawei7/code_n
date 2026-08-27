@@ -11,15 +11,6 @@
       "summary": "Keeps current food metadata in maps and one lazily cleaned rating heap per cuisine.",
       "time_complexity": "O((n + q) log(n + q))",
       "space_complexity": "O(n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + q) log(n + q))",
-      "space_complexity": "O(n + q)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Builds and sorts the distinct values of every legal square window, then scans adjacent sorted values for its minimum gap.",
       "time_complexity": "O(R C k^2 log k)",
       "space_complexity": "O(k^2 + R C)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R C k^2 log k)",
-      "space_complexity": "O(k^2 + R C)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Counts the input words owning each distinct substring, then selects each word's best uniquely owned candidate.",
       "time_complexity": "O(n L^3)",
       "space_complexity": "O(n L^3)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n L^3)",
-      "space_complexity": "O(n L^3)"
     }
   ]
 }

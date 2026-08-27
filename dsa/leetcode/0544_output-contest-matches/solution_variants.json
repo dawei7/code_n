@@ -11,15 +11,6 @@
       "summary": "Pairs symmetric strength-ordered bracket strings until one fully nested contest remains.",
       "time_complexity": "O(n \\log^2 n)",
       "space_complexity": "O(n \\log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\log^2 n)",
-      "space_complexity": "O(n \\log n)"
     }
   ]
 }

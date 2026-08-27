@@ -11,15 +11,6 @@
       "summary": "Models break positions as an assignment and finds a minimum-cost perfect matching with the Hungarian algorithm.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^3)",
-      "space_complexity": "O(n)"
     }
   ]
 }

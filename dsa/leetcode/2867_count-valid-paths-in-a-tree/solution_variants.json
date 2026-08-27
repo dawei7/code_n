@@ -11,15 +11,6 @@
       "summary": "Contracts non-prime components and counts endpoint combinations around each prime label.",
       "time_complexity": "O(n log log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

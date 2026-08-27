@@ -11,15 +11,6 @@
       "summary": "Aggregates each player's first login date and joins it back to the unique source activity row.",
       "time_complexity": "O(A)",
       "space_complexity": "O(P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(A)",
-      "space_complexity": "O(P)"
     }
   ]
 }

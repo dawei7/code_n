@@ -11,15 +11,6 @@
       "summary": "Builds partitions by endpoint while a running prefix sum combines every eligible previous boundary in constant time.",
       "time_complexity": "O(kn)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(kn)",
-      "space_complexity": "O(n)"
     }
   ]
 }

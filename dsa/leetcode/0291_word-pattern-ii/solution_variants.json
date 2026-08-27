@@ -11,15 +11,6 @@
       "summary": "Backtracks over nonempty substring assignments while enforcing the bijection and pruning impossible suffix lengths.",
       "time_complexity": "O(n \\cdot 2^n)",
       "space_complexity": "O(n + p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\cdot 2^n)",
-      "space_complexity": "O(n + p)"
     }
   ]
 }

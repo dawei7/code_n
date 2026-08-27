@@ -11,15 +11,6 @@
       "summary": "Filters coupons with a constant-size business priority map, then sorts valid pairs by category rank and code.",
       "time_complexity": "O(S + vL log v)",
       "space_complexity": "O(v)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + vL log v)",
-      "space_complexity": "O(v)"
     }
   ]
 }

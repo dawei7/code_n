@@ -11,15 +11,6 @@
       "summary": "Factors each value independently and stores each discovered prime in one shared set.",
       "time_complexity": "O(n sqrt M)",
       "space_complexity": "O(p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n sqrt M)",
-      "space_complexity": "O(p)"
     }
   ]
 }

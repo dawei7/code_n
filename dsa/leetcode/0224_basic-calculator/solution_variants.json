@@ -11,15 +11,6 @@
       "summary": "Scans once while saving each outer result and sign as a stack context for parenthesized expressions.",
       "time_complexity": "O(n)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(d)"
     }
   ]
 }

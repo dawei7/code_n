@@ -11,15 +11,6 @@
       "summary": "Counts arrays by completed even-even adjacencies and the parity of the last value.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(k)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Compares each query with dictionary words, stopping a comparison as soon as its third mismatch appears.",
       "time_complexity": "O(Q D n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(Q D n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

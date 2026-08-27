@@ -11,15 +11,6 @@
       "summary": "Maintains exactly the previous k values in a sliding set and detects a duplicate before insertion.",
       "time_complexity": "O(n)",
       "space_complexity": "O(min(n,k))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(min(n,k))"
     }
   ]
 }

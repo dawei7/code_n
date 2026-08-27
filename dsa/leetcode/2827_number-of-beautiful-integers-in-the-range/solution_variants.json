@@ -11,15 +11,6 @@
       "summary": "Counts valid prefixes with digit dynamic programming over divisibility, parity balance, and bound state.",
       "time_complexity": "O(D^2 k)",
       "space_complexity": "O(D^2 k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D^2 k)",
-      "space_complexity": "O(D^2 k)"
     }
   ]
 }

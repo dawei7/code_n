@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Delete Duplicate Folders in System and meets the required complexity bound.",
       "time_complexity": "O(F\\log F)",
       "space_complexity": "O(F)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(F\\log F)",
-      "space_complexity": "O(F)"
     }
   ]
 }

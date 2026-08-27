@@ -11,15 +11,6 @@
       "summary": "Right-shifts both endpoints to their common binary prefix, then restores that prefix's position.",
       "time_complexity": "O(\\log r)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\log r)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Recyclable and Low Fat Products and meets the required complexity bound.",
       "time_complexity": "O(R)",
       "space_complexity": "O(K)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R)",
-      "space_complexity": "O(K)"
     }
   ]
 }

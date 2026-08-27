@@ -11,15 +11,6 @@
       "summary": "Simulates occupied positions with a set, then sorts the final distinct coordinates.",
       "time_complexity": "O(n + m + k log k)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m + k log k)",
-      "space_complexity": "O(n)"
     }
   ]
 }

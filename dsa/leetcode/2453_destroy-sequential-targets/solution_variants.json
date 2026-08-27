@@ -11,15 +11,6 @@
       "summary": "Counts targets by remainder modulo space, then selects the smallest value in a most frequent group.",
       "time_complexity": "O(n)",
       "space_complexity": "O(min(n, space))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(min(n, space))"
     }
   ]
 }

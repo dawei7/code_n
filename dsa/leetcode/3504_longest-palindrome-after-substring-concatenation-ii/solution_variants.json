@@ -11,15 +11,6 @@
       "summary": "Uses Manacher radii for linear palindrome preprocessing and a rolling cross-string dynamic program.",
       "time_complexity": "O(nm + n + m)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm + n + m)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

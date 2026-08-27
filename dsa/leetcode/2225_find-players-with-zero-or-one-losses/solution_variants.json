@@ -11,15 +11,6 @@
       "summary": "Counts every participant's losses, filters the two requested counts, and sorts them.",
       "time_complexity": "O(m + p log p)",
       "space_complexity": "O(p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m + p log p)",
-      "space_complexity": "O(p)"
     }
   ]
 }

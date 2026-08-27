@@ -11,15 +11,6 @@
       "summary": "Finds the longest consecutive removable-bar run in each direction with hash-set scans.",
       "time_complexity": "O(H + V)",
       "space_complexity": "O(H + V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(H + V)",
-      "space_complexity": "O(H + V)"
     }
   ]
 }

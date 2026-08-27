@@ -11,15 +11,6 @@
       "summary": "Maintains vertical letter balances and scans horizontal prefixes for every anchored bottom-right corner.",
       "time_complexity": "O(r c)",
       "space_complexity": "O(c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r c)",
-      "space_complexity": "O(c)"
     }
   ]
 }

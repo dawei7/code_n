@@ -11,15 +11,6 @@
       "summary": "Maps the custom character values and applies Kadane's algorithm while allowing the empty substring.",
       "time_complexity": "O(n + k)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + k)",
-      "space_complexity": "O(1)"
     }
   ]
 }

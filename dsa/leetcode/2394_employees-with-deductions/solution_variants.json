@@ -11,15 +11,6 @@
       "summary": "Left-joins every employee to their sessions, totals independently rounded durations, and filters groups below the required minutes.",
       "time_complexity": "O((E + L)\\log(E + L))",
       "space_complexity": "O(E + L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((E + L)\\log(E + L))",
-      "space_complexity": "O(E + L)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Tests only lengths that divide the string and compares a fixed 26-letter frequency vector for every aligned block.",
       "time_complexity": "O(n sqrt(n))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n sqrt(n))",
-      "space_complexity": "O(1)"
     }
   ]
 }

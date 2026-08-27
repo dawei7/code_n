@@ -11,15 +11,6 @@
       "summary": "Extracts each domain once, filters the .com suffix, aggregates counts by domain, and sorts the grouped result.",
       "time_complexity": "O(S + g log g)",
       "space_complexity": "O(g)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + g log g)",
-      "space_complexity": "O(g)"
     }
   ]
 }

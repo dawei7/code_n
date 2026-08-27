@@ -11,15 +11,6 @@
       "summary": "Joins activities to age buckets and conditionally aggregates send time, open time, and total time in one grouped pass.",
       "time_complexity": "O(n)",
       "space_complexity": "O(g)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(g)"
     }
   ]
 }

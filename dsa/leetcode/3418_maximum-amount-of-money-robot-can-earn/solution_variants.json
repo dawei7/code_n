@@ -11,15 +11,6 @@
       "summary": "Carries three neutralization-count states through the grid with a single row-compressed dynamic-programming array.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Ranks calls independently within each direction, keeps the first three rows, and formats the selected durations.",
       "time_complexity": "O(c log c)",
       "space_complexity": "O(c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(c log c)",
-      "space_complexity": "O(c)"
     }
   ]
 }

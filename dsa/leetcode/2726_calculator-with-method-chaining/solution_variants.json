@@ -11,15 +11,6 @@
       "summary": "Stores one running result, applies each requested operation in place, and returns the same instance for chaining.",
       "time_complexity": "O(q)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q)",
-      "space_complexity": "O(1)"
     }
   ]
 }

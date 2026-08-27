@@ -11,15 +11,6 @@
       "summary": "Stores directed replacement pairs in a set and tests every possible substring alignment position by position.",
       "time_complexity": "O(SP + R)",
       "space_complexity": "O(R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(SP + R)",
-      "space_complexity": "O(R)"
     }
   ]
 }

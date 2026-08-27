@@ -11,15 +11,6 @@
       "summary": "Extends repunits through their remainders modulo k, avoiding construction of the growing integers.",
       "time_complexity": "O(K)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(K)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Number of Matching Subsequences and meets the required complexity bound.",
       "time_complexity": "O(S + L)",
       "space_complexity": "O(W)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + L)",
-      "space_complexity": "O(W)"
     }
   ]
 }

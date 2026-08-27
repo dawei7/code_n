@@ -11,15 +11,6 @@
       "summary": "Maintains the set intersection across all rows and sorts only the final common values.",
       "time_complexity": "O(T + r log r)",
       "space_complexity": "O(T)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(T + r log r)",
-      "space_complexity": "O(T)"
     }
   ]
 }

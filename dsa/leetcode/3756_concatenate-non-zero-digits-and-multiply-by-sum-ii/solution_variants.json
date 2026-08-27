@@ -11,15 +11,6 @@
       "summary": "Compresses the nonzero digits and answers every query from prefix counts, values, powers, and digit sums.",
       "time_complexity": "O(m + q)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m + q)",
-      "space_complexity": "O(m)"
     }
   ]
 }

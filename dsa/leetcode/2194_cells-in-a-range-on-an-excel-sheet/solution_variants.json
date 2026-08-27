@@ -11,15 +11,6 @@
       "summary": "Enumerates the inclusive rectangle directly in the required column-major order.",
       "time_complexity": "O(A)",
       "space_complexity": "O(A)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(A)",
-      "space_complexity": "O(A)"
     }
   ]
 }

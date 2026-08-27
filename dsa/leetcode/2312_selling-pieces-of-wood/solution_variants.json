@@ -11,15 +11,6 @@
       "summary": "Builds the best revenue for every ordered subboard from direct prices and all full horizontal or vertical cuts.",
       "time_complexity": "O(mn(m+n))",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn(m+n))",
-      "space_complexity": "O(mn)"
     }
   ]
 }

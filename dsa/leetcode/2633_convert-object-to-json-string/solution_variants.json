@@ -11,15 +11,6 @@
       "summary": "Traverses the JSON value once, appends syntax and primitive text to a shared token buffer, and joins the buffer once.",
       "time_complexity": "O(S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

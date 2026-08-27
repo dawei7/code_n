@@ -11,15 +11,6 @@
       "summary": "Aggregates invoice totals once, selects the highest-valued smallest-ID invoice, and returns its priced lines.",
       "time_complexity": "O((P+R)\\log(P+R))",
       "space_complexity": "O(P+R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((P+R)\\log(P+R))",
-      "space_complexity": "O(P+R)"
     }
   ]
 }

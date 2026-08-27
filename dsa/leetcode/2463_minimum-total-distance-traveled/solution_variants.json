@@ -11,15 +11,6 @@
       "summary": "Optimizes the sorted capacity DP with a monotonic deque for each factory.",
       "time_complexity": "O(R\\log R+F\\log F+RF)",
       "space_complexity": "O(R+F)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R\\log R+F\\log F+RF)",
-      "space_complexity": "O(R+F)"
     }
   ]
 }

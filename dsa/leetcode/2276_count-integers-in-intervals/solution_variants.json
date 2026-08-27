@@ -11,15 +11,6 @@
       "summary": "Uses an implicit segment tree that stores the covered count of each allocated coordinate segment.",
       "time_complexity": "O(Q log U)",
       "space_complexity": "O(Q log U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(Q log U)",
-      "space_complexity": "O(Q log U)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Computes all-pairs minimum conversion costs over the alphabet, then sums independent position costs.",
       "time_complexity": "O(N + K + A^3)",
       "space_complexity": "O(A^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N + K + A^3)",
-      "space_complexity": "O(A^2)"
     }
   ]
 }

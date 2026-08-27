@@ -11,15 +11,6 @@
       "summary": "Tests feasible divisors from most components downward using iterative postorder subtree sums.",
       "time_complexity": "O(n d(S))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n d(S))",
-      "space_complexity": "O(n)"
     }
   ]
 }

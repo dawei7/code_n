@@ -11,15 +11,6 @@
       "summary": "Processes each index once while counting assignments by the current GCD of each disjoint subsequence.",
       "time_complexity": "O(nV^2)",
       "space_complexity": "O(V^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nV^2)",
-      "space_complexity": "O(V^2)"
     }
   ]
 }

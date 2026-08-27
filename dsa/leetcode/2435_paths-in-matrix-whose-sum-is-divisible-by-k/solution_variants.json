@@ -11,15 +11,6 @@
       "summary": "Propagates path counts by sum remainder with one rolling matrix row.",
       "time_complexity": "O(mnk)",
       "space_complexity": "O(nk)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mnk)",
-      "space_complexity": "O(nk)"
     }
   ]
 }

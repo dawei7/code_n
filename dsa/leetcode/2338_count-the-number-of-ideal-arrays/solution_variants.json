@@ -11,15 +11,6 @@
       "summary": "Factors every possible final value and independently distributes each prime exponent among the array positions.",
       "time_complexity": "O(M log M)",
       "space_complexity": "O(M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M log M)",
-      "space_complexity": "O(M)"
     }
   ]
 }

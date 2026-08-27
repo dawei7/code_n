@@ -11,15 +11,6 @@
       "summary": "Traverses every original tree node once while recognizing and stopping at the cyclically linked leaves.",
       "time_complexity": "O(n)",
       "space_complexity": "O(h)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(h)"
     }
   ]
 }

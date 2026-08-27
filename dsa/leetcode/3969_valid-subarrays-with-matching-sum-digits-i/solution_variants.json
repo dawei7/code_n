@@ -11,15 +11,6 @@
       "summary": "Extends every start index with a running sum and checks the sum's boundary digits numerically.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

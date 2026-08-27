@@ -11,15 +11,6 @@
       "summary": "Counts balanced values up to each endpoint with exact-length digit DP and subtracts the prefix counts.",
       "time_complexity": "O(D^2)",
       "space_complexity": "O(D^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D^2)",
-      "space_complexity": "O(D^2)"
     }
   ]
 }

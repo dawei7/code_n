@@ -11,15 +11,6 @@
       "summary": "Enumerate each non-decreasing divisor decomposition once and retain the factor list with minimum endpoint spread.",
       "time_complexity": "O(F)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(F)",
-      "space_complexity": "O(k)"
     }
   ]
 }

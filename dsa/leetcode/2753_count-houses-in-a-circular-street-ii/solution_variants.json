@@ -11,15 +11,6 @@
       "summary": "Keeps the first open door as a marker, closes later open doors, and measures the final return distance.",
       "time_complexity": "O(k)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k)",
-      "space_complexity": "O(1)"
     }
   ]
 }

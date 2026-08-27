@@ -11,15 +11,6 @@
       "summary": "Range-adds distinct-parity balance by last occurrence and finds the earliest zero with a lazy segment tree.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n + U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n)",
-      "space_complexity": "O(n + U)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Finds the longest nonempty prefix shared by all three strings and deletes every character beyond it.",
       "time_complexity": "O(L)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L)",
-      "space_complexity": "O(1)"
     }
   ]
 }

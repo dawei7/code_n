@@ -11,15 +11,6 @@
       "summary": "Uses prefix dynamic programming to choose whether each final tile stays visible or belongs to the last carpet.",
       "time_complexity": "O(cn)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(cn)",
-      "space_complexity": "O(n)"
     }
   ]
 }

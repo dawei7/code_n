@@ -11,15 +11,6 @@
       "summary": "Represents exact rationals by signed exponents of 2, 3, and 5, then counts action sequences with a rolling state map.",
       "time_complexity": "O(N S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

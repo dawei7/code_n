@@ -11,15 +11,6 @@
       "summary": "Extends every start position while maintaining its current OR, stopping as soon as that start reaches the threshold.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

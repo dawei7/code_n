@@ -11,15 +11,6 @@
       "summary": "Greedily forbids bits from most to least significant while preserving at least one jointly compatible value in every row.",
       "time_complexity": "O(BMN)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(BMN)",
-      "space_complexity": "O(1)"
     }
   ]
 }

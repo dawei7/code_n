@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Minimum Moves to Move a Box to Their Target Location and meets the required complexity bound.",
       "time_complexity": "O(V^2)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V^2)",
-      "space_complexity": "O(V)"
     }
   ]
 }

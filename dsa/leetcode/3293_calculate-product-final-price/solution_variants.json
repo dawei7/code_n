@@ -11,15 +11,6 @@
       "summary": "Left-joins category discounts, substitutes zero for missing matches, and orders every product by ID.",
       "time_complexity": "O((P + D) log(P + D))",
       "space_complexity": "O(P + D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((P + D) log(P + D))",
-      "space_complexity": "O(P + D)"
     }
   ]
 }

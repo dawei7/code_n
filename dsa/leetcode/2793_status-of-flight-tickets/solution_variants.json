@@ -11,15 +11,6 @@
       "summary": "Ranks bookings chronologically within each flight and compares each position with capacity.",
       "time_complexity": "O(P log P + F)",
       "space_complexity": "O(P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(P log P + F)",
-      "space_complexity": "O(P)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Represents the text on either side of the cursor with two character stacks.",
       "time_complexity": "O(W + q)",
       "space_complexity": "O(L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(W + q)",
-      "space_complexity": "O(L)"
     }
   ]
 }

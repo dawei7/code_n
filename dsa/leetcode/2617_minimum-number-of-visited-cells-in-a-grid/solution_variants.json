@@ -11,15 +11,6 @@
       "summary": "Processes cells in top-left order while row and column min-heaps retain the cheapest predecessor whose jump still reaches the current cell.",
       "time_complexity": "O(mn\\log(mn))",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn\\log(mn))",
-      "space_complexity": "O(mn)"
     }
   ]
 }

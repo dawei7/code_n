@@ -11,15 +11,6 @@
       "summary": "Transforms every subsequence sum into a loss from the maximum sum and enumerates the smallest losses with a min-heap.",
       "time_complexity": "O(n log n + k log k)",
       "space_complexity": "O(n + k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + k log k)",
-      "space_complexity": "O(n + k)"
     }
   ]
 }

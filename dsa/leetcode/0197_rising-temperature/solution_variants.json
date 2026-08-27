@@ -11,15 +11,6 @@
       "summary": "Transforms each previous date once and uses direct equality to find the following calendar day.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n)"
     }
   ]
 }

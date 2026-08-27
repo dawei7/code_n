@@ -11,15 +11,6 @@
       "summary": "Count the whole string once, then retain qualifying occurrences in one stable-order pass.",
       "time_complexity": "O(n)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(d)"
     }
   ]
 }

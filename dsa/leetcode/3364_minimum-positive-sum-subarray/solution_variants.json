@@ -11,15 +11,6 @@
       "summary": "Maintains one sliding window for each allowed length and tracks the smallest strictly positive sum.",
       "time_complexity": "O(n(r - l + 1))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n(r - l + 1))",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Unions circles whose overlap is relevant inside the rectangle and detects a barrier between opposing boundary groups.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n)"
     }
   ]
 }

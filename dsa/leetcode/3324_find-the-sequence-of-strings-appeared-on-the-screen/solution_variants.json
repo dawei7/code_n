@@ -11,15 +11,6 @@
       "summary": "Simulates the unique minimum key sequence and materializes every required screen state once.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Deduplicates customer-category memberships, forms each unordered pair once per customer, then groups and filters the shared counts.",
       "time_complexity": "O(P log P + J log J + I log I)",
       "space_complexity": "O(U + J + I)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(P log P + J log J + I log I)",
-      "space_complexity": "O(U + J + I)"
     }
   ]
 }

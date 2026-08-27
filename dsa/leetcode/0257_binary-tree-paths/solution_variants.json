@@ -11,15 +11,6 @@
       "summary": "Carries each root prefix through one depth-first traversal and emits it exactly when a leaf is reached.",
       "time_complexity": "O(n + output)",
       "space_complexity": "O(h)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + output)",
-      "space_complexity": "O(h)"
     }
   ]
 }

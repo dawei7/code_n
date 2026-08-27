@@ -11,15 +11,6 @@
       "summary": "Compresses all subarrays ending at each index by their distinct GCD and multiplicity.",
       "time_complexity": "O(n log^2 V)",
       "space_complexity": "O(log V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log^2 V)",
-      "space_complexity": "O(log V)"
     }
   ]
 }

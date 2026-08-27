@@ -11,15 +11,6 @@
       "summary": "Accumulates integer totals by depth in one DFS, then applies weights derived from the deepest integer level.",
       "time_complexity": "O(N)",
       "space_complexity": "O(D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(D)"
     }
   ]
 }

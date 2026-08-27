@@ -11,15 +11,6 @@
       "summary": "Left-joins rides to every user, aggregates distance, substitutes zero for missing totals, and orders by user identifier.",
       "time_complexity": "O((U + R) log (U + R))",
       "space_complexity": "O(U + R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((U + R) log (U + R))",
-      "space_complexity": "O(U + R)"
     }
   ]
 }

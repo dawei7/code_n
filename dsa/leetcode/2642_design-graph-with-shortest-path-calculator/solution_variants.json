@@ -11,15 +11,6 @@
       "summary": "Stores adjacency lists and runs heap-based Dijkstra for each shortest-path query.",
       "time_complexity": "O((n + e) log n)",
       "space_complexity": "O(n + e)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + e) log n)",
-      "space_complexity": "O(n + e)"
     }
   ]
 }

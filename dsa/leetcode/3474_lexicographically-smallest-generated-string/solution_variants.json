@@ -11,15 +11,6 @@
       "summary": "Overlays forced windows, then combines a KMP automaton with suffix feasibility and greedy reconstruction.",
       "time_complexity": "O((n + m)m)",
       "space_complexity": "O((n + m)m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + m)m)",
-      "space_complexity": "O((n + m)m)"
     }
   ]
 }

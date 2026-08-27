@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Combinations and meets the required complexity bound.",
       "time_complexity": "O(k \\cdot C(n,k))",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k \\cdot C(n,k))",
-      "space_complexity": "O(k)"
     }
   ]
 }

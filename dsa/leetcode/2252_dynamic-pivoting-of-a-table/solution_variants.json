@@ -11,15 +11,6 @@
       "summary": "Builds lexicographically ordered conditional-aggregation expressions from the live store set and executes the resulting pivot query.",
       "time_complexity": "O(r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Roots the tree iteratively and evaluates both collection choices bottom-up for every effective ancestor-halving count.",
       "time_complexity": "O(n log(C))",
       "space_complexity": "O(n log(C))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log(C))",
-      "space_complexity": "O(n log(C))"
     }
   ]
 }

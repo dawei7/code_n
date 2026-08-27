@@ -11,15 +11,6 @@
       "summary": "Aggregates spend by user and product, then dense-ranks each user's totals to retain every maximum tie.",
       "time_complexity": "O((s + p) log s)",
       "space_complexity": "O(s + p)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((s + p) log s)",
-      "space_complexity": "O(s + p)"
     }
   ]
 }

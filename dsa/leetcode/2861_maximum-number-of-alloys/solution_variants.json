@@ -11,15 +11,6 @@
       "summary": "Binary-searches the maximum feasible production count independently for every machine.",
       "time_complexity": "O(kn log M)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(kn log M)",
-      "space_complexity": "O(1)"
     }
   ]
 }

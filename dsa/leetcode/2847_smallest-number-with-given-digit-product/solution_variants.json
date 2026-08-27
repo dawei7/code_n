@@ -11,15 +11,6 @@
       "summary": "Greedily extracts the largest possible decimal digit factors, then reverses them.",
       "time_complexity": "O(log n)",
       "space_complexity": "O(log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log n)",
-      "space_complexity": "O(log n)"
     }
   ]
 }

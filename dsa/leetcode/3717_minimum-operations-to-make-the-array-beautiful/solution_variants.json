@@ -11,15 +11,6 @@
       "summary": "Uses bounded dynamic programming over attainable final values and enumerates divisible successors by their multiples.",
       "time_complexity": "O(n V log V)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n V log V)",
-      "space_complexity": "O(V)"
     }
   ]
 }

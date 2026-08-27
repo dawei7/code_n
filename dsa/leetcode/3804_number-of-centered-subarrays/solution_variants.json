@@ -11,15 +11,6 @@
       "summary": "Extends every subarray from each left endpoint while maintaining its sum and set of contained values.",
       "time_complexity": "O(N^2)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N^2)",
-      "space_complexity": "O(N)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Runs a minimum-weight Dijkstra pass from the destination, then a second Dijkstra pass that assigns each encountered unknown edge exactly the slack needed to protect the target distance.",
       "time_complexity": "O((n + m) log n)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + m) log n)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

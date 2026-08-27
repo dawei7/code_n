@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Smallest Greater Multiple Made of Two Digits and meets the required complexity bound.",
       "time_complexity": "O(2^D)",
       "space_complexity": "O(2^D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^D)",
-      "space_complexity": "O(2^D)"
     }
   ]
 }

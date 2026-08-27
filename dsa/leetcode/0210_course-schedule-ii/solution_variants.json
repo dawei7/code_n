@@ -11,15 +11,6 @@
       "summary": "Emits Kahn's zero-indegree queue as a topological order and rejects any unprocessed cycle.",
       "time_complexity": "O(V + E)",
       "space_complexity": "O(V + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V + E)",
-      "space_complexity": "O(V + E)"
     }
   ]
 }

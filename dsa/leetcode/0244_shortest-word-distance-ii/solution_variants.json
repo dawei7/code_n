@@ -11,15 +11,6 @@
       "summary": "Indexes each word's sorted positions once, then answers every query by merging two occurrence lists.",
       "time_complexity": "O(n + qn)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + qn)",
-      "space_complexity": "O(n)"
     }
   ]
 }

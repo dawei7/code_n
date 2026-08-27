@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Shortest Path to Get All Keys and meets the required complexity bound.",
       "time_complexity": "O(mn2^c)",
       "space_complexity": "O(mn2^c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn2^c)",
-      "space_complexity": "O(mn2^c)"
     }
   ]
 }

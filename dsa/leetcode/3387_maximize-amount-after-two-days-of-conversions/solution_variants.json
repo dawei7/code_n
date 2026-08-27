@@ -11,15 +11,6 @@
       "summary": "Traverses each reciprocal conversion graph once and compares every currency reachable on both days.",
       "time_complexity": "O(n+m)",
       "space_complexity": "O(n+m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n+m)",
-      "space_complexity": "O(n+m)"
     }
   ]
 }

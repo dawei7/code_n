@@ -11,15 +11,6 @@
       "summary": "Computes root path XORs once and merges subtree ordered sets from smaller to larger in postorder.",
       "time_complexity": "O(n log^2 n + q log n)",
       "space_complexity": "O(n log n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log^2 n + q log n)",
-      "space_complexity": "O(n log n + q)"
     }
   ]
 }

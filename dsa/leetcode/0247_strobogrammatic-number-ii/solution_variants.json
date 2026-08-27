@@ -11,15 +11,6 @@
       "summary": "Builds every valid numeral from its center by wrapping it with the five rotation-compatible digit pairs.",
       "time_complexity": "O(n \\cdot 5^{n/2})",
       "space_complexity": "O(n \\cdot 5^{n/2})"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n \\cdot 5^{n/2})",
-      "space_complexity": "O(n \\cdot 5^{n/2})"
     }
   ]
 }

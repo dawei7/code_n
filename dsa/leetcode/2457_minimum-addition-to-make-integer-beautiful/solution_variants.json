@@ -11,15 +11,6 @@
       "summary": "Rounds non-zero decimal positions upward while maintaining the digit sum through carries.",
       "time_complexity": "O(log n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

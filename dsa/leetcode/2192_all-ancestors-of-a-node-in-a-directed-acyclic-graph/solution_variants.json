@@ -11,15 +11,6 @@
       "summary": "Traverses descendants from every source and appends sources in ascending order.",
       "time_complexity": "O(n^2 + nm)",
       "space_complexity": "O(n^2 + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 + nm)",
-      "space_complexity": "O(n^2 + m)"
     }
   ]
 }

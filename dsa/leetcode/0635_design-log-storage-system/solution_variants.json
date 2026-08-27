@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Design Log Storage System and meets the required complexity bound.",
       "time_complexity": "O(QP)",
       "space_complexity": "O(P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(QP)",
-      "space_complexity": "O(P)"
     }
   ]
 }

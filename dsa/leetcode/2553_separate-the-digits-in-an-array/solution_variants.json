@@ -11,15 +11,6 @@
       "summary": "Visits each decimal digit once and appends it directly to the output in input order.",
       "time_complexity": "O(D)",
       "space_complexity": "O(D)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D)",
-      "space_complexity": "O(D)"
     }
   ]
 }

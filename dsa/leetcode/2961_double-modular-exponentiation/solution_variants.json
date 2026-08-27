@@ -11,15 +11,6 @@
       "summary": "Evaluates both exponentiations with binary modular exponentiation and collects exactly the matching indices.",
       "time_complexity": "O(V(log B + log C))",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(V(log B + log C))",
-      "space_complexity": "O(V)"
     }
   ]
 }

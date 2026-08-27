@@ -11,15 +11,6 @@
       "summary": "Sweeps every matrix diagonal in both directions while maintaining the distinct values already seen.",
       "time_complexity": "O(m*n)",
       "space_complexity": "O(m*n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m*n)",
-      "space_complexity": "O(m*n)"
     }
   ]
 }

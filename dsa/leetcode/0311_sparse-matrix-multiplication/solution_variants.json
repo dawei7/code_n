@@ -11,15 +11,6 @@
       "summary": "Indexes nonzero entries of the right matrix and propagates only compatible nonzero products.",
       "time_complexity": "O(mk + kn + z)",
       "space_complexity": "O(kn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mk + kn + z)",
-      "space_complexity": "O(kn)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Counts bounded-distance neighborhoods from every root and adds the best reusable second-tree contribution.",
       "time_complexity": "O(n^2 + m^2)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 + m^2)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

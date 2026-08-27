@@ -11,15 +11,6 @@
       "summary": "Finds the fixed prefix first, then searches for the fixed suffix after that occurrence.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

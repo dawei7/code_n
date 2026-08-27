@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Minimum Cost to Cut a Stick and meets the required complexity bound.",
       "time_complexity": "O(c^3)",
       "space_complexity": "O(c^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(c^3)",
-      "space_complexity": "O(c^2)"
     }
   ]
 }

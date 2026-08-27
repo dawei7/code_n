@@ -11,15 +11,6 @@
       "summary": "Counts each OR bit over ordered index pairs and binary-searches the largest affordable dimension.",
       "time_complexity": "O(log^2 n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log^2 n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

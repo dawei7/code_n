@@ -11,15 +11,6 @@
       "summary": "Flattens the BST in sorted order with iterative in-order traversal, then binary-searches both bounds for every query.",
       "time_complexity": "O(n + q log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

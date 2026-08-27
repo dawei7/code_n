@@ -11,15 +11,6 @@
       "summary": "Repeatedly halves the current maximum value, maintained in a max-heap, until the accumulated reduction reaches half the original sum.",
       "time_complexity": "O((n + k) log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + k) log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

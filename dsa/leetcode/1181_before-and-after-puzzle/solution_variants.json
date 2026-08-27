@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Before and After Puzzle and meets the required complexity bound.",
       "time_complexity": "O(S+G+R\\log R)",
       "space_complexity": "O(S+G)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S+G+R\\log R)",
-      "space_complexity": "O(S+G)"
     }
   ]
 }

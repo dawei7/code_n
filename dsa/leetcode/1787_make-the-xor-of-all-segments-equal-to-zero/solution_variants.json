@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Make the XOR of All Segments Equal to Zero and meets the required complexity bound.",
       "time_complexity": "O(nX)",
       "space_complexity": "O(X)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nX)",
-      "space_complexity": "O(X)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Maps each abbreviation to its sole word or an ambiguity marker, then answers queries directly.",
       "time_complexity": "O(c + q)",
       "space_complexity": "O(c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(c + q)",
-      "space_complexity": "O(c)"
     }
   ]
 }

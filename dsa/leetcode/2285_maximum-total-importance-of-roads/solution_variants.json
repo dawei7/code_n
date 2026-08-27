@@ -11,15 +11,6 @@
       "summary": "Pairs larger city values with larger road degrees and sums the resulting degree contributions.",
       "time_complexity": "O(n log n + r)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + r)",
-      "space_complexity": "O(n)"
     }
   ]
 }

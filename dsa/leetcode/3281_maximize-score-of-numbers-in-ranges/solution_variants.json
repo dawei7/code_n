@@ -11,15 +11,6 @@
       "summary": "Sorts the intervals and binary-searches the largest gap accepted by an earliest-placement greedy check.",
       "time_complexity": "O(n log n + n log R)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + n log R)",
-      "space_complexity": "O(n)"
     }
   ]
 }

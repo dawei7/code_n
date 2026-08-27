@@ -11,15 +11,6 @@
       "summary": "Combines chronological timestamps, cumulative scores, and binary-search interval boundaries.",
       "time_complexity": "O(q log r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q log r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

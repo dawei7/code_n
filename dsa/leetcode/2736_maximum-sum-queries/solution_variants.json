@@ -11,15 +11,6 @@
       "summary": "Process first-coordinate thresholds offline and use a reversed Fenwick tree for maximum sums above each second-coordinate threshold.",
       "time_complexity": "O((n + q) log(n + q))",
       "space_complexity": "O(n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + q) log(n + q))",
-      "space_complexity": "O(n + q)"
     }
   ]
 }

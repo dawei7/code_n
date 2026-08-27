@@ -11,15 +11,6 @@
       "summary": "Scans every cell once and maintains the four extreme coordinates occupied by a one.",
       "time_complexity": "O(RC)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(RC)",
-      "space_complexity": "O(1)"
     }
   ]
 }

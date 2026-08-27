@@ -11,15 +11,6 @@
       "summary": "Sums each decimal digit directly while removing it from the number, avoiding a frequency table that the weighted sum does not require.",
       "time_complexity": "O(D)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D)",
-      "space_complexity": "O(1)"
     }
   ]
 }

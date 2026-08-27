@@ -11,15 +11,6 @@
       "summary": "Enumerates every possible split of the target XOR-distance and counts matching earlier points in a frequency map.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(n)"
     }
   ]
 }

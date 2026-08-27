@@ -11,15 +11,6 @@
       "summary": "Sorts each row to expose its allowed values and performs a max-heap merge to take the globally largest k candidates.",
       "time_complexity": "O(nm log m + k log n)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm log m + k log n)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

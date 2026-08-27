@@ -11,15 +11,6 @@
       "summary": "Uses distinct-length rolling-hash lookups inside prefix-cost dynamic programming.",
       "time_complexity": "O(N D + S)",
       "space_complexity": "O(N + S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N D + S)",
-      "space_complexity": "O(N + S)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Stickers to Spell Word and meets the required complexity bound.",
       "time_complexity": "O(S T 2^T)",
       "space_complexity": "O(T 2^T)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S T 2^T)",
-      "space_complexity": "O(T 2^T)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Combines prefix dynamic programming with a reversed trie to find every dictionary word ending at each position.",
       "time_complexity": "O(n^2 + W)",
       "space_complexity": "O(n + W)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 + W)",
-      "space_complexity": "O(n + W)"
     }
   ]
 }

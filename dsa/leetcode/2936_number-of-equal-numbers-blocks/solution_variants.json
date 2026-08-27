@@ -11,15 +11,6 @@
       "summary": "Uses exponential search to bracket each maximal block boundary and binary search to locate the first different value.",
       "time_complexity": "O(b log(n))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(b log(n))",
-      "space_complexity": "O(1)"
     }
   ]
 }

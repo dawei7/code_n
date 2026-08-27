@@ -11,15 +11,6 @@
       "summary": "Enumerates source splits, selects maximal subsequences greedily, and merges by complete suffix order.",
       "time_complexity": "O(k(n + m + k^2))",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k(n + m + k^2))",
-      "space_complexity": "O(k)"
     }
   ]
 }

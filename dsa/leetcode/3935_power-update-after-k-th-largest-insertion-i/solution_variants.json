@@ -11,15 +11,6 @@
       "summary": "Maintains the largest requested ranks in a min-heap, the remaining values in a max-heap, and rebalances after each insertion.",
       "time_complexity": "O((N + Q) log(N + Q) + Q log V)",
       "space_complexity": "O(N + Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((N + Q) log(N + Q) + Q log V)",
-      "space_complexity": "O(N + Q)"
     }
   ]
 }

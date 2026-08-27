@@ -11,15 +11,6 @@
       "summary": "Orders state-city pairs once, groups by state, and concatenates each state's cities with the required separator.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r log r)",
-      "space_complexity": "O(r)"
     }
   ]
 }

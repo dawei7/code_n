@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Longest Absolute File Path and meets the required complexity bound.",
       "time_complexity": "O(n)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(d)"
     }
   ]
 }

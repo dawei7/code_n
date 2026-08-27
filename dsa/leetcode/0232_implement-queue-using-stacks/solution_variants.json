@@ -11,15 +11,6 @@
       "summary": "Uses incoming and outgoing stacks so each queued value is transferred at most once.",
       "time_complexity": "O(1)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(n)"
     }
   ]
 }

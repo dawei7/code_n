@@ -11,15 +11,6 @@
       "summary": "Topologically orders the values independently for rows and columns, then places each value at the intersection of its two positions.",
       "time_complexity": "O(k^2 + r + c)",
       "space_complexity": "O(k^2 + r + c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k^2 + r + c)",
-      "space_complexity": "O(k^2 + r + c)"
     }
   ]
 }

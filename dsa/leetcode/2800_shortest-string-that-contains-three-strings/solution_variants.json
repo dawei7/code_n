@@ -11,15 +11,6 @@
       "summary": "Enumerates all six input orders and greedily uses the largest legal suffix-prefix overlap for each merge.",
       "time_complexity": "O(L^2)",
       "space_complexity": "O(L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L^2)",
-      "space_complexity": "O(L)"
     }
   ]
 }

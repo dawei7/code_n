@@ -11,15 +11,6 @@
       "summary": "Checks that every row is either identical to the first row or its bitwise complement.",
       "time_complexity": "O(mn)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(mn)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Check If a String Is a Valid Sequence from Root to Leaves Path in a Binary Tree and meets the required complexity bound.",
       "time_complexity": "O(N)",
       "space_complexity": "O(h)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(h)"
     }
   ]
 }

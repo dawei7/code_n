@@ -11,15 +11,6 @@
       "summary": "Joins only equal skills, filters complete candidate-project coverage, then ranks eligible candidates with the required tie-break.",
       "time_complexity": "O((C + P + J) log(C + P + J))",
       "space_complexity": "O(C + P + J)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((C + P + J) log(C + P + J))",
-      "space_complexity": "O(C + P + J)"
     }
   ]
 }

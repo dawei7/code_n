@@ -11,15 +11,6 @@
       "summary": "Counts valid constructions by length, appending one fixed-size zero or one chunk in each transition.",
       "time_complexity": "O(L)",
       "space_complexity": "O(L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L)",
-      "space_complexity": "O(L)"
     }
   ]
 }

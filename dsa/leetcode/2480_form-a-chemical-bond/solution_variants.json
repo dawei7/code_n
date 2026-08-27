@@ -11,15 +11,6 @@
       "summary": "Filters two aliases of Elements to metals and nonmetals, then cross joins them to emit every valid bond.",
       "time_complexity": "O(r+b)",
       "space_complexity": "O(b)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r+b)",
-      "space_complexity": "O(b)"
     }
   ]
 }

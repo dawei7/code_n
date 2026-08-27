@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Find the Quiet Students in All Exams and meets the required complexity bound.",
       "time_complexity": "O(E \\log E + S)",
       "space_complexity": "O(E + S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(E \\log E + S)",
-      "space_complexity": "O(E + S)"
     }
   ]
 }

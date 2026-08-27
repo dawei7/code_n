@@ -11,15 +11,6 @@
       "summary": "Counts every pickup, records the final house for each truck, and adds prefix travel time to those three stopping points.",
       "time_complexity": "O(n + S)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + S)",
-      "space_complexity": "O(n)"
     }
   ]
 }

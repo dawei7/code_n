@@ -11,15 +11,6 @@
       "summary": "Builds the substitution table from each letter's first key appearance, then translates the message in one pass.",
       "time_complexity": "O(k+m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k+m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

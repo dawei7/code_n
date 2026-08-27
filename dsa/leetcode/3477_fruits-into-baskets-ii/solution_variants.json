@@ -11,15 +11,6 @@
       "summary": "Simulates each fruit in order, consumes its leftmost sufficient basket, and counts scans with no match.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

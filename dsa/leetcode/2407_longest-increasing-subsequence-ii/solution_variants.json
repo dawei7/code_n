@@ -11,15 +11,6 @@
       "summary": "Stores the best subsequence length by ending value and queries the permitted predecessor-value interval with a segment tree.",
       "time_complexity": "O(n log M)",
       "space_complexity": "O(M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log M)",
-      "space_complexity": "O(M)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Maintains four endpoint-permission dynamic-programming states per segment-tree node under point updates.",
       "time_complexity": "O(n + q log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

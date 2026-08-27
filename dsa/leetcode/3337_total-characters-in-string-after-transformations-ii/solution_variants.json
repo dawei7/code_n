@@ -11,15 +11,6 @@
       "summary": "Exponentiates the 26-letter transition matrix and applies its selected powers to the initial frequency vector.",
       "time_complexity": "O(n + A^3 log t)",
       "space_complexity": "O(A^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + A^3 log t)",
-      "space_complexity": "O(A^2)"
     }
   ]
 }

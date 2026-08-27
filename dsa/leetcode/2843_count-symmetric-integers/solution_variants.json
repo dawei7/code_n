@@ -11,15 +11,6 @@
       "summary": "Enumerates the inclusive interval and compares the digit sums of equal halves for each even-length value.",
       "time_complexity": "O(R)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R)",
-      "space_complexity": "O(1)"
     }
   ]
 }

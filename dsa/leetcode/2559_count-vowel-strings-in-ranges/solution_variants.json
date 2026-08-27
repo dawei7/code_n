@@ -11,15 +11,6 @@
       "summary": "Builds a prefix count of words whose first and last characters are vowels, then answers every inclusive range by subtraction.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

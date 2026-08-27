@@ -11,15 +11,6 @@
       "summary": "Counts player-color picks online and records each player at the first winning threshold.",
       "time_complexity": "O(p)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(p)",
-      "space_complexity": "O(n)"
     }
   ]
 }

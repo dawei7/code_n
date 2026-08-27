@@ -11,15 +11,6 @@
       "summary": "Backtracks over nondecreasing divisors through each remainder's square root, emitting each factorization once.",
       "time_complexity": "O(\\sqrt{n} + output)",
       "space_complexity": "O(\\log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\sqrt{n} + output)",
-      "space_complexity": "O(\\log n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Orders points by perimeter position, binary-searches the distance, and uses two-pointer successors plus binary lifting to test every cyclic start efficiently.",
       "time_complexity": "O(n log n + n log k log side)",
       "space_complexity": "O(n log k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + n log k log side)",
-      "space_complexity": "O(n log k)"
     }
   ]
 }

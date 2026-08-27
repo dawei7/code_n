@@ -11,15 +11,6 @@
       "summary": "Precomputes each start's valid reach and a prefix sum of valid suffix counts for constant-time queries.",
       "time_complexity": "O(n+q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n+q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

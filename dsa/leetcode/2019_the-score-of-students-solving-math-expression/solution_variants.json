@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for The Score of Students Solving Math Expression and meets the required complexity bound.",
       "time_complexity": "O(M^3V^2+A)",
       "space_complexity": "O(M^2V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M^3V^2+A)",
-      "space_complexity": "O(M^2V)"
     }
   ]
 }

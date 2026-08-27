@@ -11,15 +11,6 @@
       "summary": "Processes each value with a two-dimensional DP over the counts of both operations already used.",
       "time_complexity": "O(n * op1 * op2)",
       "space_complexity": "O(op1 * op2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n * op1 * op2)",
-      "space_complexity": "O(op1 * op2)"
     }
   ]
 }

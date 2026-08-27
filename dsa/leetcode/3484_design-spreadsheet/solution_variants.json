@@ -11,15 +11,6 @@
       "summary": "Stores only explicitly assigned cells in a hash map and evaluates each two-operand formula directly.",
       "time_complexity": "O(q)",
       "space_complexity": "O(s)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q)",
-      "space_complexity": "O(s)"
     }
   ]
 }

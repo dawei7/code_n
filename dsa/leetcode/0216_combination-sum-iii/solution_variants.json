@@ -11,15 +11,6 @@
       "summary": "Backtracks over strictly increasing digits and emits only length-k paths whose remaining sum is zero.",
       "time_complexity": "O(2^9 k)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^9 k)",
-      "space_complexity": "O(k)"
     }
   ]
 }

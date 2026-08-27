@@ -11,15 +11,6 @@
       "summary": "Uses wizard-skill prefix sums to place each potion at the earliest start satisfying every no-overlap constraint.",
       "time_complexity": "O(nm)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm)",
-      "space_complexity": "O(n)"
     }
   ]
 }

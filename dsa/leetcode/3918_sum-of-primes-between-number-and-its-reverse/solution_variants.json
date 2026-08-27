@@ -11,15 +11,6 @@
       "summary": "Reverses n, sieves every prime through the larger endpoint, and sums the inclusive interval between the two numbers.",
       "time_complexity": "O(U log log U)",
       "space_complexity": "O(U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(U log log U)",
-      "space_complexity": "O(U)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Extracts each diagonal once, sorts it in the direction required by its starting edge, and writes it back in place.",
       "time_complexity": "O(n^2 log n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 log n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

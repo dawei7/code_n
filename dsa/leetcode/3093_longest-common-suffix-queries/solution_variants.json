@@ -11,15 +11,6 @@
       "summary": "Builds a trie over reversed container words, storing the shortest-and-earliest eligible index at every suffix node.",
       "time_complexity": "O(C + Q)",
       "space_complexity": "O(C)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(C + Q)",
-      "space_complexity": "O(C)"
     }
   ]
 }

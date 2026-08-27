@@ -11,15 +11,6 @@
       "summary": "Uses Z-functions to find every position's longest valid prefix deterministically, then greedily covers the target.",
       "time_complexity": "O(S + WT)",
       "space_complexity": "O(T + L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + WT)",
-      "space_complexity": "O(T + L)"
     }
   ]
 }

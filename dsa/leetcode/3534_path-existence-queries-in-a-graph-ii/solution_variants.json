@@ -11,15 +11,6 @@
       "summary": "Sort nodes by value, compute each position's farthest one-hop reach, and binary-lift greedy jumps for logarithmic shortest-path queries.",
       "time_complexity": "O((n + Q) * log n)",
       "space_complexity": "O(n * log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + Q) * log n)",
-      "space_complexity": "O(n * log n)"
     }
   ]
 }

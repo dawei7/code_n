@@ -11,15 +11,6 @@
       "summary": "Binary-searches the first maximum whose individual and combined eligibility counts can fill both arrays.",
       "time_complexity": "O(log D + log C)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log D + log C)",
-      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Traverse each component once and compare its degree sum with the complete-graph requirement.",
       "time_complexity": "O(n + e)",
       "space_complexity": "O(n + e)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + e)",
-      "space_complexity": "O(n + e)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Scans indices left to right and consumes only as many sequential queries as the current deficit requires.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

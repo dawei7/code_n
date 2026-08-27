@@ -11,15 +11,6 @@
       "summary": "Marks each inclusive rectangle with four 2D difference updates, then reconstructs the matrix with prefix sums.",
       "time_complexity": "O(n^2 + q)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2 + q)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

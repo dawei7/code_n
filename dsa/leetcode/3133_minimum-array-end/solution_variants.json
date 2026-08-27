@@ -11,15 +11,6 @@
       "summary": "Embeds the bits of n - 1 into the zero-bit positions of x to select the nth and smallest possible supermask.",
       "time_complexity": "O(log n + log x)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log n + log x)",
-      "space_complexity": "O(1)"
     }
   ]
 }

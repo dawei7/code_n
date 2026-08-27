@@ -11,15 +11,6 @@
       "summary": "Maps each rank to its determining prefix and mirrors that prefix directly.",
       "time_complexity": "O(q * l)",
       "space_complexity": "O(q + l)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(q * l)",
-      "space_complexity": "O(q + l)"
     }
   ]
 }

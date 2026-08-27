@@ -11,15 +11,6 @@
       "summary": "Apply large-step queries directly and batch equal small steps with multiplicative difference sweeps over residue classes.",
       "time_complexity": "O((n + q) sqrt(n) + q log MOD)",
       "space_complexity": "O(n + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + q) sqrt(n) + q log MOD)",
-      "space_complexity": "O(n + q)"
     }
   ]
 }

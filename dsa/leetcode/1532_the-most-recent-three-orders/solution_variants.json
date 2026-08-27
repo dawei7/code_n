@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for The Most Recent Three Orders and meets the required complexity bound.",
       "time_complexity": "O(m\\log m + c)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m\\log m + c)",
-      "space_complexity": "O(m)"
     }
   ]
 }

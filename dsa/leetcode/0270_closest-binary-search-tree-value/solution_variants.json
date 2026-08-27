@@ -11,15 +11,6 @@
       "summary": "Tracks the best distance and tie value while following the sole BST branch that can improve it.",
       "time_complexity": "O(h)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(h)",
-      "space_complexity": "O(1)"
     }
   ]
 }

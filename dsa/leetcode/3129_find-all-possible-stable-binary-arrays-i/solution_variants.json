@@ -11,15 +11,6 @@
       "summary": "Builds counts by the final bit and removes exactly the extensions that would create an overlong trailing run.",
       "time_complexity": "O(zo)",
       "space_complexity": "O(zo)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(zo)",
-      "space_complexity": "O(zo)"
     }
   ]
 }

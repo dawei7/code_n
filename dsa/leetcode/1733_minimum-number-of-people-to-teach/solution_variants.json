@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Minimum Number of People to Teach and meets the required complexity bound.",
       "time_complexity": "O(S + C)",
       "space_complexity": "O(S + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + C)",
-      "space_complexity": "O(S + m)"
     }
   ]
 }

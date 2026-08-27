@@ -11,15 +11,6 @@
       "summary": "Stores authoritative current bids in a hash map and uses one lazy max-heap per item for amount and user-id priority.",
       "time_complexity": "O(Q log Q)",
       "space_complexity": "O(Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(Q log Q)",
-      "space_complexity": "O(Q)"
     }
   ]
 }

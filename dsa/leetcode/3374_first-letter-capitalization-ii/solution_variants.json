@@ -11,15 +11,6 @@
       "summary": "Tracks word boundaries while normalizing characters and validates a hyphen token before capitalizing its second part.",
       "time_complexity": "O(SL + n log n)",
       "space_complexity": "O(S + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(SL + n log n)",
-      "space_complexity": "O(S + n)"
     }
   ]
 }

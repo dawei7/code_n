@@ -11,15 +11,6 @@
       "summary": "Indexes the earliest shortest occurrence of every relevant substring value, then answers each XOR target by lookup.",
       "time_complexity": "O(n + q)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + q)",
-      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Maps the path to seven digit positions and uses memoized digit DP to subtract two bounded prefix counts.",
       "time_complexity": "O(D A^2)",
       "space_complexity": "O(D A)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(D A^2)",
-      "space_complexity": "O(D A)"
     }
   ]
 }

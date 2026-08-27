@@ -11,15 +11,6 @@
       "summary": "Expands around every odd and even center, then spends the one deletion on either side of the first mismatch.",
       "time_complexity": "O(N^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

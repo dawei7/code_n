@@ -11,15 +11,6 @@
       "summary": "Maintains the k smallest distances in a size-k max-heap while processing the query stream.",
       "time_complexity": "O(n log k)",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log k)",
-      "space_complexity": "O(k)"
     }
   ]
 }

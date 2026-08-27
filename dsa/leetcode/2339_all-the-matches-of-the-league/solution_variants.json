@@ -11,15 +11,6 @@
       "summary": "Self-joins the team list and removes self-pairings to emit every directed matchup.",
       "time_complexity": "O(t^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(t^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

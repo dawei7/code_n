@@ -11,15 +11,6 @@
       "summary": "Uses subset dynamic programming where each transition chooses the next monster at the gain determined by the subset size.",
       "time_complexity": "O(n 2^n)",
       "space_complexity": "O(2^n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n 2^n)",
-      "space_complexity": "O(2^n)"
     }
   ]
 }

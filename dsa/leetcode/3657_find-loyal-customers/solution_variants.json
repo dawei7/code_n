@@ -11,15 +11,6 @@
       "summary": "Aggregate each customer's purchase count, activity span, and exact refund fraction once, then filter and order the qualifying groups.",
       "time_complexity": "O(N log N + C log C)",
       "space_complexity": "O(N + C)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N + C log C)",
-      "space_complexity": "O(N + C)"
     }
   ]
 }

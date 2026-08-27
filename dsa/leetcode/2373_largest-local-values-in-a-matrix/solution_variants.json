@@ -11,15 +11,6 @@
       "summary": "Examines the nine cells of every contiguous 3 by 3 window.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(n^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n^2)",
-      "space_complexity": "O(n^2)"
     }
   ]
 }

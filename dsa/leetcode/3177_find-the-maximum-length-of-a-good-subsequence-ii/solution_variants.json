@@ -11,15 +11,6 @@
       "summary": "Updates each value-and-change-budget state in constant time using the global best for the preceding budget.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(nk)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nk)",
-      "space_complexity": "O(nk)"
     }
   ]
 }

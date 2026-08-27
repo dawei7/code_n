@@ -11,15 +11,6 @@
       "summary": "Uses the surviving minimum and maximum as range bounds and filters that range through a membership set.",
       "time_complexity": "O(n + R)",
       "space_complexity": "O(n + R)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + R)",
-      "space_complexity": "O(n + R)"
     }
   ]
 }

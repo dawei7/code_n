@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Tiling a Rectangle with the Fewest Squares and meets the required complexity bound.",
       "time_complexity": "O\\left(wh(h+1)^w\\right)",
       "space_complexity": "O\\left((h+1)^w\\right)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O\\left(wh(h+1)^w\\right)",
-      "space_complexity": "O\\left((h+1)^w\\right)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Maintains the earliest start of a valid window while checking only forbidden-length suffixes ending at each character.",
       "time_complexity": "O(n + S)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + S)",
-      "space_complexity": "O(S)"
     }
   ]
 }

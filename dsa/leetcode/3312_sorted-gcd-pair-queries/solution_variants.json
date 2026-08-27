@@ -11,15 +11,6 @@
       "summary": "Counts pairs by exact GCD with a divisor sieve, builds cumulative multiplicities, and binary-searches each query rank.",
       "time_complexity": "O(n + M log M + q log M)",
       "space_complexity": "O(M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + M log M + q log M)",
-      "space_complexity": "O(M)"
     }
   ]
 }

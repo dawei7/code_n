@@ -11,15 +11,6 @@
       "summary": "Precomputes complete-roll endpoints and runs heap-based Dijkstra over the weighted stopping graph.",
       "time_complexity": "O(rows \\cdot cols \\log(rows \\cdot cols))",
       "space_complexity": "O(rows \\cdot cols)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(rows \\cdot cols \\log(rows \\cdot cols))",
-      "space_complexity": "O(rows \\cdot cols)"
     }
   ]
 }

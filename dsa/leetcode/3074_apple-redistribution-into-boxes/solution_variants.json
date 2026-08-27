@@ -11,15 +11,6 @@
       "summary": "Sorts box capacities from largest to smallest and takes the shortest prefix that holds the total number of apples.",
       "time_complexity": "O(n + m log m)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m log m)",
-      "space_complexity": "O(m)"
     }
   ]
 }

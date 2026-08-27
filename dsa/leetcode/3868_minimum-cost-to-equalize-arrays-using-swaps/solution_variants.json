@@ -11,15 +11,6 @@
       "summary": "Counts each value in both arrays, rejects odd combined frequencies, and converts the remaining frequency imbalance directly into the minimum swap cost.",
       "time_complexity": "O(N)",
       "space_complexity": "O(U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(U)"
     }
   ]
 }

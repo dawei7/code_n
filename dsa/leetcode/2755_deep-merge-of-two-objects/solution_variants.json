@@ -11,15 +11,6 @@
       "summary": "Recursively merges matching container types while preserving unique keys and replacing all incompatible or primitive pairs with the second value.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m)",
-      "space_complexity": "O(n + m)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Memoizes every substring's result multiset and combines all left/right results at each root operator.",
       "time_complexity": "O(C_n \\cdot n)",
       "space_complexity": "O(C_n \\cdot n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(C_n \\cdot n)",
-      "space_complexity": "O(C_n \\cdot n)"
     }
   ]
 }

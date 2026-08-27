@@ -11,15 +11,6 @@
       "summary": "Computes an independent patience-sorting LIS for every bit that can remain set in the subsequence AND.",
       "time_complexity": "O(NB log N)",
       "space_complexity": "O(NB)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(NB log N)",
-      "space_complexity": "O(NB)"
     }
   ]
 }

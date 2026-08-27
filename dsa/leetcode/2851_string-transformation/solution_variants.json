@@ -11,15 +11,6 @@
       "summary": "Counts matching rotations with KMP and evaluates the complete-rotation transition recurrence in closed form.",
       "time_complexity": "O(n + log k)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + log k)",
-      "space_complexity": "O(n)"
     }
   ]
 }

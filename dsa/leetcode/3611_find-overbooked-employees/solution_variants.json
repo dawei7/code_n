@@ -11,15 +11,6 @@
       "summary": "Aggregate meeting hours by employee and Monday-based week, retain heavy weeks, then count and order qualifying employees.",
       "time_complexity": "O(M log M + E log E)",
       "space_complexity": "O(M + E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M log M + E log E)",
-      "space_complexity": "O(M + E)"
     }
   ]
 }

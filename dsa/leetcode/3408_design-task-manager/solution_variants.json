@@ -11,15 +11,6 @@
       "summary": "Combines an authoritative task map with a lazily validated max-heap ordered by priority and task ID.",
       "time_complexity": "O((t + q) log(t + q))",
       "space_complexity": "O(t + q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((t + q) log(t + q))",
-      "space_complexity": "O(t + q)"
     }
   ]
 }

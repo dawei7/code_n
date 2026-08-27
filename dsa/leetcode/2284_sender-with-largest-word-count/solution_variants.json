@@ -11,15 +11,6 @@
       "summary": "Accumulates each sender's words in one map pass and maximizes the count-name pair.",
       "time_complexity": "O(L)",
       "space_complexity": "O(s)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L)",
-      "space_complexity": "O(s)"
     }
   ]
 }

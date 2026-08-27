@@ -11,15 +11,6 @@
       "summary": "Filters to the three required skills, groups by candidate, and retains groups containing every required proficiency.",
       "time_complexity": "O(n + c log c)",
       "space_complexity": "O(c)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + c log c)",
-      "space_complexity": "O(c)"
     }
   ]
 }

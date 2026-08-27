@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Relative Sort Array and meets the required complexity bound.",
       "time_complexity": "O(n + m + V)",
       "space_complexity": "O(V)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n + m + V)",
-      "space_complexity": "O(V)"
     }
   ]
 }

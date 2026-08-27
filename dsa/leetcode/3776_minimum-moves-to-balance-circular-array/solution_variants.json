@@ -11,15 +11,6 @@
       "summary": "Sorts positive balances by their shortest circular distance from the unique deficit, then consumes the nearest supply first.",
       "time_complexity": "O(N log N)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N)",
-      "space_complexity": "O(N)"
     }
   ]
 }

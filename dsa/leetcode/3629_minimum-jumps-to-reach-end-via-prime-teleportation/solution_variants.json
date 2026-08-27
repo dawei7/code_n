@@ -11,15 +11,6 @@
       "summary": "Runs breadth-first search while expanding the divisible destinations of each reached prime value only once.",
       "time_complexity": "O(M log log M + n log M)",
       "space_complexity": "O(n + M)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M log log M + n log M)",
-      "space_complexity": "O(n + M)"
     }
   ]
 }

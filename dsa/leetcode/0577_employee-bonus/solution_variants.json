@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Employee Bonus and meets the required complexity bound.",
       "time_complexity": "O((E + B) \\log(E + B))",
       "space_complexity": "O(E + B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((E + B) \\log(E + B))",
-      "space_complexity": "O(E + B)"
     }
   ]
 }

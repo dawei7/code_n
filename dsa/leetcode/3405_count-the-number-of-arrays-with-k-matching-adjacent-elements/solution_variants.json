@@ -11,15 +11,6 @@
       "summary": "Chooses which adjacency slots match, chooses the first value, and assigns one of m - 1 alternatives at every remaining slot using modular combinatorics.",
       "time_complexity": "O(min(k, n - 1 - k) + log n)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(min(k, n - 1 - k) + log n)",
-      "space_complexity": "O(1)"
     }
   ]
 }

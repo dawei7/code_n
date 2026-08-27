@@ -11,15 +11,6 @@
       "summary": "Greedily takes the smallest unused evens and folds the remainder into the last term.",
       "time_complexity": "O(\\sqrt{S})",
       "space_complexity": "O(\\sqrt{S})"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(\\sqrt{S})",
-      "space_complexity": "O(\\sqrt{S})"
     }
   ]
 }

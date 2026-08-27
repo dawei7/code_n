@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Count Largest Group and meets the required complexity bound.",
       "time_complexity": "O(nd)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nd)",
-      "space_complexity": "O(d)"
     }
   ]
 }

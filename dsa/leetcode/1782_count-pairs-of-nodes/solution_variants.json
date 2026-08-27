@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Count Pairs Of Nodes and meets the required complexity bound.",
       "time_complexity": "O(E + n\\log n + Q(n + P))",
       "space_complexity": "O(n + P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(E + n\\log n + Q(n + P))",
-      "space_complexity": "O(n + P)"
     }
   ]
 }

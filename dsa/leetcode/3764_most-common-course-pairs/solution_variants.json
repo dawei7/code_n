@@ -11,15 +11,6 @@
       "summary": "Filters qualifying users, orders each course history once, and aggregates adjacent transitions.",
       "time_complexity": "O(R log R + P log P)",
       "space_complexity": "O(R + P)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R + P log P)",
-      "space_complexity": "O(R + P)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Computes Grundy values for plus-run lengths and xor-combines the independent game components.",
       "time_complexity": "O(m + n^2)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m + n^2)",
-      "space_complexity": "O(m)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Interleaves the two parity sequences with rolling dynamic programming over their consumed prefixes.",
       "time_complexity": "O(nm)",
       "space_complexity": "O(m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm)",
-      "space_complexity": "O(m)"
     }
   ]
 }

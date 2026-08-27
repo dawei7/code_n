@@ -11,15 +11,6 @@
       "summary": "Order sessions once, derive each student's cycle statistics, and compare every subject with its modulo-aligned first-cycle position.",
       "time_complexity": "O(R log R + S log S)",
       "space_complexity": "O(R + S)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R + S log S)",
-      "space_complexity": "O(R + S)"
     }
   ]
 }

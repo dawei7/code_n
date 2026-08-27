@@ -21,7 +21,7 @@
       "label": "Simplified",
       "kind": "simplified",
       "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "summary": "Sorts a copy and compares adjacent gaps, prioritizing the clearest interview-ready reasoning.",
       "time_complexity": "O(n \\log n)",
       "space_complexity": "O(n)"
     }

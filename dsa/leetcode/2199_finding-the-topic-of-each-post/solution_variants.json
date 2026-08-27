@@ -11,15 +11,6 @@
       "summary": "Left-joins padded, lowercased post text to whole-word keywords and aggregates distinct topic IDs in numeric order.",
       "time_complexity": "O(pkL + t log t)",
       "space_complexity": "O(t)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(pkL + t log t)",
-      "space_complexity": "O(t)"
     }
   ]
 }

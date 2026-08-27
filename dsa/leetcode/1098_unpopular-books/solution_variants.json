@@ -11,15 +11,6 @@
       "summary": "Filters eligible releases, left joins the closed one-year order window, and aggregates sold quantities per book.",
       "time_complexity": "O((B + O) \\log (B + O))",
       "space_complexity": "O(B + O)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((B + O) \\log (B + O))",
-      "space_complexity": "O(B + O)"
     }
   ]
 }

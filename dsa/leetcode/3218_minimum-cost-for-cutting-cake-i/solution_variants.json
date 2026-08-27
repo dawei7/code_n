@@ -11,15 +11,6 @@
       "summary": "Processes all boundary costs from largest to smallest, charging each by the current perpendicular piece count.",
       "time_complexity": "O(m log m + n log n)",
       "space_complexity": "O(m + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log m + n log n)",
-      "space_complexity": "O(m + n)"
     }
   ]
 }

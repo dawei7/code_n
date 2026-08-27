@@ -11,15 +11,6 @@
       "summary": "Uses the BST's already sorted left-to-right level order to select the upper median during breadth-first traversal.",
       "time_complexity": "O(N)",
       "space_complexity": "O(W)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N)",
-      "space_complexity": "O(W)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Tracks sparse land components with path-compressed union-find and union by size.",
       "time_complexity": "O(k \\cdot \\alpha(k))",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k \\cdot \\alpha(k))",
-      "space_complexity": "O(k)"
     }
   ]
 }

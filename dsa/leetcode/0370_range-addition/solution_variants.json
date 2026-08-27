@@ -11,15 +11,6 @@
       "summary": "Marks each inclusive update at its two difference boundaries, then reconstructs the array with one prefix scan.",
       "time_complexity": "O(length + q)",
       "space_complexity": "O(length)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(length + q)",
-      "space_complexity": "O(length)"
     }
   ]
 }

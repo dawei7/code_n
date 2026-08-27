@@ -11,15 +11,6 @@
       "summary": "Factors each value, unions indices through one owner per prime, and checks that all indices share one component.",
       "time_complexity": "O(M log log M + n log M)",
       "space_complexity": "O(M + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(M log log M + n log M)",
-      "space_complexity": "O(M + n)"
     }
   ]
 }

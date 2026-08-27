@@ -11,15 +11,6 @@
       "summary": "Binary-searches the four monotone row and column projection boundaries around a known black pixel.",
       "time_complexity": "O(m \\log n + n \\log m)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m \\log n + n \\log m)",
-      "space_complexity": "O(1)"
     }
   ]
 }

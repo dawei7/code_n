@@ -11,15 +11,6 @@
       "summary": "Scans candidate placements in row-major order while maintaining consistent and injective mappings for letter symbols.",
       "time_complexity": "O(R C p q)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R C p q)",
-      "space_complexity": "O(1)"
     }
   ]
 }

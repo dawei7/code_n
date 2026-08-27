@@ -11,15 +11,6 @@
       "summary": "Uses rolling exact-count prefix DP with skip-left, skip-right, and ordered-pair transitions.",
       "time_complexity": "O(N M K)",
       "space_complexity": "O(K min(N,M))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N M K)",
-      "space_complexity": "O(K min(N,M))"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Pair rows from the top and bottom of the selected square and swap their selected cells in place.",
       "time_complexity": "O(k^2)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(k^2)",
-      "space_complexity": "O(1)"
     }
   ]
 }

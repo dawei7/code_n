@@ -11,15 +11,6 @@
       "summary": "Groups by date and computes both parity totals with conditional aggregation in one pass.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r log r)",
-      "space_complexity": "O(d)"
     }
   ]
 }

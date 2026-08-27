@@ -11,15 +11,6 @@
       "summary": "Tracks signed row, column, and diagonal totals so each valid move checks only four counters.",
       "time_complexity": "O(m)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m)",
-      "space_complexity": "O(n)"
     }
   ]
 }

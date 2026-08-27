@@ -11,15 +11,6 @@
       "summary": "Sums every adjacency-matrix row so each incident edge contributes exactly one to its vertex's degree.",
       "time_complexity": "O(N^2)",
       "space_complexity": "O(N)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N^2)",
-      "space_complexity": "O(N)"
     }
   ]
 }

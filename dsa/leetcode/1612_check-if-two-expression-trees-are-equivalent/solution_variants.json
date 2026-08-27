@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Check If Two Expression Trees are Equivalent and meets the required complexity bound.",
       "time_complexity": "O(n_1+n_2)",
       "space_complexity": "O(h+u)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n_1+n_2)",
-      "space_complexity": "O(h+u)"
     }
   ]
 }

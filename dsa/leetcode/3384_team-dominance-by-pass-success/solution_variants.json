@@ -11,15 +11,6 @@
       "summary": "Joins both pass endpoints to their teams and conditionally aggregates each passer-team and match-half group.",
       "time_complexity": "O(p log t + g log g)",
       "space_complexity": "O(g)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(p log t + g log g)",
-      "space_complexity": "O(g)"
     }
   ]
 }

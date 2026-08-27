@@ -11,15 +11,6 @@
       "summary": "Counts available and per-copy letter frequencies, then uses the tightest frequency quotient.",
       "time_complexity": "O(S + T)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S + T)",
-      "space_complexity": "O(1)"
     }
   ]
 }

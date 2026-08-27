@@ -11,15 +11,6 @@
       "summary": "Retains the largest k values with a heap, pairs them with descending profitable multiplier factors, then adds the remainder normally.",
       "time_complexity": "O(n log(k + 1))",
       "space_complexity": "O(k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log(k + 1))",
-      "space_complexity": "O(k)"
     }
   ]
 }

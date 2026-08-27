@@ -11,15 +11,6 @@
       "summary": "Starts from technique 2, keeps the largest k technique-1 gains, and also takes every additional positive gain.",
       "time_complexity": "O(N log(K + 1))",
       "space_complexity": "O(K)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log(K + 1))",
-      "space_complexity": "O(K)"
     }
   ]
 }

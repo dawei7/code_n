@@ -11,15 +11,6 @@
       "summary": "Maintains interval endpoints in paired hash maps and merges only intervals adjacent to each new value.",
       "time_complexity": "O(1) / O(k \\log k)",
       "space_complexity": "O(v)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(1) / O(k \\log k)",
-      "space_complexity": "O(v)"
     }
   ]
 }

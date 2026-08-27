@@ -11,15 +11,6 @@
       "summary": "Runs Dijkstra's algorithm on node-and-remaining-power states, then applies the required time-first, power-second choice at the target.",
       "time_complexity": "O(P(n + m) log(nP))",
       "space_complexity": "O(nP + m)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(P(n + m) log(nP))",
-      "space_complexity": "O(nP + m)"
     }
   ]
 }

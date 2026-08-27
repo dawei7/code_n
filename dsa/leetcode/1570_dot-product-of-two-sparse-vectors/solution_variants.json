@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Dot Product of Two Sparse Vectors and meets the required complexity bound.",
       "time_complexity": "O(N + \\min(K_1,K_2))",
       "space_complexity": "O(K_1+K_2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N + \\min(K_1,K_2))",
-      "space_complexity": "O(K_1+K_2)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Runs breadth-first search over position and collected-litter mask while retaining only the greatest remaining energy seen for each such state.",
       "time_complexity": "O(m n 2^L E)",
       "space_complexity": "O(m n 2^L E)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m n 2^L E)",
-      "space_complexity": "O(m n 2^L E)"
     }
   ]
 }

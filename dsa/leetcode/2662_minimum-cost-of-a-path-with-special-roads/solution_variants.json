@@ -11,15 +11,6 @@
       "summary": "Runs Dijkstra's algorithm on special-road destinations while allowing Manhattan travel to every road entrance and the target.",
       "time_complexity": "O(r^2 log r)",
       "space_complexity": "O(r^2)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r^2 log r)",
-      "space_complexity": "O(r^2)"
     }
   ]
 }

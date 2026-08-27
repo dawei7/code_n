@@ -11,15 +11,6 @@
       "summary": "Adds stop timestamps and subtracts start timestamps so all session durations are aggregated in one scan.",
       "time_complexity": "O(r)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(r)",
-      "space_complexity": "O(1)"
     }
   ]
 }

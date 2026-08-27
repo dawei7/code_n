@@ -11,15 +11,6 @@
       "summary": "Maintains the live window in a deque and updates its running sum as values enter and expire.",
       "time_complexity": "O(m)",
       "space_complexity": "O(size)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m)",
-      "space_complexity": "O(size)"
     }
   ]
 }

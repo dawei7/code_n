@@ -11,15 +11,6 @@
       "summary": "Streams the decimal exponent, raising the accumulated residue to ten before applying each new digit.",
       "time_complexity": "O(d)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(d)",
-      "space_complexity": "O(1)"
     }
   ]
 }

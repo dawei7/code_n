@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Check If a String Contains All Binary Codes of Size K and meets the required complexity bound.",
       "time_complexity": "O(n)",
       "space_complexity": "O(2^k)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(2^k)"
     }
   ]
 }

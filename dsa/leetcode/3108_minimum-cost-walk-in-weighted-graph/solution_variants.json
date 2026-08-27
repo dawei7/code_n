@@ -11,15 +11,6 @@
       "summary": "Builds connected components with disjoint-set union and records the AND of every edge in each component.",
       "time_complexity": "O((n + m + q) alpha(n))",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n + m + q) alpha(n))",
-      "space_complexity": "O(n)"
     }
   ]
 }

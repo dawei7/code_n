@@ -11,15 +11,6 @@
       "summary": "Greedily activates the latest available seconds using Fenwick and predecessor structures.",
       "time_complexity": "O(N log N)",
       "space_complexity": "O(T)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(N log N)",
-      "space_complexity": "O(T)"
     }
   ]
 }

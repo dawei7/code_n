@@ -11,15 +11,6 @@
       "summary": "Sorts the prices, greedily tests a candidate minimum gap, and binary-searches the greatest feasible gap.",
       "time_complexity": "O(n log n + n log R)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log n + n log R)",
-      "space_complexity": "O(n)"
     }
   ]
 }

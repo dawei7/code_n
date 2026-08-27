@@ -11,15 +11,6 @@
       "summary": "Hashes each string by its tuple of adjacent differences modulo 26, grouping equal shift-invariant shapes.",
       "time_complexity": "O(L)",
       "space_complexity": "O(L)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(L)",
-      "space_complexity": "O(L)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Aggregates each user's prompt count, average, and maximum token usage once, filters the completed groups, and applies the required ordering.",
       "time_complexity": "O(R log R + U log U)",
       "space_complexity": "O(R + U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R + U log U)",
-      "space_complexity": "O(R + U)"
     }
   ]
 }

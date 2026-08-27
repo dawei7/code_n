@@ -11,15 +11,6 @@
       "summary": "Check divisibility, count each value once, and ensure no multiplicity exceeds the number of available groups.",
       "time_complexity": "O(n)",
       "space_complexity": "O(d)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n)",
-      "space_complexity": "O(d)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Matches the most valuable set bits of num1 first, then fills the least valuable zero bits.",
       "time_complexity": "O(log U)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log U)",
-      "space_complexity": "O(1)"
     }
   ]
 }

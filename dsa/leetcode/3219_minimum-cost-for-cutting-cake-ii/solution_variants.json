@@ -11,15 +11,6 @@
       "summary": "Sorts all boundary costs descending and merges them while tracking perpendicular piece counts.",
       "time_complexity": "O(m log m + n log n)",
       "space_complexity": "O(m + n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(m log m + n log n)",
-      "space_complexity": "O(m + n)"
     }
   ]
 }

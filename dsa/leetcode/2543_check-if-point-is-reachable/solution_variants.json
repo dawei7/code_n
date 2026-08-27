@@ -11,15 +11,6 @@
       "summary": "Computes the coordinate gcd and tests whether its only possible prime factor is two.",
       "time_complexity": "O(log(min(x, y)))",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(log(min(x, y)))",
-      "space_complexity": "O(1)"
     }
   ]
 }

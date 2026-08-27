@@ -11,15 +11,6 @@
       "summary": "Aggregates reaction counts by user and type, joins them to each user's total, and keeps the uniquely dominant type when its exact share reaches 60%.",
       "time_complexity": "O(R log R + U log U)",
       "space_complexity": "O(R + U)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(R log R + U log U)",
-      "space_complexity": "O(R + U)"
     }
   ]
 }

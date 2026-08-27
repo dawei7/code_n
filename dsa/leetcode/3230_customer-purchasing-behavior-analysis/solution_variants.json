@@ -11,15 +11,6 @@
       "summary": "Aggregates customer totals and category frequencies once, then ranks each customer's categories by count and recency.",
       "time_complexity": "O(t log t)",
       "space_complexity": "O(t)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(t log t)",
-      "space_complexity": "O(t)"
     }
   ]
 }

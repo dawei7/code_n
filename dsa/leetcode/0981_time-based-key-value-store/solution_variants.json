@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Time Based Key-Value Store and meets the required complexity bound.",
       "time_complexity": "O(Q\\log Q)",
       "space_complexity": "O(Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(Q\\log Q)",
-      "space_complexity": "O(Q)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Stores current priorities in a map and ranks historical versions in a lazily validated heap.",
       "time_complexity": "O((E+Q) log(E+Q))",
       "space_complexity": "O(E+Q)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((E+Q) log(E+Q))",
-      "space_complexity": "O(E+Q)"
     }
   ]
 }

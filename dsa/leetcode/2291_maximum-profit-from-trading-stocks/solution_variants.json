@@ -11,15 +11,6 @@
       "summary": "Uses one-dimensional 0/1-knapsack dynamic programming over the available budget.",
       "time_complexity": "O(nB)",
       "space_complexity": "O(B)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nB)",
-      "space_complexity": "O(B)"
     }
   ]
 }

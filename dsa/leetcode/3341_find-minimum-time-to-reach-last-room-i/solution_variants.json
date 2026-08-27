@@ -11,15 +11,6 @@
       "summary": "Runs Dijkstra's algorithm over rooms using their earliest reachable times as distances.",
       "time_complexity": "O(nm log(nm))",
       "space_complexity": "O(nm)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(nm log(nm))",
-      "space_complexity": "O(nm)"
     }
   ]
 }

@@ -11,15 +11,6 @@
       "summary": "Runs one BFS per building and accumulates shortest distances and reach counts on empty cells.",
       "time_complexity": "O(bmn)",
       "space_complexity": "O(mn)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(bmn)",
-      "space_complexity": "O(mn)"
     }
   ]
 }

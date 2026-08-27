@@ -11,15 +11,6 @@
       "summary": "Simulates only until values enter one multiplicative band, then distributes all remaining operations as complete sorted rounds.",
       "time_complexity": "O(n log M log n + n log k)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(n log M log n + n log k)",
-      "space_complexity": "O(n)"
     }
   ]
 }

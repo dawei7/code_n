@@ -11,15 +11,6 @@
       "summary": "Sieves prime roots through the square root of the upper endpoint and subtracts their in-range squares.",
       "time_complexity": "O(sqrt(r) log log sqrt(r))",
       "space_complexity": "O(sqrt(r))"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(sqrt(r) log log sqrt(r))",
-      "space_complexity": "O(sqrt(r))"
     }
   ]
 }

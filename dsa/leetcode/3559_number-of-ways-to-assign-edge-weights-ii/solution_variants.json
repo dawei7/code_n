@@ -11,15 +11,6 @@
       "summary": "Preprocesses binary ancestors and depths, derives every path length through its lowest common ancestor, and converts that length to the odd-parity assignment count.",
       "time_complexity": "O((n+q) log n)",
       "space_complexity": "O(n log n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O((n+q) log n)",
-      "space_complexity": "O(n log n)"
     }
   ]
 }

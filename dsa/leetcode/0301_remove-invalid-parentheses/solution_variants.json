@@ -11,15 +11,6 @@
       "summary": "Computes the forced removal budgets, then backtracks only through minimum-removal balanced candidates.",
       "time_complexity": "O(2^p \\cdot n)",
       "space_complexity": "O(n)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(2^p \\cdot n)",
-      "space_complexity": "O(n)"
     }
   ]
 }

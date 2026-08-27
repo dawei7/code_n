@@ -11,15 +11,6 @@
       "summary": "Sums each word's character weights once and converts its residue through the reverse alphabet.",
       "time_complexity": "O(S)",
       "space_complexity": "O(W)"
-    },
-    {
-      "id": "simplified",
-      "label": "Simplified",
-      "kind": "simplified",
-      "directory": "variants/simplified",
-      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
-      "time_complexity": "O(S)",
-      "space_complexity": "O(W)"
     }
   ]
 }
