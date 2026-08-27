@@ -11,6 +11,15 @@
       "summary": "Builds powers-of-two repetition blocks and selects them from the binary representation of times.",
       "time_complexity": "O(\\log n)",
       "space_complexity": "O(mn)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(\\log n)",
+      "space_complexity": "O(mn)"
     }
   ]
 }

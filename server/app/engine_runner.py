@@ -235,7 +235,15 @@ def _runtime_iterations_for_ms(reference_ms: Optional[float], *, max_amplificati
     return max(1, min(max_amplification, int(math.ceil(target_ms / ref))))
 
 
-def _returns_in_place(returns_hint: str) -> bool:
+def _returns_in_place(returns_hint: str, spec: Any = None) -> bool:
+    if spec is not None and getattr(spec, "id", "").startswith("lc_"):
+        try:
+            from challenges.algorithms.leetcode import load_full_leetcode_spec
+            full_spec = load_full_leetcode_spec(spec.id)
+            if full_spec and getattr(full_spec, "returns", None):
+                returns_hint = full_spec.returns
+        except Exception:
+            pass
     text = returns_hint.strip().lower()
     text = re.sub(r"^-\s*", "", text)
     return bool(
@@ -1076,19 +1084,44 @@ class _JudgeMaster:
         return f"Master(found={self._found}, guesses={self._guess_count}/{self._allowed_guesses})"
 
 
-def _returns_tree(returns_hint: str) -> bool:
-    text = returns_hint.lower()
-    return (
+def _get_spec_inputs(spec: Any) -> dict[str, Any]:
+    raw_inputs = getattr(spec, "inputs", {}) or {}
+    inputs = dict(raw_inputs) if isinstance(raw_inputs, (list, tuple, dict)) else {}
+    spec_id = getattr(spec, "id", "")
+    if spec_id.startswith("lc_") and (not inputs or set(inputs.keys()) == {"value"}):
+        try:
+            from challenges.algorithms.leetcode import load_full_leetcode_spec
+            full_spec = load_full_leetcode_spec(spec_id)
+            if full_spec and full_spec.inputs:
+                return dict(full_spec.inputs)
+        except Exception:
+            pass
+    return inputs
+
+
+def _returns_tree(returns_hint: str, spec: Any = None) -> bool:
+    text = str(returns_hint).lower()
+    if (
         "treenode" in text
         or "tree node" in text
         or "root node" in text
         or ("root" in text and "tree" in text)
-    )
+    ):
+        return True
+    if spec is not None and getattr(spec, "id", "").startswith("lc_"):
+        try:
+            from challenges.algorithms.leetcode import load_full_leetcode_spec
+            full_spec = load_full_leetcode_spec(spec.id)
+            if full_spec and full_spec.returns and full_spec.returns != returns_hint:
+                return _returns_tree(full_spec.returns)
+        except Exception:
+            pass
+    return False
 
 
-def _returns_list_node(returns_hint: str) -> bool:
-    text = returns_hint.lower()
-    return (
+def _returns_list_node(returns_hint: str, spec: Any = None) -> bool:
+    text = str(returns_hint).lower()
+    if (
         "listnode" in text
         or "polynode" in text
         or "list node" in text
@@ -1099,15 +1132,32 @@ def _returns_list_node(returns_hint: str) -> bool:
             text,
         )
         is not None
-    )
+    ):
+        return True
+    if spec is not None and getattr(spec, "id", "").startswith("lc_"):
+        try:
+            from challenges.algorithms.leetcode import load_full_leetcode_spec
+            full_spec = load_full_leetcode_spec(spec.id)
+            if full_spec and full_spec.returns and full_spec.returns != returns_hint:
+                return _returns_list_node(full_spec.returns)
+        except Exception:
+            pass
+    return False
 
 
 def _tree_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    inputs = _get_spec_inputs(spec)
     target_names = set(_tree_node_target_param_names(spec))
     names: list[str] = []
     for name, hint in inputs.items():
         if str(name) in target_names:
+            continue
+        lowered_name = str(name).lower()
+        if lowered_name in {"root", "subroot", "sub_root", "trees", "tree"}:
+            names.append(str(name))
+            continue
+        if lowered_name in {"p", "q"} and getattr(spec, "id", "") == "lc_100":
+            names.append(str(name))
             continue
         text = str(hint).lower()
         normalized_text = text.replace("-", " ")
@@ -1124,11 +1174,16 @@ def _tree_param_names(spec: Any) -> list[str]:
 
 
 def _tree_node_target_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    inputs = _get_spec_inputs(spec)
+    has_root_param = any("root" in str(k).lower() for k in inputs)
+    if not has_root_param:
+        return []
     names: list[str] = []
     for name, hint in inputs.items():
         lowered_name = str(name).lower()
         text = str(hint).lower()
+        if "root" in text:
+            continue
         names_target_node = lowered_name in {"p", "q", "u", "target", "leaf"}
         describes_target_node = "target" in text
         if "root" not in lowered_name and (names_target_node or describes_target_node) and (
@@ -1139,10 +1194,13 @@ def _tree_node_target_param_names(spec: Any) -> list[str]:
 
 
 def _list_node_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    inputs = _get_spec_inputs(spec)
     names: list[str] = []
     for name, hint in inputs.items():
         lowered_name = str(name).lower()
+        if lowered_name in {"head", "head1", "head2", "heada", "headb", "head_a", "head_b", "list1", "list2", "l1", "l2"}:
+            names.append(str(name))
+            continue
         text = str(hint).lower()
         node_shaped_name = (
             lowered_name in {"head", "node"}
@@ -1162,7 +1220,7 @@ def _list_node_param_names(spec: Any) -> list[str]:
 
 
 def _list_node_collection_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    inputs = _get_spec_inputs(spec)
     names: list[str] = []
     for name, hint in inputs.items():
         text = str(hint).lower()
@@ -1175,7 +1233,7 @@ def _list_node_collection_param_names(spec: Any) -> list[str]:
 
 
 def _nary_node_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    inputs = _get_spec_inputs(spec)
     names: list[str] = []
     for name, hint in inputs.items():
         text = str(hint).lower().replace("–", "-")
@@ -1185,7 +1243,7 @@ def _nary_node_param_names(spec: Any) -> list[str]:
 
 
 def _nary_node_collection_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    inputs = _get_spec_inputs(spec)
     names: list[str] = []
     for name, hint in inputs.items():
         text = str(hint).lower().replace("–", "-")
@@ -1197,18 +1255,20 @@ def _nary_node_collection_param_names(spec: Any) -> list[str]:
 
 
 def _random_binary_tree_param_names(spec: Any) -> list[str]:
-    raw_inputs = getattr(spec, "inputs", {}) or {}
-    inputs = dict(raw_inputs) if isinstance(raw_inputs, (list, tuple, dict)) else {}
+    spec_id = getattr(spec, "id", "")
+    if spec_id == "lc_1485":
+        return ["root"]
+    inputs = _get_spec_inputs(spec)
     names: list[str] = []
     for name, hint in inputs.items():
         text = str(hint).lower()
-        if "node" in text or "tree" in text or name in {"root", "node"}:
+        if "random" in text and ("node" in text or "tree" in text or "pointer" in text):
             names.append(str(name))
     return names
 
 
 def _big_array_param_names(spec: Any) -> list[str]:
-    inputs = dict(getattr(spec, "inputs", {}) or {})
+    inputs = _get_spec_inputs(spec)
     return [
         str(name)
         for name, hint in inputs.items()
@@ -4714,6 +4774,30 @@ def _unique_monotone_path_grid_match(
     return _exact_monotone_path_grid_match(actual, rows, columns, 1)
 
 
+def _knights_tour_match(actual: Any, m: int, n: int, r: int, c: int) -> bool:
+    if not isinstance(actual, list) or len(actual) != m:
+        return False
+    pos: dict[int, tuple[int, int]] = {}
+    for i, row in enumerate(actual):
+        if not isinstance(row, list) or len(row) != n:
+            return False
+        for j, val in enumerate(row):
+            if not isinstance(val, int) or val < 0 or val >= m * n or val in pos:
+                return False
+            pos[val] = (i, j)
+    if len(pos) != m * n:
+        return False
+    if pos[0] != (r, c):
+        return False
+    for step in range(m * n - 1):
+        r1, c1 = pos[step]
+        r2, c2 = pos[step + 1]
+        dr, dc = abs(r1 - r2), abs(c1 - c2)
+        if not ((dr == 1 and dc == 2) or (dr == 2 and dc == 1)):
+            return False
+    return True
+
+
 def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> bool:
     validator = case.validator or {}
     kind = str(validator.get("kind") or "")
@@ -5311,7 +5395,34 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("names_param") or "names")),
             case.input.get(str(validator.get("target_param") or "targetPath")),
         )
-    return actual == expected
+    if kind == "knights_tour":
+        return _knights_tour_match(
+            actual,
+            int(case.input.get(str(validator.get("m_param") or "m"), 0)),
+            int(case.input.get(str(validator.get("n_param") or "n"), 0)),
+            int(case.input.get(str(validator.get("r_param") or "r"), 0)),
+            int(case.input.get(str(validator.get("c_param") or "c"), 0)),
+        )
+    if (
+        isinstance(case.input, dict)
+        and {"m", "n", "r", "c"}.issubset(case.input.keys())
+        and isinstance(actual, list)
+        and isinstance(expected, list)
+        and len(actual) == len(expected) == case.input.get("m")
+    ):
+        if _knights_tour_match(
+            actual,
+            int(case.input["m"]),
+            int(case.input["n"]),
+            int(case.input["r"]),
+            int(case.input["c"]),
+        ):
+            return True
+    if actual == expected:
+        return True
+    if (actual is None and expected == []) or (actual == [] and expected is None):
+        return True
+    return False
 
 
 def _prepare_validated_kwargs(
@@ -5558,6 +5669,10 @@ def _normalize_validated_value(
         hasattr(value, attr) for attr in ("coefficient", "power", "next")
     ):
         return _poly_node_to_terms(value)
+    if value is not None and hasattr(value, "val") and (hasattr(value, "left") or hasattr(value, "right")):
+        return _tree_to_level_order(value)
+    if value is not None and hasattr(value, "val") and hasattr(value, "next"):
+        return _list_node_to_values(value)
     if returns_tree:
         return _tree_to_level_order(value)
     if returns_list_node:
@@ -5720,10 +5835,112 @@ def _timed_reference_iterations(
     ), elapsed_ms
 
 
+def _create_judge_namespace(name: str = "judge", filename: str = "judge.py") -> dict[str, Any]:
+    import bisect
+    import collections
+    from collections import Counter, defaultdict, deque, OrderedDict
+    import functools
+    from functools import cache, lru_cache, reduce
+    import heapq
+    import itertools
+    try:
+        from itertools import pairwise
+    except ImportError:
+        pairwise = None
+    from itertools import accumulate, combinations, combinations_with_replacement, groupby, islice, permutations, product
+    import math
+    from math import inf
+    import operator
+    from operator import xor, add, mul, sub, truediv, floordiv, mod, itemgetter, attrgetter
+    import random
+    import re
+    import string
+    import sys
+    import typing
+
+    ns: dict[str, Any] = {
+        "__name__": name,
+        "__file__": filename,
+        "__package__": None,
+        "List": list,
+        "Dict": dict,
+        "Tuple": tuple,
+        "Set": set,
+        "Optional": typing.Optional,
+        "Union": typing.Union,
+        "Any": typing.Any,
+        "Callable": typing.Callable,
+        "Iterable": typing.Iterable,
+        "Iterator": typing.Iterator,
+        "Sequence": typing.Sequence,
+        "pairwise": pairwise,
+        "ListNode": _JudgeListNode,
+        "Node": _JudgeNode,
+        "Point": _JudgePoint,
+        "TreeNode": _JudgeTreeNode,
+        "math": math,
+        "inf": inf,
+        "heapq": heapq,
+        "bisect": bisect,
+        "bisect_left": bisect.bisect_left,
+        "bisect_right": bisect.bisect_right,
+        "insort": bisect.insort,
+        "insort_left": bisect.insort_left,
+        "insort_right": bisect.insort_right,
+        "itertools": itertools,
+        "accumulate": accumulate,
+        "combinations": combinations,
+        "combinations_with_replacement": combinations_with_replacement,
+        "groupby": groupby,
+        "islice": islice,
+        "permutations": permutations,
+        "product": product,
+        "functools": functools,
+        "cache": cache,
+        "lru_cache": lru_cache,
+        "reduce": reduce,
+        "collections": collections,
+        "Counter": Counter,
+        "defaultdict": defaultdict,
+        "deque": deque,
+        "OrderedDict": OrderedDict,
+        "operator": operator,
+        "xor": xor,
+        "random": random,
+        "re": re,
+        "string": string,
+        "sys": sys,
+    }
+    for mod_obj in (math, collections, itertools, heapq, bisect, functools, operator, random):
+        for k in dir(mod_obj):
+            if not k.startswith("_") and k not in ns:
+                ns[k] = getattr(mod_obj, k)
+    return ns
+
+
+def _inject_solution_globals(target: Any) -> None:
+    if target is None:
+        return
+    g = getattr(target, "__globals__", None)
+    if g is None and hasattr(target, "__init__"):
+        g = getattr(target.__init__, "__globals__", None)
+    if g is None and hasattr(target, "__class__"):
+        g = getattr(target.__class__, "__globals__", None)
+    if g is None:
+        return
+    ns = _create_judge_namespace(str(g.get("__name__") or "judge"), str(g.get("__file__") or "judge.py"))
+    for k, v in ns.items():
+        if k not in g or g[k] is None:
+            g[k] = v
+
+
 def _instantiate_class(cls: type, kwargs: dict[str, Any], *extra_args: Any) -> Any:
+    _inject_solution_globals(cls)
     if extra_args:
         try:
-            return cls(*extra_args)
+            inst = cls(*extra_args)
+            _inject_solution_globals(inst)
+            return inst
         except TypeError:
             pass
     import inspect
@@ -5732,13 +5949,18 @@ def _instantiate_class(cls: type, kwargs: dict[str, Any], *extra_args: Any) -> A
         init_params = [p for p in init_sig.parameters.keys() if p != "self"]
         init_kwargs = {p: kwargs[p] for p in init_params if p in kwargs}
         if init_kwargs:
-            return cls(**init_kwargs)
+            inst = cls(**init_kwargs)
+            _inject_solution_globals(inst)
+            return inst
     except Exception:
         pass
-    return cls()
+    inst = cls()
+    _inject_solution_globals(inst)
+    return inst
 
 
 def _execute_class_operations(cls: type, kwargs: dict[str, Any]) -> list[Any] | None:
+    _inject_solution_globals(cls)
     if "operations" not in kwargs:
         return None
 
@@ -5790,6 +6012,7 @@ def _execute_class_operations(cls: type, kwargs: dict[str, Any]) -> list[Any] | 
                 if inst is None:
                     inst = _instantiate_class(cls, kwargs)
                 method = getattr(inst, op)
+                _inject_solution_globals(method)
                 res_list.append(method(*arg))
         return res_list
 
@@ -5804,6 +6027,7 @@ def _execute_class_operations(cls: type, kwargs: dict[str, Any]) -> list[Any] | 
                     if inst is None:
                         inst = _instantiate_class(cls, kwargs)
                     method = getattr(inst, op)
+                    _inject_solution_globals(method)
                     val = method(*arg)
                     if val is not None:
                         res_list.append(val)
@@ -5814,6 +6038,7 @@ def _execute_class_operations(cls: type, kwargs: dict[str, Any]) -> list[Any] | 
                     if inst is None:
                         inst = _instantiate_class(cls, kwargs)
                     method = getattr(inst, item)
+                    _inject_solution_globals(method)
                     val = method()
                     if val is not None:
                         res_list.append(val)
@@ -5895,57 +6120,71 @@ def _bind_leetcode_solution_runner(namespace: dict[str, Any], challenge: Any = N
         if methods:
             method_name = methods[0]
             spec = getattr(challenge, "_spec", None) if challenge else None
-            if len(methods) > 1 and spec and hasattr(spec, "params"):
+            spec_id = getattr(challenge.info, "id", "") if challenge and hasattr(challenge, "info") else ""
+            if not spec_id and spec and hasattr(spec, "id"):
+                spec_id = spec.id
+            if spec_id.startswith("lc_"):
+                try:
+                    from server.app.challenge_packages import leetcode_package_dir
+                    package = leetcode_package_dir(spec_id)
+                    if package and (package / "template.py").is_file():
+                        tpl = (package / "template.py").read_text(encoding="utf-8")
+                        tpl_match = re.search(r"def\s+([A-Za-z0-9_]+)\s*\(self", tpl)
+                        if tpl_match and tpl_match.group(1) in methods:
+                            method_name = tpl_match.group(1)
+                except Exception:
+                    pass
+            if len(methods) > 1 and spec:
+                param_names = list(_get_spec_inputs(spec).keys())
                 for m_name in methods:
                     m_obj = getattr(sol_cls, m_name)
-                    sig = inspect.signature(m_obj)
-                    sig_params = [p for p in sig.parameters if p != "self"]
-                    if set(sig_params) == set(spec.params):
-                        method_name = m_name
-                        break
+                    try:
+                        sig = inspect.signature(m_obj)
+                        sig_params = [param for param in sig.parameters if param != "self"]
+                        if set(sig_params) == set(param_names) or len(sig_params) == len(param_names):
+                            method_name = m_name
+                            break
+                    except Exception:
+                        pass
 
             def solve_runner(*args, **kwargs):
-                ops_res = _execute_class_operations(sol_cls, kwargs)
+                call_kwargs = dict(kwargs)
+                if "operations" not in call_kwargs and len(args) == 1 and isinstance(args[0], list):
+                    call_kwargs["operations"] = args[0]
+                ops_res = _execute_class_operations(sol_cls, call_kwargs)
                 if ops_res is not None:
                     return ops_res
 
                 sol_inst = _instantiate_class(sol_cls, kwargs, *args)
                 method = getattr(sol_inst, method_name)
+                _inject_solution_globals(method)
                 if "queries" in kwargs and isinstance(kwargs["queries"], list):
                     return [
                         method(*q) if isinstance(q, (list, tuple)) else method(q)
                         for q in kwargs["queries"]
                     ]
-                if hasattr(method, "__globals__"):
-                    import typing
-                    g = method.__globals__
-                    for k, v in [
-                        ("List", list),
-                        ("Dict", dict),
-                        ("Tuple", tuple),
-                        ("Set", set),
-                        ("Optional", typing.Optional),
-                        ("Union", typing.Union),
-                        ("Any", typing.Any),
-                        ("ListNode", _JudgeListNode),
-                        ("TreeNode", _JudgeTreeNode),
-                        ("Node", _JudgeNode),
-                        ("Point", _JudgePoint),
-                    ]:
-                        if k not in g or g[k] is None:
-                            g[k] = v
-                return method(*args, **kwargs)
+                try:
+                    return method(*args, **kwargs)
+                except TypeError:
+                    if kwargs and not args:
+                        try:
+                            return method(*kwargs.values())
+                        except Exception:
+                            pass
+                    raise
 
             return solve_runner
 
     if "solve" in namespace and callable(namespace["solve"]):
         return namespace["solve"]
 
+    ns_name = namespace.get("__name__")
     for name, obj in namespace.items():
         if (
             not name.startswith("_")
             and isinstance(obj, type)
-            and getattr(obj, "__module__", "") not in {"builtins", "typing"}
+            and (getattr(obj, "__module__", None) == ns_name or ns_name is None)
+            and name not in dir(__builtins__)
             and name not in {"TreeNode", "ListNode", "Node", "Point", "List", "Dict", "Tuple", "Set", "Optional", "Union", "Any"}
         ):
             custom_cls = obj
@@ -5965,25 +6204,49 @@ def _bind_leetcode_solution_runner(namespace: dict[str, Any], challenge: Any = N
                 if methods:
                     method_name = methods[0]
                     spec = getattr(challenge, "_spec", None) if challenge else None
-                    if len(methods) > 1 and spec and hasattr(spec, "params"):
+                    spec_id = getattr(challenge.info, "id", "") if challenge and hasattr(challenge, "info") else ""
+                    if not spec_id and spec and hasattr(spec, "id"):
+                        spec_id = spec.id
+                    if spec_id.startswith("lc_"):
+                        try:
+                            from server.app.challenge_packages import leetcode_package_dir
+                            package = leetcode_package_dir(spec_id)
+                            if package and (package / "template.py").is_file():
+                                tpl = (package / "template.py").read_text(encoding="utf-8")
+                                tpl_match = re.search(r"def\s+([A-Za-z0-9_]+)\s*\(self", tpl)
+                                if tpl_match and tpl_match.group(1) in methods:
+                                    method_name = tpl_match.group(1)
+                        except Exception:
+                            pass
+                    if len(methods) > 1 and spec:
+                        param_names = list(_get_spec_inputs(spec).keys())
                         for m_name in methods:
                             m_obj = getattr(custom_cls, m_name)
                             try:
                                 sig = inspect.signature(m_obj)
-                                sig_params = [p for p in sig.parameters if p != "self"]
-                                if set(sig_params) == set(spec.params):
+                                sig_params = [param for param in sig.parameters if param != "self"]
+                                if set(sig_params) == set(param_names) or len(sig_params) == len(param_names):
                                     method_name = m_name
                                     break
                             except Exception:
                                 pass
                     inst = _instantiate_class(custom_cls, kwargs, *args)
                     method = getattr(inst, method_name)
+                    _inject_solution_globals(method)
                     if "queries" in kwargs and isinstance(kwargs["queries"], list):
                         return [
                             method(*q) if isinstance(q, (list, tuple)) else method(q)
                             for q in kwargs["queries"]
                         ]
-                    return method(*args, **kwargs)
+                    try:
+                        return method(*args, **kwargs)
+                    except TypeError:
+                        if kwargs and not args:
+                            try:
+                                return method(*kwargs.values())
+                            except Exception:
+                                pass
+                        raise
                 raise NoSolveFunction()
             return custom_class_runner
 
@@ -5999,25 +6262,8 @@ def _load_python_optimal_solve(challenge: Any) -> tuple[Optional[Any], str]:
     if not source:
         return None, "No Python optimal reference file is available for timing."
 
-    import typing
-    namespace: dict[str, Any] = {
-        "__name__": f"optimal.{challenge.info.id}",
-        "__file__": f"{challenge.info.id}_optimal.py",
-        "__package__": None,
-        "List": list,
-        "Dict": dict,
-        "Tuple": tuple,
-        "Set": set,
-        "Optional": typing.Optional,
-        "Union": typing.Union,
-        "Any": typing.Any,
-        "pairwise": pairwise,
-        "ListNode": _JudgeListNode,
-        "Node": _JudgeNode,
-        "Point": _JudgePoint,
-        "TreeNode": _JudgeTreeNode,
-    }
     filename = f"{challenge.info.id}_optimal.py"
+    namespace = _create_judge_namespace(f"optimal.{challenge.info.id}", filename)
     try:
         exec(  # noqa: S102 - internal optimal solution
             compile(source, filename, "exec", dont_inherit=True),
@@ -6572,24 +6818,7 @@ def _run_python_validated_cases(
     try:
         player_filename = str(solution_path)
         player_source = solution_path.read_text(encoding="utf-8")
-        import typing
-        namespace: dict[str, Any] = {
-            "__name__": "player_solution",
-            "__file__": player_filename,
-            "__package__": None,
-            "List": list,
-            "Dict": dict,
-            "Tuple": tuple,
-            "Set": set,
-            "Optional": typing.Optional,
-            "Union": typing.Union,
-            "Any": typing.Any,
-            "pairwise": pairwise,
-            "ListNode": _JudgeListNode,
-            "Node": _JudgeNode,
-            "Point": _JudgePoint,
-            "TreeNode": _JudgeTreeNode,
-        }
+        namespace = _create_judge_namespace("player_solution", player_filename)
         exec(  # noqa: S102 - player solution is intentionally executed by the local judge
             compile(player_source, player_filename, "exec", dont_inherit=True),
             namespace,
@@ -6605,10 +6834,10 @@ def _run_python_validated_cases(
     if reference_solve is None and reference_error:
         log.debug("No optimal reference available for validated cases: %s", reference_error)
     spec = getattr(challenge, "_spec", None)
-    returns_in_place = _returns_in_place(str(getattr(spec, "returns", "") or ""))
+    returns_in_place = _returns_in_place(str(getattr(spec, "returns", "") or ""), spec=spec)
     returns_tree = _returns_tree(str(getattr(spec, "returns", "") or ""))
     returns_list_node = _returns_list_node(str(getattr(spec, "returns", "") or ""))
-    param_names = list(getattr(spec, "params", []) or [])
+    param_names = list(_get_spec_inputs(spec).keys()) if spec else list(getattr(spec, "params", []) or [])
     tree_param_names = _tree_param_names(spec)
     tree_node_target_param_names = _tree_node_target_param_names(spec)
     list_node_param_names = _list_node_param_names(spec)
@@ -6666,7 +6895,9 @@ def _run_python_validated_cases(
     )
     runtime_check = RuntimeCheck(checked=False, passed=False, message=error_message)
     complexity_check = ComplexityCheck()
-    if correct and benchmark_cases:
+    if correct and certificate_complete:
+        complexity_check = _complexity_certificate_check(challenge.info.id)
+    elif correct and benchmark_cases:
         runtime_check = _runtime_check_python_cases(
             solve_fn=solve_fn,
             reference_solve=reference_solve,

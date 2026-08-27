@@ -11,6 +11,15 @@
       "summary": "Uses pandas duplicate detection on email and retains each address's first row.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Classes With at Least 5 Students and meets the required complexity bound.",
       "time_complexity": "O(n \\log c)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(n \\log c)",
+      "space_complexity": "O(n)"
     }
   ]
 }

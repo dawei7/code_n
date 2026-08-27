@@ -11,6 +11,15 @@
       "summary": "Starts every promise-producing function immediately and records each settlement at its input index.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

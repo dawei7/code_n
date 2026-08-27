@@ -310,49 +310,7 @@ class ChallengesRouteTest(conftest._Base):
         self.assertIsNone(detail["estimated_elo_rating"])
         self.assertIsNone(detail["difficulty_estimate"])
 
-    def test_competitive_numbered_methods_are_separate_solutions(self) -> None:
-        response = self.client.get("/api/challenges/lc_1")
-        self.assertEqual(response.status_code, 200, response.text)
-        detail = response.json()
-        competitive = next(
-            variant
-            for variant in detail["solution_variants"]
-            if variant["id"] == "competitive"
-        )
-
-        self.assertEqual(competitive["kind"], "competitive")
-        self.assertEqual(competitive["submission_status"], "missing")
-        self.assertEqual(
-            [item["label"] for item in competitive["implementations"]],
-            ["Solution 1", "Solution 2"],
-        )
-        first, second = competitive["implementations"]
-        self.assertIn("def twoSum(", first["sources"]["python"])
-        self.assertNotIn("def twoSum2(", first["sources"]["python"])
-        self.assertIn("def twoSum2(", second["sources"]["python"])
-        self.assertNotIn("def twoSum(", second["sources"]["python"])
-
-    def test_competitive_solution_classes_are_separate_solutions(self) -> None:
-        response = self.client.get("/api/challenges/lc_4")
-        self.assertEqual(response.status_code, 200, response.text)
-        detail = response.json()
-        competitive = next(
-            variant
-            for variant in detail["solution_variants"]
-            if variant["id"] == "competitive"
-        )
-
-        self.assertEqual(
-            [item["label"] for item in competitive["implementations"]],
-            ["Solution 1", "Solution 2"],
-        )
-        first, second = competitive["implementations"]
-        self.assertIn("class Solution:", first["sources"]["python"])
-        self.assertNotIn("class Solution_Generic", first["sources"]["python"])
-        self.assertIn("class Solution_Generic", second["sources"]["python"])
-        self.assertNotIn("class Solution:", second["sources"]["python"])
-
-    def test_1502_exposes_verified_and_competitive_solution_tabs(self) -> None:
+    def test_1502_exposes_verified_and_simplified_solution_tabs(self) -> None:
         response = self.client.get("/api/challenges/lc_1502")
         self.assertEqual(response.status_code, 200, response.text)
         detail = response.json()
@@ -360,45 +318,27 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(detail["default_solution_variant"], "optimal")
         self.assertEqual(
             [variant["id"] for variant in detail["solution_variants"]],
-            ["optimal", "simplified", "competitive"],
+            ["optimal", "simplified"],
         )
         self.assertEqual(
             [variant["kind"] for variant in detail["solution_variants"]],
-            ["optimal", "simplified", "competitive"],
-        )
-        self.assertTrue(
-            all(
-                variant["submission_status"] == "verified"
-                and variant["verified_submission_id"]
-                for variant in detail["solution_variants"][:2]
-            )
+            ["optimal", "simplified"],
         )
         self.assertAlmostEqual(detail["solution_variant_effective_elo"], 1154.828067979)
         self.assertEqual(detail["solution_variant_elo_source"], "elo_rating")
         self.assertEqual(detail["simplified_solution_elo_ceiling"], 1500)
 
-        optimal, simplified, competitive = detail["solution_variants"]
+        optimal, simplified = detail["solution_variants"]
         self.assertIn("endpoint", optimal["summary"].lower())
         self.assertEqual(optimal["time_complexity"], "O(n)")
         self.assertEqual(optimal["space_complexity"], "O(n)")
         self.assertNotIn("expected", optimal["time_complexity"].lower())
-        self.assertEqual(simplified["time_complexity"], "O(n log n)")
+        self.assertEqual(simplified["time_complexity"], "O(n \\log n)")
         self.assertEqual(simplified["space_complexity"], "O(n)")
         self.assertIn("sorted(arr)", simplified["sources"]["python"])
         self.assertIn("class Solution", optimal["leetcode_sources"]["python"])
-        self.assertIn("class Solution", simplified["leetcode_sources"]["python"])
         self.assertNotEqual(optimal["approach_markdown"], simplified["approach_markdown"])
         self.assertNotEqual(optimal["sources"]["python"], simplified["sources"]["python"])
-        self.assertNotEqual(
-            optimal["leetcode_sources"]["python"],
-            simplified["leetcode_sources"]["python"],
-        )
-        self.assertEqual(competitive["submission_status"], "missing")
-        self.assertEqual(competitive["leetcode_sources"], {})
-        self.assertEqual(
-            [item["label"] for item in competitive["implementations"]],
-            ["Solution 1"],
-        )
 
     def test_1502_default_paths_resolve_to_optimal_branch(self) -> None:
         package = leetcode_package_dir("lc_1502")

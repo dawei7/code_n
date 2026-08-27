@@ -672,8 +672,34 @@ def _build_spec(path: Path, text: str | None = None) -> AlgorithmSpec | None:
  
     environment_starter = environment_starter_source(leetcode_category, title_match.group(1).strip())
     starter_sources = {environment_starter[0]: environment_starter[1]} if environment_starter else {}
-    if leetcode_category == "concurrency" and runnable_in_coden:
-        starter_sources = {"python": source}
+    returns_text = _return_value(text)
+    if returns_text == "Return the result.":
+        package_dir = path.parent
+        doc_file = package_dir / "doc.md"
+        if doc_file.is_file():
+            try:
+                doc_text = doc_file.read_text(encoding="utf-8")
+                rv = _return_value(doc_text)
+                if rv != "Return the result.":
+                    returns_text = rv
+            except Exception:
+                pass
+    if returns_text == "Return the result.":
+        package_dir = path.parent
+        template_file = package_dir / "template.py"
+        solution_path = leetcode_solution_path(challenge_id, "python") if challenge_id else None
+        for candidate_file in (template_file, solution_path):
+            if candidate_file and candidate_file.is_file():
+                try:
+                    code = candidate_file.read_text(encoding="utf-8")
+                    if "TreeNode" in code and ("-> Optional[TreeNode]" in code or "-> TreeNode" in code or "-> List[Optional[TreeNode]]" in code or "-> List[TreeNode]" in code):
+                        returns_text = "Return the root of the resulting TreeNode binary tree, or null."
+                        break
+                    elif "ListNode" in code and ("-> Optional[ListNode]" in code or "-> ListNode" in code or "-> List[Optional[ListNode]]" in code or "-> List[ListNode]" in code):
+                        returns_text = "Return the head of the resulting ListNode linked list, or null."
+                        break
+                except Exception:
+                    pass
 
     return AlgorithmSpec(
         id=challenge_id,
@@ -684,7 +710,7 @@ def _build_spec(path: Path, text: str | None = None) -> AlgorithmSpec | None:
         source_url=source_url,
         params=params,
         inputs=input_docs,
-        returns=_return_value(text),
+        returns=returns_text,
         source=source,
         setup_fn=_leetcode_setup(params, input_docs, samples, source),
         verify_fn=_leetcode_verify if runnable_in_coden and "return None" not in source else _noop_verify,

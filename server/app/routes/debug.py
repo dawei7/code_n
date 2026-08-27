@@ -1238,6 +1238,13 @@ def _js_debug_adapter_invocation(adapter_path: str, node: str) -> tuple[str, lis
     return str(adapter), []
 
 
+def _extract_param_names(spec: Any, setup_data: dict[str, Any]) -> list[str]:
+    spec_params = list(getattr(spec, "params", []) or [])
+    if spec_params == ["value"] and setup_data and "value" not in setup_data:
+        return list(setup_data.keys())
+    return spec_params or list(setup_data.keys())
+
+
 def _build_csharp_debug_target(
     *,
     dotnet: str,
@@ -1266,7 +1273,7 @@ def _build_csharp_debug_target(
     )
 
     spec = getattr(challenge, "_spec", None)
-    param_names = list(getattr(spec, "params", []) or setup_data.keys())
+    param_names = _extract_param_names(spec, setup_data)
     param_hints = dict(getattr(spec, "inputs", {}) or {})
     returns_hint = str(getattr(spec, "returns", "") or "")
     harness_source = _csharp_function_harness(
@@ -1322,7 +1329,7 @@ def _build_go_debug_target(
     solution_source_path = workdir / "solution.go"
     harness_path = workdir / "coden_harness.go"
     spec = getattr(challenge, "_spec", None)
-    param_names = list(getattr(spec, "params", []) or setup_data.keys())
+    param_names = _extract_param_names(spec, setup_data)
     param_hints = dict(getattr(spec, "inputs", {}) or {})
     returns_hint = str(getattr(spec, "returns", "") or "")
     solution_source_path.write_text(
@@ -1382,7 +1389,7 @@ def _build_javascript_debug_target(
     )
 
     spec = getattr(challenge, "_spec", None)
-    param_names = list(getattr(spec, "params", []) or setup_data.keys())
+    param_names = _extract_param_names(spec, setup_data)
     param_hints = dict(getattr(spec, "inputs", {}) or {})
     returns_hint = str(getattr(spec, "returns", "") or "")
     source = _javascript_function_debug_launcher(
@@ -1463,7 +1470,7 @@ def _build_kotlin_debug_target(
 
     user_source_path = solution_path
     spec = getattr(challenge, "_spec", None)
-    param_names = list(getattr(spec, "params", []) or setup_data.keys())
+    param_names = _extract_param_names(spec, setup_data)
     param_hints = dict(getattr(spec, "inputs", {}) or {})
     returns_hint = str(getattr(spec, "returns", "") or "")
     harness_path = workdir / "CodenHarness.kt"

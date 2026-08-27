@@ -11,6 +11,15 @@
       "summary": "Returns false as soon as the first enumerable JSON property or array index exists, and true when none exists.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
     }
   ]
 }

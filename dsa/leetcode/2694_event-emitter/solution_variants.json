@@ -11,6 +11,15 @@
       "summary": "Maps each event name to its ordered listener array and removes subscriptions through closures over the registered callback.",
       "time_complexity": "O(1 + k(a + 1))",
       "space_complexity": "O(s + k)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(1 + k(a + 1))",
+      "space_complexity": "O(s + k)"
     }
   ]
 }

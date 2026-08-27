@@ -11,6 +11,15 @@
       "summary": "Chains one timeout per active interval, increases each successive delay, and maps an independent numeric identifier to the current native handle.",
       "time_complexity": "O(k)",
       "space_complexity": "O(a)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(k)",
+      "space_complexity": "O(a)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Traverses lazily with an explicit stack of array-index frames, yielding integers in recursive left-to-right order.",
       "time_complexity": "O(N)",
       "space_complexity": "O(d)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(d)"
     }
   ]
 }

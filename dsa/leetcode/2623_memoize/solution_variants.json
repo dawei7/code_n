@@ -11,6 +11,15 @@
       "summary": "Serializes the ordered numeric arguments into a map key and caches the first result for every distinct tuple.",
       "time_complexity": "O(1)",
       "space_complexity": "O(u)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(u)"
     }
   ]
 }

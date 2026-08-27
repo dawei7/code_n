@@ -11,6 +11,15 @@
       "summary": "Scans once, tracks converted keys in a Set, and defines safe own data properties.",
       "time_complexity": "O(n + K)",
       "space_complexity": "O(n + K)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(n + K)",
+      "space_complexity": "O(n + K)"
     }
   ]
 }

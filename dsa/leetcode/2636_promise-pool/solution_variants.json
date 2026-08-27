@@ -11,6 +11,15 @@
       "summary": "Starts at most one worker per pool slot; each worker claims the next unstarted function and waits before claiming another.",
       "time_complexity": "O(m)",
       "space_complexity": "O(min(m, n))"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(min(m, n))"
     }
   ]
 }

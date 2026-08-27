@@ -11,6 +11,15 @@
       "summary": "Consumes call-time values while scanning captured arguments once, then appends the unused suffix.",
       "time_complexity": "O(a + r)",
       "space_complexity": "O(a + r)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(a + r)",
+      "space_complexity": "O(a + r)"
     }
   ]
 }

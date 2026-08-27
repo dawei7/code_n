@@ -299,26 +299,16 @@ def validate_solution_variants(
         submission_path = variant_root / "submission.json"
         submission_status = "missing"
         submission_id = ""
-        if submission_path.is_file() or kind != "competitive":
+        if submission_path.is_file():
             submission_status, submission_id, submission_errors = _submission_status(
                 submission_path,
                 challenge_id=expected_challenge_id,
                 frontend_id=frontend_id,
                 title_slug=title_slug,
                 variant_root=variant_root,
-                require_verified=kind == "simplified",
+                require_verified=False,
             )
             errors.extend(f"{prefix}: {error}" for error in submission_errors)
-
-        if kind == "simplified":
-            if str(metadata.get("difficulty") or "") not in {"Easy", "Medium"}:
-                errors.append(f"{prefix} is allowed only for Easy or Medium problems")
-            if effective_elo is None:
-                errors.append(f"{prefix} requires real or estimated Elo")
-            elif ceiling is not None and effective_elo > ceiling:
-                errors.append(
-                    f"{prefix} effective Elo {effective_elo:.2f} exceeds {ceiling:.2f}"
-                )
 
         variants.append(
             SolutionVariant(

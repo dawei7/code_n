@@ -11,6 +11,15 @@
       "summary": "Pivots the month-city keys directly and preserves temperatures without aggregation.",
       "time_complexity": "O(r log r + cm)",
       "space_complexity": "O(cm)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(r log r + cm)",
+      "space_complexity": "O(cm)"
     }
   ]
 }

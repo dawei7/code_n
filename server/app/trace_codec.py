@@ -19,17 +19,45 @@ from typing import Any
 _PRIMITIVE_TYPES = (bool, int, float, str, type(None))
 
 
-def to_json_safe(value: Any) -> Any:
-    """Recursively convert any Python value to a JSON-safe form.
+def _tree_node_to_list(root: Any) -> list[Any]:
+    if root is None:
+        return []
+    res: list[Any] = []
+    queue = [root]
+    while queue:
+        node = queue.pop(0)
+        if node is not None:
+            res.append(getattr(node, "val", None))
+            queue.append(getattr(node, "left", None))
+            queue.append(getattr(node, "right", None))
+        else:
+            res.append(None)
+    while res and res[-1] is None:
+        res.pop()
+    return res
 
-    * ``list`` and ``tuple`` become ``list``
-    * ``set`` becomes ``list`` (insertion order)
-    * ``dict`` keys are stringified (JSON requires string keys)
-    * all primitive types pass through
-    * everything else is ``str()``-ified
-    """
+
+def _list_node_to_list(head: Any) -> list[Any]:
+    res = []
+    seen = set()
+    node = head
+    while node is not None:
+        if id(node) in seen:
+            break
+        seen.add(id(node))
+        res.append(getattr(node, "val", None))
+        node = getattr(node, "next", None)
+    return res
+
+
+def to_json_safe(value: Any) -> Any:
+    """Recursively convert any Python value to a JSON-safe form."""
     if isinstance(value, _PRIMITIVE_TYPES):
         return value
+    if hasattr(value, "val") and (hasattr(value, "left") or hasattr(value, "right")):
+        return [to_json_safe(v) for v in _tree_node_to_list(value)]
+    if hasattr(value, "val") and hasattr(value, "next"):
+        return [to_json_safe(v) for v in _list_node_to_list(value)]
     if isinstance(value, (list, tuple)):
         return [to_json_safe(v) for v in value]
     if isinstance(value, set):

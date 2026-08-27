@@ -11,6 +11,15 @@
       "summary": "Flattens every input item once, sorts the union of leaf paths, and fills the matrix by direct path lookup.",
       "time_complexity": "O(S + k log k + rk)",
       "space_complexity": "O(S + rk)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(S + k log k + rk)",
+      "space_complexity": "O(S + rk)"
     }
   ]
 }

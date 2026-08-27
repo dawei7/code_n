@@ -11,6 +11,15 @@
       "summary": "Filters by the strict weight threshold, sorts qualifying rows once, and projects the name column.",
       "time_complexity": "O(n + h log h)",
       "space_complexity": "O(h)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(n + h log h)",
+      "space_complexity": "O(h)"
     }
   ]
 }

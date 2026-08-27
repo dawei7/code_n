@@ -11,6 +11,15 @@
       "summary": "Stores argument tuples as paths through nested Maps, preserving strict equality and object identity at every position.",
       "time_complexity": "O(a)",
       "space_complexity": "O(u * a)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(a)",
+      "space_complexity": "O(u * a)"
     }
   ]
 }

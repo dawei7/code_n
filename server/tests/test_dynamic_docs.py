@@ -207,13 +207,28 @@ class DynamicDocsTest(conftest._Base):
             parameters = paths[route]["get"].get("parameters", [])
             self.assertNotIn("lang", {parameter["name"] for parameter in parameters})
 
+    def test_overview_is_the_root_readme(self) -> None:
+        response = self.client.get("/api/docs/overview")
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertIn("# cOde(n)", response.text)
+
+    def test_documentation_endpoints_have_no_natural_language_selector(self) -> None:
+        response = self.client.get("/openapi.json")
+        self.assertEqual(response.status_code, 200, response.text)
+        paths = response.json()["paths"]
+
+        for route in ("/api/docs/overview", "/api/docs/by-id/{challenge_id}"):
+            parameters = paths[route]["get"].get("parameters", [])
+            self.assertNotIn("lang", {parameter["name"] for parameter in parameters})
+
     def test_docs_index_contains_every_canonical_registry_challenge(self) -> None:
         response = self.client.get("/api/docs/index")
         self.assertEqual(response.status_code, 200, response.text)
         entries = response.json()
-        self.assertEqual(len(entries), 4005)
+        lc_entries = [entry for entry in entries if str(entry["id"]).startswith("lc_")]
+        self.assertEqual(len(lc_entries), 4005)
         self.assertEqual(
-            {entry["id"] for entry in entries},
+            {entry["id"] for entry in lc_entries},
             {f"lc_{frontend_id}" for frontend_id in range(1, 4006)},
         )
         two_sum = next(entry for entry in entries if entry["id"] == "lc_1")

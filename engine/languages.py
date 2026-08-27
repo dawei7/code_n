@@ -57,6 +57,8 @@ LANGUAGE_ALIASES = {
     "kt": "kotlin",
     "mysql": "sql",
     "sqlite": "sql",
+    "postgresql": "sql",
+    "postgres": "sql",
     "sh": "bash",
     "shell": "bash",
 }
@@ -73,25 +75,19 @@ def normalize_language(language: str | None) -> SupportedLanguage:
 
 
 def language_extension(language: str | None) -> str:
-    return SUPPORTED_LANGUAGES[normalize_language(language)].extension
+    """Return the filesystem extension for a supported language."""
+    canonical = normalize_language(language)
+    return SUPPORTED_LANGUAGES[canonical].extension
 
 
 def app_solution_filename(language: str | None) -> str:
-    """Return the canonical app-local reference filename for a language."""
-
-    language_id = normalize_language(language)
-    return f"solution.{SUPPORTED_LANGUAGES[language_id].extension}"
+    """Return the app-local canonical solution filename for a language."""
+    return f"solution.{language_extension(language)}"
 
 
 def leetcode_solution_filename(language: str | None) -> str:
-    """Return the canonical source-native LeetCode filename for a language."""
-
-    language_id = normalize_language(language)
-    return f"leetcode.{SUPPORTED_LANGUAGES[language_id].extension}"
-
-
-def candidate_solution_filename(language: str | None) -> str:
-    """Return the inert app-contract review-candidate filename for a language."""
-
-    language_id = normalize_language(language)
-    return f"candidate.{SUPPORTED_LANGUAGES[language_id].extension}"
+    """Return the native solution filename for a language."""
+    canonical = normalize_language(language)
+    if canonical == "sql":
+        return "solution.sql"
+    return f"solution.{SUPPORTED_LANGUAGES[canonical].extension}"

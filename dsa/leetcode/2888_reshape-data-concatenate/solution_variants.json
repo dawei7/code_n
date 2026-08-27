@@ -11,6 +11,15 @@
       "summary": "Stacks both DataFrames vertically in one pandas concatenation and rebuilds a continuous row index.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

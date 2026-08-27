@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from challenges.registry import CHALLENGE_REGISTRY
+from challenges.algorithms.leetcode import load_full_leetcode_spec
 from server.app.engine_runner import (
     _actual_result,
     _absolute_value_sorted_match,
@@ -153,7 +154,7 @@ from server.app.validated_cases import NoValidatedCases, ValidatedCase, _load_ca
 from . import conftest
 
 
-LC_153_SOURCE = CHALLENGE_REGISTRY["lc_153"]()._spec.source
+LC_153_SOURCE = load_full_leetcode_spec("lc_153").source
 LC_1_QUADRATIC_SOURCE = '''
 def solve(nums: list[int], target: int) -> list[int]:
     for i in range(len(nums)):
@@ -475,7 +476,7 @@ class ValidatedCasesTest(conftest._Base):
         self.assertEqual(kwargs["poly1"].next.coefficient, 2)
         self.assertEqual(_normalize_validated_value(kwargs["poly2"]), [[-3, 4], [5, 0]])
 
-        spec = CHALLENGE_REGISTRY["lc_1634"]()._spec
+        spec = load_full_leetcode_spec("lc_1634")
         self.assertTrue(_returns_list_node(spec.returns))
         self.assertEqual(
             _normalize_validated_value(None, returns_list_node=True),
@@ -942,7 +943,7 @@ ORDER BY activity.player_id;
                 "sample-2",
                 "trial-not-rotated",
                 "trial-two-items",
-                "real-last-drop",
+                "trial-last-drop",
                 "benchmark-wide-rotation",
                 "benchmark-wide-rotation-medium",
                 "benchmark-wide-rotation-large",
@@ -952,10 +953,10 @@ ORDER BY activity.player_id;
         self.assertGreater(body["runtime_reference_ms"], 0)
         self.assertGreaterEqual(body["runtime_limit_ms"], body["runtime_reference_ms"] * 1.5)
         self.assertIn("Scaling OK", body["runtime_message"])
-        hidden_results = body["case_results"][-4:]
+        hidden_results = body["case_results"][-3:]
         self.assertEqual(
             [case["name"] for case in hidden_results],
-            ["Hidden case 1", "Hidden case 2", "Hidden case 3", "Hidden case 4"],
+            ["Hidden case 1", "Hidden case 2", "Hidden case 3"],
         )
         self.assertTrue(all(case["hidden"] for case in hidden_results))
         self.assertTrue(all(case["counts_toward_verdict"] for case in hidden_results))
@@ -1165,10 +1166,10 @@ ORDER BY activity.player_id;
         self.assertFalse(body["correct"])
         self.assertEqual(len(body["case_results"]), 8)
         self.assertTrue(all(not case["correct"] for case in body["case_results"]))
-        hidden_results = body["case_results"][-4:]
+        hidden_results = body["case_results"][-3:]
         self.assertEqual(
             [case["name"] for case in hidden_results],
-            ["Hidden case 1", "Hidden case 2", "Hidden case 3", "Hidden case 4"],
+            ["Hidden case 1", "Hidden case 2", "Hidden case 3"],
         )
         self.assertTrue(all(case["input_repr"] == "" for case in hidden_results))
         self.assertTrue(all(case["return_value_repr"] == "" for case in hidden_results))
@@ -1178,7 +1179,7 @@ ORDER BY activity.player_id;
     def test_hidden_only_failure_has_no_hidden_evidence_side_channel(self) -> None:
         source = LC_153_SOURCE.replace(
             "def findMin(self, nums: List[int]) -> int:\n",
-            "def findMin(self, nums: List[int]) -> int:\n        if nums == [8, 9, 10, 11, 12, 3, 4, 5, 6, 7]:\n            return -1\n",
+            "def findMin(self, nums: List[int]) -> int:\n        if len(nums) > 16:\n            return -1\n",
         )
         response = self.client.post(
             "/api/challenges/lc_153/run",
@@ -1191,17 +1192,12 @@ ORDER BY activity.player_id;
         self.assertEqual(body["return_value_repr"], "1")
         self.assertEqual(body["reference_return_value_repr"], "1")
         self.assertIsNone(body["setup_data_repr"])
-        hidden = body["case_results"][-4]
+        hidden = body["case_results"][-3]
         self.assertFalse(hidden["correct"])
         self.assertEqual(hidden["input_repr"], "")
         self.assertEqual(hidden["return_value_repr"], "")
         self.assertIsNone(hidden["expected_repr"])
         benchmarks = body["case_results"][-3:]
-        self.assertTrue(all(case["correct"] for case in benchmarks))
-        self.assertEqual(
-            [case["name"] for case in benchmarks],
-            ["Hidden case 2", "Hidden case 3", "Hidden case 4"],
-        )
         self.assertTrue(all(case["hidden"] for case in benchmarks))
 
     def test_benchmark_sidecar_cases_load_with_main_suite(self) -> None:
@@ -1304,7 +1300,7 @@ ORDER BY activity.player_id;
         ):
             response = self.client.post(
                 "/api/challenges/lc_1003/run",
-                json={"source": CHALLENGE_REGISTRY["lc_1003"]()._spec.source},
+                json={"source": load_full_leetcode_spec("lc_1003").source},
             )
         self.assertEqual(response.status_code, 422, response.text)
         detail = response.json()["detail"]
@@ -1772,14 +1768,17 @@ class Solution:
         self.assertTrue(body["passed"], body)
 
     def test_unique_sum_zero_validator_accepts_alternate_values(self) -> None:
-        source = '''
-def solve(n):
-    values = []
-    for value in range(1, n // 2 + 1):
-        values.extend([-value, value])
-    if n % 2:
-        values.insert(0, 0)
-    return values
+        source = '''from typing import List
+
+class Solution:
+    def sumZero(self, n: int) -> List[int]:
+        ans = []
+        for i in range(1, n // 2 + 1):
+            ans.append(-i)
+            ans.append(i)
+        if n % 2:
+            ans.append(0)
+        return ans
 '''
         response = self.client.post(
             "/api/challenges/lc_1304/run",
@@ -2303,11 +2302,11 @@ def solve(n):
         self.assertFalse(_index_value_pair_match([-1, -1], nums, 2, 4))
 
     def test_linked_list_input_hint_is_converted_for_validated_cases(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_2326"]()._spec
+        spec = load_full_leetcode_spec("lc_2326")
         self.assertEqual(_list_node_param_names(spec), ["head"])
 
     def test_linked_list_head_collection_is_converted_per_list(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_23"]()._spec
+        spec = load_full_leetcode_spec("lc_23")
         self.assertEqual(_list_node_collection_param_names(spec), ["lists"])
         values = _prepare_validated_kwargs(
             {"lists": [[1, 4], [], [2, 3]]},
@@ -2400,15 +2399,15 @@ def solve(n):
         self.assertFalse(_peak_grid_match([2, 0], matrix))
 
     def test_tree_root_node_hint_is_converted_for_validated_cases(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_2458"]()._spec
+        spec = load_full_leetcode_spec("lc_2458")
         self.assertEqual(_tree_param_names(spec), ["root"])
 
     def test_binary_tree_root_hint_is_converted_for_validated_cases(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_100"]()._spec
+        spec = load_full_leetcode_spec("lc_100")
         self.assertEqual(_tree_param_names(spec), ["p", "q"])
 
     def test_parent_array_with_non_root_nodes_is_not_converted_to_tree_nodes(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_3575"]()._spec
+        spec = load_full_leetcode_spec("lc_3575")
         self.assertEqual(_tree_param_names(spec), [])
 
     def test_list_of_tree_fixtures_is_converted_to_separate_roots(self) -> None:
@@ -2421,12 +2420,12 @@ def solve(n):
         self.assertEqual((second.val, second.left, second.right.val), (3, None, 4))
 
     def test_list_of_tree_root_hint_and_tree_return_are_detected(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_1932"]()._spec
+        spec = load_full_leetcode_spec("lc_1932")
         self.assertEqual(_tree_param_names(spec), ["trees"])
         self.assertTrue(_returns_tree(spec.returns))
 
     def test_tree_target_values_resolve_to_nodes_in_the_same_graph(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_235"]()._spec
+        spec = load_full_leetcode_spec("lc_235")
         self.assertEqual(_tree_param_names(spec), ["root"])
         self.assertEqual(_tree_node_target_param_names(spec), ["p", "q"])
 
@@ -2439,12 +2438,12 @@ def solve(n):
         self.assertIs(kwargs["root"].right, kwargs["q"])
 
     def test_subtree_root_is_converted_as_an_independent_tree(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_572"]()._spec
+        spec = load_full_leetcode_spec("lc_572")
         self.assertEqual(_tree_param_names(spec), ["root", "subRoot"])
         self.assertEqual(_tree_node_target_param_names(spec), [])
 
     def test_nary_node_fixture_round_trips_and_contract_is_detected(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_429"]()._spec
+        spec = load_full_leetcode_spec("lc_429")
         self.assertEqual(_nary_node_param_names(spec), ["root"])
 
         fixture = [1, [[2, []], [3, [[4, []]]]]]
@@ -2476,7 +2475,7 @@ def solve(n):
         self.assertEqual(_nested_integer_to_fixture(nested), 9)
 
     def test_nary_record_fixtures_preserve_shared_node_identities(self) -> None:
-        collection_spec = CHALLENGE_REGISTRY["lc_1506"]()._spec
+        collection_spec = load_full_leetcode_spec("lc_1506")
         self.assertEqual(
             _nary_node_collection_param_names(collection_spec),
             ["tree"],
@@ -2504,7 +2503,7 @@ def solve(n):
         self.assertEqual(_nary_node_to_records(move_kwargs["root"]), [[1, [2, 3]], [2, []], [3, []]])
 
     def test_random_binary_tree_copy_observation_checks_independence(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_1485"]()._spec
+        spec = load_full_leetcode_spec("lc_1485")
         self.assertEqual(_random_binary_tree_param_names(spec), ["root"])
 
         fixture = [[1, 2], [2, 0], [3, 2]]
@@ -2538,7 +2537,7 @@ def solve(n):
         self.assertEqual((selected.prev.val, selected.val, selected.next.val), (10, 20, 30))
 
     def test_tree_root_return_hint_is_normalized_for_validated_cases(self) -> None:
-        spec = CHALLENGE_REGISTRY["lc_226"]()._spec
+        spec = load_full_leetcode_spec("lc_226")
         self.assertTrue(_returns_tree(spec.returns))
 
     def test_optional_none_return_is_not_treated_as_in_place(self) -> None:

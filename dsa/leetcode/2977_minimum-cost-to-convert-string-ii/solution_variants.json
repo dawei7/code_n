@@ -13,11 +13,11 @@
       "space_complexity": "O(M^2 + N + S)"
     },
     {
-      "id": "competitive",
-      "label": "Competitive",
-      "kind": "competitive",
-      "directory": "variants/competitive",
-      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
       "time_complexity": "O(M^3 + N^2 + S)",
       "space_complexity": "O(M^2 + N + S)"
     }

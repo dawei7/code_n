@@ -11,6 +11,15 @@
       "summary": "Boxes primitive values when necessary and walks the prototype chain until the requested class prototype is found or the chain ends.",
       "time_complexity": "O(h)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Straightforward, readable solution prioritizing clarity and intuitive reasoning.",
+      "time_complexity": "O(h)",
+      "space_complexity": "O(1)"
     }
   ]
 }

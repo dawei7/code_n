@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import sqlite3
 import subprocess
@@ -60,11 +61,42 @@ def _run_sql(source: str, input_data: dict[str, Any]) -> EnvironmentResult:
     try:
         with sqlite3.connect(":memory:") as connection:
             connection.row_factory = sqlite3.Row
+
+            def _sql_month(val: Any) -> int | None:
+                if val is None:
+                    return None
+                try:
+                    return int(str(val).split("-")[1])
+                except Exception:
+                    return None
+
+            def _sql_year(val: Any) -> int | None:
+                if val is None:
+                    return None
+                try:
+                    return int(str(val).split("-")[0])
+                except Exception:
+                    return None
+
+            def _sql_day(val: Any) -> int | None:
+                if val is None:
+                    return None
+                try:
+                    return int(str(val).split("-")[2].split()[0])
+                except Exception:
+                    return None
+
             connection.create_function("IF", 3, lambda cond, a, b: a if cond else b)
             connection.create_function("IFNULL", 2, lambda a, b: b if a is None else a)
+            connection.create_function("MONTH", 1, _sql_month)
+            connection.create_function("YEAR", 1, _sql_year)
+            connection.create_function("DAY", 1, _sql_day)
+            connection.create_function("DAYOFMONTH", 1, _sql_day)
+            connection.create_function("CONCAT", -1, lambda *args: "".join(str(a) for a in args if a is not None))
             for raw_name, raw_rows in tables.items():
                 _create_sqlite_table(connection, str(raw_name), raw_rows)
-            statements = _sqlite_statements(source)
+            adapted_source = re.sub(r"\b(\d+)\s*/", r"\1.0 /", source)
+            statements = _sqlite_statements(adapted_source)
             if not statements:
                 raise sqlite3.OperationalError("SQL source contains no statements.")
             cursor = connection.execute(statements[0])
