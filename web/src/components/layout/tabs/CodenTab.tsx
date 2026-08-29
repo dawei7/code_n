@@ -1147,33 +1147,46 @@ function EditorRunControls({
   onReset: () => void;
 }) {
   return (
-    <div className="inline-flex items-center overflow-hidden rounded-md border border-coden-border bg-coden-inner">
+    <div className="inline-flex items-center overflow-hidden rounded-lg border border-coden-border bg-coden-surface shadow-xs">
       <button
         type="button"
         onClick={onRun}
         disabled={isRunning || Boolean(disabledReason)}
-        title={disabledReason || 'Run active solution against hidden real-test cases'}
-        aria-label="Run active solution against real tests"
-        className="h-8 w-10 bg-coden-accent text-sm font-semibold text-coden-accentContrast hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-45"
+        title={disabledReason || 'Run active solution against test cases'}
+        aria-label="Run active solution against test cases"
+        className="group relative flex h-8 items-center justify-center gap-1.5 px-3 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {isRunning ? '…' : '▶'}
+        {isRunning ? (
+          <svg className="h-3.5 w-3.5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+          </svg>
+        ) : (
+          <svg className="h-3.5 w-3.5 fill-current transition-transform duration-150 group-hover:scale-110" viewBox="0 0 24 24">
+            <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86a1 1 0 0 0-1.5.86z" />
+          </svg>
+        )}
+        <span>Run</span>
       </button>
       <button
         type="button"
         onClick={onReset}
         disabled={isRunning}
-        title="Reset active solution version to its starter code"
-        aria-label="Reset active solution version"
-        className="h-8 w-10 border-l border-rose-400/50 bg-rose-600 text-base font-bold text-white hover:bg-rose-500 disabled:cursor-not-allowed disabled:opacity-45"
+        title="Reset active solution to its starter code"
+        aria-label="Reset active solution"
+        className="flex h-8 w-8 items-center justify-center border-l border-emerald-700/60 bg-emerald-700 hover:bg-rose-600 text-white/80 hover:text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
       >
-        ↻
+        <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+          <path d="M3 3v5h5" />
+        </svg>
       </button>
     </div>
   );
 }
 
 function FocusModeButton({ active = false, onClick }: { active?: boolean; onClick: () => void }) {
-  const label = active ? 'Exit focus mode' : 'Enter focus mode';
+  const label = active ? 'Exit focus mode (Esc)' : 'Enter focus mode';
   return (
     <button
       type="button"
@@ -1181,11 +1194,27 @@ function FocusModeButton({ active = false, onClick }: { active?: boolean; onClic
       title={label}
       aria-label={label}
       aria-pressed={active}
-      className={`group flex h-9 w-10 shrink-0 items-center justify-center rounded-lg border border-yellow-100/90 bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-500 text-lg font-black text-amber-950 shadow-[0_0_18px_rgba(245,158,11,0.62)] transition duration-200 hover:scale-105 hover:brightness-110 hover:shadow-[0_0_26px_rgba(250,204,21,0.82)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-200 focus-visible:ring-offset-2 focus-visible:ring-offset-coden-surface ${active ? 'ring-2 ring-yellow-100/90' : ''}`}
+      className={`group flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-all duration-150 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coden-accent ${
+        active
+          ? 'border-amber-500/80 bg-amber-500/15 text-amber-500 ring-1 ring-amber-500/30 hover:bg-amber-500/25'
+          : 'border-coden-border bg-coden-surface-elevated text-coden-muted hover:border-coden-accent hover:text-coden-accent hover:bg-coden-surface'
+      }`}
     >
-      <span aria-hidden="true" className={`drop-shadow-sm transition-transform duration-200 group-hover:scale-110 ${active ? 'text-[10px] tracking-wider' : ''}`}>
-        {active ? 'ESC' : '⛶'}
-      </span>
+      {active ? (
+        <svg className="h-4 w-4 transition-transform duration-150 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M4 14h6v6" />
+          <path d="M20 10h-6V4" />
+          <path d="M14 10l7-7" />
+          <path d="M10 14l-7 7" />
+        </svg>
+      ) : (
+        <svg className="h-4 w-4 transition-transform duration-150 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M15 3h6v6" />
+          <path d="M9 21H3v-6" />
+          <path d="M21 3l-7 7" />
+          <path d="M3 21l7-7" />
+        </svg>
+      )}
     </button>
   );
 }
